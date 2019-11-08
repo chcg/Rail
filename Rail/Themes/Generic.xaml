@@ -1,0 +1,114 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:Rail.Controls">
+
+
+    <!--<Style TargetType="{x:Type c:RailPlan}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type c:RailPlan}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
+    <Geometry x:Key="IncGeometry">M 1,8 A 6.5,6.5 180 1 1 14,8 A 6.5,6.5 180 1 1 1,8 M 4,8 L 11,8 M 7.5,4 L 7.5,12 M 0,0 Z</Geometry>
+    <Geometry x:Key="DecGeometry">M 1,8 A 6.5,6.5 180 1 1 14,8 A 6.5,6.5 180 1 1 1,8 M 4,8 L 11,8 M 0,0 Z</Geometry>
+
+    <DataTemplate x:Key="IncreaseGlyphNormalKey">
+        <Path Width="15"
+            Height="15"
+            Data="{StaticResource IncGeometry}"
+            Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type RepeatButton}}, Path=Foreground}" 
+            StrokeThickness="1"
+            SnapsToDevicePixels="True"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Focusable="False" />
+    </DataTemplate>
+    <DataTemplate x:Key="DecreaseGlyphNormalKey">
+        <Path Width="15"
+            Height="15"
+            Data="{StaticResource DecGeometry}"
+            Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type RepeatButton}}, Path=Foreground}" 
+            StrokeThickness="1"
+            SnapsToDevicePixels="True"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Focusable="False" />
+    </DataTemplate>
+
+    <Style x:Key="ButtonFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="0" StrokeDashArray="1 2"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="IncDecRepeatButton" TargetType="{x:Type RepeatButton}">
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="#FFADADAD"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ButtonBase}">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    Margin="{TemplateBinding Padding}" 
+                                    RecognizesAccessKey="True" 
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="NumericSlider" TargetType="{x:Type Control}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Control">
+                    <StackPanel Orientation="Horizontal">
+                        <RepeatButton x:Name="decRepeatButton" Style="{StaticResource IncDecRepeatButton}" ContentTemplate="{StaticResource DecreaseGlyphNormalKey}"/>
+                        <Slider Margin="2,0,2,0" 
+                                Width="{Binding SliderWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                Minimum="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}}" 
+                                Maximum="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}}" 
+                                Value="{Binding Value, RelativeSource={RelativeSource TemplatedParent}}" 
+                                SmallChange="{Binding Increment, RelativeSource={RelativeSource TemplatedParent}}"
+                                LargeChange="{Binding Increment, RelativeSource={RelativeSource TemplatedParent}}"
+                                TickFrequency="{Binding TickFrequency, RelativeSource={RelativeSource TemplatedParent}}"
+                                TickPlacement="{Binding TickPlacement, RelativeSource={RelativeSource TemplatedParent}}" >
+                        </Slider>
+                        <RepeatButton x:Name="incRepeatButton" Style="{StaticResource IncDecRepeatButton}" ContentTemplate="{StaticResource IncreaseGlyphNormalKey}"/>
+                        <TextBlock 
+                            Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}"
+                            Margin="2,3,2,0"  
+                            Width="{Binding TextWidth, RelativeSource={RelativeSource TemplatedParent}}"                                
+                            HorizontalAlignment="Right" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--<Style TargetType="{x:Type c:IntegerSlider}" BasedOn="{StaticResource NumericSlider}" />-->
+
+    <Style TargetType="{x:Type c:DoubleSlider}" BasedOn="{StaticResource NumericSlider}" />
+
+</ResourceDictionary>
