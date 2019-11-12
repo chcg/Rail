@@ -108,6 +108,11 @@
     <Compile Include="Mvvm\BaseVersionedProject.cs" />
     <Compile Include="Mvvm\BaseViewModel.cs" />
     <Compile Include="Mvvm\DelegateCommand.cs" />
+    <Compile Include="Mvvm\DialogButtonsView.xaml.cs">
+      <DependentUpon>DialogButtonsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\DialogView.cs" />
+    <Compile Include="Mvvm\DialogViewModel.cs" />
     <Compile Include="Mvvm\EventToCommand.cs" />
     <Compile Include="Mvvm\FileItem.cs" />
     <Compile Include="Mvvm\FileRibbonView.cs" />
@@ -118,14 +123,26 @@
     <Compile Include="Mvvm\ShellIcon.cs" />
     <Compile Include="Mvvm\ShellIconSize.cs" />
     <Compile Include="Mvvm\Views.cs" />
+    <Compile Include="ViewModel\CreateViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RailPlanViewModel.cs" />
+    <Compile Include="View\CreateView.xaml.cs">
+      <DependentUpon>CreateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\RailPlanView.xaml.cs">
       <DependentUpon>RailPlanView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Mvvm\DialogButtonsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\CreateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -1,12 +1,14 @@
 ﻿using Rail.Controls;
 using Rail.Model;
 using Rail.Mvvm;
+using Rail.View;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Rail.ViewModel
 {
@@ -69,11 +71,21 @@ namespace Rail.ViewModel
 
         public override void OnCreate()
         {
-            this.FileChanged = false;
-            this.project = Project.CreateProject();
-            this.RailPlan = new RailPlanViewModel(this.project.TrackDiagram);
-            this.FileChanged = true;
-            this.FilePath = null;
+            CreateViewModel vm = new CreateViewModel(tracks);
+            CreateView dlg = new CreateView();
+            dlg.DataContext = vm;
+            dlg.Owner = Application.Current.MainWindow;
+            if (dlg.ShowDialog().Value == true)
+            {
+                this.FileChanged = false;
+                this.project = Project.CreateProject();
+                this.project.TrackDiagram.Width = vm.Width;
+                this.project.TrackDiagram.Height = vm.Width;
+
+                this.RailPlan = new RailPlanViewModel(this.project.TrackDiagram);
+                this.FileChanged = true;
+                this.FilePath = null;
+            }
         }
 
         public override void OnLoad(string path)
