@@ -14,6 +14,7 @@ namespace Rail.ViewModel
     {
         private Project project;
         private double zoomFactor = 1.0;
+        private Tracks tracks;
 
         public MainViewModel()
         {
@@ -27,6 +28,14 @@ namespace Rail.ViewModel
             //{
             //    Debug.WriteLine(ex.ToString());
             //}
+            try
+            {
+                tracks = Tracks.Load("Tracks.xml");
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private RailPlanViewModel railPlan;

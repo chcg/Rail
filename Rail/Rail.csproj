@@ -83,10 +83,25 @@
     <Compile Include="Controls\RailLeftTurnoutTrack.cs" />
     <Compile Include="Converter\DoubleToPercentageConverter.cs" />
     <Compile Include="Converter\TaskbarItemProgressStateToVisibilityConverter.cs" />
+    <Compile Include="Model\BaseTrack.cs" />
+    <Compile Include="Model\BumperTrack.cs" />
+    <Compile Include="Model\CrossingTrack.cs" />
+    <Compile Include="Model\CurvedTrack.cs" />
+    <Compile Include="Model\CurvedTurnoutTrack.cs" />
+    <Compile Include="Model\DoubleSlipSwitchTrack.cs" />
+    <Compile Include="Model\DoubleTurnoutTrack.cs" />
+    <Compile Include="Model\LeftCurvedTurnoutTrack.cs" />
+    <Compile Include="Model\LeftTurnoutTrack.cs" />
     <Compile Include="Model\Project.cs" />
+    <Compile Include="Model\RightCurvedTurnoutTrack.cs" />
+    <Compile Include="Model\RightTurnoutTrack.cs" />
+    <Compile Include="Model\StraightTrack.cs" />
     <Compile Include="Model\Track.cs" />
     <Compile Include="Model\TrackDiagram.cs" />
     <Compile Include="Model\TrackDock.cs" />
+    <Compile Include="Model\Tracks.cs" />
+    <Compile Include="Model\TrackType.cs" />
+    <Compile Include="Model\TurnoutTrack.cs" />
     <Compile Include="Mvvm\AppRibbonView.cs" />
     <Compile Include="Mvvm\AppViewModel.cs" />
     <Compile Include="Mvvm\AssemblyProjectVersionAttribute.cs" />
@@ -170,6 +185,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Rail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tracks.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
