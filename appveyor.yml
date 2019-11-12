@@ -1,0 +1,47 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+
+
+platform:
+    - Any CPU
+
+configuration:
+    - Release
+    - Debug
+
+install:
+    - if "%platform%"=="Any CPU" set archi=x86
+    - if "%platform%"=="Any CPU" set platform_input=Any CPU
+
+    - nuget restore "%APPVEYOR_BUILD_FOLDER%"\Rail\packages.config -PackagesDirectory "%APPVEYOR_BUILD_FOLDER%"\packages
+
+build_script:
+    - cd "%APPVEYOR_BUILD_FOLDER%"
+    - msbuild Rail.sln /m /verbosity:minimal /p:configuration="%configuration%" /p:platform="%platform_input%" /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+
+after_build:
+    - cd "%APPVEYOR_BUILD_FOLDER%"
+    - ps: >-
+        Push-AppveyorArtifact "Rail\bin\$env:CONFIGURATION\Rail.exe" -FileName Rail.exe
+
+        if ($($env:APPVEYOR_REPO_TAG) -eq "true" -and $env:CONFIGURATION -eq "Release") {
+            $ZipFileName = "Rail_$($env:APPVEYOR_REPO_TAG_NAME).zip"
+            7z a $ZipFileName "%APPVEYOR_BUILD_FOLDER%\Rail\bin\$env:CONFIGURATION\Rail.exe"
+        }
+
+artifacts:
+  - path: Rail_*.zip
+    name: releases
+
+deploy:
+    provider: GitHub
+    auth_token:
+        secure: !!TODO, see https://www.appveyor.com/docs/deployment/github/#provider-settings!!
+    artifact: releases
+    draft: false
+    prerelease: false
+    force_update: true
+    on:
+        appveyor_repo_tag: true
+        PlatformToolset: VS17
+        configuration: Release
