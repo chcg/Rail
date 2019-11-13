@@ -22,8 +22,8 @@ jobs:
     - name: Install NuGet client
       uses: warrenbuckley/Setup-Nuget@v1
 
-    - name: Nuget Push
-      run: nuget push *.nupkg
+    - name: Nuget restore
+      run: nuget restore .\Rail\packages.config -PackagesDirectory .\packages\
       
     - name: restore
       working-directory: 
