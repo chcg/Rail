@@ -22,6 +22,9 @@ jobs:
     - name: Install NuGet client
       uses: warrenbuckley/Setup-Nuget@v1
 
+    - name: Nuget Push
+      run: nuget push *.nupkg
+      
     - name: restore
       working-directory: 
       run: msbuild Rail.sln /m /verbosity:minimal /t:restore /p:configuration="${{ matrix.build_configuration }}" /p:platform="${{ matrix.build_platform }}"
