@@ -18,6 +18,9 @@ jobs:
 
     - name: Setup to add MSBuild.exe to path
       uses: warrenbuckley/Setup-MSBuild@v1
+      
+    - name: Install NuGet client
+      uses: warrenbuckley/Setup-Nuget@v1
 
     - name: restore
       working-directory: 
