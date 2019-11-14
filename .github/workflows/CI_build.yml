@@ -37,5 +37,5 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
           name: Rail
-          path: Rail\bin\${{ matrix.build_configuration }}\Rail.exe
+          path: Rail\bin\${{ matrix.build_configuration }}\netcoreapp3.0\Rail.exe
 
