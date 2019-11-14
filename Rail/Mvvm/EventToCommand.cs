@@ -14,10 +14,10 @@
 // <LastBaseLevel>BL0002</LastBaseLevel>
 // ****************************************************************************
 
+using Microsoft.Xaml.Behaviors;
 using System;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Interactivity;
 
 namespace Rail.Mvvm
 {

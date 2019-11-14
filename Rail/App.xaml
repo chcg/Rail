@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:Rail"
              Startup="OnStartup">
     <Application.Resources>
-         
+        
     </Application.Resources>
 </Application>

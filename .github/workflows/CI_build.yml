@@ -23,7 +23,7 @@ jobs:
       uses: warrenbuckley/Setup-Nuget@v1
 
     - name: Nuget restore
-      run: nuget restore .\Rail\packages.config -PackagesDirectory .\packages\
+      run: nuget restore .\Rail\Rail.csproj -PackagesDirectory .\packages\
       
     - name: restore
       working-directory: 

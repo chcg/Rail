@@ -48,7 +48,7 @@ namespace Rail.Controls
             this.railMaterial = railMaterial;
             this.Position = new Point(x, y);
             this.angle = angle;
-            this.Text = new FormattedText(this.railMaterial.Id.ToString(), CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, Brushes.Black);
+            this.Text = new FormattedText(this.railMaterial.Id.ToString(), CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, Brushes.Black, 1.25);
             this.geometry = CreateGeometry();
         }
 

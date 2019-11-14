@@ -1,219 +1,93 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{347945C0-F7F8-49F9-AA2F-7436AA5B9F0A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
     <RootNamespace>Rail</RootNamespace>
     <AssemblyName>Rail</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Controls.Ribbon" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
+    <None Remove="Images\Help.png" />
+    <None Remove="Images\Info.png" />
+    <None Remove="Images\New.png" />
+    <None Remove="Images\Open.png" />
+    <None Remove="Images\Rail.png" />
+    <None Remove="Images\Save.png" />
+    <None Remove="Images\Settings.png" />
   </ItemGroup>
+
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="Controls\DockPoint.cs" />
-    <Compile Include="Controls\DoubleSlider.cs" />
-    <Compile Include="Controls\DrawingContexts.cs" />
-    <Compile Include="Controls\NumericSlider.cs" />
-    <Compile Include="Controls\Points.cs" />
-    <Compile Include="Controls\RailBumperTrack.cs" />
-    <Compile Include="Controls\RailConnection.cs" />
-    <Compile Include="Controls\RailCrossingTrack.cs" />
-    <Compile Include="Controls\RailCurvedTrack.cs" />
-    <Compile Include="Controls\RailDoubleTurnoutTrack.cs" />
-    <Compile Include="Controls\RailLeftCurvedTurnoutTrack.cs" />
-    <Compile Include="Controls\RailMaterialBar.cs" />
-    <Compile Include="Controls\RailPlan.cs" />
-    <Compile Include="Controls\RailRightCurvedTurnoutTrack.cs" />
-    <Compile Include="Controls\RailRightTurnoutTrack.cs" />
-    <Compile Include="Controls\RailStraitTrack.cs" />
-    <Compile Include="Controls\RailTrack.cs" />
-    <Compile Include="Controls\RailLeftTurnoutTrack.cs" />
-    <Compile Include="Converter\DoubleToPercentageConverter.cs" />
-    <Compile Include="Converter\TaskbarItemProgressStateToVisibilityConverter.cs" />
-    <Compile Include="Model\BaseTrack.cs" />
-    <Compile Include="Model\BumperTrack.cs" />
-    <Compile Include="Model\CrossingTrack.cs" />
-    <Compile Include="Model\CurvedTrack.cs" />
-    <Compile Include="Model\CurvedTurnoutTrack.cs" />
-    <Compile Include="Model\DoubleSlipSwitchTrack.cs" />
-    <Compile Include="Model\DoubleTurnoutTrack.cs" />
-    <Compile Include="Model\LeftCurvedTurnoutTrack.cs" />
-    <Compile Include="Model\LeftTurnoutTrack.cs" />
-    <Compile Include="Model\Project.cs" />
-    <Compile Include="Model\RightCurvedTurnoutTrack.cs" />
-    <Compile Include="Model\RightTurnoutTrack.cs" />
-    <Compile Include="Model\StraightTrack.cs" />
-    <Compile Include="Model\Track.cs" />
-    <Compile Include="Model\TrackDiagram.cs" />
-    <Compile Include="Model\TrackDock.cs" />
-    <Compile Include="Model\Tracks.cs" />
-    <Compile Include="Model\TrackType.cs" />
-    <Compile Include="Model\TurnoutTrack.cs" />
-    <Compile Include="Mvvm\AppRibbonView.cs" />
-    <Compile Include="Mvvm\AppViewModel.cs" />
-    <Compile Include="Mvvm\AssemblyProjectVersionAttribute.cs" />
-    <Compile Include="Mvvm\BaseVersionedProject.cs" />
-    <Compile Include="Mvvm\BaseViewModel.cs" />
-    <Compile Include="Mvvm\DelegateCommand.cs" />
-    <Compile Include="Mvvm\DialogButtonsView.xaml.cs">
-      <DependentUpon>DialogButtonsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Mvvm\DialogView.cs" />
-    <Compile Include="Mvvm\DialogViewModel.cs" />
-    <Compile Include="Mvvm\EventToCommand.cs" />
-    <Compile Include="Mvvm\FileItem.cs" />
-    <Compile Include="Mvvm\FileRibbonView.cs" />
-    <Compile Include="Mvvm\FileViewModel.cs" />
-    <Compile Include="Mvvm\FolderBrowserDialog.cs" />
-    <Compile Include="Mvvm\GenericDelegateCommand.cs" />
-    <Compile Include="Mvvm\PersistentRibbon.cs" />
-    <Compile Include="Mvvm\ShellIcon.cs" />
-    <Compile Include="Mvvm\ShellIconSize.cs" />
-    <Compile Include="Mvvm\Views.cs" />
-    <Compile Include="ViewModel\CreateViewModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\RailPlanViewModel.cs" />
-    <Compile Include="View\CreateView.xaml.cs">
-      <DependentUpon>CreateView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\RailPlanView.xaml.cs">
-      <DependentUpon>RailPlanView.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Mvvm\DialogButtonsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\CreateView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\MainView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="View\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="View\RailPlanView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.3" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Controls\RailMaterial.cs" />
-    <Compile Include="Controls\RailType.cs" />
-    <Compile Include="Model\TrackSet.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
+
   <ItemGroup>
     <Resource Include="Images\Help.png" />
     <Resource Include="Images\Info.png" />
     <Resource Include="Images\New.png" />
     <Resource Include="Images\Open.png" />
+    <Resource Include="Images\Rail.png" />
     <Resource Include="Images\Save.png" />
     <Resource Include="Images\Settings.png" />
   </ItemGroup>
+
   <ItemGroup>
-    <Resource Include="Images\Rail.png" />
+    <Compile Update="Mvvm\DialogButtonsView.xaml.cs">
+      <DependentUpon>DialogButtonsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="View\CreateView.xaml.cs">
+      <DependentUpon>CreateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\MainView.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\RailPlanView.xaml.cs">
+      <DependentUpon>RailPlanView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="Tracks.xml">
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="Tracks.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
+  <ItemGroup>
+    <Page Update="Mvvm\DialogButtonsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\CreateView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\MainView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\RailPlanView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>
