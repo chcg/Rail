@@ -5,6 +5,7 @@ using Rail.View;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,11 +33,12 @@ namespace Rail.ViewModel
             //}
             try
             {
-                tracks = Tracks.Load("Tracks.xml");
+                string path = System.AppDomain.CurrentDomain.BaseDirectory;
+                tracks = Tracks.Load(Path.Combine(path, "Tracks.xml"));
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show("Error in File Tracks.xml\r\n" + ex.Message);
             }
         }
 

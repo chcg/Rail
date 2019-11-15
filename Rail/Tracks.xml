@@ -8,57 +8,113 @@
     <!-- R5 = 643.6 mm -->
     <!-- R6 = 1114.6 mm -->
     <!-- strait tracks -->
-      <Straight Id="064" Length="64.3" Decription="Strait 64.3 mm"/>
-      <Straight Id="071" Length="70.8" Decription="Strait 70.8 mm"/>
-      <Straight Id="077" Length="77.5" Decription="Strait 77.5 mm"/>
-      <Straight Id="094" Length="94.2" Decription="Strait 94.2 mm"/>
-      <Straight Id="172" Length="171.7" Decription="Strait 171.7 mm"/>
-      <Straight Id="188" Length="188.3" Decription="Strait 188.3 mm"/>
-      <Straight Id="229" Length="229.3" Decription="Strait 229.3 mm"/>
-      <Straight Id="236" Length="236.1" Decription="Strait 236.1 mm"/>
-      <Straight Id="360" Length="360.0" Decription="Strait 360.0 mm"/>
+      <Straight Id="24064" Length="64.3" Decription="Strait 64.3 mm"/>
+      <Straight Id="24071" Length="70.8" Decription="Strait 70.8 mm"/>
+      <Straight Id="24077" Length="77.5" Decription="Strait 77.5 mm"/>
+      <Straight Id="24094" Length="94.2" Decription="Strait 94.2 mm"/>
+      <Straight Id="24172" Length="171.7" Decription="Strait 171.7 mm"/>
+      <Straight Id="24188" Length="188.3" Decription="Strait 188.3 mm"/>
+      <Straight Id="24229" Length="229.3" Decription="Strait 229.3 mm"/>
+      <Straight Id="24236" Length="236.1" Decription="Strait 236.1 mm"/>
+      <Straight Id="24360" Length="360.0" Decription="Strait 360.0 mm"/>
       <!-- curved tracks -->
-      <Curved Id="107" Radius="360.0" Angle="7.5" Decription="Curved R1 360.0 mm 7.5°" />
-      <Curved Id="115" Radius="360.0" Angle="15.0" Decription="Curved R1 360.0 mm 15.0°"/>
-      <Curved Id="130" Radius="360.0" Angle="30.0" Decription="Curved R1 360.0 mm 30.0°"/>
-      <Curved Id="206" Radius="437.5" Angle="5.7" Decription="Curved R2 437.5 mm 5.7°" />
-      <Curved Id="207" Radius="437.5" Angle="7.5" Decription="Curved R2 437.5 mm 7.5°" />
-      <Curved Id="215" Radius="437.5" Angle="15.0" Decription="Curved R2 437.5 mm 15.0°"/>
-      <Curved Id="224" Radius="515.0" Angle="24.3" Decription="Curved R3 515.0 mm 24.3°"/>
-      <Curved Id="230" Radius="515.0" Angle="30.0" Decription="Curved R3 515.0 mm 30.0°"/>
-      <Curved Id="315" Radius="515.0" Angle="15.0" Decription="Curved R3 515.0 mm 15.0°"/>
-      <Curved Id="330" Radius="515.0" Angle="30.0" Decription="Curved R3 515.0 mm 30.0°"/>
-      <Curved Id="430" Radius="579.3" Angle="30.0" Decription="Curved R4 579.3 mm 30.0°"/>
-      <Curved Id="530" Radius="643.6" Angle="30.0" Decription="Curved R5 643.6 mm 30.0°"/>
-      <Curved Id="912" Radius="1114.6" Angle="12.1" Decription="Curved R6 1114.6 mm 12.1°"/>
+      <Curved Id="24107" Radius="360.0" Angle="7.5" Decription="Curved R1 360.0 mm 7.5°" />
+      <Curved Id="24115" Radius="360.0" Angle="15.0" Decription="Curved R1 360.0 mm 15.0°"/>
+      <Curved Id="24130" Radius="360.0" Angle="30.0" Decription="Curved R1 360.0 mm 30.0°"/>
+      <Curved Id="24206" Radius="437.5" Angle="5.7" Decription="Curved R2 437.5 mm 5.7°" />
+      <Curved Id="24207" Radius="437.5" Angle="7.5" Decription="Curved R2 437.5 mm 7.5°" />
+      <Curved Id="24215" Radius="437.5" Angle="15.0" Decription="Curved R2 437.5 mm 15.0°"/>
+      <Curved Id="24224" Radius="515.0" Angle="24.3" Decription="Curved R3 515.0 mm 24.3°"/>
+      <Curved Id="24230" Radius="515.0" Angle="30.0" Decription="Curved R3 515.0 mm 30.0°"/>
+      <Curved Id="24315" Radius="515.0" Angle="15.0" Decription="Curved R3 515.0 mm 15.0°"/>
+      <Curved Id="24330" Radius="515.0" Angle="30.0" Decription="Curved R3 515.0 mm 30.0°"/>
+      <Curved Id="24430" Radius="579.3" Angle="30.0" Decription="Curved R4 579.3 mm 30.0°"/>
+      <Curved Id="24530" Radius="643.6" Angle="30.0" Decription="Curved R5 643.6 mm 30.0°"/>
+      <Curved Id="24912" Radius="1114.6" Angle="12.1" Decription="Curved R6 1114.6 mm 12.1°"/>
 
       <!-- turnout tracks -->
-      <LeftTurnout Id ="611" Length="188.3" Radius="437.5" Angle="24.3" Decription="Left Turnout" />
-      <RightTurnout Id ="612" Length="188.3" Radius="437.5" Angle="24.3" Decription="Right Turnout" />
-      <LeftTurnout Id ="711" Length="236.1" Radius="1114.6" Angle="12.1" Decription="Left Wide Radius Turnout" />
-      <RightTurnout Id ="712" Length="236.1" Radius="1114.6" Angle="12.1" Decription="Right Wide Radius Turnout" />
+      <LeftTurnout Id ="24611" Length="188.3" Radius="437.5" Angle="24.3" Decription="Left Turnout" />
+      <RightTurnout Id ="24612" Length="188.3" Radius="437.5" Angle="24.3" Decription="Right Turnout" />
+      <LeftTurnout Id ="24711" Length="236.1" Radius="1114.6" Angle="12.1" Decription="Left Wide Radius Turnout" />
+      <RightTurnout Id ="24712" Length="236.1" Radius="1114.6" Angle="12.1" Decription="Right Wide Radius Turnout" />
 
       <!-- curved turnout tracks -->
-      <LeftCurvedTurnout Id="671" Radius="360.0" Angle="30.0" Distance="77.5" Decription="Left Curved Turnout" />
-      <RightCurvedTurnout Id="672" Radius="360.0" Angle="30.0" Distance="77.5" Decription="Right Curved Turnout" />
-      <LeftCurvedTurnout Id="771" Radius="515.0"  Angle="30.0" Distance="64.0" Decription="Left Wide Radius Curved Turnout" />
-      <RightCurvedTurnout Id="772" Radius="515.0"  Angle="30.0" Distance="64.0" Decription="Right Wide Radius Curved Turnout" />
+      <LeftCurvedTurnout Id="24671" Radius="360.0" Angle="30.0" Distance="77.5" Decription="Left Curved Turnout" />
+      <RightCurvedTurnout Id="24672" Radius="360.0" Angle="30.0" Distance="77.5" Decription="Right Curved Turnout" />
+      <LeftCurvedTurnout Id="24771" Radius="515.0"  Angle="30.0" Distance="64.0" Decription="Left Wide Radius Curved Turnout" />
+      <RightCurvedTurnout Id="24772" Radius="515.0"  Angle="30.0" Distance="64.0" Decription="Right Wide Radius Curved Turnout" />
 
       <!-- double slip switch -->
-      <DoubleSlipSwitch Id="624" Length="188.3" Angle="24.3" Decription="Double Slip Switch" />
+      <DoubleSlipSwitch Id="24624" Length="188.3" Angle="24.3" Decription="Double Slip Switch" />
 
       <!-- double turnout -->
-      <DoubleTurnout Id="630" Length="188.3" Radius="437.5" Angle="24.3" Decription="Double Turnout" />
+      <DoubleTurnout Id="24630" Length="188.3" Radius="437.5" Angle="24.3" Decription="Double Turnout" />
 
       <!-- crossing -->
-      <Crossing Id="640" Length1="188.3" Length2="188.3" Angle="24.3" Decription="Crossing 24.3°" />
-      <Crossing Id="649" Length1="103.3" Length2="103.3" Angle="48.6" Decription="Crossing 48.6°" />
-      <Crossing Id="740" Length1="236.1" Length2="236.1" Angle="12.1" Decription="Crossing 12.1°" />
+      <Crossing Id="24640" Length1="188.3" Length2="188.3" Angle="24.3" Decription="Crossing 24.3°" />
+      <Crossing Id="24649" Length1="103.3" Length2="103.3" Angle="48.6" Decription="Crossing 48.6°" />
+      <Crossing Id="24740" Length1="236.1" Length2="236.1" Angle="12.1" Decription="Crossing 12.1°" />
 
       <!-- bumper -->
-      <Bumper Id="977" Length="82.5" Decription="Bumper" />
+      <Bumper Id="24977" Length="82.5" Decription="Bumper" />
   </TrackType>
   <TrackType Gauge="H0" Type="K" Spacing="16.5" Name="Märklin H0 K-Track" Description="Märklin H0 K-Track">
+    <!-- R0 = 295.4 mm -->
+    <!-- R1 = 360.0 mm -->
+    <!-- R2 = 424.6 mm -->
+    <!-- R3 = 553.9 mm -->
+    <!-- R4 = 618.5 mm -->
+    <!-- R = 902,4 mm -->
+    <!-- strait tracks -->
+    <Straight Id="2204" Length="22.5" Decription="Strait 22.5 mm"/>
+    <Straight Id="2203" Length="30.0" Decription="Strait 30.0 mm"/>
+    <Straight Id="2208" Length="35.1" Decription="Strait 35.1 mm"/>
+    <Straight Id="2293" Length="41.3" Decription="Strait 41.3 mm"/>
+    <Straight Id="2202" Length="45.0" Decription="Strait 45.0 mm"/>
+    <Straight Id="2201" Length="90.0" Decription="Strait 90.0 mm"/>
+    <Straight Id="2207" Length="156.0" Decription="Strait 156.0 mm"/>
+    <Straight Id="2206" Length="168.9" Decription="Strait 168.9 mm"/>
+    <Straight Id="2200" Length="180.0" Decription="Strait 180.0 mm"/>
+    <Straight Id="2209" Length="217.9" Decription="Strait 217.9 mm"/>
+    <!-- curved tracks -->
+    <Curved Id="2210" Radius="295.4" Angle="45" Decription="Curved R0 295.4 mm 45.0°" />
+    <Curved Id="2221" Radius="360.0" Angle="30" Decription="Curved R1 mm 30.0°" />
+    <Curved Id="2223" Radius="360.0" Angle="15" Decription="Curved R1 mm 15.0°" />
+    <Curved Id="2224" Radius="360.0" Angle="7.5" Decription="Curved R1 mm 7.5°" />
+    <Curved Id="2231" Radius="424.6" Angle="30" Decription="Curved R2 mm 30.0°" />
+    <Curved Id="2232" Radius="424.6" Angle="22.5" Decription="Curved R2 mm 22.5°" />
+    <Curved Id="2233" Radius="424.6" Angle="15" Decription="Curved R2 mm 15.0°" />
+    <Curved Id="2234" Radius="424.6" Angle="7.5" Decription="Curved R2 mm 7.5°" />
+    <Curved Id="2235" Radius="424.6" Angle="3.75" Decription="Curved R2 mm 3.75°" />
+    <Curved Id="2241" Radius="553.9" Angle="30" Decription="Curved R3 mm 30.0°" />
+    <Curved Id="2251" Radius="618.5" Angle="30" Decription="Curved R4 mm 30.0°" />
+
+    <Curved Id="2274" Radius="0" Angle="14.26" Decription="Curved mm 14.26°" />
+
+    <!-- turnout tracks -->
+    <LeftTurnout Id ="2262" Length="168.9" Radius="0" Angle="22.5" Decription="Left Turnout" />
+    <RightTurnout Id ="2263" Length="168.9" Radius="0" Angle="22.5" Decription="Right Turnout" />
+    <LeftTurnout Id ="22715" Length="225.0" Radius="902.4" Angle="14.26" Decription="Left Turnout" />
+    <RightTurnout Id ="22715" Length="225.0" Radius="902.4" Angle="14.26" Decription="Right Turnout" />
+
+    <!-- curved turnout tracks -->
+    <LeftCurvedTurnout Id="2268" Radius="0" Angle="30.0" Distance="64.6" Decription="Left Curved Turnout" />
+    <RightCurvedTurnout Id="2269" Radius="0" Angle="30.0" Distance="64.6" Decription="Right Curved Turnout" />
+
+
+
+    <!-- double slip switch -->
+    <DoubleSlipSwitch Id="2260" Length="168.9" Angle="22.5" Decription="Double Slip Switch" />
+    <DoubleSlipSwitch Id="2275" Length="225.0" Radius="902.4" Angle="14.26" Decription="Double Slip Switch" />
+
+    <!-- double turnout -->
+    <DoubleTurnout Id="2270" Length="168.9" Radius="424.6" Angle="22.3" Decription="Double Turnout" />
+
+
+    <!-- crossing -->
+    <Crossing Id="2257" Length1="225.0" Length2="225.0" Angle="14.26" Decription="Crossing 14.26°" />
+    <Crossing Id="2258" Length1="90.0" Length2="90.0" Angle="45.0" Decription="Crossing 45.0°" />
+    <Crossing Id="2259" Length1="168.9" Length2="168.9" Angle="22.30" Decription="Crossing 22.3°" />
 
   </TrackType>
   <TrackType Gauge="1" Type="" Spacing="16.5" Name="Märklin 1 Railtracks" Description="Märklin 1 Railtracks">
@@ -147,4 +203,19 @@
     <!-- R6 = 480.0 mm -->
     <!-- R7 = 765.0 mm -->
   </TrackType>
+
+  <TrackType Gauge="H0" Type="geoLine" Spacing="16.5" Name="Roco H0 geoLine" Description="Roco H0 geoLine">
+  </TrackType>
+  <TrackType Gauge="H0" Type="Roco-Line" Spacing="16.5" Name="Roco H0 Roco-Line" Description="Roco H0 Roco-Line">
+  </TrackType>
+
+  <TrackType Gauge="H0" Type="Roco-Line with Bedding" Spacing="16.5" Name="Roco-Line with Bedding" Description="Roco-Line with Bedding">
+  </TrackType>
+
+  <TrackType Gauge="H0e" Type="Railtracks" Spacing="16.5" Name="Roco H0e" Description="Roco H0e">
+  </TrackType>
+
+  <TrackType Gauge="H0e" Type="Feldbahn" Spacing="16.5" Name="Roco H0e Feldbahn" Description="Roco H0e Feldbahn">
+  </TrackType>
+
 </Tracks>
