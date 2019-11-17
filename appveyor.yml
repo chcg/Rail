@@ -1,8 +1,10 @@
 version: 1.0.{build}
-image: Visual Studio 2017
+image: Visual Studio 2019
 
 
 platform:
+    - x64
+    - x86
     - Any CPU
 
 configuration:
@@ -10,23 +12,28 @@ configuration:
     - Debug
 
 install:
-    - if "%platform%"=="Any CPU" set archi=x86
-    - if "%platform%"=="Any CPU" set platform_input=Any CPU
+    - ps: >-
+        Start-FileDownload 'https://wixtoolset.gallerycdn.vsassets.io/extensions/wixtoolset/wixtoolsetvisualstudio2019extension/1.0.0.4/1563296438961/Votive2019.vsix'
 
-    - nuget restore "%APPVEYOR_BUILD_FOLDER%"\Rail\packages.config -PackagesDirectory "%APPVEYOR_BUILD_FOLDER%"\packages
+        Write-Host "Installing VSIX..."
+
+        . "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\VSIXInstaller.exe" /q /a Votive2019.vsix
+        Write-Host "InstallerProjects installed" -ForegroundColor Green
 
 build_script:
     - cd "%APPVEYOR_BUILD_FOLDER%"
-    - msbuild Rail.sln /m /verbosity:minimal /p:configuration="%configuration%" /p:platform="%platform_input%" /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+    - msbuild Rail.sln /m /verbosity:minimal /t:restore /p:configuration="%configuration%" /p:platform="%platform%" /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+    - msbuild Rail.sln /m /verbosity:minimal /p:configuration="%configuration%" /p:platform="%platform%" /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
 after_build:
-    - cd "%APPVEYOR_BUILD_FOLDER%"
+    - cd "%APPVEYOR_BUILD_FOLDER%"\Rail.Installer\Installs
+    - dir
     - ps: >-
-        Push-AppveyorArtifact "Rail\bin\$env:CONFIGURATION\Rail.exe" -FileName Rail.exe
+        Push-AppveyorArtifact "Rail-*.msi" -FileName Rail-*.msi
 
         if ($($env:APPVEYOR_REPO_TAG) -eq "true" -and $env:CONFIGURATION -eq "Release") {
             $ZipFileName = "Rail_$($env:APPVEYOR_REPO_TAG_NAME).zip"
-            7z a $ZipFileName "%APPVEYOR_BUILD_FOLDER%\Rail\bin\$env:CONFIGURATION\Rail.exe"
+            7z a $ZipFileName "%APPVEYOR_BUILD_FOLDER%\Rail\bin\$env:CONFIGURATION\netcoreapp3.1\Rail.dll"
         }
 
 artifacts:
