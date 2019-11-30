@@ -1,4 +1,5 @@
 ﻿using Rail.Controls;
+using Rail.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +9,26 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class RailPlan
+    [XmlRoot("RailPlan")]
+    public class RailPlan : BaseVersionedProject
     {
-        public RailPlan()
+        private RailPlan()
         {
             this.Width = 3000;
             this.Height = 1300;
             this.Zoom = 1.0;
-            this.Tracks = new List<Rail>();
+            this.Rails = new List<RailItem>();
+        }
+
+        public static RailPlan Create()
+        {
+            return new RailPlan();
+        }
+
+        public static RailPlan Load(string path)
+        {
+            RailPlan railPlan = BaseVersionedProject.Load<RailPlan>(path);
+            return railPlan;
         }
 
         /// <summary>
@@ -39,8 +52,8 @@ namespace Rail.Model
         /// <summary>
         /// 
         /// </summary>
-        [XmlArray("Tracks")]
-        [XmlArrayItem("Track")]
-        public List<Rail> Tracks { get; set; }
+        [XmlArray("Rails")]
+        [XmlArrayItem("Rail")]
+        public List<RailItem> Rails { get; set; }
     }
 }

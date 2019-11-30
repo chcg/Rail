@@ -163,35 +163,28 @@
             <ListView Grid.Row="1" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" SelectedIndex="0" Margin="8">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <!--<ctrl:TrackControl Track="{Binding .}" ToolTip="{Binding Decription}" />-->
-                        <Grid ToolTip="{Binding Decription}" >
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <ctrl:TrackControl Grid.Row="0" Track="{Binding .}" />
-                            <TextBlock Grid.Row="1" Text="{Binding Name}" HorizontalAlignment="Center" />
-                        </Grid>
+                        <Border BorderBrush="LightGray" BorderThickness="1,1,1,1">
+                            <Grid ToolTip="{Binding Decription}" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <ctrl:TrackControl Grid.Row="0" Track="{Binding .}" ToolTip="{Binding Decription}"/>
+                                <TextBlock Grid.Row="1" Text="{Binding Name}" HorizontalAlignment="Center" />
+                            </Grid>
+                        </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <!--<Border Grid.Row="1" Margin="8" BorderBrush="LightGray" BorderThickness="1,1,1,1">
-                <ScrollViewer Background="White" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" >
-                    <ctrl:RailMaterialBar Command="{Binding Path=AddTrackCommand}" Tracks="{Binding Tracks}" SelectedTrack="{Binding SelectedTrack}" />
-                </ScrollViewer>
-                
-            </Border>-->
         </Grid>
-        <ScrollViewer DockPanel.Dock="Right" Width="200" Focusable="False" Background="White" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-            <ctrl:RailMaterialBar Command="{Binding Path=AddTrackCommand}" Tracks="{Binding Path=RailMaterialTracks}"/>
-        </ScrollViewer>
         <ScrollViewer Focusable="False" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  >
             <ctrl:RailPlanControl 
             Background="LightGreen"
             GroundWidth="{Binding GroundWidth}"
             GroundHeight="{Binding GroundHeight}"
             ZoomFactor="{Binding ZoomFactor}"
-            Tracks="{Binding Path=RailTracks}"/>
+            RailPlan="{Binding RailPlan}"
+            SelectedTrack="{Binding SelectedTrack}"/>
         </ScrollViewer>
 
     </DockPanel>

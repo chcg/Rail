@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Media;
-using System.Xml.Serialization;
 
 namespace Rail.Model
 {
@@ -14,11 +9,19 @@ namespace Rail.Model
         {
             base.Update(spacing);
 
-            this.geometry = new CombinedGeometry(
+            this.Geometry = new CombinedGeometry(
                 CreateStraitTrackGeometry(this.Length),
                 new CombinedGeometry(
                     CreateLeftTurnoutGeometry(this.Length, this.Angle, this.Radius),
                     CreateRightTurnoutGeometry(this.Length, this.Angle, this.Radius)));
+
+            this.DockPoints = new List<TrackDockPoint> 
+            { 
+                new TrackDockPoint(this, -this.Length / 2.0, 0.0, 135), 
+                new TrackDockPoint(this,  this.Length / 2.0, 0.0, 315), 
+                new TrackDockPoint(this, -this.Length / 2.0, 0, 315 - this.Angle), 
+                new TrackDockPoint(this, -this.Length / 2.0, 0, 315 + 45 - this.Angle) 
+            };
         }
     }
 }

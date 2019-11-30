@@ -46,7 +46,7 @@ namespace Rail.Controls
     public class TrackControl : Control
     {
         public double size = 100.0;
-        public double zoom = 0.5;
+        public double zoom = 0.6;
 
         static TrackControl()
         {
@@ -85,7 +85,8 @@ namespace Rail.Controls
         {
             Rect rec = new Rect(0, 0, this.ActualWidth, this.ActualHeight);
             drawingContext.PushClip(new RectangleGeometry(rec));
-            drawingContext.DrawRectangle(Brushes.Yellow /*this.Background*/, new Pen(Brushes.Blue, 4), rec);
+            drawingContext.DrawRectangle(this.Background, null, rec); // need for tooltip
+            //drawingContext.DrawRectangle(Brushes.Yellow this.Background*/, new Pen(Brushes.Blue, 4), rec);
 
             drawingContext.PushTransform(new TranslateTransform(this.ActualWidth / 2, this.ActualHeight / 2));
             drawingContext.PushTransform(new ScaleTransform(zoom, zoom));

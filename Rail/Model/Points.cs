@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media;
 
-namespace Rail.Controls
+namespace Rail.Model
 {
     public static class Points
     {
@@ -93,7 +88,7 @@ namespace Rail.Controls
             return Math.Sqrt(Math.Pow(b.X - a.X, 2) + Math.Pow(b.Y - a.Y, 2));
         }
 
-        public static double Distance(this DockPoint a, Point b)
+        public static double Distance(this TrackDockPoint a, Point b)
         {
             return Math.Sqrt(Math.Pow(b.X - a.X, 2) + Math.Pow(b.Y - a.Y, 2));
         }

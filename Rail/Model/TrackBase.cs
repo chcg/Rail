@@ -5,13 +5,14 @@ using System.Xml.Serialization;
 using System.Globalization;
 using Rail.Controls;
 using System;
+using System.Collections.Generic;
 
 namespace Rail.Model
 {
     public abstract class TrackBase
     {
         protected double spacing;
-        protected Geometry geometry;
+        
         protected Brush trackBrush = new SolidColorBrush(Colors.White);
         protected Pen linePen = new Pen(Brushes.Black, 1);
         protected Pen dockPen = new Pen(Brushes.Blue, 1);
@@ -26,31 +27,37 @@ namespace Rail.Model
         [XmlAttribute("Decription")]
         public string Decription { get; set; }
 
+        [XmlIgnore]
+        public Geometry Geometry { get; protected set; }
+
+        [XmlIgnore]
+        public List<TrackDockPoint> DockPoints { get; protected set; }
+
         public virtual void Update(double spacing)
         {
             this.spacing = spacing != 0 ? spacing : 16;
-            this.text = new FormattedText(this.Id, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, Brushes.Black, 1.25);
+            this.text = new FormattedText(this.Id, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 14, Brushes.Black, 1.25);
         }
 
         // for TrackControl
         public virtual void Render(DrawingContext drawingContext)
         {
 
-            if (this.geometry != null)
+            if (this.Geometry != null)
             {
-                drawingContext.DrawGeometry(trackBrush, linePen, this.geometry);
+                drawingContext.DrawGeometry(trackBrush, linePen, this.Geometry);
             }
 
             drawingContext.DrawText(text, new Point(0, 0) - new Vector(text.Width / 2, text.Height / 2));
 
             // for test only
-            drawingContext.DrawLine(linePen, new Point(-110, 0), new Point(110, 0));
-            drawingContext.DrawLine(linePen, new Point(0, -30), new Point(0, 30));
+            //drawingContext.DrawLine(linePen, new Point(-110, 0), new Point(110, 0));
+            //drawingContext.DrawLine(linePen, new Point(0, -30), new Point(0, 30));
 
-            if (this is TrackCurved)
-            {
-                drawingContext.DrawEllipse(Brushes.Red, linePen, new Point(0, (this as TrackCurved).Radius), 8, 8); 
-            }
+            //if (this is TrackCurved)
+            //{
+            //    drawingContext.DrawEllipse(Brushes.Red, linePen, new Point(0, (this as TrackCurved).Radius), 8, 8); 
+            //}
         }
 
         public virtual void Render(DrawingContext drawingContext, Point pos, double angle)
@@ -62,13 +69,14 @@ namespace Rail.Model
             grp.Children.Add(new TranslateTransform(pos.X, pos.Y));
             grp.Children.Add(new RotateTransform(angle, pos.X, pos.Y));
 
-            if (this.geometry != null)
+            if (this.Geometry != null)
             {
-                this.geometry.Transform = grp;
-                drawingContext.DrawGeometry(trackBrush, linePen, this.geometry);
+                this.Geometry.Transform = grp;
+                drawingContext.DrawGeometry(trackBrush, linePen, this.Geometry);
             }
 
-            drawingContext.DrawText(pos, (angle + 90.0) % 180.0 - 90.0, text);
+            drawingContext.DrawText(text, new Point(0, 0) - new Vector(text.Width / 2, text.Height / 2));
+            //drawingContext.DrawText(pos, (angle + 90.0) % 180.0 - 90.0, text);
 
             
             //if (this.DockPoints != null)

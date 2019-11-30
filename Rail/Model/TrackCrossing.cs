@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Collections.Generic;
+using System.Windows.Media;
 using System.Xml.Serialization;
 
 namespace Rail.Model
@@ -18,7 +19,15 @@ namespace Rail.Model
         {
             base.Update(spacing);
 
-            this.geometry = CreateCrossingTrackGeometry(this.Length1, this.Length2, this.Angle);
+            this.Geometry = CreateCrossingTrackGeometry(this.Length1, this.Length2, this.Angle);
+            
+            this.DockPoints = new List<TrackDockPoint>
+            {
+                new TrackDockPoint(this, -this.Length1 / 2.0, 0.0, 135),
+                new TrackDockPoint(this,  this.Length1 / 2.0, 0.0, 315),
+                new TrackDockPoint(this, -this.Length1 / 2.0, 0.0, 135),
+                new TrackDockPoint(this,  this.Length1 / 2.0, 0.0, 315)
+            };
         }
     }
 }

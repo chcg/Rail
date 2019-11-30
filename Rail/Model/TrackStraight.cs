@@ -1,4 +1,5 @@
 ﻿using Rail.Controls;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
@@ -17,7 +18,13 @@ namespace Rail.Model
         {
             base.Update(spacing);
 
-            this.geometry = CreateStraitTrackGeometry(this.Length);
+            this.Geometry = CreateStraitTrackGeometry(this.Length);
+
+            this.DockPoints = new List<TrackDockPoint> 
+            { 
+                new TrackDockPoint(this, -this.Length / 2.0, 0.0, 135), 
+                new TrackDockPoint(this,  this.Length / 2.0, 0.0, 315) 
+            };
         }
     }
 }

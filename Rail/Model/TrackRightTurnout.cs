@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Collections.Generic;
+using System.Windows.Media;
 
 namespace Rail.Model
 {
@@ -8,9 +9,17 @@ namespace Rail.Model
         {
             base.Update(spacing);
 
-            this.geometry = new CombinedGeometry(
+            this.Geometry = new CombinedGeometry(
                 CreateStraitTrackGeometry(this.Length),
                 CreateRightTurnoutGeometry(this.Length, this.Angle, this.Radius));
+
+            this.DockPoints = new List<TrackDockPoint>
+            {
+                new TrackDockPoint(this, -this.Length / 2.0, 0.0, 90 + 45),
+                new TrackDockPoint(this,  this.Length / 2.0, 0.0, 180 + 90 + 45),
+                new TrackDockPoint(this, -this.Length / 2.0, 0.0, 180 + 90 + 45 - this.Angle)
+            };
         }
     }
 }
+

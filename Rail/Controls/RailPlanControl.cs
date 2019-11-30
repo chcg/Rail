@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rail.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -111,45 +112,51 @@ namespace Rail.Controls
 
         #endregion
 
-        #region Tracks
+        #region SelectedTrack
 
-        public static readonly DependencyProperty TracksProperty =
-            DependencyProperty.Register("Tracks", typeof(ObservableCollection<ItemBase>), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnTracksChanged)));
+        public static readonly DependencyProperty SelectedTrackProperty =
+            DependencyProperty.Register("SelectedTrack", typeof(TrackBase), typeof(RailPlanControl));
 
-        public ObservableCollection<ItemBase> Tracks
+        public TrackBase SelectedTrack
         {
             get
             {
-                return (ObservableCollection<ItemBase>)GetValue(TracksProperty);
+                return (TrackBase)GetValue(SelectedTrackProperty);
             }
             set
             {
-                SetValue(TracksProperty, value);
+                SetValue(SelectedTrackProperty, value);
             }
-        }
-
-        private static void OnTracksChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            RailPlanControl railPlan = (RailPlanControl)o;
-            if (e.OldValue != null)
-            { 
-                ((ObservableCollection<ItemBase>)e.OldValue).CollectionChanged -= railPlan.OnTracksCollectionChanged;
-            }
-            if (e.NewValue != null)
-            {
-                ((ObservableCollection<ItemBase>)e.NewValue).CollectionChanged += railPlan.OnTracksCollectionChanged;
-            }
-            railPlan.InvalidateVisual();
-        }
-
-        private void OnTracksCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            InvalidateVisual();
         }
 
         #endregion
 
+        #region RailPlan
+
+        public static readonly DependencyProperty RailPlanProperty =
+            DependencyProperty.Register("RailPlan", typeof(RailPlan), typeof(RailPlanControl),
+                new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnRailPlanPropertyChanged)));
+
+        public RailPlan RailPlan
+        {
+            get
+            {
+                return (RailPlan)GetValue(RailPlanProperty);
+            }
+            set
+            {
+                SetValue(RailPlanProperty, value);
+            }
+        }
+
+        private static void OnRailPlanPropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RailPlanControl railPlan = (RailPlanControl)o;
+            railPlan.InvalidateMeasure();
+            railPlan.InvalidateVisual();
+        }
+
+        #endregion
         private void CalcGroundSize()
         {
             this.Width = this.GroundWidth * this.ZoomFactor;
@@ -170,11 +177,6 @@ namespace Rail.Controls
 
         private readonly Pen blackPen = new Pen(Brushes.Black, 1); 
         
-
-        //private double radius = 360.0;
-        ////private double angle = 30.0;
-        //private double railWidth = 5.0;
-
         protected override void OnRender(DrawingContext drawingContext)
         {
             drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.ActualWidth, this.ActualHeight));
@@ -184,14 +186,14 @@ namespace Rail.Controls
             //drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.GroundWidth, this.GroundHeight));
 
             // draw tracks
-            if (this.Tracks != null)
+            if (this.RailPlan?.Rails != null)
             {
-                foreach (ItemBase track in this.Tracks)
+                foreach (RailItem track in this.RailPlan.Rails)
                 {
-                    track.OnRender(drawingContext);
+                    track.Render(drawingContext);
                 }
 
-                foreach (ItemBase track in this.Tracks)
+                foreach (RailItem track in this.RailPlan.Rails)
                 {
                     drawingContext.DrawDockPoints(track.DockPoints);
                 }
@@ -211,12 +213,12 @@ namespace Rail.Controls
             base.OnRender(drawingContext);
         }
 
-        private ItemBase FindTrack(Point point)
+        private RailItem FindTrack(Point point)
         {
-            ItemBase track = null;
-            if (this.Tracks != null)
+            RailItem track = null;
+            if (this.RailPlan?.Rails != null)
             {
-                track = this.Tracks.Where(t => t.IsInside(point)).FirstOrDefault();
+                track = this.RailPlan.Rails.Where(t => t.IsInside(point)).FirstOrDefault();
             }
             return track;
         }
@@ -247,21 +249,21 @@ namespace Rail.Controls
         //    return null;
         //}
 
-        private ItemBase FindDocking(ItemBase track, IEnumerable<ItemBase> docked = null)
+        private RailItem FindDocking(RailItem track, IEnumerable<RailItem> docked = null)
         {
-            if (this.Tracks != null)
+            if (this.RailPlan.Rails != null)
             {
-                List<DockPoint> dockPoints = track.DockPoints;
+                List<TrackDockPoint> dockPoints = track.DockPoints;
                 var otherTracks =
                     docked != null ?
-                    this.Tracks.Where(t => t != track).Where(t => !docked.Contains(t)).ToList() :
-                    this.Tracks.Where(t => t != track);
+                    this.RailPlan.Rails.Where(t => t != track).Where(t => !docked.Contains(t)).ToList() :
+                    this.RailPlan.Rails.Where(t => t != track);
 
-                foreach (DockPoint dockPoint in dockPoints)
+                foreach (TrackDockPoint dockPoint in dockPoints)
                 {
-                    foreach (ItemBase t in otherTracks)
+                    foreach (RailItem t in otherTracks)
                     {
-                        foreach (DockPoint dp in t.DockPoints)
+                        foreach (TrackDockPoint dp in t.DockPoints)
                         {
                             //if (Math.Abs(dp.X - dockPoint.X) < dockDistance && Math.Abs(dp.Y - dockPoint.Y) < dockDistance)
                             if (dp.Distance(dockPoint) < dockDistance)
@@ -269,7 +271,7 @@ namespace Rail.Controls
                                 double rotate = 180.0 - dockPoint.Angle + dp.Angle;
 
                                 var sub = FindSubgraph(track).Where(f => f != track).ToList();
-                                foreach (ItemBase rt in sub)
+                                foreach (RailItem rt in sub)
                                 {
                                     //rt.Angle += rotate;
                                     //rt.Position = track.Position.Rotate(rotate, dp);
@@ -291,20 +293,20 @@ namespace Rail.Controls
         //    return Math.Sqrt(Math.Pow(b.X - a.X, 2) + Math.Pow(b.Y - a.Y, 2));
         //}
 
-        private void FindSubgraph(List<ItemBase> list, ItemBase startTrack)
+        private void FindSubgraph(List<RailItem> list, RailItem startTrack)
         {
-            if (this.Tracks != null)
+            if (this.RailPlan?.Rails != null)
             {
-                List<DockPoint> dockPoints = startTrack.DockPoints;
-                var otherTracks = this.Tracks.Where(t => t != startTrack).ToList();
+                List<TrackDockPoint> dockPoints = startTrack.DockPoints;
+                var otherTracks = this.RailPlan.Rails.Where(t => t != startTrack).ToList();
 
-                foreach (DockPoint dockPoint in dockPoints)
+                foreach (TrackDockPoint dockPoint in dockPoints)
                 {
-                    foreach (ItemBase t in otherTracks)
+                    foreach (RailItem t in otherTracks)
                     {
                         if (!list.Contains(t))
                         {
-                            foreach (DockPoint dp in t.DockPoints)
+                            foreach (TrackDockPoint dp in t.DockPoints)
                             {
                                 if (dp.Distance(dockPoint) < dockDistance)
                                 {
@@ -318,20 +320,20 @@ namespace Rail.Controls
             }
         }
 
-        private List<ItemBase> FindSubgraph(ItemBase track)
+        private List<RailItem> FindSubgraph(RailItem track)
         {
-            List<ItemBase> tracks = new List<ItemBase>();
+            List<RailItem> tracks = new List<RailItem>();
             FindSubgraph(tracks, track);
             //tracks.Add(track);
             return tracks;
         }
 
-        private void MoveTrack(ItemBase track, Vector move, IEnumerable<ItemBase> subgraph = null)
+        private void MoveTrack(RailItem track, Vector move, IEnumerable<RailItem> subgraph = null)
         {
             track.Position += move;
             if (subgraph != null)
             {
-                foreach (ItemBase tr in subgraph.Where(t => t != track))
+                foreach (RailItem tr in subgraph.Where(t => t != track))
                 {
                     tr.Position += move;
                 }
@@ -339,7 +341,7 @@ namespace Rail.Controls
             //FindDocking(track, subgraph);
         }
 
-        private void RotateTrack(ItemBase track, double angle, IEnumerable<ItemBase> subgraph = null)
+        private void RotateTrack(RailItem track, double angle, IEnumerable<RailItem> subgraph = null)
         {
             if (angle == 0.0)
             {
@@ -348,7 +350,7 @@ namespace Rail.Controls
             track.Angle += angle;
             if (subgraph != null)
             {
-                foreach (ItemBase tr in subgraph.Where(t => t != track))
+                foreach (RailItem tr in subgraph.Where(t => t != track))
                 {
                     tr.Angle += angle;
                     tr.Position = tr.Position.Rotate(angle, track.Position);
@@ -358,8 +360,8 @@ namespace Rail.Controls
         }
 
         private RailAction actionType;
-        private ItemBase actionTrack;
-        private List<ItemBase> dockedTracks;
+        private RailItem actionTrack;
+        private List<RailItem> dockedTracks;
         private Point zoomedLastMousePosition;
 
         private double startRotationValue;
@@ -437,12 +439,12 @@ namespace Rail.Controls
                 if (mousePosition.X < 0 || mousePosition.X >= this.ActualWidth || mousePosition.Y < 0 || mousePosition.Y >= this.ActualHeight)
                 {
                     Trace.TraceInformation("OnMouseLeftButtonUp ({0}, {1}) ({2}, {3}) ", e.GetPosition(this).X, e.GetPosition(this).Y, this.ActualWidth, this.ActualHeight);
-                    this.Tracks.Remove(this.actionTrack);
+                    this.RailPlan.Rails.Remove(this.actionTrack);
                     if (this.dockedTracks != null)
                     {
-                        foreach (ItemBase track in this.dockedTracks)
+                        foreach (RailItem track in this.dockedTracks)
                         {
-                            this.Tracks.Remove(track);
+                            this.RailPlan.Rails.Remove(track);
                         }
                     }
                 }
@@ -497,7 +499,6 @@ namespace Rail.Controls
             MoveGraph,
             Rotate
         }
-
-        
+       
     }
 }

@@ -21,13 +21,13 @@ namespace Rail.Model
         {
             base.Update(spacing);
 
-            if (Radius == 0)
+            this.Geometry = CreateCurvedTrackGeometry(this.Angle, this.Radius);
+
+            this.DockPoints = new List<TrackDockPoint>
             {
-
-            }
-
-            this.geometry = CreateCurvedTrackGeometry(this.Angle, this.Radius);
+                new TrackDockPoint(this, this.Radius, 0, 225.0),
+                new TrackDockPoint(this, this.Radius, 0, 45.0)
+            };
         }
-                
     }
 }

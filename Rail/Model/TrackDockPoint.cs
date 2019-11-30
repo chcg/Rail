@@ -6,20 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Rail.Controls
+namespace Rail.Model
 {
-    public class DockPoint
+    public class TrackDockPoint
     {
         public double X;
         public double Y;
         private double angle;
 
-        public DockPoint(ItemBase track)
+        public TrackDockPoint(TrackBase track)
         {
             this.Track = track;
         }
 
-        public DockPoint(ItemBase track, double x, double y, double angle)
+        public TrackDockPoint(TrackBase track, double x, double y, double angle)
         {
             this.Track = track;
             this.X = x;
@@ -27,7 +27,7 @@ namespace Rail.Controls
             this.angle = angle % 360.0;
         }
 
-        public DockPoint(ItemBase track, Point point, double angle)
+        public TrackDockPoint(TrackBase track, Point point, double angle)
         {
             this.Track = track;
             this.X = point.X;
@@ -35,14 +35,14 @@ namespace Rail.Controls
             this.angle = angle % 360.0;
         }
 
-        public static implicit operator Point(DockPoint dockPoint)
+        public static implicit operator Point(TrackDockPoint dockPoint)
         {
             return new Point(dockPoint.X, dockPoint.Y);
         }
 
-        public static implicit operator ItemBase(DockPoint dockPoint)
+        public static implicit operator RailItem(TrackDockPoint dockPoint)
         {
-            return dockPoint.Track;
+            return null; // dockPoint.Track;
         }
 
         public Point Position
@@ -70,11 +70,11 @@ namespace Rail.Controls
             }
         }
 
-        public DockPoint Dock { get; set; }
+        public TrackDockPoint Dock { get; set; }
 
         public bool IsDocked { get { return this.Dock != null; } }
 
-        public ItemBase Track { get; private set; }
+        public TrackBase Track { get; private set; }
 
     } 
 }

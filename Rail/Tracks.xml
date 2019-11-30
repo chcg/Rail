@@ -128,7 +128,7 @@
       <!--<LeftTurnout Id ="2262" Length="168.9" Radius="0" Angle="22.5" Decription="Left Turnout" />
       <RightTurnout Id ="2263" Length="168.9" Radius="0" Angle="22.5" Decription="Right Turnout" />-->
       <LeftTurnout Id ="22715" Length="225.0" Radius="902.4" Angle="14.26" Decription="Left Turnout" />
-      <RightTurnout Id ="22715" Length="225.0" Radius="902.4" Angle="14.26" Decription="Right Turnout" />
+      <RightTurnout Id ="22716" Length="225.0" Radius="902.4" Angle="14.26" Decription="Right Turnout" />
 
       <!-- curved turnout tracks -->
       <LeftCurvedTurnout Id="2268" Radius="0" Angle="30.0" Distance="64.6" Decription="Left Curved Turnout" />
