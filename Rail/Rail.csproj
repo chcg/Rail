@@ -54,9 +54,6 @@
       <SubType>Code</SubType>
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\RailPlanView.xaml.cs">
-      <DependentUpon>RailPlanView.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -84,9 +81,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\MainView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\RailPlanView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

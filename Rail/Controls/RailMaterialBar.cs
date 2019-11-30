@@ -11,7 +11,7 @@ using System.Windows.Media;
 
 namespace Rail.Controls
 {
-    public class RailMaterialBar : Control
+    public class RailMaterialBar : ListViewItem //ItemsControl // Control
     {
         public double size = 100.0;
         public double zoom = 0.5;
@@ -27,14 +27,14 @@ namespace Rail.Controls
         #region Tracks
 
         public static readonly DependencyProperty TracksProperty =
-            DependencyProperty.Register("Tracks", typeof(ObservableCollection<RailTrack>), typeof(RailMaterialBar),
+            DependencyProperty.Register("Tracks", typeof(ObservableCollection<ItemBase>), typeof(RailMaterialBar),
                 new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnTracksChanged)));
 
-        public ObservableCollection<RailTrack> Tracks
+        public ObservableCollection<ItemBase> Tracks
         {
             get
             {
-                return (ObservableCollection<RailTrack>)GetValue(TracksProperty);
+                return (ObservableCollection<ItemBase>)GetValue(TracksProperty);
             }
             set
             {
@@ -87,7 +87,7 @@ namespace Rail.Controls
             if (this.Tracks != null)
             {
                 double y = size / 2;
-                foreach (RailTrack track in this.Tracks)
+                foreach (ItemBase track in this.Tracks)
                 {
                     if (track != null)
                     {
@@ -109,7 +109,7 @@ namespace Rail.Controls
 
             if (this.Command != null && this.Command.CanExecute(null))
             {
-                this.Command.Execute(this.Tracks[index].Clone());
+//                this.Command.Execute(this.Tracks[index].Clone());
             }
             base.OnMouseDoubleClick(e);
         }

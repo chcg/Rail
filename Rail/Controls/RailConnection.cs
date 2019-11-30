@@ -8,7 +8,7 @@ namespace Rail.Controls
 {
     public class RailConnection
     {
-        public RailTrack TrackA { get; set; }
-        public RailTrack TrackB { get; set; }
+        public ItemBase TrackA { get; set; }
+        public ItemBase TrackB { get; set; }
     }
 }

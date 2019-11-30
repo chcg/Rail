@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rail.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,18 +8,18 @@ using System.Windows;
 
 namespace Rail.Controls
 {
-    public class DockPoint 
+    public class DockPoint
     {
         public double X;
         public double Y;
         private double angle;
 
-        public DockPoint(RailTrack track)
+        public DockPoint(ItemBase track)
         {
             this.Track = track;
         }
 
-        public DockPoint(RailTrack track, double x, double y, double angle)
+        public DockPoint(ItemBase track, double x, double y, double angle)
         {
             this.Track = track;
             this.X = x;
@@ -26,7 +27,7 @@ namespace Rail.Controls
             this.angle = angle % 360.0;
         }
 
-        public DockPoint(RailTrack track, Point point, double angle)
+        public DockPoint(ItemBase track, Point point, double angle)
         {
             this.Track = track;
             this.X = point.X;
@@ -39,7 +40,7 @@ namespace Rail.Controls
             return new Point(dockPoint.X, dockPoint.Y);
         }
 
-        public static implicit operator RailTrack(DockPoint dockPoint)
+        public static implicit operator ItemBase(DockPoint dockPoint)
         {
             return dockPoint.Track;
         }
@@ -73,7 +74,7 @@ namespace Rail.Controls
 
         public bool IsDocked { get { return this.Dock != null; } }
 
-        public RailTrack Track { get; private set; }
+        public ItemBase Track { get; private set; }
 
     } 
 }

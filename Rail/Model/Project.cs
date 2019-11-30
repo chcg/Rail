@@ -13,7 +13,7 @@ namespace Rail.Model
     {
         public Project()
         {
-            this.TrackDiagram = new TrackDiagram();
+            this.TrackDiagram = new RailPlan();
         }
 
         public static Project CreateProject()
@@ -27,6 +27,6 @@ namespace Rail.Model
         }
 
         [XmlElement("TrackDiagram")]
-        public TrackDiagram TrackDiagram { get; set; }
+        public RailPlan TrackDiagram { get; set; }
     }
 }

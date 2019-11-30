@@ -10,16 +10,16 @@ namespace Rail.ViewModel
 {
     public class CreateViewModel : DialogViewModel
     {
-        private Tracks tracks;
+        private TrackList trackList;
 
-        public CreateViewModel(Tracks tracks)
+        public CreateViewModel(TrackList trackList)
         {
-            this.tracks = tracks;
+            this.trackList = trackList;
             this.Width = 2000;
             this.Height = 1000;
     }
 
-    public List<TrackType> TrackTypes { get { return this.tracks.TrackTypes; } }
+    public List<TrackType> TrackTypes { get { return this.trackList.TrackTypes; } }
 
         public TrackType SelectedTrackType { get; set; }
 

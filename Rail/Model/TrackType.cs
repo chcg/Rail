@@ -24,17 +24,24 @@ namespace Rail.Model
         [XmlAttribute("Description")]
         public string Description { get; set; }
                 
+        [XmlArray("Tracks")]
+        [XmlArrayItem(typeof(TrackStraight), ElementName = "Straight"),
+         XmlArrayItem(typeof(TrackCurved), ElementName = "Curved"),
+         XmlArrayItem(typeof(TrackLeftTurnout), ElementName = "LeftTurnout"),
+         XmlArrayItem(typeof(TrackRightTurnout), ElementName = "RightTurnout"),
+         XmlArrayItem(typeof(TrackLeftCurvedTurnout), ElementName = "LeftCurvedTurnout"),
+         XmlArrayItem(typeof(TrackRightCurvedTurnout), ElementName = "RightCurvedTurnout"),
+         XmlArrayItem(typeof(TrackDoubleSlipSwitch), ElementName = "DoubleSlipSwitch"),
+         XmlArrayItem(typeof(TrackDoubleTurnout), ElementName = "DoubleTurnout"),
+         XmlArrayItem(typeof(TrackCrossing), ElementName = "Crossing"),
+         XmlArrayItem(typeof(TrackBumper), ElementName = "Bumper"),
+         XmlArrayItem(typeof(TrackAdapter), ElementName = "Adapter")]
 
-        [XmlElement(typeof(StraightTrack), ElementName = "Straight"),
-         XmlElement(typeof(CurvedTrack), ElementName = "Curved"),
-         XmlElement(typeof(LeftTurnoutTrack), ElementName = "LeftTurnout"),
-         XmlElement(typeof(RightTurnoutTrack), ElementName = "RightTurnout"),
-         XmlElement(typeof(LeftCurvedTurnoutTrack), ElementName = "LeftCurvedTurnout"),
-         XmlElement(typeof(RightCurvedTurnoutTrack), ElementName = "RightCurvedTurnout"),
-         XmlElement(typeof(DoubleSlipSwitchTrack), ElementName = "DoubleSlipSwitch"),
-         XmlElement(typeof(DoubleTurnoutTrack), ElementName = "DoubleTurnout"),
-         XmlElement(typeof(CrossingTrack), ElementName = "Crossing"),
-         XmlElement(typeof(BumperTrack), ElementName = "Bumper")]
-        public BaseTrack[] Tracks { get; set; }
+        public List<TrackBase> Tracks { get; set; }
+
+        public void Update()
+        {
+            this.Tracks.ForEach(track => track.Update(this.Spacing));
+        }
     }
 }

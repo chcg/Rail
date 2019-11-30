@@ -17,6 +17,8 @@
     <RibbonWindow.Resources>
         <conv:TaskbarItemProgressStateToVisibilityConverter x:Key="TaskbarItemProgressStateToVisibilityConverter"/>
         <conv:DoubleToPercentageConverter x:Key="DoubleToPercentageConverter"/>
+        <conv:DistanceToTextConverter x:Key="DistanceToTextConverter"/>
+        <conv:AngelToTextConverter x:Key="AngelToTextConverter"/>
     </RibbonWindow.Resources>
     <DockPanel>
         <mvvm:PersistentRibbon DockPanel.Dock="Top">
@@ -38,7 +40,7 @@
                                 <RibbonGalleryCategory.ItemTemplate>
                                     <DataTemplate>
                                         <RibbonApplicationMenuItem
-                                            Command="{Binding Path=DataContext.RecentFileCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type RibbonWindow}}}" 
+                                            Command="{Binding Path=DataContext.RecentFileCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type mvvm:FileRibbonView}}}" 
                                             CommandParameter="{Binding Path}"
                                             ToolTip="{Binding Path}" 
                                             ImageSource="{Binding Image}"
@@ -63,6 +65,55 @@
             <RibbonTab Header="Plan">
                 <RibbonGroup Header="Tracks">
                     
+                </RibbonGroup>
+                <RibbonGroup Header="Snap In">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="60"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" Content="Distance" />
+                        <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding SnapInDistances}" SelectedValue="{Binding SnapInDistance}" Background="White" Margin="4" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding .,Converter={StaticResource DistanceToTextConverter}}" HorizontalAlignment="Stretch"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Label Grid.Column="0" Grid.Row="1"  Content="Angel" />
+                        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding SnapInAngels}" SelectedValue="{Binding SnapInAngel}" Background="White" Margin="4" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding .,Converter={StaticResource AngelToTextConverter}}" HorizontalAlignment="Stretch"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
+                </RibbonGroup>
+                <RibbonGroup Header="Grid Lines">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="60"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" Content="Distance" />
+                        <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding GridLinesDistances}" SelectedValue="{Binding GridLinesDistance}" Background="White" Margin="4" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding .,Converter={StaticResource DistanceToTextConverter}}" HorizontalAlignment="Stretch"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        
+                    </Grid>
                 </RibbonGroup>
             </RibbonTab>
         </mvvm:PersistentRibbon>
@@ -92,6 +143,56 @@
                 <ctrl:DoubleSlider FormatString="P0" Minimum="0.1" Maximum="2" Increment="0.05" Value="{Binding ZoomFactor}" SliderWidth="100" />
             </StatusBarItem>
         </StatusBar>
-        <v:RailPlanView DataContext="{Binding RailPlan}"/>
+        <!--<v:RailPlanView 
+            DataContext="{Binding RailPlan}" />-->
+            <!--SnapInDistance="{Binding SnapInDistance}"
+            SnapInAngel="{Binding SnapInAngel}"
+            GridLinesDistance="{Binding GridLinesDistance}"-->
+        <Grid DockPanel.Dock="Left" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ComboBox Grid.Row="0" ItemsSource="{Binding TrackTypes}" SelectedItem="{Binding SelectedTrackType}" SelectedIndex="0" ToolTip="{Binding SelectedTrackType.Description}" MinWidth="200" Margin="8">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" ToolTip="{Binding Description}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <ListView Grid.Row="1" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" SelectedIndex="0" Margin="8">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!--<ctrl:TrackControl Track="{Binding .}" ToolTip="{Binding Decription}" />-->
+                        <Grid ToolTip="{Binding Decription}" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <ctrl:TrackControl Grid.Row="0" Track="{Binding .}" />
+                            <TextBlock Grid.Row="1" Text="{Binding Name}" HorizontalAlignment="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--<Border Grid.Row="1" Margin="8" BorderBrush="LightGray" BorderThickness="1,1,1,1">
+                <ScrollViewer Background="White" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" >
+                    <ctrl:RailMaterialBar Command="{Binding Path=AddTrackCommand}" Tracks="{Binding Tracks}" SelectedTrack="{Binding SelectedTrack}" />
+                </ScrollViewer>
+                
+            </Border>-->
+        </Grid>
+        <ScrollViewer DockPanel.Dock="Right" Width="200" Focusable="False" Background="White" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <ctrl:RailMaterialBar Command="{Binding Path=AddTrackCommand}" Tracks="{Binding Path=RailMaterialTracks}"/>
+        </ScrollViewer>
+        <ScrollViewer Focusable="False" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  >
+            <ctrl:RailPlanControl 
+            Background="LightGreen"
+            GroundWidth="{Binding GroundWidth}"
+            GroundHeight="{Binding GroundHeight}"
+            ZoomFactor="{Binding ZoomFactor}"
+            Tracks="{Binding Path=RailTracks}"/>
+        </ScrollViewer>
+
     </DockPanel>
 </mvvm:FileRibbonView>
