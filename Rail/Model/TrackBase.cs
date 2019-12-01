@@ -11,11 +11,10 @@ namespace Rail.Model
 {
     public abstract class TrackBase
     {
-        protected double spacing;
-        
+       
         protected Brush trackBrush = new SolidColorBrush(Colors.White);
-        protected Pen linePen = new Pen(Brushes.Black, 1);
-        protected Pen dockPen = new Pen(Brushes.Blue, 1);
+        protected Pen linePen = new Pen(Brushes.Black, 2);
+        protected Pen dockPen = new Pen(Brushes.Blue, 2);
         protected FormattedText text;
 
         [XmlAttribute("Id")]
@@ -28,6 +27,9 @@ namespace Rail.Model
         public string Decription { get; set; }
 
         [XmlIgnore]
+        public double Spacing { get; protected set; }
+
+        [XmlIgnore]
         public Geometry Geometry { get; protected set; }
 
         [XmlIgnore]
@@ -35,8 +37,12 @@ namespace Rail.Model
 
         public virtual void Update(double spacing)
         {
-            this.spacing = spacing != 0 ? spacing : 16;
-            this.text = new FormattedText(this.Id, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 14, Brushes.Black, 1.25);
+            if (spacing == 0.0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(spacing));
+            }
+            this.Spacing = spacing;
+            this.text = new FormattedText(this.Id, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), this.Spacing * 0.9, Brushes.Black, 1.25);
         }
 
         // for TrackControl
@@ -94,12 +100,12 @@ namespace Rail.Model
         {
             return new PathGeometry(new PathFigureCollection
             {
-                new PathFigure(new Point(-length / 2.0, -this.spacing / 2), new PathSegmentCollection
+                new PathFigure(new Point(-length / 2.0, -this.Spacing / 2), new PathSegmentCollection
                 {
-                    new LineSegment(new Point( length / 2.0, -this.spacing / 2), true),
-                    new LineSegment(new Point( length / 2.0,  this.spacing / 2), true),
-                    new LineSegment(new Point(-length / 2.0,  this.spacing / 2), true),
-                    new LineSegment(new Point(-length / 2.0, -this.spacing / 2), true)
+                    new LineSegment(new Point( length / 2.0, -this.Spacing / 2), true),
+                    new LineSegment(new Point( length / 2.0,  this.Spacing / 2), true),
+                    new LineSegment(new Point(-length / 2.0,  this.Spacing / 2), true),
+                    new LineSegment(new Point(-length / 2.0, -this.Spacing / 2), true)
                 }, true)
             });
         }
@@ -107,20 +113,20 @@ namespace Rail.Model
 
         protected Geometry CreateCurvedTrackGeometry(double angle, double radius)
         {
-            Size innerSize = new Size(radius - this.spacing / 2, radius - this.spacing / 2);
-            Size outerSize = new Size(radius + this.spacing / 2, radius + this.spacing / 2);
+            Size innerSize = new Size(radius - this.Spacing / 2, radius - this.Spacing / 2);
+            Size outerSize = new Size(radius + this.Spacing / 2, radius + this.Spacing / 2);
             
             Point circleCenter = new Point(0, radius); 
 
             return new PathGeometry(new PathFigureCollection
             {
-                new PathFigure(circleCenter - Circle(-angle / 2, radius - this.spacing / 2), new PathSegmentCollection
+                new PathFigure(circleCenter - Circle(-angle / 2, radius - this.Spacing / 2), new PathSegmentCollection
                 {
-                    new LineSegment(circleCenter - Circle(-angle / 2, radius + this.spacing / 2), true),
-                    new ArcSegment (circleCenter - Circle(angle / 2, radius + this.spacing / 2), outerSize, angle, false, SweepDirection.Counterclockwise, true),
+                    new LineSegment(circleCenter - Circle(-angle / 2, radius + this.Spacing / 2), true),
+                    new ArcSegment (circleCenter - Circle(angle / 2, radius + this.Spacing / 2), outerSize, angle, false, SweepDirection.Counterclockwise, true),
 
-                    new LineSegment(circleCenter - Circle(angle / 2, radius - this.spacing / 2), true),
-                    new ArcSegment (circleCenter - Circle(-angle / 2, radius - this.spacing / 2), innerSize, angle, false, SweepDirection.Clockwise, true)
+                    new LineSegment(circleCenter - Circle(angle / 2, radius - this.Spacing / 2), true),
+                    new ArcSegment (circleCenter - Circle(-angle / 2, radius - this.Spacing / 2), innerSize, angle, false, SweepDirection.Clockwise, true)
                 }, true)
             });
         }
@@ -130,19 +136,19 @@ namespace Rail.Model
             double x = -length / 2.0;
             double y = 0.0;
 
-            Size innerSize = new Size(radius - this.spacing / 2, radius - this.spacing / 2);
-            Size outerSize = new Size(radius + this.spacing / 2, radius + this.spacing / 2);
+            Size innerSize = new Size(radius - this.Spacing / 2, radius - this.Spacing / 2);
+            Size outerSize = new Size(radius + this.Spacing / 2, radius + this.Spacing / 2);
             Point circleCenter = new Point(x, y - radius);
 
             return new PathGeometry(new PathFigureCollection
             {
-                new PathFigure(new Point(x, y - this.spacing / 2), new PathSegmentCollection
+                new PathFigure(new Point(x, y - this.Spacing / 2), new PathSegmentCollection
                 {
-                    new LineSegment(new Point(x, y + this.spacing / 2), true),
-                    new ArcSegment (new Point(x, y + this.spacing / 2).Rotate(-angle, circleCenter), innerSize, angle, false, SweepDirection.Counterclockwise, true),
+                    new LineSegment(new Point(x, y + this.Spacing / 2), true),
+                    new ArcSegment (new Point(x, y + this.Spacing / 2).Rotate(-angle, circleCenter), innerSize, angle, false, SweepDirection.Counterclockwise, true),
 
-                    new LineSegment(new Point(x, y - this.spacing / 2).Rotate(-angle, circleCenter), true),
-                    new ArcSegment (new Point(x, y - this.spacing / 2), outerSize, angle, false, SweepDirection.Clockwise, true),
+                    new LineSegment(new Point(x, y - this.Spacing / 2).Rotate(-angle, circleCenter), true),
+                    new ArcSegment (new Point(x, y - this.Spacing / 2), outerSize, angle, false, SweepDirection.Clockwise, true),
                 }, true)
             });
         }
@@ -151,19 +157,19 @@ namespace Rail.Model
         {
             double x = -length / 2.0;
             double y = 0.0;
-            Size innerSize = new Size(radius - this.spacing / 2, radius - this.spacing / 2);
-            Size outerSize = new Size(radius + this.spacing / 2, radius + this.spacing / 2);
+            Size innerSize = new Size(radius - this.Spacing / 2, radius - this.Spacing / 2);
+            Size outerSize = new Size(radius + this.Spacing / 2, radius + this.Spacing / 2);
             Point circleCenter = new Point(x, y + radius);
 
             return new PathGeometry(new PathFigureCollection
             {
-                new PathFigure(new Point(x, y - this.spacing / 2), new PathSegmentCollection
+                new PathFigure(new Point(x, y - this.Spacing / 2), new PathSegmentCollection
                 {
-                    new LineSegment(new Point(x, y + this.spacing / 2), true),
-                    new ArcSegment (new Point(x, y + this.spacing / 2).Rotate(angle, circleCenter), innerSize, angle, false, SweepDirection.Clockwise, true),
+                    new LineSegment(new Point(x, y + this.Spacing / 2), true),
+                    new ArcSegment (new Point(x, y + this.Spacing / 2).Rotate(angle, circleCenter), innerSize, angle, false, SweepDirection.Clockwise, true),
 
-                    new LineSegment(new Point(x, y - this.spacing / 2).Rotate(angle, circleCenter), true),
-                    new ArcSegment (new Point(x, y - this.spacing / 2), outerSize, angle, false, SweepDirection.Counterclockwise, true),
+                    new LineSegment(new Point(x, y - this.Spacing / 2).Rotate(angle, circleCenter), true),
+                    new ArcSegment (new Point(x, y - this.Spacing / 2), outerSize, angle, false, SweepDirection.Counterclockwise, true),
                 }, true)
             });
         }
@@ -173,22 +179,22 @@ namespace Rail.Model
             return new CombinedGeometry(
                 new PathGeometry(new PathFigureCollection
                 {
-                    new PathFigure(Rotate(new Point(length1 / 2, this.spacing / 2), angle / 2), new PathSegmentCollection
+                    new PathFigure(Rotate(new Point(length1 / 2, this.Spacing / 2), angle / 2), new PathSegmentCollection
                     {
-                        new LineSegment(Rotate(new Point(-length1 / 2,  this.spacing / 2), angle / 2), true),
-                        new LineSegment(Rotate(new Point(-length1 / 2, -this.spacing / 2), angle / 2), true),
-                        new LineSegment(Rotate(new Point( length1 / 2, -this.spacing / 2), angle / 2), true),
-                        new LineSegment(Rotate(new Point( length1 / 2,  this.spacing / 2), angle / 2), true),
+                        new LineSegment(Rotate(new Point(-length1 / 2,  this.Spacing / 2), angle / 2), true),
+                        new LineSegment(Rotate(new Point(-length1 / 2, -this.Spacing / 2), angle / 2), true),
+                        new LineSegment(Rotate(new Point( length1 / 2, -this.Spacing / 2), angle / 2), true),
+                        new LineSegment(Rotate(new Point( length1 / 2,  this.Spacing / 2), angle / 2), true),
                     }, true)
                 }),
                 new PathGeometry(new PathFigureCollection
                 {
-                    new PathFigure(Rotate(new Point(length1 / 2, this.spacing / 2), -angle / 2), new PathSegmentCollection
+                    new PathFigure(Rotate(new Point(length1 / 2, this.Spacing / 2), -angle / 2), new PathSegmentCollection
                     {
-                        new LineSegment(Rotate(new Point(-length1 / 2,  this.spacing / 2), -angle / 2), true),
-                        new LineSegment(Rotate(new Point(-length1 / 2, -this.spacing / 2), -angle / 2), true),
-                        new LineSegment(Rotate(new Point( length1 / 2, -this.spacing / 2), -angle / 2), true),
-                        new LineSegment(Rotate(new Point( length1 / 2,  this.spacing / 2), -angle / 2), true),
+                        new LineSegment(Rotate(new Point(-length1 / 2,  this.Spacing / 2), -angle / 2), true),
+                        new LineSegment(Rotate(new Point(-length1 / 2, -this.Spacing / 2), -angle / 2), true),
+                        new LineSegment(Rotate(new Point( length1 / 2, -this.Spacing / 2), -angle / 2), true),
+                        new LineSegment(Rotate(new Point( length1 / 2,  this.Spacing / 2), -angle / 2), true),
                     }, true)
                 }));
         }

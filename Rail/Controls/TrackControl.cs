@@ -45,9 +45,6 @@ namespace Rail.Controls
     /// </summary>
     public class TrackControl : Control
     {
-        public double size = 100.0;
-        public double zoom = 0.6;
-
         static TrackControl()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TrackControl), new FrameworkPropertyMetadata(typeof(TrackControl)));
@@ -83,9 +80,13 @@ namespace Rail.Controls
 
         protected override void OnRender(DrawingContext drawingContext)
         {
+            base.OnRender(drawingContext);
+
+            double zoom = 10.0 / this.Track.Spacing;
             Rect rec = new Rect(0, 0, this.ActualWidth, this.ActualHeight);
-            drawingContext.PushClip(new RectangleGeometry(rec));
+            
             drawingContext.DrawRectangle(this.Background, null, rec); // need for tooltip
+            
             //drawingContext.DrawRectangle(Brushes.Yellow this.Background*/, new Pen(Brushes.Blue, 4), rec);
 
             drawingContext.PushTransform(new TranslateTransform(this.ActualWidth / 2, this.ActualHeight / 2));
@@ -93,9 +94,7 @@ namespace Rail.Controls
 
             this.Track.Render(drawingContext);
             
-            drawingContext.Pop();
-
-            base.OnRender(drawingContext);
+            
         }
     }
 }

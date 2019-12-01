@@ -172,45 +172,45 @@
   
   <TrackType Gauge="G" Type="LGB" Spacing="45" Name="LGB G" Description="LGB G">
     <Radii>
-      <Radius Name="R1" Length="600" Description="R1 Radius 600 mm" />
-      <Radius Name="R2" Length="780" Description="R2 Radius 780 mm" />
+      <Radius Name="R1" Length="600"  Description="R1 Radius 600 mm" />
+      <Radius Name="R2" Length="780"  Description="R2 Radius 780 mm" />
       <Radius Name="R4" Length="1195" Description="R3 Radius 1195 mm" />
       <Radius Name="R5" Length="2320" Description="R5 Radius 2320 mm" />
     </Radii>
     <Tracks>
       <!-- strait tracks -->
-      <Straight Id="10040" Length="41" Decription="Strait 41 mm"/>
-      <Straight Id="10050" Length="52" Decription="Strait 52 mm"/>
-      <Straight Id="10070" Length="75" Decription="Strait 75 mm"/>
-      <Straight Id="10080" Length="82" Decription="Strait 82 mm"/>
-      <Straight Id="10150" Length="150" Decription="Strait 150 mm"/>
-      <Straight Id="10000" Length="300" Decription="Strait 300 mm"/>
-      <Straight Id="10600" Length="600" Decription="Strait 600 mm"/>
-      <Straight Id="10610" Length="1200" Decription="Strait 1200 mm"/>
+      <Straight Id="10040" Length="41" Name="10040 Strait 41 mm" Decription="Strait 41 mm"/>
+      <Straight Id="10050" Length="52" Name="10050 Strait 52 mm" Decription="Strait 52 mm"/>
+      <Straight Id="10070" Length="75" Name="10070 Strait 75 mm" Decription="Strait 75 mm"/>
+      <Straight Id="10080" Length="82" Name="10080 Strait 82 mm" Decription="Strait 82 mm"/>
+      <Straight Id="10150" Length="150" Name="10150 Strait 150 mm" Decription="Strait 150 mm"/>
+      <Straight Id="10000" Length="300" Name="10000 Strait 300 mm" Decription="Strait 300 mm"/>
+      <Straight Id="10600" Length="600" Name="10600 Strait 600 mm" Decription="Strait 600 mm"/>
+      <Straight Id="10610" Length="1200" Name="10610 Strait 1200 mm" Decription="Strait 1200 mm"/>
       <!-- curved tracks -->
-      <Curved Id="11040" Radius="600" Angle="7.5" Decription="Curved R1 600 mm 7.5°" />
-      <Curved Id="11020" Radius="600" Angle="15" Decription="Curved R1 600 mm 15°" />
-      <Curved Id="11000" Radius="600" Angle="30" Decription="Curved R1 600 mm 30°" />
-      <Curved Id="15000" Radius="780" Angle="30" Decription="Curved R2 780 mm 30°" />
-      <Curved Id="16000" Radius="1195" Angle="22.5" Decription="Curved R3 1195 mm 22.5°" />
-      <Curved Id="18020" Radius="2320" Angle="7.5" Decription="Curved R5 2320 mm 22.5°" />
+      <Curved Id="11040" Radius="600" Angle="7.5"   Name="11040 Curved R1 600 mm 7.5°" Decription="Curved R1 600 mm 7.5°" />
+      <Curved Id="11020" Radius="600" Angle="15"    Name="11020 Curved R1 600 mm 15°" Decription="Curved R1 600 mm 15°" />
+      <Curved Id="11000" Radius="600" Angle="30"    Name="11000 Curved R1 600 mm 30°" Decription="Curved R1 600 mm 30°" />
+      <Curved Id="15000" Radius="780" Angle="30"    Name="15000 Curved R2 780 mm 30°" Decription="Curved R2 780 mm 30°" />
+      <Curved Id="16000" Radius="1195" Angle="22.5" Name="16000 Curved R3 1195 mm 22.5°" Decription="Curved R3 1195 mm 22.5°" />
+      <Curved Id="18020" Radius="2320" Angle="7.5"  Name="18020 Curved R5 2320 mm 22.5°" Decription="Curved R5 2320 mm 22.5°" />
       <!-- turnout tracks -->
-      <LeftTurnout Id ="12100" Length="300" Radius="600" Angle="30" Decription="Left Turnout" />
-      <RightTurnout Id ="12000" Length="300" Radius="600" Angle="30" Decription="Right Turnout" />
-      <LeftTurnout Id ="16140" Length="440" Radius="1195" Angle="22.5" Decription="Left Wide Radius Turnout" />
-      <RightTurnout Id ="16040" Length="440" Radius="1195" Angle="22.5" Decription="Right Wide Radius Turnout" />
-      <LeftTurnout Id ="18150" Length="600" Radius="2320" Angle="15" Decription="Left Extra Wide Radius Turnout" />
-      <RightTurnout Id ="18050" Length="600" Radius="2320" Angle="15" Decription="Right Extra Wide Radius Turnout" />
+      <LeftTurnout Id ="12100" Length="300" Radius="600" Angle="30"     Name="12100 Left Turnout" Decription="Left Turnout" />
+      <RightTurnout Id ="12000" Length="300" Radius="600" Angle="30"    Name="12000 Right Turnout" Decription="Right Turnout" />
+      <LeftTurnout Id ="16140" Length="440" Radius="1195" Angle="22.5"  Name="16140 Left Wide Radius Turnout" Decription="Left Wide Radius Turnout" />
+      <RightTurnout Id ="16040" Length="440" Radius="1195" Angle="22.5" Name="16040 Right Wide Radius Turnout" Decription="Right Wide Radius Turnout" />
+      <LeftTurnout Id ="18150" Length="600" Radius="2320" Angle="15"    Name="18150 Left Extra Wide Radius Turnout" Decription="Left Extra Wide Radius Turnout" />
+      <RightTurnout Id ="18050" Length="600" Radius="2320" Angle="15"   Name="18050 Right Extra Wide Radius Turnou" Decription="Right Extra Wide Radius Turnout" />
       <!-- double slip switch -->
-      <DoubleSlipSwitch Id="12260" Length="375" Angle="22.5" Decription="Double Slip Switch" />
+      <DoubleSlipSwitch Id="12260" Length="375" Angle="22.5" Name="12260 Double Slip Switch" Decription="Double Slip Switch" />
       <!-- double turnout -->
-      <DoubleTurnout Id="12360" Length="375" Radius="600" Angle="30" Decription="Double Turnout" />
+      <DoubleTurnout Id="12360" Length="375" Radius="600" Angle="30" Name="12360 Double Turnout" Decription="Double Turnout" />
       <!-- crossing -->
-      <Crossing Id="13000" Length1="300" Length2="341" Angle="30" Decription="Crossing 30°" />
-      <Crossing Id="13100" Length1="150" Length2="185" Angle="90" Decription="Crossing 90°" />
-      <Crossing Id="13200" Length1="375" Length2="375" Angle="22.5" Decription="Crossing 22.5°" />
+      <Crossing Id="13000" Length1="300" Length2="341" Angle="30" Name="13000 Crossing 30°" Decription="Crossing 30°" />
+      <Crossing Id="13100" Length1="150" Length2="185" Angle="90" Name="13100 Crossing 90°" Decription="Crossing 90°" />
+      <Crossing Id="13200" Length1="375" Length2="375" Angle="22.5" Name="13200 Crossing 22.5°" Decription="Crossing 22.5°" />
       <!-- bumper -->
-      <Bumper Id="10320" Length="300" Decription="Bumper" />
+      <Bumper Id="10320" Length="300" Name="10320 Bumper" Decription="Bumper" />
     </Tracks>
   </TrackType>
 
