@@ -64,7 +64,7 @@
             </Ribbon.HelpPaneContent>
             <RibbonTab Header="Plan">
                 <RibbonGroup Header="Tracks">
-                    
+                    <RibbonButton Label="Rail Plan" Command="{Binding RailPlanCommand}" LargeImageSource="/Rail;component/Images/Settings.png" />
                 </RibbonGroup>
                 <RibbonGroup Header="Snap In">
                     <Grid>
@@ -179,9 +179,6 @@
         </Grid>
         <ScrollViewer Focusable="False" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  >
             <ctrl:RailPlanControl 
-            Background="LightGreen"
-            GroundWidth="{Binding GroundWidth}"
-            GroundHeight="{Binding GroundHeight}"
             ZoomFactor="{Binding ZoomFactor}"
             RailPlan="{Binding RailPlan}"
             SelectedTrack="{Binding SelectedTrack}"/>

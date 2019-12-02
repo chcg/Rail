@@ -21,6 +21,8 @@ namespace Rail.ViewModel
         private RailPlan railPlan;
         private Dictionary<string, TrackBase> trackDict;
 
+        public DelegateCommand RailPlanCommand { get; set; }
+
         private double zoomFactor = 1.0;
         private double groundWidth = 2000.0;
         private double groundHeight = 1000.0;
@@ -29,6 +31,8 @@ namespace Rail.ViewModel
         {
             this.DefaultFileExt = "*.rail";
             this.FileFilter = "Rail Project|*.rail|All Files|*.*";
+
+            this.RailPlanCommand = new DelegateCommand(OnRailPlan);
             
             // load track list
             DependencyObject dep = new DependencyObject();
@@ -222,6 +226,18 @@ namespace Rail.ViewModel
         {
             this.RailPlan.Save(path);
             this.FileChanged = true;
+        }
+
+        private void OnRailPlan()
+        {
+            RailPlanView view = new RailPlanView()
+            {
+                DataContext = new RailPlanViewModel(this.railPlan)
+            };
+            if (view.ShowDialog().GetValueOrDefault() == true)
+            {
+                this.FileChanged = true;
+            }
         }
 
         #endregion

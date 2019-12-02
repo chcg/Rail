@@ -14,8 +14,12 @@ namespace Rail.Model
     {
         private RailPlan()
         {
-            this.Width = 3000;
-            this.Height = 1300;
+            this.Width1 = 1500;
+            this.Width2 = 3000;
+            this.Width3 = 1500;
+            this.Height1 = 3000;
+            this.Height2 = 1000;
+            this.Height3 = 3000;
             this.Zoom = 1.0;
             this.Rails = new List<RailItem>();
         }
@@ -32,16 +36,40 @@ namespace Rail.Model
         }
 
         /// <summary>
-        /// Width of the rail plan ground plate
+        /// Width 1 of the rail plan ground plate
         /// </summary>
-        [XmlAttribute("Width")]
-        public int Width { get; set; }
+        [XmlAttribute("Width1")]
+        public int Width1 { get; set; }
 
         /// <summary>
-        /// Height of the rail plan ground plate
+        /// Width 1 of the rail plan ground plate
         /// </summary>
-        [XmlAttribute("Height")]
-        public int Height { get; set; }
+        [XmlAttribute("Width2")]
+        public int Width2 { get; set; }
+
+        /// <summary>
+        /// Width 1 of the rail plan ground plate
+        /// </summary>
+        [XmlAttribute("Width3")]
+        public int Width3 { get; set; }
+
+        /// <summary>
+        /// Height 1 of the rail plan ground plate
+        /// </summary>
+        [XmlAttribute("Height1")]
+        public int Height1 { get; set; }
+
+        /// <summary>
+        /// Height 2 of the rail plan ground plate
+        /// </summary>
+        [XmlAttribute("Height2")]
+        public int Height2 { get; set; }
+
+        /// <summary>
+        /// Height 3 of the rail plan ground plate
+        /// </summary>
+        [XmlAttribute("Height3")]
+        public int Height3 { get; set; }
 
         /// <summary>
         ///  Zoom factor to display the rail plan

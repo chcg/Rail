@@ -1,4 +1,5 @@
-﻿using Rail.View;
+﻿using Rail.Mvvm;
+using Rail.View;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -7,6 +8,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+
+[assembly:AssemblyProjectVersion("1.0.0.0")]
 
 namespace Rail
 {

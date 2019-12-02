@@ -23,6 +23,7 @@ namespace Rail.Controls
     {
         public const double dockDistance = 10;
         public const double rotateDistance = 12;
+        public const double margine = 10;
 
         static RailPlanControl()
         {
@@ -59,59 +60,7 @@ namespace Rail.Controls
         }
 
         #endregion
-
-        #region GroundWidth
-
-        public static readonly DependencyProperty GroundWidthProperty =
-            DependencyProperty.Register("GroundWidth", typeof(double), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(2000.0, new PropertyChangedCallback(OnGroundWidthChanged)));
-
-        public double GroundWidth
-        {
-            get
-            {
-                return (double)GetValue(GroundWidthProperty);
-            }
-            set
-            {
-                SetValue(GroundWidthProperty, value);
-            }
-        }
-
-        private static void OnGroundWidthChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            RailPlanControl railPlan = (RailPlanControl)o;
-            railPlan.CalcGroundSize();
-        }
-
-        #endregion
-
-        #region GroundHeight
-
-        public static readonly DependencyProperty GroundHeightProperty =
-            DependencyProperty.Register("GroundHeight", typeof(double), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(1000.0, new PropertyChangedCallback(OnGroundHeightChanged)));
-
-        public double GroundHeight
-        {
-            get
-            {
-                return (double)GetValue(GroundHeightProperty);
-            }
-            set
-            {
-                SetValue(GroundHeightProperty, value);
-            }
-        }
-
-        private static void OnGroundHeightChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            RailPlanControl railPlan = (RailPlanControl)o;
-            railPlan.CalcGroundSize();
-        }
-
-        #endregion
-
+        
         #region SelectedTrack
 
         public static readonly DependencyProperty SelectedTrackProperty =
@@ -152,15 +101,15 @@ namespace Rail.Controls
         private static void OnRailPlanPropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             RailPlanControl railPlan = (RailPlanControl)o;
-            railPlan.InvalidateMeasure();
-            railPlan.InvalidateVisual();
+            railPlan.CalcGroundSize();
         }
 
         #endregion
+
         private void CalcGroundSize()
         {
-            this.Width = this.GroundWidth * this.ZoomFactor;
-            this.Height = this.GroundHeight * this.ZoomFactor;
+            this.Width = margine * 2 + (this.RailPlan.Width1 + this.RailPlan.Width2 + this.RailPlan.Width3) * this.ZoomFactor;
+            this.Height = margine * 2 + Math.Max(this.RailPlan.Height1, Math.Max(this.RailPlan.Height2, this.RailPlan.Height3)) * this.ZoomFactor;
             this.InvalidateMeasure();
             this.InvalidateVisual();
         }
@@ -179,8 +128,14 @@ namespace Rail.Controls
         
         protected override void OnRender(DrawingContext drawingContext)
         {
-            drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.ActualWidth, this.ActualHeight));
-            drawingContext.PushTransform(new ScaleTransform(this.ZoomFactor, this.ZoomFactor));
+            //drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.ActualWidth, this.ActualHeight));
+
+            TransformGroup transformGroup = new TransformGroup();
+            transformGroup.Children.Add(new ScaleTransform(this.ZoomFactor, this.ZoomFactor));
+            transformGroup.Children.Add(new TranslateTransform(margine, margine));
+            drawingContext.PushTransform(transformGroup);
+
+            RenderPlate(drawingContext);
 
             // draw background
             //drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.GroundWidth, this.GroundHeight));
@@ -211,6 +166,26 @@ namespace Rail.Controls
             //}
             drawingContext.Pop();
             base.OnRender(drawingContext);
+        }
+
+        private readonly Brush plateBrush = new SolidColorBrush(Colors.Green);
+        
+        protected void RenderPlate(DrawingContext drawingContext)
+        {
+            
+            drawingContext.DrawGeometry(plateBrush, blackPen, new PathGeometry(new PathFigureCollection
+            {
+                new PathFigure(new Point(0, 0), new PathSegmentCollection
+                {
+                    new LineSegment(new Point(0, this.RailPlan.Height1), true),
+                    new LineSegment(new Point(this.RailPlan.Width1, this.RailPlan.Height1), true),
+                    new LineSegment(new Point(this.RailPlan.Width1, this.RailPlan.Height2), true),
+                    new LineSegment(new Point(this.RailPlan.Width1 + this.RailPlan.Width2 , this.RailPlan.Height2), true),
+                    new LineSegment(new Point(this.RailPlan.Width1 + this.RailPlan.Width2 , this.RailPlan.Height3), true),
+                    new LineSegment(new Point(this.RailPlan.Width1 + this.RailPlan.Width2 + this.RailPlan.Width3, this.RailPlan.Height3), true),
+                    new LineSegment(new Point(this.RailPlan.Width1 + this.RailPlan.Width2 + this.RailPlan.Width3, 0), true),
+                }, true)
+            }));
         }
 
         private RailItem FindTrack(Point point)
