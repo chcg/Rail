@@ -98,6 +98,19 @@
     <Style TargetType="{x:Type c:DoubleSlider}" BasedOn="{StaticResource NumericSlider}" />
 
 
+    <Style TargetType="{x:Type c:RailPlanControl}">
+        <Setter Property="Background" Value="LightGray"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type c:RailPlanControl}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <Style TargetType="{x:Type c:TrackControl}">
         <Setter Property="Template">
             <Setter.Value>

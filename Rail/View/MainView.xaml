@@ -19,6 +19,7 @@
         <conv:DoubleToPercentageConverter x:Key="DoubleToPercentageConverter"/>
         <conv:DistanceToTextConverter x:Key="DistanceToTextConverter"/>
         <conv:AngelToTextConverter x:Key="AngelToTextConverter"/>
+        <conv:PointToTextConverter x:Key="PointToTextConverter"/>
     </RibbonWindow.Resources>
     <DockPanel>
         <mvvm:PersistentRibbon DockPanel.Dock="Top">
@@ -129,6 +130,8 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="16"/>
                         </Grid.ColumnDefinitions>
                     </Grid>
@@ -138,8 +141,13 @@
             <StatusBarItem Grid.Column="1">
                 <ProgressBar Value="{Binding ProgressValue}" Visibility="{Binding ProgressState, Converter={StaticResource TaskbarItemProgressStateToVisibilityConverter}}" Minimum="0.0" Maximum="1.0" Width="120" Height="18" ToolTip="Working progress."/>
             </StatusBarItem>
-            <StatusBarItem Grid.Column="2" Content="Zoom" Margin="2,0,2,0"/>
-            <StatusBarItem Grid.Column="3" Margin="2,0,2,0">
+
+            <StatusBarItem Grid.Column="2" Content="Position" Margin="2,0,2,0"/>
+            <StatusBarItem Grid.Column="3" Content="{Binding MousePosition, Converter={StaticResource PointToTextConverter}}" Margin="2,0,2,0"/>
+            
+
+            <StatusBarItem Grid.Column="4" Content="Zoom" Margin="2,0,2,0"/>
+            <StatusBarItem Grid.Column="5" Margin="2,0,2,0">
                 <ctrl:DoubleSlider FormatString="P0" Minimum="0.1" Maximum="2" Increment="0.05" Value="{Binding ZoomFactor}" SliderWidth="100" />
             </StatusBarItem>
         </StatusBar>
@@ -181,7 +189,8 @@
             <ctrl:RailPlanControl 
             ZoomFactor="{Binding ZoomFactor}"
             RailPlan="{Binding RailPlan}"
-            SelectedTrack="{Binding SelectedTrack}"/>
+            SelectedTrack="{Binding SelectedTrack}"
+            MousePosition="{Binding MousePosition, Mode=OneWayToSource}"/>
         </ScrollViewer>
 
     </DockPanel>

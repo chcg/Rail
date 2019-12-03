@@ -32,7 +32,6 @@ namespace Rail.Controls
 
         public RailPlanControl()
         {
-
         }
 
         #region ZoomFactor
@@ -106,10 +105,30 @@ namespace Rail.Controls
 
         #endregion
 
+        #region MousePosition
+
+        public static readonly DependencyProperty MousePositionProperty =
+            DependencyProperty.Register("MousePosition", typeof(Point), typeof(RailPlanControl),
+                new FrameworkPropertyMetadata(new Point(0, 0), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public Point MousePosition
+        {
+            get
+            {
+                return (Point)GetValue(MousePositionProperty);
+            }
+            set
+            {
+                SetValue(MousePositionProperty, value);
+            }
+        }
+
+        #endregion
+
         private void CalcGroundSize()
         {
-            this.Width = margine * 2 + (this.RailPlan.Width1 + this.RailPlan.Width2 + this.RailPlan.Width3) * this.ZoomFactor;
-            this.Height = margine * 2 + Math.Max(this.RailPlan.Height1, Math.Max(this.RailPlan.Height2, this.RailPlan.Height3)) * this.ZoomFactor;
+            this.Width =  margine * 2 + this.RailPlan.Width  * this.ZoomFactor;
+            this.Height = margine * 2 + this.RailPlan.Height * this.ZoomFactor;
             this.InvalidateMeasure();
             this.InvalidateVisual();
         }
@@ -124,36 +143,37 @@ namespace Rail.Controls
         //    return Math.Cos(value * Math.PI / 180.0);
         //}
 
-        private readonly Pen blackPen = new Pen(Brushes.Black, 1); 
+        private readonly Pen blackPen = new Pen(Brushes.Black, 1);
         
         protected override void OnRender(DrawingContext drawingContext)
         {
-            //drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.ActualWidth, this.ActualHeight));
+            base.OnRender(drawingContext);
+
+            // drawn background is needed for detecting mouse moves
+            drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.ActualWidth, this.ActualHeight));
 
             TransformGroup transformGroup = new TransformGroup();
             transformGroup.Children.Add(new ScaleTransform(this.ZoomFactor, this.ZoomFactor));
             transformGroup.Children.Add(new TranslateTransform(margine, margine));
             drawingContext.PushTransform(transformGroup);
 
+            // dray plate
             RenderPlate(drawingContext);
 
-            // draw background
-            //drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.GroundWidth, this.GroundHeight));
-
             // draw tracks
-            if (this.RailPlan?.Rails != null)
-            {
-                foreach (RailItem track in this.RailPlan.Rails)
-                {
-                    track.Render(drawingContext);
-                }
+            this.RailPlan.Rails.ForEach(r => r.Render(drawingContext));
 
-                foreach (RailItem track in this.RailPlan.Rails)
-                {
-                    drawingContext.DrawDockPoints(track.DockPoints);
-                }
+            //foreach (RailItem track in this.RailPlan.Rails)
+            //{
+            //    track.Render(drawingContext);
+            //}
+
+            //foreach (RailItem track in this.RailPlan.Rails)
+            //{
+            //    drawingContext.DrawDockPoints(track.DockPoints);
+            //}
                 
-            }
+            
 
             //drawingContext.DrawPosition(new Point(400, 400));
             //drawingContext.DrawPosition(Points.RotateX(300, 400, 0, 400, 400));
@@ -165,7 +185,7 @@ namespace Rail.Controls
             //        Points.RotateX(300, 400, a + 1, 400, 400));
             //}
             drawingContext.Pop();
-            base.OnRender(drawingContext);
+            
         }
 
         private readonly Brush plateBrush = new SolidColorBrush(Colors.Green);
@@ -186,6 +206,13 @@ namespace Rail.Controls
                     new LineSegment(new Point(this.RailPlan.Width1 + this.RailPlan.Width2 + this.RailPlan.Width3, 0), true),
                 }, true)
             }));
+        }
+
+
+        public void InsertTrack(Point pos)
+        {
+            this.RailPlan.Rails.Add(new RailItem(this.SelectedTrack, pos));
+            this.InvalidateVisual();
         }
 
         private RailItem FindTrack(Point point)
@@ -342,86 +369,103 @@ namespace Rail.Controls
         private double startRotationValue;
         private double lastRotationAngle;
         
+        private Point GetMousePosition(MouseEventArgs e)
+        {
+            return e.GetPosition(this).Move(-margine, -margine).Scale(1.0 / this.ZoomFactor);
+        }
+
+        protected override void OnMouseDoubleClick(MouseButtonEventArgs e)
+        {
+            Point pos = GetMousePosition(e);
+            InsertTrack(pos);
+
+            base.OnMouseDoubleClick(e);
+        }
+
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            Point zoomedMousePosition = e.GetPosition(this).Scale(1.0 / this.ZoomFactor);
+            Point zoomedMousePosition = GetMousePosition(e);
 
-            if ((this.actionTrack = FindTrack(zoomedMousePosition)) != null)
-            {
-                if (this.actionTrack.DockPoints.Any(d => d.Distance(zoomedMousePosition) < rotateDistance))
-                {
-                    this.actionType = RailAction.Rotate;
-                    this.dockedTracks = FindSubgraph(this.actionTrack);
-                    this.startRotationValue = e.GetPosition(this).Y;
-                    this.lastRotationAngle = 0;                    
-                }
-                else
-                {
-                    if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
-                    {
-                        this.actionType = RailAction.MoveSingle;
-                        this.dockedTracks = null;
-                    }
-                    else
-                    {
-                        this.actionType = RailAction.MoveGraph;
-                        this.dockedTracks = FindSubgraph(this.actionTrack);
-                    }
-                }
-                this.zoomedLastMousePosition = zoomedMousePosition;
-                this.CaptureMouse();
-            }
+            //if ((this.actionTrack = FindTrack(zoomedMousePosition)) != null)
+            //{
+            //    if (this.actionTrack.DockPoints.Any(d => d.Distance(zoomedMousePosition) < rotateDistance))
+            //    {
+            //        this.actionType = RailAction.Rotate;
+            //        this.dockedTracks = FindSubgraph(this.actionTrack);
+            //        this.startRotationValue = e.GetPosition(this).Y;
+            //        this.lastRotationAngle = 0;                    
+            //    }
+            //    else
+            //    {
+            //        if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
+            //        {
+            //            this.actionType = RailAction.MoveSingle;
+            //            this.dockedTracks = null;
+            //        }
+            //        else
+            //        {
+            //            this.actionType = RailAction.MoveGraph;
+            //            this.dockedTracks = FindSubgraph(this.actionTrack);
+            //        }
+            //    }
+            //    this.zoomedLastMousePosition = zoomedMousePosition;
+            //    this.CaptureMouse();
+            //}
             base.OnMouseLeftButtonDown(e);
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            
-            if (this.actionTrack != null)
-            {
-                Trace.TraceInformation("OnMouseMove ({0}, {1})", e.GetPosition(this).X, e.GetPosition(this).Y);
+            Point pos = GetMousePosition(e);
+            this.MousePosition = pos;
 
-                Point zoomedMousePosition = e.GetPosition(this).Scale(1.0 / this.ZoomFactor);
-                double rotate = Math.Truncate((e.GetPosition(this).Y - this.startRotationValue) / 5.0) * 7.5; 
+            //if (this.actionTrack != null)
+            //{
+            //    Trace.TraceInformation("OnMouseMove ({0}, {1})", e.GetPosition(this).X, e.GetPosition(this).Y);
 
-                switch (this.actionType)
-                {
-                case RailAction.MoveSingle:
-                    MoveTrack(this.actionTrack, zoomedMousePosition - this.zoomedLastMousePosition);                    
-                    break;
-                case RailAction.MoveGraph:
-                    MoveTrack(this.actionTrack, zoomedMousePosition - this.zoomedLastMousePosition, this.dockedTracks);
-                    FindDocking(this.actionTrack, this.dockedTracks);
-                    break;
-                case RailAction.Rotate:
-                    RotateTrack(this.actionTrack, rotate - this.lastRotationAngle, this.dockedTracks);
-                    FindDocking(this.actionTrack, this.dockedTracks);
-                    break;
-                }
-                this.zoomedLastMousePosition = zoomedMousePosition;
-                this.lastRotationAngle = rotate;
-                this.InvalidateVisual();
-            }
+            //    Point zoomedMousePosition = e.GetPosition(this).Scale(1.0 / this.ZoomFactor);
+            //    double rotate = Math.Truncate((e.GetPosition(this).Y - this.startRotationValue) / 5.0) * 7.5; 
+
+            //    switch (this.actionType)
+            //    {
+            //    case RailAction.MoveSingle:
+            //        MoveTrack(this.actionTrack, zoomedMousePosition - this.zoomedLastMousePosition);                    
+            //        break;
+            //    case RailAction.MoveGraph:
+            //        MoveTrack(this.actionTrack, zoomedMousePosition - this.zoomedLastMousePosition, this.dockedTracks);
+            //        FindDocking(this.actionTrack, this.dockedTracks);
+            //        break;
+            //    case RailAction.Rotate:
+            //        RotateTrack(this.actionTrack, rotate - this.lastRotationAngle, this.dockedTracks);
+            //        FindDocking(this.actionTrack, this.dockedTracks);
+            //        break;
+            //    }
+            //    this.zoomedLastMousePosition = zoomedMousePosition;
+            //    this.lastRotationAngle = rotate;
+            //    this.InvalidateVisual();
+            //}
             base.OnMouseMove(e);
         }
 
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
-        { 
+        {
+            Point pos = GetMousePosition(e);
+
             if (this.actionTrack != null)
             {
                 Point mousePosition = e.GetPosition(this);
                 // delete track/tracks if outside
                 if (mousePosition.X < 0 || mousePosition.X >= this.ActualWidth || mousePosition.Y < 0 || mousePosition.Y >= this.ActualHeight)
                 {
-                    Trace.TraceInformation("OnMouseLeftButtonUp ({0}, {1}) ({2}, {3}) ", e.GetPosition(this).X, e.GetPosition(this).Y, this.ActualWidth, this.ActualHeight);
-                    this.RailPlan.Rails.Remove(this.actionTrack);
-                    if (this.dockedTracks != null)
-                    {
-                        foreach (RailItem track in this.dockedTracks)
-                        {
-                            this.RailPlan.Rails.Remove(track);
-                        }
-                    }
+                    //Trace.TraceInformation("OnMouseLeftButtonUp ({0}, {1}) ({2}, {3}) ", e.GetPosition(this).X, e.GetPosition(this).Y, this.ActualWidth, this.ActualHeight);
+                    //this.RailPlan.Rails.Remove(this.actionTrack);
+                    //if (this.dockedTracks != null)
+                    //{
+                    //    foreach (RailItem track in this.dockedTracks)
+                    //    {
+                    //        this.RailPlan.Rails.Remove(track);
+                    //    }
+                    //}
                 }
                 else
                 {
@@ -467,6 +511,9 @@ namespace Rail.Controls
             }
             base.OnMouseLeftButtonUp(e);
         }
+
+
+       
 
         protected enum RailAction
         {

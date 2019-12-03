@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,18 +10,28 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
+    [DebuggerDisplay("RailItem Id={Id} X={Position.X} Y={Position.Y} A={Angle}")]
+
     public class RailItem
     {
         public RailItem()
         { }
 
-        public RailItem(TrackBase track, double x, double y, double angle, int[] docks)
+        public RailItem(TrackBase track, Point pos)
         {
             this.Id = track.Id;
-            this.Position.X = x;
-            this.Position.Y = y;
-            this.Angle = angle;
+            this.Track = track;
+            this.Position = pos;
+            this.Angle = 0.0;
         }
+
+        //public RailItem(TrackBase track, double x, double y, double angle, int[] docks)
+        //{
+        //    this.Id = track.Id;
+        //    this.Position.X = x;
+        //    this.Position.Y = y;
+        //    this.Angle = angle;
+        //}
 
         [XmlAttribute("Id")]
         public string Id { get; set; }
@@ -57,7 +68,7 @@ namespace Rail.Model
 
         public void Render(DrawingContext drawingContext)
         {
-            this.Track?.Render(drawingContext);
+            this.Track.Render(drawingContext);
         }
 
         public bool IsInside(Point point)

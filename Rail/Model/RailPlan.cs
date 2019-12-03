@@ -53,6 +53,9 @@ namespace Rail.Model
         [XmlAttribute("Width3")]
         public int Width3 { get; set; }
 
+        [XmlIgnore]
+        public int Width { get { return this.Width1 + this.Width2 + this.Width3; } }
+
         /// <summary>
         /// Height 1 of the rail plan ground plate
         /// </summary>
@@ -70,6 +73,9 @@ namespace Rail.Model
         /// </summary>
         [XmlAttribute("Height3")]
         public int Height3 { get; set; }
+
+        [XmlIgnore]
+        public int Height { get { return Math.Max(this.Height1, Math.Max(this.Height2, this.Height3)); } }
 
         /// <summary>
         ///  Zoom factor to display the rail plan

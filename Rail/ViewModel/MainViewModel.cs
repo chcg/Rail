@@ -204,6 +204,20 @@ namespace Rail.ViewModel
             }
         }
 
+        private Point mousePosition = new Point(0, 0);
+        public Point MousePosition
+        {
+            get
+            {
+                return this.mousePosition;
+            }
+            set
+            {
+                this.mousePosition = value;
+                NotifyPropertyChanged("MousePosition");
+            }
+        }
+        
         #endregion
 
         #region methods
