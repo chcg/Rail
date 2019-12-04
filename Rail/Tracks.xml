@@ -37,14 +37,14 @@
       <Curved Id="24912" Radius="1114.6" Angle="12.1" Name="24912 Curved R6 1114.6 mm 12.1°" Decription="Curved R6 1114.6 mm 12.1°"/>
 
       <!-- turnout tracks -->
-      <LeftTurnout Id ="24611" Length="188.3" Radius="437.5" Angle="24.3" Name="24611 Left Turnout" Decription="Left Turnout" />
-      <RightTurnout Id ="24612" Length="188.3" Radius="437.5" Angle="24.3" Name="24612 Right Turnout" Decription="Right Turnout" />
-      <LeftTurnout Id ="24711" Length="236.1" Radius="1114.6" Angle="12.1" Name="24711 Left Wide Radius Turnout" Decription="Left Wide Radius Turnout" />
-      <RightTurnout Id ="24712" Length="236.1" Radius="1114.6" Angle="12.1" Name="24712 Right Wide Radius Turnout" Decription="Right Wide Radius Turnout" />
+      <LeftTurnout Id ="24611" Length="188.3" Radius="437.5" Angle="24.3" Name="24611 Left Turnout" Decription="Left Turnout 188 & 224" />
+      <RightTurnout Id ="24612" Length="188.3" Radius="437.5" Angle="24.3" Name="24612 Right Turnout" Decription="Right Turnout 188 & 224" />
+      <LeftTurnout Id ="24711" Length="236.1" Radius="1114.6" Angle="12.1" Name="24711 Left Wide Radius Turnout" Decription="Left Wide Radius Turnout 236 & 912" />
+      <RightTurnout Id ="24712" Length="236.1" Radius="1114.6" Angle="12.1" Name="24712 Right Wide Radius Turnout" Decription="Right Wide Radius Turnout 236 & 912" />
 
       <!-- curved turnout tracks -->
-      <LeftCurvedTurnout Id="24671"  InnerRadius="360.0" InnerAngle="30.0" OuterRadius="437.5" OuterAngle="30.0" Name="24671 Left Curved Turnout" Decription="Left Curved Turnout" />
-      <RightCurvedTurnout Id="24672" InnerRadius="360.0" InnerAngle="30.0" OuterRadius="437.5" OuterAngle="30.0" Name="24672 Right Curved Turnout" Decription="Right Curved Turnout" />
+      <LeftCurvedTurnout Id="24671"  InnerRadius="360.0" InnerAngle="30.0" OuterRadius="437.5" OuterAngle="30.0" Name="24671 Left Curved Turnout" Decription="Left Curved Turnout 224 &" />
+      <RightCurvedTurnout Id="24672" InnerRadius="360.0" InnerAngle="30.0" OuterRadius="437.5" OuterAngle="30.0" Name="24672 Right Curved Turnout" Decription="Right Curved Turnout 224 & " />
       <LeftCurvedTurnout Id="24771"  InnerRadius="515.0" InnerAngle="30.0" OuterRadius="579.3" OuterAngle="30.0" Name="24771 Left Wide Radius Curved Turnout" Decription="Left Wide Radius Curved Turnout" />
       <RightCurvedTurnout Id="24772" InnerRadius="515.0" InnerAngle="30.0" OuterRadius="579.3" OuterAngle="30.0" Name="24772 Right Wide Radius Curved Turnout" Decription="Right Wide Radius Curved Turnout" />
 
