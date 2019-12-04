@@ -226,35 +226,35 @@ namespace Rail.Controls
         //    return null;
         //}
 
-        private RailItem FindDocking(RailItem track, IEnumerable<RailItem> docked = null)
+        private RailItem FindDocking(RailItem railItem, IEnumerable<RailItem> docked = null)
         {
             if (this.RailPlan.Rails != null)
             {
-                List<TrackDockPoint> dockPoints = track.DockPoints;
+                var dockPoints = railItem.DockPoints;
                 var otherTracks =
                     docked != null ?
-                    this.RailPlan.Rails.Where(t => t != track).Where(t => !docked.Contains(t)).ToList() :
-                    this.RailPlan.Rails.Where(t => t != track);
+                    this.RailPlan.Rails.Where(t => t != railItem).Where(t => !docked.Contains(t)).ToList() :
+                    this.RailPlan.Rails.Where(t => t != railItem);
 
-                foreach (TrackDockPoint dockPoint in dockPoints)
+                foreach (var dockPoint in dockPoints)
                 {
                     foreach (RailItem t in otherTracks)
                     {
-                        foreach (TrackDockPoint dp in t.DockPoints)
+                        foreach (var dp in t.DockPoints)
                         {
                             //if (Math.Abs(dp.X - dockPoint.X) < dockDistance && Math.Abs(dp.Y - dockPoint.Y) < dockDistance)
                             if (dp.Distance(dockPoint) < dockDistance)
                             {
                                 double rotate = 180.0 - dockPoint.Angle + dp.Angle;
 
-                                var sub = FindSubgraph(track).Where(f => f != track).ToList();
+                                var sub = FindSubgraph(railItem).Where(f => f != railItem).ToList();
                                 foreach (RailItem rt in sub)
                                 {
                                     //rt.Angle += rotate;
                                     //rt.Position = track.Position.Rotate(rotate, dp);
                                 }
-                                track.Rotate(rotate);
-                                track.Move(new Vector(dp.X - dockPoint.X, dp.Y - dockPoint.Y));
+                                railItem.Rotate(rotate);
+                                railItem.Move(new Vector(dp.X - dockPoint.X, dp.Y - dockPoint.Y));
                                 return t;
                             }
                         }
@@ -274,16 +274,16 @@ namespace Rail.Controls
         {
             if (this.RailPlan?.Rails != null)
             {
-                List<TrackDockPoint> dockPoints = startTrack.DockPoints;
+                var dockPoints = startTrack.DockPoints;
                 var otherTracks = this.RailPlan.Rails.Where(t => t != startTrack).ToList();
 
-                foreach (TrackDockPoint dockPoint in dockPoints)
+                foreach (var dockPoint in dockPoints)
                 {
                     foreach (RailItem t in otherTracks)
                     {
                         if (!list.Contains(t))
                         {
-                            foreach (TrackDockPoint dp in t.DockPoints)
+                            foreach (var dp in t.DockPoints)
                             {
                                 if (dp.Distance(dockPoint) < dockDistance)
                                 {
@@ -363,7 +363,7 @@ namespace Rail.Controls
                 if (this.actionTrack.DockPoints.Any(d => d.Distance(pos) < rotateDistance))
                 {
                     this.actionType = RailAction.Rotate;
-                    this.dockedTracks = FindSubgraph(this.actionTrack);
+                //    this.dockedTracks = FindSubgraph(this.actionTrack);
                     this.startRotationValue = e.GetPosition(this).Y;
                     this.lastRotationAngle = 0;
                 }
@@ -396,21 +396,21 @@ namespace Rail.Controls
                 //    Trace.TraceInformation("OnMouseMove ({0}, {1})", e.GetPosition(this).X, e.GetPosition(this).Y);
 
                 //    Point zoomedMousePosition = e.GetPosition(this).Scale(1.0 / this.ZoomFactor);
-                //    double rotate = Math.Truncate((e.GetPosition(this).Y - this.startRotationValue) / 5.0) * 7.5; 
+                double rotate = Math.Truncate((e.GetPosition(this).Y - this.startRotationValue) / 5.0) * 7.5; 
 
                 switch (this.actionType)
                 {
                 case RailAction.MoveSingle:
-                    MoveTrack(this.actionTrack, pos - this.lastMousePosition);                    
+                    MoveTrack(this.actionTrack, pos - this.lastMousePosition);
                     break;
                 //    case RailAction.MoveGraph:
                 //        MoveTrack(this.actionTrack, zoomedMousePosition - this.zoomedLastMousePosition, this.dockedTracks);
                 //        FindDocking(this.actionTrack, this.dockedTracks);
                 //        break;
-                //    case RailAction.Rotate:
-                //        RotateTrack(this.actionTrack, rotate - this.lastRotationAngle, this.dockedTracks);
-                //        FindDocking(this.actionTrack, this.dockedTracks);
-                //        break;
+                case RailAction.Rotate:
+                    RotateTrack(this.actionTrack, rotate - this.lastRotationAngle, this.dockedTracks);
+                    FindDocking(this.actionTrack, this.dockedTracks);
+                    break;
                 }
                 //    this.zoomedLastMousePosition = zoomedMousePosition;
                 //    this.lastRotationAngle = rotate;

@@ -22,7 +22,8 @@ namespace Rail.Model
             this.Id = track.Id;
             this.Track = track;
             this.Position = pos;
-            this.Angle = 90.0;
+            this.Angle = 0.0;
+            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(dp).Move(pos)).ToArray();
         }
 
         //public RailItem(TrackBase track, double x, double y, double angle, int[] docks)
@@ -40,7 +41,7 @@ namespace Rail.Model
         public TrackBase Track { get; set; }
 
         [XmlIgnore]
-        public List<TrackDockPoint> DockPoints { get { return this.Track.DockPoints; } }
+        public RailDockPoint[] DockPoints { get; private set; }
 
         [XmlIgnore]
         private Point Position;
@@ -65,26 +66,30 @@ namespace Rail.Model
         [XmlArray("Docks")]
         [XmlArrayItem("Dock")]
         public RailDock[] Docks { get; set; }
-
+                
         public void Move(Vector vec)
         {
             this.Position += vec;
+            this.DockPoints.ToList().ForEach(dp => dp.Move(vec));
         }
 
         public void Rotate(double angle)
         {
             this.Angle += angle;
+            this.DockPoints.ToList().ForEach(dp => dp.Rotate(angle, this.Position));
         }
 
         public void Rotate(double angle, Point center)
         {
-            angle *= (Math.PI / 180.0);
-            double sin = Math.Sin(angle);
-            double cos = Math.Cos(angle);
+            double a = angle * (Math.PI / 180.0);
+            double sin = Math.Sin(a);
+            double cos = Math.Cos(a);
 
             this.Angle += angle;
             this.Position = new Point(center.X + cos * (this.Position.X - center.X) - sin * (this.Position.Y - center.Y),
                                       center.Y + sin * (this.Position.X - center.X) + cos * (this.Position.Y - center.Y));
+
+            this.DockPoints.ToList().ForEach(dp => dp.Rotate(angle, center));
         }
 
         public void Rotate(double angle, RailItem center)
@@ -119,21 +124,29 @@ namespace Rail.Model
 
         public void DrawDockPoints(DrawingContext drawingContext)
         {
-            TransformGroup transformGroup = new TransformGroup();
-            transformGroup.Children.Add(new RotateTransform(this.Angle));
-            transformGroup.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
-            drawingContext.PushTransform(transformGroup);
+            //TransformGroup transformGroup = new TransformGroup();
+            //transformGroup.Children.Add(new RotateTransform(this.Angle));
+            //transformGroup.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
+            //drawingContext.PushTransform(transformGroup);
 
 
-            foreach (TrackDockPoint point in this.Track.DockPoints)
+            //foreach (TrackDockPoint point in this.Track.DockPoints)
+            //{
+            //    drawingContext.DrawEllipse(null, dockPen, point, 3.0, 3.0);
+            //    drawingContext.DrawLine(positionPen, point, new Point(
+            //        point.X + (Cos(point.Angle) * 16) - (Sin(point.Angle) * 16),
+            //        point.Y + (Sin(point.Angle) * 16) + (Cos(point.Angle) * 16)));
+            //}
+
+            foreach (var point in this.DockPoints)
             {
-                drawingContext.DrawEllipse(null, dockPen, point, 3.0, 3.0);
-                drawingContext.DrawLine(positionPen, point, new Point(
+                drawingContext.DrawEllipse(null, dockPen, point.Position, 3.0, 3.0);
+                drawingContext.DrawLine(positionPen, point.Position, new Point(
                     point.X + (Cos(point.Angle) * 16) - (Sin(point.Angle) * 16),
                     point.Y + (Sin(point.Angle) * 16) + (Cos(point.Angle) * 16)));
             }
 
-            drawingContext.Pop();
+            //drawingContext.Pop();
         }
 
         public bool IsInside(Point point)

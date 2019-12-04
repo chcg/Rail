@@ -14,36 +14,30 @@ namespace Rail.Model
         public double Y;
         private double angle;
 
-        public TrackDockPoint(TrackBase track)
-        {
-            this.Track = track;
-        }
 
-        public TrackDockPoint(TrackBase track, double x, double y, double angle)
+        public TrackDockPoint(double x, double y, double angle)
         {
-            this.Track = track;
             this.X = x;
             this.Y = y;
             this.angle = angle % 360.0;
         }
 
-        public TrackDockPoint(TrackBase track, Point point, double angle)
+        public TrackDockPoint(Point point, double angle)
         {
-            this.Track = track;
             this.X = point.X;
             this.Y = point.Y;
             this.angle = angle % 360.0;
         }
 
-        public static implicit operator Point(TrackDockPoint dockPoint)
-        {
-            return new Point(dockPoint.X, dockPoint.Y);
-        }
+        //public static implicit operator Point(TrackDockPoint dockPoint)
+        //{
+        //    return new Point(dockPoint.X, dockPoint.Y);
+        //}
 
-        public static implicit operator RailItem(TrackDockPoint dockPoint)
-        {
-            return null; // dockPoint.Track;
-        }
+        //public static implicit operator RailItem(TrackDockPoint dockPoint)
+        //{
+        //    return null; // dockPoint.Track;
+        //}
 
         public Point Position
         {
@@ -69,12 +63,5 @@ namespace Rail.Model
                 this.angle = value % 360.0;
             }
         }
-
-        public TrackDockPoint Dock { get; set; }
-
-        public bool IsDocked { get { return this.Dock != null; } }
-
-        public TrackBase Track { get; private set; }
-
     } 
 }

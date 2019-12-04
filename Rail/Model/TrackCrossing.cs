@@ -23,10 +23,10 @@ namespace Rail.Model
             
             this.DockPoints = new List<TrackDockPoint>
             {
-                new TrackDockPoint(this, -this.Length1 / 2.0, 0.0, 135),
-                new TrackDockPoint(this,  this.Length1 / 2.0, 0.0, 315),
-                new TrackDockPoint(this, -this.Length1 / 2.0, 0.0, 135),
-                new TrackDockPoint(this,  this.Length1 / 2.0, 0.0, 315)
+                new TrackDockPoint(-this.Length1 / 2.0, 0.0, 135),
+                new TrackDockPoint( this.Length1 / 2.0, 0.0, 315),
+                new TrackDockPoint(-this.Length1 / 2.0, 0.0, 135),
+                new TrackDockPoint( this.Length1 / 2.0, 0.0, 315)
             };
         }
     }

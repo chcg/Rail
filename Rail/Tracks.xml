@@ -43,10 +43,10 @@
       <RightTurnout Id ="24712" Length="236.1" Radius="1114.6" Angle="12.1" Name="24712 Right Wide Radius Turnout" Decription="Right Wide Radius Turnout" />
 
       <!-- curved turnout tracks -->
-      <LeftCurvedTurnout Id="24671" Radius="360.0" Angle="30.0" Distance="77.5" Name="24671 Left Curved Turnout" Decription="Left Curved Turnout" />
-      <RightCurvedTurnout Id="24672" Radius="360.0" Angle="30.0" Distance="77.5" Name="24672 Right Curved Turnout" Decription="Right Curved Turnout" />
-      <LeftCurvedTurnout Id="24771" Radius="515.0"  Angle="30.0" Distance="64.0" Name="24771 Left Wide Radius Curved Turnout" Decription="Left Wide Radius Curved Turnout" />
-      <RightCurvedTurnout Id="24772" Radius="515.0"  Angle="30.0" Distance="64.0" Name="24772 Right Wide Radius Curved Turnout" Decription="Right Wide Radius Curved Turnout" />
+      <LeftCurvedTurnout Id="24671"  InnerRadius="360.0" InnerAngle="30.0" OuterRadius="437.5" OuterAngle="30.0" Name="24671 Left Curved Turnout" Decription="Left Curved Turnout" />
+      <RightCurvedTurnout Id="24672" InnerRadius="360.0" InnerAngle="30.0" OuterRadius="437.5" OuterAngle="30.0" Name="24672 Right Curved Turnout" Decription="Right Curved Turnout" />
+      <LeftCurvedTurnout Id="24771"  InnerRadius="515.0" InnerAngle="30.0" OuterRadius="579.3" OuterAngle="30.0" Name="24771 Left Wide Radius Curved Turnout" Decription="Left Wide Radius Curved Turnout" />
+      <RightCurvedTurnout Id="24772" InnerRadius="515.0" InnerAngle="30.0" OuterRadius="579.3" OuterAngle="30.0" Name="24772 Right Wide Radius Curved Turnout" Decription="Right Wide Radius Curved Turnout" />
 
       <!-- double slip switch -->
       <DoubleSlipSwitch Id="24624" Length="188.3" Angle="24.3" Name ="24624 Double Slip Switch" Decription="Double Slip Switch" />
@@ -125,16 +125,14 @@
       <!--<Curved Id="2274" Radius="0" Angle="14.26" Decription="Curved mm 14.26°" />-->
 
       <!-- turnout tracks -->
-      <!--<LeftTurnout Id ="2262" Length="168.9" Radius="0" Angle="22.5" Decription="Left Turnout" />
-      <RightTurnout Id ="2263" Length="168.9" Radius="0" Angle="22.5" Decription="Right Turnout" />-->
+      <LeftTurnout Id ="2262" Length="168.9" Radius="424.6" Angle="22.5" Decription="Left Turnout" />
+      <RightTurnout Id ="2263" Length="168.9" Radius="424.6" Angle="22.5" Decription="Right Turnout" />>
       <LeftTurnout Id ="22715" Length="225.0" Radius="902.4" Angle="14.26" Decription="Left Turnout" />
       <RightTurnout Id ="22716" Length="225.0" Radius="902.4" Angle="14.26" Decription="Right Turnout" />
 
       <!-- curved turnout tracks -->
-      <LeftCurvedTurnout Id="2268" Radius="0" Angle="30.0" Distance="64.6" Decription="Left Curved Turnout" />
-      <RightCurvedTurnout Id="2269" Radius="0" Angle="30.0" Distance="64.6" Decription="Right Curved Turnout" />
-
-
+      <LeftCurvedTurnout Id="2268" InnerRadius="424.6" InnerAngle="30.0" OuterRadius="553.9" OuterAngle="30.0" Decription="Left Curved Turnout" />
+      <RightCurvedTurnout Id="2269" InnerRadius="424.6" InnerAngle="30.0" OuterRadius="553.9" OuterAngle="30.0" Decription="Right Curved Turnout" />
 
       <!-- double slip switch -->
       <DoubleSlipSwitch Id="2260" Length="168.9" Angle="22.5" Decription="Double Slip Switch" />

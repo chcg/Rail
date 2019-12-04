@@ -16,6 +16,7 @@
     
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+    <ApplicationIcon />
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +24,7 @@
     <None Remove="Images\Info.png" />
     <None Remove="Images\New.png" />
     <None Remove="Images\Open.png" />
+    <None Remove="Images\Rail.ico" />
     <None Remove="Images\Rail.png" />
     <None Remove="Images\Save.png" />
     <None Remove="Images\Settings.png" />
@@ -41,6 +43,7 @@
     <Resource Include="Images\Info.png" />
     <Resource Include="Images\New.png" />
     <Resource Include="Images\Open.png" />
+    <Resource Include="Images\Rail.ico" />
     <Resource Include="Images\Rail.png" />
     <Resource Include="Images\Save.png" />
     <Resource Include="Images\Settings.png" />

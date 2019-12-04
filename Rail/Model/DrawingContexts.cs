@@ -16,25 +16,25 @@ namespace Rail.Model
         //    drawingContext.DrawRectangle(null, dockPen, new Rect(new Point(p.X - 2, p.Y - 2), new Size(4, 4)));
         //}
 
-        public static void DrawDockPoints(this DrawingContext drawingContext, IEnumerable<TrackDockPoint> points)
-        {
-            if (points != null)
-            {
-                foreach (TrackDockPoint point in points)
-                {
-                    drawingContext.DrawDockRect(point);
-                }
-            }
-        }
+        //public static void DrawDockPoints(this DrawingContext drawingContext, IEnumerable<TrackDockPoint> points)
+        //{
+        //    if (points != null)
+        //    {
+        //        foreach (TrackDockPoint point in points)
+        //        {
+        //            drawingContext.DrawDockRect(point);
+        //        }
+        //    }
+        //}
 
-        public static void DrawDockRect(this DrawingContext drawingContext, TrackDockPoint p)
-        {
-            //drawingContext.DrawRectangle(null, dockPen, new Rect(new Point(p.X - 2, p.Y - 2), new Size(4, 4)));
-            drawingContext.DrawEllipse(null, dockPen, p, 3.0, 3.0);
-            drawingContext.DrawLine(positionPen, p, new Point(
-                p.X + (Cos(p.Angle) * 16) - (Sin(p.Angle) * 16),
-                p.Y + (Sin(p.Angle) * 16) + (Cos(p.Angle) * 16)));
-        }
+        //public static void DrawDockRect(this DrawingContext drawingContext, TrackDockPoint p)
+        //{
+        //    //drawingContext.DrawRectangle(null, dockPen, new Rect(new Point(p.X - 2, p.Y - 2), new Size(4, 4)));
+        //    drawingContext.DrawEllipse(null, dockPen, p, 3.0, 3.0);
+        //    drawingContext.DrawLine(positionPen, p, new Point(
+        //        p.X + (Cos(p.Angle) * 16) - (Sin(p.Angle) * 16),
+        //        p.Y + (Sin(p.Angle) * 16) + (Cos(p.Angle) * 16)));
+        //}
 
         //public static void DrawPosition(this DrawingContext drawingContext, Point p)
         //{

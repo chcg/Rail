@@ -88,7 +88,7 @@ namespace Rail.Model
             return Math.Sqrt(Math.Pow(b.X - a.X, 2) + Math.Pow(b.Y - a.Y, 2));
         }
 
-        public static double Distance(this TrackDockPoint a, Point b)
+        public static double Distancex(this TrackDockPoint a, Point b)
         {
             return Math.Sqrt(Math.Pow(b.X - a.X, 2) + Math.Pow(b.Y - a.Y, 2));
         }

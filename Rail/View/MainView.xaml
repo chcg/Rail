@@ -10,7 +10,7 @@
         xmlns:conv="clr-namespace:Rail.Converter"
         mc:Ignorable="d"
         Height="1000" 
-        Width="1600">
+        Width="1600" Icon="/Rail;component/Images/Rail.png">
     <RibbonWindow.DataContext>
         <vm:MainViewModel/>
     </RibbonWindow.DataContext>
