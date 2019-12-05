@@ -1,4 +1,5 @@
-﻿using Rail.Model;
+﻿using Rail.Misc;
+using Rail.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,7 +24,7 @@ namespace Rail.Controls
     {
         public const double dockDistance = 10;
         public const double rotateDistance = 12;
-        public const double margine = 40;
+        public double margine = 0;
 
         static RailPlanControl()
         {
@@ -58,8 +59,20 @@ namespace Rail.Controls
             railPlan.CalcGroundSize();
         }
 
+        public double RailMargin
+        {
+            get
+            {
+                return this.margine;
+            }
+            set
+            {
+                this.margine = value;
+            }
+        }
+
         #endregion
-        
+
         #region SelectedTrack
 
         public static readonly DependencyProperty SelectedTrackProperty =
@@ -150,7 +163,7 @@ namespace Rail.Controls
             base.OnRender(drawingContext);
 
             // drawn background is needed for detecting mouse moves
-            drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.ActualWidth, this.ActualHeight));
+            drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.Width, this.Height));
 
             TransformGroup transformGroup = new TransformGroup();
             transformGroup.Children.Add(new ScaleTransform(this.ZoomFactor, this.ZoomFactor));

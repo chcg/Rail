@@ -29,6 +29,8 @@
                     <RibbonApplicationMenuItem Header="Open..." ImageSource="/Rail;component/Images/Open.png" QuickAccessToolBarImageSource="/Rail;component/Images/Open.png" Command="{Binding OpenCommand}"/>
                     <RibbonApplicationMenuItem Header="Save" ImageSource="/Rail;component/Images/Save.png" QuickAccessToolBarImageSource="/Rail;component/Images/Save.png" Command="{Binding SaveCommand}"/>
                     <RibbonApplicationMenuItem Header="Save As..." ImageSource="/Rail;component/Images/Save.png" QuickAccessToolBarImageSource="/Rail;component/Images/Save.png" Command="{Binding SaveAsCommand}"/>
+                    <RibbonApplicationMenuItem Header="Print" ImageSource="/Rail;component/Images/Printer.png" QuickAccessToolBarImageSource="/Rail;component/Images/Printer.png" Command="{Binding PrintCommand}"/>
+                    <RibbonApplicationMenuItem Header="Print Preview" ImageSource="/Rail;component/Images/Printer.png" QuickAccessToolBarImageSource="/Rail;component/Images/Printer.png" Command="{Binding PrintPreviewCommand}"/>
                     <RibbonApplicationMenuItem Header="Help..." ImageSource="/Rail;component/Images/Help.png" QuickAccessToolBarImageSource="/Rail;component/Images/Help.png" Command="{Binding HelpCommand}"/>
                     <RibbonApplicationMenuItem Header="About..." ImageSource="/Rail;component/Images/Info.png" QuickAccessToolBarImageSource="/Rail;component/Images/Info.png" Command="{Binding AboutCommand}"/>
                     
@@ -187,10 +189,12 @@
         </Grid>
         <ScrollViewer Focusable="False" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  >
             <ctrl:RailPlanControl 
+            Background="DarkGray"
             ZoomFactor="{Binding ZoomFactor}"
             RailPlan="{Binding RailPlan}"
             SelectedTrack="{Binding SelectedTrack}"
-            MousePosition="{Binding MousePosition, Mode=OneWayToSource}"/>
+            MousePosition="{Binding MousePosition, Mode=OneWayToSource}"
+            RailMargin="40"/>
         </ScrollViewer>
 
     </DockPanel>

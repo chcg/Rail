@@ -14,13 +14,13 @@ namespace Rail.Model
     {
         private RailPlan()
         {
-            this.Width1 = 1500;
-            this.Width2 = 3000;
-            this.Width3 = 1500;
-            this.Height1 = 3000;
+            this.Width1 = 1000;
+            this.Width2 = 1000;
+            this.Width3 = 1000;
+            this.Height1 = 1500;
             this.Height2 = 1000;
-            this.Height3 = 3000;
-            this.Zoom = 1.0;
+            this.Height3 = 1500;
+            //this.Zoom = 1.0;
             this.Rails = new List<RailItem>();
         }
 
@@ -77,11 +77,11 @@ namespace Rail.Model
         [XmlIgnore]
         public int Height { get { return Math.Max(this.Height1, Math.Max(this.Height2, this.Height3)); } }
 
-        /// <summary>
-        ///  Zoom factor to display the rail plan
-        /// </summary>
-        [XmlAttribute("Zoom")]
-        public double Zoom { get; set; }
+        ///// <summary>
+        /////  Zoom factor to display the rail plan
+        ///// </summary>
+        //[XmlAttribute("Zoom")]
+        //public double Zoom { get; set; }
 
         /// <summary>
         /// 

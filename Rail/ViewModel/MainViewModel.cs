@@ -9,9 +9,14 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Media;
+using System.Windows.Xps;
 
 namespace Rail.ViewModel
 {
@@ -21,11 +26,13 @@ namespace Rail.ViewModel
         private RailPlan railPlan;
         private Dictionary<string, TrackBase> trackDict;
 
-        public DelegateCommand RailPlanCommand { get; set; }
+        public DelegateCommand RailPlanCommand { get; private set; }
+        public DelegateCommand PrintCommand { get; private set; }
+        public DelegateCommand PrintPreviewCommand { get; private set; }
 
         private double zoomFactor = 1.0;
-        private double groundWidth = 2000.0;
-        private double groundHeight = 1000.0;
+        //private double groundWidth = 2000.0;
+        //private double groundHeight = 1000.0;
 
         public MainViewModel()
         {
@@ -33,7 +40,9 @@ namespace Rail.ViewModel
             this.FileFilter = "Rail Project|*.rail|All Files|*.*";
 
             this.RailPlanCommand = new DelegateCommand(OnRailPlan);
-            
+            this.PrintCommand = new DelegateCommand(OnPrint);
+            this.PrintPreviewCommand = new DelegateCommand(OnPrintPreview);
+
             // load track list
             DependencyObject dep = new DependencyObject();
             if (!DesignerProperties.GetIsInDesignMode(dep))
@@ -132,31 +141,31 @@ namespace Rail.ViewModel
             }
         }
 
-        public double GroundWidth
-        {
-            get
-            {
-                return this.groundWidth;
-            }
-            set
-            {
-                this.groundWidth = value;
-                NotifyPropertyChanged("GroundWidth");
-            }
-        }
+        //public double GroundWidth
+        //{
+        //    get
+        //    {
+        //        return this.groundWidth;
+        //    }
+        //    set
+        //    {
+        //        this.groundWidth = value;
+        //        NotifyPropertyChanged("GroundWidth");
+        //    }
+        //}
 
-        public double GroundHeight
-        {
-            get
-            {
-                return this.groundHeight;
-            }
-            set
-            {
-                this.groundHeight = value;
-                NotifyPropertyChanged("GroundHeight");
-            }
-        }
+        //public double GroundHeight
+        //{
+        //    get
+        //    {
+        //        return this.groundHeight;
+        //    }
+        //    set
+        //    {
+        //        this.groundHeight = value;
+        //        NotifyPropertyChanged("GroundHeight");
+        //    }
+        //}
 
         public double[] SnapInDistances { get { return new double[] { 0, 100, 1000, 10000, 100000 }; } }
         public double[] SnapInAngels { get { return new double[] { 0, 30, 15, 7.5 }; } }
@@ -254,6 +263,30 @@ namespace Rail.ViewModel
             }
         }
 
+        private void OnPrint()
+        {
+            double pageMargin = 80;
+
+            PrintDialog printDialog = new PrintDialog();
+
+            if (printDialog.ShowDialog() == true)
+            {
+                PrintCapabilities capabilities = printDialog.PrintQueue.GetPrintCapabilities(printDialog.PrintTicket);
+
+                RailPlanControl ctrl = new RailPlanControl();
+                ctrl.Background = new SolidColorBrush(Colors.White);
+                ctrl.RailPlan = this.RailPlan;
+                ctrl.ZoomFactor = Math.Min(capabilities.PageImageableArea.ExtentWidth / (ctrl.Width + pageMargin * 2), capabilities.PageImageableArea.ExtentHeight / (ctrl.Height + pageMargin * 2));
+                
+                printDialog.PrintVisual(ctrl, "Rail Plan");
+            }
+        }
+
+        private void OnPrintPreview()
+        {
+            
+            
+        }
         #endregion
     }
 }
