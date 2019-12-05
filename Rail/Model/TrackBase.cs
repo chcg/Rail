@@ -121,13 +121,13 @@ namespace Rail.Model
 
             return new PathGeometry(new PathFigureCollection
             {
-                new PathFigure(circleCenter - Circle(-angle / 2, radius - this.Spacing / 2), new PathSegmentCollection
+                new PathFigure(circleCenter - PointExtentions.Circle(-angle / 2, radius - this.Spacing / 2), new PathSegmentCollection
                 {
-                    new LineSegment(circleCenter - Circle(-angle / 2, radius + this.Spacing / 2), true),
-                    new ArcSegment (circleCenter - Circle(angle / 2, radius + this.Spacing / 2), outerSize, angle, false, SweepDirection.Counterclockwise, true),
+                    new LineSegment(circleCenter - PointExtentions.Circle(-angle / 2, radius + this.Spacing / 2), true),
+                    new ArcSegment (circleCenter - PointExtentions.Circle(angle / 2, radius + this.Spacing / 2), outerSize, angle, false, SweepDirection.Counterclockwise, true),
 
-                    new LineSegment(circleCenter - Circle(angle / 2, radius - this.Spacing / 2), true),
-                    new ArcSegment (circleCenter - Circle(-angle / 2, radius - this.Spacing / 2), innerSize, angle, false, SweepDirection.Clockwise, true)
+                    new LineSegment(circleCenter - PointExtentions.Circle(angle / 2, radius - this.Spacing / 2), true),
+                    new ArcSegment (circleCenter - PointExtentions.Circle(-angle / 2, radius - this.Spacing / 2), innerSize, angle, false, SweepDirection.Clockwise, true)
                 }, true)
             });
         }
@@ -180,68 +180,24 @@ namespace Rail.Model
             return new CombinedGeometry(
                 new PathGeometry(new PathFigureCollection
                 {
-                    new PathFigure(Rotate(new Point(length1 / 2, this.Spacing / 2), angle / 2), new PathSegmentCollection
+                    new PathFigure(new Point(length1 / 2, this.Spacing / 2).Rotate(angle / 2), new PathSegmentCollection
                     {
-                        new LineSegment(Rotate(new Point(-length1 / 2,  this.Spacing / 2), angle / 2), true),
-                        new LineSegment(Rotate(new Point(-length1 / 2, -this.Spacing / 2), angle / 2), true),
-                        new LineSegment(Rotate(new Point( length1 / 2, -this.Spacing / 2), angle / 2), true),
-                        new LineSegment(Rotate(new Point( length1 / 2,  this.Spacing / 2), angle / 2), true),
+                        new LineSegment(new Point(-length1 / 2,  this.Spacing / 2).Rotate(angle / 2), true),
+                        new LineSegment(new Point(-length1 / 2, -this.Spacing / 2).Rotate(angle / 2), true),
+                        new LineSegment(new Point( length1 / 2, -this.Spacing / 2).Rotate(angle / 2), true),
+                        new LineSegment(new Point( length1 / 2,  this.Spacing / 2).Rotate(angle / 2), true),
                     }, true)
                 }),
                 new PathGeometry(new PathFigureCollection
                 {
-                    new PathFigure(Rotate(new Point(length1 / 2, this.Spacing / 2), -angle / 2), new PathSegmentCollection
+                    new PathFigure(new Point(length2 / 2, this.Spacing / 2).Rotate(-angle / 2), new PathSegmentCollection
                     {
-                        new LineSegment(Rotate(new Point(-length1 / 2,  this.Spacing / 2), -angle / 2), true),
-                        new LineSegment(Rotate(new Point(-length1 / 2, -this.Spacing / 2), -angle / 2), true),
-                        new LineSegment(Rotate(new Point( length1 / 2, -this.Spacing / 2), -angle / 2), true),
-                        new LineSegment(Rotate(new Point( length1 / 2,  this.Spacing / 2), -angle / 2), true),
+                        new LineSegment(new Point(-length2 / 2,  this.Spacing / 2).Rotate(-angle / 2), true),
+                        new LineSegment(new Point(-length2 / 2, -this.Spacing / 2).Rotate(-angle / 2), true),
+                        new LineSegment(new Point( length2 / 2, -this.Spacing / 2).Rotate(-angle / 2), true),
+                        new LineSegment(new Point( length2 / 2,  this.Spacing / 2).Rotate(-angle / 2), true),
                     }, true)
                 }));
         }
-
-        #region Helper
-
-        protected static double Sin(double angle)
-        {
-            return Math.Sin(Math.PI * angle / 180.0);
-        }
-
-        protected static double Cos(double angle)
-        {
-            return Math.Sin(Math.PI * angle / 180.0);
-        }
-
-        public static Vector Circle(double angle, double radius)
-        {
-            angle *= (Math.PI / 180.0);
-            double sin = Math.Sin(angle);
-            double cos = Math.Cos(angle);
-
-            return (Vector)new Point(sin * radius, cos * radius);
-        }
-
-        public static Point Rotate(double x, double y, double angle)
-        {
-            return new Point(x * Cos(angle) - y * Sin(angle), x * Sin(angle) + y * Cos(angle));
-        }
-
-        public Point Rotate(Point point, double angle)
-        {
-            angle *= (Math.PI / 180.0);
-            double sin = Math.Sin(angle);
-            double cos = Math.Cos(angle);
-
-            return new Point(
-                (cos * point.X) - (sin * point.Y),
-                (sin * point.X) + (cos * point.Y));
-        }
-
-        //public static Point Rotate(Point p, double angle)
-        //{
-        //    return Rotate(p.X, p.Y, angle);
-        //}
-
-        #endregion
     }
 }

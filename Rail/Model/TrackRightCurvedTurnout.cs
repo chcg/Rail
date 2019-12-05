@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
+using Rail.Misc;
 
 namespace Rail.Model
 {
@@ -34,25 +35,25 @@ namespace Rail.Model
                 // inner curve
                 new PathGeometry(new PathFigureCollection
                 {
-                    new PathFigure(innerCircleCenter - Circle(-innerAngle / 2, innerRadius - this.Spacing / 2), new PathSegmentCollection
+                    new PathFigure(innerCircleCenter - PointExtentions.Circle(-innerAngle / 2, innerRadius - this.Spacing / 2), new PathSegmentCollection
                     {
-                        new LineSegment(innerCircleCenter - Circle(-innerAngle / 2, innerRadius + this.Spacing / 2), true),
-                        new ArcSegment (innerCircleCenter - Circle(innerAngle / 2, innerRadius + this.Spacing / 2), innerOuterSize, innerAngle, false, SweepDirection.Counterclockwise, true),
+                        new LineSegment(innerCircleCenter - PointExtentions.Circle(-innerAngle / 2, innerRadius + this.Spacing / 2), true),
+                        new ArcSegment (innerCircleCenter - PointExtentions.Circle(innerAngle / 2, innerRadius + this.Spacing / 2), innerOuterSize, innerAngle, false, SweepDirection.Counterclockwise, true),
 
-                        new LineSegment(innerCircleCenter - Circle(innerAngle / 2, innerRadius - this.Spacing / 2), true),
-                        new ArcSegment (innerCircleCenter - Circle(-innerAngle / 2, innerRadius - this.Spacing / 2), innerInnerSize, innerAngle, false, SweepDirection.Clockwise, true)
+                        new LineSegment(innerCircleCenter - PointExtentions.Circle(innerAngle / 2, innerRadius - this.Spacing / 2), true),
+                        new ArcSegment (innerCircleCenter - PointExtentions.Circle(-innerAngle / 2, innerRadius - this.Spacing / 2), innerInnerSize, innerAngle, false, SweepDirection.Clockwise, true)
                     }, true)
                 }),
                 // outer curve
                 new PathGeometry(new PathFigureCollection
                 {
-                    new PathFigure(outerCircleCenter - Circle(-outerAngle / 2, outerRadius - this.Spacing / 2), new PathSegmentCollection
+                    new PathFigure(outerCircleCenter - PointExtentions.Circle(-outerAngle / 2, outerRadius - this.Spacing / 2), new PathSegmentCollection
                     {
-                        new LineSegment(outerCircleCenter - Circle(-outerAngle / 2, outerRadius + this.Spacing / 2), true),
-                        new ArcSegment (outerCircleCenter - Circle(outerAngle / 2, outerRadius + this.Spacing / 2), outerOuterSize, outerAngle, false, SweepDirection.Counterclockwise, true),
+                        new LineSegment(outerCircleCenter - PointExtentions.Circle(-outerAngle / 2, outerRadius + this.Spacing / 2), true),
+                        new ArcSegment (outerCircleCenter - PointExtentions.Circle(outerAngle / 2, outerRadius + this.Spacing / 2), outerOuterSize, outerAngle, false, SweepDirection.Counterclockwise, true),
 
-                        new LineSegment(outerCircleCenter - Circle(outerAngle / 2, outerRadius - this.Spacing / 2), true),
-                        new ArcSegment (outerCircleCenter - Circle(-outerAngle / 2, outerRadius - this.Spacing / 2), outerInnerSize, outerAngle, false, SweepDirection.Clockwise, true)
+                        new LineSegment(outerCircleCenter - PointExtentions.Circle(outerAngle / 2, outerRadius - this.Spacing / 2), true),
+                        new ArcSegment (outerCircleCenter - PointExtentions.Circle(-outerAngle / 2, outerRadius - this.Spacing / 2), outerInnerSize, outerAngle, false, SweepDirection.Clockwise, true)
                     }, true)
                 }));
         }

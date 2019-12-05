@@ -206,7 +206,7 @@ namespace Rail.Controls
             this.InvalidateVisual();
         }
 
-        private RailItem FindTrack(Point point)
+        private RailItem FindRailItem(Point point)
         {
             RailItem track = null;
             track = this.RailPlan.Rails.Where(t => t.IsInside(point)).FirstOrDefault();
@@ -366,19 +366,29 @@ namespace Rail.Controls
             base.OnMouseDoubleClick(e);
         }
 
+        private double Angle(Point center, Point p)
+        {
+            Vector v1 = p - center;
+            Vector v2 = new Vector(100,0);
+            return Vector.AngleBetween(v1, v2);
+
+        }
+
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             Point pos = GetMousePosition(e);
 
             
-            if ((this.actionTrack = FindTrack(pos)) != null)
+            if ((this.actionTrack = FindRailItem(pos)) != null)
             {
-                if (this.actionTrack.DockPoints.Any(d => d.Distance(pos) < rotateDistance))
+                RailDockPoint dp = this.actionTrack.DockPoints.FirstOrDefault(d => d.Distance(pos) < rotateDistance);
+                if (dp != null)
                 {
                     this.actionType = RailAction.Rotate;
                 //    this.dockedTracks = FindSubgraph(this.actionTrack);
-                    this.startRotationValue = e.GetPosition(this).Y;
-                    this.lastRotationAngle = 0;
+                    
+                    //this.startRotationValue = e.GetPosition(this).Y;
+                    this.lastRotationAngle = Angle(this.actionTrack.Position, pos);
                 }
                 else
                 {
@@ -409,7 +419,7 @@ namespace Rail.Controls
                 //    Trace.TraceInformation("OnMouseMove ({0}, {1})", e.GetPosition(this).X, e.GetPosition(this).Y);
 
                 //    Point zoomedMousePosition = e.GetPosition(this).Scale(1.0 / this.ZoomFactor);
-                double rotate = Math.Truncate((e.GetPosition(this).Y - this.startRotationValue) / 5.0) * 7.5; 
+                //double rotate = Math.Truncate((e.GetPosition(this).Y - this.startRotationValue) / 5.0) * 7.5; 
 
                 switch (this.actionType)
                 {
@@ -421,12 +431,15 @@ namespace Rail.Controls
                 //        FindDocking(this.actionTrack, this.dockedTracks);
                 //        break;
                 case RailAction.Rotate:
-                    RotateTrack(this.actionTrack, rotate - this.lastRotationAngle, this.dockedTracks);
+                    double rotateAngle = Angle(this.actionTrack.Position, pos);
+
+                    RotateTrack(this.actionTrack, this.lastRotationAngle - rotateAngle, this.dockedTracks);
                     FindDocking(this.actionTrack, this.dockedTracks);
+                    this.lastRotationAngle = rotateAngle;
                     break;
                 }
                 //    this.zoomedLastMousePosition = zoomedMousePosition;
-                //    this.lastRotationAngle = rotate;
+               
                 this.lastMousePosition = pos;
                 this.InvalidateVisual();
             }

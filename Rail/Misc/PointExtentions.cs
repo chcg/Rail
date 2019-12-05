@@ -28,13 +28,13 @@ namespace Rail.Misc
         /// <param name="angle"></param>
         /// <param name="radius"></param>
         /// <returns></returns>
-        public static Point Circle(double angle, double radius)
+        public static Vector Circle(double angle, double radius)
         {
             angle *= (Math.PI / 180.0);
             double sin = Math.Sin(angle);
             double cos = Math.Cos(angle);
 
-            return new Point(cos * radius, sin * radius);
+            return new Vector(sin * radius, cos * radius);
         }
 
         /// <summary>
@@ -104,5 +104,7 @@ namespace Rail.Misc
         //        -cos * radius,
         //        -sin * radius);
         //}
+
+        
     }
 }

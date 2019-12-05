@@ -44,7 +44,7 @@ namespace Rail.Model
         public RailDockPoint[] DockPoints { get; private set; }
 
         [XmlIgnore]
-        private Point Position;
+        public Point Position;
 
         [XmlAttribute("X")]
         public double X 
