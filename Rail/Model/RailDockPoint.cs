@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rail.Misc;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -42,23 +43,20 @@ namespace Rail.Model
 
         public void Rotate(double angle, Point center)
         {
-            double a = angle *(Math.PI / 180.0);
-            double sin = Math.Sin(a);
-            double cos = Math.Cos(a);
-
             this.angle += angle;
-            this.position = new Point(center.X + cos * (this.position.X - center.X) - sin * (this.position.Y - center.Y),
-                                      center.Y + sin * (this.position.X - center.X) + cos * (this.position.Y - center.Y));
+            this.position = this.position.Rotate(angle, center);
         }
 
         public double Distance(Point p)
         {
-            return Math.Sqrt(Math.Pow(p.X - position.X, 2) + Math.Pow(p.Y - position.Y, 2));
+            return this.position.Distance(p);
+            //return Math.Sqrt(Math.Pow(p.X - position.X, 2) + Math.Pow(p.Y - position.Y, 2));
         }
 
         public double Distance(RailDockPoint p)
         {
-            return Math.Sqrt(Math.Pow(p.X - position.X, 2) + Math.Pow(p.Y - position.Y, 2));
+            return this.position.Distance(p.Position);
+            //return Math.Sqrt(Math.Pow(p.X - position.X, 2) + Math.Pow(p.Y - position.Y, 2));
         }
     }
 }

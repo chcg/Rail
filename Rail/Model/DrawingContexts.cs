@@ -64,14 +64,14 @@ namespace Rail.Model
         //    drawingContext.Pop();
         //}
 
-        private static double Sin(double value)
-        {
-            return Math.Sin(value * Math.PI / 180.0);
-        }
+        //private static double Sin(double value)
+        //{
+        //    return Math.Sin(value * Math.PI / 180.0);
+        //}
 
-        private static double Cos(double value)
-        {
-            return Math.Cos(value * Math.PI / 180.0);
-        }
+        //private static double Cos(double value)
+        //{
+        //    return Math.Cos(value * Math.PI / 180.0);
+        //}
     }
 }
