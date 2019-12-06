@@ -49,7 +49,7 @@
       <RightCurvedTurnout Id="24772" InnerRadius="515.0" InnerAngle="30.0" OuterRadius="579.3" OuterAngle="30.0" Name="24772 Right Wide Radius Curved Turnout" Decription="Right Wide Radius Curved Turnout" />
 
       <!-- double slip switch -->
-      <DoubleSlipSwitch Id="24624" Length="188.3" Angle="24.3" Name ="24624 Double Slip Switch" Decription="Double Slip Switch" />
+      <DoubleSlipSwitch Id="24624" Length1="188.3" Length2="188.3" Angle="24.3" Name ="24624 Double Slip Switch" Decription="Double Slip Switch" />
 
       <!-- double turnout -->
       <DoubleTurnout Id="24630" Length="188.3" Radius="437.5" Angle="24.3" Name="24630 Double Turnout" Decription="Double Turnout" />
@@ -135,8 +135,8 @@
       <RightCurvedTurnout Id="2269" InnerRadius="424.6" InnerAngle="30.0" OuterRadius="553.9" OuterAngle="30.0" Decription="Right Curved Turnout" />
 
       <!-- double slip switch -->
-      <DoubleSlipSwitch Id="2260" Length="168.9" Angle="22.5" Decription="Double Slip Switch" />
-      <DoubleSlipSwitch Id="2275" Length="225.0" Radius="902.4" Angle="14.26" Decription="Double Slip Switch" />
+      <DoubleSlipSwitch Id="2260" Length1="168.9" Length2="168.9" Angle="22.5" Decription="Double Slip Switch" />
+      <DoubleSlipSwitch Id="2275" Length1="225.0" Length2="225.0" Radius="902.4" Angle="14.26" Decription="Double Slip Switch" />
 
       <!-- double turnout -->
       <DoubleTurnout Id="2270" Length="168.9" Radius="424.6" Angle="22.3" Decription="Double Turnout" />
@@ -200,7 +200,7 @@
       <LeftTurnout Id ="18150" Length="600" Radius="2320" Angle="15"    Name="18150 Left Extra Wide Radius Turnout" Decription="Left Extra Wide Radius Turnout" />
       <RightTurnout Id ="18050" Length="600" Radius="2320" Angle="15"   Name="18050 Right Extra Wide Radius Turnou" Decription="Right Extra Wide Radius Turnout" />
       <!-- double slip switch -->
-      <DoubleSlipSwitch Id="12260" Length="375" Angle="22.5" Name="12260 Double Slip Switch" Decription="Double Slip Switch" />
+      <DoubleSlipSwitch Id="12260" Length1="375" Length2="375" Angle="22.5" Name="12260 Double Slip Switch" Decription="Double Slip Switch" />
       <!-- double turnout -->
       <DoubleTurnout Id="12360" Length="375" Radius="600" Angle="30" Name="12360 Double Turnout" Decription="Double Turnout" />
       <!-- crossing -->

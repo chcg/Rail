@@ -18,13 +18,22 @@ namespace Rail.Model
         public RailItem()
         { }
 
+        public RailItem(TrackBase track)
+        {
+            this.Id = track.Id;
+            this.Track = track;
+            this.Position = new Point(0,0);
+            this.Angle = 0.0;
+            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(dp).Move(this.Position)).ToArray();
+        }
+
         public RailItem(TrackBase track, Point pos)
         {
             this.Id = track.Id;
             this.Track = track;
             this.Position = pos;
             this.Angle = 0.0;
-            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(dp).Move(pos)).ToArray();
+            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(dp).Move(this.Position)).ToArray();
         }
 
         //public RailItem(TrackBase track, double x, double y, double angle, int[] docks)
@@ -64,10 +73,14 @@ namespace Rail.Model
         [XmlAttribute("Angle")]
         private double Angle { get; set; }
 
-        [XmlArray("Docks")]
-        [XmlArrayItem("Dock")]
-        public RailDock[] Docks { get; set; }
-                
+        //[XmlArray("Docks")]
+        //[XmlArrayItem("Dock")]
+        //public RailDock[] Docks { get; set; }
+
+        public bool HasOnlyOneDock { get { return this.DockPoints.One(dp => dp.IsDocked);  } }
+
+        public bool HasDocks { get { return this.DockPoints.Any(dp => dp.IsDocked); } }
+
         public void Move(Vector vec)
         {
             this.Position += vec;
@@ -119,10 +132,10 @@ namespace Rail.Model
 
         public void DrawDockPoints(DrawingContext drawingContext)
         {
-            foreach (var point in this.DockPoints)
+            foreach (var point in this.DockPoints.Where(dp => !dp.IsDocked))
             {
-                drawingContext.DrawEllipse(null, dockPen, point.Position, 3.0, 3.0);
-                drawingContext.DrawLine(positionPen, point.Position, point.Position.Circle(point.Angle, 16.0));
+                drawingContext.DrawEllipse(null, dockPen, point.Position, this.Track.Spacing / 2, this.Track.Spacing / 2);
+                drawingContext.DrawLine(positionPen, point.Position, point.Position.Circle(point.Angle, this.Track.Spacing));
             }
         }
 

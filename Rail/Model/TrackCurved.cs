@@ -1,10 +1,6 @@
-﻿using System;
+﻿using Rail.Misc;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media;
 using System.Xml.Serialization;
 
 namespace Rail.Model
@@ -23,10 +19,12 @@ namespace Rail.Model
 
             this.Geometry = CreateCurvedTrackGeometry(this.Angle, this.Radius);
 
+            Point circleCenter = new Point(0, this.Radius);
+
             this.DockPoints = new List<TrackDockPoint>
             {
-                new TrackDockPoint(this.Radius, 0, 225.0),
-                new TrackDockPoint(this.Radius, 0, 45.0)
+                new TrackDockPoint(circleCenter - PointExtentions.Circle(-this.Angle / 2, this.Radius),  this.Angle / 2 -  45),
+                new TrackDockPoint(circleCenter - PointExtentions.Circle( this.Angle / 2, this.Radius), -this.Angle / 2 + 135)
             };
         }
     }

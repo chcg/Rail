@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Rail.Misc;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
 
@@ -23,10 +25,10 @@ namespace Rail.Model
             
             this.DockPoints = new List<TrackDockPoint>
             {
-                new TrackDockPoint(-this.Length1 / 2.0, 0.0, 135),
-                new TrackDockPoint( this.Length1 / 2.0, 0.0, 315),
-                new TrackDockPoint(-this.Length1 / 2.0, 0.0, 135),
-                new TrackDockPoint( this.Length1 / 2.0, 0.0, 315)
+                new TrackDockPoint(new Point(-this.Length1 / 2.0, 0.0).Rotate( this.Angle /2),  this.Angle /2 + 135),
+                new TrackDockPoint(new Point(-this.Length1 / 2.0, 0.0).Rotate(-this.Angle /2), -this.Angle /2 + 135),
+                new TrackDockPoint(new Point( this.Length1 / 2.0, 0.0).Rotate( this.Angle /2),  this.Angle /2 + 45-90),
+                new TrackDockPoint(new Point( this.Length1 / 2.0, 0.0).Rotate(-this.Angle /2), -this.Angle /2 + 45-90),
             };
         }
     }

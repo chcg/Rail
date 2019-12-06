@@ -7,12 +7,12 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class RailDock
-    {
-        [XmlAttribute("Dock")]
-        public int Dock { get; set; }
+    //public class RailDock
+    //{
+    //    [XmlAttribute("Dock")]
+    //    public int Dock { get; set; }
 
-        [XmlAttribute("Track")]
-        public int Track { get; set; }
-    }
+    //    [XmlAttribute("Track")]
+    //    public int Track { get; set; }
+    //}
 }

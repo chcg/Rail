@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Rail.Misc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 
 namespace Rail.Model
@@ -17,11 +19,12 @@ namespace Rail.Model
                 CreateStraitTrackGeometry(this.Length),
                 CreateLeftTurnoutGeometry(this.Length, this.Angle, this.Radius));
 
+            Point circleCenter = new Point(-this.Length / 2, -this.Radius);
             this.DockPoints = new List<TrackDockPoint>
             { 
                 new TrackDockPoint(-this.Length / 2.0, 0.0, 90 + 45), 
                 new TrackDockPoint( this.Length / 2.0, 0.0, 180 + 90 + 45), 
-                new TrackDockPoint(-this.Length / 2.0, 0.0, 180 + 90 + 45 - this.Angle) 
+                new TrackDockPoint(new Point(-this.Length / 2.0, 0).Rotate(-this.Angle, circleCenter), -this.Angle - 45)
             };
         }
     }

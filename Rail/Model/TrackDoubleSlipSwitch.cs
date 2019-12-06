@@ -2,13 +2,9 @@
 
 namespace Rail.Model
 {
-    public class TrackDoubleSlipSwitch : TrackBase
+    public class TrackDoubleSlipSwitch : TrackCrossing
     {
-        [XmlAttribute("Length")]
-        public double Length { get; set; }
-
-        [XmlAttribute("Angle")]
-        public double Angle { get; set; }
+        
 
     }
 }

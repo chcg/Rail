@@ -25,6 +25,13 @@ namespace Rail.Model
 
         public double Angle { get { return this.angle; } }
 
+        
+
+        public RailDockPoint DockedWith { get; set; }
+
+        public bool IsDocked {  get { return this.DockedWith != null; } }
+
+
         public void Move(Vector vec)
         {
             this.position += vec;
@@ -38,12 +45,12 @@ namespace Rail.Model
 
         public void Rotate(double angle)
         {
-            this.angle += angle;
+            this.angle = Math.Round((this.angle + angle) % 360, 1);
         }
 
         public void Rotate(double angle, Point center)
         {
-            this.angle += angle;
+            Rotate(angle);
             this.position = this.position.Rotate(angle, center);
         }
 
