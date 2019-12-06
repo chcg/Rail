@@ -37,6 +37,16 @@ namespace Rail.Misc
             return new Vector(sin * radius, cos * radius);
         }
 
+        public static Point Circle(this Point pos, double angle, double radius)
+        {
+            angle *= (Math.PI / 180.0);
+            double sin = Math.Sin(angle);
+            double cos = Math.Cos(angle);
+
+            return new Point(pos.X + cos * radius - sin * radius,
+                             pos.Y + sin * radius + cos * radius);
+        }
+
         /// <summary>
         /// Rotate a position around the zero point
         /// </summary>
@@ -70,8 +80,7 @@ namespace Rail.Misc
                              center.Y + sin * (pos.X - center.X) + cos * (pos.Y - center.Y));
         }
 
-           
-
+        
 
         public static Point Scale(this Point point, double factor)
         {

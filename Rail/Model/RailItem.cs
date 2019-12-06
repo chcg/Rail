@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rail.Misc;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -81,14 +82,8 @@ namespace Rail.Model
 
         public void Rotate(double angle, Point center)
         {
-            double a = angle * (Math.PI / 180.0);
-            double sin = Math.Sin(a);
-            double cos = Math.Cos(a);
-
             this.Angle += angle;
-            this.Position = new Point(center.X + cos * (this.Position.X - center.X) - sin * (this.Position.Y - center.Y),
-                                      center.Y + sin * (this.Position.X - center.X) + cos * (this.Position.Y - center.Y));
-
+            this.Position = this.Position.Rotate(angle, center);
             this.DockPoints.ToList().ForEach(dp => dp.Rotate(angle, center));
         }
 
@@ -124,29 +119,11 @@ namespace Rail.Model
 
         public void DrawDockPoints(DrawingContext drawingContext)
         {
-            //TransformGroup transformGroup = new TransformGroup();
-            //transformGroup.Children.Add(new RotateTransform(this.Angle));
-            //transformGroup.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
-            //drawingContext.PushTransform(transformGroup);
-
-
-            //foreach (TrackDockPoint point in this.Track.DockPoints)
-            //{
-            //    drawingContext.DrawEllipse(null, dockPen, point, 3.0, 3.0);
-            //    drawingContext.DrawLine(positionPen, point, new Point(
-            //        point.X + (Cos(point.Angle) * 16) - (Sin(point.Angle) * 16),
-            //        point.Y + (Sin(point.Angle) * 16) + (Cos(point.Angle) * 16)));
-            //}
-
             foreach (var point in this.DockPoints)
             {
                 drawingContext.DrawEllipse(null, dockPen, point.Position, 3.0, 3.0);
-                drawingContext.DrawLine(positionPen, point.Position, new Point(
-                    point.X + (Cos(point.Angle) * 16) - (Sin(point.Angle) * 16),
-                    point.Y + (Sin(point.Angle) * 16) + (Cos(point.Angle) * 16)));
+                drawingContext.DrawLine(positionPen, point.Position, point.Position.Circle(point.Angle, 16.0));
             }
-
-            //drawingContext.Pop();
         }
 
         public bool IsInside(Point point)
