@@ -326,6 +326,11 @@ namespace Rail.Controls
         [Conditional("DEBUG")]
         private void CheckDockings()
         {
+            double xa = 360.0 % 360;
+            double xb = 370.0 % 360;
+            double xc = 0.0 % 360;
+            double xd = -100.0 % 360;
+            double xe = -370.0 % 360;
             foreach (var item in this.RailPlan.Rails)
             {
                 foreach (var dock in item.DockPoints.Where(d => d.IsDocked))
