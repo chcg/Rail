@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
+using System.Windows;
+using System.Xml.Serialization;
 
 namespace Rail.Misc
 {
@@ -8,7 +11,10 @@ namespace Rail.Misc
     {
         private const ushort MAX = 3600;
         private const ushort REV = 1800;
-        private ushort angle;
+        private ushort angle = 0;
+
+        public Angle()
+        { }
 
         public Angle(double value)
         {
@@ -19,6 +25,20 @@ namespace Rail.Misc
         public Angle(ushort value)
         {
             this.angle = (ushort)(value % MAX);
+        }
+
+        [XmlText]
+        public double Value
+        {
+            get 
+            { 
+                return this.angle / 10; 
+            }
+            set
+            {
+                int val = (int)Math.Round(value * 10.0);
+                this.angle = (ushort)((val % MAX + MAX) % MAX);
+            }
         }
 
         public static implicit operator Angle(double value)
@@ -51,9 +71,34 @@ namespace Rail.Misc
             return a.angle != b.angle;
         }
 
+        public override bool Equals(object obj)
+        {
+            return this.angle == ((Angle)obj).angle;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.angle;
+        }
+
+        public override string ToString()
+        {
+            return (this.angle / 10).ToString("F1", CultureInfo.InvariantCulture);
+        }
+
         public Angle Revert()
         {
             return new Angle((ushort)(this.angle + REV));
+        }
+
+        public static Angle Calculate(Point center, Point p1, Point p2)
+        {
+            return (Angle)Vector.AngleBetween(p1 - center, p2 - center);
+        }
+
+        public static Angle Calculate(Point center, Point p)
+        {
+            return (Angle)Vector.AngleBetween(p - center, new Vector(100, 0));
         }
     }
 }

@@ -9,12 +9,12 @@ namespace Rail.Model
     public class RailDockPoint
     {
         private Point position;
-        private double angle;
+        private Angle angle;
 
         public RailDockPoint(TrackDockPoint trackDockPoint)
         {
             this.position = trackDockPoint.Position;
-            this.Angle = trackDockPoint.Angle;
+            this.angle = trackDockPoint.Angle;
         }
 
         public Point Position { get { return this.position; } }
@@ -23,14 +23,7 @@ namespace Rail.Model
 
         public double Y { get { return this.position.Y; } }
 
-        public double Angle 
-        { 
-            get { return this.angle; }
-            //private set { this.angle = Math.Round((value + 360) % 360, 1) % 360; }
-            private set { this.angle = (Math.Round(value, 1) % 360.0 + 360.0) % 360.0; }
-        }
-
-
+        public Angle Angle { get { return this.angle; } }
 
         public RailDockPoint DockedWith { get; set; }
 
@@ -48,12 +41,12 @@ namespace Rail.Model
             return this;
         }
 
-        public void Rotate(double angle)
+        public void Rotate(Angle angle)
         {
-            this.Angle += angle;
+            this.angle += angle;
         }
 
-        public void Rotate(double angle, Point center)
+        public void Rotate(Angle angle, Point center)
         {
             Rotate(angle);
             this.position = this.position.Rotate(angle, center);
@@ -62,13 +55,11 @@ namespace Rail.Model
         public double Distance(Point p)
         {
             return this.position.Distance(p);
-            //return Math.Sqrt(Math.Pow(p.X - position.X, 2) + Math.Pow(p.Y - position.Y, 2));
         }
 
         public double Distance(RailDockPoint p)
         {
             return this.position.Distance(p.Position);
-            //return Math.Sqrt(Math.Pow(p.X - position.X, 2) + Math.Pow(p.Y - position.Y, 2));
         }
     }
 }

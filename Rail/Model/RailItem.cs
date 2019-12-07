@@ -71,7 +71,7 @@ namespace Rail.Model
         }
 
         [XmlAttribute("Angle")]
-        private double Angle { get; set; }
+        private Angle Angle { get; set; }
 
         //[XmlArray("Docks")]
         //[XmlArrayItem("Dock")]
@@ -87,20 +87,20 @@ namespace Rail.Model
             this.DockPoints.ToList().ForEach(dp => dp.Move(vec));
         }
 
-        public void Rotate(double angle)
+        public void Rotate(Angle angle)
         {
             this.Angle += angle;
             this.DockPoints.ToList().ForEach(dp => dp.Rotate(angle, this.Position));
         }
 
-        public void Rotate(double angle, Point center)
+        public void Rotate(Angle angle, Point center)
         {
             this.Angle += angle;
             this.Position = this.Position.Rotate(angle, center);
             this.DockPoints.ToList().ForEach(dp => dp.Rotate(angle, center));
         }
 
-        public void Rotate(double angle, RailItem center)
+        public void Rotate(Angle angle, RailItem center)
         {
             Rotate(angle, center.Position);
         }
@@ -119,23 +119,16 @@ namespace Rail.Model
 
         private static Pen dockPen = new Pen(Brushes.Blue, 1);
         private static Pen positionPen = new Pen(Brushes.Red, 2);
-
-        private double Sin(double value)
-        {
-            return Math.Sin(value * Math.PI / 180.0);
-        }
-
-        private double Cos(double value)
-        {
-            return Math.Cos(value * Math.PI / 180.0);
-        }
-
+        
         public void DrawDockPoints(DrawingContext drawingContext)
         {
-            foreach (var point in this.DockPoints.Where(dp => !dp.IsDocked))
+            foreach (var point in this.DockPoints)
             {
                 drawingContext.DrawEllipse(null, dockPen, point.Position, this.Track.Spacing / 2, this.Track.Spacing / 2);
-                drawingContext.DrawLine(positionPen, point.Position, point.Position.Circle(point.Angle, this.Track.Spacing));
+                if (!point.IsDocked)
+                {
+                    drawingContext.DrawLine(positionPen, point.Position, point.Position.Circle(point.Angle, this.Track.Spacing));
+                }
             }
         }
 

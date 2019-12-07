@@ -1,4 +1,5 @@
-﻿using Rail.Model;
+﻿using Rail.Misc;
+using Rail.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,21 +13,21 @@ namespace Rail.Model
     {
         public double X;
         public double Y;
-        private double angle;
+        private Angle angle;
 
 
         public TrackDockPoint(double x, double y, double angle)
         {
             this.X = x;
             this.Y = y;
-            this.angle = angle % 360.0;
+            this.angle = angle;
         }
 
         public TrackDockPoint(Point point, double angle)
         {
             this.X = point.X;
             this.Y = point.Y;
-            this.angle = angle % 360.0;
+            this.angle = angle;
         }
 
         //public static implicit operator Point(TrackDockPoint dockPoint)
@@ -52,7 +53,7 @@ namespace Rail.Model
             }
         }
 
-        public double Angle
+        public Angle Angle
         {
             get
             {
@@ -60,7 +61,7 @@ namespace Rail.Model
             }
             set
             {
-                this.angle = value % 360.0;
+                this.angle = value;
             }
         }
     } 
