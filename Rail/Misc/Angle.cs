@@ -100,5 +100,14 @@ namespace Rail.Misc
         {
             return (Angle)Vector.AngleBetween(p - center, new Vector(100, 0));
         }
+
+        public Vector Circle(double radius)
+        {
+            double val = this.angle * (Math.PI / 180.0);
+            double sin = Math.Sin(val);
+            double cos = Math.Cos(val);
+
+            return new Vector(sin * radius, cos * radius);
+        }
     }
 }

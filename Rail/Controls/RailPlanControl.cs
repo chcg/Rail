@@ -59,6 +59,10 @@ namespace Rail.Controls
             railPlan.CalcGroundSize();
         }
 
+        #endregion
+
+        #region RailMargin
+
         public double RailMargin
         {
             get
@@ -138,6 +142,58 @@ namespace Rail.Controls
 
         #endregion
 
+        #region ShowRails
+
+        public static readonly DependencyProperty ShowRailsProperty =
+            DependencyProperty.Register("ShowRails", typeof(bool), typeof(RailPlanControl),
+                new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnShowRailsChanged)));
+
+        public bool ShowRails
+        {
+            get
+            {
+                return (bool)GetValue(ShowRailsProperty);
+            }
+            set
+            {
+                SetValue(ShowRailsProperty, value);
+            }
+        }
+
+        private static void OnShowRailsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RailPlanControl railPlan = (RailPlanControl)o;
+            railPlan.InvalidateVisual();
+        }
+
+        #endregion
+
+        #region ShowDockingPoints
+
+        public static readonly DependencyProperty ShowDockingPointsProperty =
+            DependencyProperty.Register("ShowDockingPoints", typeof(bool), typeof(RailPlanControl),
+                new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnShowDockingPointsChanged)));
+
+        public bool ShowDockingPoints
+        {
+            get
+            {
+                return (bool)GetValue(ShowDockingPointsProperty);
+            }
+            set
+            {
+                SetValue(ShowDockingPointsProperty, value);
+            }
+        }
+
+        private static void OnShowDockingPointsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RailPlanControl railPlan = (RailPlanControl)o;
+            railPlan.InvalidateVisual();
+        }
+
+        #endregion
+
         private void CalcGroundSize()
         {
             this.Width =  margine * 2 + this.RailPlan.Width  * this.ZoomFactor;
@@ -165,8 +221,11 @@ namespace Rail.Controls
             RenderPlate(drawingContext);
 
             // draw tracks
-            this.RailPlan.Rails.ForEach(r => r.DrawTrack(drawingContext));
-            this.RailPlan.Rails.ForEach(r => r.DrawDockPoints(drawingContext));
+            this.RailPlan.Rails.ForEach(r => r.DrawTrack(drawingContext, this.ShowRails));
+            if (this.ShowDockingPoints)
+            {
+                this.RailPlan.Rails.ForEach(r => r.DrawDockPoints(drawingContext));
+            }
             
             drawingContext.Pop();
         }

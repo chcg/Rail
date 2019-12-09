@@ -22,7 +22,9 @@ namespace Rail.Model
             base.Update(spacing);
 
             this.Geometry = CreateCrossingTrackGeometry(this.Length1, this.Length2, this.Angle);
-            
+
+            this.RailDrawing = CreateCrossingTrackDrawing(this.Length1, this.Length2, this.Angle);
+
             this.DockPoints = new List<TrackDockPoint>
             {
                 new TrackDockPoint(new Point(-this.Length1 / 2.0, 0.0).Rotate( this.Angle /2),  this.Angle /2 + 135),

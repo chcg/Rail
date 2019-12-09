@@ -2,6 +2,7 @@
 using Rail.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace Rail.Model
             this.Height2 = 1000;
             this.Height3 = 1500;
             //this.Zoom = 1.0;
-            this.Rails = new List<RailItem>();
+            this.Rails = new ObservableCollection<RailItem>();
         }
 
         public static RailPlan Create()
@@ -88,6 +89,6 @@ namespace Rail.Model
         /// </summary>
         [XmlArray("Rails")]
         [XmlArrayItem("Rail")]
-        public List<RailItem> Rails { get; set; }
+        public ObservableCollection<RailItem> Rails { get; set; }
     }
 }

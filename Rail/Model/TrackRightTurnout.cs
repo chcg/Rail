@@ -14,6 +14,11 @@ namespace Rail.Model
             this.Geometry = new CombinedGeometry(
                 CreateStraitTrackGeometry(this.Length),
                 CreateRightTurnoutGeometry(this.Length, this.Angle, this.Radius));
+            
+            DrawingGroup drawing = new DrawingGroup();
+            drawing.Children.Add(CreateStraitTrackDrawing(this.Length));
+            drawing.Children.Add(CreateRightTurnoutDrawing(this.Length, this.Angle, this.Radius));
+            this.RailDrawing = drawing;
 
             Point circleCenter = new Point(-this.Length / 2, this.Radius);
             this.DockPoints = new List<TrackDockPoint>

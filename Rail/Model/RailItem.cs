@@ -105,14 +105,14 @@ namespace Rail.Model
             Rotate(angle, center.Position);
         }
 
-        public void DrawTrack(DrawingContext drawingContext)
+        public void DrawTrack(DrawingContext drawingContext, bool showRails)
         {
             TransformGroup transformGroup = new TransformGroup();
             transformGroup.Children.Add(new RotateTransform (this.Angle));
             transformGroup.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
             drawingContext.PushTransform(transformGroup);
 
-            this.Track.Render(drawingContext);
+            this.Track.Render(drawingContext, showRails);
 
             drawingContext.Pop();
         }

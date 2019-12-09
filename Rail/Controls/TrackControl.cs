@@ -92,7 +92,7 @@ namespace Rail.Controls
             drawingContext.PushTransform(new TranslateTransform(this.ActualWidth / 2, this.ActualHeight / 2));
             drawingContext.PushTransform(new ScaleTransform(zoom, zoom));
 
-            this.Track.Render(drawingContext);
+            this.Track.Render(drawingContext, false);
             
             
         }

@@ -18,6 +18,7 @@ namespace Rail.Model
             base.Update(spacing);
 
             this.Geometry = CreateCurvedTrackGeometry(this.Angle, this.Radius);
+            this.RailDrawing = CreateCurvedTrackDrawing(this.Angle, this.Radius);
 
             Point circleCenter = new Point(0, this.Radius);
 

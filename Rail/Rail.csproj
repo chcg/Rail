@@ -22,6 +22,7 @@
   <ItemGroup>
     <None Remove="Images\Help.png" />
     <None Remove="Images\Info.png" />
+    <None Remove="Images\List.png" />
     <None Remove="Images\New.png" />
     <None Remove="Images\Open.png" />
     <None Remove="Images\Printer.png" />
@@ -42,6 +43,7 @@
   <ItemGroup>
     <Resource Include="Images\Help.png" />
     <Resource Include="Images\Info.png" />
+    <Resource Include="Images\List.png" />
     <Resource Include="Images\New.png" />
     <Resource Include="Images\Open.png" />
     <Resource Include="Images\Printer.png" />
@@ -64,9 +66,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Update="View\CreateView.xaml.cs">
-      <DependentUpon>CreateView.xaml</DependentUpon>
     </Compile>
     <Compile Update="View\MainView.xaml.cs">
       <SubType>Code</SubType>
@@ -93,9 +92,6 @@
 
   <ItemGroup>
     <Page Update="Mvvm\DialogButtonsView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\CreateView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\MainView.xaml">

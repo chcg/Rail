@@ -17,6 +17,8 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Xps;
+using Rail.Misc;
+using System.Collections.Specialized;
 
 namespace Rail.ViewModel
 {
@@ -60,7 +62,7 @@ namespace Rail.ViewModel
                 }
             }
 
-            this.railPlan = RailPlan.Create();
+            this.RailPlan = RailPlan.Create();
         }
 
         #region properties
@@ -121,13 +123,102 @@ namespace Rail.ViewModel
             }
             set
             {
+                if (this.railPlan != null)
+                {
+                    this.railPlan.Rails.CollectionChanged -= OnRailsChanged;
+                }
                 this.railPlan = value;
                 NotifyPropertyChanged("RailPlan");
+                if (this.railPlan != null)
+                {
+                    this.railPlan.Rails.CollectionChanged += OnRailsChanged;
+                }
             }
         }
 
-        
-        
+        private void OnRailsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            CreateMaterialList();
+        }
+
+        private void CreateMaterialList()
+        {
+            List<MaterialViewModel> list = new List<MaterialViewModel>();
+            if (this.railPlan != null)
+            {
+                this.RailPlan.Rails.ForEach(r =>
+                    {
+                        var item = list.FirstOrDefault(i => i.Article == r.Id);
+                        if (item != null)
+                        {
+                            item.Number += 1;
+                        }
+                        else
+                        {
+                            list.Add(new MaterialViewModel { Number = 1, Article = r.Id, Name = r.Track.Name });
+                        }
+                    }
+                );
+            }
+            this.MaterialList = list;
+        }
+
+        private List<MaterialViewModel> materialList;
+        public List<MaterialViewModel> MaterialList
+        {
+            get
+            {
+                return this.materialList;
+            }
+            set
+            {
+                this.materialList = value;
+                NotifyPropertyChanged("MaterialList");
+            }
+        }
+
+        private bool showMaterialList;
+        public bool ShowMaterialList
+        {
+            get
+            {
+                return this.showMaterialList;
+            }
+            set
+            {
+                this.showMaterialList = value;
+                NotifyPropertyChanged("ShowMaterialList");
+            }
+        }
+
+        private bool showRails;
+        public bool ShowRails
+        {
+            get
+            {
+                return this.showRails;
+            }
+            set
+            {
+                this.showRails = value;
+                NotifyPropertyChanged("ShowRails");
+            }
+        }
+
+        private bool showDockingPoints;
+        public bool ShowDockingPoints
+        {
+            get
+            {
+                return this.showDockingPoints;
+            }
+            set
+            {
+                this.showDockingPoints = value;
+                NotifyPropertyChanged("ShowDockingPoints");
+            }
+        }
+
         public double ZoomFactor
         {
             get
@@ -140,32 +231,6 @@ namespace Rail.ViewModel
                 NotifyPropertyChanged("ZoomFactor");
             }
         }
-
-        //public double GroundWidth
-        //{
-        //    get
-        //    {
-        //        return this.groundWidth;
-        //    }
-        //    set
-        //    {
-        //        this.groundWidth = value;
-        //        NotifyPropertyChanged("GroundWidth");
-        //    }
-        //}
-
-        //public double GroundHeight
-        //{
-        //    get
-        //    {
-        //        return this.groundHeight;
-        //    }
-        //    set
-        //    {
-        //        this.groundHeight = value;
-        //        NotifyPropertyChanged("GroundHeight");
-        //    }
-        //}
 
         public double[] SnapInDistances { get { return new double[] { 0, 100, 1000, 10000, 100000 }; } }
         public double[] SnapInAngels { get { return new double[] { 0, 30, 15, 7.5 }; } }

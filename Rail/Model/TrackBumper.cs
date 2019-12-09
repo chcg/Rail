@@ -17,6 +17,7 @@ namespace Rail.Model
             base.Update(spacing);
 
             this.Geometry = CreateStraitTrackGeometry(this.Length);
+            this.RailDrawing = CreateStraitTrackDrawing(this.Length);
 
             this.DockPoints = new List<TrackDockPoint>
             {

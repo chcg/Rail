@@ -20,6 +20,7 @@
         <conv:DistanceToTextConverter x:Key="DistanceToTextConverter"/>
         <conv:AngelToTextConverter x:Key="AngelToTextConverter"/>
         <conv:PointToTextConverter x:Key="PointToTextConverter"/>
+        <conv:BooleanToVisibilityCollapsedConverter x:Key="BooleanToVisibilityCollapsedConverter"/>
     </RibbonWindow.Resources>
     <DockPanel>
         <mvvm:PersistentRibbon DockPanel.Dock="Top">
@@ -118,6 +119,11 @@
                         
                     </Grid>
                 </RibbonGroup>
+                <RibbonGroup Header="Switches">
+                    <RibbonToggleButton Label="Show Track List" IsChecked="{Binding ShowMaterialList}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
+                    <RibbonToggleButton Label="Show Rails" IsChecked="{Binding ShowRails}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
+                    <RibbonToggleButton Label="Show Docking Points" IsChecked="{Binding ShowDockingPoints}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
+                </RibbonGroup>
             </RibbonTab>
         </mvvm:PersistentRibbon>
         <StatusBar DockPanel.Dock="Bottom">
@@ -170,7 +176,7 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <ListView Grid.Row="1" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" SelectedIndex="0" Margin="8">
+            <ListView Grid.Row="1" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" SelectedIndex="0" Margin="8,0,8,8">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="LightGray" BorderThickness="1,1,1,1">
@@ -187,6 +193,15 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
+        <Grid DockPanel.Dock="Right" Visibility="{Binding ShowMaterialList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+            <DataGrid ItemsSource="{Binding MaterialList}" AutoGenerateColumns="False"  Margin="8" CanUserAddRows="False" CanUserDeleteRows="False" GridLinesVisibility="None">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="#" Binding="{Binding Number}" Width="30" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Article" Binding="{Binding Article}" Width="60" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
         <ScrollViewer Focusable="False" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  >
             <ctrl:RailPlanControl 
             Background="DarkGray"
@@ -194,6 +209,8 @@
             RailPlan="{Binding RailPlan}"
             SelectedTrack="{Binding SelectedTrack}"
             MousePosition="{Binding MousePosition, Mode=OneWayToSource}"
+            ShowRails="{Binding ShowRails}" 
+            ShowDockingPoints="{Binding ShowDockingPoints}"
             RailMargin="40"/>
         </ScrollViewer>
 
