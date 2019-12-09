@@ -253,4 +253,60 @@
   <TrackType Gauge="H0e" Type="Feldbahn" Spacing="16.5" Name="Roco H0e Feldbahn" Description="Roco H0e Feldbahn">
   </TrackType>
 
+  <TrackType Gauge="H0" Type="A-Tracks" Spacing="16.5" Name="Pico" Description="Pico H0">
+    <Radii>
+      <Radius Name="R1" Length="360.00" Description="R1 Radius 360.00 mm" />
+      <Radius Name="R2" Length="421.88" Description="R2 Radius 421.88 mm" />
+      <Radius Name="R3" Length="483.75" Description="R3 Radius 483.75 mm" />
+      <Radius Name="R4" Length="545.63" Description="R4 Radius 545.63 mm" />
+
+      <Radius Name="R9" Length="907.97" Description="R9 Radius 907.97 mm" />
+    </Radii>
+    <Tracks>
+      <!-- strait tracks -->
+      <Straight Id="55400" Length="239" Name="G239 Strait 239 mm" Decription="Strait 239 mm"/>
+      <Straight Id="55401" Length="231" Name="G231 Strait 231 mm" Decription="Strait 231 mm"/>
+      <Straight Id="55402" Length="119" Name="G119 Strait 219 mm" Decription="Strait 119 mm"/>
+      <Straight Id="55403" Length="115" Name="G115 Strait 215 mm" Decription="Strait 115 mm"/>
+      <Straight Id="55404" Length="107" Name="G107 Strait 107 mm" Decription="Strait 107 mm"/>
+      <Straight Id="55405" Length="62" Name="G62 Strait 62 mm" Decription="Strait 62 mm"/>
+
+      <!-- curved tracks -->
+      <Curved Id="55411" Radius="360.00" Angle="30" Name="R1 Curved R1 360.00 mm 30°" Decription="Curved R1 360.00 mm 30°" />
+      <Curved Id="55412" Radius="421.88" Angle="30" Name="R2 Curved R2 421.88 mm 30°" Decription="Curved R2 421.88 mm 30°" />
+      <Curved Id="55413" Radius="483.75" Angle="30" Name="R3 Curved R3 483.75 mm 30°" Decription="Curved R3 483.75 mm 30°" />
+      <Curved Id="55414" Radius="545.63" Angle="30" Name="R4 Curved R4 545.63 mm 30°" Decription="Curved R4 545.63 mm 30°" />
+      <Curved Id="55419" Radius="907.97" Angle="15" Name="R9 Curved R9 907.97 mm 15°" Decription="Curved R9 907.97 mm 15°" />
+
+      <Curved Id="55451" Radius="360.00" Angle="7.5" Name="R1 7,5° Curved R1 360.00 mm 7.5°" Decription="Curved R1 360.00 mm 7.5°" />
+      <Curved Id="55452" Radius="421.88" Angle="7.5" Name="R2 7,5° Curved R2 421.88 mm 7.5°" Decription="Curved R2 421.88 mm 7.5°" />
+
+      <!-- turnout tracks -->
+      <LeftTurnout Id ="55420" Length="239" Radius="907.97" Angle="15" Name="55420 Left Turnout" Decription="Left Turnout" />
+      <RightTurnout Id ="55421" Length="239" Radius="907.97" Angle="15" Name="55421 Right Turnout" Decription="Right Turnout" />
+
+      <!-- curved turnout tracks -->
+      <LeftCurvedTurnout Id="55422"  InnerRadius="421.88" InnerAngle="15" OuterRadius="421.88" OuterAngle="15.0" Name="55422 Left Curved Turnout" Decription="Left Curved Turnout 224 +" />
+      <RightCurvedTurnout Id="55423" InnerRadius="421.88" InnerAngle="15" OuterRadius="421.88" OuterAngle="15.0" Name="55423 Right Curved Turnout" Decription="Right Curved Turnout 224 + " />
+
+      <!-- double slip switch -->
+      <DoubleSlipSwitch Id="55424" Length1="239" Length2="239" Angle="15" Name ="DKW Double Slip Switch" Decription="Double Slip Switch" />
+
+      <!-- double turnout -->
+      <DoubleTurnout Id="55425" Length="239" Radius="907.97" Angle="15" Name="W3 Double Turnout" Decription="Double Turnout" />
+
+      <!-- Y turnout -->
+      <YTurnout Id="55426" Radius="907.97" Angle="30" Name="WY Y Turnout" Decription="Y Turnout" />
+
+      <!-- crossing -->
+      <Crossing Id="55440" Length1="239" Length2="239" Angle="15" Name="K15 Crossing 15°" Decription="Crossing 15°" />
+      <Crossing Id="55441" Length1="119" Length2="119" Angle="30" Name="K30 Crossing 30°" Decription="Crossing 30°" />
+
+      
+      <!-- bumper -->
+      <Bumper Id="55446" Length="82.5" Name="55446 Bumper" Decription="Bumper" />
+
+    </Tracks>
+  </TrackType>
+
 </TrackList>
