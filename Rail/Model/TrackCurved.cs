@@ -13,11 +13,12 @@ namespace Rail.Model
         [XmlAttribute("Angle")]
         public double Angle { get; set; }
 
-        public override void Update(double spacing)
+        public override void Update(double spacing, bool ballast)
         {
-            base.Update(spacing);
+            base.Update(spacing, ballast);
 
             this.Geometry = CreateCurvedTrackGeometry(this.Angle, this.Radius);
+            this.BallastDrawing = CreateCurvedBallastDrawing(this.Angle, this.Radius);
             this.RailDrawing = CreateCurvedTrackDrawing(this.Angle, this.Radius);
 
             Point circleCenter = new Point(0, this.Radius);

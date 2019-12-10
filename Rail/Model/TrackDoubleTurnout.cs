@@ -7,9 +7,9 @@ namespace Rail.Model
 {
     public class TrackDoubleTurnout : TrackTurnout
     {
-        public override void Update(double spacing)
+        public override void Update(double spacing, bool ballast)
         {
-            base.Update(spacing);
+            base.Update(spacing, ballast);
 
             this.Geometry = new CombinedGeometry(
                 CreateStraitTrackGeometry(this.Length),
@@ -17,11 +17,17 @@ namespace Rail.Model
                     CreateLeftTurnoutGeometry(this.Length, this.Angle, this.Radius),
                     CreateRightTurnoutGeometry(this.Length, this.Angle, this.Radius)));
 
-            DrawingGroup drawing = new DrawingGroup();
-            drawing.Children.Add(CreateStraitTrackDrawing(this.Length));
-            drawing.Children.Add(CreateLeftTurnoutDrawing(this.Length, this.Angle, this.Radius));
-            drawing.Children.Add(CreateRightTurnoutDrawing(this.Length, this.Angle, this.Radius));
-            this.RailDrawing = drawing;
+            DrawingGroup ballastDrawing = new DrawingGroup();
+            ballastDrawing.Children.Add(CreateStraitBallastDrawing(this.Length));
+            ballastDrawing.Children.Add(CreateLeftTurnoutBallastDrawing(this.Length, this.Angle, this.Radius));
+            ballastDrawing.Children.Add(CreateRightTurnoutBallastDrawing(this.Length, this.Angle, this.Radius));
+            this.BallastDrawing = ballastDrawing;
+
+            DrawingGroup railDrawing = new DrawingGroup();
+            railDrawing.Children.Add(CreateStraitTrackDrawing(this.Length));
+            railDrawing.Children.Add(CreateLeftTurnoutDrawing(this.Length, this.Angle, this.Radius));
+            railDrawing.Children.Add(CreateRightTurnoutDrawing(this.Length, this.Angle, this.Radius));
+            this.RailDrawing = railDrawing;
 
 
             Point circleCenterLeft  = new Point(-this.Length / 2, -this.Radius);

@@ -17,12 +17,12 @@ namespace Rail.Model
         [XmlAttribute("Angle")]
         public double Angle { get; set; }
 
-        public override void Update(double spacing)
+        public override void Update(double spacing, bool ballast)
         {
-            base.Update(spacing);
+            base.Update(spacing, ballast);
 
             this.Geometry = CreateCrossingTrackGeometry(this.Length1, this.Length2, this.Angle);
-
+            this.BallastDrawing = CreateCrossingBallastDrawing(this.Length1, this.Length2, this.Angle);
             this.RailDrawing = CreateCrossingTrackDrawing(this.Length1, this.Length2, this.Angle);
 
             this.DockPoints = new List<TrackDockPoint>

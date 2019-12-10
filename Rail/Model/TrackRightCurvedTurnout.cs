@@ -7,9 +7,9 @@ namespace Rail.Model
 {
     public class TrackRightCurvedTurnout : TrackCurvedTurnout
     {
-        public override void Update(double spacing)
+        public override void Update(double spacing, bool ballast)
         {
-            base.Update(spacing);
+            base.Update(spacing, ballast);
 
             this.Geometry = CreateRightCurvedTurnoutGeometry(this.InnerAngle, this.InnerRadius, this.OuterAngle, this.OuterRadius);
 

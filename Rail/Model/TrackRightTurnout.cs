@@ -7,18 +7,23 @@ namespace Rail.Model
 {
     public class TrackRightTurnout : TrackTurnout
     {
-        public override void Update(double spacing)
+        public override void Update(double spacing, bool ballast)
         {
-            base.Update(spacing);
+            base.Update(spacing, ballast);
 
             this.Geometry = new CombinedGeometry(
                 CreateStraitTrackGeometry(this.Length),
                 CreateRightTurnoutGeometry(this.Length, this.Angle, this.Radius));
-            
-            DrawingGroup drawing = new DrawingGroup();
-            drawing.Children.Add(CreateStraitTrackDrawing(this.Length));
-            drawing.Children.Add(CreateRightTurnoutDrawing(this.Length, this.Angle, this.Radius));
-            this.RailDrawing = drawing;
+
+            DrawingGroup ballastDrawing = new DrawingGroup();
+            ballastDrawing.Children.Add(CreateStraitBallastDrawing(this.Length));
+            ballastDrawing.Children.Add(CreateRightTurnoutBallastDrawing(this.Length, this.Angle, this.Radius));
+            this.BallastDrawing = ballastDrawing;
+
+            DrawingGroup railDrawing = new DrawingGroup();
+            railDrawing.Children.Add(CreateStraitTrackDrawing(this.Length));
+            railDrawing.Children.Add(CreateRightTurnoutDrawing(this.Length, this.Angle, this.Radius));
+            this.RailDrawing = railDrawing;
 
             Point circleCenter = new Point(-this.Length / 2, this.Radius);
             this.DockPoints = new List<TrackDockPoint>

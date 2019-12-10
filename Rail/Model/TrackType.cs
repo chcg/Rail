@@ -17,6 +17,9 @@ namespace Rail.Model
         
         [XmlAttribute("Spacing")]
         public double Spacing { get; set; }
+        
+        [XmlAttribute("Ballast")]
+        public bool Ballast { get; set; }
 
         [XmlAttribute("Name")]
         public string Name { get; set; }
@@ -33,15 +36,18 @@ namespace Rail.Model
          XmlArrayItem(typeof(TrackRightCurvedTurnout), ElementName = "RightCurvedTurnout"),
          XmlArrayItem(typeof(TrackDoubleSlipSwitch), ElementName = "DoubleSlipSwitch"),
          XmlArrayItem(typeof(TrackDoubleTurnout), ElementName = "DoubleTurnout"),
+         XmlArrayItem(typeof(TrackYTurnout), ElementName = "YTurnout"),
          XmlArrayItem(typeof(TrackCrossing), ElementName = "Crossing"),
          XmlArrayItem(typeof(TrackBumper), ElementName = "Bumper"),
-         XmlArrayItem(typeof(TrackAdapter), ElementName = "Adapter")]
+         XmlArrayItem(typeof(TrackAdapter), ElementName = "Adapter"),
+         XmlArrayItem(typeof(TrackTurntable), ElementName = "Turntable"),
+         XmlArrayItem(typeof(TrackTransferTable), ElementName = "TransferTable")]
 
         public List<TrackBase> Tracks { get; set; }
 
         public void Update()
         {
-            this.Tracks.ForEach(track => track.Update(this.Spacing));
+            this.Tracks.ForEach(track => track.Update(this.Spacing, this.Ballast));
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TrackList>
   
-  <TrackType Gauge="H0" Type="C" DockType="24000" Spacing="16.5" Name="Märklin H0 C-Track" Description="Märklin H0 C-Track">
+  <TrackType Gauge="H0" Type="C" DockType="24000" Spacing="16.5" Ballast="true" Name="Märklin H0 C-Track" Description="Märklin H0 C-Track">
     <Radii>
       <Radius Name="R1" Length="360.0" Description="R1 Radius 360.0 mm" />
       <Radius Name="R2" Length="437.5" Description="R2 Radius 437.5 mm" />
@@ -65,6 +65,9 @@
       <!-- adapter -->
       <Adapter Id="24922" Length="180.0" DockType="22000" Name="24922 Adapter Track for K Track" Description="Adapter Track for K Track"/>
       <Adapter Id="24951" Length="180.0" DockType="2000" Name="24951 Adapter Track for M Track" Description="Adapter Track for M Track"/>
+      
+      <!-- Turntable -->
+      <Turntable Id="74861" OuterRadius="189" InnerRadius="131.5" Angle="15" RailNum="30" Name="74861 Turntable" Description="Turntable"/>
     </Tracks>
   </TrackType>
   <TrackType Gauge="H0" Type="Kunststoffgleise" DockType="24000" Spacing="16.5" Name="Märklin H0 MyWorld Kunststoffgleise" Description="Märklin H0 MyWorld Kunststoffgleise">

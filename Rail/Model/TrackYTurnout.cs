@@ -16,9 +16,9 @@ namespace Rail.Model
         [XmlAttribute("Angle")]
         public double Angle { get; set; }
 
-        public override void Update(double spacing)
+        public override void Update(double spacing, bool ballast)
         {
-            base.Update(spacing);
+            base.Update(spacing, ballast);
 
             //this.Geometry = new CombinedGeometry(
             //    CreateStraitTrackGeometry(this.Length),
