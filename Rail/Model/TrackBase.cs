@@ -14,6 +14,7 @@ namespace Rail.Model
     {
        
         protected Brush trackBrush = new SolidColorBrush(Colors.White);
+        protected Brush ballastBrush = new SolidColorBrush(Color.FromRgb(0x51, 0x56, 0x5c));
         protected Pen dockPen = new Pen(Brushes.Blue, 2);
         protected Pen linePen = new Pen(Brushes.Black, 2);
         protected Pen railPen;
