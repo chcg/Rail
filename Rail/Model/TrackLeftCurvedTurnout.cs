@@ -8,5 +8,8 @@ namespace Rail.Model
 {
     public class TrackLeftCurvedTurnout : TrackCurvedTurnout
     {
+        protected override void Create()
+        {
+        }
     }
 }

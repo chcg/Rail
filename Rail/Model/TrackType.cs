@@ -47,7 +47,7 @@ namespace Rail.Model
 
         public void Update()
         {
-            this.Tracks.ForEach(track => track.Update(this.Spacing, this.Ballast));
+            this.Tracks.ForEach(track => track.Update(this));
         }
     }
 }

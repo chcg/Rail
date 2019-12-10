@@ -434,7 +434,7 @@ namespace Rail.Controls
         private List<RailItem> dockedTracks;
         private Point lastMousePosition;
 
-        private Angle startRotationValue;
+        //private Angle startRotationValue;
         private Angle lastRotationAngle;
         
         private Point GetMousePosition(MouseEventArgs e)

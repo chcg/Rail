@@ -22,5 +22,10 @@ namespace Rail.Model
 
         [XmlAttribute("Length")]
         public double Length { get; set; }
+
+        protected override void Create()
+        {
+            
+        }
     }
 }

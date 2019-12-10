@@ -22,13 +22,19 @@ namespace Rail.Model
         [XmlAttribute("RailNum")]
         public int RailNum { get; set; }
 
-        public override void Update(double spacing, bool ballast)
+        protected override void Create()
         {
-            base.Update(spacing, ballast);
-
             this.Geometry = CreateTurntableTrackGeometry(this.OuterRadius, this.InnerRadius, this.Angle, this.RailNum);
-            this.BallastDrawing = CreateTurntableBallastDrawing(this.OuterRadius, this.InnerRadius, this.Angle, this.RailNum);
-            this.RailDrawing = CreateTurntableTrackDrawing(this.OuterRadius, this.InnerRadius, this.Angle, this.RailNum);
+            
+            DrawingGroup drawing = new DrawingGroup();
+            drawing.Children.Add(TurntableBackground(this.OuterRadius, this.InnerRadius, this.Angle, this.RailNum));
+            if (this.Ballast)
+            {
+               drawing.Children.Add(TurntableBallast(this.OuterRadius, this.InnerRadius, this.Angle, this.RailNum));
+            }
+            drawing.Children.Add(TurntableRail(this.OuterRadius, this.InnerRadius, this.Angle, this.RailNum));
+            this.RailDrawing = drawing;
+
 
             this.DockPoints = new List<TrackDockPoint>
             {
@@ -42,11 +48,17 @@ namespace Rail.Model
             return new EllipseGeometry(new Point(0, 0), outerRadius, outerRadius);
         }
 
-        private Drawing CreateTurntableBallastDrawing(double outerRadius, double innerRadius, double angle, int railNum)
+        private Drawing TurntableBackground(double outerRadius, double innerRadius, double angle, int railNum)
         {
             var drawing = new DrawingGroup();
             drawing.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.DarkGray), linePen, new EllipseGeometry(new Point(0, 0), outerRadius, outerRadius)));
-            drawing.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new EllipseGeometry(new Point(0, 0), innerRadius, innerRadius))); 
+            drawing.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new EllipseGeometry(new Point(0, 0), innerRadius, innerRadius)));
+            return drawing;
+        }
+
+        private Drawing TurntableBallast(double outerRadius, double innerRadius, double angle, int railNum)
+        {
+            var drawing = new DrawingGroup();
             for (int i = 0; i < this.RailNum; i++)
             {
                 drawing.Children.Add(new GeometryDrawing(this.ballastBrush, null,
@@ -65,7 +77,7 @@ namespace Rail.Model
             return drawing;
         }
 
-        private Drawing CreateTurntableTrackDrawing(double outerRadius, double innerRadius, double angle, int railNum)
+        private Drawing TurntableRail(double outerRadius, double innerRadius, double angle, int railNum)
         {
             var drawing = new DrawingGroup();
             drawing.Children.Add(CreateStraitTrackDrawing(innerRadius * 2));
@@ -86,19 +98,7 @@ namespace Rail.Model
                         new Point(-outerRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, -this.Spacing / 2 - this.sleepersOutstanding).Rotate(angle * i),
                         new Point(-outerRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, +this.Spacing / 2 + this.sleepersOutstanding).Rotate(angle * i))));
                 }
-
-
-                //int num2 = (int)Math.Round(length2 / (this.Spacing / 2));
-                //double sleepersDistance2 = length2 / num2;
-                //for (int i = 0; i < num2; i++)
-                //{
-                //    drawing.Children.Add(new GeometryDrawing(null, sleepersPen, new LineGeometry(
-                //        new Point(-length2 / 2 + sleepersDistance2 / 2 + sleepersDistance2 * i, -this.Spacing / 2 - this.sleepersOutstanding).Rotate(-angle / 2),
-                //        new Point(-length2 / 2 + sleepersDistance2 / 2 + sleepersDistance2 * i, +this.Spacing / 2 + this.sleepersOutstanding).Rotate(-angle / 2))));
-                //}
-
             }
-
             return drawing;
         }
     }

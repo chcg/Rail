@@ -15,13 +15,17 @@ namespace Rail.Model
         [XmlAttribute("Length")]
         public double Length { get; set; }
 
-        public override void Update(double spacing, bool ballast)
+        protected override void Create()
         {
-            base.Update(spacing, ballast);
-
             this.Geometry = CreateStraitTrackGeometry(this.Length);
-            this.BallastDrawing = CreateStraitBallastDrawing(this.Length);
-            this.RailDrawing = CreateStraitTrackDrawing(this.Length);
+
+            DrawingGroup drawing = new DrawingGroup();
+            if (this.Ballast)
+            {
+                drawing.Children.Add(StraitBallast(this.Length));
+            }
+            drawing.Children.Add(StraitRail(this.Length));
+            this.RailDrawing = drawing;  
 
             this.DockPoints = new List<TrackDockPoint> 
             { 

@@ -7,23 +7,21 @@ namespace Rail.Model
 {
     public class TrackRightTurnout : TrackTurnout
     {
-        public override void Update(double spacing, bool ballast)
+        protected override void Create()
         {
-            base.Update(spacing, ballast);
-
             this.Geometry = new CombinedGeometry(
                 CreateStraitTrackGeometry(this.Length),
                 CreateRightTurnoutGeometry(this.Length, this.Angle, this.Radius));
 
-            DrawingGroup ballastDrawing = new DrawingGroup();
-            ballastDrawing.Children.Add(CreateStraitBallastDrawing(this.Length));
-            ballastDrawing.Children.Add(CreateRightTurnoutBallastDrawing(this.Length, this.Angle, this.Radius));
-            this.BallastDrawing = ballastDrawing;
-
-            DrawingGroup railDrawing = new DrawingGroup();
-            railDrawing.Children.Add(CreateStraitTrackDrawing(this.Length));
-            railDrawing.Children.Add(CreateRightTurnoutDrawing(this.Length, this.Angle, this.Radius));
-            this.RailDrawing = railDrawing;
+            DrawingGroup drawing = new DrawingGroup();
+            if (this.Ballast)
+            {
+                drawing.Children.Add(StraitBallast(this.Length));
+                drawing.Children.Add(CurvedBallast(this.Angle, this.Radius, new Point(-this.Length / 2, 0), Direction.Right));
+            }
+            drawing.Children.Add(StraitRail(this.Length));
+            drawing.Children.Add(CurvedRail(this.Angle, this.Radius, new Point(-this.Length / 2, 0), Direction.Right));
+            this.RailDrawing = drawing;
 
             Point circleCenter = new Point(-this.Length / 2, this.Radius);
             this.DockPoints = new List<TrackDockPoint>

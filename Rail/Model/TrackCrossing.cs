@@ -17,13 +17,19 @@ namespace Rail.Model
         [XmlAttribute("Angle")]
         public double Angle { get; set; }
 
-        public override void Update(double spacing, bool ballast)
+        protected override void Create()
         {
-            base.Update(spacing, ballast);
-
             this.Geometry = CreateCrossingTrackGeometry(this.Length1, this.Length2, this.Angle);
-            this.BallastDrawing = CreateCrossingBallastDrawing(this.Length1, this.Length2, this.Angle);
-            this.RailDrawing = CreateCrossingTrackDrawing(this.Length1, this.Length2, this.Angle);
+            
+            DrawingGroup drawing = new DrawingGroup();
+            if (this.Ballast)
+            {
+                drawing.Children.Add(StraitBallast(this.Length1, -this.Angle / 2));
+                drawing.Children.Add(StraitBallast(this.Length2, +this.Angle / 2));
+            }
+            drawing.Children.Add(StraitRail(this.Length1, -this.Angle / 2));
+            drawing.Children.Add(StraitRail(this.Length2, +this.Angle / 2));
+            this.RailDrawing = drawing;
 
             this.DockPoints = new List<TrackDockPoint>
             {

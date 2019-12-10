@@ -1,6 +1,7 @@
 ﻿using Rail.Misc;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Media;
 using System.Xml.Serialization;
 
 namespace Rail.Model
@@ -13,16 +14,19 @@ namespace Rail.Model
         [XmlAttribute("Angle")]
         public double Angle { get; set; }
 
-        public override void Update(double spacing, bool ballast)
+        protected override void Create()
         {
-            base.Update(spacing, ballast);
-
             this.Geometry = CreateCurvedTrackGeometry(this.Angle, this.Radius);
-            this.BallastDrawing = CreateCurvedBallastDrawing(this.Angle, this.Radius);
-            this.RailDrawing = CreateCurvedTrackDrawing(this.Angle, this.Radius);
+            
+            DrawingGroup drawing = new DrawingGroup();
+            if (this.Ballast)
+            {
+                drawing.Children.Add(CurvedBallast(this.Angle, this.Radius));
+            }
+            drawing.Children.Add(CurvedRail(this.Angle, this.Radius));
+            this.RailDrawing = drawing;
 
             Point circleCenter = new Point(0, this.Radius);
-
             this.DockPoints = new List<TrackDockPoint>
             {
                 new TrackDockPoint(circleCenter - PointExtentions.Circle(-this.Angle / 2, this.Radius),  this.Angle / 2 -  45),
