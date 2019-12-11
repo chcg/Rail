@@ -1,4 +1,5 @@
-﻿using Rail.Misc;
+﻿using Rail.Controls;
+using Rail.Misc;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -105,14 +106,14 @@ namespace Rail.Model
             Rotate(angle, center.Position);
         }
 
-        public void DrawTrack(DrawingContext drawingContext, bool showRails)
+        public void DrawTrack(DrawingContext drawingContext, RailViewMode viewMode)
         {
             TransformGroup transformGroup = new TransformGroup();
             transformGroup.Children.Add(new RotateTransform (this.Angle));
             transformGroup.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
             drawingContext.PushTransform(transformGroup);
 
-            this.Track.Render(drawingContext, showRails);
+            this.Track.Render(drawingContext, viewMode);
 
             drawingContext.Pop();
         }

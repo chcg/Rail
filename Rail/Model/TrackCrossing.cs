@@ -24,11 +24,11 @@ namespace Rail.Model
             DrawingGroup drawing = new DrawingGroup();
             if (this.Ballast)
             {
-                drawing.Children.Add(StraitBallast(this.Length1, -this.Angle / 2));
-                drawing.Children.Add(StraitBallast(this.Length2, +this.Angle / 2));
+                drawing.Children.Add(StraitBallast(this.Length1, StraitOrientation.Center, -this.Angle / 2));
+                drawing.Children.Add(StraitBallast(this.Length2, StraitOrientation.Center, +this.Angle / 2));
             }
-            drawing.Children.Add(StraitRail(this.Length1, -this.Angle / 2));
-            drawing.Children.Add(StraitRail(this.Length2, +this.Angle / 2));
+            drawing.Children.Add(StraitRail(this.Length1, StraitOrientation.Center, -this.Angle / 2));
+            drawing.Children.Add(StraitRail(this.Length2, StraitOrientation.Center, +this.Angle / 2));
             this.RailDrawing = drawing;
 
             this.DockPoints = new List<TrackDockPoint>

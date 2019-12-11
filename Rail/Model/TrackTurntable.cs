@@ -35,12 +35,13 @@ namespace Rail.Model
             drawing.Children.Add(TurntableRail(this.OuterRadius, this.InnerRadius, this.Angle, this.RailNum));
             this.RailDrawing = drawing;
 
-
-            this.DockPoints = new List<TrackDockPoint>
+            var dockPoints = new List<TrackDockPoint>();
+            for (int i = 0; i < this.RailNum; i++)
             {
-                new TrackDockPoint(0.0, 0.0, 135),
-                new TrackDockPoint(0.0, 0.0, 315)
-            };
+                Point point = new Point(0, this.OuterRadius).Rotate(this.Angle * i);
+                dockPoints.Add(new TrackDockPoint(point, this.Angle * i + 45));
+            }
+            this.DockPoints = dockPoints;
         }
 
         private Geometry CreateTurntableTrackGeometry(double outerRadius, double innerRadius, double angle, int railNum)

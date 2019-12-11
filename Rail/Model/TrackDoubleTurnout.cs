@@ -19,12 +19,12 @@ namespace Rail.Model
             if (this.Ballast)
             {
                 drawing.Children.Add(StraitBallast(this.Length));
-                drawing.Children.Add(CurvedBallast(this.Angle, this.Radius, new Point(-this.Length / 2, 0), Direction.Left));
-                drawing.Children.Add(CurvedBallast(this.Angle, this.Radius, new Point(-this.Length / 2, 0), Direction.Right));
+                drawing.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Center | CurvedOrientation.Clockwise, 0, new Point(-this.Length / 2, 0)));
+                drawing.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Center | CurvedOrientation.Counterclockwise, 0, new Point(-this.Length / 2, 0)));
             }
             drawing.Children.Add(StraitRail(this.Length));
-            drawing.Children.Add(CurvedRail(this.Angle, this.Radius, new Point(-this.Length / 2, 0), Direction.Left));
-            drawing.Children.Add(CurvedRail(this.Angle, this.Radius, new Point(-this.Length / 2, 0), Direction.Right));
+            drawing.Children.Add(CurvedRail(this.Angle, this.Radius, new Point(-this.Length / 2, 0), TrackDirection.Left));
+            drawing.Children.Add(CurvedRail(this.Angle, this.Radius, new Point(-this.Length / 2, 0), TrackDirection.Right));
             this.RailDrawing = drawing;
 
 

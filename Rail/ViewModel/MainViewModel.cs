@@ -191,17 +191,17 @@ namespace Rail.ViewModel
             }
         }
 
-        private bool showRails;
-        public bool ShowRails
+        private RailViewMode viewMode;
+        public RailViewMode ViewMode
         {
             get
             {
-                return this.showRails;
+                return this.viewMode;
             }
             set
             {
-                this.showRails = value;
-                NotifyPropertyChanged("ShowRails");
+                this.viewMode = value;
+                NotifyPropertyChanged("ViewMode");
             }
         }
 

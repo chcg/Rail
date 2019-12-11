@@ -22,7 +22,7 @@ namespace Rail.Model
             DrawingGroup drawing = new DrawingGroup();
             if (this.Ballast)
             {
-                drawing.Children.Add(StraitBallast(this.Length));
+                drawing.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, 0, null));
             }
             drawing.Children.Add(StraitRail(this.Length));
             this.RailDrawing = drawing;  

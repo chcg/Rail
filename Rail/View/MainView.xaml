@@ -21,6 +21,7 @@
         <conv:AngelToTextConverter x:Key="AngelToTextConverter"/>
         <conv:PointToTextConverter x:Key="PointToTextConverter"/>
         <conv:BooleanToVisibilityCollapsedConverter x:Key="BooleanToVisibilityCollapsedConverter"/>
+        <conv:RadioButtonConverter x:Key="RadioButtonConverter"/>
     </RibbonWindow.Resources>
     <DockPanel>
         <mvvm:PersistentRibbon DockPanel.Dock="Top">
@@ -121,8 +122,15 @@
                 </RibbonGroup>
                 <RibbonGroup Header="Switches">
                     <RibbonToggleButton Label="Show Track List" IsChecked="{Binding ShowMaterialList}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
-                    <RibbonToggleButton Label="Show Rails" IsChecked="{Binding ShowRails}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
                     <RibbonToggleButton Label="Show Docking Points" IsChecked="{Binding ShowDockingPoints}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
+                </RibbonGroup>
+
+                <RibbonGroup Header="View Modes">
+                    <RibbonControlGroup>
+                        <RibbonRadioButton Label="Tracks" IsChecked="{Binding ViewMode, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static ctrl:RailViewMode.Tracks}}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
+                        <RibbonRadioButton Label="Rail" IsChecked="{Binding ViewMode, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static ctrl:RailViewMode.Rail}}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
+                        <RibbonRadioButton Label="Terrain" IsChecked="{Binding ViewMode, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static ctrl:RailViewMode.Terrain}}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
+                    </RibbonControlGroup>
                 </RibbonGroup>
             </RibbonTab>
         </mvvm:PersistentRibbon>
@@ -209,7 +217,7 @@
             RailPlan="{Binding RailPlan}"
             SelectedTrack="{Binding SelectedTrack}"
             MousePosition="{Binding MousePosition, Mode=OneWayToSource}"
-            ShowRails="{Binding ShowRails}" 
+            ViewMode="{Binding ViewMode}" 
             ShowDockingPoints="{Binding ShowDockingPoints}"
             RailMargin="40"/>
         </ScrollViewer>

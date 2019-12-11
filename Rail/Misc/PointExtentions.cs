@@ -12,9 +12,9 @@ namespace Rail.Misc
             return point + new Vector(dx, dy);
         }
 
-        public static Point Move(this Point point, Point move)
+        public static Point Move(this Point point, Point? move)
         {
-            return point + (Vector)move;
+            return move == null ? point : point + (Vector)move;
         }
 
         public static Point Move(this Point point, Vector vec)
@@ -55,6 +55,11 @@ namespace Rail.Misc
         /// <returns>Rotated position</returns>
         public static Point Rotate(this Point pos, double angle)
         {
+            if (angle == 0.0)
+            {
+                return pos;
+            }
+
             angle *= (Math.PI / 180.0);
             double sin = Math.Sin(angle);
             double cos = Math.Cos(angle);

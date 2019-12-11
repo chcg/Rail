@@ -142,25 +142,25 @@ namespace Rail.Controls
 
         #endregion
 
-        #region ShowRails
+        #region ViewMode
 
-        public static readonly DependencyProperty ShowRailsProperty =
-            DependencyProperty.Register("ShowRails", typeof(bool), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnShowRailsChanged)));
+        public static readonly DependencyProperty ViewModeProperty =
+            DependencyProperty.Register("ViewMode", typeof(RailViewMode), typeof(RailPlanControl),
+                new FrameworkPropertyMetadata(RailViewMode.Tracks, new PropertyChangedCallback(OnViewModeChanged)));
 
-        public bool ShowRails
+        public RailViewMode ViewMode
         {
             get
             {
-                return (bool)GetValue(ShowRailsProperty);
+                return (RailViewMode)GetValue(ViewModeProperty);
             }
             set
             {
-                SetValue(ShowRailsProperty, value);
+                SetValue(ViewModeProperty, value);
             }
         }
 
-        private static void OnShowRailsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        private static void OnViewModeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             RailPlanControl railPlan = (RailPlanControl)o;
             railPlan.InvalidateVisual();
@@ -221,7 +221,7 @@ namespace Rail.Controls
             RenderPlate(drawingContext);
 
             // draw tracks
-            this.RailPlan.Rails.ForEach(r => r.DrawTrack(drawingContext, this.ShowRails));
+            this.RailPlan.Rails.ForEach(r => r.DrawTrack(drawingContext, this.ViewMode));
             if (this.ShowDockingPoints)
             {
                 this.RailPlan.Rails.ForEach(r => r.DrawDockPoints(drawingContext));
