@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -228,6 +229,21 @@ namespace Rail.Controls
             }
             
             drawingContext.Pop();
+
+            DebugText(drawingContext);
+        }
+
+
+        [Conditional("DEBUG")]
+        private void DebugText(DrawingContext drawingContext)
+        {
+            ScrollViewer scrollViewer = this.Parent as ScrollViewer;
+            double x = scrollViewer.ContentHorizontalOffset;
+            double y = scrollViewer.ContentVerticalOffset;
+            drawingContext.DrawText(new FormattedText($"Action {this.actionType} Track {this.actionTrack?.Id} Pos {this.actionTrack?.X:F2}/{this.actionTrack?.Y:F2}/{this.actionTrack?.Angle:F2}", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y));
+            drawingContext.DrawText(new FormattedText($"Rotation lastRotationAngle {this.lastRotationAngle:F2} rotateAngle {rotateAngle:F2}", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y + 12));
+            drawingContext.DrawText(new FormattedText("Test zzzzzzzzzzzzzzzzz", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y + 24));
+
         }
 
         private readonly Brush plateBrush = new SolidColorBrush(Colors.Green);
@@ -510,6 +526,8 @@ namespace Rail.Controls
             CheckDockings();
         }
 
+        private Angle rotateAngle;
+
         protected override void OnMouseMove(MouseEventArgs e)
         {
             Point pos = GetMousePosition(e);
@@ -532,7 +550,7 @@ namespace Rail.Controls
                     FindDocking(this.actionTrack, this.dockedTracks);
                     break;
                 case RailAction.Rotate:
-                    Angle rotateAngle = Angle.Calculate(this.actionTrack.Position, pos);
+                    this.rotateAngle = Angle.Calculate(this.actionTrack.Position, pos);
 
                     RotateTrack(this.actionTrack, this.lastRotationAngle - rotateAngle, this.dockedTracks);
                     FindDocking(this.actionTrack, this.dockedTracks);

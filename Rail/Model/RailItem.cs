@@ -72,7 +72,7 @@ namespace Rail.Model
         }
 
         [XmlAttribute("Angle")]
-        private Angle Angle { get; set; }
+        public Angle Angle { get; set; }
 
         //[XmlArray("Docks")]
         //[XmlArrayItem("Dock")]
