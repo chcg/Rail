@@ -4,11 +4,8 @@ using System.Text;
 
 namespace Rail.Model
 {
-    public class TrackCurvedCircuit : TrackBase
+    public class TrackCurvedCircuit : TrackCurved
     {
-        protected override void Create()
-        {
-
-        }
+        
     }
 }

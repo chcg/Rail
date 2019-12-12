@@ -17,14 +17,24 @@ namespace Rail.Model
         protected override void Create()
         {
             this.Geometry = CreateCurvedTrackGeometry(this.Angle, this.Radius);
-            
-            DrawingGroup drawing = new DrawingGroup();
+
+            // Tracks
+            DrawingGroup drawingTracks = new DrawingGroup();
+            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.Geometry));
+            drawingTracks.Children.Add(this.textDrawing);
+            this.drawingTracks = drawingTracks;
+
+            // Rail
+            DrawingGroup drawingRail = new DrawingGroup();
             if (this.Ballast)
             {
-                drawing.Children.Add(CurvedBallast(this.Angle, this.Radius));
+                drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius));
             }
-            drawing.Children.Add(CurvedRail(this.Angle, this.Radius));
-            this.RailDrawing = drawing;
+            drawingRail.Children.Add(CurvedRail(this.Angle, this.Radius));
+            this.drawingRail = drawingRail;
+
+            // Terrain
+            this.drawingTerrain = drawingRail;
 
             Point circleCenter = new Point(0, this.Radius);
             this.DockPoints = new List<TrackDockPoint>

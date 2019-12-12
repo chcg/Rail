@@ -19,21 +19,23 @@ namespace Rail.Model
         public RailItem()
         { }
 
-        public RailItem(TrackBase track)
+        public RailItem(TrackBase track, ushort layer)
         {
             this.Id = track.Id;
             this.Track = track;
             this.Position = new Point(0,0);
             this.Angle = 0.0;
+            this.Layer = layer; 
             this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(dp).Move(this.Position)).ToArray();
         }
 
-        public RailItem(TrackBase track, Point pos)
+        public RailItem(TrackBase track, Point pos, ushort layer)
         {
             this.Id = track.Id;
             this.Track = track;
             this.Position = pos;
             this.Angle = 0.0;
+            this.Layer = layer;
             this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(dp).Move(this.Position)).ToArray();
         }
 
@@ -73,6 +75,9 @@ namespace Rail.Model
 
         [XmlAttribute("Angle")]
         public Angle Angle { get; set; }
+
+        [XmlAttribute("Layer")]
+        public ushort Layer { get; set; }
 
         //[XmlArray("Docks")]
         //[XmlArrayItem("Dock")]

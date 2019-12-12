@@ -18,6 +18,14 @@ namespace Rail.Misc
 			}
 		}
 
+		public static void AddRange<T>(this ObservableCollection<T> source, IEnumerable<T> items)
+		{
+			foreach (T i in items)
+			{
+				source.Add(i);
+			}
+		}
+
 		public static bool One<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 		{
 			return source.Count<TSource>(predicate) == 1;

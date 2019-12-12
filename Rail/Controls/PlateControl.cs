@@ -1,5 +1,11 @@
-﻿using System;
+﻿using Rail.Misc;
+using Rail.ViewModel;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -42,7 +48,7 @@ namespace Rail.Controls
     ///     <MyNamespace:PlateControl/>
     ///
     /// </summary>
-    public class PlateControl : Control
+    public class PlateControl : ItemsControl
     {
         static PlateControl()
         {
@@ -50,112 +56,27 @@ namespace Rail.Controls
         }
 
         public PlateControl()
+        { }
+
+        protected override void OnItemsChanged(NotifyCollectionChangedEventArgs e)
         {
+            switch (e.Action)
+            {
+            case NotifyCollectionChangedAction.Add:
+                e.NewItems.Cast<PointViewModel>().ForEach(p => p.OnChange += OnItemValueChanged);
+                break;
+            case NotifyCollectionChangedAction.Remove:
+                e.OldItems.Cast<PointViewModel>().ForEach(p => p.OnChange -= OnItemValueChanged);
+                break;
+            }
+            InvalidateVisual();
         }
 
-        public static readonly DependencyProperty Width1Property =
-            DependencyProperty.Register("Width1", typeof(int), typeof(PlateControl),
-                new FrameworkPropertyMetadata(1500, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnChanged)));
-
-        public int Width1
+        protected void OnItemValueChanged(object sender, EventArgs ev)
         {
-            get
-            {
-                return (int)GetValue(Width1Property);
-            }
-            set
-            {
-                SetValue(Width1Property, value);
-            }
+            InvalidateVisual();
         }
 
-        public static readonly DependencyProperty Width2Property =
-            DependencyProperty.Register("Width2", typeof(int), typeof(PlateControl),
-                new FrameworkPropertyMetadata(3000, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnChanged)));
-
-        public int Width2
-        {
-            get
-            {
-                return (int)GetValue(Width2Property);
-            }
-            set
-            {
-                SetValue(Width2Property, value);
-            }
-        }
-
-        public static readonly DependencyProperty Width3Property =
-            DependencyProperty.Register("Width3", typeof(int), typeof(PlateControl),
-                new FrameworkPropertyMetadata(1500, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnChanged)));
-
-        public int Width3
-        {
-            get
-            {
-                return (int)GetValue(Width3Property);
-            }
-            set
-            {
-                SetValue(Width3Property, value);
-            }
-        }
-
-        public static readonly DependencyProperty Height1Property =
-            DependencyProperty.Register("Height1", typeof(int), typeof(PlateControl),
-                new FrameworkPropertyMetadata(3000, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnChanged)));
-
-        public int Height1
-        {
-            get
-            {
-                return (int)GetValue(Height1Property);
-            }
-            set
-            {
-                SetValue(Height1Property, value);
-            }
-        }
-
-
-        public static readonly DependencyProperty Height2Property =
-            DependencyProperty.Register("Height2", typeof(int), typeof(PlateControl),
-                new FrameworkPropertyMetadata(1000, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnChanged)));
-
-        public int Height2
-        {
-            get
-            {
-                return (int)GetValue(Height2Property);
-            }
-            set
-            {
-                SetValue(Height2Property, value);
-            }
-        }
-
-        public static readonly DependencyProperty Height3Property =
-            DependencyProperty.Register("Height3", typeof(int), typeof(PlateControl),
-                new FrameworkPropertyMetadata(3000, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnChanged)));
-
-        public int Height3
-        {
-            get
-            {
-                return (int)GetValue(Height3Property);
-            }
-            set
-            {
-                SetValue(Height3Property, value);
-            }
-        }
-
-        private static void OnChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            PlateControl plateControl = (PlateControl)o;
-            plateControl.InvalidateVisual();
-        }
-        
         private readonly Pen blackPen = new Pen(Brushes.Black, 1);
         private readonly Brush plateBrush = new SolidColorBrush(Colors.Green); 
         private readonly double margin = 8;
@@ -163,27 +84,28 @@ namespace Rail.Controls
         protected override void OnRender(DrawingContext drawingContext)
         {
             //base.OnRender(drawingContext);
+            var list = this.ItemsSource.Cast<PointViewModel>();
 
             double w = this.ActualWidth - 2 * margin;
             double h = this.ActualHeight - 2 * margin;
-            double factor = Math.Min(w / (this.Width1 + this.Width2 + this.Width3), h / Math.Max(this.Height1, Math.Max(this.Height2, this.Height3)));
+            uint pw = list.Select(p => p.X).Max();
+            uint ph = list.Select(p => p.Y).Max();
+            
+            double factor = Math.Min(w / pw, h / ph);
+            Point start = new Point(margin, margin);
 
-            double x = (this.ActualWidth  - (this.Width1 + this.Width2 + this.Width3) * factor) / 2;
-            double y = (this.ActualHeight - Math.Max(this.Height1, Math.Max(this.Height2, this.Height3)) * factor) / 2;
-
+            TransformGroup transformGroup = new TransformGroup();
+            transformGroup.Children.Add(new ScaleTransform(factor, factor));
+            transformGroup.Children.Add(new TranslateTransform(margin, margin));
+            drawingContext.PushTransform(transformGroup);
             drawingContext.DrawGeometry(plateBrush, blackPen, new PathGeometry(new PathFigureCollection
             {
-                new PathFigure(new Point(x, y), new PathSegmentCollection
-                {
-                    new LineSegment(new Point(x,                          y + (this.Height1) * factor), true),
-                    new LineSegment(new Point(x + (this.Width1) * factor, y + (this.Height1) * factor), true),
-                    new LineSegment(new Point(x + (this.Width1) * factor, y + (this.Height2) * factor), true),
-                    new LineSegment(new Point(x + (this.Width1 + this.Width2) * factor, y + (this.Height2) * factor), true),
-                    new LineSegment(new Point(x + (this.Width1 + this.Width2) * factor, y + (this.Height3) * factor), true),
-                    new LineSegment(new Point(x + (this.Width1 + this.Width2 + this.Width3) * factor, y + (this.Height3) * factor), true),
-                    new LineSegment(new Point(x + (this.Width1 + this.Width2 + this.Width3) * factor, y), true),
-                }, true)
+                new PathFigure(start + list.FirstOrDefault(), new PathSegmentCollection
+                (
+                    list.Skip(1).Select(p => new LineSegment(start + p, true))
+                ), true)
             }));
+            drawingContext.Pop();
         }
     }
 }

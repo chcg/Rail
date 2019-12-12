@@ -14,13 +14,20 @@ namespace Rail.Model
     {
        
         protected Brush trackBrush = new SolidColorBrush(Colors.White);
+        protected Brush textBrush = new SolidColorBrush(Colors.Black);
         protected Brush ballastBrush = new SolidColorBrush(Color.FromRgb(0x51, 0x56, 0x5c));
         protected Pen dockPen = new Pen(Brushes.Blue, 2);
         protected Pen linePen = new Pen(Brushes.Black, 2);
+        protected Pen textPen = new Pen(Brushes.Black, 0.5);
         protected Pen railPen;
         protected Pen sleepersPen;
         protected FormattedText text;
+        protected Drawing textDrawing;
         protected double sleepersOutstanding;
+
+        protected Drawing drawingTracks;
+        protected Drawing drawingRail;
+        protected Drawing drawingTerrain;
 
         [XmlAttribute("Id")]
         public string Id { get; set; }
@@ -46,8 +53,7 @@ namespace Rail.Model
         //[XmlIgnore]
         //public Drawing BallastDrawing { get; protected set; }
 
-        [XmlIgnore]
-        public Drawing RailDrawing { get; protected set; }
+        
 
         [XmlIgnore]
         public List<TrackDockPoint> DockPoints { get; protected set; }
@@ -61,7 +67,7 @@ namespace Rail.Model
             this.railPen = new Pen(Brushes.Black, this.Spacing / 10);
             this.sleepersPen = new Pen(Brushes.Black, this.Spacing / 4);
             this.text = new FormattedText(this.Article, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), this.Spacing * 0.9, Brushes.Black, 1.25);
-
+            this.textDrawing = new GeometryDrawing(textBrush, textPen, text.BuildGeometry(new Point(0, 0) - new Vector(text.Width / 2, text.Height / 2)));
             Create();
         }
 
@@ -73,18 +79,14 @@ namespace Rail.Model
             switch (viewMode)
             {
             case RailViewMode.Tracks:
-                if (this.Geometry != null)
-                {
-                    drawingContext.DrawGeometry(trackBrush, linePen, this.Geometry);
-                }
-                drawingContext.DrawText(text, new Point(0, 0) - new Vector(text.Width / 2, text.Height / 2));
+                drawingContext.DrawDrawing(this.drawingTracks);
+               
                 break;
             case RailViewMode.Rail:
+                drawingContext.DrawDrawing(this.drawingRail);
+                break;
             case RailViewMode.Terrain:
-                if (this.RailDrawing != null)
-                {
-                    drawingContext.DrawDrawing(this.RailDrawing);
-                }
+                drawingContext.DrawDrawing(this.drawingRail);
                 break;
             }
         }

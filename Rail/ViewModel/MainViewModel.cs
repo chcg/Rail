@@ -45,6 +45,9 @@ namespace Rail.ViewModel
             this.PrintCommand = new DelegateCommand(OnPrint);
             this.PrintPreviewCommand = new DelegateCommand(OnPrintPreview);
 
+            this.ShowLayers = new List<ushort> { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+            this.InsertLayers = new List<ushort> { 1, 2, 3, 4, 5, 6, 7, 8 };
+
             // load track list
             DependencyObject dep = new DependencyObject();
             if (!DesignerProperties.GetIsInDesignMode(dep))
@@ -291,7 +294,37 @@ namespace Rail.ViewModel
                 NotifyPropertyChanged("MousePosition");
             }
         }
-        
+
+        public List<ushort> ShowLayers { get; private set; }
+        public List<ushort> InsertLayers { get; private set; }
+
+        private ushort selectedShowLayer = 0;
+        public ushort SelectedShowLayer
+        {
+            get
+            {
+                return this.selectedShowLayer;
+            }
+            set
+            {
+                this.selectedShowLayer = value;
+                NotifyPropertyChanged(nameof(SelectedShowLayer));
+            }
+        }
+
+        private ushort selectedInsertLayer = 1;
+        public ushort SelectedInsertLayer
+        {
+            get
+            {
+                return this.selectedInsertLayer;
+            }
+            set
+            {
+                this.selectedInsertLayer = value;
+                NotifyPropertyChanged(nameof(SelectedInsertLayer));
+            }
+        }
         #endregion
 
         #region methods

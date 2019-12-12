@@ -20,16 +20,26 @@ namespace Rail.Model
         protected override void Create()
         {
             this.Geometry = CreateCrossingTrackGeometry(this.Length1, this.Length2, this.Angle);
-            
-            DrawingGroup drawing = new DrawingGroup();
+
+            // Tracks
+            DrawingGroup drawingTracks = new DrawingGroup();
+            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.Geometry));
+            drawingTracks.Children.Add(this.textDrawing);
+            this.drawingTracks = drawingTracks;
+
+            // Rail
+            DrawingGroup drawingRail = new DrawingGroup();
             if (this.Ballast)
             {
-                drawing.Children.Add(StraitBallast(this.Length1, StraitOrientation.Center, -this.Angle / 2));
-                drawing.Children.Add(StraitBallast(this.Length2, StraitOrientation.Center, +this.Angle / 2));
+                drawingRail.Children.Add(StraitBallast(this.Length1, StraitOrientation.Center, -this.Angle / 2));
+                drawingRail.Children.Add(StraitBallast(this.Length2, StraitOrientation.Center, +this.Angle / 2));
             }
-            drawing.Children.Add(StraitRail(this.Length1, StraitOrientation.Center, -this.Angle / 2));
-            drawing.Children.Add(StraitRail(this.Length2, StraitOrientation.Center, +this.Angle / 2));
-            this.RailDrawing = drawing;
+            drawingRail.Children.Add(StraitRail(this.Length1, StraitOrientation.Center, -this.Angle / 2));
+            drawingRail.Children.Add(StraitRail(this.Length2, StraitOrientation.Center, +this.Angle / 2));
+            this.drawingRail = drawingRail;
+
+            // Terrain
+            this.drawingTerrain = drawingRail;
 
             this.DockPoints = new List<TrackDockPoint>
             {

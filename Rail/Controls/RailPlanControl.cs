@@ -25,7 +25,7 @@ namespace Rail.Controls
     {
         public const double dockDistance = 10;
         public const double rotateDistance = 12;
-        public double margine = 0;
+        public double margin = 0;
 
         static RailPlanControl()
         {
@@ -68,11 +68,11 @@ namespace Rail.Controls
         {
             get
             {
-                return this.margine;
+                return this.margin;
             }
             set
             {
-                this.margine = value;
+                this.margin = value;
             }
         }
 
@@ -195,10 +195,56 @@ namespace Rail.Controls
 
         #endregion
 
+        #region ShowLayer
+
+        public static readonly DependencyProperty ShowLayerProperty =
+            DependencyProperty.Register("ShowLayer", typeof(ushort), typeof(RailPlanControl),
+                new FrameworkPropertyMetadata((ushort)0, new PropertyChangedCallback(OnShowLayerChanged)));
+
+        public ushort ShowLayer
+        {
+            get
+            {
+                return (ushort)GetValue(ShowLayerProperty);
+            }
+            set
+            {
+                SetValue(ShowLayerProperty, value);
+            }
+        }
+
+        private static void OnShowLayerChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RailPlanControl railPlan = (RailPlanControl)o;
+            railPlan.InvalidateVisual();
+        }
+
+        #endregion
+
+        #region InsertLayer
+
+        public static readonly DependencyProperty InsertLayerProperty =
+            DependencyProperty.Register("InsertLayer", typeof(ushort), typeof(RailPlanControl),
+                new FrameworkPropertyMetadata((ushort)1));
+
+        public ushort InsertLayer
+        {
+            get
+            {
+                return (ushort)GetValue(InsertLayerProperty);
+            }
+            set
+            {
+                SetValue(InsertLayerProperty, value);
+            }
+        }
+
+        #endregion
+
         private void CalcGroundSize()
         {
-            this.Width =  margine * 2 + this.RailPlan.Width  * this.ZoomFactor;
-            this.Height = margine * 2 + this.RailPlan.Height * this.ZoomFactor;
+            this.Width =  margin * 2 + this.RailPlan.Width  * this.ZoomFactor;
+            this.Height = margin * 2 + this.RailPlan.Height * this.ZoomFactor;
             this.InvalidateMeasure();
             this.InvalidateVisual();
         }
@@ -215,17 +261,18 @@ namespace Rail.Controls
 
             TransformGroup transformGroup = new TransformGroup();
             transformGroup.Children.Add(new ScaleTransform(this.ZoomFactor, this.ZoomFactor));
-            transformGroup.Children.Add(new TranslateTransform(margine, margine));
+            transformGroup.Children.Add(new TranslateTransform(margin, margin));
             drawingContext.PushTransform(transformGroup);
 
             // dray plate
             RenderPlate(drawingContext);
 
             // draw tracks
-            this.RailPlan.Rails.ForEach(r => r.DrawTrack(drawingContext, this.ViewMode));
+            var rails = this.RailPlan.Rails.Where(r => this.ShowLayer == 0 || r.Layer == this.ShowLayer).ToArray();
+            rails.ForEach(r => r.DrawTrack(drawingContext, this.ViewMode));
             if (this.ShowDockingPoints)
             {
-                this.RailPlan.Rails.ForEach(r => r.DrawDockPoints(drawingContext));
+                rails.ForEach(r => r.DrawDockPoints(drawingContext));
             }
             
             drawingContext.Pop();
@@ -252,29 +299,23 @@ namespace Rail.Controls
         {
             drawingContext.DrawGeometry(plateBrush, blackPen, new PathGeometry(new PathFigureCollection
             {
-                new PathFigure(new Point(0, 0), new PathSegmentCollection
-                {
-                    new LineSegment(new Point(0, this.RailPlan.Height1), true),
-                    new LineSegment(new Point(this.RailPlan.Width1, this.RailPlan.Height1), true),
-                    new LineSegment(new Point(this.RailPlan.Width1, this.RailPlan.Height2), true),
-                    new LineSegment(new Point(this.RailPlan.Width1 + this.RailPlan.Width2 , this.RailPlan.Height2), true),
-                    new LineSegment(new Point(this.RailPlan.Width1 + this.RailPlan.Width2 , this.RailPlan.Height3), true),
-                    new LineSegment(new Point(this.RailPlan.Width1 + this.RailPlan.Width2 + this.RailPlan.Width3, this.RailPlan.Height3), true),
-                    new LineSegment(new Point(this.RailPlan.Width1 + this.RailPlan.Width2 + this.RailPlan.Width3, 0), true),
-                }, true)
+                new PathFigure(this.RailPlan.PlatePoints.FirstOrDefault(), new PathSegmentCollection
+                (
+                    this.RailPlan.PlatePoints.Skip(1).Select(p => new LineSegment(p, true))
+                ), true)
             }));
         }
 
 
         public void InsertTrack(Point pos)
         {
-            this.RailPlan.Rails.Add(new RailItem(this.SelectedTrack, pos));
+            this.RailPlan.Rails.Add(new RailItem(this.SelectedTrack, pos, this.InsertLayer));
             this.InvalidateVisual();
         }
 
         public void InsertTrack(RailDockPoint railDockPoint)
         {
-            RailItem railItem = new RailItem(this.SelectedTrack);
+            RailItem railItem = new RailItem(this.SelectedTrack, this.InsertLayer);
             Point pos = railItem.Track.DockPoints.First().Position;
             //RailDockPoint newRailDockPoint = railItem.DockPoints.First();
             
@@ -455,7 +496,7 @@ namespace Rail.Controls
         
         private Point GetMousePosition(MouseEventArgs e)
         {
-            return e.GetPosition(this).Move(-margine, -margine).Scale(1.0 / this.ZoomFactor);
+            return e.GetPosition(this).Move(-margin, -margin).Scale(1.0 / this.ZoomFactor);
         }
         
         protected override void OnMouseDoubleClick(MouseButtonEventArgs e)

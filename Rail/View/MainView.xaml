@@ -22,6 +22,7 @@
         <conv:PointToTextConverter x:Key="PointToTextConverter"/>
         <conv:BooleanToVisibilityCollapsedConverter x:Key="BooleanToVisibilityCollapsedConverter"/>
         <conv:RadioButtonConverter x:Key="RadioButtonConverter"/>
+        <conv:LayerToTextConverter x:Key="LayerToTextConverter"/>
     </RibbonWindow.Resources>
     <DockPanel>
         <mvvm:PersistentRibbon DockPanel.Dock="Top">
@@ -132,6 +133,34 @@
                         <RibbonRadioButton Label="Terrain" IsChecked="{Binding ViewMode, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static ctrl:RailViewMode.Terrain}}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
                     </RibbonControlGroup>
                 </RibbonGroup>
+                <RibbonGroup Header="Layer">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" Content="Show Layer" />
+                        <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding ShowLayers}" SelectedValue="{Binding SelectedShowLayer}" Background="White" Margin="4" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding .,Converter={StaticResource LayerToTextConverter}}" HorizontalAlignment="Stretch"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Label Grid.Column="0" Grid.Row="1"  Content="Insert Layer" />
+                        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding InsertLayers}" SelectedValue="{Binding SelectedInsertLayer}" Background="White" Margin="4" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding .,Converter={StaticResource LayerToTextConverter}}" HorizontalAlignment="Stretch"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
+                </RibbonGroup>
             </RibbonTab>
         </mvvm:PersistentRibbon>
         <StatusBar DockPanel.Dock="Bottom">
@@ -219,6 +248,8 @@
             MousePosition="{Binding MousePosition, Mode=OneWayToSource}"
             ViewMode="{Binding ViewMode}" 
             ShowDockingPoints="{Binding ShowDockingPoints}"
+            ShowLayer="{Binding SelectedShowLayer}"
+            InsertLayer="{Binding SelectedInsertLayer}"
             RailMargin="40"/>
         </ScrollViewer>
 

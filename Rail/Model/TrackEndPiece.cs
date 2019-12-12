@@ -15,12 +15,22 @@ namespace Rail.Model
         {
             this.Geometry = CreateStraitTrackGeometry(this.Spacing);
 
-            DrawingGroup drawing = new DrawingGroup();
+            // Tracks
+            DrawingGroup drawingTracks = new DrawingGroup();
+            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.Geometry));
+            drawingTracks.Children.Add(this.textDrawing);
+            this.drawingTracks = drawingTracks;
+
+            // Rail
+            DrawingGroup drawingRail = new DrawingGroup();
             if (this.Ballast)
             {
-                drawing.Children.Add(StraitBallast(this.Spacing, StraitOrientation.Center, 0, null));
+                drawingRail.Children.Add(StraitBallast(this.Spacing, StraitOrientation.Center, 0, null));
             }
-            this.RailDrawing = drawing;
+            this.drawingRail = drawingRail;
+
+            // Terrain
+            this.drawingTerrain = drawingRail;
 
             this.DockPoints = new List<TrackDockPoint>
             {

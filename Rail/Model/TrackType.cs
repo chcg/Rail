@@ -51,7 +51,8 @@ namespace Rail.Model
          XmlArrayItem(typeof(TrackEndPiece), ElementName = "EndPiece"),
          XmlArrayItem(typeof(TrackCurvedCircuit), ElementName = "CurvedCircuit"),
          XmlArrayItem(typeof(TrackStraightCircuit), ElementName = "StraightCircuit"),
-         XmlArrayItem(typeof(TrackStraightContact), ElementName = "StraightContact")]
+         XmlArrayItem(typeof(TrackStraightContact), ElementName = "StraightContact"),
+         XmlArrayItem(typeof(TrackGroup), ElementName = "Group")]
         public List<TrackBase> Tracks { get; set; }
                 
         public void Update()

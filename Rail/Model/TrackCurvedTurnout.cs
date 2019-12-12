@@ -27,6 +27,24 @@ namespace Rail.Model
         {
             this.Geometry = CreateRightCurvedTurnoutGeometry(this.InnerAngle, this.InnerRadius, this.OuterAngle, this.OuterRadius);
 
+            // Tracks
+            DrawingGroup drawingTracks = new DrawingGroup();
+            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.Geometry));
+            drawingTracks.Children.Add(this.textDrawing);
+            this.drawingTracks = drawingTracks;
+
+            // Rail
+            DrawingGroup drawingRail = new DrawingGroup();
+            if (this.Ballast)
+            {
+                //drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, 0, null));
+            }
+            //drawingRail.Children.Add(StraitRail(this.Length));
+            this.drawingRail = drawingRail;
+
+            // Terrain
+            this.drawingTerrain = drawingRail;
+
             this.DockPoints = new List<TrackDockPoint>
             {
                 new TrackDockPoint(this.InnerRadius, 0, 225.0),
