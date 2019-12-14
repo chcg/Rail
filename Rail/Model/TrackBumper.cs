@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
 
@@ -37,7 +38,7 @@ namespace Rail.Model
 
             this.DockPoints = new List<TrackDockPoint>
             {
-                new TrackDockPoint(this.Length / 2.0, 0.0, 315, this.dockType)
+                new TrackDockPoint(new Point(this.Length / 2.0, 0.0), 315, this.dockType)
             };
         }
     }

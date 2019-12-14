@@ -17,13 +17,13 @@ namespace Rail.Model
         private string dockType;
 
 
-        public TrackDockPoint(double x, double y, double angle, string dockType)
-        {
-            this.X = x;
-            this.Y = y;
-            this.angle = angle;
-            this.dockType = dockType;
-        }
+        //public TrackDockPoint(double x, double y, double angle, string dockType)
+        //{
+        //    this.X = x;
+        //    this.Y = y;
+        //    this.angle = angle;
+        //    this.dockType = dockType;
+        //}
 
         public TrackDockPoint(Point point, double angle, string dockType)
         {

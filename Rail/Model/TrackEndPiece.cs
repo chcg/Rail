@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
 
@@ -34,7 +35,7 @@ namespace Rail.Model
 
             this.DockPoints = new List<TrackDockPoint>
             {
-                new TrackDockPoint(this.Spacing / 2.0, 0.0, 315, this.dockType)
+                new TrackDockPoint(new Point(this.Spacing / 2.0, 0.0), 315, this.dockType)
             };
         }
     }

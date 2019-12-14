@@ -1,5 +1,6 @@
 ﻿using Rail.Controls;
 using Rail.Misc;
+using Rail.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,21 +17,15 @@ namespace Rail.Model
 
     public class RailItem
     {
-        public RailItem()
-        { }
+        private static int globalDebugIndex = 0;
+        private int debugIndex;
+        
+        public DelegateCommand OptionsCommand { get; private set; }
 
-        public RailItem(TrackBase track, ushort layer)
+        public RailItem(TrackBase track, Point pos, ushort layer) 
         {
-            this.Id = track.Id;
-            this.Track = track;
-            this.Position = new Point(0,0);
-            this.Angle = 0.0;
-            this.Layer = layer; 
-            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp).Move(this.Position)).ToArray();
-        }
-
-        public RailItem(TrackBase track, Point pos, ushort layer)
-        {
+            this.OptionsCommand = new DelegateCommand(OnOptions);
+            this.debugIndex = globalDebugIndex++;
             this.Id = track.Id;
             this.Track = track;
             this.Position = pos;
@@ -38,14 +33,6 @@ namespace Rail.Model
             this.Layer = layer;
             this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp).Move(this.Position)).ToArray();
         }
-
-        //public RailItem(TrackBase track, double x, double y, double angle, int[] docks)
-        //{
-        //    this.Id = track.Id;
-        //    this.Position.X = x;
-        //    this.Position.Y = y;
-        //    this.Angle = angle;
-        //}
 
         [XmlAttribute("Id")]
         public string Id { get; set; }
@@ -148,6 +135,11 @@ namespace Rail.Model
             geometry.Transform = grp;
             bool f = geometry.FillContains(point);
             return f;
+        }
+
+        public void OnOptions()
+        {
+
         }
     }
 }

@@ -39,8 +39,8 @@ namespace Rail.Model
 
             this.DockPoints = new List<TrackDockPoint> 
             { 
-                new TrackDockPoint(-this.Length / 2.0, 0.0, 135, this.dockType), 
-                new TrackDockPoint( this.Length / 2.0, 0.0, 315, this.dockType) 
+                new TrackDockPoint(new Point(-this.Length / 2.0, 0.0), 135, this.dockType), 
+                new TrackDockPoint(new Point( this.Length / 2.0, 0.0), 315, this.dockType) 
             };
         }
     }

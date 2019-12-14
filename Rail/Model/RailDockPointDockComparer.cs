@@ -16,13 +16,20 @@ namespace Rail.Model
 
         public bool Equals(RailDockPoint x, RailDockPoint y)
         {
-            return x.Distance(y) < distance && !x.IsDocked && !y.IsDocked && x.DockType != y.DockType && (layer == 0 ? true : (x.Layer == layer && x.Layer == layer))
-                ;
+            var res = x.Distance(y) < distance && !x.IsDocked && !y.IsDocked && x.DockType == y.DockType && (layer == 0 ? true : (x.Layer == layer && x.Layer == layer));
+            if (res)
+            {
+                var r = !x.IsDocked && !y.IsDocked;
+                var r2 = x.DockType == y.DockType;
+                var r3 = (layer == 0 ? true : (x.Layer == layer && x.Layer == layer));
+            }
+            return res;
         }
 
         public int GetHashCode(RailDockPoint obj)
         {
-            return obj.GetHashCode();
+            // call always Equals
+            return 0;
         }
     }
 }

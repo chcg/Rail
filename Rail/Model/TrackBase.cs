@@ -29,6 +29,7 @@ namespace Rail.Model
         protected Drawing drawingTracks;
         protected Drawing drawingRail;
         protected Drawing drawingTerrain;
+              
 
         [XmlAttribute("Id")]
         public string Id { get; set; }
@@ -50,11 +51,6 @@ namespace Rail.Model
 
         [XmlIgnore]
         public Geometry Geometry { get; protected set; }
-
-        //[XmlIgnore]
-        //public Drawing BallastDrawing { get; protected set; }
-
-        
 
         [XmlIgnore]
         public List<TrackDockPoint> DockPoints { get; protected set; }
@@ -93,35 +89,35 @@ namespace Rail.Model
             }
         }
 
-        public virtual void Render(DrawingContext drawingContext, Point pos, double angle)
-        {
-            //drawingContext.DrawPosition(this.Position);
-            //drawingContext.DrawDockRect(this.circleCenter);
+        //public virtual void Render(DrawingContext drawingContext, Point pos, double angle)
+        //{
+        //    //drawingContext.DrawPosition(this.Position);
+        //    //drawingContext.DrawDockRect(this.circleCenter);
 
-            TransformGroup grp = new TransformGroup();
-            grp.Children.Add(new TranslateTransform(pos.X, pos.Y));
-            grp.Children.Add(new RotateTransform(angle, pos.X, pos.Y));
+        //    TransformGroup grp = new TransformGroup();
+        //    grp.Children.Add(new TranslateTransform(pos.X, pos.Y));
+        //    grp.Children.Add(new RotateTransform(angle, pos.X, pos.Y));
 
-            if (this.Geometry != null)
-            {
-                this.Geometry.Transform = grp;
-                drawingContext.DrawGeometry(trackBrush, linePen, this.Geometry);
-            }
+        //    if (this.Geometry != null)
+        //    {
+        //        this.Geometry.Transform = grp;
+        //        drawingContext.DrawGeometry(trackBrush, linePen, this.Geometry);
+        //    }
 
-            drawingContext.DrawText(text, new Point(0, 0) - new Vector(text.Width / 2, text.Height / 2));
-            //drawingContext.DrawText(pos, (angle + 90.0) % 180.0 - 90.0, text);
+        //    drawingContext.DrawText(text, new Point(0, 0) - new Vector(text.Width / 2, text.Height / 2));
+        //    //drawingContext.DrawText(pos, (angle + 90.0) % 180.0 - 90.0, text);
 
             
-            //if (this.DockPoints != null)
-            //{
-            //    foreach (DockPoint point in this.DockPoints)
-            //    {
-            //        drawingContext.DrawDockRect(point);
-            //    }
-            //}
+        //    //if (this.DockPoints != null)
+        //    //{
+        //    //    foreach (DockPoint point in this.DockPoints)
+        //    //    {
+        //    //        drawingContext.DrawDockRect(point);
+        //    //    }
+        //    //}
 
-            //drawingContext.DrawRectangle(null, linePen, this.Bounds);
-        }
+        //    //drawingContext.DrawRectangle(null, linePen, this.Bounds);
+        //}
 
         protected Geometry CreateStraitTrackGeometry(double length)
         {

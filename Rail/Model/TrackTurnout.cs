@@ -55,9 +55,9 @@ namespace Rail.Model
                 Point circleCenter = new Point(-this.Length / 2, -this.Radius);
                 this.DockPoints = new List<TrackDockPoint>
                 {
-                    new TrackDockPoint(-this.Length / 2.0, 0.0, 90 + 45, this.dockType),
-                    new TrackDockPoint( this.Length / 2.0, 0.0, 180 + 90 + 45, this.dockType),
-                    new TrackDockPoint(new Point(-this.Length / 2.0, 0).Rotate(-this.Angle, circleCenter), -this.Angle - 45, this.dockType)
+                    new TrackDockPoint(new Point(-this.Length / 2.0, 0.0), 90 + 45, this.dockType),
+                    new TrackDockPoint(new Point( this.Length / 2.0, 0.0), 180 + 90 + 45, this.dockType),
+                    new TrackDockPoint(new Point(-this.Length / 2.0, 0.0).Rotate(-this.Angle, circleCenter), -this.Angle - 45, this.dockType)
                 };
             }
             else
@@ -65,9 +65,9 @@ namespace Rail.Model
                 Point circleCenter = new Point(-this.Length / 2, this.Radius);
                 this.DockPoints = new List<TrackDockPoint>
                 {
-                    new TrackDockPoint(-this.Length / 2.0, 0.0, 90 + 45, this.dockType),
-                    new TrackDockPoint( this.Length / 2.0, 0.0, 180 + 90 + 45, this.dockType),
-                    new TrackDockPoint(new Point(-this.Length / 2.0, 0).Rotate(this.Angle, circleCenter), this.Angle - 45, this.dockType)
+                    new TrackDockPoint(new Point(-this.Length / 2.0, 0.0), 90 + 45, this.dockType),
+                    new TrackDockPoint(new Point( this.Length / 2.0, 0.0), 180 + 90 + 45, this.dockType),
+                    new TrackDockPoint(new Point(-this.Length / 2.0, 0.0).Rotate(this.Angle, circleCenter), this.Angle - 45, this.dockType)
                 };
             }
         }
