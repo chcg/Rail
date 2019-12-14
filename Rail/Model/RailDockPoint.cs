@@ -8,13 +8,17 @@ namespace Rail.Model
 {
     public class RailDockPoint
     {
+        private RailItem railItem;
         private Point position;
         private Angle angle;
+        private string dockType;
 
-        public RailDockPoint(TrackDockPoint trackDockPoint)
+        public RailDockPoint(RailItem railItem, TrackDockPoint trackDockPoint)
         {
+            this.railItem = railItem;
             this.position = trackDockPoint.Position;
             this.angle = trackDockPoint.Angle;
+            this.dockType = trackDockPoint.DockType;
         }
 
         public Point Position { get { return this.position; } }
@@ -25,10 +29,15 @@ namespace Rail.Model
 
         public Angle Angle { get { return this.angle; } }
 
+        public string DockType { get { return this.dockType; } }
+
+        public ushort Layer { get { return this.railItem.Layer; } }
+
         public RailDockPoint DockedWith { get; set; }
 
         public bool IsDocked {  get { return this.DockedWith != null; } }
 
+        public RailItem RailItem { get { return this.railItem; } }
 
         public void Move(Vector vec)
         {

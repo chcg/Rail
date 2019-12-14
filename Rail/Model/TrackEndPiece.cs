@@ -34,7 +34,7 @@ namespace Rail.Model
 
             this.DockPoints = new List<TrackDockPoint>
             {
-                new TrackDockPoint(this.Spacing / 2.0, 0.0, 315)
+                new TrackDockPoint(this.Spacing / 2.0, 0.0, 315, this.dockType)
             };
         }
     }

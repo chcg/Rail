@@ -43,10 +43,10 @@ namespace Rail.Model
 
             this.DockPoints = new List<TrackDockPoint>
             {
-                new TrackDockPoint(new Point(-this.Length1 / 2.0, 0.0).Rotate( this.Angle /2),  this.Angle /2 + 135),
-                new TrackDockPoint(new Point(-this.Length1 / 2.0, 0.0).Rotate(-this.Angle /2), -this.Angle /2 + 135),
-                new TrackDockPoint(new Point( this.Length1 / 2.0, 0.0).Rotate( this.Angle /2),  this.Angle /2 + 45-90),
-                new TrackDockPoint(new Point( this.Length1 / 2.0, 0.0).Rotate(-this.Angle /2), -this.Angle /2 + 45-90),
+                new TrackDockPoint(new Point(-this.Length1 / 2.0, 0.0).Rotate( this.Angle /2),  this.Angle /2 + 135, this.dockType),
+                new TrackDockPoint(new Point(-this.Length1 / 2.0, 0.0).Rotate(-this.Angle /2), -this.Angle /2 + 135, this.dockType),
+                new TrackDockPoint(new Point( this.Length1 / 2.0, 0.0).Rotate( this.Angle /2),  this.Angle /2 + 45-90, this.dockType),
+                new TrackDockPoint(new Point( this.Length1 / 2.0, 0.0).Rotate(-this.Angle /2), -this.Angle /2 + 45-90, this.dockType),
             };
         }
     }

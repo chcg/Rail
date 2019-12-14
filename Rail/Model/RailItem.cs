@@ -26,7 +26,7 @@ namespace Rail.Model
             this.Position = new Point(0,0);
             this.Angle = 0.0;
             this.Layer = layer; 
-            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(dp).Move(this.Position)).ToArray();
+            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp).Move(this.Position)).ToArray();
         }
 
         public RailItem(TrackBase track, Point pos, ushort layer)
@@ -36,7 +36,7 @@ namespace Rail.Model
             this.Position = pos;
             this.Angle = 0.0;
             this.Layer = layer;
-            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(dp).Move(this.Position)).ToArray();
+            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp).Move(this.Position)).ToArray();
         }
 
         //public RailItem(TrackBase track, double x, double y, double angle, int[] docks)

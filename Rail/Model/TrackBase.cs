@@ -24,6 +24,7 @@ namespace Rail.Model
         protected FormattedText text;
         protected Drawing textDrawing;
         protected double sleepersOutstanding;
+        protected string dockType;
 
         protected Drawing drawingTracks;
         protected Drawing drawingRail;
@@ -62,6 +63,7 @@ namespace Rail.Model
         {
             this.Spacing = trackType.Spacing;
             this.Ballast = trackType.Ballast;
+            this.dockType = trackType.DockType;
 
             this.sleepersOutstanding = this.Spacing / 3;
             this.railPen = new Pen(Brushes.Black, this.Spacing / 10);

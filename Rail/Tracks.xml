@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TrackList>
   
-  <TrackType Manufacturer="Märklin" Gauge="H0" Type="C-Track" DockType="24000" Spacing="16.5" Ballast="true" BallastColor="#ff51565c" Name="Märklin H0 C-Track" Description="Märklin H0 C-Track">
+  <TrackType Manufacturer="Märklin" Gauge="H0" Type="C-Track" DockType="m24" Spacing="16.5" Ballast="true" BallastColor="#ff51565c" Name="Märklin H0 C-Track" Description="Märklin H0 C-Track">
     <Radii>
       <Radius Name="R1" Length="360.0" Description="R1 Radius 360.0 mm" />
       <Radius Name="R2" Length="437.5" Description="R2 Radius 437.5 mm" />
@@ -12,29 +12,29 @@
     </Radii>
     <Tracks>
       <!-- strait tracks -->
-      <Straight Id="M24064" Article="24064" Length="64.3" Name="24064 Strait 64.3 mm" Decription="Strait 64.3 mm"/>
-      <Straight Id="M24071" Article="24071" Length="70.8" Name="24071 Strait 70.8 mm" Decription="Strait 70.8 mm"/>
-      <Straight Id="M24077" Article="24077" Length="77.5" Name="24077 Strait 77.5 mm" Decription="Strait 77.5 mm"/>
-      <Straight Id="M24094" Article="24094" Length="94.2" Name="24094 Strait 94.2 mm" Decription="Strait 94.2 mm"/>
-      <Straight Id="M24172" Article="24172" Length="171.7" Name="24172 Strait 171.7 mm" Decription="Strait 171.7 mm"/>
-      <Straight Id="M24188" Article="24188" Length="188.3" Name="24188 Strait 188.3 mm" Decription="Strait 188.3 mm"/>
-      <Straight Id="M24229" Article="24229" Length="229.3" Name="24229 Strait 229.3 mm" Decription="Strait 229.3 mm"/>
-      <Straight Id="M24236" Article="24236" Length="236.1" Name="24236 Strait 236.1 mm" Decription="Strait 236.1 mm"/>
-      <Straight Id="M24360" Article="24360" Length="360.0" Name="24360 Strait 360.0 mm" Decription="Strait 360.0 mm"/>
+      <Straight Id="M24064" Article="24064" Length="64.3" Name="Strait 64.3 mm" Decription="Strait 64.3 mm"/>
+      <Straight Id="M24071" Article="24071" Length="70.8" Name="Strait 70.8 mm" Decription="Strait 70.8 mm"/>
+      <Straight Id="M24077" Article="24077" Length="77.5" Name="Strait 77.5 mm" Decription="Strait 77.5 mm"/>
+      <Straight Id="M24094" Article="24094" Length="94.2" Name="Strait 94.2 mm" Decription="Strait 94.2 mm"/>
+      <Straight Id="M24172" Article="24172" Length="171.7" Name="Strait 171.7 mm" Decription="Strait 171.7 mm"/>
+      <Straight Id="M24188" Article="24188" Length="188.3" Name="Strait 188.3 mm" Decription="Strait 188.3 mm"/>
+      <Straight Id="M24229" Article="24229" Length="229.3" Name="Strait 229.3 mm" Decription="Strait 229.3 mm"/>
+      <Straight Id="M24236" Article="24236" Length="236.1" Name="Strait 236.1 mm" Decription="Strait 236.1 mm"/>
+      <Straight Id="M24360" Article="24360" Length="360.0" Name="Strait 360.0 mm" Decription="Strait 360.0 mm"/>
       <!-- curved tracks -->
-      <Curved Id="M24107" Article="24107" Radius="360.0" Angle="7.5"  Name="24107 Curved R1 360.0 mm 7.5°" Decription="Curved R1 360.0 mm 7.5°" />
-      <Curved Id="M24115" Article="24115" Radius="360.0" Angle="15.0" Name="24115 Curved R1 360.0 mm 15.0°" Decription="Curved R1 360.0 mm 15.0°"/>
-      <Curved Id="M24130" Article="24130" Radius="360.0" Angle="30.0" Name="24130 Curved R1 360.0 mm 30.0°" Decription="Curved R1 360.0 mm 30.0°"/>
-      <Curved Id="M24206" Article="24206" Radius="437.5" Angle="5.7"  Name="24206 Curved R2 437.5 mm 5.7°" Decription="Curved R2 437.5 mm 5.7°" />
-      <Curved Id="M24207" Article="24207" Radius="437.5" Angle="7.5"  Name="24207 Curved R2 437.5 mm 7.5°" Decription="Curved R2 437.5 mm 7.5°" />
-      <Curved Id="M24215" Article="24215" Radius="437.5" Angle="15.0" Name="24215 Curved R2 437.5 mm 15.0°" Decription="Curved R2 437.5 mm 15.0°"/>
-      <Curved Id="M24224" Article="24224" Radius="515.0" Angle="24.3" Name="24224 Curved R3 515.0 mm 24.3°" Decription="Curved R3 515.0 mm 24.3°"/>
-      <Curved Id="M24230" Article="24230" Radius="515.0" Angle="30.0" Name="24230 Curved R3 515.0 mm 30.0°" Decription="Curved R3 515.0 mm 30.0°"/>
-      <Curved Id="M24315" Article="24315" Radius="515.0" Angle="15.0" Name="24315 Curved R3 515.0 mm 15.0°" Decription="Curved R3 515.0 mm 15.0°"/>
-      <Curved Id="M24330" Article="24330" Radius="515.0" Angle="30.0" Name="24330 Curved R3 515.0 mm 30.0°" Decription="Curved R3 515.0 mm 30.0°"/>
-      <Curved Id="M24430" Article="24430" Radius="579.3" Angle="30.0" Name="24430 Curved R4 579.3 mm 30.0°" Decription="Curved R4 579.3 mm 30.0°"/>
-      <Curved Id="M24530" Article="24530" Radius="643.6" Angle="30.0" Name="24530 Curved R5 643.6 mm 30.0°" Decription="Curved R5 643.6 mm 30.0°"/>
-      <Curved Id="M24912" Article="24912" Radius="1114.6" Angle="12.1" Name="24912 Curved R6 1114.6 mm 12.1°" Decription="Curved R6 1114.6 mm 12.1°"/>
+      <Curved Id="M24107" Article="24107" Radius="360.0" Angle="7.5"  Name="Curved R1 360.0 mm 7.5°" Decription="Curved R1 360.0 mm 7.5°" />
+      <Curved Id="M24115" Article="24115" Radius="360.0" Angle="15.0" Name="Curved R1 360.0 mm 15.0°" Decription="Curved R1 360.0 mm 15.0°"/>
+      <Curved Id="M24130" Article="24130" Radius="360.0" Angle="30.0" Name="Curved R1 360.0 mm 30.0°" Decription="Curved R1 360.0 mm 30.0°"/>
+      <Curved Id="M24206" Article="24206" Radius="437.5" Angle="5.7"  Name="Curved R2 437.5 mm 5.7°" Decription="Curved R2 437.5 mm 5.7°" />
+      <Curved Id="M24207" Article="24207" Radius="437.5" Angle="7.5"  Name="Curved R2 437.5 mm 7.5°" Decription="Curved R2 437.5 mm 7.5°" />
+      <Curved Id="M24215" Article="24215" Radius="437.5" Angle="15.0" Name="Curved R2 437.5 mm 15.0°" Decription="Curved R2 437.5 mm 15.0°"/>
+      <Curved Id="M24224" Article="24224" Radius="515.0" Angle="24.3" Name="Curved R3 515.0 mm 24.3°" Decription="Curved R3 515.0 mm 24.3°"/>
+      <Curved Id="M24230" Article="24230" Radius="515.0" Angle="30.0" Name="Curved R3 515.0 mm 30.0°" Decription="Curved R3 515.0 mm 30.0°"/>
+      <Curved Id="M24315" Article="24315" Radius="515.0" Angle="15.0" Name="Curved R3 515.0 mm 15.0°" Decription="Curved R3 515.0 mm 15.0°"/>
+      <Curved Id="M24330" Article="24330" Radius="515.0" Angle="30.0" Name="Curved R3 515.0 mm 30.0°" Decription="Curved R3 515.0 mm 30.0°"/>
+      <Curved Id="M24430" Article="24430" Radius="579.3" Angle="30.0" Name="Curved R4 579.3 mm 30.0°" Decription="Curved R4 579.3 mm 30.0°"/>
+      <Curved Id="M24530" Article="24530" Radius="643.6" Angle="30.0" Name="Curved R5 643.6 mm 30.0°" Decription="Curved R5 643.6 mm 30.0°"/>
+      <Curved Id="M24912" Article="24912" Radius="1114.6" Angle="12.1" Name="Curved R6 1114.6 mm 12.1°" Decription="Curved R6 1114.6 mm 12.1°"/>
 
       <!-- turnout tracks -->
       <Turnout Id="M24611" Article="24611" Length="188.3" Radius="437.5" Angle="24.3" Direction="Left" Name="24611 Left Turnout" Decription="Left Turnout 188 + 224" />
@@ -66,14 +66,14 @@
       <EndPiece Id="M24001" Article="24001" Name="24001 End Piece" Decription="End Piece" />
       
       <!-- adapter -->
-      <Adapter Id="M24922" Article="24922" Length="180.0" DockType="22000" Name="24922 Adapter Track for K Track" Description="Adapter Track for K Track"/>
-      <Adapter Id="M24951" Article="24951" Length="180.0" DockType="2000" Name="24951 Adapter Track for M Track" Description="Adapter Track for M Track"/>
+      <Adapter Id="M24922" Article="24922" Length="180.0" DockType="M22" Name="24922 Adapter Track for K Track" Description="Adapter Track for K Track"/>
+      <Adapter Id="M24951" Article="24951" Length="180.0" DockType="M20" Name="24951 Adapter Track for M Track" Description="Adapter Track for M Track"/>
       
       <!-- Turntable -->
       <Turntable Id="M74861" Article="74861" OuterRadius="189" InnerRadius="131.5" Angle="15" RailNum="30" Name="74861 Turntable" Description="Turntable"/>
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="H0" Type="Kunststoffgleise" DockType="24000" Spacing="16.5" Name="Märklin H0 MyWorld Kunststoffgleise" Description="Märklin H0 MyWorld Kunststoffgleise">
+  <TrackType Manufacturer="Märklin" Gauge="H0" Type="Kunststoffgleise" DockType="M24" Spacing="16.5" Name="Märklin H0 MyWorld Kunststoffgleise" Description="Märklin H0 MyWorld Kunststoffgleise">
     <Radii>
       <Radius Name="R1" Length="360.0" Description="R1 Radius" />
       <Radius Name="R2" Length="437.5" Description="R2 Radius for turnouts only" />
@@ -94,7 +94,7 @@
       <Bumper Id="M23977" Article="23977" Length="82.5" Name="23977 Bumper" Decription="Bumper" />
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="H0" Type="K" DockType="22000" Spacing="16.5" Name="Märklin H0 K-Track" Description="Märklin H0 K-Track">
+  <TrackType Manufacturer="Märklin" Gauge="H0" Type="K" DockType="M22" Spacing="16.5" Name="Märklin H0 K-Track" Description="Märklin H0 K-Track">
     <Radii>
       <Radius Name="R0" Length="295.4" Description="R0 Industrie Radius 295.4 mm"/>
       <Radius Name="R1" Length="360.0" Description="R1 Radius 360.0 mm" />

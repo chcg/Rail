@@ -14,20 +14,23 @@ namespace Rail.Model
         public double X;
         public double Y;
         private Angle angle;
+        private string dockType;
 
 
-        public TrackDockPoint(double x, double y, double angle)
+        public TrackDockPoint(double x, double y, double angle, string dockType)
         {
             this.X = x;
             this.Y = y;
             this.angle = angle;
+            this.dockType = dockType;
         }
 
-        public TrackDockPoint(Point point, double angle)
+        public TrackDockPoint(Point point, double angle, string dockType)
         {
             this.X = point.X;
             this.Y = point.Y;
             this.angle = angle;
+            this.dockType = dockType;
         }
 
         //public static implicit operator Point(TrackDockPoint dockPoint)
@@ -62,6 +65,14 @@ namespace Rail.Model
             set
             {
                 this.angle = value;
+            }
+        }
+
+        public string DockType
+        {
+            get
+            {
+                return this.dockType;
             }
         }
     } 

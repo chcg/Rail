@@ -11,15 +11,24 @@ namespace Rail.Model
 {
     public class TrackType 
     {
+        /// <summary>
+        /// Manufacturer of the track
+        /// </summary>
         [XmlAttribute("Manufacturer")]
         public string Manufacturer { get; set; }
 
+        /// <summary>
+        /// Gauge of the Track H0, TT, N, 1, Z, G, H0e
+        /// </summary>
         [XmlAttribute("Gauge")]
         public string Gauge { get; set; }
 
         [XmlAttribute("Type")]
         public string Type { get; set; }
-        
+
+        [XmlAttribute("DockType")]
+        public string DockType { get; set; }
+
         [XmlAttribute("Spacing")]
         public double Spacing { get; set; }
         
