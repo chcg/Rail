@@ -61,6 +61,7 @@ namespace Rail.Model
          XmlArrayItem(typeof(TrackCurvedCircuit), ElementName = "CurvedCircuit"),
          XmlArrayItem(typeof(TrackStraightCircuit), ElementName = "StraightCircuit"),
          XmlArrayItem(typeof(TrackStraightContact), ElementName = "StraightContact"),
+         XmlArrayItem(typeof(TrackFlex), ElementName = "Flex"),
          XmlArrayItem(typeof(TrackGroup), ElementName = "Group")]
         public List<TrackBase> Tracks { get; set; }
                 
