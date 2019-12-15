@@ -96,9 +96,9 @@ namespace Rail.Misc
             return (Angle)Vector.AngleBetween(p1 - center, p2 - center);
         }
 
-        public static Angle Calculate(Point center, Point p)
+        public static Angle Calculate(Point center, Point pos)
         {
-            return (Angle)Vector.AngleBetween(p - center, new Vector(100, 0));
+            return (Angle)Vector.AngleBetween(new Vector(100, 0), pos - center);
         }
 
         public Vector Circle(double radius)
@@ -110,4 +110,6 @@ namespace Rail.Misc
             return new Vector(sin * radius, cos * radius);
         }
     }
+
+    
 }

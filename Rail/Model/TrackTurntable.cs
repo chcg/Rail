@@ -49,7 +49,7 @@ namespace Rail.Model
             for (int i = 0; i < this.RailNum; i++)
             {
                 Point point = new Point(0, this.OuterRadius).Rotate(this.Angle * i);
-                dockPoints.Add(new TrackDockPoint(point, this.Angle * i + 45, this.dockType));
+                dockPoints.Add(new TrackDockPoint(i, point, this.Angle * i + 45, this.dockType));
             }
             this.DockPoints = dockPoints;
         }

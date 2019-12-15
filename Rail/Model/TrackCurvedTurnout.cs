@@ -47,8 +47,8 @@ namespace Rail.Model
 
             this.DockPoints = new List<TrackDockPoint>
             {
-                new TrackDockPoint(new Point(this.InnerRadius, 0), 225.0, this.dockType),
-                new TrackDockPoint(new Point(this.InnerRadius, 0), 45.0, this.dockType)
+                new TrackDockPoint(0, new Point(this.InnerRadius, 0), 225.0, this.dockType),
+                new TrackDockPoint(1, new Point(this.InnerRadius, 0), 45.0, this.dockType)
             };
         }
 

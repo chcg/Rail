@@ -208,7 +208,7 @@ namespace Rail.ViewModel
             }
         }
 
-        private bool showDockingPoints;
+        private bool showDockingPoints = true;
         public bool ShowDockingPoints
         {
             get

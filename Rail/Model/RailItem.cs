@@ -4,6 +4,7 @@ using Rail.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,19 +14,19 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    [DebuggerDisplay("RailItem Id={Id} X={Position.X} Y={Position.Y} A={Angle}")]
+    [DebuggerDisplay("RailItem Index={DebugIndex} Id={Id} X={Position.X} Y={Position.Y} A={Angle}")]
 
     public class RailItem
     {
         private static int globalDebugIndex = 0;
-        private int debugIndex;
-        
+        private Angle angle;
+                
         public DelegateCommand OptionsCommand { get; private set; }
 
         public RailItem(TrackBase track, Point pos, ushort layer) 
         {
             this.OptionsCommand = new DelegateCommand(OnOptions);
-            this.debugIndex = globalDebugIndex++;
+            this.DebugIndex = globalDebugIndex++;
             this.Id = track.Id;
             this.Track = track;
             this.Position = pos;
@@ -33,6 +34,9 @@ namespace Rail.Model
             this.Layer = layer;
             this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp).Move(this.Position)).ToArray();
         }
+
+        [XmlIgnore]
+        public int DebugIndex { get; private set; }
 
         [XmlAttribute("Id")]
         public string Id { get; set; }
@@ -61,7 +65,18 @@ namespace Rail.Model
         }
 
         [XmlAttribute("Angle")]
-        public Angle Angle { get; set; }
+        public Angle Angle
+        {
+            get
+            {
+                return this.angle;
+            }
+            set
+            {
+                this.angle = value;
+                this.DockPoints.ForEach(dp => dp.Reset(this.Position, value));
+            }
+        }
 
         [XmlAttribute("Layer")]
         public ushort Layer { get; set; }
@@ -77,13 +92,15 @@ namespace Rail.Model
         public void Move(Vector vec)
         {
             this.Position += vec;
-            this.DockPoints.ToList().ForEach(dp => dp.Move(vec));
+            this.DockPoints.ForEach(dp => dp.Move(vec));
         }
 
         public void Rotate(Angle angle)
         {
+            Debug.WriteLine($"++Rotate {this.DebugIndex} RailItemAngle {this.Angle} RotateAngle {angle}");
             this.Angle += angle;
             this.DockPoints.ToList().ForEach(dp => dp.Rotate(angle, this.Position));
+            Debug.WriteLine($"--Rotate {this.DebugIndex} RailItemAngle {this.Angle}");
         }
 
         public void Rotate(Angle angle, Point center)
@@ -98,7 +115,7 @@ namespace Rail.Model
             Rotate(angle, center.Position);
         }
 
-        public void DrawTrack(DrawingContext drawingContext, RailViewMode viewMode)
+        public void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode)
         {
             TransformGroup transformGroup = new TransformGroup();
             transformGroup.Children.Add(new RotateTransform (this.Angle));
@@ -107,7 +124,16 @@ namespace Rail.Model
 
             this.Track.Render(drawingContext, viewMode);
 
+            DrawDebug(drawingContext);
+
             drawingContext.Pop();
+        }
+
+        [Conditional("DEBUG")]
+        public void DrawDebug(DrawingContext drawingContext)
+        {
+            drawingContext.DrawRectangle(Brushes.White, new Pen(Brushes.Blue, 1), new Rect(0, 0, 32, 20));
+            drawingContext.DrawText(new FormattedText(this.DebugIndex.ToString(), CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, Brushes.Blue, 1.25), new Point(0, 0));
         }
 
         private static Pen dockPen = new Pen(Brushes.Blue, 1);
