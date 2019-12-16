@@ -23,6 +23,7 @@ namespace Rail.Controls
         private Point lastMousePosition; 
         private RailAction actionType;
         private RailItem actionRailItem;
+        private bool hasMoved;
         private List<RailItem> actionRailItemDockedRailItems;
         private Angle debugRotationAngle;
         
@@ -358,6 +359,19 @@ namespace Rail.Controls
             this.InvalidateVisual();
         }
 
+        public void SelectRailItem(RailItem railItem, bool only)
+        {
+            this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
+            railItem.IsSelected = true;
+            this.InvalidateVisual();
+        }
+
+        public void UnselectAllRailItems()
+        {
+            this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
+            this.InvalidateVisual();
+        }
+
         private void MoveRailItem(RailItem railItem, Vector move, IEnumerable<RailItem> subgraph = null)
         {
             railItem.Move(move);
@@ -614,7 +628,7 @@ namespace Rail.Controls
         {
             return e.GetPosition(this).Move(-margin, -margin).Scale(1.0 / this.ZoomFactor);
         }
-        
+               
         protected override void OnMouseDoubleClick(MouseButtonEventArgs e)
         {
             Point pos = GetMousePosition(e);
@@ -643,11 +657,11 @@ namespace Rail.Controls
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             Point pos = GetMousePosition(e);
-            
+            this.hasMoved = false;
+
             // click inside track
             if ((this.actionRailItem = FindRailItem(pos)) != null)
             {
-                
                 // click inside docking point
                 RailDockPoint dp = this.actionRailItem.DockPoints.FirstOrDefault(d => d.IsInside(pos));
                 if (dp != null)
@@ -662,19 +676,30 @@ namespace Rail.Controls
                     // SHIFT pressed
                     if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
                     {
+                        //SelectRailItem(this.actionRailItem, false);
+
                         UndockRailItem(this.actionRailItem);
                         this.actionType = RailAction.MoveSingle;
                         this.actionRailItemDockedRailItems = null;
                     }
+                    else if (Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+                    {
+                        //SelectRailItem(this.actionRailItem, false);
+                    }
                     // SHIFT not pressed
                     else
                     {
+                        //SelectRailItem(this.actionRailItem, false);
                         this.actionType = RailAction.MoveGraph;
                         this.actionRailItemDockedRailItems = FindSubgraph(this.actionRailItem);
                     }
                 }
                 this.lastMousePosition = pos;
                 this.CaptureMouse();
+            }
+            else
+            {
+                //UnselectAllRailItems();
             }
             base.OnMouseLeftButtonDown(e);
             CheckDockings();
@@ -686,6 +711,7 @@ namespace Rail.Controls
         {
             Point pos = GetMousePosition(e);
             this.MousePosition = pos;
+            this.hasMoved = true;
 
             if (this.actionRailItem != null)
             {
@@ -757,12 +783,35 @@ namespace Rail.Controls
                     break;
                 }
 
-                this.actionType = RailAction.None;
-                this.actionRailItemDockedRailItems = null;
-                this.actionRailItem = null;
-                this.InvalidateVisual();
-                this.ReleaseMouseCapture();
+                
             }
+
+            // handle select
+            if (!this.hasMoved)
+            {
+                if (this.actionRailItem != null)
+                {
+                    if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift) || Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+                    {
+                        SelectRailItem(this.actionRailItem, false);
+                    }
+                    else
+                    {
+                        SelectRailItem(this.actionRailItem, true);
+                    }
+                }
+                else
+                {
+                    UnselectAllRailItems();
+                }
+            }
+
+            this.actionType = RailAction.None;
+            this.actionRailItemDockedRailItems = null;
+            this.actionRailItem = null;
+            this.InvalidateVisual();
+            this.ReleaseMouseCapture();
+
             base.OnMouseLeftButtonUp(e);
             CheckDockings();
         }

@@ -85,8 +85,13 @@ namespace Rail.Model
         //[XmlArrayItem("Dock")]
         //public RailDock[] Docks { get; set; }
 
+        [XmlIgnore]
+        public bool IsSelected { get; set; }
+
+        [XmlIgnore]
         public bool HasOnlyOneDock { get { return this.DockPoints.One(dp => dp.IsDocked);  } }
 
+        [XmlIgnore]
         public bool HasDocks { get { return this.DockPoints.Any(dp => dp.IsDocked); } }
 
         public void Move(Vector vec)
@@ -122,7 +127,7 @@ namespace Rail.Model
             transformGroup.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
             drawingContext.PushTransform(transformGroup);
 
-            this.Track.Render(drawingContext, viewMode);
+            this.Track.Render(drawingContext, viewMode, this.IsSelected);
 
             DrawDebug(drawingContext);
 

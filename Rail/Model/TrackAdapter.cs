@@ -28,7 +28,7 @@ namespace Rail.Model
             {
                 drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, 0, null));
             }
-            drawingRail.Children.Add(StraitRail(this.Length));
+            drawingRail.Children.Add(StraitRail(false, this.Length));
             this.drawingRail = drawingRail;
 
             // Terrain

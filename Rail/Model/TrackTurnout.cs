@@ -43,7 +43,7 @@ namespace Rail.Model
                 drawingRail.Children.Add(StraitBallast(this.Length));
                 drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, orientation, 0, new Point(-this.Length / 2, 0)));
             }
-            drawingRail.Children.Add(StraitRail(this.Length));
+            drawingRail.Children.Add(StraitRail(false, this.Length));
             drawingRail.Children.Add(CurvedRail(this.Angle, this.Radius, new Point(-this.Length / 2, 0), this.Direction));
             this.drawingRail = drawingRail;
 

@@ -18,8 +18,10 @@ namespace Rail.Model
         protected Brush ballastBrush = new SolidColorBrush(Color.FromRgb(0x51, 0x56, 0x5c));
         protected Pen dockPen = new Pen(Brushes.Blue, 2);
         protected Pen linePen = new Pen(Brushes.Black, 2);
+        protected Pen selectedLinePen = new Pen(Brushes.Blue, 2);
         protected Pen textPen = new Pen(Brushes.Black, 0.5);
         protected Pen railPen;
+        protected Pen railPenSelected;
         protected Pen sleepersPen;
         protected FormattedText text;
         protected Drawing textDrawing;
@@ -27,9 +29,11 @@ namespace Rail.Model
         protected string dockType;
 
         protected Drawing drawingTracks;
+        protected Drawing drawingTracksSelected;
         protected Drawing drawingRail;
+        protected Drawing drawingRailSelected;
         protected Drawing drawingTerrain;
-              
+
 
         [XmlAttribute("Id")]
         public string Id { get; set; }
@@ -63,6 +67,7 @@ namespace Rail.Model
 
             this.sleepersOutstanding = this.Spacing / 3;
             this.railPen = new Pen(Brushes.Black, this.Spacing / 10);
+            this.railPenSelected = new Pen(Brushes.Blue, this.Spacing / 10);
             this.sleepersPen = new Pen(Brushes.Black, this.Spacing / 4);
             this.text = new FormattedText(this.Article, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), this.Spacing * 0.9, Brushes.Black, 1.25);
             this.textDrawing = new GeometryDrawing(textBrush, textPen, text.BuildGeometry(new Point(0, 0) - new Vector(text.Width / 2, text.Height / 2)));
@@ -72,16 +77,15 @@ namespace Rail.Model
         protected abstract void Create();
 
         // for TrackControl
-        public virtual void Render(DrawingContext drawingContext, RailViewMode viewMode)
+        public virtual void Render(DrawingContext drawingContext, RailViewMode viewMode, bool isSelected)
         {
             switch (viewMode)
             {
             case RailViewMode.Tracks:
-                drawingContext.DrawDrawing(this.drawingTracks);
-               
+                drawingContext.DrawDrawing(isSelected ? this.drawingTracksSelected : this.drawingTracks);
                 break;
             case RailViewMode.Rail:
-                drawingContext.DrawDrawing(this.drawingRail);
+                drawingContext.DrawDrawing(isSelected ? this.drawingRailSelected : this.drawingRail);
                 break;
             case RailViewMode.Terrain:
                 drawingContext.DrawDrawing(this.drawingRail);
@@ -607,7 +611,7 @@ namespace Rail.Model
         //    return railDrawing;
         //}
 
-        protected Drawing StraitRail(double length, StraitOrientation orientation = StraitOrientation.Center, double direction = 0, Point? pos = null)
+        protected Drawing StraitRail(bool isSelected, double length, StraitOrientation orientation = StraitOrientation.Center, double direction = 0, Point? pos = null)
         {
             double x = 0;
             switch (orientation)
@@ -618,8 +622,8 @@ namespace Rail.Model
             }
 
             var railDrawing = new DrawingGroup();
-            railDrawing.Children.Add(new GeometryDrawing(null, railPen, new LineGeometry(new Point(x, -this.Spacing / 2).Rotate(direction).Move(pos), new Point(x + length, -this.Spacing / 2).Rotate(direction).Move(pos))));
-            railDrawing.Children.Add(new GeometryDrawing(null, railPen, new LineGeometry(new Point(x, +this.Spacing / 2).Rotate(direction).Move(pos), new Point(x + length, +this.Spacing / 2).Rotate(direction).Move(pos))));
+            railDrawing.Children.Add(new GeometryDrawing(null, isSelected ? railPenSelected : railPen, new LineGeometry(new Point(x, -this.Spacing / 2).Rotate(direction).Move(pos), new Point(x + length, -this.Spacing / 2).Rotate(direction).Move(pos))));  ;
+            railDrawing.Children.Add(new GeometryDrawing(null, isSelected ? railPenSelected : railPen, new LineGeometry(new Point(x, +this.Spacing / 2).Rotate(direction).Move(pos), new Point(x + length, +this.Spacing / 2).Rotate(direction).Move(pos))));
 
             int num = (int)Math.Round(length / (this.Spacing / 2));
             double sleepersDistance = length / num;
