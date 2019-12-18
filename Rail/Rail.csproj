@@ -41,6 +41,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Triangle\Triangle.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\Help.png" />
     <Resource Include="Images\Info.png" />
     <Resource Include="Images\List.png" />

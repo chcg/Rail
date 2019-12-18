@@ -11,6 +11,8 @@ Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "RailWap", "RailWap\RailWap.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dummy", "Dummy\Dummy.csproj", "{631FEF75-50EE-4F06-90BA-7BD2F8D367CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triangle", "Triangle\Triangle.csproj", "{BEE9C084-6076-4DB5-BF5D-F01A357371DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +115,26 @@ Global
 		{631FEF75-50EE-4F06-90BA-7BD2F8D367CD}.Release|x64.Build.0 = Release|Any CPU
 		{631FEF75-50EE-4F06-90BA-7BD2F8D367CD}.Release|x86.ActiveCfg = Release|Any CPU
 		{631FEF75-50EE-4F06-90BA-7BD2F8D367CD}.Release|x86.Build.0 = Release|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Debug|ARM.Build.0 = Debug|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Debug|x64.Build.0 = Debug|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Debug|x86.Build.0 = Debug|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Release|ARM.ActiveCfg = Release|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Release|ARM.Build.0 = Release|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Release|ARM64.Build.0 = Release|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Release|x64.ActiveCfg = Release|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Release|x64.Build.0 = Release|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Release|x86.ActiveCfg = Release|Any CPU
+		{BEE9C084-6076-4DB5-BF5D-F01A357371DB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

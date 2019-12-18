@@ -22,7 +22,7 @@ using System.Collections.Specialized;
 
 namespace Rail.ViewModel
 {
-    public class MainViewModel : FileViewModel
+    public partial class MainViewModel : FileViewModel
     {
         private TrackList trackList;
         private RailPlan railPlan;
@@ -62,10 +62,13 @@ namespace Rail.ViewModel
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error in File Tracks.xml\r\n" + ex.Message);
+                    throw ex;
                 }
             }
 
             this.RailPlan = RailPlan.Create();
+
+            Update3D();
         }
 
         #region properties
