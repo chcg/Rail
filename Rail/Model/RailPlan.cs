@@ -21,6 +21,10 @@ namespace Rail.Model
                 new Point(0, 0),
                 new Point(3000, 0),
                 new Point(3000, 1500),
+                new Point(2000, 1500),
+                new Point(2000, 1000),
+                new Point(1000, 1000),
+                new Point(1000, 1500),
                 new Point(0, 1500),
             };
             this.Rails = new ObservableCollection<RailItem>();
@@ -38,10 +42,10 @@ namespace Rail.Model
         }
 
         [XmlIgnore]
-        public uint Width { get { return (uint)Math.Round(this.PlatePoints.Select(p => p.X).Max()); } }
+        public int Width { get { return (int)Math.Round(this.PlatePoints.Select(p => p.X).Max()); } }
 
         [XmlIgnore]
-        public uint Height { get { return (uint)Math.Round(this.PlatePoints.Select(p => p.Y).Max()); } }
+        public int Height { get { return (int)Math.Round(this.PlatePoints.Select(p => p.Y).Max()); } }
 
         /// <summary>
         /// 

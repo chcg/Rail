@@ -48,6 +48,7 @@ namespace Rail.ViewModel
             this.ShowLayers = new List<ushort> { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
             this.InsertLayers = new List<ushort> { 1, 2, 3, 4, 5, 6, 7, 8 };
 
+
             // load track list
             DependencyObject dep = new DependencyObject();
             if (!DesignerProperties.GetIsInDesignMode(dep))
@@ -207,6 +208,10 @@ namespace Rail.ViewModel
             set
             {
                 this.viewMode = value;
+                if (this.viewMode == RailViewMode.Terrain)
+                {
+                    Update3D();
+                }
                 NotifyPropertyChanged("ViewMode");
             }
         }
@@ -235,8 +240,12 @@ namespace Rail.ViewModel
             {
                 this.zoomFactor = value;
                 NotifyPropertyChanged("ZoomFactor");
+                this.ZoomFactor3D = value * 0.005;
+                NotifyPropertyChanged("ZoomFactor3D");
             }
         }
+
+        public double ZoomFactor3D { get; private set; }
 
         public double[] SnapInDistances { get { return new double[] { 0, 100, 1000, 10000, 100000 }; } }
         public double[] SnapInAngels { get { return new double[] { 0, 30, 15, 7.5 }; } }

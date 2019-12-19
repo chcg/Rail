@@ -23,6 +23,9 @@
         <conv:BooleanToVisibilityCollapsedConverter x:Key="BooleanToVisibilityCollapsedConverter"/>
         <conv:RadioButtonConverter x:Key="RadioButtonConverter"/>
         <conv:LayerToTextConverter x:Key="LayerToTextConverter"/>
+        <conv:TrackRailViewModeToVisibilityConverter x:Key="TrackRailViewModeToVisibilityConverter"/>
+        <conv:TerrainViewModeToVisibilityConverter x:Key="TerrainViewModeToVisibilityConverter"/>
+        <conv:ZoomFactorTo3DConverter x:Key="ZoomFactorTo3DConverter"/>
     </RibbonWindow.Resources>
     <DockPanel>
         <mvvm:PersistentRibbon DockPanel.Dock="Top">
@@ -240,11 +243,11 @@
             </DataGrid>
         </Grid>
         <Grid>
-            <Grid.RowDefinitions>
+            <!--<Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <ScrollViewer Grid.Row="0" Focusable="False" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  >
+            </Grid.RowDefinitions>-->
+            <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TrackRailViewModeToVisibilityConverter}}" Focusable="False" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  >
                 <ctrl:RailPlanControl 
                 Background="DarkGray"
                 ZoomFactor="{Binding ZoomFactor}"
@@ -258,7 +261,7 @@
                 RailMargin="40"/>
             </ScrollViewer>
             <!-- The Viewport3D provides a rendering surface for 3-D visual content. -->
-            <Viewport3D Grid.Row="1" ClipToBounds="True">
+            <Viewport3D Visibility="{Binding ViewMode, Converter={StaticResource TerrainViewModeToVisibilityConverter}}" ClipToBounds="True">
 
                 <!-- Defines the camera used to view the 3D object. -->
                 <Viewport3D.Camera>
@@ -279,8 +282,8 @@
                     <ModelVisual3D>
                         <ModelVisual3D.Content>
                             <Model3DGroup>
-                                <GeometryModel3D>
-                                    <!-- The geometry specifies the shape of the 3D plane. In this sample, a flat sheet is created. -->
+                                <!--<GeometryModel3D>
+                                    --><!-- The geometry specifies the shape of the 3D plane. In this sample, a flat sheet is created. --><!--
                                     <GeometryModel3D.Geometry>
                                         <MeshGeometry3D
                                          TriangleIndices="0,1,2 3,4,5 "
@@ -288,7 +291,7 @@
                                          TextureCoordinates="0,0 1,0 1,1 1,1 0,1 0,0 "
                                          Positions="-0.5,-0.5,0.5 0.5,-0.5,0.5 0.5,0.5,0.5 0.5,0.5,0.5 -0.5,0.5,0.5 -0.5,-0.5,0.5 " />
                                     </GeometryModel3D.Geometry>
-                                    <!-- The material specifies the material applied to the 3D object. In this sample a linear gradient covers the surface of the 3D object.-->
+                                    --><!-- The material specifies the material applied to the 3D object. In this sample a linear gradient covers the surface of the 3D object.--><!--
                                     <GeometryModel3D.Material>
                                         <MaterialGroup>
                                             <DiffuseMaterial>
@@ -305,7 +308,7 @@
                                             </DiffuseMaterial>
                                         </MaterialGroup>
                                     </GeometryModel3D.Material>
-                                    <!-- Apply a transform to the object. In this sample, a rotation transform is applied, rendering the 3D object rotated. -->
+                                    --><!-- Apply a transform to the object. In this sample, a rotation transform is applied, rendering the 3D object rotated. --><!--
                                     <GeometryModel3D.Transform>
                                         <Transform3DGroup>
                                             <RotateTransform3D>
@@ -316,7 +319,7 @@
                                             <ScaleTransform3D ScaleX="{Binding ZoomFactor}" ScaleY="{Binding ZoomFactor}" ScaleZ="{Binding ZoomFactor}"/>
                                         </Transform3DGroup>
                                     </GeometryModel3D.Transform>
-                                </GeometryModel3D>
+                                </GeometryModel3D>-->
                                 <GeometryModel3D Geometry="{Binding PlateGeometry3D}">
                                     <!--<GeometryModel3D.Geometry>
                                         <MeshGeometry3D 
@@ -328,13 +331,16 @@
                                     <GeometryModel3D.Material>
                                         <DiffuseMaterial>
                                             <DiffuseMaterial.Brush>
-                                                <SolidColorBrush Color="Green" Opacity="1.0"/>
+                                                <ImageBrush ImageSource="{Binding PlateImage}" />
                                             </DiffuseMaterial.Brush>
                                         </DiffuseMaterial>
                                     </GeometryModel3D.Material>
                                     <GeometryModel3D.Transform>
                                         <Transform3DGroup>
-                                            <ScaleTransform3D ScaleX="0.001" ScaleY="0.001" ScaleZ="0.001"/>
+                                            <ScaleTransform3D 
+                                                ScaleX="{Binding ZoomFactor, Converter={StaticResource ZoomFactorTo3DConverter}}" 
+                                                ScaleY="{Binding ZoomFactor, Converter={StaticResource ZoomFactorTo3DConverter}}" 
+                                                ScaleZ="{Binding ZoomFactor, Converter={StaticResource ZoomFactorTo3DConverter}}"/>
                                             <RotateTransform3D>
                                                 <RotateTransform3D.Rotation>
                                                     <AxisAngleRotation3D Axis="3,0,0" Angle="-65" />
