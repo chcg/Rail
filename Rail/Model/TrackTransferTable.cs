@@ -27,11 +27,11 @@ namespace Rail.Model
 
         protected override void Create()
         {
-            this.Geometry = new RectangleGeometry(new Rect(-this.Width / 2, -this.Height / 2, this.Width, this.Height));
+            this.GeometryTracks = new RectangleGeometry(new Rect(-this.Width / 2, -this.Height / 2, this.Width, this.Height));
 
             // Tracks
             DrawingGroup drawingTracks = new DrawingGroup();
-            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.Geometry));
+            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.GeometryTracks));
             drawingTracks.Children.Add(this.textDrawing);
             this.drawingTracks = drawingTracks;
 

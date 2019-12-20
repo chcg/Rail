@@ -22,8 +22,8 @@ namespace Rail.Model
 
         protected override void Create()
         {
-            this.Geometry = new CombinedGeometry(
-                CreateStraitTrackGeometry(this.Length),
+            this.GeometryTracks = new CombinedGeometry(
+                CreateStraitTrackGeometry(this.Length, this.RailSpacing),
                 this.Direction == TrackDirection.Left ? 
                     CreateLeftTurnoutGeometry(this.Length, this.Angle, this.Radius) :
                     CreateRightTurnoutGeometry(this.Length, this.Angle, this.Radius));
@@ -32,7 +32,7 @@ namespace Rail.Model
 
             // Tracks
             DrawingGroup drawingTracks = new DrawingGroup();
-            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.Geometry));
+            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.GeometryTracks));
             drawingTracks.Children.Add(this.textDrawing);
             this.drawingTracks = drawingTracks;
 

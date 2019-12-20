@@ -19,11 +19,11 @@ namespace Rail.Model
 
         protected override void Create()
         {
-            this.Geometry = CreateCrossingTrackGeometry(this.Length1, this.Length2, this.Angle);
+            this.GeometryTracks = CreateCrossingTrackGeometry(this.Length1, this.Length2, this.Angle);
 
             // Tracks
             DrawingGroup drawingTracks = new DrawingGroup();
-            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.Geometry));
+            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.GeometryTracks));
             drawingTracks.Children.Add(this.textDrawing);
             this.drawingTracks = drawingTracks;
 

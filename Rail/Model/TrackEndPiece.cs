@@ -14,11 +14,11 @@ namespace Rail.Model
 
         protected override void Create()
         {
-            this.Geometry = CreateStraitTrackGeometry(this.Spacing);
+            this.GeometryTracks = CreateStraitTrackGeometry(this.RailSpacing, this.RailSpacing);
 
             // Tracks
             DrawingGroup drawingTracks = new DrawingGroup();
-            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.Geometry));
+            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.GeometryTracks));
             drawingTracks.Children.Add(this.textDrawing);
             this.drawingTracks = drawingTracks;
 
@@ -26,7 +26,7 @@ namespace Rail.Model
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.Ballast)
             {
-                drawingRail.Children.Add(StraitBallast(this.Spacing, StraitOrientation.Center, 0, null));
+                drawingRail.Children.Add(StraitBallast(this.RailSpacing, StraitOrientation.Center, 0, null));
             }
             this.drawingRail = drawingRail;
 
@@ -35,7 +35,7 @@ namespace Rail.Model
 
             this.DockPoints = new List<TrackDockPoint>
             {
-                new TrackDockPoint(0, new Point(this.Spacing / 2.0, 0.0), 315, this.dockType)
+                new TrackDockPoint(0, new Point(this.RailSpacing / 2.0, 0.0), 315, this.dockType)
             };
         }
     }

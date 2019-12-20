@@ -24,11 +24,11 @@ namespace Rail.Model
 
         protected override void Create()
         {
-            this.Geometry = CreateTurntableTrackGeometry(this.OuterRadius, this.InnerRadius, this.Angle, this.RailNum);
+            this.GeometryTracks = CreateTurntableTrackGeometry(this.OuterRadius, this.InnerRadius, this.Angle, this.RailNum);
 
             // Tracks
             DrawingGroup drawingTracks = new DrawingGroup();
-            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.Geometry));
+            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.GeometryTracks));
             drawingTracks.Children.Add(this.textDrawing);
             this.drawingTracks = drawingTracks;
 
@@ -75,16 +75,16 @@ namespace Rail.Model
                 drawing.Children.Add(new GeometryDrawing(this.ballastBrush, null,
                     new PathGeometry(new PathFigureCollection
                     {
-                        new PathFigure(new Point(-outerRadius, -this.Spacing).Rotate(angle * i), new PathSegmentCollection
+                        new PathFigure(new Point(-outerRadius, -this.RailSpacing).Rotate(angle * i), new PathSegmentCollection
                         {
-                            new LineSegment(new Point(-innerRadius, -this.Spacing).Rotate(angle * i), true),
-                            new LineSegment(new Point(-innerRadius,  this.Spacing).Rotate(angle * i), true),
-                            new LineSegment(new Point(-outerRadius,  this.Spacing).Rotate(angle * i), true),
-                            new LineSegment(new Point(-outerRadius, -this.Spacing).Rotate(angle * i), true)
+                            new LineSegment(new Point(-innerRadius, -this.RailSpacing).Rotate(angle * i), true),
+                            new LineSegment(new Point(-innerRadius,  this.RailSpacing).Rotate(angle * i), true),
+                            new LineSegment(new Point(-outerRadius,  this.RailSpacing).Rotate(angle * i), true),
+                            new LineSegment(new Point(-outerRadius, -this.RailSpacing).Rotate(angle * i), true)
                         }, true)
                     })));
             }
-            drawing.Children.Add(new GeometryDrawing(this.ballastBrush, null, new RectangleGeometry(new Rect(-innerRadius, -this.Spacing, innerRadius * 2, this.Spacing * 2))));
+            drawing.Children.Add(new GeometryDrawing(this.ballastBrush, null, new RectangleGeometry(new Rect(-innerRadius, -this.RailSpacing, innerRadius * 2, this.RailSpacing * 2))));
             return drawing;
         }
 
@@ -96,18 +96,18 @@ namespace Rail.Model
             for (int i = 0; i < RailNum; i++)
             {
 
-                drawing.Children.Add(new GeometryDrawing(null, railPen, new LineGeometry(new Point(-outerRadius, -this.Spacing / 2).Rotate(angle * i), new Point(-innerRadius, -this.Spacing / 2).Rotate(angle * i))));
-                drawing.Children.Add(new GeometryDrawing(null, railPen, new LineGeometry(new Point(-outerRadius, +this.Spacing / 2).Rotate(angle * i), new Point(-innerRadius, +this.Spacing / 2).Rotate(angle * i))));
+                drawing.Children.Add(new GeometryDrawing(null, railPen, new LineGeometry(new Point(-outerRadius, -this.RailSpacing / 2).Rotate(angle * i), new Point(-innerRadius, -this.RailSpacing / 2).Rotate(angle * i))));
+                drawing.Children.Add(new GeometryDrawing(null, railPen, new LineGeometry(new Point(-outerRadius, +this.RailSpacing / 2).Rotate(angle * i), new Point(-innerRadius, +this.RailSpacing / 2).Rotate(angle * i))));
 
                 double length1 = outerRadius - innerRadius;
-                int num1 = (int)Math.Round(length1 / (this.Spacing / 2));
+                int num1 = (int)Math.Round(length1 / (this.RailSpacing / 2));
                 double sleepersDistance1 = length1 / num1;
 
                 for (int j = 0; j < num1; j++)
                 {
                     drawing.Children.Add(new GeometryDrawing(null, sleepersPen, new LineGeometry(
-                        new Point(-outerRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, -this.Spacing / 2 - this.sleepersOutstanding).Rotate(angle * i),
-                        new Point(-outerRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, +this.Spacing / 2 + this.sleepersOutstanding).Rotate(angle * i))));
+                        new Point(-outerRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, -this.sleepersSpacing / 2).Rotate(angle * i),
+                        new Point(-outerRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, +this.sleepersSpacing / 2).Rotate(angle * i))));
                 }
             }
             return drawing;

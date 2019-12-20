@@ -80,12 +80,12 @@ namespace Rail.Model
 
         public bool IsInside(Point pos)
         {
-            return this.Distance(pos) < this.RailItem.Track.Spacing;
+            return this.Distance(pos) < this.RailItem.Track.RailSpacing;
         }
 
         public bool IsInside(RailDockPoint p)
         {
-            return this.Distance(p.Position) < this.RailItem.Track.Spacing;
+            return this.Distance(p.Position) < this.RailItem.Track.RailSpacing;
         }
     }
 }

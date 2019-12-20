@@ -17,20 +17,22 @@ namespace Rail.Model
 
         protected override void Create()
         {
-            this.Geometry = CreateStraitTrackGeometry(this.Length);
-
             // Tracks
+            this.GeometryTracks = CreateStraitTrackGeometry(this.Length, this.RailSpacing);
+
             DrawingGroup drawingTracks = new DrawingGroup();
-            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, this.linePen, this.Geometry));
+            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, this.linePen, this.GeometryTracks));
             drawingTracks.Children.Add(this.textDrawing);
             this.drawingTracks = drawingTracks;
 
             DrawingGroup drawingTracksSelected = new DrawingGroup();
-            drawingTracksSelected.Children.Add(new GeometryDrawing(trackBrush, this.selectedLinePen, this.Geometry));
+            drawingTracksSelected.Children.Add(new GeometryDrawing(trackBrush, this.selectedLinePen, this.GeometryTracks));
             drawingTracksSelected.Children.Add(this.textDrawing);
             this.drawingTracksSelected = drawingTracks;
 
             // Rail
+            this.GeometryRail = CreateStraitTrackGeometry(this.Length, this.sleepersSpacing);
+
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.Ballast)
             {

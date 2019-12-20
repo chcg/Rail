@@ -19,6 +19,9 @@ namespace Rail.Controls
         private readonly Pen blackPen = new Pen(Brushes.Black, 1);
         private readonly Brush plateBrush = new SolidColorBrush(Colors.Green);
 
+        private readonly Pen selectPen1 = new Pen(Brushes.Black, 2);
+        private readonly Pen selectPen2 = new Pen(Brushes.White, 2) { DashStyle = DashStyles.Dot };
+
         // mouse operation variables
         private Point lastMousePosition; 
         private RailAction actionType;
@@ -26,7 +29,8 @@ namespace Rail.Controls
         private bool hasMoved;
         private List<RailItem> actionRailItemDockedRailItems;
         private Angle debugRotationAngle;
-        
+        private Point selectRecStart;
+
         public DelegateCommand<RailItem> DeleteRailItemCommand { get; private set; }
 
         protected enum RailAction
@@ -34,7 +38,8 @@ namespace Rail.Controls
             None,
             MoveSingle,
             MoveGraph,
-            Rotate
+            Rotate,
+            SelectRect
         }
 
         static RailPlanControl()
@@ -284,7 +289,14 @@ namespace Rail.Controls
             {
                 rails.ForEach(r => r.DrawDockPoints(drawingContext));
             }
-           
+
+            // draw select rex
+            if (this.actionType == RailAction.SelectRect)
+            {
+                drawingContext.DrawRectangle(null, selectPen1, new Rect(this.selectRecStart, this.lastMousePosition));
+                drawingContext.DrawRectangle(null, selectPen2, new Rect(this.selectRecStart, this.lastMousePosition));
+            }
+
             drawingContext.Pop();
             DebugText(drawingContext);
         }
@@ -322,7 +334,7 @@ namespace Rail.Controls
 
         private RailItem FindRailItem(Point point)
         {
-            RailItem track = this.RailPlan.Rails.Where(t => t.IsInside(point)).FirstOrDefault();
+            RailItem track = this.RailPlan.Rails.Where(t => t.IsInside(point, this.ViewMode)).FirstOrDefault();
             return track;
         }
 
@@ -359,11 +371,26 @@ namespace Rail.Controls
             this.InvalidateVisual();
         }
 
-        public void SelectRailItem(RailItem railItem, bool only)
+        public void SelectRailItem(RailItem railItem, bool addSelect)
         {
-            this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
-            railItem.IsSelected = true;
-            this.InvalidateVisual();
+            if (addSelect)
+            {
+                railItem.IsSelected = !railItem.IsSelected;
+            }
+            else
+            {
+                this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
+                railItem.IsSelected = true;
+            }
+        }
+
+        private void SelectRectange(Rect rec, bool addSelect)
+        {
+            if (!addSelect)
+            {
+                this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
+            }
+            this.RailPlan.Rails.Where(r => r.IsInside(rec, this.ViewMode)).ForEach(r => r.IsSelected = true);
         }
 
         public void UnselectAllRailItems()
@@ -479,7 +506,7 @@ namespace Rail.Controls
             var otherRails = this.RailPlan.Rails.Where(t => t != railItem).Where(t => !(docked?.Contains(t) ?? false)).ToList();
             var otherPoints = otherRails.SelectMany(r => r.DockPoints).ToList();
 
-            RailDockPointDockComparer comp = new RailDockPointDockComparer(railItem.Track.Spacing, this.ShowLayer);
+            RailDockPointDockComparer comp = new RailDockPointDockComparer(railItem.Track.RailSpacing, this.ShowLayer);
             var result = dockPoints.Join(otherPoints, p1 => p1, p2 => p2, (p1, p2) => new { P1 = p1, P2 = p2 }, comp).FirstOrDefault();
             if (result != null)
             {
@@ -654,6 +681,7 @@ namespace Rail.Controls
             CheckDockings();
         }
 
+        
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             Point pos = GetMousePosition(e);
@@ -676,31 +704,26 @@ namespace Rail.Controls
                     // SHIFT pressed
                     if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
                     {
-                        //SelectRailItem(this.actionRailItem, false);
-
                         UndockRailItem(this.actionRailItem);
                         this.actionType = RailAction.MoveSingle;
                         this.actionRailItemDockedRailItems = null;
                     }
-                    else if (Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
-                    {
-                        //SelectRailItem(this.actionRailItem, false);
-                    }
                     // SHIFT not pressed
                     else
                     {
-                        //SelectRailItem(this.actionRailItem, false);
                         this.actionType = RailAction.MoveGraph;
                         this.actionRailItemDockedRailItems = FindSubgraph(this.actionRailItem);
                     }
                 }
-                this.lastMousePosition = pos;
-                this.CaptureMouse();
             }
             else
             {
-                //UnselectAllRailItems();
+                this.actionType = RailAction.SelectRect;
+                this.selectRecStart = pos;
             }
+            this.lastMousePosition = pos;
+            this.CaptureMouse();
+
             base.OnMouseLeftButtonDown(e);
             CheckDockings();
         }
@@ -712,32 +735,34 @@ namespace Rail.Controls
             Point pos = GetMousePosition(e);
             this.MousePosition = pos;
             this.hasMoved = true;
-
-            if (this.actionRailItem != null)
+                        
+            switch (this.actionType)
             {
-                //    Trace.TraceInformation("OnMouseMove ({0}, {1})", e.GetPosition(this).X, e.GetPosition(this).Y);
-                                
-                //Angle rotate = Math.Truncate((e.GetPosition(this).Y - this.startRotationValue) / 5.0) * 7.5; 
-
-                switch (this.actionType)
-                {
-                case RailAction.MoveSingle:
-                    MoveRailItem(this.actionRailItem, pos - this.lastMousePosition);
-                    break;
-                case RailAction.MoveGraph:
-                    MoveRailItem(this.actionRailItem, pos - this.lastMousePosition, this.actionRailItemDockedRailItems);
-                    FindDocking(this.actionRailItem, this.actionRailItemDockedRailItems);
-                    break;
-                case RailAction.Rotate:
-                    double rotationAngle = Angle.Calculate(this.actionRailItem.Position, pos);
-                    RotateRailItem(this.actionRailItem, rotationAngle, this.actionRailItemDockedRailItems);
-                    FindDocking(this.actionRailItem, this.actionRailItemDockedRailItems);
-                    this.debugRotationAngle = rotationAngle;
-                    break;
-                }
+            case RailAction.MoveSingle:
+                MoveRailItem(this.actionRailItem, pos - this.lastMousePosition);
                 this.lastMousePosition = pos;
                 this.InvalidateVisual();
+                break;
+            case RailAction.MoveGraph:
+                MoveRailItem(this.actionRailItem, pos - this.lastMousePosition, this.actionRailItemDockedRailItems);
+                FindDocking(this.actionRailItem, this.actionRailItemDockedRailItems);
+                this.lastMousePosition = pos;
+                this.InvalidateVisual();
+                break;
+            case RailAction.Rotate:
+                double rotationAngle = Angle.Calculate(this.actionRailItem.Position, pos);
+                RotateRailItem(this.actionRailItem, rotationAngle, this.actionRailItemDockedRailItems);
+                FindDocking(this.actionRailItem, this.actionRailItemDockedRailItems);
+                this.debugRotationAngle = rotationAngle;
+                this.lastMousePosition = pos;
+                this.InvalidateVisual();
+                break;
+            case RailAction.SelectRect:
+                this.lastMousePosition = pos;
+                this.InvalidateVisual();
+                break;
             }
+                        
             base.OnMouseMove(e);
             CheckDockings();
         }
@@ -748,57 +773,51 @@ namespace Rail.Controls
         {
             Point pos = GetMousePosition(e);
 
-            if (this.actionRailItem != null)
+            
+            Vector move = pos - this.lastMousePosition;
+            RailItem dockingTrack;
+
+            bool addSelect = Keyboard.Modifiers.HasFlag(ModifierKeys.Shift) || Keyboard.Modifiers.HasFlag(ModifierKeys.Control);
+
+            switch (this.actionType)
             {
-                Vector move = pos - this.lastMousePosition;
-                RailItem dockingTrack;
-
-                switch (this.actionType)
+            case RailAction.MoveSingle:
+                this.actionRailItem.Position += pos - this.lastMousePosition;
+                dockingTrack = FindDocking(this.actionRailItem);
+                if (dockingTrack != null)
                 {
-                case RailAction.MoveSingle:
-                    this.actionRailItem.Position += pos - this.lastMousePosition;
-                    dockingTrack = FindDocking(this.actionRailItem);
-                    if (dockingTrack != null)
-                    {
-                        DockTo(this.actionRailItem, dockingTrack);
-                    }
-                    break;
-                case RailAction.MoveGraph:
-                    this.actionRailItem.Position += pos - this.lastMousePosition;
-                    dockingTrack = FindDocking(this.actionRailItem);
-                    if (dockingTrack != null)
-                    {
-                        DockTo(this.actionRailItem, dockingTrack);
-                    }
-                    foreach (RailItem track in this.actionRailItemDockedRailItems)
-                    {
-                        track.Position += pos - this.lastMousePosition;
-                    }
-                    break;
-                case RailAction.Rotate:
-                    double rotationAngle = Angle.Calculate(this.actionRailItem.Position, pos);
-                    RotateRailItem(this.actionRailItem, rotationAngle, this.actionRailItemDockedRailItems);
-                    FindDocking(this.actionRailItem, this.actionRailItemDockedRailItems);
-                    this.debugRotationAngle = rotationAngle;
-                    break;
+                    DockTo(this.actionRailItem, dockingTrack);
                 }
-
-                
+                break;
+            case RailAction.MoveGraph:
+                this.actionRailItem.Position += pos - this.lastMousePosition;
+                dockingTrack = FindDocking(this.actionRailItem);
+                if (dockingTrack != null)
+                {
+                    DockTo(this.actionRailItem, dockingTrack);
+                }
+                foreach (RailItem track in this.actionRailItemDockedRailItems)
+                {
+                    track.Position += pos - this.lastMousePosition;
+                }
+                break;
+            case RailAction.Rotate:
+                double rotationAngle = Angle.Calculate(this.actionRailItem.Position, pos);
+                RotateRailItem(this.actionRailItem, rotationAngle, this.actionRailItemDockedRailItems);
+                FindDocking(this.actionRailItem, this.actionRailItemDockedRailItems);
+                this.debugRotationAngle = rotationAngle;
+                break;
+            case RailAction.SelectRect:
+                SelectRectange(new Rect(this.selectRecStart, pos), addSelect);
+                break;
             }
-
+           
             // handle select
             if (!this.hasMoved)
             {
                 if (this.actionRailItem != null)
                 {
-                    if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift) || Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
-                    {
-                        SelectRailItem(this.actionRailItem, false);
-                    }
-                    else
-                    {
-                        SelectRailItem(this.actionRailItem, true);
-                    }
+                    SelectRailItem(this.actionRailItem, addSelect);
                 }
                 else
                 {

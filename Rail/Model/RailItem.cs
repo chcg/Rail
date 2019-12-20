@@ -148,25 +148,38 @@ namespace Rail.Model
         {
             foreach (var point in this.DockPoints)
             {
-                drawingContext.DrawEllipse(null, dockPen, point.Position, this.Track.Spacing / 2, this.Track.Spacing / 2);
+                drawingContext.DrawEllipse(null, dockPen, point.Position, this.Track.RailSpacing / 2, this.Track.RailSpacing / 2);
                 if (!point.IsDocked)
                 {
-                    drawingContext.DrawLine(positionPen, point.Position, point.Position.Circle(point.Angle, this.Track.Spacing));
+                    drawingContext.DrawLine(positionPen, point.Position, point.Position.Circle(point.Angle, this.Track.RailSpacing));
                 }
             }
         }
 
-        public bool IsInside(Point point)
+        public bool IsInside(Point point, RailViewMode viewMode)
         {
             TransformGroup grp = new TransformGroup();
             grp.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
             grp.Children.Add(new RotateTransform(this.Angle, this.Position.X, this.Position.Y));
 
-            Geometry geometry = this.Track.Geometry.Clone();
+            Geometry geometry = viewMode == RailViewMode.Tracks ? this.Track.GeometryTracks.Clone() : this.Track.GeometryRail.Clone();
             geometry.Transform = grp;
             bool f = geometry.FillContains(point);
             return f;
         }
+
+        public bool IsInside(Rect rec, RailViewMode viewMode)
+        {
+            TransformGroup grp = new TransformGroup();
+            grp.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
+            grp.Children.Add(new RotateTransform(this.Angle, this.Position.X, this.Position.Y));
+
+            Geometry geometry = viewMode == RailViewMode.Tracks ? this.Track.GeometryTracks.Clone() : this.Track.GeometryRail.Clone();
+            geometry.Transform = grp;
+            bool f = rec.Contains(geometry.Bounds);
+            return f;
+        }
+
 
         public void OnOptions()
         {

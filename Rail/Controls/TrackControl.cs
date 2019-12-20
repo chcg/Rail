@@ -84,7 +84,7 @@ namespace Rail.Controls
 
             //double zoom = 10.0 / this.Track.Spacing;
 
-            double zoom = Math.Min(10.0 / this.Track.Spacing, (this.ActualHeight - 10) / this.Track.Geometry.Bounds.Height);
+            double zoom = Math.Min(10.0 / this.Track.RailSpacing, (this.ActualHeight - 10) / this.Track.GeometryTracks.Bounds.Height);
 
 
             Rect rec = new Rect(0, 0, this.ActualWidth, this.ActualHeight);

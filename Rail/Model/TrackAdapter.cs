@@ -14,11 +14,11 @@ namespace Rail.Model
 
         protected override void Create()
         {
-            this.Geometry = CreateStraitTrackGeometry(this.Length);
+            this.GeometryTracks = CreateStraitTrackGeometry(this.Length, this.RailSpacing);
 
             // Tracks
             DrawingGroup drawingTracks = new DrawingGroup();
-            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.Geometry));
+            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.GeometryTracks));
             drawingTracks.Children.Add(this.textDrawing);
             this.drawingTracks = drawingTracks;
 
