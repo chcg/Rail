@@ -49,7 +49,7 @@
       <CurvedTurnout Id="M24772" Article="24772" Length="64.0" InnerRadius="515.0" InnerAngle="30.0" OuterRadius="515.0" OuterAngle="30.0" Direction="Right" Name="Right Wide Radius Curved Turnout" Decription="Right Wide Radius Curved Turnout" />
 
       <!-- double slip switch -->
-      <DoubleSlipSwitch Id="M24624" Article="24624" Length1="188.3" Length2="188.3" Angle="24.3" Name ="Double Slip Switch" Decription="Double Slip Switch" />
+      <DoubleSlipSwitch Id="M24624" Article="24624" Length="188.3" Angle="24.3" Radius="360.0" Name ="Double Slip Switch" Decription="Double Slip Switch" />
 
       <!-- double turnout -->
       <DoubleTurnout Id="M24630" Article="24630" Length="188.3" Radius="437.5" Angle="24.3" Name="Double Turnout" Decription="Double Turnout" />
@@ -138,12 +138,12 @@
       <Turnout Id="M22716" Article="22716" Length="225.0" Radius="902.4" Angle="14.26" Direction="Right" Decription="Right Turnout" />
 
       <!-- curved turnout tracks -->
-      <CurvedTurnout Id="M2268" Article="2268" InnerRadius="424.6" InnerAngle="30.0" OuterRadius="553.9" OuterAngle="30.0" Direction="Left" Decription="Left Curved Turnout" />
-      <CurvedTurnout Id="M2269" Article="2269" InnerRadius="424.6" InnerAngle="30.0" OuterRadius="553.9" OuterAngle="30.0" Direction="Right" Decription="Right Curved Turnout" />
+      <CurvedTurnout Id="M2268" Article="2268" Length="64.6" InnerRadius="360.0" InnerAngle="30.0" OuterRadius="360.0" OuterAngle="30.0" Direction="Left" Decription="Left Curved Turnout" />
+      <CurvedTurnout Id="M2269" Article="2269" Length="64.6" InnerRadius="360.0" InnerAngle="30.0" OuterRadius="360.0" OuterAngle="30.0" Direction="Right" Decription="Right Curved Turnout" />
 
       <!-- double slip switch -->
-      <DoubleSlipSwitch Id="M2260" Article="2260" Length1="168.9" Length2="168.9" Angle="22.5" Decription="Double Slip Switch" />
-      <DoubleSlipSwitch Id="M2275" Article="2275" Length1="225.0" Length2="225.0" Radius="902.4" Angle="14.26" Decription="Double Slip Switch" />
+      <DoubleSlipSwitch Id="M2260" Article="2260" Length="168.9" Angle="22.50" Radius="360.0" Decription="Double Slip Switch" />
+      <DoubleSlipSwitch Id="M2275" Article="2275" Length="225.0" Angle="14.26" Radius="360.0" Decription="Double Slip Switch" />
 
       <!-- double turnout -->
       <DoubleTurnout Id="M2270" Article="2270" Length="168.9" Radius="424.6" Angle="22.3" Decription="Double Turnout" />
@@ -215,7 +215,7 @@
       <Turnout Id="M18150" Article="18150" Length="600" Radius="2320" Angle="15"   Direction="Left" Name="18150 Left Extra Wide Radius Turnout" Decription="Left Extra Wide Radius Turnout" />
       <Turnout Id="M18050" Article="18050" Length="600" Radius="2320" Angle="15"   Direction="Right" Name="18050 Right Extra Wide Radius Turnou" Decription="Right Extra Wide Radius Turnout" />
       <!-- double slip switch -->
-      <DoubleSlipSwitch Id="M12260" Article="12260" Length1="375" Length2="375" Angle="22.5" Name="12260 Double Slip Switch" Decription="Double Slip Switch" />
+      <DoubleSlipSwitch Id="M12260" Article="12260" Length="375" Angle="22.5" Radius="360.0" Name="12260 Double Slip Switch" Decription="Double Slip Switch" />
       <!-- double turnout -->
       <DoubleTurnout Id="M12360" Article="12360" Length="375" Radius="600" Angle="30" Name="12360 Double Turnout" Decription="Double Turnout" />
       <!-- crossing -->
@@ -305,7 +305,7 @@
       <CurvedTurnout Id="P55423" Article="55423" InnerRadius="421.88" InnerAngle="15" OuterRadius="421.88" OuterAngle="15.0" Direction="Right" Name="55423 Right Curved Turnout" Decription="Right Curved Turnout 224 + " />
 
       <!-- double slip switch -->
-      <DoubleSlipSwitch Id="P55424" Article="55424" Length1="239" Length2="239" Angle="15" Name ="DKW Double Slip Switch" Decription="Double Slip Switch" />
+      <DoubleSlipSwitch Id="P55424" Article="55424" Length="239" Angle="15" Radius="360.0" Name ="DKW Double Slip Switch" Decription="Double Slip Switch" />
 
       <!-- double turnout -->
       <DoubleTurnout Id="P55425" Article="55425" Length="239" Radius="907.97" Angle="15" Name="W3 Double Turnout" Decription="Double Turnout" />

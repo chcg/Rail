@@ -48,13 +48,22 @@ namespace Rail.Model
 
         protected override List<TrackDockPoint> CreateDockPoints()
         {
-            Point circleCenter = new Point(-this.Length / 2, this.Radius);
-            return new List<TrackDockPoint>
-            {
-                new TrackDockPoint(0, new Point(-this.Length / 2.0, 0.0), 90 + 45, this.dockType),
-                new TrackDockPoint(1, new Point( this.Length / 2.0, 0.0), 180 + 90 + 45, this.dockType),
-                new TrackDockPoint(2, new Point(-this.Length / 2.0, 0.0).Rotate(this.Angle, circleCenter), this.Angle - 45, this.dockType)
-            };
+            Point circleCenterLeft = new Point(-this.Length / 2, -this.Radius);
+            Point circleCenterRight = new Point(this.Length / 2, -this.Radius);
+
+            return this.Direction == TrackDirection.Left ?
+                new List<TrackDockPoint>
+                {
+                    new TrackDockPoint(0, new Point(-this.Length / 2.0, 0.0), 90 + 45, this.dockType),
+                    new TrackDockPoint(1, new Point( this.Length / 2.0, 0.0), 180 + 90 + 45, this.dockType),
+                    new TrackDockPoint(2, new Point(-this.Length / 2.0, 0.0).Rotate(-this.Angle, circleCenterLeft), -this.Angle - 45, this.dockType),
+                } :
+                new List<TrackDockPoint>
+                {
+                    new TrackDockPoint(0, new Point(-this.Length / 2.0, 0.0), 90 + 45, this.dockType),
+                    new TrackDockPoint(1, new Point( this.Length / 2.0, 0.0), 180 + 90 + 45, this.dockType),
+                    new TrackDockPoint(3, new Point( this.Length / 2.0, 0.0).Rotate(+this.Angle, circleCenterRight), this.Angle + 135, this.dockType)
+                };
         }
     }
 }
