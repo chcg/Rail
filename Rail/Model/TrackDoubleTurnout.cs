@@ -62,6 +62,7 @@ namespace Rail.Model
             // Terrain
             this.drawingTerrain = drawingRail;
 
+            // dock points
             Point circleCenterLeft  = new Point(-this.Length / 2, -this.Radius);
             Point circleCenterRight = new Point(-this.Length / 2,  this.Radius);
             this.DockPoints = new List<TrackDockPoint> 

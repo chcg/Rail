@@ -19,15 +19,27 @@ namespace Rail.Model
 
         protected override void Create()
         {
-            this.GeometryTracks = CreateCrossingTrackGeometry(this.Length1, this.Length2, this.Angle);
+
 
             // Tracks
+            this.GeometryTracks = new CombinedGeometry(
+                StraitGeometry(this.Length1, StraitOrientation.Center, this.RailSpacing, -this.Angle / 2),
+                StraitGeometry(this.Length2, StraitOrientation.Center, this.RailSpacing, +this.Angle / 2));
+
             DrawingGroup drawingTracks = new DrawingGroup();
             drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.GeometryTracks));
             drawingTracks.Children.Add(this.textDrawing);
             this.drawingTracks = drawingTracks;
 
+            DrawingGroup drawingTracksSelected = new DrawingGroup();
+            drawingTracksSelected.Children.Add(new GeometryDrawing(trackBrushSelected, linePen, this.GeometryTracks));
+            drawingTracksSelected.Children.Add(this.textDrawing);
+            this.drawingTracksSelected = drawingTracksSelected;
+
             // Rail
+            this.GeometryRail = new CombinedGeometry(
+                StraitGeometry(this.Length1, StraitOrientation.Center, this.sleepersSpacing, -this.Angle / 2),
+                StraitGeometry(this.Length2, StraitOrientation.Center, this.sleepersSpacing, +this.Angle / 2));
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.Ballast)
             {
@@ -37,6 +49,16 @@ namespace Rail.Model
             drawingRail.Children.Add(StraitRail(false, this.Length1, StraitOrientation.Center, -this.Angle / 2));
             drawingRail.Children.Add(StraitRail(false, this.Length2, StraitOrientation.Center, +this.Angle / 2));
             this.drawingRail = drawingRail;
+
+            DrawingGroup drawingRailSelected = new DrawingGroup();
+            if (this.Ballast)
+            {
+                drawingRailSelected.Children.Add(StraitBallast(this.Length1, StraitOrientation.Center, -this.Angle / 2));
+                drawingRailSelected.Children.Add(StraitBallast(this.Length2, StraitOrientation.Center, +this.Angle / 2));
+            }
+            drawingRailSelected.Children.Add(StraitRail(true, this.Length1, StraitOrientation.Center, -this.Angle / 2));
+            drawingRailSelected.Children.Add(StraitRail(true, this.Length2, StraitOrientation.Center, +this.Angle / 2));
+            this.drawingRailSelected = drawingRailSelected;
 
             // Terrain
             this.drawingTerrain = drawingRail;
