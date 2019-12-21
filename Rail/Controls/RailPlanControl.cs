@@ -646,7 +646,22 @@ namespace Rail.Controls
             //    }
             //}
         }
-        
+
+        #endregion
+
+        #region key handling
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            //if (e.Key == Key.e)
+            base.OnKeyUp(e);
+        }
+
+        protected override void OnPreviewKeyDown(KeyEventArgs e)
+        {
+            base.OnPreviewKeyDown(e);
+        }
+
         #endregion
 
         #region mouse handling

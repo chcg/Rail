@@ -97,11 +97,37 @@ namespace Rail.Model
 
         protected override List<TrackDockPoint> CreateDockPoints()
         {
-            return new List<TrackDockPoint>
-            {
-                new TrackDockPoint(0, new Point(this.InnerRadius, 0), 225.0, this.dockType),
-                new TrackDockPoint(1, new Point(this.InnerRadius, 0), 45.0, this.dockType)
-            };
+            double innerWidth = (this.InnerRadius * 2 * Math.PI * this.InnerAngle / 360.0 + this.Length) / 2;
+            double outerWidth = (this.OuterRadius * 2 * Math.PI * this.OuterAngle / 360.0 + this.Length) / 2;
+            //double hight = this.OuterRadius * 2 * Math.PI * (this.OuterAngle - 90) / 360.0;
+
+            //Point centerLeft = CurveCenter(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left) + new Vector(this.Length / 2, 0);
+            //Point centerRight = CurveCenter(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right) + new Vector(this.Length / 2, 0);
+
+            Point innerCircleCenterLeft = new Point(-innerWidth, -this.InnerRadius);
+            Point outerCircleCenterLeft = new Point(-outerWidth + Length, -this.OuterRadius);
+
+            Point innerCircleCenterRight = new Point(innerWidth, -this.InnerRadius);
+            Point outerCircleCenterRight = new Point(outerWidth - Length, -this.OuterRadius);
+            
+            
+
+            return this.Direction == TrackDirection.Left ? 
+                new List<TrackDockPoint>
+                {
+                    new TrackDockPoint(0, new Point(-innerWidth, 0.0), 90 + 45, this.dockType),
+                    new TrackDockPoint(1, new Point(-innerWidth, 0.0).Rotate(-this.InnerAngle, innerCircleCenterLeft), -this.InnerAngle - 45, this.dockType),
+                    new TrackDockPoint(2, new Point(-outerWidth + this.Length, 0.0).Rotate(-this.OuterAngle, outerCircleCenterLeft), -this.OuterAngle -45, this.dockType),
+                } :
+                new List<TrackDockPoint>
+                {
+                    new TrackDockPoint(0, new Point(+innerWidth, 0.0), 90 + 45 + 180, this.dockType),
+                    new TrackDockPoint(1, new Point(+innerWidth, 0.0).Rotate(this.InnerAngle, innerCircleCenterRight), this.InnerAngle + 135, this.dockType),
+                    new TrackDockPoint(2, new Point(+outerWidth - this.Length, 0.0).Rotate(this.OuterAngle, outerCircleCenterRight), this.OuterAngle + 135, this.dockType),
+
+                    //new TrackDockPoint(0, new Point(this.InnerRadius, 0), 225.0, this.dockType),
+                    //new TrackDockPoint(1, new Point(this.InnerRadius, 0), 45.0, this.dockType)
+                };
         }
     }
 }

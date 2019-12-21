@@ -255,7 +255,7 @@
             </DataGrid>
         </Grid>
         <Grid>
-            <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TrackRailViewModeToVisibilityConverter}}" Focusable="False" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  >
+            <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TrackRailViewModeToVisibilityConverter}}" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
                 <ctrl:RailPlanControl 
                 Background="DarkGray"
                 ZoomFactor="{Binding ZoomFactor}"
@@ -266,7 +266,7 @@
                 ShowDockingPoints="{Binding ShowDockingPoints}"
                 ShowLayer="{Binding SelectedShowLayer}"
                 InsertLayer="{Binding SelectedInsertLayer}"
-                RailMargin="40"/>
+                RailMargin="40" />
             </ScrollViewer>
             <Viewport3D Visibility="{Binding ViewMode, Converter={StaticResource TerrainViewModeToVisibilityConverter}}" ClipToBounds="True">
                 <Viewport3D.Camera>
