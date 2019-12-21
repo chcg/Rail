@@ -25,6 +25,11 @@ namespace Rail.Model
             drawingTracks.Children.Add(this.textDrawing);
             this.drawingTracks = drawingTracks;
 
+            DrawingGroup drawingTracksSelected = new DrawingGroup();
+            drawingTracksSelected.Children.Add(new GeometryDrawing(trackBrushSelected, linePen, this.GeometryTracks));
+            drawingTracksSelected.Children.Add(this.textDrawing);
+            this.drawingTracksSelected = drawingTracksSelected;
+
             // Rail
             this.GeometryRail = StraitGeometry(this.Length, StraitOrientation.Center, this.sleepersSpacing);
 
@@ -35,6 +40,14 @@ namespace Rail.Model
             }
             drawingRail.Children.Add(StraitRail(false, this.Length));
             this.drawingRail = drawingRail;
+
+            DrawingGroup drawingRailSelected = new DrawingGroup();
+            if (this.Ballast)
+            {
+                drawingRailSelected.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, 0, null));
+            }
+            drawingRailSelected.Children.Add(StraitRail(true, this.Length));
+            this.drawingRailSelected = drawingRailSelected;
 
             // Terrain
             this.drawingTerrain = drawingRail;

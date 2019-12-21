@@ -9,28 +9,41 @@ namespace Rail.Model
 {
     public class TrackEndPiece : TrackBase
     {
-        [XmlAttribute("Length")]
-        public double Length { get; set; }
-
         protected override void Create()
         {
+            double length = this.RailSpacing;
+
             // Tracks
-            this.GeometryTracks = StraitGeometry(this.Length, StraitOrientation.Center, this.RailSpacing);
+            this.GeometryTracks = StraitGeometry(length, StraitOrientation.Left, this.RailSpacing);
 
             DrawingGroup drawingTracks = new DrawingGroup();
             drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.GeometryTracks));
             drawingTracks.Children.Add(this.textDrawing);
             this.drawingTracks = drawingTracks;
 
+            DrawingGroup drawingTracksSelected = new DrawingGroup();
+            drawingTracksSelected.Children.Add(new GeometryDrawing(trackBrushSelected, linePen, this.GeometryTracks));
+            drawingTracksSelected.Children.Add(this.textDrawing);
+            this.drawingTracksSelected = drawingTracksSelected;
+
             // Rail
-            this.GeometryRail = StraitGeometry(this.Length, StraitOrientation.Center, this.sleepersSpacing);
+            this.GeometryRail = StraitGeometry(length, StraitOrientation.Left, this.sleepersSpacing);
 
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.Ballast)
             {
-                drawingRail.Children.Add(StraitBallast(this.RailSpacing, StraitOrientation.Center, 0, null));
+                drawingRail.Children.Add(StraitBallast(length, StraitOrientation.Left, 0, null));
             }
+            drawingRail.Children.Add(StraitRail(false, length/2, StraitOrientation.Left, 0, null));
             this.drawingRail = drawingRail;
+
+            DrawingGroup drawingRailSelected = new DrawingGroup();
+            if (this.Ballast)
+            {
+                drawingRailSelected.Children.Add(StraitBallast(length, StraitOrientation.Left, 0, null));
+            }
+            drawingRailSelected.Children.Add(StraitRail(true, length / 2, StraitOrientation.Left, 0, null));
+            this.drawingRailSelected = drawingRailSelected;
 
             // Terrain
             this.drawingTerrain = drawingRail;

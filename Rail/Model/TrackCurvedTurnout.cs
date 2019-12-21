@@ -80,32 +80,76 @@ namespace Rail.Model
             // Rail
             this.GeometryRail = this.Direction == TrackDirection.Left ?
                 new CombinedGeometry(
-                    CurvedGeometry(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, this.sleepersSpacing, new Point(-width / 2, 0)),
+                    CurvedGeometry(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, this.sleepersSpacing, centerLeft),
                     new CombinedGeometry(
-                        StraitGeometry(this.Length, StraitOrientation.Left, this.sleepersSpacing, 0, new Point(-width / 2, 0)),
-                        CurvedGeometry(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, this.sleepersSpacing, new Point(-width / 2 + this.Length, 0)))
+                        StraitGeometry(this.Length, StraitOrientation.Left, this.sleepersSpacing, 0, centerLeft),
+                        CurvedGeometry(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, this.sleepersSpacing, centerLeft + new Vector(this.Length, 0)))
                     ) :
                 new CombinedGeometry(
-                    CurvedGeometry(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, this.sleepersSpacing, new Point(width / 2, 0)),
+                    CurvedGeometry(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, this.sleepersSpacing, centerRight),
                     new CombinedGeometry(
-                        StraitGeometry(this.Length, StraitOrientation.Right, this.sleepersSpacing, 0, new Point(width / 2, 0)),
-                        CurvedGeometry(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, this.sleepersSpacing, new Point(width / 2 - this.Length, 0)))
+                        StraitGeometry(this.Length, StraitOrientation.Right, this.sleepersSpacing, 0, centerRight),
+                        CurvedGeometry(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, this.sleepersSpacing, centerRight - new Vector(this.Length, 0)))
                     );
 
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.Ballast)
             {
-                //drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, 0, null));
+                if (this.Direction == TrackDirection.Left)
+                {
+                    drawingRail.Children.Add(CurvedBallast(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft));
+                    drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Left, 0, centerLeft));
+                    drawingRail.Children.Add(CurvedBallast(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft + new Vector(this.Length, 0)));
+                }
+                else
+                {
+                    drawingRail.Children.Add(CurvedBallast(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight));
+                    drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Right, 0, centerRight));
+                    drawingRail.Children.Add(CurvedBallast(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight - new Vector(this.Length, 0)));
+                }
             }
-            //drawingRail.Children.Add(StraitRail(this.Length));
+            if (this.Direction == TrackDirection.Left)
+            {
+                drawingRail.Children.Add(CurvedRail(false, this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft));
+                drawingRail.Children.Add(StraitRail(false, this.Length, StraitOrientation.Left, 0, centerLeft));
+                drawingRail.Children.Add(CurvedRail(false, this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft + new Vector(this.Length, 0)));
+            }
+            else
+            {
+                drawingRail.Children.Add(CurvedRail(false, this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight));
+                drawingRail.Children.Add(StraitRail(false, this.Length, StraitOrientation.Right, 0, centerRight));
+                drawingRail.Children.Add(CurvedRail(false, this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight - new Vector(this.Length, 0)));
+            }
             this.drawingRail = drawingRail;
 
             DrawingGroup drawingRailSelected = new DrawingGroup();
             if (this.Ballast)
             {
-                //drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, 0, null));
+                if (this.Direction == TrackDirection.Left)
+                {
+                    drawingRailSelected.Children.Add(CurvedBallast(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft));
+                    drawingRailSelected.Children.Add(StraitBallast(this.Length, StraitOrientation.Left, 0, centerLeft));
+                    drawingRailSelected.Children.Add(CurvedBallast(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft + new Vector(this.Length, 0)));
+                }
+                else
+                {
+                    drawingRailSelected.Children.Add(CurvedBallast(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight));
+                    drawingRailSelected.Children.Add(StraitBallast(this.Length, StraitOrientation.Right, 0, centerRight));
+                    drawingRailSelected.Children.Add(CurvedBallast(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight - new Vector(this.Length, 0)));
+                }
             }
-            //drawingRail.Children.Add(StraitRail(this.Length));
+            if (this.Direction == TrackDirection.Left)
+            {
+                drawingRailSelected.Children.Add(CurvedRail(true, this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft));
+                drawingRailSelected.Children.Add(StraitRail(true, this.Length, StraitOrientation.Left, 0, centerLeft));
+                drawingRailSelected.Children.Add(CurvedRail(true, this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft + new Vector(this.Length, 0)));
+            }
+            else
+            {
+                drawingRailSelected.Children.Add(CurvedRail(true, this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight));
+                drawingRailSelected.Children.Add(StraitRail(true, this.Length, StraitOrientation.Right, 0, centerRight));
+                drawingRailSelected.Children.Add(CurvedRail(true, this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight - new Vector(this.Length, 0)));
+            }
             this.drawingRailSelected = drawingRailSelected;
 
             // Terrain
