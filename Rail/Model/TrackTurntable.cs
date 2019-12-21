@@ -22,95 +22,67 @@ namespace Rail.Model
         [XmlAttribute("RailNum")]
         public int RailNum { get; set; }
 
-        protected override void Create()
+        protected override Geometry CreateGeometry(double spacing)
         {
-            this.GeometryTracks = CreateTurntableTrackGeometry(this.OuterRadius, this.InnerRadius, this.Angle, this.RailNum);
+            return new EllipseGeometry(new Point(0, 0), this.OuterRadius, this.OuterRadius);
+        }
 
-            // Tracks
-            DrawingGroup drawingTracks = new DrawingGroup();
-            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.GeometryTracks));
-            drawingTracks.Children.Add(this.textDrawing);
-            this.drawingTracks = drawingTracks;
-
-            // Rail
+        protected override Drawing CreateRailDrawing(bool isSelected)
+        {
             DrawingGroup drawingRail = new DrawingGroup();
-            drawingRail.Children.Add(TurntableBackground(this.OuterRadius, this.InnerRadius, this.Angle, this.RailNum));
+            // background
+            drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.DarkGray), linePen, new EllipseGeometry(new Point(0, 0), this.OuterRadius, this.OuterRadius)));
+            drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new EllipseGeometry(new Point(0, 0), this.InnerRadius, this.InnerRadius)));
             if (this.Ballast)
             {
-               drawingRail.Children.Add(TurntableBallast(this.OuterRadius, this.InnerRadius, this.Angle, this.RailNum));
+                for (int i = 0; i < this.RailNum; i++)
+                {
+                    drawingRail.Children.Add(new GeometryDrawing(this.ballastBrush, null,
+                        new PathGeometry(new PathFigureCollection
+                        {
+                        new PathFigure(new Point(-this.OuterRadius, -this.RailSpacing).Rotate(this.Angle * i), new PathSegmentCollection
+                        {
+                            new LineSegment(new Point(-this.InnerRadius, -this.RailSpacing).Rotate(this.Angle * i), true),
+                            new LineSegment(new Point(-this.InnerRadius,  this.RailSpacing).Rotate(this.Angle * i), true),
+                            new LineSegment(new Point(-this.OuterRadius,  this.RailSpacing).Rotate(this.Angle * i), true),
+                            new LineSegment(new Point(-this.OuterRadius, -this.RailSpacing).Rotate(this.Angle * i), true)
+                        }, true)
+                        })));
+                }
+                drawingRail.Children.Add(new GeometryDrawing(this.ballastBrush, null, new RectangleGeometry(new Rect(-this.InnerRadius, -this.RailSpacing, this.InnerRadius * 2, this.RailSpacing * 2))));
             }
-            drawingRail.Children.Add(TurntableRail(this.OuterRadius, this.InnerRadius, this.Angle, this.RailNum));
-            this.drawingRail = drawingRail;
+            
+            drawingRail.Children.Add(StraitRail(isSelected, this.InnerRadius * 2));
 
-            // Terrain
-            this.drawingTerrain = drawingRail;
+            for (int i = 0; i < RailNum; i++)
+            {
 
+                drawingRail.Children.Add(new GeometryDrawing(null, isSelected ? railPenSelected : railPen, new LineGeometry(new Point(-this.OuterRadius, -this.RailSpacing / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, -this.RailSpacing / 2).Rotate(this.Angle * i)))); ;
+                drawingRail.Children.Add(new GeometryDrawing(null, isSelected ? railPenSelected : railPen, new LineGeometry(new Point(-this.OuterRadius, +this.RailSpacing / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, +this.RailSpacing / 2).Rotate(this.Angle * i))));
+
+                double length1 = this.OuterRadius - this.InnerRadius;
+                int num1 = (int)Math.Round(length1 / (this.RailSpacing / 2));
+                double sleepersDistance1 = length1 / num1;
+
+                for (int j = 0; j < num1; j++)
+                {
+                    drawingRail.Children.Add(new GeometryDrawing(null, isSelected ? sleepersPenSelected : sleepersPen, new LineGeometry(
+                        new Point(-this.OuterRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, -this.sleepersSpacing / 2).Rotate(this.Angle * i),
+                        new Point(-this.OuterRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, +this.sleepersSpacing / 2).Rotate(this.Angle * i))));
+                }
+            }
+            return drawingRail;
+        }
+
+        protected override List<TrackDockPoint> CreateDockPoints()
+        {
             var dockPoints = new List<TrackDockPoint>();
             for (int i = 0; i < this.RailNum; i++)
             {
                 Point point = new Point(0, this.OuterRadius).Rotate(this.Angle * i);
                 dockPoints.Add(new TrackDockPoint(i, point, this.Angle * i + 45, this.dockType));
             }
-            this.DockPoints = dockPoints;
-        }
-
-        private Geometry CreateTurntableTrackGeometry(double outerRadius, double innerRadius, double angle, int railNum)
-        {
-            return new EllipseGeometry(new Point(0, 0), outerRadius, outerRadius);
-        }
-
-        private Drawing TurntableBackground(double outerRadius, double innerRadius, double angle, int railNum)
-        {
-            var drawing = new DrawingGroup();
-            drawing.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.DarkGray), linePen, new EllipseGeometry(new Point(0, 0), outerRadius, outerRadius)));
-            drawing.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new EllipseGeometry(new Point(0, 0), innerRadius, innerRadius)));
-            return drawing;
-        }
-
-        private Drawing TurntableBallast(double outerRadius, double innerRadius, double angle, int railNum)
-        {
-            var drawing = new DrawingGroup();
-            for (int i = 0; i < this.RailNum; i++)
-            {
-                drawing.Children.Add(new GeometryDrawing(this.ballastBrush, null,
-                    new PathGeometry(new PathFigureCollection
-                    {
-                        new PathFigure(new Point(-outerRadius, -this.RailSpacing).Rotate(angle * i), new PathSegmentCollection
-                        {
-                            new LineSegment(new Point(-innerRadius, -this.RailSpacing).Rotate(angle * i), true),
-                            new LineSegment(new Point(-innerRadius,  this.RailSpacing).Rotate(angle * i), true),
-                            new LineSegment(new Point(-outerRadius,  this.RailSpacing).Rotate(angle * i), true),
-                            new LineSegment(new Point(-outerRadius, -this.RailSpacing).Rotate(angle * i), true)
-                        }, true)
-                    })));
-            }
-            drawing.Children.Add(new GeometryDrawing(this.ballastBrush, null, new RectangleGeometry(new Rect(-innerRadius, -this.RailSpacing, innerRadius * 2, this.RailSpacing * 2))));
-            return drawing;
-        }
-
-        private Drawing TurntableRail(double outerRadius, double innerRadius, double angle, int railNum)
-        {
-            var drawing = new DrawingGroup();
-            drawing.Children.Add(StraitRail(false, innerRadius * 2));
-
-            for (int i = 0; i < RailNum; i++)
-            {
-
-                drawing.Children.Add(new GeometryDrawing(null, railPen, new LineGeometry(new Point(-outerRadius, -this.RailSpacing / 2).Rotate(angle * i), new Point(-innerRadius, -this.RailSpacing / 2).Rotate(angle * i))));
-                drawing.Children.Add(new GeometryDrawing(null, railPen, new LineGeometry(new Point(-outerRadius, +this.RailSpacing / 2).Rotate(angle * i), new Point(-innerRadius, +this.RailSpacing / 2).Rotate(angle * i))));
-
-                double length1 = outerRadius - innerRadius;
-                int num1 = (int)Math.Round(length1 / (this.RailSpacing / 2));
-                double sleepersDistance1 = length1 / num1;
-
-                for (int j = 0; j < num1; j++)
-                {
-                    drawing.Children.Add(new GeometryDrawing(null, sleepersPen, new LineGeometry(
-                        new Point(-outerRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, -this.sleepersSpacing / 2).Rotate(angle * i),
-                        new Point(-outerRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, +this.sleepersSpacing / 2).Rotate(angle * i))));
-                }
-            }
-            return drawing;
+            return dockPoints;
         }
     }
 }

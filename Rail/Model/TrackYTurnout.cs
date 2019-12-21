@@ -15,31 +15,19 @@ namespace Rail.Model
 
         [XmlAttribute("Angle")]
         public double Angle { get; set; }
-
-        protected override void Create()
+        
+        protected override Geometry CreateGeometry(double spacing)
         {
             double length = this.Radius * 2 * Math.PI * this.Angle / 360.0;
 
-            // Tracks
+            return new CombinedGeometry(
+                CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, spacing, new Point(-length / 2, 0)),
+                CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, spacing, new Point(-length / 2, 0)));
+        }
 
-            this.GeometryTracks = new CombinedGeometry(
-                CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, this.RailSpacing, new Point(-length / 2, 0)),
-                CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, this.RailSpacing, new Point(-length / 2, 0)));
-            
-            DrawingGroup drawingTracks = new DrawingGroup();
-            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.GeometryTracks));
-            drawingTracks.Children.Add(this.textDrawing);
-            this.drawingTracks = drawingTracks;
-
-            DrawingGroup drawingTracksSelected = new DrawingGroup();
-            drawingTracksSelected.Children.Add(new GeometryDrawing(trackBrushSelected, linePen, this.GeometryTracks));
-            drawingTracksSelected.Children.Add(this.textDrawing);
-            this.drawingTracksSelected = drawingTracksSelected;
-
-            // Rail
-            this.GeometryRail = new CombinedGeometry(
-                CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, this.sleepersSpacing, new Point(-length / 2, 0)),
-                CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, this.sleepersSpacing, new Point(-length / 2, 0)));
+        protected override Drawing CreateRailDrawing(bool isSelected)
+        {
+            double length = this.Radius * 2 * Math.PI * this.Angle / 360.0;
 
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.Ballast)
@@ -47,26 +35,14 @@ namespace Rail.Model
                 drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-length / 2, 0)));
                 drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-length / 2, 0)));
             }
-            drawingRail.Children.Add(CurvedRail(false, this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-length / 2, 0)));
-            drawingRail.Children.Add(CurvedRail(false, this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-length / 2, 0)));
-            this.drawingRail = drawingRail;
+            drawingRail.Children.Add(CurvedRail(isSelected, this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-length / 2, 0)));
+            drawingRail.Children.Add(CurvedRail(isSelected, this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-length / 2, 0)));
+            return drawingRail;
+        }
 
-            DrawingGroup drawingRailSelected = new DrawingGroup();
-            if (this.Ballast)
-            {
-                drawingRailSelected.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-length / 2, 0)));
-                drawingRailSelected.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-length / 2, 0)));
-            }
-            drawingRailSelected.Children.Add(CurvedRail(true, this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-length / 2, 0)));
-            drawingRailSelected.Children.Add(CurvedRail(true, this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-length / 2, 0)));
-            this.drawingRailSelected = drawingRailSelected;
-
-            // Terrain
-            this.drawingTerrain = drawingRail;
-
-            //Point circleCenterLeft = new Point(-this.Length / 2, -this.Radius);
-            //Point circleCenterRight = new Point(-this.Length / 2, this.Radius);
-            this.DockPoints = new List<TrackDockPoint>
+        protected override List<TrackDockPoint> CreateDockPoints()
+        {
+            return new List<TrackDockPoint>
             {
                 //new TrackDockPoint(-this.Length / 2.0, 0.0, 135),
                 //new TrackDockPoint( this.Length / 2.0, 0.0, 315),

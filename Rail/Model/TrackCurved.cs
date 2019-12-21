@@ -14,47 +14,26 @@ namespace Rail.Model
         [XmlAttribute("Angle")]
         public double Angle { get; set; }
 
-        protected override void Create()
+        protected override Geometry CreateGeometry(double spacing)
         {
+            return CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Center, spacing, new Point(0, 0));
+        }
 
-            // Tracks
-            this.GeometryTracks = CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Center, this.RailSpacing, new Point(0,0));
-
-            DrawingGroup drawingTracks = new DrawingGroup();
-            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, this.linePen, this.GeometryTracks));
-            drawingTracks.Children.Add(this.textDrawing);
-            this.drawingTracks = drawingTracks;
-
-            DrawingGroup drawingTracksSelected = new DrawingGroup();
-            drawingTracksSelected.Children.Add(new GeometryDrawing(trackBrushSelected, this.linePen, this.GeometryTracks));
-            drawingTracksSelected.Children.Add(this.textDrawing);
-            this.drawingTracksSelected = drawingTracksSelected;
-
-            // Rail
-            this.GeometryRail = CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Center, this.sleepersSpacing, new Point(0, 0));
-            
+        protected override Drawing CreateRailDrawing(bool isSelected)
+        {
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.Ballast)
             {
                 drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Center, new Point(0, 0)));
             }
-            drawingRail.Children.Add(CurvedRail(false, this.Angle, this.Radius, CurvedOrientation.Center, new Point(0, 0)));
-            this.drawingRail = drawingRail;
+            drawingRail.Children.Add(CurvedRail(isSelected, this.Angle, this.Radius, CurvedOrientation.Center, new Point(0, 0)));
+            return drawingRail;
+        }
 
-            DrawingGroup drawingRailSelected = new DrawingGroup();
-            if (this.Ballast)
-            {
-                drawingRailSelected.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Center, new Point(0, 0)));
-            }
-            drawingRailSelected.Children.Add(CurvedRail(true, this.Angle, this.Radius, CurvedOrientation.Center, new Point(0, 0)));
-            this.drawingRailSelected = drawingRailSelected;
-
-            // Terrain
-            this.drawingTerrain = drawingRail;
-
-            // dock points
+        protected override List<TrackDockPoint> CreateDockPoints()
+        {
             Point circleCenter = new Point(0, this.Radius);
-            this.DockPoints = new List<TrackDockPoint>
+            return new List<TrackDockPoint>
             {
                 new TrackDockPoint(0, circleCenter - PointExtentions.Circle(-this.Angle / 2, this.Radius),  this.Angle / 2 -  45, this.dockType),
                 new TrackDockPoint(1, circleCenter - PointExtentions.Circle( this.Angle / 2, this.Radius), -this.Angle / 2 + 135, this.dockType)

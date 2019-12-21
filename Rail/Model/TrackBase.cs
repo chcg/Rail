@@ -81,8 +81,37 @@ namespace Rail.Model
             this.textDrawing = new GeometryDrawing(textBrush, textPen, text.BuildGeometry(new Point(0, 0) - new Vector(text.Width / 2, text.Height / 2)));
             Create();
         }
+                
+        protected virtual void Create()
+        {
+            // Tracks
+            this.GeometryTracks = CreateGeometry(this.RailSpacing);
 
-        protected abstract void Create();
+            DrawingGroup drawingTracks = new DrawingGroup();
+            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, this.linePen, this.GeometryTracks));
+            drawingTracks.Children.Add(this.textDrawing);
+            this.drawingTracks = drawingTracks;
+
+            DrawingGroup drawingTracksSelected = new DrawingGroup();
+            drawingTracksSelected.Children.Add(new GeometryDrawing(trackBrushSelected, this.linePen, this.GeometryTracks));
+            drawingTracksSelected.Children.Add(this.textDrawing);
+            this.drawingTracksSelected = drawingTracksSelected;
+
+            // Rail
+            this.GeometryRail = CreateGeometry(this.sleepersSpacing);
+            this.drawingRail = CreateRailDrawing(false);
+            this.drawingRailSelected = CreateRailDrawing(true);
+
+            // Terrain
+            this.drawingTerrain = drawingRail;
+
+            // dock points
+            this.DockPoints = CreateDockPoints();
+        }
+
+        protected abstract Geometry CreateGeometry(double spacing);
+        protected abstract Drawing CreateRailDrawing(bool isSelected);
+        protected abstract List<TrackDockPoint> CreateDockPoints();
 
         // for TrackControl
         public virtual void Render(DrawingContext drawingContext, RailViewMode viewMode, bool isSelected)

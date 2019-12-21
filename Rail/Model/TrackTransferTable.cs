@@ -25,45 +25,35 @@ namespace Rail.Model
         [XmlAttribute("Length")]
         public double Length { get; set; }
 
-        protected override void Create()
+        protected override Geometry CreateGeometry(double spacing)
         {
-            this.GeometryTracks = new RectangleGeometry(new Rect(-this.Width / 2, -this.Height / 2, this.Width, this.Height));
+            return new RectangleGeometry(new Rect(-this.Width / 2, -this.Height / 2, this.Width, this.Height));
+        }
 
-            // Tracks
-            DrawingGroup drawingTracks = new DrawingGroup();
-            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.GeometryTracks));
-            drawingTracks.Children.Add(this.textDrawing);
-            this.drawingTracks = drawingTracks;
+        protected override Drawing CreateRailDrawing(bool isSelected)
+        {
+            double rim = (this.Width - this.Length) / 2;
 
-            // Rail
             DrawingGroup drawingRail = new DrawingGroup();
-            drawingRail.Children.Add(TransferTableBackground(this.Width, this.Height, this.Length));
+            // background
+            drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.DarkGray), linePen, new RectangleGeometry(new Rect(-Width / 2, -Height / 2, Width, Height))));
+            drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new RectangleGeometry(new Rect(-Width / 2, -Height / 2, rim, Height))));
+            drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new RectangleGeometry(new Rect(Width / 2 - rim, -Height / 2, rim, Height))));
             if (this.Ballast)
             {
                 //drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, 0, null));
             }
             //drawingRail.Children.Add(StraitRail(this.Length));
-            this.drawingRail = drawingRail;
+            return drawingRail;
+        }
 
-            // Terrain
-            this.drawingTerrain = drawingRail;
-
-            this.DockPoints = new List<TrackDockPoint>
+        protected override List<TrackDockPoint> CreateDockPoints()
+        {
+            return new List<TrackDockPoint>
             {
                 new TrackDockPoint(0, new Point(-this.Length / 2.0, 0.0), 135, this.dockType),
                 new TrackDockPoint(1, new Point(+this.Length / 2.0, 0.0), 315, this.dockType)
             };
-
-        }
-
-        private Drawing TransferTableBackground(double width, double height, double length)
-        {
-            double rim = (width - length) / 2; 
-            var drawing = new DrawingGroup();
-            drawing.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.DarkGray), linePen, new RectangleGeometry(new Rect(-width / 2, -height / 2, width, height ))));
-            drawing.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new RectangleGeometry(new Rect(-width / 2, -height / 2, rim, height))));
-            drawing.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new RectangleGeometry(new Rect(width / 2 - rim, -height / 2, rim, height))));
-            return drawing;
         }
     }
 }
