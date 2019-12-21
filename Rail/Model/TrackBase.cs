@@ -574,7 +574,6 @@ namespace Rail.Model
             return railDrawing;
         }
 
-
         protected Geometry CurvedGeometry(double angle, double radius, CurvedOrientation orientation, double spacing, Point pos)
         {
             double outerTrackRadius = radius + spacing / 2;
@@ -684,6 +683,21 @@ namespace Rail.Model
                     )));
             }
             return railDrawing;
+        }
+
+        public Point CurveCenter(double angle, double radius, CurvedOrientation orientation)
+        {
+            double startAngle = 0; // orientation.HasFlag(CurvedOrientation.Counterclockwise) ? 180 : 0;
+            switch (orientation & CurvedOrientation.Direction)
+            {
+            case CurvedOrientation.Left: startAngle -= 0; break;
+            case CurvedOrientation.Center: startAngle -= angle / 2; break;
+            case CurvedOrientation.Right: startAngle -= angle; break;
+            }
+
+            Vector a = PointExtentions.Circle(startAngle, radius);
+            Vector b = PointExtentions.Circle(startAngle + angle, radius);
+            return (Point)((a - b) / -2);
         }
     }
 }

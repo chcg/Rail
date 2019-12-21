@@ -43,10 +43,10 @@
       <Turnout Id="M24712" Article="24712" Length="236.1" Radius="1114.6" Angle="12.1" Direction="Right" Name="Right Wide Radius Turnout" Decription="Right Wide Radius Turnout 236 + 912" />
 
       <!-- curved turnout tracks -->
-      <CurvedTurnout Id="M24671" Article="24671" InnerRadius="360.0" InnerAngle="30.0" OuterRadius="437.5" OuterAngle="30.0" Direction="Left" Name="Left Curved Turnout" Decription="Left Curved Turnout 224 +" />
-      <CurvedTurnout Id="M24672" Article="24672" InnerRadius="360.0" InnerAngle="30.0" OuterRadius="437.5" OuterAngle="30.0" Direction="Right" Name="Right Curved Turnout" Decription="Right Curved Turnout 224 + " />
-      <CurvedTurnout Id="M24771" Article="24771" InnerRadius="515.0" InnerAngle="30.0" OuterRadius="579.3" OuterAngle="30.0" Direction="Left" Name="Left Wide Radius Curved Turnout" Decription="Left Wide Radius Curved Turnout" />
-      <CurvedTurnout Id="M24772" Article="24772" InnerRadius="515.0" InnerAngle="30.0" OuterRadius="579.3" OuterAngle="30.0" Direction="Right" Name="Right Wide Radius Curved Turnout" Decription="Right Wide Radius Curved Turnout" />
+      <CurvedTurnout Id="M24671" Article="24671" Length="77.5" InnerRadius="360.0" InnerAngle="30.0" OuterRadius="360.0" OuterAngle="30.0" Direction="Left" Name="Left Curved Turnout" Decription="Left Curved Turnout 224 +" />
+      <CurvedTurnout Id="M24672" Article="24672" Length="77.5" InnerRadius="360.0" InnerAngle="30.0" OuterRadius="360.0" OuterAngle="30.0" Direction="Right" Name="Right Curved Turnout" Decription="Right Curved Turnout 224 + " />
+      <CurvedTurnout Id="M24771" Article="24771" Length="64.0" InnerRadius="515.0" InnerAngle="30.0" OuterRadius="515.0" OuterAngle="30.0" Direction="Left" Name="Left Wide Radius Curved Turnout" Decription="Left Wide Radius Curved Turnout" />
+      <CurvedTurnout Id="M24772" Article="24772" Length="64.0" InnerRadius="515.0" InnerAngle="30.0" OuterRadius="515.0" OuterAngle="30.0" Direction="Right" Name="Right Wide Radius Curved Turnout" Decription="Right Wide Radius Curved Turnout" />
 
       <!-- double slip switch -->
       <DoubleSlipSwitch Id="M24624" Article="24624" Length1="188.3" Length2="188.3" Angle="24.3" Name ="Double Slip Switch" Decription="Double Slip Switch" />

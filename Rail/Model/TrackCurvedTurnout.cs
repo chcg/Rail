@@ -1,4 +1,5 @@
 ﻿using Rail.Misc;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
@@ -20,20 +21,77 @@ namespace Rail.Model
         [XmlAttribute("OuterAngle")]
         public double OuterAngle { get; set; }
 
+        [XmlAttribute("Length")]
+        public double Length { get; set; }
+
         [XmlAttribute("Direction")]
         public TrackDirection Direction { get; set; }
 
         protected override void Create()
         {
-            this.GeometryTracks = CreateRightCurvedTurnoutGeometry(this.InnerAngle, this.InnerRadius, this.OuterAngle, this.OuterRadius);
+            double width = (this.OuterRadius * 2 * Math.PI * this.OuterAngle / 360.0 + this.Length) / 2;
+            double hight = this.OuterRadius * 2 * Math.PI * (this.OuterAngle - 90) / 360.0;
+
+            //Point centerLeft = CurveCenter(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left) + new Vector(this.Length / 2, 0);
+            //Point centerRight = CurveCenter(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right) + new Vector(this.Length / 2, 0);
+
+            Point centerLeft = new Point(-width, 0);
+            Point centerRight = new Point(width, 0);
 
             // Tracks
+            //this.GeometryTracks = this.Direction == TrackDirection.Left ?
+            //    new CombinedGeometry(
+            //        CurvedGeometry(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, this.RailSpacing, new Point(-width, 0)),
+            //        new CombinedGeometry(
+            //            StraitGeometry(this.Length, StraitOrientation.Left, this.RailSpacing, 0, new Point(-width, 0)),
+            //            CurvedGeometry(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, this.RailSpacing, new Point(-width + this.Length, 0)))
+            //        ) :
+            //    new CombinedGeometry(
+            //        CurvedGeometry(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, this.RailSpacing, new Point(width, 0)),
+            //        new CombinedGeometry(
+            //            StraitGeometry(this.Length, StraitOrientation.Right, this.RailSpacing, 0, new Point(width, 0)),
+            //            CurvedGeometry(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, this.RailSpacing, new Point(width - this.Length, 0)))
+            //        );
+
+            this.GeometryTracks = this.Direction == TrackDirection.Left ?
+                new CombinedGeometry(
+                    CurvedGeometry(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, this.RailSpacing, centerLeft),
+                    new CombinedGeometry(
+                        StraitGeometry(this.Length, StraitOrientation.Left, this.RailSpacing, 0, centerLeft),
+                        CurvedGeometry(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, this.RailSpacing, centerLeft + new Vector(this.Length, 0)))
+                    ) :
+                new CombinedGeometry(
+                    CurvedGeometry(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, this.RailSpacing, centerRight),
+                    new CombinedGeometry(
+                        StraitGeometry(this.Length, StraitOrientation.Right, this.RailSpacing, 0, centerRight),
+                        CurvedGeometry(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, this.RailSpacing, centerRight - new Vector(this.Length, 0)))
+                    );
+
             DrawingGroup drawingTracks = new DrawingGroup();
             drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.GeometryTracks));
             drawingTracks.Children.Add(this.textDrawing);
             this.drawingTracks = drawingTracks;
 
+            DrawingGroup drawingTracksSelected = new DrawingGroup();
+            drawingTracksSelected.Children.Add(new GeometryDrawing(trackBrushSelected, linePen, this.GeometryTracks));
+            drawingTracksSelected.Children.Add(this.textDrawing);
+            this.drawingTracksSelected = drawingTracksSelected;
+
             // Rail
+            this.GeometryRail = this.Direction == TrackDirection.Left ?
+                new CombinedGeometry(
+                    CurvedGeometry(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, this.sleepersSpacing, new Point(-width / 2, 0)),
+                    new CombinedGeometry(
+                        StraitGeometry(this.Length, StraitOrientation.Left, this.sleepersSpacing, 0, new Point(-width / 2, 0)),
+                        CurvedGeometry(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, this.sleepersSpacing, new Point(-width / 2 + this.Length, 0)))
+                    ) :
+                new CombinedGeometry(
+                    CurvedGeometry(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, this.sleepersSpacing, new Point(width / 2, 0)),
+                    new CombinedGeometry(
+                        StraitGeometry(this.Length, StraitOrientation.Right, this.sleepersSpacing, 0, new Point(width / 2, 0)),
+                        CurvedGeometry(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, this.sleepersSpacing, new Point(width / 2 - this.Length, 0)))
+                    );
+
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.Ballast)
             {
@@ -41,6 +99,14 @@ namespace Rail.Model
             }
             //drawingRail.Children.Add(StraitRail(this.Length));
             this.drawingRail = drawingRail;
+
+            DrawingGroup drawingRailSelected = new DrawingGroup();
+            if (this.Ballast)
+            {
+                //drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, 0, null));
+            }
+            //drawingRail.Children.Add(StraitRail(this.Length));
+            this.drawingRailSelected = drawingRailSelected;
 
             // Terrain
             this.drawingTerrain = drawingRail;
@@ -50,44 +116,6 @@ namespace Rail.Model
                 new TrackDockPoint(0, new Point(this.InnerRadius, 0), 225.0, this.dockType),
                 new TrackDockPoint(1, new Point(this.InnerRadius, 0), 45.0, this.dockType)
             };
-        }
-
-        private Geometry CreateRightCurvedTurnoutGeometry(double innerAngle, double innerRadius, double outerAngle, double outerRadius)
-        {
-            Size innerInnerSize = new Size(innerRadius - this.RailSpacing / 2, innerRadius - this.RailSpacing / 2);
-            Size innerOuterSize = new Size(innerRadius + this.RailSpacing / 2, innerRadius + this.RailSpacing / 2);
-            Size outerInnerSize = new Size(outerRadius - this.RailSpacing / 2, outerRadius - this.RailSpacing / 2);
-            Size outerOuterSize = new Size(outerRadius + this.RailSpacing / 2, outerRadius + this.RailSpacing / 2);
-
-            Point innerCircleCenter = new Point(0, innerRadius);
-            Point outerCircleCenter = new Point(0, outerRadius);
-
-
-            return new CombinedGeometry(
-                // inner curve
-                new PathGeometry(new PathFigureCollection
-                {
-                    new PathFigure(innerCircleCenter - PointExtentions.Circle(-innerAngle / 2, innerRadius - this.RailSpacing / 2), new PathSegmentCollection
-                    {
-                        new LineSegment(innerCircleCenter - PointExtentions.Circle(-innerAngle / 2, innerRadius + this.RailSpacing / 2), true),
-                        new ArcSegment (innerCircleCenter - PointExtentions.Circle(innerAngle / 2, innerRadius + this.RailSpacing / 2), innerOuterSize, innerAngle, false, SweepDirection.Counterclockwise, true),
-
-                        new LineSegment(innerCircleCenter - PointExtentions.Circle(innerAngle / 2, innerRadius - this.RailSpacing / 2), true),
-                        new ArcSegment (innerCircleCenter - PointExtentions.Circle(-innerAngle / 2, innerRadius - this.RailSpacing / 2), innerInnerSize, innerAngle, false, SweepDirection.Clockwise, true)
-                    }, true)
-                }),
-                // outer curve
-                new PathGeometry(new PathFigureCollection
-                {
-                    new PathFigure(outerCircleCenter - PointExtentions.Circle(-outerAngle / 2, outerRadius - this.RailSpacing / 2), new PathSegmentCollection
-                    {
-                        new LineSegment(outerCircleCenter - PointExtentions.Circle(-outerAngle / 2, outerRadius + this.RailSpacing / 2), true),
-                        new ArcSegment (outerCircleCenter - PointExtentions.Circle(outerAngle / 2, outerRadius + this.RailSpacing / 2), outerOuterSize, outerAngle, false, SweepDirection.Counterclockwise, true),
-
-                        new LineSegment(outerCircleCenter - PointExtentions.Circle(outerAngle / 2, outerRadius - this.RailSpacing / 2), true),
-                        new ArcSegment (outerCircleCenter - PointExtentions.Circle(-outerAngle / 2, outerRadius - this.RailSpacing / 2), outerInnerSize, outerAngle, false, SweepDirection.Clockwise, true)
-                    }, true)
-                }));
         }
     }
 }
