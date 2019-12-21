@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace Rail.Model
@@ -12,7 +13,7 @@ namespace Rail.Model
 
         protected override void Create()
         {
-            this.GeometryTracks = CurvedGeometry(20, 360, CurvedOrientation.Center, this.RailSpacing);
+            this.GeometryTracks = CurvedGeometry(20, 360, CurvedOrientation.Center, this.RailSpacing, new Point());
 
         }
     }

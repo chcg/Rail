@@ -718,27 +718,21 @@ namespace Rail.Model
         //        }));
         //}
 
-        protected Geometry CurvedGeometry(double angle, double radius, CurvedOrientation orientation, double spacing, double direction = 0, Point? pos = null)
+        protected Geometry CurvedGeometry(double angle, double radius, CurvedOrientation orientation, double spacing, Point pos)
         {
             double outerTrackRadius = radius + spacing / 2;
             double innerTrackRadius = radius - spacing / 2;
             Size outerTrackSize = new Size(outerTrackRadius, outerTrackRadius);
             Size innerTrackSize = new Size(innerTrackRadius, innerTrackRadius);
                         
-            Point circleCenter = orientation.HasFlag(CurvedOrientation.Counterclockwise) ? new Point(0, -radius) : new Point(0, +radius);
+            Point circleCenter = pos + (orientation.HasFlag(CurvedOrientation.Counterclockwise) ? new Vector(0, -radius) : new Vector(0, +radius));
             double startAngle = orientation.HasFlag(CurvedOrientation.Counterclockwise) ? 180 : 0;
 
             switch (orientation & CurvedOrientation.Direction)
             {
-            case CurvedOrientation.Left:
-                startAngle -= 0;
-                break;
-            case CurvedOrientation.Center:
-                startAngle -= angle / 2;
-                break;
-            case CurvedOrientation.Right:
-                startAngle -= angle;
-                break;
+            case CurvedOrientation.Left: startAngle -= 0; break;
+            case CurvedOrientation.Center: startAngle -= angle / 2; break;
+            case CurvedOrientation.Right: startAngle -= angle; break;
             }
 
             return new PathGeometry(new PathFigureCollection
@@ -754,7 +748,7 @@ namespace Rail.Model
             });
         }
 
-        protected Drawing CurvedBallast(double angle, double radius, CurvedOrientation orientation, double spacing)
+        protected Drawing CurvedBallast(double angle, double radius, CurvedOrientation orientation, Point pos)
         {
             double outerSleepersRadius = radius + this.sleepersSpacing / 2;
             double innerSleepersRadius = radius - this.sleepersSpacing / 2;
@@ -762,20 +756,14 @@ namespace Rail.Model
             Size outerSleepersSize = new Size(outerSleepersRadius, outerSleepersRadius);
             Size innerSleepersSize = new Size(innerSleepersRadius, innerSleepersRadius );
                         
-            Point circleCenter = orientation.HasFlag(CurvedOrientation.Counterclockwise) ? new Point(0, -radius) : new Point(0, +radius);
+            Point circleCenter = pos + (orientation.HasFlag(CurvedOrientation.Counterclockwise) ? new Vector(0, -radius) : new Vector(0, +radius));
             double startAngle = orientation.HasFlag(CurvedOrientation.Counterclockwise) ? 180 : 0;
 
             switch (orientation & CurvedOrientation.Direction)
             {
-            case CurvedOrientation.Left:
-                startAngle -= 0;
-                break;
-            case CurvedOrientation.Center:
-                startAngle -= angle / 2;
-                break;
-            case CurvedOrientation.Right:
-                startAngle -= angle;
-                break;
+            case CurvedOrientation.Left: startAngle -= 0; break;
+            case CurvedOrientation.Center: startAngle -= angle / 2; break;
+            case CurvedOrientation.Right: startAngle -= angle; break;
             }
 
             return new GeometryDrawing(ballastBrush, null, new PathGeometry(new PathFigureCollection
@@ -791,7 +779,7 @@ namespace Rail.Model
             }));
         }
 
-        protected Drawing CurvedRail(double angle, double radius, CurvedOrientation orientation)
+        protected Drawing CurvedRail(bool isSelected, double angle, double radius, CurvedOrientation orientation, Point pos)
         {
             double outerTrackRadius = radius + this.RailSpacing / 2;
             double innerTrackRadius = radius - this.RailSpacing / 2;
@@ -801,20 +789,14 @@ namespace Rail.Model
             Size outerTrackSize = new Size(outerTrackRadius, outerTrackRadius);
             Size innerTrackSize = new Size(innerTrackRadius, innerTrackRadius);
 
-            Point circleCenter = orientation.HasFlag(CurvedOrientation.Counterclockwise) ? new Point(0, -radius) : new Point(0, +radius);
+            Point circleCenter = pos + (orientation.HasFlag(CurvedOrientation.Counterclockwise) ? new Vector(0, -radius) : new Vector(0, +radius));
             double startAngle = orientation.HasFlag(CurvedOrientation.Counterclockwise) ? 180 : 0;
 
             switch (orientation & CurvedOrientation.Direction)
             {
-            case CurvedOrientation.Left:
-                startAngle -= 0;
-                break;
-            case CurvedOrientation.Center:
-                startAngle -= angle / 2;
-                break;
-            case CurvedOrientation.Right:
-                startAngle -= angle;
-                break;
+            case CurvedOrientation.Left: startAngle -= 0; break;
+            case CurvedOrientation.Center: startAngle -= angle / 2; break;
+            case CurvedOrientation.Right: startAngle -= angle; break;
             }
 
             double lenth = radius * 2 * Math.PI * angle / 360.0;
@@ -822,14 +804,14 @@ namespace Rail.Model
             double sleepersDistance = angle / num;
 
             var railDrawing = new DrawingGroup();
-            railDrawing.Children.Add(new GeometryDrawing(null, railPen, new PathGeometry(new PathFigureCollection
+            railDrawing.Children.Add(new GeometryDrawing(null, isSelected ? railPenSelected : railPen, new PathGeometry(new PathFigureCollection
             {
                 new PathFigure(circleCenter - PointExtentions.Circle(startAngle, innerTrackRadius), new PathSegmentCollection
                 {
                     new ArcSegment (circleCenter - PointExtentions.Circle(startAngle + angle, innerTrackRadius), innerTrackSize, angle, false, SweepDirection.Counterclockwise, true)
                 }, false)
             })));
-            railDrawing.Children.Add(new GeometryDrawing(null, railPen, new PathGeometry(new PathFigureCollection
+            railDrawing.Children.Add(new GeometryDrawing(null, isSelected ? railPenSelected : railPen, new PathGeometry(new PathFigureCollection
             {
                 new PathFigure(circleCenter - PointExtentions.Circle(startAngle, outerTrackRadius), new PathSegmentCollection
                 {
@@ -839,76 +821,12 @@ namespace Rail.Model
             for (int i = 0; i < num; i++)
             {
                 double ang = startAngle + (sleepersDistance / 2) + sleepersDistance * i;
-                railDrawing.Children.Add(new GeometryDrawing(null, sleepersPen, new LineGeometry(
+                railDrawing.Children.Add(new GeometryDrawing(null, isSelected ? railPenSelected : sleepersPen, new LineGeometry(
                     circleCenter - PointExtentions.Circle(ang, innerSleepersRadius),
                     circleCenter - PointExtentions.Circle(ang, outerSleepersRadius)
                     )));
             }
             return railDrawing;
         }
-
-        //protected Drawing CurvedRail(double angle, double radius, Point pos, TrackDirection dir)
-        //{
-        //    Size innerSize = new Size(radius - this.RailSpacing / 2, radius - this.RailSpacing / 2);
-        //    Size outerSize = new Size(radius + this.RailSpacing / 2, radius + this.RailSpacing / 2);
-
-        //    Point circleCenter;
-        //    double angl;
-        //    SweepDirection swdA;
-        //    //SweepDirection swdB;
-        //    if (dir == TrackDirection.Left)
-        //    {
-        //        circleCenter = pos - new Vector(0, radius);
-        //        angl = -angle;
-        //        swdA = SweepDirection.Counterclockwise;
-        //        //swdB = SweepDirection.Clockwise;
-        //    }
-        //    else
-        //    {
-        //        circleCenter = pos + new Vector(0, radius);
-        //        angl = angle;
-        //        swdA = SweepDirection.Clockwise;
-        //        //swdB = SweepDirection.Counterclockwise;
-        //    }
-
-        //    double lenth = radius * 2 * Math.PI * angle / 360.0;
-        //    int num = (int)Math.Round(lenth / (this.RailSpacing / 2));
-        //    double sleepersDistance = angle / num;
-
-        //    //Point circleCenter = pos - new Vector(0, radius);
-
-        //    var railDrawing = new DrawingGroup();
-        //    railDrawing.Children.Add(new GeometryDrawing(null, railPen, new PathGeometry(new PathFigureCollection
-        //    {
-        //        new PathFigure((pos - new Vector(0, this.RailSpacing / 2)), new PathSegmentCollection
-        //        {
-        //            new ArcSegment ((pos - new Vector(0, this.RailSpacing / 2)).Rotate(angl, circleCenter), innerSize, angle, false, swdA, true)
-        //        }, false)
-        //    })));
-        //    railDrawing.Children.Add(new GeometryDrawing(null, railPen, new PathGeometry(new PathFigureCollection
-        //    {
-        //        new PathFigure((pos + new Vector(0, this.RailSpacing / 2)), new PathSegmentCollection
-        //        {
-        //            new ArcSegment((pos + new Vector(0, this.RailSpacing / 2)).Rotate(angl, circleCenter), innerSize, angle, false, swdA, true)
-        //        }, false)
-        //    })));
-        //    for (int i = 0; i < num; i++)
-        //    {
-        //        double ang; // = (sleepersDistance / 2) + sleepersDistance * i;
-        //        if (dir == TrackDirection.Left)
-        //        {
-        //            ang = (sleepersDistance / 2) + sleepersDistance * i;
-        //        }
-        //        else
-        //        {
-        //            ang = -180 - (sleepersDistance / 2) - sleepersDistance * i;
-        //        }
-        //        railDrawing.Children.Add(new GeometryDrawing(null, sleepersPen, new LineGeometry(
-        //            circleCenter + PointExtentions.Circle(ang, radius - this.sleepersSpacing / 2),
-        //            circleCenter + PointExtentions.Circle(ang, radius + this.sleepersSpacing / 2)
-        //            )));
-        //    }
-        //    return railDrawing;
-        //}
     }
 }

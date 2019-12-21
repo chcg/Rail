@@ -29,8 +29,8 @@ namespace Rail.Model
             this.GeometryTracks = new CombinedGeometry(
                 StraitGeometry(this.Length, StraitOrientation.Center, this.RailSpacing),
                 this.Direction == TrackDirection.Left ?
-                    CreateLeftTurnoutGeometry(this.Length, this.Angle, this.Radius) :
-                    CreateRightTurnoutGeometry(this.Length, this.Angle, this.Radius));
+                    CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, this.RailSpacing, new Point(-this.Length / 2, 0)) :
+                    CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, this.RailSpacing, new Point(this.Length / 2, 0)));
 
             DrawingGroup drawingTracks = new DrawingGroup();
             drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.GeometryTracks));
@@ -46,19 +46,37 @@ namespace Rail.Model
             this.GeometryRail = new CombinedGeometry(
                 StraitGeometry(this.Length, StraitOrientation.Center, this.sleepersSpacing),
                 this.Direction == TrackDirection.Left ?
-                    CreateLeftTurnoutGeometry(this.Length, this.Angle, this.Radius) :
-                    CreateRightTurnoutGeometry(this.Length, this.Angle, this.Radius));
+                    CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, this.sleepersSpacing, new Point(-this.Length / 2, 0)) :
+                    CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, this.sleepersSpacing, new Point(this.Length / 2, 0)));
 
 
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.Ballast)
             {
                 drawingRail.Children.Add(StraitBallast(this.Length));
-//                drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, orientation, 0, new Point(-this.Length / 2, 0)));
+                drawingRail.Children.Add(this.Direction == TrackDirection.Left ?
+                    CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.Length / 2, 0)) :
+                    CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, new Point(this.Length / 2, 0)));
             }
             drawingRail.Children.Add(StraitRail(false, this.Length));
-            drawingRail.Children.Add(CurvedRail(this.Angle, this.Radius, CurvedOrientation.Center));
+            drawingRail.Children.Add(this.Direction == TrackDirection.Left ?
+                    CurvedRail(false, this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.Length / 2, 0)) :
+                    CurvedRail(false, this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, new Point(this.Length / 2, 0)));
             this.drawingRail = drawingRail;
+
+            DrawingGroup drawingRailSelected = new DrawingGroup();
+            if (this.Ballast)
+            {
+                drawingRailSelected.Children.Add(StraitBallast(this.Length));
+                drawingRailSelected.Children.Add(this.Direction == TrackDirection.Left ?
+                    CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.Length / 2, 0)) :
+                    CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, new Point(this.Length / 2, 0)));
+            }
+            drawingRailSelected.Children.Add(StraitRail(true, this.Length));
+            drawingRailSelected.Children.Add(this.Direction == TrackDirection.Left ?
+                    CurvedRail(true, this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.Length / 2, 0)) :
+                    CurvedRail(true, this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, new Point(this.Length / 2, 0)));
+            this.drawingRailSelected = drawingRailSelected;
 
             // Terrain
             this.drawingTerrain = drawingRail;
