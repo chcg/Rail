@@ -14,7 +14,7 @@ namespace Rail.Model
 
         protected override void Create()
         {
-            this.GeometryTracks = CreateStraitTrackGeometry(this.Length, this.RailSpacing);
+            this.GeometryTracks = StraitGeometry(this.Length, StraitOrientation.Center, this.RailSpacing); ;
 
             // Tracks
             DrawingGroup drawingTracks = new DrawingGroup();
@@ -23,6 +23,8 @@ namespace Rail.Model
             this.drawingTracks = drawingTracks;
 
             // Rail
+            this.GeometryRail = StraitGeometry(this.Length, StraitOrientation.Center, this.sleepersSpacing);
+
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.Ballast)
             {

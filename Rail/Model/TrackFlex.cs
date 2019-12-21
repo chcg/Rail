@@ -12,7 +12,7 @@ namespace Rail.Model
 
         protected override void Create()
         {
-            this.GeometryTracks = CreateCurvedTrackGeometry(20, 360);
+            this.GeometryTracks = CurvedGeometry(20, 360, CurvedOrientation.Center, this.RailSpacing);
 
         }
     }

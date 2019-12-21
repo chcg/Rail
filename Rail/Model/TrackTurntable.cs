@@ -91,7 +91,7 @@ namespace Rail.Model
         private Drawing TurntableRail(double outerRadius, double innerRadius, double angle, int railNum)
         {
             var drawing = new DrawingGroup();
-            drawing.Children.Add(CreateStraitTrackDrawing(innerRadius * 2));
+            drawing.Children.Add(StraitRail(false, innerRadius * 2));
 
             for (int i = 0; i < RailNum; i++)
             {

@@ -127,6 +127,7 @@ namespace Rail.Model
             transformGroup.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
             drawingContext.PushTransform(transformGroup);
 
+            Debug.WriteLine($"DrawRailItem {this.IsSelected}");
             this.Track.Render(drawingContext, viewMode, this.IsSelected);
 
             DrawDebug(drawingContext);

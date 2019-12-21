@@ -22,34 +22,48 @@ namespace Rail.Model
 
         protected override void Create()
         {
-            this.GeometryTracks = new CombinedGeometry(
-                CreateStraitTrackGeometry(this.Length, this.RailSpacing),
-                this.Direction == TrackDirection.Left ? 
-                    CreateLeftTurnoutGeometry(this.Length, this.Angle, this.Radius) :
-                    CreateRightTurnoutGeometry(this.Length, this.Angle, this.Radius));
 
             CurvedOrientation orientation = this.Direction == TrackDirection.Left ? CurvedOrientation.Left : CurvedOrientation.Right;
 
             // Tracks
+            this.GeometryTracks = new CombinedGeometry(
+                StraitGeometry(this.Length, StraitOrientation.Center, this.RailSpacing),
+                this.Direction == TrackDirection.Left ?
+                    CreateLeftTurnoutGeometry(this.Length, this.Angle, this.Radius) :
+                    CreateRightTurnoutGeometry(this.Length, this.Angle, this.Radius));
+
             DrawingGroup drawingTracks = new DrawingGroup();
             drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.GeometryTracks));
             drawingTracks.Children.Add(this.textDrawing);
             this.drawingTracks = drawingTracks;
 
+            DrawingGroup drawingTracksSelected = new DrawingGroup();
+            drawingTracksSelected.Children.Add(new GeometryDrawing(trackBrushSelected, linePen, this.GeometryTracks));
+            drawingTracksSelected.Children.Add(this.textDrawing);
+            this.drawingTracksSelected = drawingTracksSelected;
+
             // Rail
+            this.GeometryRail = new CombinedGeometry(
+                StraitGeometry(this.Length, StraitOrientation.Center, this.sleepersSpacing),
+                this.Direction == TrackDirection.Left ?
+                    CreateLeftTurnoutGeometry(this.Length, this.Angle, this.Radius) :
+                    CreateRightTurnoutGeometry(this.Length, this.Angle, this.Radius));
+
+
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.Ballast)
             {
                 drawingRail.Children.Add(StraitBallast(this.Length));
-                drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, orientation, 0, new Point(-this.Length / 2, 0)));
+//                drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, orientation, 0, new Point(-this.Length / 2, 0)));
             }
             drawingRail.Children.Add(StraitRail(false, this.Length));
-            drawingRail.Children.Add(CurvedRail(this.Angle, this.Radius, new Point(-this.Length / 2, 0), this.Direction));
+            drawingRail.Children.Add(CurvedRail(this.Angle, this.Radius, CurvedOrientation.Center));
             this.drawingRail = drawingRail;
 
             // Terrain
             this.drawingTerrain = drawingRail;
 
+            // dock points
             if (this.Direction == TrackDirection.Left)
             {
                 Point circleCenter = new Point(-this.Length / 2, -this.Radius);

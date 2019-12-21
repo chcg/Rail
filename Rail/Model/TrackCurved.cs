@@ -16,26 +16,43 @@ namespace Rail.Model
 
         protected override void Create()
         {
-            this.GeometryTracks = CreateCurvedTrackGeometry(this.Angle, this.Radius);
 
             // Tracks
+            this.GeometryTracks = CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Center, this.RailSpacing);
+
             DrawingGroup drawingTracks = new DrawingGroup();
-            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, linePen, this.GeometryTracks));
+            drawingTracks.Children.Add(new GeometryDrawing(trackBrush, this.linePen, this.GeometryTracks));
             drawingTracks.Children.Add(this.textDrawing);
             this.drawingTracks = drawingTracks;
 
+            DrawingGroup drawingTracksSelected = new DrawingGroup();
+            drawingTracksSelected.Children.Add(new GeometryDrawing(trackBrushSelected, this.linePen, this.GeometryTracks));
+            drawingTracksSelected.Children.Add(this.textDrawing);
+            this.drawingTracksSelected = drawingTracksSelected;
+
             // Rail
+            this.GeometryRail = CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Center, this.sleepersSpacing);
+            
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.Ballast)
             {
-                drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius));
+                drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Center, sleepersSpacing));
             }
-            drawingRail.Children.Add(CurvedRail(this.Angle, this.Radius));
+            drawingRail.Children.Add(CurvedRail(this.Angle, this.Radius, CurvedOrientation.Center));
             this.drawingRail = drawingRail;
+
+            DrawingGroup drawingRailSelected = new DrawingGroup();
+            if (this.Ballast)
+            {
+                drawingRailSelected.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Center, sleepersSpacing));
+            }
+            drawingRailSelected.Children.Add(CurvedRail(this.Angle, this.Radius, CurvedOrientation.Center));
+            this.drawingRailSelected = drawingRailSelected;
 
             // Terrain
             this.drawingTerrain = drawingRail;
 
+            // dock points
             Point circleCenter = new Point(0, this.Radius);
             this.DockPoints = new List<TrackDockPoint>
             {
