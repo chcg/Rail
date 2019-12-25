@@ -61,6 +61,33 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Angle.
+        /// </summary>
+        public static string MainAngle {
+            get {
+                return ResourceManager.GetString("MainAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Article.
+        /// </summary>
+        public static string MainArticle {
+            get {
+                return ResourceManager.GetString("MainArticle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance.
+        /// </summary>
+        public static string MainDistance {
+            get {
+                return ResourceManager.GetString("MainDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About ....
         /// </summary>
         public static string MainFileAbout {
@@ -147,6 +174,177 @@ namespace Rail.Properties {
         public static string MainFileSaveAs {
             get {
                 return ResourceManager.GetString("MainFileSaveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grid Lines.
+        /// </summary>
+        public static string MainGridLines {
+            get {
+                return ResourceManager.GetString("MainGridLines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Layer.
+        /// </summary>
+        public static string MainInsertLayer {
+            get {
+                return ResourceManager.GetString("MainInsertLayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layer.
+        /// </summary>
+        public static string MainLayer {
+            get {
+                return ResourceManager.GetString("MainLayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string MainName {
+            get {
+                return ResourceManager.GetString("MainName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plan.
+        /// </summary>
+        public static string MainPlan {
+            get {
+                return ResourceManager.GetString("MainPlan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position.
+        /// </summary>
+        public static string MainPosition {
+            get {
+                return ResourceManager.GetString("MainPosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rail.
+        /// </summary>
+        public static string MainRail {
+            get {
+                return ResourceManager.GetString("MainRail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rail Plan.
+        /// </summary>
+        public static string MainRailPlan {
+            get {
+                return ResourceManager.GetString("MainRailPlan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotation.
+        /// </summary>
+        public static string MainRotation {
+            get {
+                return ResourceManager.GetString("MainRotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Docking Points.
+        /// </summary>
+        public static string MainShowDockingPoints {
+            get {
+                return ResourceManager.GetString("MainShowDockingPoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Layer.
+        /// </summary>
+        public static string MainShowLayer {
+            get {
+                return ResourceManager.GetString("MainShowLayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Track List.
+        /// </summary>
+        public static string MainShowTrackList {
+            get {
+                return ResourceManager.GetString("MainShowTrackList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snap In.
+        /// </summary>
+        public static string MainSnapIn {
+            get {
+                return ResourceManager.GetString("MainSnapIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switches.
+        /// </summary>
+        public static string MainSwitches {
+            get {
+                return ResourceManager.GetString("MainSwitches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terrain.
+        /// </summary>
+        public static string MainTerrain {
+            get {
+                return ResourceManager.GetString("MainTerrain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tilt.
+        /// </summary>
+        public static string MainTilt {
+            get {
+                return ResourceManager.GetString("MainTilt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tracks.
+        /// </summary>
+        public static string MainTracks {
+            get {
+                return ResourceManager.GetString("MainTracks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Modes.
+        /// </summary>
+        public static string MainViewModes {
+            get {
+                return ResourceManager.GetString("MainViewModes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom.
+        /// </summary>
+        public static string MainZoom {
+            get {
+                return ResourceManager.GetString("MainZoom", resourceCulture);
             }
         }
     }

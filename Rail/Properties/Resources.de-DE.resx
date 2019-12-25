@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="MainAngle" xml:space="preserve">
+    <value>Winkel</value>
+  </data>
+  <data name="MainArticle" xml:space="preserve">
+    <value>Artikel</value>
+  </data>
+  <data name="MainDistance" xml:space="preserve">
+    <value>Entfernung</value>
+  </data>
   <data name="MainFileAbout" xml:space="preserve">
     <value>Info ...</value>
   </data>
@@ -146,5 +155,62 @@
   </data>
   <data name="MainFileSaveAs" xml:space="preserve">
     <value>Speichern unter ...</value>
+  </data>
+  <data name="MainGridLines" xml:space="preserve">
+    <value>Gitterlinien</value>
+  </data>
+  <data name="MainInsertLayer" xml:space="preserve">
+    <value>Stufe eingeben</value>
+  </data>
+  <data name="MainLayer" xml:space="preserve">
+    <value>Stufe</value>
+  </data>
+  <data name="MainName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="MainPlan" xml:space="preserve">
+    <value>Plan</value>
+  </data>
+  <data name="MainPosition" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="MainRail" xml:space="preserve">
+    <value>Schienen</value>
+  </data>
+  <data name="MainRailPlan" xml:space="preserve">
+    <value>Schienenplan</value>
+  </data>
+  <data name="MainRotation" xml:space="preserve">
+    <value>Rotation</value>
+  </data>
+  <data name="MainShowDockingPoints" xml:space="preserve">
+    <value>Andockpunkte anzeigen</value>
+  </data>
+  <data name="MainShowLayer" xml:space="preserve">
+    <value>Stufe anzeigen</value>
+  </data>
+  <data name="MainShowTrackList" xml:space="preserve">
+    <value>Gleisliste anzeigen</value>
+  </data>
+  <data name="MainSnapIn" xml:space="preserve">
+    <value>Einrasten</value>
+  </data>
+  <data name="MainSwitches" xml:space="preserve">
+    <value>Schalter</value>
+  </data>
+  <data name="MainTerrain" xml:space="preserve">
+    <value>Gelände</value>
+  </data>
+  <data name="MainTilt" xml:space="preserve">
+    <value>Neigung</value>
+  </data>
+  <data name="MainTracks" xml:space="preserve">
+    <value>Gleise</value>
+  </data>
+  <data name="MainViewModes" xml:space="preserve">
+    <value>Ansichtsmodi</value>
+  </data>
+  <data name="MainZoom" xml:space="preserve">
+    <value>Zoomen</value>
   </data>
 </root>

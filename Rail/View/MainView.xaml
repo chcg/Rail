@@ -71,21 +71,21 @@
                     <RibbonButton Label="{x:Static lang:Resources.MainFileHelp}" Command="{Binding HelpCommand}" SmallImageSource="/Rail;component/Images/Help.png" />
                 </StackPanel>
             </Ribbon.HelpPaneContent>
-            <RibbonTab Header="Plan">
-                <RibbonGroup Header="Tracks">
-                    <RibbonButton Label="Rail Plan" Command="{Binding RailPlanCommand}" LargeImageSource="/Rail;component/Images/Settings.png" />
+            <RibbonTab Header="{x:Static lang:Resources.MainPlan}">
+                <RibbonGroup Header="{x:Static lang:Resources.MainTracks}">
+                    <RibbonButton Label="{x:Static lang:Resources.MainRailPlan}" Command="{Binding RailPlanCommand}" LargeImageSource="/Rail;component/Images/Settings.png" />
                 </RibbonGroup>
-                <RibbonGroup Header="Snap In">
+                <RibbonGroup Header="{x:Static lang:Resources.MainSnapIn}">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60"/>
-                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="80"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Content="Distance" />
+                        <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.MainDistance}" />
                         <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding SnapInDistances}" SelectedValue="{Binding SnapInDistance}" Background="White" Margin="4" >
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -93,7 +93,7 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <Label Grid.Column="0" Grid.Row="1"  Content="Angel" />
+                        <Label Grid.Column="0" Grid.Row="1"  Content="{x:Static lang:Resources.MainAngle}" />
                         <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding SnapInAngels}" SelectedValue="{Binding SnapInAngel}" Background="White" Margin="4" >
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -103,7 +103,7 @@
                         </ComboBox>
                     </Grid>
                 </RibbonGroup>
-                <RibbonGroup Header="Grid Lines">
+                <RibbonGroup Header="{x:Static lang:Resources.MainGridLines}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="60"/>
@@ -113,7 +113,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Content="Distance" />
+                        <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.MainDistance}" />
                         <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding GridLinesDistances}" SelectedValue="{Binding GridLinesDistance}" Background="White" Margin="4" >
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -124,19 +124,19 @@
                         
                     </Grid>
                 </RibbonGroup>
-                <RibbonGroup Header="Switches">
-                    <RibbonToggleButton Label="Show Track List" IsChecked="{Binding ShowMaterialList}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
-                    <RibbonToggleButton Label="Show Docking Points" IsChecked="{Binding ShowDockingPoints}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
+                <RibbonGroup Header="{x:Static lang:Resources.MainSwitches}">
+                    <RibbonToggleButton Label="{x:Static lang:Resources.MainShowTrackList}" IsChecked="{Binding ShowMaterialList}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
+                    <RibbonToggleButton Label="{x:Static lang:Resources.MainShowDockingPoints}" IsChecked="{Binding ShowDockingPoints}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
                 </RibbonGroup>
 
-                <RibbonGroup Header="View Modes">
+                <RibbonGroup Header="{x:Static lang:Resources.MainViewModes}">
                     <RibbonControlGroup>
-                        <RibbonRadioButton Label="Tracks" IsChecked="{Binding ViewMode, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static ctrl:RailViewMode.Tracks}}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
-                        <RibbonRadioButton Label="Rail" IsChecked="{Binding ViewMode, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static ctrl:RailViewMode.Rail}}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
-                        <RibbonRadioButton Label="Terrain" IsChecked="{Binding ViewMode, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static ctrl:RailViewMode.Terrain}}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
+                        <RibbonRadioButton Label="{x:Static lang:Resources.MainTracks}" IsChecked="{Binding ViewMode, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static ctrl:RailViewMode.Tracks}}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
+                        <RibbonRadioButton Label="{x:Static lang:Resources.MainRail}" IsChecked="{Binding ViewMode, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static ctrl:RailViewMode.Rail}}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
+                        <RibbonRadioButton Label="{x:Static lang:Resources.MainTerrain}" IsChecked="{Binding ViewMode, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static ctrl:RailViewMode.Terrain}}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
                     </RibbonControlGroup>
                 </RibbonGroup>
-                <RibbonGroup Header="Layer">
+                <RibbonGroup Header="{x:Static lang:Resources.MainLayer}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="80"/>
@@ -146,7 +146,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Content="Show Layer" />
+                        <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.MainShowLayer}" />
                         <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding ShowLayers}" SelectedValue="{Binding SelectedShowLayer}" Background="White" Margin="4" >
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -154,7 +154,7 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <Label Grid.Column="0" Grid.Row="1"  Content="Insert Layer" />
+                        <Label Grid.Column="0" Grid.Row="1"  Content="{x:Static lang:Resources.MainInsertLayer}" />
                         <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding InsertLayers}" SelectedValue="{Binding SelectedInsertLayer}" Background="White" Margin="4" >
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -194,20 +194,20 @@
                 <ProgressBar Value="{Binding ProgressValue}" Visibility="{Binding ProgressState, Converter={StaticResource TaskbarItemProgressStateToVisibilityConverter}}" Minimum="0.0" Maximum="1.0" Width="120" Height="18" ToolTip="Working progress."/>
             </StatusBarItem>
 
-            <StatusBarItem Grid.Column="2" Content="Position" Margin="2,0,2,0"/>
+            <StatusBarItem Grid.Column="2" Content="{x:Static lang:Resources.MainPosition}" Margin="2,0,2,0"/>
             <StatusBarItem Grid.Column="3" Content="{Binding MousePosition, Converter={StaticResource PointToTextConverter}}" Margin="2,0,2,0"/>
 
-            <StatusBarItem Grid.Column="4" Content="Rotation" Margin="2,0,2,0"/>
+            <StatusBarItem Grid.Column="4" Content="{x:Static lang:Resources.MainRotation}" Margin="2,0,2,0"/>
             <StatusBarItem Grid.Column="5" Margin="2,0,2,0">
                 <ctrl:DoubleSlider FormatString="F0" Minimum="-60" Maximum="60" Increment="5" Value="{Binding RotationAngle}" SliderWidth="100" />
             </StatusBarItem>
 
-            <StatusBarItem Grid.Column="6" Content="Tilt" Margin="2,0,2,0"/>
+            <StatusBarItem Grid.Column="6" Content="{x:Static lang:Resources.MainTilt}" Margin="2,0,2,0"/>
             <StatusBarItem Grid.Column="7" Margin="2,0,2,0">
                 <ctrl:DoubleSlider FormatString="F0" Minimum="-70" Maximum="-20" Increment="5" Value="{Binding TiltAngle}" SliderWidth="100" />
             </StatusBarItem>
 
-            <StatusBarItem Grid.Column="8" Content="Zoom" Margin="2,0,2,0"/>
+            <StatusBarItem Grid.Column="8" Content="{x:Static lang:Resources.MainZoom}" Margin="2,0,2,0"/>
             <StatusBarItem Grid.Column="9" Margin="2,0,2,0">
                 <ctrl:DoubleSlider FormatString="P0" Minimum="0.1" Maximum="2" Increment="0.05" Value="{Binding ZoomFactor}" SliderWidth="100" />
             </StatusBarItem>
@@ -250,8 +250,8 @@
             <DataGrid ItemsSource="{Binding MaterialList}" AutoGenerateColumns="False"  Margin="8" CanUserAddRows="False" CanUserDeleteRows="False" GridLinesVisibility="None">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="#" Binding="{Binding Number}" Width="30" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Article" Binding="{Binding Article}" Width="60" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="{x:Static lang:Resources.MainArticle}" Binding="{Binding Article}" Width="60" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="{x:Static lang:Resources.MainName}" Binding="{Binding Name}" Width="200" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
