@@ -8,6 +8,7 @@
         xmlns:ctrl="clr-namespace:Rail.Controls"
         xmlns:mvvm="clr-namespace:Rail.Mvvm"
         xmlns:conv="clr-namespace:Rail.Converter"
+        xmlns:lang="clr-namespace:Rail.Properties;assembly=Rail"
         mc:Ignorable="d"
         Height="1000" 
         Width="1600" Icon="/Rail;component/Images/Rail.png">
@@ -30,21 +31,21 @@
         <mvvm:PersistentRibbon DockPanel.Dock="Top">
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu SmallImageSource="/Rail;component/Images/Rail.png" ToolTip="{Binding Title}">
-                    <RibbonApplicationMenuItem Header="New" ImageSource="/Rail;component/Images/New.png" QuickAccessToolBarImageSource="/Rail;component/Images/New.png" Command="{Binding NewCommand}"/>
-                    <RibbonApplicationMenuItem Header="Open..." ImageSource="/Rail;component/Images/Open.png" QuickAccessToolBarImageSource="/Rail;component/Images/Open.png" Command="{Binding OpenCommand}"/>
-                    <RibbonApplicationMenuItem Header="Save" ImageSource="/Rail;component/Images/Save.png" QuickAccessToolBarImageSource="/Rail;component/Images/Save.png" Command="{Binding SaveCommand}"/>
-                    <RibbonApplicationMenuItem Header="Save As..." ImageSource="/Rail;component/Images/Save.png" QuickAccessToolBarImageSource="/Rail;component/Images/Save.png" Command="{Binding SaveAsCommand}"/>
-                    <RibbonApplicationMenuItem Header="Print" ImageSource="/Rail;component/Images/Printer.png" QuickAccessToolBarImageSource="/Rail;component/Images/Printer.png" Command="{Binding PrintCommand}"/>
-                    <RibbonApplicationMenuItem Header="Print Preview" ImageSource="/Rail;component/Images/Printer.png" QuickAccessToolBarImageSource="/Rail;component/Images/Printer.png" Command="{Binding PrintPreviewCommand}"/>
-                    <RibbonApplicationMenuItem Header="Help..." ImageSource="/Rail;component/Images/Help.png" QuickAccessToolBarImageSource="/Rail;component/Images/Help.png" Command="{Binding HelpCommand}"/>
-                    <RibbonApplicationMenuItem Header="About..." ImageSource="/Rail;component/Images/Info.png" QuickAccessToolBarImageSource="/Rail;component/Images/Info.png" Command="{Binding AboutCommand}"/>
+                    <RibbonApplicationMenuItem Header="{x:Static lang:Resources.MainFileNew}" ImageSource="/Rail;component/Images/New.png" QuickAccessToolBarImageSource="/Rail;component/Images/New.png" Command="{Binding NewCommand}"/>
+                    <RibbonApplicationMenuItem Header="{x:Static lang:Resources.MainFileOpen}" ImageSource="/Rail;component/Images/Open.png" QuickAccessToolBarImageSource="/Rail;component/Images/Open.png" Command="{Binding OpenCommand}"/>
+                    <RibbonApplicationMenuItem Header="{x:Static lang:Resources.MainFileSave}" ImageSource="/Rail;component/Images/Save.png" QuickAccessToolBarImageSource="/Rail;component/Images/Save.png" Command="{Binding SaveCommand}"/>
+                    <RibbonApplicationMenuItem Header="{x:Static lang:Resources.MainFileSaveAs}" ImageSource="/Rail;component/Images/Save.png" QuickAccessToolBarImageSource="/Rail;component/Images/Save.png" Command="{Binding SaveAsCommand}"/>
+                    <RibbonApplicationMenuItem Header="{x:Static lang:Resources.MainFilePrint}" ImageSource="/Rail;component/Images/Printer.png" QuickAccessToolBarImageSource="/Rail;component/Images/Printer.png" Command="{Binding PrintCommand}"/>
+                    <RibbonApplicationMenuItem Header="{x:Static lang:Resources.MainFilePrintPreview}" ImageSource="/Rail;component/Images/Printer.png" QuickAccessToolBarImageSource="/Rail;component/Images/Printer.png" Command="{Binding PrintPreviewCommand}"/>
+                    <RibbonApplicationMenuItem Header="{x:Static lang:Resources.MainFileHelp}" ImageSource="/Rail;component/Images/Help.png" QuickAccessToolBarImageSource="/Rail;component/Images/Help.png" Command="{Binding HelpCommand}"/>
+                    <RibbonApplicationMenuItem Header="{x:Static lang:Resources.MainFileAbout}" ImageSource="/Rail;component/Images/Info.png" QuickAccessToolBarImageSource="/Rail;component/Images/Info.png" Command="{Binding AboutCommand}"/>
                     
                     <RibbonApplicationMenu.FooterPaneContent>
-                        <RibbonButton Label="Exit" HorizontalAlignment="Right" Command="{Binding ExitCommand}" />
+                        <RibbonButton Label="{x:Static lang:Resources.MainFileExit}" HorizontalAlignment="Right" Command="{Binding ExitCommand}" />
                     </RibbonApplicationMenu.FooterPaneContent>
                     <RibbonApplicationMenu.AuxiliaryPaneContent>
                         <RibbonGallery CanUserFilter="False" ScrollViewer.VerticalScrollBarVisibility="Auto" >
-                            <RibbonGalleryCategory ItemsSource="{Binding RecentFiles}" MaxColumnCount="1" ColumnsStretchToFill="True" IsSharedColumnSizeScope="True" Header="Recent Files">
+                            <RibbonGalleryCategory ItemsSource="{Binding RecentFiles}" MaxColumnCount="1" ColumnsStretchToFill="True" IsSharedColumnSizeScope="True" Header="{x:Static lang:Resources.MainFileRecentFiles}">
                                 <RibbonGalleryCategory.ItemTemplate>
                                     <DataTemplate>
                                         <RibbonApplicationMenuItem
@@ -66,8 +67,8 @@
             </Ribbon.ApplicationMenu>
             <Ribbon.HelpPaneContent>
                 <StackPanel Orientation="Horizontal">
-                    <RibbonButton Label="About" Command="{Binding AboutCommand}" SmallImageSource="/Rail;component/Images/Info.png" />
-                    <RibbonButton Label="Help" Command="{Binding HelpCommand}" SmallImageSource="/Rail;component/Images/Help.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainFileAbout}" Command="{Binding AboutCommand}" SmallImageSource="/Rail;component/Images/Info.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainFileHelp}" Command="{Binding HelpCommand}" SmallImageSource="/Rail;component/Images/Help.png" />
                 </StackPanel>
             </Ribbon.HelpPaneContent>
             <RibbonTab Header="Plan">

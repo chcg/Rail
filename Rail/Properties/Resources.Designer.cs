@@ -22,7 +22,7 @@ namespace Rail.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Rail.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Rail.Properties.Resources", typeof(Resources).Assembly);
@@ -51,12 +51,102 @@ namespace Rail.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About ....
+        /// </summary>
+        public static string MainFileAbout {
+            get {
+                return ResourceManager.GetString("MainFileAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string MainFileExit {
+            get {
+                return ResourceManager.GetString("MainFileExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help ....
+        /// </summary>
+        public static string MainFileHelp {
+            get {
+                return ResourceManager.GetString("MainFileHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string MainFileNew {
+            get {
+                return ResourceManager.GetString("MainFileNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open ....
+        /// </summary>
+        public static string MainFileOpen {
+            get {
+                return ResourceManager.GetString("MainFileOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print ....
+        /// </summary>
+        public static string MainFilePrint {
+            get {
+                return ResourceManager.GetString("MainFilePrint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print Preview ....
+        /// </summary>
+        public static string MainFilePrintPreview {
+            get {
+                return ResourceManager.GetString("MainFilePrintPreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recent Files.
+        /// </summary>
+        public static string MainFileRecentFiles {
+            get {
+                return ResourceManager.GetString("MainFileRecentFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string MainFileSave {
+            get {
+                return ResourceManager.GetString("MainFileSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save As ....
+        /// </summary>
+        public static string MainFileSaveAs {
+            get {
+                return ResourceManager.GetString("MainFileSaveAs", resourceCulture);
             }
         }
     }
