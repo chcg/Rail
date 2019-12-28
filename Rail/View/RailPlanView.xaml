@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mvvm="clr-namespace:Rail.Mvvm"
         xmlns:ctrl="clr-namespace:Rail.Controls"
+        xmlns:lang="clr-namespace:Rail.Properties;assembly=Rail"
         xmlns:local="clr-namespace:Rail.View"
         mc:Ignorable="d"
-        Title="RailPlanView" Height="450" Width="600">
+        Title="{x:Static lang:Resources.RailPlanView}" Height="450" Width="600">
     <DockPanel>
         <mvvm:DialogButtonsView DockPanel.Dock="Bottom"/>
         <Grid Margin="5">

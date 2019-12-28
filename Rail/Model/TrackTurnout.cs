@@ -1,4 +1,5 @@
 ﻿using Rail.Misc;
+using Rail.Properties;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
@@ -20,6 +21,17 @@ namespace Rail.Model
         [XmlAttribute("Direction")]
         public TrackDirection Direction { get; set; }
 
+        [XmlIgnore]
+        public override string Name
+        {
+            get
+            {
+                return Direction == TrackDirection.Left ? 
+                    $"{Resources.TrackTurnout} {Resources.TrackLeft}" :
+                    $"{Resources.TrackTurnout} {Resources.TrackRight}";
+            }
+        }
+        
         protected override Geometry CreateGeometry(double spacing)
         {
             return new CombinedGeometry(

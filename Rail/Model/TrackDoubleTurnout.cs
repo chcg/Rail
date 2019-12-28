@@ -1,12 +1,23 @@
 ﻿using Rail.Misc;
+using Rail.Properties;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
+using System.Xml.Serialization;
 
 namespace Rail.Model
 {
     public class TrackDoubleTurnout : TrackTurnout
     {
+        [XmlIgnore]
+        public override string Name
+        {
+            get
+            {
+                return $"{Resources.TrackDoubleTurnout}";
+            }
+        }
+
         protected override Geometry CreateGeometry(double spacing)
         {
             return new CombinedGeometry(

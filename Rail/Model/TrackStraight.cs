@@ -1,4 +1,5 @@
 ﻿using Rail.Controls;
+using Rail.Properties;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -14,6 +15,15 @@ namespace Rail.Model
         [XmlAttribute("Length")]
         public double Length { get; set; }
 
+        [XmlIgnore]
+        public override string Name 
+        { 
+            get 
+            { 
+                return $"{Resources.TrackStraight} {Length} mm"; 
+            } 
+        
+        }
         protected override Geometry CreateGeometry(double spacing)
         {
             return StraitGeometry(this.Length, StraitOrientation.Center, spacing); 

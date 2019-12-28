@@ -1,4 +1,5 @@
 ﻿using Rail.Misc;
+using Rail.Properties;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
@@ -16,6 +17,15 @@ namespace Rail.Model
 
         [XmlAttribute("Angle")]
         public double Angle { get; set; }
+
+        [XmlIgnore]
+        public override string Name
+        {
+            get
+            {
+                return $"{Resources.TrackCrossing}";
+            }
+        }
 
         protected override Geometry CreateGeometry(double spacing)
         {

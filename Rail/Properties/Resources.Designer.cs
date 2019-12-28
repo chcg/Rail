@@ -61,6 +61,15 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Angle.
         /// </summary>
         public static string MainAngle {
@@ -345,6 +354,105 @@ namespace Rail.Properties {
         public static string MainZoom {
             get {
                 return ResourceManager.GetString("MainZoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string OK {
+            get {
+                return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rail Plan View.
+        /// </summary>
+        public static string RailPlanView {
+            get {
+                return ResourceManager.GetString("RailPlanView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crossing.
+        /// </summary>
+        public static string TrackCrossing {
+            get {
+                return ResourceManager.GetString("TrackCrossing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curved Track.
+        /// </summary>
+        public static string TrackCurved {
+            get {
+                return ResourceManager.GetString("TrackCurved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curved Turnout.
+        /// </summary>
+        public static string TrackCurvedTurnout {
+            get {
+                return ResourceManager.GetString("TrackCurvedTurnout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Double Slip Switch.
+        /// </summary>
+        public static string TrackDoubleSlipSwitch {
+            get {
+                return ResourceManager.GetString("TrackDoubleSlipSwitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Three-Way Turnout.
+        /// </summary>
+        public static string TrackDoubleTurnout {
+            get {
+                return ResourceManager.GetString("TrackDoubleTurnout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left.
+        /// </summary>
+        public static string TrackLeft {
+            get {
+                return ResourceManager.GetString("TrackLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right.
+        /// </summary>
+        public static string TrackRight {
+            get {
+                return ResourceManager.GetString("TrackRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Straight Track.
+        /// </summary>
+        public static string TrackStraight {
+            get {
+                return ResourceManager.GetString("TrackStraight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turnout.
+        /// </summary>
+        public static string TrackTurnout {
+            get {
+                return ResourceManager.GetString("TrackTurnout", resourceCulture);
             }
         }
     }

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:lang="clr-namespace:Rail.Properties;assembly=Rail"
              xmlns:local="clr-namespace:Rail.Mvvm"
              mc:Ignorable="d" 
              d:DesignHeight="32" d:DesignWidth="300">
@@ -16,7 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Button Grid.Column="1" Content="OK" Command="{Binding OKCommand}" Margin="5" IsDefault="True" />
-        <Button Grid.Column="2" Content="Cancel" Command="{Binding CancelCommand}" Margin="5" IsCancel="True"/>
+        <Button Grid.Column="1" Content="{x:Static lang:Resources.OK}" Command="{Binding OKCommand}" Margin="5" IsDefault="True" />
+        <Button Grid.Column="2" Content="{x:Static lang:Resources.Cancel}" Command="{Binding CancelCommand}" Margin="5" IsCancel="True"/>
     </Grid>
 </UserControl>
