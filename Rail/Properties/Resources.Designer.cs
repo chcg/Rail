@@ -376,6 +376,24 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adapter Track.
+        /// </summary>
+        public static string TrackAdapter {
+            get {
+                return ResourceManager.GetString("TrackAdapter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Track End with a Bumper.
+        /// </summary>
+        public static string TrackBumper {
+            get {
+                return ResourceManager.GetString("TrackBumper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Crossing.
         /// </summary>
         public static string TrackCrossing {
@@ -394,11 +412,29 @@ namespace Rail.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Curved Turnout.
+        ///   Looks up a localized string similar to Curved Circuit Track.
         /// </summary>
-        public static string TrackCurvedTurnout {
+        public static string TrackCurvedCircuit {
             get {
-                return ResourceManager.GetString("TrackCurvedTurnout", resourceCulture);
+                return ResourceManager.GetString("TrackCurvedCircuit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left Curved Turnout.
+        /// </summary>
+        public static string TrackCurvedTurnoutLeft {
+            get {
+                return ResourceManager.GetString("TrackCurvedTurnoutLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right Curved Turnout.
+        /// </summary>
+        public static string TrackCurvedTurnoutRight {
+            get {
+                return ResourceManager.GetString("TrackCurvedTurnoutRight", resourceCulture);
             }
         }
         
@@ -421,20 +457,20 @@ namespace Rail.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Left.
+        ///   Looks up a localized string similar to End Piece with Track Roadbed.
         /// </summary>
-        public static string TrackLeft {
+        public static string TrackEndPiece {
             get {
-                return ResourceManager.GetString("TrackLeft", resourceCulture);
+                return ResourceManager.GetString("TrackEndPiece", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Right.
+        ///   Looks up a localized string similar to Flex Track.
         /// </summary>
-        public static string TrackRight {
+        public static string TrackFlex {
             get {
-                return ResourceManager.GetString("TrackRight", resourceCulture);
+                return ResourceManager.GetString("TrackFlex", resourceCulture);
             }
         }
         
@@ -448,11 +484,65 @@ namespace Rail.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Turnout.
+        ///   Looks up a localized string similar to Straight Circuit Track.
         /// </summary>
-        public static string TrackTurnout {
+        public static string TrackStraightCircuit {
             get {
-                return ResourceManager.GetString("TrackTurnout", resourceCulture);
+                return ResourceManager.GetString("TrackStraightCircuit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact Track.
+        /// </summary>
+        public static string TrackStraightContact {
+            get {
+                return ResourceManager.GetString("TrackStraightContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer Table.
+        /// </summary>
+        public static string TrackTransferTable {
+            get {
+                return ResourceManager.GetString("TrackTransferTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left Turnout.
+        /// </summary>
+        public static string TrackTurnoutLeft {
+            get {
+                return ResourceManager.GetString("TrackTurnoutLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right Turnout.
+        /// </summary>
+        public static string TrackTurnoutRight {
+            get {
+                return ResourceManager.GetString("TrackTurnoutRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turntable.
+        /// </summary>
+        public static string TrackTurntable {
+            get {
+                return ResourceManager.GetString("TrackTurntable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y-Turnout.
+        /// </summary>
+        public static string TrackYTurnout {
+            get {
+                return ResourceManager.GetString("TrackYTurnout", resourceCulture);
             }
         }
     }

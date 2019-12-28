@@ -27,8 +27,8 @@ namespace Rail.Model
             get
             {
                 return Direction == TrackDirection.Left ? 
-                    $"{Resources.TrackTurnout} {Resources.TrackLeft}" :
-                    $"{Resources.TrackTurnout} {Resources.TrackRight}";
+                    $"{Resources.TrackTurnoutLeft}" :
+                    $"{Resources.TrackTurnoutRight}";
             }
         }
         

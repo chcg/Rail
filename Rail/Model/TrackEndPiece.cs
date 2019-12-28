@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rail.Properties;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -9,6 +10,15 @@ namespace Rail.Model
 {
     public class TrackEndPiece : TrackBase
     {
+        [XmlIgnore]
+        public override string Name
+        {
+            get
+            {
+                return $"{Resources.TrackEndPiece}";
+            }
+        }
+
         protected override Geometry CreateGeometry(double spacing)
         {
             double length = this.RailSpacing;

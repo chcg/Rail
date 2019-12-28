@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rail.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,15 @@ namespace Rail.Model
     {
         [XmlAttribute("Length")]
         public double Length { get; set; }
+
+        [XmlIgnore]
+        public override string Name
+        {
+            get
+            {
+                return $"{Resources.TrackBumper}";
+            }
+        }
 
         protected override Geometry CreateGeometry(double spacing)
         {

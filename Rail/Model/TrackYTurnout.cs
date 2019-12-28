@@ -1,4 +1,5 @@
 ﻿using Rail.Misc;
+using Rail.Properties;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,6 +17,15 @@ namespace Rail.Model
         [XmlAttribute("Angle")]
         public double Angle { get; set; }
         
+        [XmlIgnore]
+        public override string Name
+        {
+            get
+            {
+                return $"{Resources.TrackYTurnout}";
+            }
+        }
+
         protected override Geometry CreateGeometry(double spacing)
         {
             double length = this.Radius * 2 * Math.PI * this.Angle / 360.0;

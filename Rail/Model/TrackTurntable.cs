@@ -1,4 +1,5 @@
 ﻿using Rail.Misc;
+using Rail.Properties;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,6 +22,15 @@ namespace Rail.Model
 
         [XmlAttribute("RailNum")]
         public int RailNum { get; set; }
+
+        [XmlIgnore]
+        public override string Name
+        {
+            get
+            {
+                return $"{Resources.TrackTurntable}";
+            }
+        }
 
         protected override Geometry CreateGeometry(double spacing)
         {

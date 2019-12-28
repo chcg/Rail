@@ -222,14 +222,26 @@
   <data name="RailPlanView" xml:space="preserve">
     <value>Rail Plan View</value>
   </data>
+  <data name="TrackAdapter" xml:space="preserve">
+    <value>Adapter Track</value>
+  </data>
+  <data name="TrackBumper" xml:space="preserve">
+    <value>Track End with a Bumper</value>
+  </data>
   <data name="TrackCrossing" xml:space="preserve">
     <value>Crossing</value>
   </data>
   <data name="TrackCurved" xml:space="preserve">
     <value>Curved Track</value>
   </data>
-  <data name="TrackCurvedTurnout" xml:space="preserve">
-    <value>Curved Turnout</value>
+  <data name="TrackCurvedCircuit" xml:space="preserve">
+    <value>Curved Circuit Track</value>
+  </data>
+  <data name="TrackCurvedTurnoutLeft" xml:space="preserve">
+    <value>Left Curved Turnout</value>
+  </data>
+  <data name="TrackCurvedTurnoutRight" xml:space="preserve">
+    <value>Right Curved Turnout</value>
   </data>
   <data name="TrackDoubleSlipSwitch" xml:space="preserve">
     <value>Double Slip Switch</value>
@@ -237,16 +249,34 @@
   <data name="TrackDoubleTurnout" xml:space="preserve">
     <value>Three-Way Turnout</value>
   </data>
-  <data name="TrackLeft" xml:space="preserve">
-    <value>Left</value>
+  <data name="TrackEndPiece" xml:space="preserve">
+    <value>End Piece with Track Roadbed</value>
   </data>
-  <data name="TrackRight" xml:space="preserve">
-    <value>Right</value>
+  <data name="TrackFlex" xml:space="preserve">
+    <value>Flex Track</value>
   </data>
   <data name="TrackStraight" xml:space="preserve">
     <value>Straight Track</value>
   </data>
-  <data name="TrackTurnout" xml:space="preserve">
-    <value>Turnout</value>
+  <data name="TrackStraightCircuit" xml:space="preserve">
+    <value>Straight Circuit Track</value>
+  </data>
+  <data name="TrackStraightContact" xml:space="preserve">
+    <value>Contact Track</value>
+  </data>
+  <data name="TrackTransferTable" xml:space="preserve">
+    <value>Transfer Table</value>
+  </data>
+  <data name="TrackTurnoutLeft" xml:space="preserve">
+    <value>Left Turnout</value>
+  </data>
+  <data name="TrackTurnoutRight" xml:space="preserve">
+    <value>Right Turnout</value>
+  </data>
+  <data name="TrackTurntable" xml:space="preserve">
+    <value>Turntable</value>
+  </data>
+  <data name="TrackYTurnout" xml:space="preserve">
+    <value>Y-Turnout</value>
   </data>
 </root>

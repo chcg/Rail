@@ -34,8 +34,8 @@ namespace Rail.Model
             get
             {
                 return Direction == TrackDirection.Left ?
-                    $"{Resources.TrackCurvedTurnout} {Resources.TrackLeft}" :
-                    $"{Resources.TrackCurvedTurnout} {Resources.TrackRight}";
+                    $"{Resources.TrackCurvedTurnoutLeft}" :
+                    $"{Resources.TrackCurvedTurnoutRight}";
             }
         }
 

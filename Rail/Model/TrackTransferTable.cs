@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rail.Properties;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -24,6 +25,15 @@ namespace Rail.Model
 
         [XmlAttribute("Length")]
         public double Length { get; set; }
+
+        [XmlIgnore]
+        public override string Name
+        {
+            get
+            {
+                return $"{Resources.TrackTransferTable}";
+            }
+        }
 
         protected override Geometry CreateGeometry(double spacing)
         {

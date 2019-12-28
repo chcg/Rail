@@ -222,14 +222,26 @@
   <data name="RailPlanView" xml:space="preserve">
     <value>Schienenplanansicht</value>
   </data>
+  <data name="TrackAdapter" xml:space="preserve">
+    <value>Übergangsgleis</value>
+  </data>
+  <data name="TrackBumper" xml:space="preserve">
+    <value>Gleisende mit Prellbock</value>
+  </data>
   <data name="TrackCrossing" xml:space="preserve">
     <value>Kreuzung</value>
   </data>
   <data name="TrackCurved" xml:space="preserve">
     <value>Gebogenes Gleis</value>
   </data>
-  <data name="TrackCurvedTurnout" xml:space="preserve">
-    <value>Bogenweiche</value>
+  <data name="TrackCurvedCircuit" xml:space="preserve">
+    <value>Schaltgleis gebogen</value>
+  </data>
+  <data name="TrackCurvedTurnoutLeft" xml:space="preserve">
+    <value>Bogenweiche links</value>
+  </data>
+  <data name="TrackCurvedTurnoutRight" xml:space="preserve">
+    <value>Bogenweiche rechts</value>
   </data>
   <data name="TrackDoubleSlipSwitch" xml:space="preserve">
     <value>Doppelkreuzungsweiche</value>
@@ -237,16 +249,34 @@
   <data name="TrackDoubleTurnout" xml:space="preserve">
     <value>Dreiwegweiche</value>
   </data>
-  <data name="TrackLeft" xml:space="preserve">
-    <value>links</value>
+  <data name="TrackEndPiece" xml:space="preserve">
+    <value>Endstück zur Gleisböschung</value>
   </data>
-  <data name="TrackRight" xml:space="preserve">
-    <value>rechts</value>
+  <data name="TrackFlex" xml:space="preserve">
+    <value>Flexibles Gleis</value>
   </data>
   <data name="TrackStraight" xml:space="preserve">
     <value>Gerades Gleis</value>
   </data>
-  <data name="TrackTurnout" xml:space="preserve">
-    <value>Weiche</value>
+  <data name="TrackStraightCircuit" xml:space="preserve">
+    <value>Schaltgleis gerade</value>
+  </data>
+  <data name="TrackStraightContact" xml:space="preserve">
+    <value>Kontaktgleis</value>
+  </data>
+  <data name="TrackTransferTable" xml:space="preserve">
+    <value>Schiebebühne</value>
+  </data>
+  <data name="TrackTurnoutLeft" xml:space="preserve">
+    <value>Weiche links</value>
+  </data>
+  <data name="TrackTurnoutRight" xml:space="preserve">
+    <value>Weiche rechts</value>
+  </data>
+  <data name="TrackTurntable" xml:space="preserve">
+    <value>Drehscheibe</value>
+  </data>
+  <data name="TrackYTurnout" xml:space="preserve">
+    <value>Y-Weiche</value>
   </data>
 </root>
