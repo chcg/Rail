@@ -22,8 +22,8 @@ namespace Rail.Model
             { 
                 return $"{Resources.TrackStraight} {Length} mm"; 
             } 
-        
         }
+
         protected override Geometry CreateGeometry(double spacing)
         {
             return StraitGeometry(this.Length, StraitOrientation.Center, spacing); 

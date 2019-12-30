@@ -43,16 +43,9 @@ namespace Rail.Model
         [XmlAttribute("Article")]
         public string Article { get; set; }
 
-        //[XmlAttribute("Name")]
-        //public string Name { get; set; }
-
-        //[XmlAttribute("Decription")]
-        //public string Decription { get; set; }
-
         [XmlIgnore]
-        //public abstract string Name { get; }
-        public virtual string Name { get { return "test"; } }
-
+        public abstract string Name { get; }
+        
         [XmlIgnore]
         public double RailSpacing { get; protected set; }
 

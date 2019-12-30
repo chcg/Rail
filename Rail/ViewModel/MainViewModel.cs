@@ -155,14 +155,14 @@ namespace Rail.ViewModel
             {
                 this.RailPlan.Rails.ForEach(r =>
                     {
-                        var item = list.FirstOrDefault(i => i.Article == r.Id);
+                        var item = list.FirstOrDefault(i => i.Article == r.Track.Article);
                         if (item != null)
                         {
                             item.Number += 1;
                         }
                         else
                         {
-                            list.Add(new MaterialViewModel { Number = 1, Article = r.Id, Name = r.Track.Name });
+                            list.Add(new MaterialViewModel { Number = 1, Article = r.Track.Article, Name = r.Track.Name });
                         }
                     }
                 );

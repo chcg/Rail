@@ -12,6 +12,9 @@ namespace Rail.Model
         [XmlAttribute("Radius")]
         public double Radius { get; set; }
 
+        [XmlAttribute("RadiusName")]
+        public string RadiusName { get; set; }
+
         [XmlAttribute("Angle")]
         public double Angle { get; set; }
 
@@ -20,7 +23,7 @@ namespace Rail.Model
         {
             get
             {
-                return $"{Resources.TrackCurved} {Radius} mm {Angle}°";
+                return $"{Resources.TrackCurved} {RadiusName} {Radius} mm {Angle}°";
             }
         }
 

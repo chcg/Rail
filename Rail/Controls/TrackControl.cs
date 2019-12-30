@@ -82,22 +82,16 @@ namespace Rail.Controls
         {
             base.OnRender(drawingContext);
 
-            //double zoom = 10.0 / this.Track.Spacing;
-
-            double zoom = Math.Min(10.0 / this.Track.RailSpacing, (this.ActualHeight - 10) / this.Track.GeometryTracks.Bounds.Height);
-
-
-            Rect rec = new Rect(0, 0, this.ActualWidth, this.ActualHeight);
+            Rect bounds = this.Track.GeometryTracks.Bounds;
+            double zoom = Math.Min(10.0 / this.Track.RailSpacing, Math.Min((this.ActualHeight - 10) / bounds.Height, (this.ActualWidth - 10) / bounds.Width));
+            double dh = bounds.Top + bounds.Height / 2;
             
-            drawingContext.DrawRectangle(this.Background, null, rec); // need for tooltip
+            drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.ActualWidth, this.ActualHeight)); // need for tooltip
             
-            //drawingContext.DrawRectangle(Brushes.Yellow this.Background*/, new Pen(Brushes.Blue, 4), rec);
-
-            drawingContext.PushTransform(new TranslateTransform(this.ActualWidth / 2, this.ActualHeight / 2));
+            drawingContext.PushTransform(new TranslateTransform(this.ActualWidth / 2, this.ActualHeight / 2 - dh));
             drawingContext.PushTransform(new ScaleTransform(zoom, zoom));
-
-            this.Track.Render(drawingContext, RailViewMode.Tracks, false);           
             
+            this.Track.Render(drawingContext, RailViewMode.Tracks, false);           
         }
     }
 }
