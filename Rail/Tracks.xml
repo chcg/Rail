@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TrackList>
-  
+<TrackList Version="1.0.0">  
   <TrackType Manufacturer="Märklin" Gauge="H0" Type="C-Track" DockType="m24" Spacing="16.5" Ballast="true" BallastColor="#ff51565c" Name="Märklin H0 C-Track" Description="Märklin H0 C-Track">
     <Radii>
       <Radius Name="R1" Length="360.0" Description="R1 Radius 360.0 mm" />

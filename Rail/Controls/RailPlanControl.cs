@@ -301,18 +301,7 @@ namespace Rail.Controls
             DebugText(drawingContext);
         }
         
-        [Conditional("DEBUG")]
-        private void DebugText(DrawingContext drawingContext)
-        {
-            ScrollViewer scrollViewer = this.Parent as ScrollViewer;
-            double x = scrollViewer.ContentHorizontalOffset;
-            double y = scrollViewer.ContentVerticalOffset;
-            drawingContext.DrawText(new FormattedText($"Action {this.actionType} RailItem {this.actionRailItem?.DebugIndex} Pos {this.actionRailItem?.Position.X:F2}/{this.actionRailItem?.Position.Y:F2}/{this.actionRailItem?.Angle:F2}", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y));
-            drawingContext.DrawText(new FormattedText($"Rotation debugRotationAngle {debugRotationAngle:F2}", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y + 12));
-            drawingContext.DrawText(new FormattedText("Test zzzzzzzzzzzzzzzzz", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y + 24));
-
-        }
-        
+              
         /// <summary>
         /// Render ground plate
         /// </summary>
@@ -465,8 +454,10 @@ namespace Rail.Controls
                 var otherTracks =
                     docked != null ?
                     this.RailPlan.Rails.Where(t => t != railItem).Where(t => !docked.Contains(t)).ToList() :
-                    this.RailPlan.Rails.Where(t => t != railItem);
+                    this.RailPlan.Rails.Where(t => t != railItem).ToList();
 
+                DebugDockPoints(dockPoints);
+                DebugRailItems(otherTracks);
                 foreach (var dockPoint in dockPoints)
                 {
                     foreach (RailItem t in otherTracks)
@@ -577,6 +568,7 @@ namespace Rail.Controls
                 {
                     Debug.WriteLine($"Add {dp.RailItem.DebugIndex}");
                     railItems.Add(dp.RailItem);
+                    Debug.WriteLine($"FindSubgraph add {dp.RailItem.DebugIndex}");
                     FindSubgraphRecursive(railItems, dp.RailItem);
                 }
             });
@@ -874,6 +866,39 @@ namespace Rail.Controls
         private void OnDeleteRailItem(RailItem railItem)
         {
             DeleteRailItem(railItem);
+        }
+
+        #endregion
+
+        #region Debug
+
+        [Conditional("DEBUG")]
+        private void DebugText(DrawingContext drawingContext)
+        {
+            ScrollViewer scrollViewer = this.Parent as ScrollViewer;
+            double x = scrollViewer.ContentHorizontalOffset;
+            double y = scrollViewer.ContentVerticalOffset;
+            drawingContext.DrawText(new FormattedText($"Action {this.actionType} RailItem {this.actionRailItem?.DebugIndex} Pos {this.actionRailItem?.Position.X:F2}/{this.actionRailItem?.Position.Y:F2}/{this.actionRailItem?.Angle:F2}", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y));
+            drawingContext.DrawText(new FormattedText($"Rotation debugRotationAngle {debugRotationAngle:F2}", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y + 12));
+            drawingContext.DrawText(new FormattedText("Test zzzzzzzzzzzzzzzzz", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y + 24));
+        }
+
+        [Conditional("DEBUG")]
+        private void DebugRailItems(IEnumerable<RailItem> railItems)
+        {
+            if (railItems != null && railItems.Any())
+            {
+                Debug.WriteLine(railItems.Select(r => r.DebugIndex.ToString()).Aggregate((a, b) => $"{a}, {b}"));
+            }
+        }
+
+        [Conditional("DEBUG")]
+        private void DebugDockPoints(IEnumerable<RailDockPoint> dockPoints)
+        {
+            if (dockPoints != null && dockPoints.Any())
+            {
+                Debug.WriteLine(dockPoints.Select(d => $"({d.DebugIndex}, {d.RailItem.DebugIndex})").Aggregate((a, b) => $"{a}, {b}"));
+            }
         }
 
         #endregion

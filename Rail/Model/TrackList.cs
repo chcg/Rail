@@ -7,6 +7,10 @@ namespace Rail.Model
     [XmlRoot("TrackList")]
     public class TrackList : BaseVersionedProject
     {
+        public TrackList()
+        {
+        }
+
         [XmlElement("TrackType")]
         public List<TrackType> TrackTypes { get; set; }
 

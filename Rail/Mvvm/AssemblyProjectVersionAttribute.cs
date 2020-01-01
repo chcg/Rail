@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Rail.Mvvm
 {
-    [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Assembly)]
     [ComVisible(true)]
     public sealed class AssemblyProjectVersionAttribute : Attribute
     {

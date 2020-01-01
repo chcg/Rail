@@ -16,7 +16,7 @@ namespace Rail.Mvvm
 
         public BaseVersionedProject()
         {
-            AssemblyProjectVersionAttribute projectVersionAttribute = Assembly.GetCallingAssembly().GetCustomAttribute<AssemblyProjectVersionAttribute>();
+            AssemblyProjectVersionAttribute projectVersionAttribute = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyProjectVersionAttribute>();
             if (projectVersionAttribute == null)
             {
                 throw new Exception("AssemblyProjectVersionAttribute not set!");

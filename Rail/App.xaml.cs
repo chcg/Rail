@@ -11,8 +11,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-[assembly:AssemblyProjectVersion("1.0.0.0")]
-
 namespace Rail
 {
     /// <summary>
