@@ -130,16 +130,32 @@ namespace Rail.Model
             //Debug.WriteLine($"DrawRailItem {this.IsSelected}");
             this.Track.Render(drawingContext, viewMode, this.IsSelected);
 
-            DrawDebug(drawingContext);
+            
 
             drawingContext.Pop();
+
+            DrawDebug(drawingContext);
+            DrawDebugDogpoints(drawingContext);
         }
 
         [Conditional("DEBUG")]
         public void DrawDebug(DrawingContext drawingContext)
         {
-            drawingContext.DrawRectangle(Brushes.White, new Pen(Brushes.Blue, 1), new Rect(0, 0, 32, 20));
-            drawingContext.DrawText(new FormattedText(this.DebugIndex.ToString(), CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, Brushes.Blue, 1.25), new Point(0, 0));
+            drawingContext.DrawRectangle(Brushes.White, new Pen(Brushes.Blue, 1), new Rect(this.Position, new Size(32, 20)));
+            drawingContext.DrawText(new FormattedText(this.DebugIndex.ToString(), CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, Brushes.Blue, 1.25), this.Position);
+        }
+
+        [Conditional("DEBUG")]
+        public void DrawDebugDogpoints(DrawingContext drawingContext)
+        {
+            double width = 48;
+            foreach (var dp in this.DockPoints)
+            {
+                Point pos = dp.Position - new Vector((dp.Angle < 45 || dp.Angle > 225 ? width : 0), (dp.Angle < 135 || dp.Angle > 315 ? 20 : 0));
+                drawingContext.DrawRectangle(Brushes.White, new Pen(Brushes.Blue, 1), new Rect(pos, new Size(width, 20)));
+                string str = $"{dp.DebugIndexDockPoint}-{dp.DockedWith?.DebugIndexRail},{dp.DockedWith?.DebugIndexDockPoint}";
+                drawingContext.DrawText(new FormattedText(str, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, Brushes.Blue, 1.25), pos);
+            }
         }
 
         private static Pen dockPen = new Pen(Brushes.Blue, 1);
@@ -179,6 +195,41 @@ namespace Rail.Model
             geometry.Transform = grp;
             bool f = rec.Contains(geometry.Bounds);
             return f;
+        }
+
+        public void UndockAll()
+        {
+            foreach (RailDockPoint dockPoint in this.DockPoints.Where(d => d.IsDocked))
+            {
+                dockPoint.Undock();
+            }
+        }
+
+
+        /// <summary>
+        /// Find subgraph without railItem.
+        /// </summary>
+        /// <param name="railItem">Item to find subgraph from.</param>
+        /// <returns>List with rail items.</returns>
+        public List<RailItem> FindSubgraph()
+        {
+            List<RailItem> railItems = new List<RailItem>();
+            FindSubgraphRecursive(railItems, this);
+            railItems.Remove(this);
+            return railItems;
+        }
+
+        private static void FindSubgraphRecursive(List<RailItem> railItems, RailItem railItem)
+        {
+            var dockedItems = railItem.DockPoints.Where(d => d.IsDocked).Select(d => d.DockedWith.RailItem).ToList();
+            foreach (RailItem item in dockedItems)
+            {
+                if (!railItems.Contains(item))
+                {
+                    railItems.Add(item);
+                    FindSubgraphRecursive(railItems, item);
+                }
+            }
         }
 
 

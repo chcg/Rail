@@ -11,20 +11,21 @@ namespace Rail.Misc
     {
         private const ushort MAX = 3600;
         private const ushort REV = 1800;
-        private ushort angle = 0;
+        private const double FAC = 10.0;
+        private short angle = 0;
 
         public Angle()
         { }
 
         public Angle(double value)
         {
-            int val = (int)Math.Round(value * 10.0);
-            this.angle = (ushort)((val % MAX + MAX) % MAX);
+            int val = (int)Math.Round(value * FAC);
+            this.angle = (short)((val % MAX + MAX) % MAX);
         }
 
-        public Angle(ushort value)
+        private Angle(short value)
         {
-            this.angle = (ushort)(value % MAX);
+            this.angle = (short)((value % MAX + MAX) % MAX);
         }
 
         [XmlText]
@@ -32,12 +33,12 @@ namespace Rail.Misc
         {
             get 
             { 
-                return this.angle / 10; 
+                return this.angle / FAC; 
             }
             set
             {
-                int val = (int)Math.Round(value * 10.0);
-                this.angle = (ushort)((val % MAX + MAX) % MAX);
+                int val = (int)Math.Round(value * FAC);
+                this.angle = (short)((val % MAX + MAX) % MAX);
             }
         }
 
@@ -48,17 +49,17 @@ namespace Rail.Misc
 
         public static implicit operator double(Angle a)
         {
-            return a.angle / 10.0;
+            return a.angle / FAC;
         }        
 
         public static Angle operator +(Angle a, Angle b)
         {
-            return new Angle((ushort)(a.angle + b.angle));
+            return new Angle((short)(a.angle + b.angle));
         }
         
         public static Angle operator -(Angle a, Angle b)
         {
-            return new Angle((ushort)(a.angle - b.angle));
+            return new Angle((short)(a.angle - b.angle));
         }
 
         public static bool operator ==(Angle a, Angle b)
@@ -83,12 +84,12 @@ namespace Rail.Misc
 
         public override string ToString()
         {
-            return (this.angle / 10).ToString("F1", CultureInfo.InvariantCulture);
+            return this.Value.ToString("F1", CultureInfo.InvariantCulture);
         }
 
         public Angle Revert()
         {
-            return new Angle((ushort)(this.angle + REV));
+            return new Angle(this.angle + REV);
         }
 
         public static Angle Calculate(Point center, Point p1, Point p2)
@@ -103,12 +104,14 @@ namespace Rail.Misc
 
         public Vector Circle(double radius)
         {
-            double val = this.angle * (Math.PI / 180.0);
+            double val = this.Value * (Math.PI / 180.0);
             double sin = Math.Sin(val);
             double cos = Math.Cos(val);
 
             return new Vector(sin * radius, cos * radius);
         }
+
+        
     }
 
     

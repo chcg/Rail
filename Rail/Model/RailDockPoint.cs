@@ -16,7 +16,7 @@ namespace Rail.Model
         {
             this.RailItem = railItem;
             this.trackDockPoint = trackDockPoint;
-            this.DebugIndex = trackDockPoint.DebugIndex;
+            this.DebugIndexDockPoint = trackDockPoint.DebugIndex;
             this.Position = trackDockPoint.Position;
             this.Angle = trackDockPoint.Angle;
             this.DockType = trackDockPoint.DockType;
@@ -31,7 +31,11 @@ namespace Rail.Model
 
         public RailItem RailItem { get; private set; }
 
-        public int DebugIndex { get; private set; }
+        public int DebugIndexDockPoint { get; private set; }
+
+        public int DebugIndexRail { get { return this.RailItem.DebugIndex; } }
+
+        public string DebugOutput { get { return $"({DebugIndexRail},{DebugIndexDockPoint})"; } }
 
         public Point Position { get; private set; }
 
@@ -86,6 +90,31 @@ namespace Rail.Model
         public bool IsInside(RailDockPoint p)
         {
             return this.Distance(p.Position) < this.RailItem.Track.RailSpacing;
+        }
+
+        public void Dock(RailDockPoint dockTo)
+        {
+            Debug.WriteLine($"Dock {this.DebugOutput} to {dockTo.DebugOutput}");
+            this.DockedWith = dockTo;
+            dockTo.DockedWith = this;
+
+            Angle rotate = dockTo.Angle - this.Angle - new Angle(180);
+            Debug.WriteLine($"Dock {this.Angle} op {dockTo.Angle} = {rotate}");
+
+            var sub = this.RailItem.FindSubgraph();
+            foreach (RailItem rt in sub)
+            {
+                //rt.Angle += rotate;
+                //rt.Position = track.Position.Rotate(rotate, dp);
+            }
+            this.RailItem.Rotate(rotate);
+            this.RailItem.Move(dockTo.Position - this.Position);
+        }
+
+        public void Undock()
+        {
+            this.DockedWith.DockedWith = null;
+            this.DockedWith = null;
         }
     }
 }

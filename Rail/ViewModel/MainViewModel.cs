@@ -56,7 +56,6 @@ namespace Rail.ViewModel
 
                 try
                 {
-                    Debugger.Break();
                     string path = System.AppDomain.CurrentDomain.BaseDirectory;
                     this.trackList = TrackList.Load(Path.Combine(path, "Tracks.xml"));
                     this.trackDict = trackList.TrackTypes.SelectMany(t => t.Tracks).ToDictionary(t => t.Id, t => t);

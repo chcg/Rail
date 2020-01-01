@@ -329,14 +329,16 @@ namespace Rail.Controls
 
         public void InsertRailItem(Point pos)
         {
+            Debug.WriteLine($"InsertRailItem at ({pos.X},{pos.Y})");
+            
             // insert selected track at mouse position
             this.RailPlan.Rails.Add(new RailItem(this.SelectedTrack, pos, this.InsertLayer));
-            // redraw control
-            this.InvalidateVisual();
         }
 
         public void InsertRailItem(RailDockPoint railDockPoint)
         {
+            Debug.WriteLine($"InsertRailItem at DockPoint ({railDockPoint.DebugIndexDockPoint},{railDockPoint.DebugIndexDockPoint})");
+
             RailItem railItem = new RailItem(this.SelectedTrack, new Point(0, 0), this.InsertLayer);
             Point pos = railItem.Track.DockPoints.First().Position;
             //RailDockPoint newRailDockPoint = railItem.DockPoints.First();
@@ -345,9 +347,6 @@ namespace Rail.Controls
 
             this.RailPlan.Rails.Add(railItem);
             //FindDocking(this.actionTrack, this.dockedTracks);
-
-            // redraw control
-            this.InvalidateVisual();
         }
 
         public void DeleteRailItem(RailItem railItem)
@@ -357,7 +356,7 @@ namespace Rail.Controls
             // remove the item
             this.RailPlan.Rails.Remove(railItem);
             // redraw control
-            this.InvalidateVisual();
+            //this.InvalidateVisual();
         }
 
         public void SelectRailItem(RailItem railItem, bool addSelect)
@@ -388,8 +387,10 @@ namespace Rail.Controls
             this.InvalidateVisual();
         }
 
-        private void MoveRailItem(RailItem railItem, Vector move, IEnumerable<RailItem> subgraph = null)
+        private void MoveRailItem(RailItem railItem, Vector move, IEnumerable<RailItem> subgraph)
         {
+            Debug.WriteLine($"MoveRailItem {railItem.DebugIndex} ({move.X:F2},{move.Y:F2}) with subgraph");
+
             railItem.Move(move);
             subgraph?.Where(t => t != railItem).ForEach(t => t.Move(move));
             FindDocking(railItem, subgraph);
@@ -402,19 +403,9 @@ namespace Rail.Controls
             FindDocking(railItem, subgraph);
         }
 
-        private void DockRailItem(RailItem railItem, RailItem item)
-        {
-        }
-        
-        private void UndockRailItem(RailItem railItem)
-        {
-            foreach (var dp in railItem.DockPoints.Where(dp => dp.IsDocked))
-            {
-                // delete both directions
-                dp.DockedWith.DockedWith = null;
-                dp.DockedWith = null;
-            }
-        }
+
+
+
 
 
         //private RailItem FindDocking(RailItem railItem)
@@ -467,18 +458,7 @@ namespace Rail.Controls
                             //if (Math.Abs(dp.X - dockPoint.X) < dockDistance && Math.Abs(dp.Y - dockPoint.Y) < dockDistance)
                             if (dp.IsInside(dockPoint))
                             {
-                                dockPoint.DockedWith = dp;
-                                dp.DockedWith = dockPoint;
-                                Angle rotate = 180.0 - dockPoint.Angle + dp.Angle;
-
-                                var sub = FindSubgraph(railItem).Where(f => f != railItem).ToList();
-                                foreach (RailItem rt in sub)
-                                {
-                                    //rt.Angle += rotate;
-                                    //rt.Position = track.Position.Rotate(rotate, dp);
-                                }
-                                railItem.Rotate(rotate);
-                                railItem.Move(dp.Position - dockPoint.Position);
+                                dockPoint.Dock(dp);
 
                                 this.actionType = RailAction.None;
                                 return t;
@@ -491,131 +471,9 @@ namespace Rail.Controls
             return null;
         }
 
-        private RailItem FindDockingx(RailItem railItem, IEnumerable<RailItem> docked = null)
-        {
-            var dockPoints = railItem.DockPoints;
-            var otherRails = this.RailPlan.Rails.Where(t => t != railItem).Where(t => !(docked?.Contains(t) ?? false)).ToList();
-            var otherPoints = otherRails.SelectMany(r => r.DockPoints).ToList();
-
-            RailDockPointDockComparer comp = new RailDockPointDockComparer(railItem.Track.RailSpacing, this.ShowLayer);
-            var result = dockPoints.Join(otherPoints, p1 => p1, p2 => p2, (p1, p2) => new { P1 = p1, P2 = p2 }, comp).FirstOrDefault();
-            if (result != null)
-            {
-                //result.P1.DockedWith = result.P2;
-                //result.P2.DockedWith = result.P1;
-                //Angle rotate = 180.0 - result.P1.Angle + result.P2.Angle;
-
-                //var sub = FindSubgraph(railItem).Where(f => f != railItem).ToList();
-                //foreach (RailItem rt in sub)
-                //{
-                //    //rt.Angle += rotate;
-                //    //rt.Position = track.Position.Rotate(rotate, dp);
-                //}
-                //railItem.Rotate(rotate);
-                //railItem.Move(result.P1.Position - result.P2.Position);
-                //return result.P1.RailItem;
-
-                var dockPoint = result.P1;
-                var dp = result.P2;
-
-                dockPoint.DockedWith = dp;
-                dp.DockedWith = dockPoint;
-                Angle rotate = 180.0 - dockPoint.Angle + dp.Angle;
-
-                var sub = FindSubgraph(railItem).Where(f => f != railItem).ToList();
-                foreach (RailItem rt in sub)
-                {
-                    //rt.Angle += rotate;
-                    //rt.Position = track.Position.Rotate(rotate, dp);
-                }
-                railItem.Rotate(rotate);
-                railItem.Move(dp.Position - dockPoint.Position);
-            }
 
 
-            //foreach (var dockPoint in dockPoints)
-            //{
-            //    foreach (var dp in otherPoints)
-            //    {
-            //        if (Math.Abs(dp.X - dockPoint.X) < dockDistance && Math.Abs(dp.Y - dockPoint.Y) < dockDistance)
-            //            if (dp.Distance(dockPoint) < dockDistance)
-            //            {
-            //                dockPoint.DockedWith = dp;
-            //                dp.DockedWith = dockPoint;
-            //                Angle rotate = 180.0 - dockPoint.Angle + dp.Angle;
 
-            //                var sub = FindSubgraph(railItem).Where(f => f != railItem).ToList();
-            //                foreach (RailItem rt in sub)
-            //                {
-            //                    rt.Angle += rotate;
-            //                    rt.Position = track.Position.Rotate(rotate, dp);
-            //                }
-            //                railItem.Rotate(rotate);
-            //                railItem.Move(new Vector(dp.X - dockPoint.X, dp.Y - dockPoint.Y));
-            //                return dp.Rail;
-            //            }
-            //    }
-            //}
-            return null;
-        }
-
-        private void FindSubgraphRecursive(List<RailItem> railItems, RailItem railItem)
-        {
-            var list = railItem.DockPoints.Where(dp => dp.IsDocked).ToList();
-            list.ForEach(dp =>
-            {
-                if (!railItems.Contains(dp.RailItem))
-                {
-                    Debug.WriteLine($"Add {dp.RailItem.DebugIndex}");
-                    railItems.Add(dp.RailItem);
-                    Debug.WriteLine($"FindSubgraph add {dp.RailItem.DebugIndex}");
-                    FindSubgraphRecursive(railItems, dp.RailItem);
-                }
-            });
-            //var otherTracks = this.RailPlan.Rails.Where(t => t != railItem).ToList();
-
-            //foreach (var dockPoint in dockPoints)
-            //{
-            //    foreach (RailItem t in otherTracks)
-            //    {
-            //        if (!railItems.Contains(t))
-            //        {
-            //            foreach (var dp in t.DockPoints)
-            //            {
-            //                if (dp.IsInside(dockPoint))
-            //                {
-            //                    railItems.Add(t);
-            //                    FindSubgraphRecursive(railItems, t);
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-
-        }
-
-        private List<RailItem> FindSubgraph(RailItem railItem)
-        {
-            List<RailItem> railItems = new List<RailItem>();
-            FindSubgraphRecursive(railItems, railItem);
-            return railItems;
-        }
-
-        public void DockTo(RailItem railItem, RailItem dockingTrack)
-        {
-            foreach (RailDockPoint dockPoint in railItem.DockPoints)
-            {
-                foreach (RailDockPoint dp in dockingTrack.DockPoints)
-                {
-                    if (dp.IsInside(dockPoint))
-                    {
-
-                        railItem.Angle += dp.Angle - dockPoint.Angle + 180.0;
-                        railItem.Position += dp.Position - dockPoint.Position;
-                    }
-                }
-            }
-        }
 
         [Conditional("DEBUG")]
         private void CheckDockings()
@@ -702,7 +560,7 @@ namespace Rail.Controls
                 if (dp != null)
                 {
                     this.actionType = RailAction.Rotate;
-                    this.actionRailItemDockedRailItems = FindSubgraph(this.actionRailItem);
+                    this.actionRailItemDockedRailItems = this.actionRailItem.FindSubgraph();
                     this.debugRotationAngle = Angle.Calculate(this.actionRailItem.Position, pos);
                 }
                 // click outside docking point
@@ -711,7 +569,7 @@ namespace Rail.Controls
                     // SHIFT pressed
                     if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
                     {
-                        UndockRailItem(this.actionRailItem);
+                        this.actionRailItem.UndockAll();
                         this.actionType = RailAction.MoveSingle;
                         this.actionRailItemDockedRailItems = null;
                     }
@@ -719,7 +577,7 @@ namespace Rail.Controls
                     else
                     {
                         this.actionType = RailAction.MoveGraph;
-                        this.actionRailItemDockedRailItems = FindSubgraph(this.actionRailItem);
+                        this.actionRailItemDockedRailItems = this.actionRailItem.FindSubgraph();
                     }
                 }
             }
@@ -730,6 +588,7 @@ namespace Rail.Controls
             }
             this.lastMousePosition = pos;
             this.CaptureMouse();
+            this.InvalidateVisual();
 
             base.OnMouseLeftButtonDown(e);
             CheckDockings();
@@ -746,7 +605,7 @@ namespace Rail.Controls
             switch (this.actionType)
             {
             case RailAction.MoveSingle:
-                MoveRailItem(this.actionRailItem, pos - this.lastMousePosition);
+                this.actionRailItem.Move(pos - this.lastMousePosition);
                 this.lastMousePosition = pos;
                 this.InvalidateVisual();
                 break;
@@ -782,31 +641,31 @@ namespace Rail.Controls
 
             
             Vector move = pos - this.lastMousePosition;
-            RailItem dockingTrack;
+            //RailItem dockingTrack;
 
             bool addSelect = Keyboard.Modifiers.HasFlag(ModifierKeys.Shift) || Keyboard.Modifiers.HasFlag(ModifierKeys.Control);
 
             switch (this.actionType)
             {
             case RailAction.MoveSingle:
-                this.actionRailItem.Position += pos - this.lastMousePosition;
-                dockingTrack = FindDocking(this.actionRailItem);
-                if (dockingTrack != null)
-                {
-                    DockTo(this.actionRailItem, dockingTrack);
-                }
+                //this.actionRailItem.Position += pos - this.lastMousePosition;
+                //dockingTrack = FindDocking(this.actionRailItem);
+                //if (dockingTrack != null)
+                //{
+                //    DockTo(this.actionRailItem, dockingTrack);
+                //}
                 break;
             case RailAction.MoveGraph:
-                this.actionRailItem.Position += pos - this.lastMousePosition;
-                dockingTrack = FindDocking(this.actionRailItem);
-                if (dockingTrack != null)
-                {
-                    DockTo(this.actionRailItem, dockingTrack);
-                }
-                foreach (RailItem track in this.actionRailItemDockedRailItems)
-                {
-                    track.Position += pos - this.lastMousePosition;
-                }
+                //this.actionRailItem.Position += pos - this.lastMousePosition;
+                //dockingTrack = FindDocking(this.actionRailItem);
+                //if (dockingTrack != null)
+                //{
+                //    DockTo(this.actionRailItem, dockingTrack);
+                //}
+                //foreach (RailItem track in this.actionRailItemDockedRailItems)
+                //{
+                //    track.Position += pos - this.lastMousePosition;
+                //}
                 break;
             case RailAction.Rotate:
                 double rotationAngle = Angle.Calculate(this.actionRailItem.Position, pos);
@@ -897,7 +756,7 @@ namespace Rail.Controls
         {
             if (dockPoints != null && dockPoints.Any())
             {
-                Debug.WriteLine(dockPoints.Select(d => $"({d.DebugIndex}, {d.RailItem.DebugIndex})").Aggregate((a, b) => $"{a}, {b}"));
+                Debug.WriteLine(dockPoints.Select(d => $"({d.DebugIndexDockPoint}, {d.RailItem.DebugIndex})").Aggregate((a, b) => $"{a}, {b}"));
             }
         }
 
