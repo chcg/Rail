@@ -86,12 +86,30 @@ namespace Rail.ViewModel
             set
             {
                 this.selectedTrackType = value;
-                NotifyPropertyChanged("SelectedTrackType");
+                NotifyPropertyChanged(nameof(SelectedTrackType));
 
                 this.Tracks = this.selectedTrackType?.Tracks;
                 this.SelectedTrack = this.Tracks.FirstOrDefault();
             }
         }
+
+        private int selectedGroupIndex = 0;
+        public int SelectedGroupIndex
+        {
+            get
+            {
+                return this.selectedGroupIndex;
+            }
+            set
+            {
+                this.selectedGroupIndex = value;
+                NotifyPropertyChanged(nameof(SelectedGroupIndex));
+
+                //this.Tracks = this.selectedTrackType?.Tracks;
+                //this.SelectedTrack = this.Tracks.FirstOrDefault();
+            }
+        }
+        
 
         public List<TrackBase> tracks;
 
@@ -104,7 +122,7 @@ namespace Rail.ViewModel
             set
             {
                 this.tracks = value;
-                NotifyPropertyChanged("Tracks");
+                NotifyPropertyChanged(nameof(Tracks));
             }
         }
 
@@ -118,7 +136,7 @@ namespace Rail.ViewModel
             set
             {
                 this.selectedTracke = value;
-                NotifyPropertyChanged("SelectedTrack");
+                NotifyPropertyChanged(nameof(SelectedTrack));
             }
         }
 
@@ -135,7 +153,7 @@ namespace Rail.ViewModel
                     this.railPlan.Rails.CollectionChanged -= OnRailsChanged;
                 }
                 this.railPlan = value;
-                NotifyPropertyChanged("RailPlan");
+                NotifyPropertyChanged(nameof(RailPlan));
                 if (this.railPlan != null)
                 {
                     this.railPlan.Rails.CollectionChanged += OnRailsChanged;
@@ -150,28 +168,34 @@ namespace Rail.ViewModel
 
         private void CreateMaterialList()
         {
-            List<MaterialViewModel> list = new List<MaterialViewModel>();
-            if (this.railPlan != null)
-            {
-                this.RailPlan.Rails.ForEach(r =>
-                    {
-                        var item = list.FirstOrDefault(i => i.Article == r.Track.Article);
-                        if (item != null)
-                        {
-                            item.Number += 1;
-                        }
-                        else
-                        {
-                            list.Add(new MaterialViewModel { Number = 1, Article = r.Track.Article, Name = r.Track.Name });
-                        }
-                    }
-                );
-            }
-            this.MaterialList = list;
+            var l1 = this.RailPlan.Rails.SelectMany(r => r.Track.Materials).ToList();
+            var l2 = l1.GroupBy(m => m.Id).ToList();
+            var l3 = l2.Select(g => new { num = g.Select(m => m.Number).Sum(), material = g.First() }).ToList();
+            this.MaterialList = l3.Select(i => { i.material.Number = i.num; return i.material; }).ToList();
+               
+            //List <TrackMaterial> list = new List<TrackMaterial>();
+            //if (this.railPlan != null)
+            //{
+            //    this.RailPlan.Rails.ForEach(r =>
+            //        {
+            //            var item = list.FirstOrDefault(i => i.Id == r.Track.Materials);
+            //            if (item != null)
+            //            {
+            //                item.Number += 1;
+            //            }
+            //            else
+            //            {
+            //                list.Add(new MaterialViewModel { Number = 1, Article = r.Track.Article, Name = r.Track.Name });
+            //            }
+            //        }
+            //    );
+            //}
+            
+            //this.MaterialList = list;
         }
 
-        private List<MaterialViewModel> materialList;
-        public List<MaterialViewModel> MaterialList
+        private List<TrackMaterial> materialList;
+        public List<TrackMaterial> MaterialList
         {
             get
             {
@@ -180,7 +204,7 @@ namespace Rail.ViewModel
             set
             {
                 this.materialList = value;
-                NotifyPropertyChanged("MaterialList");
+                NotifyPropertyChanged(nameof(MaterialList));
             }
         }
 
@@ -194,7 +218,7 @@ namespace Rail.ViewModel
             set
             {
                 this.showMaterialList = value;
-                NotifyPropertyChanged("ShowMaterialList");
+                NotifyPropertyChanged(nameof(ShowMaterialList));
             }
         }
 
@@ -212,7 +236,7 @@ namespace Rail.ViewModel
                 {
                     Update3D();
                 }
-                NotifyPropertyChanged("ViewMode");
+                NotifyPropertyChanged(nameof(ViewMode));
             }
         }
 
@@ -226,7 +250,7 @@ namespace Rail.ViewModel
             set
             {
                 this.showDockingPoints = value;
-                NotifyPropertyChanged("ShowDockingPoints");
+                NotifyPropertyChanged(nameof(ShowDockingPoints));
             }
         }
 
@@ -239,9 +263,9 @@ namespace Rail.ViewModel
             set
             {
                 this.zoomFactor = value;
-                NotifyPropertyChanged("ZoomFactor");
+                NotifyPropertyChanged(nameof(ZoomFactor));
                 this.ZoomFactor3D = value * 0.005;
-                NotifyPropertyChanged("ZoomFactor3D");
+                NotifyPropertyChanged(nameof(ZoomFactor3D));
             }
         }
 
@@ -261,7 +285,7 @@ namespace Rail.ViewModel
             set
             {
                 this.snapInDistance = value;
-                NotifyPropertyChanged("SnapInDistance");
+                NotifyPropertyChanged(nameof(SnapInDistance));
             }
         }
 
@@ -275,7 +299,7 @@ namespace Rail.ViewModel
             set
             {
                 this.snapInAngel = value;
-                NotifyPropertyChanged("SnapInAngel");
+                NotifyPropertyChanged(nameof(SnapInAngel));
             }
         }
 
@@ -289,7 +313,7 @@ namespace Rail.ViewModel
             set
             {
                 this.gridLinesDistance = value;
-                NotifyPropertyChanged("GridLinesDistance");
+                NotifyPropertyChanged(nameof(GridLinesDistance));
             }
         }
 
@@ -303,7 +327,7 @@ namespace Rail.ViewModel
             set
             {
                 this.mousePosition = value;
-                NotifyPropertyChanged("MousePosition");
+                NotifyPropertyChanged(nameof(MousePosition));
             }
         }
 

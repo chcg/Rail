@@ -126,6 +126,9 @@
   <data name="MainArticle" xml:space="preserve">
     <value>Artikel</value>
   </data>
+  <data name="MainCustomer" xml:space="preserve">
+    <value>Eigenen Gruppen</value>
+  </data>
   <data name="MainDistance" xml:space="preserve">
     <value>Entfernung</value>
   </data>
@@ -162,11 +165,17 @@
   <data name="MainGridLines" xml:space="preserve">
     <value>Gitterlinien</value>
   </data>
+  <data name="MainGroup" xml:space="preserve">
+    <value>Gruppen</value>
+  </data>
   <data name="MainInsertLayer" xml:space="preserve">
     <value>Stufe eingeben</value>
   </data>
   <data name="MainLayer" xml:space="preserve">
     <value>Stufe</value>
+  </data>
+  <data name="MainManufacturer" xml:space="preserve">
+    <value>Hersteller</value>
   </data>
   <data name="MainName" xml:space="preserve">
     <value>Name</value>
@@ -194,6 +203,9 @@
   </data>
   <data name="MainShowTrackList" xml:space="preserve">
     <value>Gleisliste anzeigen</value>
+  </data>
+  <data name="MainSingle" xml:space="preserve">
+    <value>Gleise</value>
   </data>
   <data name="MainSnapIn" xml:space="preserve">
     <value>Einrasten</value>

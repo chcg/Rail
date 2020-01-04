@@ -220,6 +220,7 @@
         <Grid DockPanel.Dock="Left" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <ComboBox Grid.Row="0" ItemsSource="{Binding TrackTypes}" SelectedItem="{Binding SelectedTrackType}" SelectedIndex="0" ToolTip="{Binding SelectedTrackType.Description}" MinWidth="200" Margin="8">
@@ -229,7 +230,12 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <ListView Grid.Row="1" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" SelectedIndex="0" Margin="8,0,8,8">
+            <TabControl Grid.Row="1" SelectedIndex="{Binding SelectedGroupIndex}" Margin="8,0,8,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+                <TabItem Header="{x:Static lang:Resources.MainSingle}"/>
+                <TabItem Header="{x:Static lang:Resources.MainGroup}"/>
+                <TabItem Header="{x:Static lang:Resources.MainCustomer}"/>
+            </TabControl>
+            <ListView Grid.Row="2" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" SelectedIndex="0" Margin="8,0,8,8">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="LightGray" BorderThickness="1,1,1,1">
@@ -247,9 +253,10 @@
             </ListView>
         </Grid>
         <Grid DockPanel.Dock="Right" Visibility="{Binding ShowMaterialList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-            <DataGrid ItemsSource="{Binding MaterialList}" AutoGenerateColumns="False"  Margin="8" CanUserAddRows="False" CanUserDeleteRows="False" GridLinesVisibility="None">
+            <DataGrid ItemsSource="{Binding MaterialList}" AutoGenerateColumns="False"  Margin="8" CanUserAddRows="False" CanUserDeleteRows="False" GridLinesVisibility="None" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="#" Binding="{Binding Number}" Width="30" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="{x:Static lang:Resources.MainManufacturer}" Binding="{Binding Manufacturer}" Width="60" IsReadOnly="True"/>
                     <DataGridTextColumn Header="{x:Static lang:Resources.MainArticle}" Binding="{Binding Article}" Width="60" IsReadOnly="True"/>
                     <DataGridTextColumn Header="{x:Static lang:Resources.MainName}" Binding="{Binding Name}" Width="200" IsReadOnly="True"/>
                 </DataGrid.Columns>

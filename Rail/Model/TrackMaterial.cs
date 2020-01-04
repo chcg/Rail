@@ -1,13 +1,14 @@
-﻿using Rail.Mvvm;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Rail.ViewModel
+namespace Rail.Model
 {
-    public class MaterialViewModel : BaseViewModel
+    public class TrackMaterial
     {
+        public string Id { get; set; }
         public int Number { get; set; }
+        public string Manufacturer { get; set; }
         public string Article { get; set; }
         public string Name { get; set; }
     }

@@ -44,6 +44,9 @@ namespace Rail.Model
         public string Article { get; set; }
 
         [XmlIgnore]
+        public string Manufacturer { get; protected set; }
+
+        [XmlIgnore]
         public abstract string Name { get; }
 
         [XmlIgnore]
@@ -66,12 +69,22 @@ namespace Rail.Model
         [XmlIgnore]
         public List<TrackDockPoint> DockPoints { get; protected set; }
 
+        [XmlIgnore]
+        public virtual List<TrackMaterial> Materials 
+        {
+            get
+            {
+                return new List<TrackMaterial> { new TrackMaterial { Id = this.Id, Number = 1, Manufacturer = this.Manufacturer, Article = this.Article, Name = this.Name } };
+            }
+        }
+
         public void Update(TrackType trackType)
         {
             this.RailSpacing = trackType.Spacing;
             this.sleepersSpacing = this.RailSpacing * 5 / 3;
             this.Ballast = trackType.Ballast;
             this.dockType = trackType.DockType;
+            this.Manufacturer = trackType.Manufacturer;
 
             this.railPen = new Pen(Brushes.Black, this.RailSpacing / 10);
             this.railPenSelected = new Pen(Brushes.Blue, this.RailSpacing / 10);

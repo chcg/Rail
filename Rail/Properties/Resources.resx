@@ -126,6 +126,9 @@
   <data name="MainArticle" xml:space="preserve">
     <value>Article</value>
   </data>
+  <data name="MainCustomer" xml:space="preserve">
+    <value>Own Groups</value>
+  </data>
   <data name="MainDistance" xml:space="preserve">
     <value>Distance</value>
   </data>
@@ -162,11 +165,17 @@
   <data name="MainGridLines" xml:space="preserve">
     <value>Grid Lines</value>
   </data>
+  <data name="MainGroup" xml:space="preserve">
+    <value>Groups</value>
+  </data>
   <data name="MainInsertLayer" xml:space="preserve">
     <value>Insert Layer</value>
   </data>
   <data name="MainLayer" xml:space="preserve">
     <value>Layer</value>
+  </data>
+  <data name="MainManufacturer" xml:space="preserve">
+    <value>Manufacturer</value>
   </data>
   <data name="MainName" xml:space="preserve">
     <value>Name</value>
@@ -194,6 +203,9 @@
   </data>
   <data name="MainShowTrackList" xml:space="preserve">
     <value>Show Track List</value>
+  </data>
+  <data name="MainSingle" xml:space="preserve">
+    <value>Tracks</value>
   </data>
   <data name="MainSnapIn" xml:space="preserve">
     <value>Snap In</value>

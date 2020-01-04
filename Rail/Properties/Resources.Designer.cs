@@ -88,6 +88,15 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Own Groups.
+        /// </summary>
+        public static string MainCustomer {
+            get {
+                return ResourceManager.GetString("MainCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Distance.
         /// </summary>
         public static string MainDistance {
@@ -196,6 +205,15 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Groups.
+        /// </summary>
+        public static string MainGroup {
+            get {
+                return ResourceManager.GetString("MainGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert Layer.
         /// </summary>
         public static string MainInsertLayer {
@@ -210,6 +228,15 @@ namespace Rail.Properties {
         public static string MainLayer {
             get {
                 return ResourceManager.GetString("MainLayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manufacturer.
+        /// </summary>
+        public static string MainManufacturer {
+            get {
+                return ResourceManager.GetString("MainManufacturer", resourceCulture);
             }
         }
         
@@ -291,6 +318,15 @@ namespace Rail.Properties {
         public static string MainShowTrackList {
             get {
                 return ResourceManager.GetString("MainShowTrackList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tracks.
+        /// </summary>
+        public static string MainSingle {
+            get {
+                return ResourceManager.GetString("MainSingle", resourceCulture);
             }
         }
         
