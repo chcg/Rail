@@ -735,8 +735,8 @@ namespace Rail.Controls
         private void DebugText(DrawingContext drawingContext)
         {
             ScrollViewer scrollViewer = this.Parent as ScrollViewer;
-            double x = scrollViewer.ContentHorizontalOffset;
-            double y = scrollViewer.ContentVerticalOffset;
+            double x = scrollViewer?.ContentHorizontalOffset ?? 0;
+            double y = scrollViewer?.ContentVerticalOffset ?? 0;
             drawingContext.DrawText(new FormattedText($"Action {this.actionType} RailItem {this.actionRailItem?.DebugIndex} Pos {this.actionRailItem?.Position.X:F2}/{this.actionRailItem?.Position.Y:F2}/{this.actionRailItem?.Angle:F2}", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y));
             drawingContext.DrawText(new FormattedText($"Rotation debugRotationAngle {debugRotationAngle:F2}", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y + 12));
             drawingContext.DrawText(new FormattedText("Test zzzzzzzzzzzzzzzzz", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y + 24));

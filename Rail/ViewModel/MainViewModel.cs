@@ -168,30 +168,11 @@ namespace Rail.ViewModel
 
         private void CreateMaterialList()
         {
-            var l1 = this.RailPlan.Rails.SelectMany(r => r.Track.Materials).ToList();
-            var l2 = l1.GroupBy(m => m.Id).ToList();
-            var l3 = l2.Select(g => new { num = g.Select(m => m.Number).Sum(), material = g.First() }).ToList();
-            this.MaterialList = l3.Select(i => { i.material.Number = i.num; return i.material; }).ToList();
-               
-            //List <TrackMaterial> list = new List<TrackMaterial>();
-            //if (this.railPlan != null)
-            //{
-            //    this.RailPlan.Rails.ForEach(r =>
-            //        {
-            //            var item = list.FirstOrDefault(i => i.Id == r.Track.Materials);
-            //            if (item != null)
-            //            {
-            //                item.Number += 1;
-            //            }
-            //            else
-            //            {
-            //                list.Add(new MaterialViewModel { Number = 1, Article = r.Track.Article, Name = r.Track.Name });
-            //            }
-            //        }
-            //    );
-            //}
-            
-            //this.MaterialList = list;
+            //var l1 = this.RailPlan.Rails.SelectMany(r => r.Track.Materials).GroupBy(m => m.Id).ToList();
+            //var l3 = l1.Select(g => new { num = g.Select(m => m.Number).Sum(), material = g.First() }).ToList();
+            //this.MaterialList = l3.Select(i => { i.material.Number = i.num; return i.material; }).ToList();
+
+            this.MaterialList = this.RailPlan.Rails.SelectMany(r => r.Track.Materials).GroupBy(m => m.Id).Select(g => { var m = g.First(); m.Number = g.Select(i => i.Number).Sum(); return m; }).ToList();
         }
 
         private List<TrackMaterial> materialList;
