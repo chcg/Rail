@@ -26,6 +26,15 @@ namespace Rail.Model
             }
         }
 
+        [XmlIgnore]
+        public override string Description
+        {
+            get
+            {
+                return $"{this.Article} {Resources.TrackYTurnout}";
+            }
+        }
+
         protected override Geometry CreateGeometry(double spacing)
         {
             double length = this.Radius * 2 * Math.PI * this.Angle / 360.0;

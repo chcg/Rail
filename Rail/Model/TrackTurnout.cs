@@ -31,7 +31,18 @@ namespace Rail.Model
                     $"{Resources.TrackTurnoutRight}";
             }
         }
-        
+
+        [XmlIgnore]
+        public override string Description
+        {
+            get
+            {
+                return Direction == TrackDirection.Left ?
+                    $"{this.Article} {Resources.TrackTurnoutLeft}" :
+                    $"{this.Article} {Resources.TrackTurnoutRight}";
+            }
+        }
+
         protected override Geometry CreateGeometry(double spacing)
         {
             return new CombinedGeometry(

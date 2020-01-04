@@ -27,6 +27,15 @@ namespace Rail.Model
             }
         }
 
+        [XmlIgnore]
+        public override string Description
+        {
+            get
+            {
+                return $"{this.Article} {Resources.TrackDoubleSlipSwitch}";
+            }
+        }
+
         protected override Geometry CreateGeometry(double spacing)
         {
             double curveAngle = 30;

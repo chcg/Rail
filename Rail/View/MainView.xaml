@@ -233,12 +233,12 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="LightGray" BorderThickness="1,1,1,1">
-                            <Grid ToolTip="{Binding Decription}" >
+                            <Grid ToolTip="{Binding Description}" >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <ctrl:TrackControl Grid.Row="0" Track="{Binding .}" ToolTip="{Binding Decription}"/>
+                                <ctrl:TrackControl Grid.Row="0" Track="{Binding .}" ToolTip="{Binding Description}"/>
                                 <TextBlock Grid.Row="1" Text="{Binding Name}" HorizontalAlignment="Center" />
                             </Grid>
                         </Border>

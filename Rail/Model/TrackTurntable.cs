@@ -32,6 +32,15 @@ namespace Rail.Model
             }
         }
 
+        [XmlIgnore]
+        public override string Description
+        {
+            get
+            {
+                return $"{this.Article} {Resources.TrackTurntable}";
+            }
+        }
+
         protected override Geometry CreateGeometry(double spacing)
         {
             return new EllipseGeometry(new Point(0, 0), this.OuterRadius, this.OuterRadius);

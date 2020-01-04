@@ -19,6 +19,15 @@ namespace Rail.Model
             }
         }
 
+        [XmlIgnore]
+        public override string Description
+        {
+            get
+            {
+                return $"{this.Article} {Resources.TrackEndPiece}";
+            }
+        }
+
         protected override Geometry CreateGeometry(double spacing)
         {
             double length = this.RailSpacing;

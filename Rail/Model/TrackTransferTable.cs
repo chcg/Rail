@@ -35,6 +35,15 @@ namespace Rail.Model
             }
         }
 
+        [XmlIgnore]
+        public override string Description
+        {
+            get
+            {
+                return $"{this.Article} {Resources.TrackTransferTable}";
+            }
+        }
+
         protected override Geometry CreateGeometry(double spacing)
         {
             return new RectangleGeometry(new Rect(-this.Width / 2, -this.Height / 2, this.Width, this.Height));

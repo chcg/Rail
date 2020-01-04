@@ -45,7 +45,10 @@ namespace Rail.Model
 
         [XmlIgnore]
         public abstract string Name { get; }
-        
+
+        [XmlIgnore]
+        public abstract string Description { get; }
+
         [XmlIgnore]
         public double RailSpacing { get; protected set; }
 

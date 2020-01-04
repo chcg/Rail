@@ -39,6 +39,17 @@ namespace Rail.Model
             }
         }
 
+        [XmlIgnore]
+        public override string Description
+        {
+            get
+            {
+                return Direction == TrackDirection.Left ?
+                    $"{this.Article} {Resources.TrackCurvedTurnoutLeft}" :
+                    $"{this.Article} {Resources.TrackCurvedTurnoutRight}";
+            }
+        }
+
         protected override Geometry CreateGeometry(double spacing)
         {
             double width = (this.OuterRadius * 2 * Math.PI * this.OuterAngle / 360.0 + this.Length) / 2;

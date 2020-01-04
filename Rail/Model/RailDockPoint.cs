@@ -104,8 +104,8 @@ namespace Rail.Model
             var sub = this.RailItem.FindSubgraph();
             foreach (RailItem rt in sub)
             {
-                //rt.Angle += rotate;
-                //rt.Position = track.Position.Rotate(rotate, dp);
+                rt.Angle += rotate;
+                rt.Position = rt.Position.Rotate(rotate, this.Position);
             }
             this.RailItem.Rotate(rotate);
             this.RailItem.Move(dockTo.Position - this.Position);

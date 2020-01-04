@@ -20,6 +20,16 @@ namespace Rail.Model
 
         }
 
+        [XmlIgnore]
+        public override string Description
+        {
+            get
+            {
+                return $"{this.Article} Group";
+            }
+
+        }
+
         protected override List<TrackDockPoint> CreateDockPoints()
         {
             return null;

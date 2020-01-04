@@ -24,6 +24,15 @@ namespace Rail.Model
             }
         }
 
+        [XmlIgnore]
+        public override string Description
+        {
+            get
+            {
+                return $"{this.Article} {Resources.TrackBumper}";
+            }
+        }
+
         protected override Geometry CreateGeometry(double spacing)
         {
             return StraitGeometry(this.Length, StraitOrientation.Center, spacing);

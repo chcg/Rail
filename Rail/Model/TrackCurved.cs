@@ -27,6 +27,15 @@ namespace Rail.Model
             }
         }
 
+        [XmlIgnore]
+        public override string Description
+        {
+            get
+            {
+                return $"{this.Article} {Resources.TrackCurved} {RadiusName} {Radius} mm {Angle}°";
+            }
+        }
+
         protected override Geometry CreateGeometry(double spacing)
         {
             return CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Center, spacing, new Point(0, 0));

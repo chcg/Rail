@@ -22,6 +22,15 @@ namespace Rail.Model
             }
         }
 
+        [XmlIgnore]
+        public override string Description
+        {
+            get
+            {
+                return $"{this.Article} {Resources.TrackFlex}";
+            }
+        }
+
         protected override Geometry CreateGeometry(double spacing)
         {
             return CurvedGeometry(20, 360, CurvedOrientation.Center, spacing, new Point());
