@@ -13,19 +13,18 @@ namespace Rail.Model
     public abstract class TrackBase
     {
 
-        protected readonly Brush trackBrush = new SolidColorBrush(Colors.White);
-        protected readonly Brush trackBrushSelected = new SolidColorBrush(Colors.Yellow);
-        protected readonly Brush textBrush = new SolidColorBrush(Colors.Black);
-        protected readonly Brush ballastBrush = new SolidColorBrush(Color.FromRgb(0x51, 0x56, 0x5c));
-        protected readonly Pen dockPen = new Pen(Brushes.Blue, 2);
-        protected readonly Pen linePen = new Pen(Brushes.Black, 2);
-        //protected Pen selectedLinePen = new Pen(Brushes.Blue, 2);
-        protected readonly Pen textPen = new Pen(Brushes.Black, 0.5);
+        protected readonly Brush trackBrush = TrackBrushes.TrackBackground;
+        protected readonly Brush trackBrushSelected = TrackBrushes.TrackSelectedBackground;
+        protected readonly Brush textBrush = TrackBrushes.Text;
+        protected readonly Brush ballastBrush = TrackBrushes.Ballast;
+        protected readonly Pen dockPen = new Pen(TrackBrushes.Dock, 2);
+        protected readonly Pen linePen = new Pen(TrackBrushes.TrackFrame, 2);
+        protected readonly Pen textPen = new Pen(TrackBrushes.Text, 0.5);
         protected Pen railPen;
         protected Pen woodenSleepersPen;
         protected Pen concreteSleepersPen;
         protected Pen railPenSelected;
-        protected Pen sleepersPenSelected;
+        protected Pen selectedSleepersPen;
         protected FormattedText text;
         protected Drawing textDrawing;
         protected string dockType;
@@ -97,12 +96,12 @@ namespace Rail.Model
             this.ballastWidth = this.RailSpacing * ballastWidthFactor;
             this.sleepersWidth = this.ViewType.HasFlag(TrackViewType.Ballast) ? this.RailSpacing * sleepersWidthFactor : this.RailSpacing * ballastWidthFactor;
 
-            this.railPen = new Pen(Brushes.Black, this.RailSpacing * railThicknessFactor);
-            this.railPenSelected = new Pen(Brushes.Blue, this.RailSpacing * railThicknessFactor);
-            this.woodenSleepersPen = new Pen(Brushes.Black, this.RailSpacing * sleepersThicknessFactor);
-            this.concreteSleepersPen = new Pen(Brushes.LightGray, this.RailSpacing * sleepersThicknessFactor);
-            this.sleepersPenSelected = new Pen(Brushes.Blue, this.RailSpacing * sleepersThicknessFactor);
-            this.text = new FormattedText(this.Article, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), this.RailSpacing * textFactor, Brushes.Black, 1.25);
+            this.railPen = new Pen(TrackBrushes.Rail, this.RailSpacing * railThicknessFactor);
+            this.railPenSelected = new Pen(TrackBrushes.SelectedRail, this.RailSpacing * railThicknessFactor);
+            this.woodenSleepersPen = new Pen(TrackBrushes.WoodenSleepers, this.RailSpacing * sleepersThicknessFactor);
+            this.concreteSleepersPen = new Pen(TrackBrushes.ConcreteSleepers, this.RailSpacing * sleepersThicknessFactor);
+            this.selectedSleepersPen = new Pen(TrackBrushes.SelectedSleepers, this.RailSpacing * sleepersThicknessFactor);
+            this.text = new FormattedText(this.Article, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), this.RailSpacing * textFactor, TrackBrushes.Text, 1.25);
             this.textDrawing = new GeometryDrawing(textBrush, textPen, text.BuildGeometry(new Point(0, 0) - new Vector(text.Width / 2, text.Height / 2)));
             Create();
         }
@@ -200,7 +199,7 @@ namespace Rail.Model
         {
             if (isSelected)
             {
-                return sleepersPenSelected;
+                return selectedSleepersPen;
             }
             else
             {
