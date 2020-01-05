@@ -56,7 +56,7 @@ namespace Rail.Model
             {
                 for (int i = 0; i < this.RailNum; i++)
                 {
-                    drawingRail.Children.Add(new GeometryDrawing(this.ballastBrush, null,
+                    drawingRail.Children.Add(new GeometryDrawing(TrackBrushes.Ballast, null,
                         new PathGeometry(new PathFigureCollection
                         {
                         new PathFigure(new Point(-this.OuterRadius, -this.RailSpacing).Rotate(this.Angle * i), new PathSegmentCollection
@@ -68,7 +68,7 @@ namespace Rail.Model
                         }, true)
                         })));
                 }
-                drawingRail.Children.Add(new GeometryDrawing(this.ballastBrush, null, new RectangleGeometry(new Rect(-this.InnerRadius, -this.RailSpacing, this.InnerRadius * 2, this.RailSpacing * 2))));
+                drawingRail.Children.Add(new GeometryDrawing(TrackBrushes.Ballast, null, new RectangleGeometry(new Rect(-this.InnerRadius, -this.RailSpacing, this.InnerRadius * 2, this.RailSpacing * 2))));
             }
             
             drawingRail.Children.Add(StraitRail(isSelected, this.InnerRadius * 2));
@@ -76,8 +76,8 @@ namespace Rail.Model
             for (int i = 0; i < RailNum; i++)
             {
 
-                drawingRail.Children.Add(new GeometryDrawing(null, isSelected ? railPenSelected : railPen, new LineGeometry(new Point(-this.OuterRadius, -this.RailSpacing / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, -this.RailSpacing / 2).Rotate(this.Angle * i)))); ;
-                drawingRail.Children.Add(new GeometryDrawing(null, isSelected ? railPenSelected : railPen, new LineGeometry(new Point(-this.OuterRadius, +this.RailSpacing / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, +this.RailSpacing / 2).Rotate(this.Angle * i))));
+                drawingRail.Children.Add(new GeometryDrawing(null, isSelected ? selectedRailPen : woodenRailPen, new LineGeometry(new Point(-this.OuterRadius, -this.RailSpacing / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, -this.RailSpacing / 2).Rotate(this.Angle * i)))); ;
+                drawingRail.Children.Add(new GeometryDrawing(null, isSelected ? selectedRailPen : woodenRailPen, new LineGeometry(new Point(-this.OuterRadius, +this.RailSpacing / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, +this.RailSpacing / 2).Rotate(this.Angle * i))));
 
                 double length1 = this.OuterRadius - this.InnerRadius;
                 int num1 = (int)Math.Round(length1 / (this.RailSpacing / 2));
