@@ -40,10 +40,11 @@ namespace Rail.Model
             double length = this.RailSpacing;
 
             DrawingGroup drawingRail = new DrawingGroup();
-            if (this.Ballast)
+            if (this.ViewType.HasFlag(TrackViewType.Ballast))
             {
                 drawingRail.Children.Add(StraitBallast(length, StraitOrientation.Left, 0, null));
             }
+            drawingRail.Children.Add(StraitSleepers(isSelected, length / 2, StraitOrientation.Left, 0, null));
             drawingRail.Children.Add(StraitRail(isSelected, length / 2, StraitOrientation.Left, 0, null));
             return drawingRail;
         }

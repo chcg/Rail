@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TrackList Version="1.0.0">  
-  <TrackType Manufacturer="Märklin" Gauge="H0" Type="C-Track" DockType="m24" Spacing="16.5" Ballast="true" BallastColor="#ff51565c" Name="Märklin H0 C-Track" Description="Märklin H0 C-Track">
+  <TrackType Manufacturer="Märklin" Gauge="H0" Type="C-Track" DockType="m24" Spacing="16.5" ViewType="BallastConcreteSleepers" Name="Märklin H0 C-Track" Description="Märklin H0 C-Track">
     <Radii>
       <Radius Name="R1" Length="360.0" Description="R1 Radius 360.0 mm" />
       <Radius Name="R2" Length="437.5" Description="R2 Radius 437.5 mm" />
@@ -72,8 +72,18 @@
       <Turntable Id="M74861" Article="74861" OuterRadius="189" InnerRadius="131.5" Angle="15" RailNum="30" Name="Turntable" Description="Turntable"/>
       
     </Tracks>
+    <Groups>
+      <Group Id="G00001" Name="Parallel Group">
+        <Item Id="M24172" X="0" Y="0" Angle="0"/>
+        <Item Id="M24172" X="172" Y="0" Angle="0"/>
+        <Item Id="M24172" X="344" Y="0" Angle="0"/>
+        <Item Id="M24172" X="0" Y="77.5" Angle="0"/>
+        <Item Id="M24172" X="172" Y="77.5" Angle="0"/>
+        <Item Id="M24172" X="344" Y="77.0" Angle="0"/>
+      </Group>
+    </Groups>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="H0" Type="Kunststoffgleise" DockType="M24" Spacing="16.5" Name="Märklin H0 MyWorld Kunststoffgleise" Description="Märklin H0 MyWorld Kunststoffgleise">
+  <TrackType Manufacturer="Märklin" Gauge="H0" Type="Kunststoffgleise" DockType="M24" Spacing="16.5" ViewType="BallastWoodenSleepers" Name="Märklin H0 MyWorld Kunststoffgleise" Description="Märklin H0 MyWorld Kunststoffgleise">
     <Radii>
       <Radius Name="R1" Length="360.0" Description="R1 Radius" />
       <Radius Name="R2" Length="437.5" Description="R2 Radius for turnouts only" />
@@ -94,7 +104,7 @@
       <Bumper Id="M23977" Article="23977" Length="82.5" Name="23977 Bumper" Decription="Bumper" />
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="H0" Type="K" DockType="M22" Spacing="16.5" Name="Märklin H0 K-Track" Description="Märklin H0 K-Track">
+  <TrackType Manufacturer="Märklin" Gauge="H0" Type="K" DockType="M22" Spacing="16.5" ViewType="WoodenSleepers" Name="Märklin H0 K-Track" Description="Märklin H0 K-Track">
     <Radii>
       <Radius Name="R0" Length="295.4" Description="R0 Industrie Radius 295.4 mm"/>
       <Radius Name="R1" Length="360.0" Description="R1 Radius 360.0 mm" />
@@ -171,12 +181,56 @@
     <!-- R = 2321 mm -->
     <!-- R = 2461 mm -->
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="Z" Type="" Spacing="16.5" Name="Märklin Z Railtracks" Description="Märklin Z Railtracks">
-    <!-- R = 145 mm -->
-    <!-- R = 195 mm -->
-    <!-- R = 220 mm -->
-    <!-- R = 490 mm -->
-    
+  <TrackType Manufacturer="Märklin" Gauge="Z" Type="" Spacing="16.5" ViewType="WoodenSleepers" Name="Märklin Z Railtracks" Description="Märklin Z Railtracks">
+    <!-- R1 = 145 mm -->
+    <!-- R2 = 195 mm -->
+    <!-- R3 = 220 mm -->
+    <!-- R4 = 490 mm -->
+    <Tracks>
+      <!-- strait tracks -->
+      <Straight Id="M8500" Article="8500" Length="110.0" />
+      <Straight Id="M8503" Article="8503" Length="55.0" />
+      <Straight Id="M8504" Article="8504" Length="25.0" />
+      <Straight Id="M8505" Article="8505" Length="220.0" />
+      <Straight Id="M8506" Article="8506" Length="108.6" />
+      <Straight Id="M8507" Article="8507" Length="112.8" />
+      <!-- curved tracks -->
+      <Curved Id="M8510" Article="8510" Radius="145.0" RadiusName="R1" Angle="45.0" />
+      <Curved Id="M8520" Article="8520" Radius="195.0" RadiusName="R2" Angle="45.0" />
+      <Curved Id="M8521" Article="8521" Radius="195.0" RadiusName="R2" Angle="30.0" />
+      <Curved Id="M8530" Article="8530" Radius="220.0" RadiusName="R3" Angle="45.0" />
+      <Curved Id="M8531" Article="8531" Radius="220.0" RadiusName="R3" Angle="30.0" />
+      <Curved Id="M8591" Article="8591" Radius="490.0" RadiusName="R4" Angle="13.0" />
+      <!-- turnout tracks -->
+      <Turnout Id="M8562" Article="8562" Length="110.0" Radius="490.0" RadiusName="R4" Angle="13.0" Direction="Left" />
+      <Turnout Id="M8563" Article="8563" Length="110.0" Radius="490.0" RadiusName="R4" Angle="13.0" Direction="Right" />
+      <Turnout Id="M8565" Article="8565" Length="110.0" Radius="490.0" RadiusName="R4" Angle="13.0" Direction="Left" />
+      <Turnout Id="M8566" Article="8566" Length="110.0" Radius="490.0" RadiusName="R4" Angle="13.0" Direction="Right" />
+      <!-- curved turnout tracks -->
+      <CurvedTurnout Id="M8568" Article="8568" Length="25.0" InnerRadius="195.0" InnerAngle="30.0" OuterRadius="195.0" OuterAngle="30.0" Direction="Left" />
+      <CurvedTurnout Id="M8569" Article="8569" Length="25.0" InnerRadius="195.0" InnerAngle="30.0" OuterRadius="195.0" OuterAngle="30.0" Direction="Right" />
+
+      <!-- double slip switch -->
+      <DoubleSlipSwitch Id="M8560" Article="8560" Length="112.8" Angle="13.0" Radius="323.0" />
+
+      <!-- curved circuit-->
+      <CurvedCircuit Id="M8529" Article="8529" Radius="195.0" RadiusName="R2" Angle="30.0"  />
+      <CurvedCircuit Id="M8539" Article="8539" Radius="220.0" RadiusName="R3" Angle="30.0"  />
+      <!-- crossing -->
+      <Crossing Id="M8559" Article="8559" Length1="112.8" Length2="112.8" Angle="13.0" />
+      <!-- straight uncoupler -->
+      <StraightUncoupler Id="M8587" Article="8587" Length="55.0" />
+      <!-- straight isolating -->
+      <StraightIsolating Id="M8588" Article="8588" Length="55.0"/>
+      <!-- straight circuit -->
+      <StraightCircuit Id="M8589" Article="8589" Length="55.0"/>
+      <!-- straight feeder -->
+      <StraightFeeder Id="M8590" Article="8590" Length="110.0"/>
+      <!-- straight adjustment-->
+      <StraightAdjustment Id="M8592" Article="8592" Length="100.0" LengthTo="120.0"/>
+      <!-- flex-->
+      <Flex Id="M8594" Article="8594" MaxLength="660.0"/>
+    </Tracks>
   </TrackType>
   <TrackType Manufacturer="Trix" Gauge="H0" Type="C" Spacing="16.5" Name="Trix H0 C-Track" Description="Trix H0 C-Track">
     

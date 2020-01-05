@@ -58,7 +58,7 @@ namespace Rail.Model
             drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.DarkGray), linePen, new RectangleGeometry(new Rect(-Width / 2, -Height / 2, Width, Height))));
             drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new RectangleGeometry(new Rect(-Width / 2, -Height / 2, rim, Height))));
             drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new RectangleGeometry(new Rect(Width / 2 - rim, -Height / 2, rim, Height))));
-            if (this.Ballast)
+            if (this.ViewType.HasFlag(TrackViewType.Ballast))
             {
                 //drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, 0, null));
             }

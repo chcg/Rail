@@ -87,9 +87,7 @@ namespace Rail.ViewModel
             {
                 this.selectedTrackType = value;
                 NotifyPropertyChanged(nameof(SelectedTrackType));
-
-                this.Tracks = this.selectedTrackType?.Tracks;
-                this.SelectedTrack = this.Tracks.FirstOrDefault();
+                FillTracks();
             }
         }
 
@@ -104,10 +102,26 @@ namespace Rail.ViewModel
             {
                 this.selectedGroupIndex = value;
                 NotifyPropertyChanged(nameof(SelectedGroupIndex));
-
-                //this.Tracks = this.selectedTrackType?.Tracks;
-                //this.SelectedTrack = this.Tracks.FirstOrDefault();
+                FillTracks();
             }
+        }
+
+        private void FillTracks()
+        {
+            switch (this.SelectedGroupIndex)
+            {
+            case 0:
+                this.Tracks = this.selectedTrackType?.Tracks;
+                break;
+            case 1:
+                this.Tracks = this.selectedTrackType?.Groups.Cast<TrackBase>().ToList();
+                break;
+            case 2:
+                this.Tracks = new List<TrackBase>();
+                break;
+            }
+            
+            this.SelectedTrack = this.Tracks.FirstOrDefault();
         }
         
 

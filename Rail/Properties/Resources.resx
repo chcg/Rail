@@ -270,11 +270,23 @@
   <data name="TrackStraight" xml:space="preserve">
     <value>Straight Track</value>
   </data>
+  <data name="TrackStraightAdjustment" xml:space="preserve">
+    <value>Straight Adjustment</value>
+  </data>
   <data name="TrackStraightCircuit" xml:space="preserve">
     <value>Straight Circuit Track</value>
   </data>
   <data name="TrackStraightContact" xml:space="preserve">
     <value>Contact Track</value>
+  </data>
+  <data name="TrackStraightFeeder" xml:space="preserve">
+    <value>Straight Feeder</value>
+  </data>
+  <data name="TrackStraightIsolating" xml:space="preserve">
+    <value>Straight Isolating</value>
+  </data>
+  <data name="TrackStraightUncoupler" xml:space="preserve">
+    <value>Straight Uncoupler</value>
   </data>
   <data name="TrackTransferTable" xml:space="preserve">
     <value>Transfer Table</value>

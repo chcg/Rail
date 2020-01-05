@@ -52,7 +52,7 @@ namespace Rail.Model
             // background
             drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.DarkGray), linePen, new EllipseGeometry(new Point(0, 0), this.OuterRadius, this.OuterRadius)));
             drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new EllipseGeometry(new Point(0, 0), this.InnerRadius, this.InnerRadius)));
-            if (this.Ballast)
+            if (this.ViewType.HasFlag(TrackViewType.Ballast))
             {
                 for (int i = 0; i < this.RailNum; i++)
                 {
@@ -85,7 +85,7 @@ namespace Rail.Model
 
                 for (int j = 0; j < num1; j++)
                 {
-                    drawingRail.Children.Add(new GeometryDrawing(null, isSelected ? sleepersPenSelected : sleepersPen, new LineGeometry(
+                    drawingRail.Children.Add(new GeometryDrawing(null, isSelected ? sleepersPenSelected : woodenSleepersPen, new LineGeometry(
                         new Point(-this.OuterRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, -this.sleepersSpacing / 2).Rotate(this.Angle * i),
                         new Point(-this.OuterRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, +this.sleepersSpacing / 2).Rotate(this.Angle * i))));
                 }

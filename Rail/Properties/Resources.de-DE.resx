@@ -270,11 +270,23 @@
   <data name="TrackStraight" xml:space="preserve">
     <value>Gerades Gleis</value>
   </data>
+  <data name="TrackStraightAdjustment" xml:space="preserve">
+    <value>Ausgleichsgleis gerade</value>
+  </data>
   <data name="TrackStraightCircuit" xml:space="preserve">
     <value>Schaltgleis gerade</value>
   </data>
   <data name="TrackStraightContact" xml:space="preserve">
     <value>Kontaktgleis</value>
+  </data>
+  <data name="TrackStraightFeeder" xml:space="preserve">
+    <value>Anschlussgleis gerade</value>
+  </data>
+  <data name="TrackStraightIsolating" xml:space="preserve">
+    <value>Trenngleis gerade</value>
+  </data>
+  <data name="TrackStraightUncoupler" xml:space="preserve">
+    <value>Entkupplungsgleis gerade</value>
   </data>
   <data name="TrackTransferTable" xml:space="preserve">
     <value>Schiebebühne</value>

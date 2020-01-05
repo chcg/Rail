@@ -30,12 +30,15 @@ namespace Rail.Model
         protected override Drawing CreateRailDrawing(bool isSelected)
         {
             DrawingGroup drawingRail = new DrawingGroup();
-            if (this.Ballast)
+            if (this.ViewType.HasFlag(TrackViewType.Ballast))
             {
                 drawingRail.Children.Add(StraitBallast(this.Length));
                 drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.Length / 2, 0)));
                 drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-this.Length / 2, 0)));
             }
+            drawingRail.Children.Add(StraitSleepers(isSelected, this.Length));
+            drawingRail.Children.Add(CurvedSleepers(isSelected, this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.Length / 2, 0)));
+            drawingRail.Children.Add(CurvedSleepers(isSelected, this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-this.Length / 2, 0)));
             drawingRail.Children.Add(StraitRail(isSelected, this.Length));
             drawingRail.Children.Add(CurvedRail(isSelected, this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.Length / 2, 0)));
             drawingRail.Children.Add(CurvedRail(isSelected, this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-this.Length / 2, 0)));

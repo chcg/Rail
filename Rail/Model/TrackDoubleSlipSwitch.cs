@@ -54,7 +54,7 @@ namespace Rail.Model
         {
             double curveAngle = 30;
             DrawingGroup drawingRail = new DrawingGroup();
-            if (this.Ballast)
+            if (this.ViewType.HasFlag(TrackViewType.Ballast))
             {
                 drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, -this.Angle / 2));
                 drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, +this.Angle / 2));
@@ -62,6 +62,10 @@ namespace Rail.Model
                 drawingRail.Children.Add(CurvedBallast(curveAngle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Center, new Point(0, +this.sleepersSpacing / 2)));
                 drawingRail.Children.Add(CurvedBallast(curveAngle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Center, new Point(0, -this.sleepersSpacing / 2)));
             }
+            drawingRail.Children.Add(StraitSleepers(isSelected, this.Length, StraitOrientation.Center, -this.Angle / 2));
+            drawingRail.Children.Add(StraitSleepers(isSelected, this.Length, StraitOrientation.Center, +this.Angle / 2));
+            drawingRail.Children.Add(CurvedSleepers(isSelected, curveAngle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Center, new Point(0, +this.sleepersSpacing / 2)));
+            drawingRail.Children.Add(CurvedSleepers(isSelected, curveAngle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Center, new Point(0, -this.sleepersSpacing / 2)));
             drawingRail.Children.Add(StraitRail(isSelected, this.Length, StraitOrientation.Center, -this.Angle / 2));
             drawingRail.Children.Add(StraitRail(isSelected, this.Length, StraitOrientation.Center, +this.Angle / 2));
             drawingRail.Children.Add(CurvedRail(isSelected, curveAngle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Center, new Point(0, +this.sleepersSpacing / 2)));

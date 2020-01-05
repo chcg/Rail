@@ -32,8 +32,8 @@ namespace Rail.Model
         [XmlAttribute("Spacing")]
         public double Spacing { get; set; }
         
-        [XmlAttribute("Ballast")]
-        public bool Ballast { get; set; }
+        [XmlAttribute("ViewType")]
+        public TrackViewType ViewType { get; set; }
         
         //[XmlAttribute("BallastColor", Type = typeof(XmlColor))]
         //public Color BallastColor { get; set; }        
@@ -61,10 +61,17 @@ namespace Rail.Model
          XmlArrayItem(typeof(TrackCurvedCircuit), ElementName = "CurvedCircuit"),
          XmlArrayItem(typeof(TrackStraightCircuit), ElementName = "StraightCircuit"),
          XmlArrayItem(typeof(TrackStraightContact), ElementName = "StraightContact"),
-         XmlArrayItem(typeof(TrackFlex), ElementName = "Flex"),
-         XmlArrayItem(typeof(TrackGroup), ElementName = "Group")]
+         XmlArrayItem(typeof(TrackStraightUncoupler), ElementName = "StraightUncoupler"),
+         XmlArrayItem(typeof(TrackStraightIsolating), ElementName = "StraightIsolating"),
+         XmlArrayItem(typeof(TrackStraightFeeder), ElementName = "StraightFeeder"),
+         XmlArrayItem(typeof(TrackStraightAdjustment), ElementName = "StraightAdjustment"),
+         XmlArrayItem(typeof(TrackFlex), ElementName = "Flex")]
         public List<TrackBase> Tracks { get; set; }
-                
+
+        [XmlArray("Groups")]
+        [XmlArrayItem("Group")]
+        public List<TrackGroup> Groups { get; set; }
+
         public void Update()
         {
             this.Tracks.ForEach(track => track.Update(this));

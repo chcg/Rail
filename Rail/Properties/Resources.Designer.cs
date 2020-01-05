@@ -520,6 +520,15 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Straight Adjustment.
+        /// </summary>
+        public static string TrackStraightAdjustment {
+            get {
+                return ResourceManager.GetString("TrackStraightAdjustment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Straight Circuit Track.
         /// </summary>
         public static string TrackStraightCircuit {
@@ -534,6 +543,33 @@ namespace Rail.Properties {
         public static string TrackStraightContact {
             get {
                 return ResourceManager.GetString("TrackStraightContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Straight Feeder.
+        /// </summary>
+        public static string TrackStraightFeeder {
+            get {
+                return ResourceManager.GetString("TrackStraightFeeder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Straight Isolating.
+        /// </summary>
+        public static string TrackStraightIsolating {
+            get {
+                return ResourceManager.GetString("TrackStraightIsolating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Straight Uncoupler.
+        /// </summary>
+        public static string TrackStraightUncoupler {
+            get {
+                return ResourceManager.GetString("TrackStraightUncoupler", resourceCulture);
             }
         }
         

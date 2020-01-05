@@ -46,11 +46,13 @@ namespace Rail.Model
         protected override Drawing CreateRailDrawing(bool isSelected)
         {
             DrawingGroup drawingRail = new DrawingGroup();
-            if (this.Ballast)
+            if (this.ViewType.HasFlag(TrackViewType.Ballast))
             {
                 drawingRail.Children.Add(StraitBallast(this.Length1, StraitOrientation.Center, -this.Angle / 2));
                 drawingRail.Children.Add(StraitBallast(this.Length2, StraitOrientation.Center, +this.Angle / 2));
             }
+            drawingRail.Children.Add(StraitSleepers(isSelected, this.Length1, StraitOrientation.Center, -this.Angle / 2));
+            drawingRail.Children.Add(StraitSleepers(isSelected, this.Length2, StraitOrientation.Center, +this.Angle / 2));
             drawingRail.Children.Add(StraitRail(isSelected, this.Length1, StraitOrientation.Center, -this.Angle / 2));
             drawingRail.Children.Add(StraitRail(isSelected, this.Length2, StraitOrientation.Center, +this.Angle / 2));
             return drawingRail;

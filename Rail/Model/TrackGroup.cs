@@ -9,26 +9,12 @@ namespace Rail.Model
 {
     public class TrackGroup : TrackBase
     {
+        [XmlElement("Item")]
+        public List<TrackItem> Items { get; set; }
 
-        [XmlIgnore]
-        public override string Name
-        {
-            get
-            {
-                return $"Group";
-            }
+        public override string Name { get; }
 
-        }
-
-        [XmlIgnore]
-        public override string Description
-        {
-            get
-            {
-                return $"{this.Article} Group";
-            }
-
-        }
+        public override string Description { get; }
 
         protected override List<TrackDockPoint> CreateDockPoints()
         {
