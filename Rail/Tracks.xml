@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TrackList Version="1.0.0">  
-  <TrackType Manufacturer="Märklin" Gauge="H0" Type="C-Track" DockType="m24" Spacing="16.5" ViewType="BallastConcreteSleepers" Name="Märklin H0 C-Track" Description="Märklin H0 C-Track">
+  <TrackType Manufacturer="Märklin" Gauge="H0" Type="C-Track" DockType="m24" Spacing="16.5" ViewType="BallastWoodenSleepers" Name="Märklin H0 C-Track" Description="Märklin H0 C-Track">
     <Radii>
       <Radius Name="R1" Length="360.0" Description="R1 Radius 360.0 mm" />
       <Radius Name="R2" Length="437.5" Description="R2 Radius 437.5 mm" />
@@ -192,6 +192,7 @@
       <Straight Id="M8503" Article="8503" Length="55.0" />
       <Straight Id="M8504" Article="8504" Length="25.0" />
       <Straight Id="M8505" Article="8505" Length="220.0" />
+      <Straight Id="M85051" Article="85051" Length="220.0" ViewType="ConcreteSleepers"/>
       <Straight Id="M8506" Article="8506" Length="108.6" />
       <Straight Id="M8507" Article="8507" Length="112.8" />
       <!-- curved tracks -->
@@ -230,6 +231,8 @@
       <StraightAdjustment Id="M8592" Article="8592" Length="100.0" LengthTo="120.0"/>
       <!-- flex-->
       <Flex Id="M8594" Article="8594" MaxLength="660.0"/>
+      <Flex Id="M85941" Article="85941" MaxLength="660.0" ViewType="ConcreteSleepers"/>
+      
     </Tracks>
   </TrackType>
   <TrackType Manufacturer="Trix" Gauge="H0" Type="C" Spacing="16.5" Name="Trix H0 C-Track" Description="Trix H0 C-Track">
