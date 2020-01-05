@@ -65,6 +65,7 @@ namespace Rail.Model
          XmlArrayItem(typeof(TrackStraightIsolating), ElementName = "StraightIsolating"),
          XmlArrayItem(typeof(TrackStraightFeeder), ElementName = "StraightFeeder"),
          XmlArrayItem(typeof(TrackStraightAdjustment), ElementName = "StraightAdjustment"),
+         XmlArrayItem(typeof(TrackSuspender), ElementName = "Suspender"),
          XmlArrayItem(typeof(TrackFlex), ElementName = "Flex")]
         public List<TrackBase> Tracks { get; set; }
 

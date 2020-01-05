@@ -288,6 +288,9 @@
   <data name="TrackStraightUncoupler" xml:space="preserve">
     <value>Entkupplungsgleis gerade</value>
   </data>
+  <data name="TrackSuspender" xml:space="preserve">
+    <value>Hosenträger</value>
+  </data>
   <data name="TrackTransferTable" xml:space="preserve">
     <value>Schiebebühne</value>
   </data>

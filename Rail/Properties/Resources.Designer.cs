@@ -574,6 +574,15 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Suspender.
+        /// </summary>
+        public static string TrackSuspender {
+            get {
+                return ResourceManager.GetString("TrackSuspender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transfer Table.
         /// </summary>
         public static string TrackTransferTable {

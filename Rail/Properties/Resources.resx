@@ -288,6 +288,9 @@
   <data name="TrackStraightUncoupler" xml:space="preserve">
     <value>Straight Uncoupler</value>
   </data>
+  <data name="TrackSuspender" xml:space="preserve">
+    <value>Suspender</value>
+  </data>
   <data name="TrackTransferTable" xml:space="preserve">
     <value>Transfer Table</value>
   </data>

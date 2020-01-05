@@ -54,19 +54,19 @@
       <DoubleTurnout Id="M24630" Article="24630" Length="188.3" Radius="437.5" Angle="24.3" Name="Double Turnout" Decription="Double Turnout" />
 
       <!-- crossing -->
-      <Crossing Id="M24640" Article="24640" Length1="188.3" Length2="188.3" Angle="24.3" Name="Crossing 24.3°" Decription="Crossing 24.3°" />
-      <Crossing Id="M24649" Article="24649" Length1="103.3" Length2="103.3" Angle="48.6" Name="Crossing 48.6°" Decription="Crossing 48.6°" />
-      <Crossing Id="M24740" Article="24740" Length1="236.1" Length2="236.1" Angle="12.1" Name="Crossing 12.1°" Decription="Crossing 12.1°" />
+      <Crossing Id="M24640" Article="24640" Length1="188.3" Length2="188.3" Angle="24.3" />
+      <Crossing Id="M24649" Article="24649" Length1="103.3" Length2="103.3" Angle="48.6" />
+      <Crossing Id="M24740" Article="24740" Length1="236.1" Length2="236.1" Angle="12.1" />
 
       <!-- bumper -->
-      <Bumper Id="M24977" Article="24977" Length="82.5" Name="Bumper" Decription="Bumper" />
+      <Bumper Id="M24977" Article="24977" Length="82.5"/>
       
       <!-- end piece -->
-      <EndPiece Id="M24001" Article="24001" Name="End Piece" Decription="End Piece" />
+      <EndPiece Id="M24001" Article="24001" />
       
       <!-- adapter -->
-      <Adapter Id="M24922" Article="24922" Length="180.0" DockType="M22" Name="Adapter Track for K Track" Description="Adapter Track for K Track"/>
-      <Adapter Id="M24951" Article="24951" Length="180.0" DockType="M20" Name="Adapter Track for M Track" Description="Adapter Track for M Track"/>
+      <Adapter Id="M24922" Article="24922" Length="180.0" DockType="M22"/>
+      <Adapter Id="M24951" Article="24951" Length="180.0" DockType="M20"/>
       
       <!-- Turntable -->
       <Turntable Id="M74861" Article="74861" OuterRadius="189" InnerRadius="131.5" Angle="15" RailNum="30" Name="Turntable" Description="Turntable"/>
@@ -172,16 +172,50 @@
     <!-- transfert table -->
     <TransferTable Id="M72941" Article="72941" RailsA="5" RailsB="5" Width="381" Height="422" Length="288" Name="Transfer Table" Decription="Transfer Table"/>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="1" Type="" Spacing="16.5" Name="Märklin 1 Railtracks" Description="Märklin 1 Railtracks">
-    <!-- R = 1020 mm -->
-    <!-- R = 1176 mm -->
-    <!-- R = 1394 mm -->
-    <!-- R = 1550 mm -->
-    <!-- R = 1715 mm -->
-    <!-- R = 2321 mm -->
-    <!-- R = 2461 mm -->
+  <TrackType Manufacturer="Märklin" Gauge="1" Type="" Spacing="45.0" ViewType="WoodenSleepers" Name="Märklin 1 Railtracks" Description="Märklin 1 Railtracks">
+    <!-- R1 = 1020 mm -->
+    <!-- R2 = 1176 mm -->
+    <!-- R3 = 1394 mm -->
+    <!-- R4 = 1550 mm -->
+    <!-- R5 = 1715 mm -->
+    <!-- R6 = 2321 mm -->
+    <!-- R7 = 2461 mm -->
+    <Tracks>
+      <!-- strait tracks -->
+      <Straight Id="M59051" Article="59051" Length="59.5" />
+      <Straight Id="M59052" Article="59052" Length="79.0" />
+      <Straight Id="M59053" Article="59053" Length="100.0" />
+      <Straight Id="M59054" Article="59054" Length="116.0" />
+      <Straight Id="M59055" Article="59055" Length="150.0" />
+      <Straight Id="M59056" Article="59056" Length="152.2" />
+      <Straight Id="M59057" Article="59057" Length="200.0" />
+      <Straight Id="M59058" Article="59058" Length="300.0" />
+      <Straight Id="M59059" Article="59059" Length="600.0" />
+      <Straight Id="M59061" Article="59061" Length="900.0" />
+      <!-- curved tracks -->
+      <Curved Id="M59035" Article="59035" Radius="1020.0" RadiusName="R1" Angle="22.5" />
+      <Curved Id="M59071" Article="59071" Radius="2461.0" RadiusName="R7" Angle="10.0" />
+      <Curved Id="M59072" Article="59072" Radius="1176.0" RadiusName="R2" Angle="22.5" />
+      <Curved Id="M59073" Article="59073" Radius="1394.0" RadiusName="R3" Angle="22.5" />
+      <Curved Id="M59074" Article="59074" Radius="1550.0" RadiusName="R4" Angle="15.0" />
+      <Curved Id="M59075" Article="59075" Radius="1394.0" RadiusName="R3" Angle="15.0" />
+      <Curved Id="M59076" Article="59076" Radius="1550.0" RadiusName="R4" Angle="22.5" />
+      <Curved Id="M59077" Article="59077" Radius="1715.0" RadiusName="R5" Angle="22.5" />
+      <Curved Id="M59078" Article="59078" Radius="2321.0" RadiusName="R6" Angle="10.0" />
+      <!-- turnout tracks -->
+      <Turnout Id="M59083" Article="59083" Length="420.0" Radius="2321.0" Angle="10.0" Direction="Right" />
+      <Turnout Id="M59084" Article="59084" Length="420.0" Radius="2321.0" Angle="10.0" Direction="Left" />
+      <Turnout Id="M59087" Article="59087" Length="400.0" Radius="1394.0" Angle="15.0" Direction="Right" />
+      <Turnout Id="M59088" Article="59088" Length="400.0" Radius="1394.0" Angle="15.0" Direction="Left" />
+      <!-- curved turnout tracks -->
+      <CurvedTurnout Id="M59085" Article="59085" Length="0.0" InnerRadius="1394.0" InnerAngle="22.5" OuterRadius="1550.0" OuterAngle="22.5" Direction="Left" Name="Left Curved Turnout" Decription="Left Curved Turnout 224 +" />
+      <CurvedTurnout Id="M59086" Article="59086" Length="0.0" InnerRadius="1394.0" InnerAngle="22.5" OuterRadius="1550.0" OuterAngle="22.5" Direction="Right" Name="Right Curved Turnout" Decription="Right Curved Turnout 224 + " />
+      <!-- double turnout -->
+      <DoubleTurnout Id="M59091" Article="59091" Length="379.0" Angle="15.0" Radius="1394.0" />
+    
+    </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="Z" Type="" Spacing="16.5" ViewType="WoodenSleepers" Name="Märklin Z Railtracks" Description="Märklin Z Railtracks">
+  <TrackType Manufacturer="Märklin" Gauge="Z" Type="" Spacing="6.5" ViewType="WoodenSleepers" Name="Märklin Z Railtracks" Description="Märklin Z Railtracks">
     <!-- R1 = 145 mm -->
     <!-- R2 = 195 mm -->
     <!-- R3 = 220 mm -->
@@ -241,45 +275,45 @@
   
   <TrackType Manufacturer="LGB" Gauge="G" Type="LGB" Spacing="45" Name="LGB G" Description="LGB G">
     <Radii>
-      <Radius Name="R1" Length="600"  Description="R1 Radius 600 mm" />
-      <Radius Name="R2" Length="780"  Description="R2 Radius 780 mm" />
-      <Radius Name="R4" Length="1195" Description="R3 Radius 1195 mm" />
-      <Radius Name="R5" Length="2320" Description="R5 Radius 2320 mm" />
+      <Radius Name="R1" Length="600" />
+      <Radius Name="R2" Length="780" />
+      <Radius Name="R4" Length="1195" />
+      <Radius Name="R5" Length="2320" />
     </Radii>
     <Tracks>
       <!-- strait tracks -->
-      <Straight Id="M10040" Article="10040" Length="41" Name="10040 Strait 41 mm" Decription="Strait 41 mm"/>
-      <Straight Id="M10050" Article="10050" Length="52" Name="10050 Strait 52 mm" Decription="Strait 52 mm"/>
-      <Straight Id="M10070" Article="10070" Length="75" Name="10070 Strait 75 mm" Decription="Strait 75 mm"/>
-      <Straight Id="M10080" Article="10080" Length="82" Name="10080 Strait 82 mm" Decription="Strait 82 mm"/>
-      <Straight Id="M10150" Article="10150" Length="150" Name="10150 Strait 150 mm" Decription="Strait 150 mm"/>
-      <Straight Id="M10000" Article="10000" Length="300" Name="10000 Strait 300 mm" Decription="Strait 300 mm"/>
-      <Straight Id="M10600" Article="10600" Length="600" Name="10600 Strait 600 mm" Decription="Strait 600 mm"/>
-      <Straight Id="M10610" Article="10610" Length="1200" Name="10610 Strait 1200 mm" Decription="Strait 1200 mm"/>
+      <Straight Id="M10040" Article="10040" Length="41" />
+      <Straight Id="M10050" Article="10050" Length="52" />
+      <Straight Id="M10070" Article="10070" Length="75" />
+      <Straight Id="M10080" Article="10080" Length="82" />
+      <Straight Id="M10150" Article="10150" Length="150" />
+      <Straight Id="M10000" Article="10000" Length="300" />
+      <Straight Id="M10600" Article="10600" Length="600" />
+      <Straight Id="M10610" Article="10610" Length="1200" />
       <!-- curved tracks -->
-      <Curved Id="M11040" Article="11040" Radius="600" Angle="7.5"   Name="11040 Curved R1 600 mm 7.5°" Decription="Curved R1 600 mm 7.5°" />
-      <Curved Id="M11020" Article="11020" Radius="600" Angle="15"    Name="11020 Curved R1 600 mm 15°" Decription="Curved R1 600 mm 15°" />
-      <Curved Id="M11000" Article="11000" Radius="600" Angle="30"    Name="11000 Curved R1 600 mm 30°" Decription="Curved R1 600 mm 30°" />
-      <Curved Id="M15000" Article="15000" Radius="780" Angle="30"    Name="15000 Curved R2 780 mm 30°" Decription="Curved R2 780 mm 30°" />
-      <Curved Id="M16000" Article="16000" Radius="1195" Angle="22.5" Name="16000 Curved R3 1195 mm 22.5°" Decription="Curved R3 1195 mm 22.5°" />
-      <Curved Id="M18020" Article="18020" Radius="2320" Angle="7.5"  Name="18020 Curved R5 2320 mm 22.5°" Decription="Curved R5 2320 mm 22.5°" />
+      <Curved Id="M11040" Article="11040" Radius="600" Angle="7.5" />
+      <Curved Id="M11020" Article="11020" Radius="600" Angle="15" />
+      <Curved Id="M11000" Article="11000" Radius="600" Angle="30" />
+      <Curved Id="M15000" Article="15000" Radius="780" Angle="30" />
+      <Curved Id="M16000" Article="16000" Radius="1195" Angle="22.5" />
+      <Curved Id="M18020" Article="18020" Radius="2320" Angle="7.5" />
       <!-- turnout tracks -->
-      <Turnout Id="M12100" Article="12100" Length="300" Radius="600" Angle="30"    Direction="Left" Name="12100 Left Turnout" Decription="Left Turnout" />
-      <Turnout Id="M12000" Article="12000" Length="300" Radius="600" Angle="30"    Direction="Right" Name="12000 Right Turnout" Decription="Right Turnout" />
-      <Turnout Id="M16140" Article="16140" Length="440" Radius="1195" Angle="22.5" Direction="Left" Name="16140 Left Wide Radius Turnout" Decription="Left Wide Radius Turnout" />
-      <Turnout Id="M16040" Article="16040" Length="440" Radius="1195" Angle="22.5" Direction="Right" Name="16040 Right Wide Radius Turnout" Decription="Right Wide Radius Turnout" />
-      <Turnout Id="M18150" Article="18150" Length="600" Radius="2320" Angle="15"   Direction="Left" Name="18150 Left Extra Wide Radius Turnout" Decription="Left Extra Wide Radius Turnout" />
-      <Turnout Id="M18050" Article="18050" Length="600" Radius="2320" Angle="15"   Direction="Right" Name="18050 Right Extra Wide Radius Turnou" Decription="Right Extra Wide Radius Turnout" />
+      <Turnout Id="M12100" Article="12100" Length="300" Radius="600" Angle="30"    Direction="Left" />
+      <Turnout Id="M12000" Article="12000" Length="300" Radius="600" Angle="30"    Direction="Right" />
+      <Turnout Id="M16140" Article="16140" Length="440" Radius="1195" Angle="22.5" Direction="Left" />
+      <Turnout Id="M16040" Article="16040" Length="440" Radius="1195" Angle="22.5" Direction="Right" />
+      <Turnout Id="M18150" Article="18150" Length="600" Radius="2320" Angle="15"   Direction="Left" />
+      <Turnout Id="M18050" Article="18050" Length="600" Radius="2320" Angle="15"   Direction="Right" />
       <!-- double slip switch -->
-      <DoubleSlipSwitch Id="M12260" Article="12260" Length="375" Angle="22.5" Radius="360.0" Name="12260 Double Slip Switch" Decription="Double Slip Switch" />
+      <DoubleSlipSwitch Id="M12260" Article="12260" Length="375" Angle="22.5" Radius="360.0" />
       <!-- double turnout -->
-      <DoubleTurnout Id="M12360" Article="12360" Length="375" Radius="600" Angle="30" Name="12360 Double Turnout" Decription="Double Turnout" />
+      <DoubleTurnout Id="M12360" Article="12360" Length="375" Radius="600" Angle="30" />
       <!-- crossing -->
-      <Crossing Id="M13000" Article="13000" Length1="300" Length2="341" Angle="30" Name="13000 Crossing 30°" Decription="Crossing 30°" />
-      <Crossing Id="M13100" Article="13100" Length1="150" Length2="185" Angle="90" Name="13100 Crossing 90°" Decription="Crossing 90°" />
-      <Crossing Id="M13200" Article="13200" Length1="375" Length2="375" Angle="22.5" Name="13200 Crossing 22.5°" Decription="Crossing 22.5°" />
+      <Crossing Id="M13000" Article="13000" Length1="300" Length2="341" Angle="30" />
+      <Crossing Id="M13100" Article="13100" Length1="150" Length2="185" Angle="90"  />
+      <Crossing Id="M13200" Article="13200" Length1="375" Length2="375" Angle="22.5" />
       <!-- bumper -->
-      <Bumper Id="M10320" Article="10320" Length="300" Name="10320 Bumper" Decription="Bumper" />
+      <Bumper Id="M10320" Article="10320" Length="300" />
     </Tracks>
   </TrackType>
 
