@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
 
@@ -11,6 +13,15 @@ namespace Rail.Model
 {
     public class TrackType 
     {
+        public class XmLanguageName
+        {
+            [XmlAttribute("Lang")]
+            public string Lang { get; set; }
+
+            [XmlText]
+            public string Value { get; set; }
+        }
+
         /// <summary>
         /// Manufacturer of the track
         /// </summary>
@@ -34,16 +45,34 @@ namespace Rail.Model
         
         [XmlAttribute("ViewType")]
         public TrackViewType ViewType { get; set; }
-        
+
+        [XmlAttribute("Point", typeof(XmlPoint))]
+        public Point Point { get; set; }
+
         //[XmlAttribute("BallastColor", Type = typeof(XmlColor))]
         //public Color BallastColor { get; set; }        
-        
-        [XmlAttribute("Name")]
-        public string Name { get; set; }
 
-        [XmlAttribute("Description")]
-        public string Description { get; set; }
-                
+        //[XmlAttribute("Name")]
+        //public string Name { get; set; }
+
+        //[XmlAttribute("Description")]
+        //public string Description { get; set; }
+
+        [XmlArray("Names")]
+        [XmlArrayItem("Name")]
+        public List<XmLanguageName> Names { get; set; }
+
+        [XmlIgnore]
+        public string Name
+        {
+            get
+            {
+                string lang = Thread.CurrentThread.CurrentUICulture.Name;
+                var name = Names.FirstOrDefault(n => n.Lang == lang) ?? Names.FirstOrDefault(n => n.Lang == null);
+                return name.Value;
+            }
+        }
+
         [XmlArray("Tracks")]
         [XmlArrayItem(typeof(TrackStraight), ElementName = "Straight"),
          XmlArrayItem(typeof(TrackCurved), ElementName = "Curved"),

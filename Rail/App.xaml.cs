@@ -21,9 +21,10 @@ namespace Rail
         private void OnStartup(object sender, StartupEventArgs e)
         {
             Trace.TraceInformation("Startup {0} {1}", DateTime.Now.ToLocalTime().ToShortTimeString(), DateTime.Now.ToLocalTime().ToShortDateString());
-            
+
             //Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE");
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
 
             try
             {

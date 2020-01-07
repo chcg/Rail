@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TrackList Version="1.0.0">  
-  <TrackType Manufacturer="Märklin" Gauge="H0" Type="C-Track" DockType="m24" Spacing="16.5" ViewType="BallastWoodenSleepers" Name="Märklin H0 C-Track" Description="Märklin H0 C-Track">
+  <TrackType Manufacturer="Märklin" Gauge="H0" Type="C-Track" DockType="m24" Spacing="16.5" ViewType="BallastWoodenSleepers" Point="34.6,346.666">
+    <Names>
+      <Name>Märklin H0 C-Tracks</Name> 
+      <Name Lang="de-DE">Märklin H0 C-Gleise</Name>
+    </Names>
     <Radii>
       <Radius Name="R1" Length="360.0" Description="R1 Radius 360.0 mm" />
       <Radius Name="R2" Length="437.5" Description="R2 Radius 437.5 mm" />
@@ -83,7 +87,11 @@
       </Group>
     </Groups>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="H0" Type="Kunststoffgleise" DockType="M24" Spacing="16.5" ViewType="BallastWoodenSleepers" Name="Märklin H0 MyWorld Kunststoffgleise" Description="Märklin H0 MyWorld Kunststoffgleise">
+  <TrackType Manufacturer="Märklin" Gauge="H0" Type="Kunststoffgleise" DockType="M24" Spacing="16.5" ViewType="BallastWoodenSleepers">
+    <Names>
+      <Name>Märklin H0 my world Plastic Tracks</Name> 
+      <Name Lang="de-DE">Märklin H0 my world Kunststoffgleise</Name>
+    </Names>
     <Radii>
       <Radius Name="R1" Length="360.0" Description="R1 Radius" />
       <Radius Name="R2" Length="437.5" Description="R2 Radius for turnouts only" />
@@ -104,7 +112,11 @@
       <Bumper Id="M23977" Article="23977" Length="82.5" Name="23977 Bumper" Decription="Bumper" />
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="H0" Type="K" DockType="M22" Spacing="16.5" ViewType="WoodenSleepers" Name="Märklin H0 K-Track" Description="Märklin H0 K-Track">
+  <TrackType Manufacturer="Märklin" Gauge="H0" Type="K" DockType="M22" Spacing="16.5" ViewType="WoodenSleepers">
+    <Names>
+      <Name>Märklin H0 K-Tracks</Name> 
+      <Name Lang="de-DE">Märklin H0 K-Gleise</Name>
+    </Names>
     <Radii>
       <Radius Name="R0" Length="295.4" Description="R0 Industrie Radius 295.4 mm"/>
       <Radius Name="R1" Length="360.0" Description="R1 Radius 360.0 mm" />
@@ -166,13 +178,21 @@
       <Flex Id="M2205" Article="2205" MaxLength1="900" Decription="Flex Track 900 mm"/>
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="H0" Type="M" DockType="M72" Spacing="16.5" Name="Märklin H0 M-Track" Description="Märklin H0 M-Track">
+  <TrackType Manufacturer="Märklin" Gauge="H0" Type="M" DockType="M72" Spacing="16.5" >
+    <Names>
+      <Name>Märklin H0 M-Tracks</Name> 
+      <Name Lang="de-DE">Märklin H0 M-Gleise</Name>
+    </Names>
     <!-- turntable -->
     <Turntable Id="M7286" Article="7286" OuterRadius="193" InnerRadius="155" Angle="7.5" RailNum="48" Name="Turntable" Description="Turntable"/>
     <!-- transfert table -->
     <TransferTable Id="M72941" Article="72941" RailsA="5" RailsB="5" Width="381" Height="422" Length="288" Name="Transfer Table" Decription="Transfer Table"/>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="1" Type="" Spacing="45.0" ViewType="WoodenSleepers" Name="Märklin 1 Railtracks" Description="Märklin 1 Railtracks">
+  <TrackType Manufacturer="Märklin" Gauge="1" Type="" Spacing="45.0" ViewType="WoodenSleepers" >
+    <Names>
+      <Name>Märklin 1 Tracks</Name> 
+      <Name Lang="de-DE">Märklin 1 Gleise</Name>
+    </Names>
     <!-- R1 = 1020 mm -->
     <!-- R2 = 1176 mm -->
     <!-- R3 = 1394 mm -->
@@ -208,14 +228,18 @@
       <Turnout Id="M59087" Article="59087" Length="400.0" Radius="1394.0" Angle="15.0" Direction="Right" />
       <Turnout Id="M59088" Article="59088" Length="400.0" Radius="1394.0" Angle="15.0" Direction="Left" />
       <!-- curved turnout tracks -->
-      <CurvedTurnout Id="M59085" Article="59085" Length="0.0" InnerRadius="1394.0" InnerAngle="22.5" OuterRadius="1550.0" OuterAngle="22.5" Direction="Left" Name="Left Curved Turnout" Decription="Left Curved Turnout 224 +" />
-      <CurvedTurnout Id="M59086" Article="59086" Length="0.0" InnerRadius="1394.0" InnerAngle="22.5" OuterRadius="1550.0" OuterAngle="22.5" Direction="Right" Name="Right Curved Turnout" Decription="Right Curved Turnout 224 + " />
+      <CurvedTurnout Id="M59085" Article="59085" Length="0.0" InnerRadius="1394.0" InnerAngle="22.5" OuterRadius="1550.0" OuterAngle="22.5" Direction="Left" />
+      <CurvedTurnout Id="M59086" Article="59086" Length="0.0" InnerRadius="1394.0" InnerAngle="22.5" OuterRadius="1550.0" OuterAngle="22.5" Direction="Right" />
       <!-- double turnout -->
       <DoubleTurnout Id="M59091" Article="59091" Length="379.0" Angle="15.0" Radius="1394.0" />
     
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="Z" Type="" Spacing="6.5" ViewType="WoodenSleepers" Name="Märklin Z Railtracks" Description="Märklin Z Railtracks">
+  <TrackType Manufacturer="Märklin" Gauge="Z" Type="" Spacing="6.5" ViewType="WoodenSleepers" >
+    <Names>
+      <Name>Märklin Z Tracks</Name> 
+      <Name Lang="de-DE">Märklin Z Gleise</Name>
+    </Names>
     <!-- R1 = 145 mm -->
     <!-- R2 = 195 mm -->
     <!-- R3 = 220 mm -->
@@ -269,11 +293,18 @@
       
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Trix" Gauge="H0" Type="C" Spacing="16.5" Name="Trix H0 C-Track" Description="Trix H0 C-Track">
-    
+  <TrackType Manufacturer="Trix" Gauge="H0" Type="C" Spacing="16.5" >
+    <Names>
+      <Name>Trix H0 C-Tracks</Name> 
+      <Name Lang="de-DE">Trix H0 C-Gleise</Name>
+    </Names>
   </TrackType>
   
-  <TrackType Manufacturer="LGB" Gauge="G" Type="LGB" Spacing="45" Name="LGB G" Description="LGB G">
+  <TrackType Manufacturer="LGB" Gauge="G" Type="LGB" Spacing="45" >
+    <Names>
+      <Name>LGB Tracks</Name> 
+      <Name Lang="de-DE">LGB Gleise</Name>
+    </Names>
     <Radii>
       <Radius Name="R1" Length="600" />
       <Radius Name="R2" Length="780" />
@@ -317,7 +348,11 @@
     </Tracks>
   </TrackType>
 
-  <TrackType Manufacturer="Fleischmann" Gauge="H0" Type="" Spacing="45" Name="Fleischmann H0" Description="Fleischmann H0">
+  <TrackType Manufacturer="Fleischmann" Gauge="H0" Type="" Spacing="45" >
+    <Names>
+      <Name>Fleischmann H0 Tracks</Name> 
+      <Name Lang="de-DE">Fleischmann H0 Gleise</Name>
+    </Names>
     <!-- R1 = 356.5 mm -->
     <!-- R2 = 420.0 mm -->
     <!-- R3 = 483.5 mm -->
@@ -326,14 +361,22 @@
     <!-- R  = 788.0 mm -->
   </TrackType>
 
-  <TrackType Manufacturer="Fleischmann" Gauge="N" Type="with Bedding" Spacing="45" Name="Fleischmann N with Bedding" Description="Fleischmann N with Bedding">
+  <TrackType Manufacturer="Fleischmann" Gauge="N" Type="with Bedding" Spacing="45" >
+    <Names>
+      <Name>Fleischmann N Tracks with Bedding</Name> 
+      <Name Lang="de-DE">Fleischmann N Gleise mit Bettung</Name>
+    </Names>
     <!-- R1 = 192.0 mm -->
     <!-- R2 = 225.6 mm -->
     <!-- R3 = 396.4 mm -->
     <!-- R4 = 430.0 mm -->
   </TrackType>
 
-  <TrackType Manufacturer="Fleischmann" Gauge="N" Type="" Spacing="45" Name="Fleischmann N" Description="Fleischmann N">
+  <TrackType Manufacturer="Fleischmann" Gauge="N" Type="" Spacing="45" >
+    <Names>
+      <Name>Fleischmann N Tracks</Name> 
+      <Name Lang="de-DE">Fleischmann N Gleise</Name>
+    </Names>
     <!-- R1 = 194.6 mm -->
     <!-- R2 = 228.2 mm -->
     <!-- R3 = 261.8 mm -->
@@ -344,21 +387,45 @@
     <!-- R7 = 765.0 mm -->
   </TrackType>
 
-  <TrackType Manufacturer="Roco" Gauge="H0" Type="geoLine" Spacing="16.5" Name="Roco H0 geoLine" Description="Roco H0 geoLine">
+  <TrackType Manufacturer="Roco" Gauge="H0" Type="geoLine" Spacing="16.5" >
+    <Names>
+      <Name>Roco H0 geoLine</Name> 
+      <Name Lang="de-DE">Roco H0 geoLine</Name>
+    </Names>
   </TrackType>
-  <TrackType Manufacturer="Roco" Gauge="H0" Type="Roco-Line" Spacing="16.5" Name="Roco H0 Roco-Line" Description="Roco H0 Roco-Line">
+  <TrackType Manufacturer="Roco" Gauge="H0" Type="Roco-Line" Spacing="16.5" >
+    <Names>
+      <Name>Roco H0 Roco-Line</Name> 
+      <Name Lang="de-DE">Roco H0 Roco-Line</Name>
+    </Names>
   </TrackType>
 
-  <TrackType Manufacturer="Roco" Gauge="H0" Type="Roco-Line with Bedding" Spacing="16.5" Name="Roco-Line with Bedding" Description="Roco-Line with Bedding">
+  <TrackType Manufacturer="Roco" Gauge="H0" Type="Roco-Line with Bedding" Spacing="16.5" >
+    <Names>
+      <Name>Roco-Line with Bedding</Name> 
+      <Name Lang="de-DE">Roco-Line with Bedding</Name>
+    </Names>
   </TrackType>
 
-  <TrackType Manufacturer="Roco" Gauge="H0e" Type="Railtracks" Spacing="16.5" Name="Roco H0e" Description="Roco H0e">
+  <TrackType Manufacturer="Roco" Gauge="H0e" Type="Railtracks" Spacing="16.5" >
+    <Names>
+      <Name>Roco H0e</Name> 
+      <Name Lang="de-DE">Roco H0e</Name>
+    </Names>
   </TrackType>
 
-  <TrackType Manufacturer="Roco" Gauge="H0e" Type="Feldbahn" Spacing="16.5" Name="Roco H0e Feldbahn" Description="Roco H0e Feldbahn">
+  <TrackType Manufacturer="Roco" Gauge="H0e" Type="Feldbahn" Spacing="16.5" >
+    <Names>
+      <Name>Roco H0e Feldbahn</Name> 
+      <Name Lang="de-DE">Roco H0e Feldbahn</Name>
+    </Names>
   </TrackType>
 
-  <TrackType Manufacturer="Pico" Gauge="H0" Type="A-Tracks" Spacing="16.5" Name="Pico" Description="Pico H0">
+  <TrackType Manufacturer="Pico" Gauge="H0" Type="A-Tracks" Spacing="16.5" >
+    <Names>
+      <Name>Pico H0</Name> 
+      <Name Lang="de-DE">Pico H0</Name>
+    </Names>
     <Radii>
       <Radius Name="R1" Length="360.00" Description="R1 Radius 360.00 mm" />
       <Radius Name="R2" Length="421.88" Description="R2 Radius 421.88 mm" />
