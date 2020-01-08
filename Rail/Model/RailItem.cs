@@ -138,14 +138,14 @@ namespace Rail.Model
             DrawDebugDogpoints(drawingContext);
         }
 
-        [Conditional("DEBUG")]
+        [Conditional("DEBUGINFO")]
         public void DrawDebug(DrawingContext drawingContext)
         {
             drawingContext.DrawRectangle(Brushes.White, new Pen(Brushes.Blue, 1), new Rect(this.Position, new Size(32, 20)));
             drawingContext.DrawText(new FormattedText(this.DebugIndex.ToString(), CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, Brushes.Blue, 1.25), this.Position);
         }
 
-        [Conditional("DEBUG")]
+        [Conditional("DEBUGINFO")]
         public void DrawDebugDogpoints(DrawingContext drawingContext)
         {
             double width = 48;
@@ -211,27 +211,58 @@ namespace Rail.Model
         /// </summary>
         /// <param name="railItem">Item to find subgraph from.</param>
         /// <returns>List with rail items.</returns>
+        //public List<RailItem> FindSubgraph()
+        //{
+        //    List<RailItem> railItems = new List<RailItem>();
+        //    FindSubgraphRecursive(railItems, this);
+        //    railItems.Remove(this);
+        //    return railItems;
+        //}
+
+        //private static void FindSubgraphRecursive(List<RailItem> railItems, RailItem railItem)
+        //{
+        //    var dockedItems = railItem.DockPoints.Where(d => d.IsDocked).Select(d => d.DockedWith.RailItem).ToList();
+        //    foreach (RailItem item in dockedItems)
+        //    {
+        //        if (!railItems.Contains(item))
+        //        {
+        //            railItems.Add(item);
+        //            FindSubgraphRecursive(railItems, item);
+        //        }
+        //    }
+        //}
+
         public List<RailItem> FindSubgraph()
         {
-            List<RailItem> railItems = new List<RailItem>();
-            FindSubgraphRecursive(railItems, this);
-            railItems.Remove(this);
-            return railItems;
-        }
+            // list with new items not inspected
+            List<RailItem> listFound = new List<RailItem>();
+            // list with inspected items
+            List<RailItem> listScanned = new List<RailItem>();
 
-        private static void FindSubgraphRecursive(List<RailItem> railItems, RailItem railItem)
-        {
-            var dockedItems = railItem.DockPoints.Where(d => d.IsDocked).Select(d => d.DockedWith.RailItem).ToList();
-            foreach (RailItem item in dockedItems)
+            // add start item
+            listFound.Add(this);
+
+            RailItem item;
+            while ((item = listFound.FirstOrDefault()) != null)
             {
-                if (!railItems.Contains(item))
+                // check if children already in one of the lists and add to listFound if not
+                foreach (RailItem docked in item.DockPoints.
+                    Where(d => d.IsDocked).
+                    Select(d => d.DockedWith.RailItem).
+                    Where(d => (!listFound.Contains(d)) && (!listScanned.Contains(d))))
                 {
-                    railItems.Add(item);
-                    FindSubgraphRecursive(railItems, item);
+                    listFound.Add(docked);
                 }
-            }
-        }
 
+                // move item from listFound to listScanned
+                listFound.Remove(item);
+                listScanned.Add(item);
+            }
+            
+            // remove original
+            listScanned.Remove(this);
+            return listScanned;
+        }
 
         public void OnOptions()
         {

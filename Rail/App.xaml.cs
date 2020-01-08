@@ -1,14 +1,7 @@
-﻿using Rail.Mvvm;
-using Rail.View;
+﻿using Rail.View;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Rail
@@ -22,10 +15,8 @@ namespace Rail
         {
             Trace.TraceInformation("Startup {0} {1}", DateTime.Now.ToLocalTime().ToShortTimeString(), DateTime.Now.ToLocalTime().ToShortDateString());
 
-            //Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
-            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE");
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
-
+            CultureInfo.CurrentUICulture = new CultureInfo("de-DE");
+            //CultureInfo.CurrentUICulture = new CultureInfo("en-US");
             try
             {
                 AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(OnUnhandledException);

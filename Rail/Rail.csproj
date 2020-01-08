@@ -18,6 +18,16 @@
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
     <ApplicationIcon />
     <NeutralLanguage>en-US</NeutralLanguage>
+    <Configurations>Debug;Release;DebugInfo</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugInfo|AnyCPU'">
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;DEBUGINFO</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

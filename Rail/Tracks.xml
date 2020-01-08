@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TrackList Version="1.0.0">  
   <TrackType Manufacturer="Märklin" Gauge="H0" Type="C-Track" DockType="m24" Spacing="16.5" ViewType="BallastWoodenSleepers" Point="34.6,346.666">
-    <Names>
-      <Name>Märklin H0 C-Tracks</Name> 
-      <Name Lang="de-DE">Märklin H0 C-Gleise</Name>
-    </Names>
+    <Name>
+      <LanguageString>Märklin H0 C-Tracks</LanguageString>
+      <LanguageString Lang="de-DE">Märklin H0 C-Gleise</LanguageString>
+    </Name>
     <Radii>
       <Radius Name="R1" Length="360.0" Description="R1 Radius 360.0 mm" />
       <Radius Name="R2" Length="437.5" Description="R2 Radius 437.5 mm" />
@@ -52,10 +52,10 @@
       <CurvedTurnout Id="M24772" Article="24772" Length="64.0" InnerRadius="515.0" InnerAngle="30.0" OuterRadius="515.0" OuterAngle="30.0" Direction="Right" Name="Right Wide Radius Curved Turnout" Decription="Right Wide Radius Curved Turnout" />
 
       <!-- double slip switch -->
-      <DoubleSlipSwitch Id="M24624" Article="24624" Length="188.3" Angle="24.3" Radius="360.0" Name ="Double Slip Switch" Decription="Double Slip Switch" />
+      <DoubleSlipSwitch Id="M24624" Article="24624" Length="188.3" Angle="24.3" Radius="360.0"  />
 
       <!-- double turnout -->
-      <DoubleTurnout Id="M24630" Article="24630" Length="188.3" Radius="437.5" Angle="24.3" Name="Double Turnout" Decription="Double Turnout" />
+      <DoubleTurnout Id="M24630" Article="24630" Length="188.3" Radius="437.5" Angle="24.3" />
 
       <!-- crossing -->
       <Crossing Id="M24640" Article="24640" Length1="188.3" Length2="188.3" Angle="24.3" />
@@ -88,10 +88,10 @@
     </Groups>
   </TrackType>
   <TrackType Manufacturer="Märklin" Gauge="H0" Type="Kunststoffgleise" DockType="M24" Spacing="16.5" ViewType="BallastWoodenSleepers">
-    <Names>
-      <Name>Märklin H0 my world Plastic Tracks</Name> 
-      <Name Lang="de-DE">Märklin H0 my world Kunststoffgleise</Name>
-    </Names>
+    <Name>
+      <LanguageString>Märklin H0 my world Plastic Tracks</LanguageString>
+      <LanguageString Lang="de-DE">Märklin H0 my world Kunststoffgleise</LanguageString>
+    </Name>
     <Radii>
       <Radius Name="R1" Length="360.0" Description="R1 Radius" />
       <Radius Name="R2" Length="437.5" Description="R2 Radius for turnouts only" />
@@ -113,10 +113,10 @@
     </Tracks>
   </TrackType>
   <TrackType Manufacturer="Märklin" Gauge="H0" Type="K" DockType="M22" Spacing="16.5" ViewType="WoodenSleepers">
-    <Names>
-      <Name>Märklin H0 K-Tracks</Name> 
-      <Name Lang="de-DE">Märklin H0 K-Gleise</Name>
-    </Names>
+    <Name>
+      <LanguageString>Märklin H0 K-Tracks</LanguageString>
+      <LanguageString Lang="de-DE">Märklin H0 K-Gleise</LanguageString>
+    </Name>
     <Radii>
       <Radius Name="R0" Length="295.4" Description="R0 Industrie Radius 295.4 mm"/>
       <Radius Name="R1" Length="360.0" Description="R1 Radius 360.0 mm" />
@@ -127,28 +127,28 @@
     </Radii>
     <Tracks>
       <!-- strait tracks -->
-      <Straight Id="M2204" Article="2204" Length="22.5" Decription="Strait 22.5 mm"/>
-      <Straight Id="M2203" Article="2203" Length="30.0" Decription="Strait 30.0 mm"/>
-      <Straight Id="M2208" Article="2208" Length="35.1" Decription="Strait 35.1 mm"/>
-      <Straight Id="M2293" Article="2293" Length="41.3" Decription="Strait 41.3 mm"/>
-      <Straight Id="M2202" Article="2202" Length="45.0" Decription="Strait 45.0 mm"/>
-      <Straight Id="M2201" Article="2201" Length="90.0" Decription="Strait 90.0 mm"/>
-      <Straight Id="M2207" Article="2207" Length="156.0" Decription="Strait 156.0 mm"/>
-      <Straight Id="M2206" Article="2206" Length="168.9" Decription="Strait 168.9 mm"/>
-      <Straight Id="M2200" Article="2200" Length="180.0" Decription="Strait 180.0 mm"/>
-      <Straight Id="M2209" Article="2209" Length="217.9" Decription="Strait 217.9 mm"/>
+      <Straight Id="M2204" Article="2204" Length="22.5" />
+      <Straight Id="M2203" Article="2203" Length="30.0" />
+      <Straight Id="M2208" Article="2208" Length="35.1" />
+      <Straight Id="M2293" Article="2293" Length="41.3" />
+      <Straight Id="M2202" Article="2202" Length="45.0" />
+      <Straight Id="M2201" Article="2201" Length="90.0" />
+      <Straight Id="M2207" Article="2207" Length="156.0"/>
+      <Straight Id="M2206" Article="2206" Length="168.9"/>
+      <Straight Id="M2200" Article="2200" Length="180.0"/>
+      <Straight Id="M2209" Article="2209" Length="217.9"/>
       <!-- curved tracks -->
-      <Curved Id="M2210" Article="2210" Radius="295.4" Angle="45" Decription="Curved R0 295.4 mm 45.0°" />
-      <Curved Id="M2221" Article="2221" Radius="360.0" Angle="30" Decription="Curved R1 mm 30.0°" />
-      <Curved Id="M2223" Article="2223" Radius="360.0" Angle="15" Decription="Curved R1 mm 15.0°" />
-      <Curved Id="M2224" Article="2224" Radius="360.0" Angle="7.5" Decription="Curved R1 mm 7.5°" />
-      <Curved Id="M2231" Article="2231" Radius="424.6" Angle="30" Decription="Curved R2 mm 30.0°" />
-      <Curved Id="M2232" Article="2232" Radius="424.6" Angle="22.5" Decription="Curved R2 mm 22.5°" />
-      <Curved Id="M2233" Article="2233" Radius="424.6" Angle="15" Decription="Curved R2 mm 15.0°" />
-      <Curved Id="M2234" Article="2234" Radius="424.6" Angle="7.5" Decription="Curved R2 mm 7.5°" />
-      <Curved Id="M2235" Article="2235" Radius="424.6" Angle="3.75" Decription="Curved R2 mm 3.75°" />
-      <Curved Id="M2241" Article="2241" Radius="553.9" Angle="30" Decription="Curved R3 mm 30.0°" />
-      <Curved Id="M2251" Article="2251" Radius="618.5" Angle="30" Decription="Curved R4 mm 30.0°" />
+      <Curved Id="M2210" Article="2210" Radius="295.4" Angle="45" />
+      <Curved Id="M2221" Article="2221" Radius="360.0" Angle="30" />
+      <Curved Id="M2223" Article="2223" Radius="360.0" Angle="15" />
+      <Curved Id="M2224" Article="2224" Radius="360.0" Angle="7.5" />
+      <Curved Id="M2231" Article="2231" Radius="424.6" Angle="30" />
+      <Curved Id="M2232" Article="2232" Radius="424.6" Angle="22.5" />
+      <Curved Id="M2233" Article="2233" Radius="424.6" Angle="15" />
+      <Curved Id="M2234" Article="2234" Radius="424.6" Angle="7.5" />
+      <Curved Id="M2235" Article="2235" Radius="424.6" Angle="3.75" />
+      <Curved Id="M2241" Article="2241" Radius="553.9" Angle="30" />
+      <Curved Id="M2251" Article="2251" Radius="618.5" Angle="30" />
 
       <!--<Curved Id="2274" Radius="0" Angle="14.26" Decription="Curved mm 14.26°" />-->
 
@@ -179,20 +179,72 @@
     </Tracks>
   </TrackType>
   <TrackType Manufacturer="Märklin" Gauge="H0" Type="M" DockType="M72" Spacing="16.5" >
-    <Names>
-      <Name>Märklin H0 M-Tracks</Name> 
-      <Name Lang="de-DE">Märklin H0 M-Gleise</Name>
-    </Names>
-    <!-- turntable -->
-    <Turntable Id="M7286" Article="7286" OuterRadius="193" InnerRadius="155" Angle="7.5" RailNum="48" Name="Turntable" Description="Turntable"/>
-    <!-- transfert table -->
-    <TransferTable Id="M72941" Article="72941" RailsA="5" RailsB="5" Width="381" Height="422" Length="288" Name="Transfer Table" Decription="Transfer Table"/>
+    <Name>
+      <LanguageString>Märklin H0 M-Tracks</LanguageString>
+      <LanguageString Lang="de-DE">Märklin H0 M-Gleise</LanguageString>
+    </Name>
+    <Radii>
+      <Radius Name="I" Length="282.6" />
+      <Radius Name="R1" Length="360.0" />
+      <Radius Name="R2" Length="437.5" />
+    </Radii>
+    <Tracks>
+      <!-- strait tracks -->
+      <Straight Id="M5106" Article="5106" Length="180.0" />
+      <Straight Id="M5107" Article="5107" Length="90.0" />
+      <Straight Id="M5108" Article="5108" Length="45.0" />
+      <Straight Id="M5109" Article="5109" Length="33.5" />
+      <Straight Id="M5110" Article="5110" Length="22.5" />
+      <Straight Id="M5129" Article="5129" Length="70.0" />
+      <Straight Id="M5208" Article="5298" Length="8.0" />
+      <Straight Id="M5210" Article="5210" Length="16.0" />
+      <!-- curved tracks -->
+      <Curved Id="M5100" Article="5100" Radius="360.0" RadiusName="R1" Angle="30.0" />
+      <Curved Id="M5101" Article="5101" Radius="360.0" RadiusName="R1" Angle="15.0" />
+      <Curved Id="M5102" Article="5102" Radius="360.0" RadiusName="R1" Angle="7.5" />
+      <Curved Id="M5120" Article="5120" Radius="282.6" RadiusName="I" Angle="45.0" />
+      <Curved Id="M5200" Article="5200" Radius="437.5" RadiusName="R2" Angle="30.0" />
+      <Curved Id="M5201" Article="5201" Radius="437.5" RadiusName="R2" Angle="15.0" />
+      <Curved Id="M5205" Article="5205" Radius="437.5" RadiusName="R2" Angle="5.7" />
+      <Curved Id="M5206" Article="5206" Radius="437.5" RadiusName="R2" Angle="24.3" />
+      <!-- turnout tracks -->
+      <Turnout Id="M5118" Article="5118" Length="180.0" Radius="360.0" Angle="30.0" Direction="Left" Drive="Electrical" />
+      <Turnout Id="M5119" Article="5119" Length="180.0" Radius="360.0" Angle="30.0" Direction="Right" Drive="Electrical" />
+      <Turnout Id="M5122" Article="5122" Length="180.0" Radius="360.0" Angle="30.0" Direction="Left" Drive="Mechanical" />
+      <Turnout Id="M5123" Article="5123" Length="180.0" Radius="360.0" Angle="30.0" Direction="Right" Drive="Mechanical" />
+      <Turnout Id="M5138" Article="5138" Length="180.0" Radius="360.0" Angle="22.5" Direction="Left" Drive="Electrical" />
+      <Turnout Id="M5139" Article="5139" Length="180.0" Radius="360.0" Angle="22.5" Direction="Right" Drive="Electrical" />
+      <Turnout Id="M5203" Article="5203" Length="180.0" Radius="437.5" Angle="24.3" Direction="Left" Drive="Electrical" />
+      <Turnout Id="M5204" Article="5204" Length="180.0" Radius="437.5" Angle="24.3" Direction="Right" Drive="Electrical" />
+      <Turnout Id="M5222" Article="5222" Length="180.0" Radius="437.5" Angle="24.3" Direction="Left" Drive="Mechanical" />
+      <Turnout Id="M5223" Article="5223" Length="180.0" Radius="437.5" Angle="24.3" Direction="Right" Drive="Mechanical" />
+      <!-- curved turnout tracks -->
+      <CurvedTurnout Id="M5141" Article="5141" Length="0.0" InnerRadius="360.0" InnerAngle="30.0" OuterRadius="437.5" OuterAngle="30.0" Direction="Left" Drive="Electrical" />
+      <CurvedTurnout Id="M5142" Article="5142" Length="0.0" InnerRadius="360.0" InnerAngle="30.0" OuterRadius="437.5" OuterAngle="30.0" Direction="Right" Drive="Electrical" />
+      <!-- double slip switch -->
+      <DoubleSlipSwitch Id="M5128" Article="5128" Length="193.0" Angle="30.0" Radius="360.0" Drive="Electrical" />
+      <DoubleSlipSwitch Id="M5207" Article="5207" Length="193.0" Angle="24.3" Radius="437.5" Drive="Electrical" />
+      <!-- double turnout -->
+      <DoubleTurnout Id="M5124" Article="5214" Length="193.0" Radius="437.5" Angle="24.3" Drive="Electrical" />
+      <!-- crossing -->
+      <Crossing Id="M5114" Article="5114" Length1="193.0" Length2="193.0" Angle="30.0" />
+      <Crossing Id="M5211" Article="5211" Length1="98.0" Length2="98.0" Angle="48.5" />
+      <Crossing Id="M5215" Article="5215" Length1="180.0" Length2="180.0" Angle="24.3" />
+      <!-- bumper -->
+      <Bumper Id="M7190" Article="7190" Length="70.0" Light="false" />
+      <Bumper Id="M7191" Article="7191" Length="70.0" Light="true" />
+
+      <!-- turntable -->
+      <Turntable Id="M7286" Article="7286" OuterRadius="193" InnerRadius="155" Angle="7.5" RailNum="48" Name="Turntable" Description="Turntable"/>
+      <!-- transfert table -->
+      <TransferTable Id="M72941" Article="72941" RailsA="5" RailsB="5" Width="381" Height="422" Length="288" Name="Transfer Table" Decription="Transfer Table"/>
+    </Tracks>
   </TrackType>
   <TrackType Manufacturer="Märklin" Gauge="1" Type="" Spacing="45.0" ViewType="WoodenSleepers" >
-    <Names>
-      <Name>Märklin 1 Tracks</Name> 
-      <Name Lang="de-DE">Märklin 1 Gleise</Name>
-    </Names>
+    <Name>
+      <LanguageString>Märklin 1 Tracks</LanguageString>
+      <LanguageString Lang="de-DE">Märklin 1 Gleise</LanguageString>
+    </Name>
     <!-- R1 = 1020 mm -->
     <!-- R2 = 1176 mm -->
     <!-- R3 = 1394 mm -->
@@ -236,10 +288,10 @@
     </Tracks>
   </TrackType>
   <TrackType Manufacturer="Märklin" Gauge="Z" Type="" Spacing="6.5" ViewType="WoodenSleepers" >
-    <Names>
-      <Name>Märklin Z Tracks</Name> 
-      <Name Lang="de-DE">Märklin Z Gleise</Name>
-    </Names>
+    <Name>
+      <LanguageString>Märklin Z Tracks</LanguageString>
+      <LanguageString Lang="de-DE">Märklin Z Gleise</LanguageString>
+    </Name>
     <!-- R1 = 145 mm -->
     <!-- R2 = 195 mm -->
     <!-- R3 = 220 mm -->
@@ -294,17 +346,17 @@
     </Tracks>
   </TrackType>
   <TrackType Manufacturer="Trix" Gauge="H0" Type="C" Spacing="16.5" >
-    <Names>
-      <Name>Trix H0 C-Tracks</Name> 
-      <Name Lang="de-DE">Trix H0 C-Gleise</Name>
-    </Names>
+    <Name>
+      <LanguageString>Trix H0 C-Tracks</LanguageString>
+      <LanguageString Lang="de-DE">Trix H0 C-Gleise</LanguageString>
+    </Name>
   </TrackType>
   
   <TrackType Manufacturer="LGB" Gauge="G" Type="LGB" Spacing="45" >
-    <Names>
-      <Name>LGB Tracks</Name> 
-      <Name Lang="de-DE">LGB Gleise</Name>
-    </Names>
+    <Name>
+      <LanguageString>LGB Tracks</LanguageString>
+      <LanguageString Lang="de-DE">LGB Gleise</LanguageString>
+    </Name>
     <Radii>
       <Radius Name="R1" Length="600" />
       <Radius Name="R2" Length="780" />
@@ -349,10 +401,10 @@
   </TrackType>
 
   <TrackType Manufacturer="Fleischmann" Gauge="H0" Type="" Spacing="45" >
-    <Names>
-      <Name>Fleischmann H0 Tracks</Name> 
-      <Name Lang="de-DE">Fleischmann H0 Gleise</Name>
-    </Names>
+    <Name>
+      <LanguageString>Fleischmann H0 Tracks</LanguageString>
+      <LanguageString Lang="de-DE">Fleischmann H0 Gleise</LanguageString>
+    </Name>
     <!-- R1 = 356.5 mm -->
     <!-- R2 = 420.0 mm -->
     <!-- R3 = 483.5 mm -->
@@ -362,10 +414,10 @@
   </TrackType>
 
   <TrackType Manufacturer="Fleischmann" Gauge="N" Type="with Bedding" Spacing="45" >
-    <Names>
-      <Name>Fleischmann N Tracks with Bedding</Name> 
-      <Name Lang="de-DE">Fleischmann N Gleise mit Bettung</Name>
-    </Names>
+    <Name>
+      <LanguageString>Fleischmann N Tracks with Bedding</LanguageString>
+      <LanguageString Lang="de-DE">Fleischmann N Gleise mit Bettung</LanguageString>
+    </Name>
     <!-- R1 = 192.0 mm -->
     <!-- R2 = 225.6 mm -->
     <!-- R3 = 396.4 mm -->
@@ -373,10 +425,10 @@
   </TrackType>
 
   <TrackType Manufacturer="Fleischmann" Gauge="N" Type="" Spacing="45" >
-    <Names>
-      <Name>Fleischmann N Tracks</Name> 
-      <Name Lang="de-DE">Fleischmann N Gleise</Name>
-    </Names>
+    <Name>
+      <LanguageString>Fleischmann N Tracks</LanguageString>
+      <LanguageString Lang="de-DE">Fleischmann N Gleise</LanguageString>
+    </Name>
     <!-- R1 = 194.6 mm -->
     <!-- R2 = 228.2 mm -->
     <!-- R3 = 261.8 mm -->
@@ -388,44 +440,44 @@
   </TrackType>
 
   <TrackType Manufacturer="Roco" Gauge="H0" Type="geoLine" Spacing="16.5" >
-    <Names>
-      <Name>Roco H0 geoLine</Name> 
-      <Name Lang="de-DE">Roco H0 geoLine</Name>
-    </Names>
+    <Name>
+      <LanguageString>Roco H0 geoLine</LanguageString>
+      <LanguageString Lang="de-DE">Roco H0 geoLine</LanguageString>
+    </Name>
   </TrackType>
   <TrackType Manufacturer="Roco" Gauge="H0" Type="Roco-Line" Spacing="16.5" >
-    <Names>
-      <Name>Roco H0 Roco-Line</Name> 
-      <Name Lang="de-DE">Roco H0 Roco-Line</Name>
-    </Names>
+    <Name>
+      <LanguageString>Roco H0 Roco-Line</LanguageString>
+      <LanguageString Lang="de-DE">Roco H0 Roco-Line</LanguageString>
+    </Name>
   </TrackType>
 
   <TrackType Manufacturer="Roco" Gauge="H0" Type="Roco-Line with Bedding" Spacing="16.5" >
-    <Names>
-      <Name>Roco-Line with Bedding</Name> 
-      <Name Lang="de-DE">Roco-Line with Bedding</Name>
-    </Names>
+    <Name>
+      <LanguageString>Roco-Line with Bedding</LanguageString>
+      <LanguageString Lang="de-DE">Roco-Line with Bedding</LanguageString>
+    </Name>
   </TrackType>
 
   <TrackType Manufacturer="Roco" Gauge="H0e" Type="Railtracks" Spacing="16.5" >
-    <Names>
-      <Name>Roco H0e</Name> 
-      <Name Lang="de-DE">Roco H0e</Name>
-    </Names>
+    <Name>
+      <LanguageString>Roco H0e</LanguageString>
+      <LanguageString Lang="de-DE">Roco H0e</LanguageString>
+    </Name>
   </TrackType>
 
   <TrackType Manufacturer="Roco" Gauge="H0e" Type="Feldbahn" Spacing="16.5" >
-    <Names>
-      <Name>Roco H0e Feldbahn</Name> 
-      <Name Lang="de-DE">Roco H0e Feldbahn</Name>
-    </Names>
+    <Name>
+      <LanguageString>Roco H0e Feldbahn</LanguageString>
+      <LanguageString Lang="de-DE">Roco H0e Feldbahn</LanguageString>
+    </Name>
   </TrackType>
 
   <TrackType Manufacturer="Pico" Gauge="H0" Type="A-Tracks" Spacing="16.5" >
-    <Names>
-      <Name>Pico H0</Name> 
-      <Name Lang="de-DE">Pico H0</Name>
-    </Names>
+    <Name>
+      <LanguageString>Pico H0</LanguageString>
+      <LanguageString Lang="de-DE">Pico H0</LanguageString>
+    </Name>
     <Radii>
       <Radius Name="R1" Length="360.00" Description="R1 Radius 360.00 mm" />
       <Radius Name="R2" Length="421.88" Description="R2 Radius 421.88 mm" />
@@ -481,10 +533,10 @@
     </Tracks>
   </TrackType>
   <TrackType Manufacturer="Rokuhan" Gauge="Z" Type="" Spacing="16.5" >
-    <Names>
-      <Name>Rokuhan Z</Name>
-      <Name Lang="de-DE">Rokuhan Z</Name>
-    </Names>
+    <Name>
+      <LanguageString>Rokuhan Z</LanguageString>
+      <LanguageString Lang="de-DE">Rokuhan Z</LanguageString>
+    </Name>
   </TrackType>
 
 </TrackList>

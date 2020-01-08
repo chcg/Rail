@@ -16,11 +16,9 @@ namespace Rail.Controls
     public class RailPlanControl : Control
     {
         private double margin = 0;
-        private readonly Pen blackPen = new Pen(Brushes.Black, 1);
-        private readonly Brush plateBrush = new SolidColorBrush(Colors.Green);
-
-        private readonly Pen selectPen1 = new Pen(Brushes.Black, 2);
-        private readonly Pen selectPen2 = new Pen(Brushes.White, 2) { DashStyle = DashStyles.Dot };
+        private readonly Pen plateFramePen = new Pen(TrackBrushes.PlateFrame, 1);
+        private readonly Pen selectFramePen1 = new Pen(Brushes.Black, 2);
+        private readonly Pen selectFramePen2 = new Pen(Brushes.White, 2) { DashStyle = DashStyles.Dot };
 
         // mouse operation variables
         private Point lastMousePosition; 
@@ -293,8 +291,8 @@ namespace Rail.Controls
             // draw select rex
             if (this.actionType == RailAction.SelectRect)
             {
-                drawingContext.DrawRectangle(null, selectPen1, new Rect(this.selectRecStart, this.lastMousePosition));
-                drawingContext.DrawRectangle(null, selectPen2, new Rect(this.selectRecStart, this.lastMousePosition));
+                drawingContext.DrawRectangle(null, selectFramePen1, new Rect(this.selectRecStart, this.lastMousePosition));
+                drawingContext.DrawRectangle(null, selectFramePen2, new Rect(this.selectRecStart, this.lastMousePosition));
             }
 
             drawingContext.Pop();
@@ -308,7 +306,7 @@ namespace Rail.Controls
         /// <param name="drawingContext">Drawing context</param>
         protected void RenderPlate(DrawingContext drawingContext)
         {
-            drawingContext.DrawGeometry(plateBrush, blackPen, new PathGeometry(new PathFigureCollection
+            drawingContext.DrawGeometry(TrackBrushes.Plate, plateFramePen, new PathGeometry(new PathFigureCollection
             {
                 new PathFigure(this.RailPlan.PlatePoints.FirstOrDefault(), new PathSegmentCollection
                 (
@@ -470,33 +468,7 @@ namespace Rail.Controls
             }
             return null;
         }
-
-
-
-
-
-        [Conditional("DEBUG")]
-        private void CheckDockings()
-        {
-            //foreach (var dock in this.RailPlan.Rails.SelectMany(i => i.DockPoints).Where(d => d.IsDocked))
-            //{
-
-            //    if (dock.Position != dock.DockedWith.Position)
-            //    {
-            //        throw new Exception($"Position {dock.Position} != {dock.DockedWith.Position}");
-            //    }
-            //    Angle rev = dock.DockedWith.Angle.Revert();
-            //    if (dock.Angle != rev)
-            //    {
-            //        throw new Exception($"Angle {dock.Angle} != {rev}");
-            //    }
-            //    if (dock != dock.DockedWith.DockedWith)
-            //    {
-            //        throw new Exception();
-            //    }
-            //}
-        }
-
+        
         #endregion
 
         #region key handling
@@ -731,7 +703,7 @@ namespace Rail.Controls
 
         #region Debug
 
-        [Conditional("DEBUG")]
+        [Conditional("DEBUGINFO")]
         private void DebugText(DrawingContext drawingContext)
         {
             ScrollViewer scrollViewer = this.Parent as ScrollViewer;
@@ -742,7 +714,7 @@ namespace Rail.Controls
             drawingContext.DrawText(new FormattedText("Test zzzzzzzzzzzzzzzzz", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y + 24));
         }
 
-        [Conditional("DEBUG")]
+        [Conditional("DEBUGINFO")]
         private void DebugRailItems(IEnumerable<RailItem> railItems)
         {
             if (railItems != null && railItems.Any())
@@ -751,13 +723,35 @@ namespace Rail.Controls
             }
         }
 
-        [Conditional("DEBUG")]
+        [Conditional("DEBUGINFO")]
         private void DebugDockPoints(IEnumerable<RailDockPoint> dockPoints)
         {
             if (dockPoints != null && dockPoints.Any())
             {
                 Debug.WriteLine(dockPoints.Select(d => $"({d.DebugIndexDockPoint}, {d.RailItem.DebugIndex})").Aggregate((a, b) => $"{a}, {b}"));
             }
+        }
+
+        [Conditional("DEBUGINFO")]
+        private void CheckDockings()
+        {
+            //foreach (var dock in this.RailPlan.Rails.SelectMany(i => i.DockPoints).Where(d => d.IsDocked))
+            //{
+
+            //    if (dock.Position != dock.DockedWith.Position)
+            //    {
+            //        throw new Exception($"Position {dock.Position} != {dock.DockedWith.Position}");
+            //    }
+            //    Angle rev = dock.DockedWith.Angle.Revert();
+            //    if (dock.Angle != rev)
+            //    {
+            //        throw new Exception($"Angle {dock.Angle} != {rev}");
+            //    }
+            //    if (dock != dock.DockedWith.DockedWith)
+            //    {
+            //        throw new Exception();
+            //    }
+            //}
         }
 
         #endregion

@@ -15,6 +15,9 @@ namespace Rail.Model
         [XmlAttribute("Length")]
         public double Length { get; set; }
 
+        [XmlAttribute("Light")]
+        public bool Light { get; set; }
+
         [XmlIgnore]
         public override string Name
         {

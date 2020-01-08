@@ -21,6 +21,9 @@ namespace Rail.Model
         [XmlAttribute("Direction")]
         public TrackDirection Direction { get; set; }
 
+        [XmlAttribute("Drive")]
+        public TrackDrive Drive { get; set; }
+        
         [XmlIgnore]
         public override string Name
         {

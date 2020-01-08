@@ -24,5 +24,8 @@ namespace Rail.Model
         public static Brush Ballast { get { return new SolidColorBrush(Color.FromRgb(0x51, 0x56, 0x5c)); } }
 
         public static Brush Dock { get { return Brushes.Blue; } }
+
+        public static Brush Plate { get { return Brushes.Green; } } // new SolidColorBrush(Colors.Green) } }
+        public static Brush PlateFrame { get { return Brushes.Black; } } // new SolidColorBrush(Colors.Green) } }
     }
 }

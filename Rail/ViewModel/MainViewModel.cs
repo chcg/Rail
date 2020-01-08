@@ -1,24 +1,18 @@
 ﻿using Rail.Controls;
+using Rail.Misc;
 using Rail.Model;
 using Rail.Mvvm;
 using Rail.View;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Printing;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Media;
-using System.Windows.Xps;
-using Rail.Misc;
-using System.Collections.Specialized;
 
 namespace Rail.ViewModel
 {
@@ -33,9 +27,7 @@ namespace Rail.ViewModel
         public DelegateCommand PrintPreviewCommand { get; private set; }
 
         private double zoomFactor = 1.0;
-        //private double groundWidth = 2000.0;
-        //private double groundHeight = 1000.0;
-
+       
         public MainViewModel()
         {
             this.DefaultFileExt = "*.rail";
