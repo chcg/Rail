@@ -475,6 +475,15 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Double Crossover.
+        /// </summary>
+        public static string TrackDoubleCrossover {
+            get {
+                return ResourceManager.GetString("TrackDoubleCrossover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Double Slip Switch.
         /// </summary>
         public static string TrackDoubleSlipSwitch {
@@ -588,15 +597,6 @@ namespace Rail.Properties {
         public static string TrackStraightUncoupler {
             get {
                 return ResourceManager.GetString("TrackStraightUncoupler", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Suspender.
-        /// </summary>
-        public static string TrackSuspender {
-            get {
-                return ResourceManager.GetString("TrackSuspender", resourceCulture);
             }
         }
         

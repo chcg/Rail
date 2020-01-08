@@ -540,4 +540,37 @@
     </Name>
   </TrackType>
 
+  <TrackType Manufacturer="Lego" Gauge="" Type="" Spacing="16.5" >
+    <Name>
+      <LanguageString>Lego City</LanguageString>
+      <LanguageString Lang="de-DE">Lego City</LanguageString>
+    </Name>
+    <Radii>
+      <Radius Name="R40" Length="704" Description="(40 + 4) * 2 * 8 mm = 704 mm" />
+    </Radii>
+  </TrackType>
+
+  <TrackType Manufacturer="Trixbrix" Gauge="" Type="" Spacing="16.5" >
+    <Name>
+      <LanguageString>Trixbrix compatible to Lego City</LanguageString>
+      <LanguageString Lang="de-DE">Trixbrix kompatible zu Lego City</LanguageString>
+    </Name>
+    <Radii>
+      <Radius Name="R24" Length="448" Description="(24 + 4) * 2 * 8 mm = 448 mm" />
+      <Radius Name="R40" Length="704" Description="(40 + 4) * 2 * 8 mm = 704 mm" />
+      <Radius Name="R56" Length="960" Description="(56 + 4) * 2 * 8 mm = 960 mm" />
+      <Radius Name="R72" Length="1216" Description="(72 + 4) * 2 * 8 mm = 1216 mm" />
+      <Radius Name="R88" Length="1472" Description="(88 + 4) * 2 * 8 mm = 1472 mm" />
+      <Radius Name="R104" Length="1728" Description="(104 + 4) * 2 * 8 mm = 1728 mm"  />
+      <Radius Name="R120" Length="1984" Description="(120 + 4) * 2 * 8 mm = 1984 mm " />
+    </Radii>
+  </TrackType>
+
+  <TrackType Manufacturer="Caterpillar Red" Gauge="" Type="" Spacing="16.5" >
+    <Name>
+      <LanguageString>Caterpillar Red compatible to Lego City</LanguageString>
+      <LanguageString Lang="de-DE">Caterpillar Red kompatible zu Lego City</LanguageString>
+    </Name>
+  </TrackType>
+
 </TrackList>

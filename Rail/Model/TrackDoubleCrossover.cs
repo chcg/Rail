@@ -6,14 +6,14 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class TrackSuspender : TrackCrossing
+    public class TrackDoubleCrossover : TrackCrossing
     {
         [XmlIgnore]
         public override string Name
         {
             get
             {
-                return $"{Resources.TrackSuspender} ";
+                return $"{Resources.TrackDoubleCrossover} ";
             }
         }
 
@@ -22,7 +22,7 @@ namespace Rail.Model
         {
             get
             {
-                return $"{this.Article} {Resources.TrackSuspender}";
+                return $"{this.Article} {Resources.TrackDoubleCrossover}";
             }
         }
 

@@ -255,6 +255,9 @@
   <data name="TrackCurvedTurnoutRight" xml:space="preserve">
     <value>Right Curved Turnout</value>
   </data>
+  <data name="TrackDoubleCrossover" xml:space="preserve">
+    <value>Double Crossover</value>
+  </data>
   <data name="TrackDoubleSlipSwitch" xml:space="preserve">
     <value>Double Slip Switch</value>
   </data>
@@ -293,9 +296,6 @@
   </data>
   <data name="TrackStraightUncoupler" xml:space="preserve">
     <value>Straight Uncoupler</value>
-  </data>
-  <data name="TrackSuspender" xml:space="preserve">
-    <value>Suspender</value>
   </data>
   <data name="TrackTransferTable" xml:space="preserve">
     <value>Transfer Table</value>
