@@ -480,5 +480,11 @@
 
     </Tracks>
   </TrackType>
+  <TrackType Manufacturer="Rokuhan" Gauge="Z" Type="" Spacing="16.5" >
+    <Names>
+      <Name>Rokuhan Z</Name>
+      <Name Lang="de-DE">Rokuhan Z</Name>
+    </Names>
+  </TrackType>
 
 </TrackList>
