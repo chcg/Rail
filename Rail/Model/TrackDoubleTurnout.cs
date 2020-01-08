@@ -14,7 +14,20 @@ namespace Rail.Model
         {
             get
             {
-                return $"{Resources.TrackDoubleTurnout}";
+                string drive = this.Drive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.Drive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
+                return $"{Resources.TrackDoubleTurnout} {drive}";
+            }
+        }
+
+        [XmlIgnore]
+        public override string Description
+        {
+            get
+            {
+                string drive = this.Drive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.Drive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
+                return $"{this.Article} {Resources.TrackDoubleTurnout} {drive}";
             }
         }
 

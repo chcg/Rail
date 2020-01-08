@@ -15,15 +15,16 @@ namespace Rail.Model
         [XmlAttribute("Length")]
         public double Length { get; set; }
 
-        [XmlAttribute("Light")]
-        public bool Light { get; set; }
+        [XmlAttribute("Lantern")]
+        public bool Lantern { get; set; }
 
         [XmlIgnore]
         public override string Name
         {
             get
             {
-                return $"{Resources.TrackBumper}";
+                string lantern = this.Lantern ? Resources.TrackWithLantern : String.Empty;
+                return $"{Resources.TrackBumper} {lantern}";
             }
         }
 
@@ -32,7 +33,8 @@ namespace Rail.Model
         {
             get
             {
-                return $"{this.Article} {Resources.TrackBumper}";
+                string lantern = this.Lantern ? Resources.TrackWithLantern : String.Empty;
+                return $"{this.Article} {Resources.TrackBumper} {lantern}";
             }
         }
 

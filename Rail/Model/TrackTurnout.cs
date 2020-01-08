@@ -29,9 +29,11 @@ namespace Rail.Model
         {
             get
             {
+                string drive = this.Drive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.Drive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty); 
                 return Direction == TrackDirection.Left ? 
-                    $"{Resources.TrackTurnoutLeft}" :
-                    $"{Resources.TrackTurnoutRight}";
+                    $"{Resources.TrackTurnoutLeft} {drive}" :
+                    $"{Resources.TrackTurnoutRight} {drive}";
             }
         }
 
@@ -40,9 +42,11 @@ namespace Rail.Model
         {
             get
             {
+                string drive = this.Drive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.Drive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
                 return Direction == TrackDirection.Left ?
-                    $"{this.Article} {Resources.TrackTurnoutLeft}" :
-                    $"{this.Article} {Resources.TrackTurnoutRight}";
+                    $"{this.Article} {Resources.TrackTurnoutLeft} {drive}" :
+                    $"{this.Article} {Resources.TrackTurnoutRight} {drive}";
             }
         }
 

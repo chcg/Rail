@@ -493,6 +493,24 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to electrical.
+        /// </summary>
+        public static string TrackDriveElectrical {
+            get {
+                return ResourceManager.GetString("TrackDriveElectrical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mechanical.
+        /// </summary>
+        public static string TrackDriveMechanical {
+            get {
+                return ResourceManager.GetString("TrackDriveMechanical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to End Piece with Track Roadbed.
         /// </summary>
         public static string TrackEndPiece {
@@ -615,6 +633,15 @@ namespace Rail.Properties {
         public static string TrackTurntable {
             get {
                 return ResourceManager.GetString("TrackTurntable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to with a lantern.
+        /// </summary>
+        public static string TrackWithLantern {
+            get {
+                return ResourceManager.GetString("TrackWithLantern", resourceCulture);
             }
         }
         

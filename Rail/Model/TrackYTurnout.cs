@@ -16,13 +16,18 @@ namespace Rail.Model
 
         [XmlAttribute("Angle")]
         public double Angle { get; set; }
-        
+
+        [XmlAttribute("Drive")]
+        public TrackDrive Drive { get; set; }
+
         [XmlIgnore]
         public override string Name
         {
             get
             {
-                return $"{Resources.TrackYTurnout}";
+                string drive = this.Drive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.Drive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
+                return $"{Resources.TrackYTurnout} {drive}";
             }
         }
 
@@ -31,7 +36,9 @@ namespace Rail.Model
         {
             get
             {
-                return $"{this.Article} {Resources.TrackYTurnout}";
+                string drive = this.Drive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.Drive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
+                return $"{this.Article} {Resources.TrackYTurnout} {drive}";
             }
         }
 

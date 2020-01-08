@@ -64,7 +64,8 @@
 
       <!-- bumper -->
       <Bumper Id="M24977" Article="24977" Length="82.5"/>
-      
+      <Bumper Id="M24978" Article="24978" Length="82.5" Lantern="true"/>
+
       <!-- end piece -->
       <EndPiece Id="M24001" Article="24001" />
       
@@ -178,7 +179,7 @@
       <Flex Id="M2205" Article="2205" MaxLength1="900" Decription="Flex Track 900 mm"/>
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="H0" Type="M" DockType="M72" Spacing="16.5" >
+  <TrackType Manufacturer="Märklin" Gauge="H0" Type="M" DockType="M72" Spacing="16.5" ViewType="WoodenSleepers">
     <Name>
       <LanguageString>Märklin H0 M-Tracks</LanguageString>
       <LanguageString Lang="de-DE">Märklin H0 M-Gleise</LanguageString>
@@ -231,8 +232,8 @@
       <Crossing Id="M5211" Article="5211" Length1="98.0" Length2="98.0" Angle="48.5" />
       <Crossing Id="M5215" Article="5215" Length1="180.0" Length2="180.0" Angle="24.3" />
       <!-- bumper -->
-      <Bumper Id="M7190" Article="7190" Length="70.0" Light="false" />
-      <Bumper Id="M7191" Article="7191" Length="70.0" Light="true" />
+      <Bumper Id="M7190" Article="7190" Length="70.0" Lantern="false" />
+      <Bumper Id="M7191" Article="7191" Length="70.0" Lantern="true" />
 
       <!-- turntable -->
       <Turntable Id="M7286" Article="7286" OuterRadius="193" InnerRadius="155" Angle="7.5" RailNum="48" Name="Turntable" Description="Turntable"/>

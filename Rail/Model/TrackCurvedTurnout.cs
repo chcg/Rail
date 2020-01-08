@@ -28,14 +28,19 @@ namespace Rail.Model
         [XmlAttribute("Direction")]
         public TrackDirection Direction { get; set; }
 
+        [XmlAttribute("Drive")]
+        public TrackDrive Drive { get; set; }
+
         [XmlIgnore]
         public override string Name
         {
             get
             {
+                string drive = this.Drive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.Drive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
                 return Direction == TrackDirection.Left ?
-                    $"{Resources.TrackCurvedTurnoutLeft}" :
-                    $"{Resources.TrackCurvedTurnoutRight}";
+                    $"{Resources.TrackCurvedTurnoutLeft} {drive}" :
+                    $"{Resources.TrackCurvedTurnoutRight} {drive}";
             }
         }
 
@@ -44,9 +49,11 @@ namespace Rail.Model
         {
             get
             {
+                string drive = this.Drive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.Drive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
                 return Direction == TrackDirection.Left ?
-                    $"{this.Article} {Resources.TrackCurvedTurnoutLeft}" :
-                    $"{this.Article} {Resources.TrackCurvedTurnoutRight}";
+                    $"{this.Article} {Resources.TrackCurvedTurnoutLeft} {drive}" :
+                    $"{this.Article} {Resources.TrackCurvedTurnoutRight} {drive}";
             }
         }
 

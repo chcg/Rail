@@ -18,12 +18,17 @@ namespace Rail.Model
         [XmlAttribute("Radius")]
         public double Radius { get; set; }
 
+        [XmlAttribute("Drive")]
+        public TrackDrive Drive { get; set; }
+
         [XmlIgnore]
         public override string Name
         {
             get
             {
-                return $"{Resources.TrackDoubleSlipSwitch}";
+                string drive = this.Drive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.Drive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
+                return $"{Resources.TrackDoubleSlipSwitch} {drive}";
             }
         }
 
@@ -32,7 +37,9 @@ namespace Rail.Model
         {
             get
             {
-                return $"{this.Article} {Resources.TrackDoubleSlipSwitch}";
+                string drive = this.Drive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.Drive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
+                return $"{this.Article} {Resources.TrackDoubleSlipSwitch} {drive}";
             }
         }
 

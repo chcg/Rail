@@ -16,5 +16,15 @@ namespace Rail.Model
                 return $"{Resources.TrackCurvedCircuit}";
             }
         }
+
+        [XmlIgnore]
+        public override string Description
+        {
+            get
+            {
+                
+                return $"{this.Article} {Resources.TrackCurvedCircuit}";
+            }
+        }
     }
 }
