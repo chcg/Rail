@@ -1,12 +1,19 @@
 # Rail
 Model railway track layout application
 
-Layout application for Märklin H0 C-Tracks.
+Layout application for a large number of tracks.
+
+## Features
+
+* multiple layers
+* 3D View
+* combine different track types
+* material list
+* multi languages
 
 ## Planned Features
 
-* Other Tracks like H0 K-Tracks, LGB, Z, ..
-* Multilayer
+* Linux and Mac Version (late in 2020)
 
 ## Donate
 
