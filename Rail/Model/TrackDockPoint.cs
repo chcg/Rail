@@ -1,4 +1,5 @@
 ﻿using Rail.Misc;
+using Rail.Trigonometry;
 using System.Windows;
 
 namespace Rail.Model

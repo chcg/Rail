@@ -1,5 +1,6 @@
 ﻿using Rail.Misc;
 using Rail.Properties;
+using Rail.Trigonometry;
 using System;
 using System.Collections.Generic;
 using System.Windows;

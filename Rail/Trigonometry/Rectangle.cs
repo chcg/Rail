@@ -4,7 +4,7 @@ using System.Text;
 using System.Windows;
 using static Rail.Model.TrackBase;
 
-namespace Rail.Misc
+namespace Rail.Trigonometry
 {
     public class Rectangle
     {

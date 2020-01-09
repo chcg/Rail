@@ -1,6 +1,7 @@
 ﻿using Rail.Misc;
 using Rail.Model;
 using Rail.Mvvm;
+using Rail.Trigonometry;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

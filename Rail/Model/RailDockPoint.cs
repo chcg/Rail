@@ -1,8 +1,5 @@
-﻿using Rail.Misc;
-using System;
-using System.Collections.Generic;
+﻿using Rail.Trigonometry;
 using System.Diagnostics;
-using System.Text;
 using System.Windows;
 
 namespace Rail.Model

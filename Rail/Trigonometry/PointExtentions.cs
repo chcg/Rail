@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 
-namespace Rail.Misc
+namespace Rail.Trigonometry
 {
     public static class PointExtentions
     {

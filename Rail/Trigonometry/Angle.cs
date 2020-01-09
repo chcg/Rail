@@ -5,14 +5,17 @@ using System.Text;
 using System.Windows;
 using System.Xml.Serialization;
 
-namespace Rail.Misc
+namespace Rail.Trigonometry
 {
+    /// <summary>
+    /// Normalized angel between 0° and 360°
+    /// </summary>
     public class Angle
     {
-        private const ushort MAX = 3600;
-        private const ushort REV = 1800;
+        private const int MAX = 3600;
+        private const int REV = 1800;
         private const double FAC = 10.0;
-        private short angle = 0;
+        private int angle = 0;
 
         public Angle()
         { }
@@ -20,15 +23,19 @@ namespace Rail.Misc
         public Angle(double value)
         {
             int val = (int)Math.Round(value * FAC);
-            this.angle = (short)((val % MAX + MAX) % MAX);
+            this.angle = Normalize(val);
         }
 
-        private Angle(short value)
+        private Angle(int value)
         {
-            this.angle = (short)((value % MAX + MAX) % MAX);
+            this.angle = (int)((value % MAX + MAX) % MAX);
         }
 
-        [XmlText]
+        private static short Normalize(int value)
+        {
+            return (short)((value % MAX + MAX) % MAX);
+        }
+
         public double Value
         {
             get 
@@ -38,7 +45,7 @@ namespace Rail.Misc
             set
             {
                 int val = (int)Math.Round(value * FAC);
-                this.angle = (short)((val % MAX + MAX) % MAX);
+                this.angle = Normalize(val);
             }
         }
 
@@ -54,12 +61,22 @@ namespace Rail.Misc
 
         public static Angle operator +(Angle a, Angle b)
         {
-            return new Angle((short)(a.angle + b.angle));
+            return new Angle((int)(a.angle + b.angle));
         }
-        
+
+        public static Angle operator +(Angle a, Rotation b)
+        {
+            return new Angle((int)(a.angle + b.IntAngle));
+        }
+
         public static Angle operator -(Angle a, Angle b)
         {
-            return new Angle((short)(a.angle - b.angle));
+            return new Angle((int)(a.angle - b.angle));
+        }
+
+        public static Angle operator -(Angle a, Rotation b)
+        {
+            return new Angle((int)(a.angle - b.IntAngle));
         }
 
         public static bool operator ==(Angle a, Angle b)

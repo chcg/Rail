@@ -1,13 +1,11 @@
 ﻿using Rail.Controls;
 using Rail.Misc;
 using Rail.Mvvm;
-using System;
+using Rail.Trigonometry;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
@@ -243,20 +241,16 @@ namespace Rail.Model
             listFound.Add(this);
 
             RailItem item;
-            while ((item = listFound.FirstOrDefault()) != null)
+            while ((item = listFound.TakeLastOrDefault()) != null)
             {
+                // move item from listFound to listScanned
+                listScanned.Add(item);
+
                 // check if children already in one of the lists and add to listFound if not
-                foreach (RailItem docked in item.DockPoints.
+                listFound.AddRange(item.DockPoints.
                     Where(d => d.IsDocked).
                     Select(d => d.DockedWith.RailItem).
-                    Where(d => (!listFound.Contains(d)) && (!listScanned.Contains(d))))
-                {
-                    listFound.Add(docked);
-                }
-
-                // move item from listFound to listScanned
-                listFound.Remove(item);
-                listScanned.Add(item);
+                    Where(d => (!listFound.Contains(d)) && (!listScanned.Contains(d))));
             }
             
             // remove original

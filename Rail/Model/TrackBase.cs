@@ -7,6 +7,7 @@ using Rail.Controls;
 using System;
 using System.Collections.Generic;
 using Rail.Misc;
+using Rail.Trigonometry;
 
 namespace Rail.Model
 {
