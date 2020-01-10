@@ -11,9 +11,12 @@ namespace Rail.Model
     public class TrackCurved : TrackBase
     {
         [XmlAttribute("Radius")]
+        public string RadiusNameOrValue { get; set; }
+
+        [XmlIgnore]
         public double Radius { get; set; }
 
-        [XmlAttribute("RadiusName")]
+        [XmlIgnore]
         public string RadiusName { get; set; }
 
         [XmlAttribute("Angle")]
@@ -33,8 +36,15 @@ namespace Rail.Model
         {
             get
             {
-                return $"{this.Article} {Resources.TrackCurved} {RadiusName} {Radius} mm {Angle}°";
+                return $"{this.Article} {Resources.TrackCurved} {Radius} {Radius} mm {Angle}°";
             }
+        }
+
+        public override void Update(TrackType trackType)
+        {
+            this.Radius = GetValue(trackType.Radii, this.RadiusNameOrValue);
+            this.RadiusName = GetName(this.RadiusNameOrValue);
+            base.Update(trackType);
         }
 
         protected override Geometry CreateGeometry(double spacing)

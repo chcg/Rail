@@ -516,10 +516,10 @@
       <Crossing Article="35240" Length1="320" Length2="320" Angle="30" />
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Pico" Gauge="H0" Type="A-Tracks" Spacing="16.5" >
+  <TrackType Manufacturer="Pico" Gauge="H0" Type="A-Tracks" DockType="P5" Spacing="16.5" ViewType="BallastWoodenSleepers" >
     <Name>
-      <LanguageString>Pico H0</LanguageString>
-      <LanguageString Lang="de-DE">Pico H0</LanguageString>
+      <LanguageString>Pico H0 A-Track with roadbed</LanguageString>
+      <LanguageString Lang="de-DE">Pico H0 A-Gleis mit Bettung</LanguageString>
     </Name>
     <Radii>
       <Radius Name="R1" Length="360.00" Description="R1 Radius 360.00 mm" />
@@ -575,7 +575,74 @@
 
     </Tracks>
   </TrackType>
-  
+  <TrackType Manufacturer="Pico" Gauge="H0" Type="A-Tracks" Spacing="16.5" ViewType="WoodenSleepers" >
+    <Name>
+      <LanguageString>Pico H0 A-Track with wooden sleepers</LanguageString>
+      <LanguageString Lang="de-DE">Pico H0 A-Gleis mit Holzschwellen</LanguageString>
+    </Name>
+    <Radii>
+      <Radius Name="R1" Length="360.00" />
+      <Radius Name="R2" Length="421.88" />
+      <Radius Name="R3" Length="483.75" />
+      <Radius Name="R4" Length="545.63" />
+      <Radius Name="R9" Length="907.97" />
+    </Radii>
+    <Lengths>
+      <Length Name="G940" Length="940.00"/>
+      <Length Name="G239" Length="239.07"/>
+      <Length Name="G231" Length="230.93"/>
+      <Length Name="G119" Length="219.54"/>
+      <Length Name="G115" Length="115.46"/>
+      <Length Name="G107" Length="107.32"/>
+      <Length Name="G62" Length="61.88"/>
+    </Lengths>
+    <Tracks>
+      <!-- strait tracks -->
+      <Straight Article="55200" Length="G239" />
+      <Straight Article="55201" Length="G231" />
+      <Straight Article="55202" Length="G119" />
+      <Straight Article="55203" Length="G115" />
+      <Straight Article="55204" Length="G107" />
+      <Straight Article="55205" Length="G62" />
+      <!-- curved tracks -->
+      <Curved Article="55211" Radius="R1" Angle="30" />
+      <Curved Article="55212" Radius="R2" Angle="30" />
+      <Curved Article="55213" Radius="R3" Angle="30" />
+      <Curved Article="55214" Radius="R4" Angle="30" />
+      <Curved Article="55219" Radius="R9" Angle="15" />
+      <Curved Article="55251" Radius="R1" Angle="7.5" />
+      <Curved Article="55252" Radius="R2" Angle="7.5" />
+    </Tracks>
+  </TrackType>
+  <TrackType Manufacturer="Pico" Gauge="H0" Type="A-Tracks" DockType="P5" Spacing="16.5" ViewType="ConcreteSleepers" >
+    <Name>
+      <LanguageString>Pico H0 A-Track with concrete sleepers</LanguageString>
+      <LanguageString Lang="de-DE">Pico H0 A-Gleis mit Betonschwellen</LanguageString>
+    </Name>
+    <Radii>
+      <Radius Name="R1" Length="360.00" />
+      <Radius Name="R2" Length="421.88" />
+      <Radius Name="R3" Length="483.75" />
+      <Radius Name="R4" Length="545.63" />
+      <Radius Name="R9" Length="907.97" />
+    </Radii>
+    <Lengths>
+      <Length Name="G940" Length="940.00"/>
+      <Length Name="G239" Length="239.07"/>
+      <Length Name="G231" Length="230.93"/>
+      <Length Name="G119" Length="219.54"/>
+      <Length Name="G115" Length="115.46"/>
+      <Length Name="G107" Length="107.32"/>
+      <Length Name="G62" Length="61.88"/>
+    </Lengths>
+    <Tracks>
+      <!-- turnout tracks -->
+      <Turnout Article="55170" Length="239.07" Radius="907.97" Angle="15" Direction="Left" />
+      <Turnout Article="55171" Length="239.07" Radius="907.97" Angle="15" Direction="Right" />
+      <!-- flex-->
+      <Flex Article="55150" MaxLength="939.07"/>
+    </Tracks>
+  </TrackType>
   
   
   <TrackType Manufacturer="Rokuhan" Gauge="Z" Type="" Spacing="16.5" >

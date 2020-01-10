@@ -1,4 +1,5 @@
 ﻿using Rail.Controls;
+using Rail.Misc;
 using Rail.Properties;
 using System;
 using System.Collections.Generic;
@@ -12,15 +13,22 @@ namespace Rail.Model
 
     public class TrackStraight : TrackBase
     {
+
         [XmlAttribute("Length")]
+        public string LengthNameOrValue { get; set; }
+
+        [XmlIgnore]
         public double Length { get; set; }
+
+        [XmlIgnore]
+        public string LengthName { get; set; }
 
         [XmlIgnore]
         public override string Name 
         { 
             get 
             { 
-                return $"{Resources.TrackStraight} {Length} mm"; 
+                return $"{Resources.TrackStraight} {LengthName} {Length} mm"; 
             } 
         }
 
@@ -29,8 +37,15 @@ namespace Rail.Model
         {
             get
             {
-                return $"{this.Article} {Resources.TrackStraight} {Length} mm";
+                return $"{this.Article} {Resources.TrackStraight} {LengthName} {Length} mm";
             }
+        }
+
+        public override void Update(TrackType trackType)
+        {
+            this.Length = GetValue(trackType.Lengths, this.LengthNameOrValue);
+            this.LengthName = GetName(this.LengthNameOrValue);
+            base.Update(trackType);
         }
 
         protected override Geometry CreateGeometry(double spacing)

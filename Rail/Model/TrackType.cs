@@ -47,7 +47,16 @@ namespace Rail.Model
         public TrackViewType ViewType { get; set; }
 
         [XmlElement("Name")]
-        public XmlMultilanguageString Name { get; set; }        
+        public XmlMultilanguageString Name { get; set; }     
+        
+        [XmlArray("Radii")]
+        [XmlArrayItem("Radius")]
+        public List<TrackLength> Radii { get; set; } 
+
+        [XmlArray("Lengths")]
+        [XmlArrayItem("Length")]
+        public List<TrackLength> Lengths { get; set; }
+
 
         [XmlArray("Tracks")]
         [XmlArrayItem(typeof(TrackStraight), ElementName = "Straight"),

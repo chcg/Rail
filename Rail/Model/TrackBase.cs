@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using Rail.Misc;
 using Rail.Trigonometry;
+using System.Linq;
 
 namespace Rail.Model
 {
@@ -91,7 +92,7 @@ namespace Rail.Model
         private readonly double sleepersThicknessFactor = 1.0 / 4.0;
         private readonly double textFactor = 0.9;
         
-        public void Update(TrackType trackType)
+        public virtual void Update(TrackType trackType)
         {
             this.Id = trackType.Manufacturer.Replace(" ","") + this.Article;
             this.RailSpacing = trackType.Spacing;
@@ -494,5 +495,37 @@ namespace Rail.Model
         //    Vector b = PointExtentions.Circle(startAngle + angle, radius);
         //    return (Point)((a - b) / -2);
         //}
+
+        protected double GetValue(List<TrackLength> list, string value)
+        {
+            if (String.IsNullOrEmpty(value))
+            {
+                throw new ArgumentNullException("value");
+            }
+            if (list == null || Char.IsDigit(value[0]))
+            {
+                return double.Parse(value, new CultureInfo("en-US"));
+            }
+            else
+            {
+                return list.First(i => i.Name == value).Length;
+            }
+        }
+
+        protected string GetName(string value)
+        {
+            if (String.IsNullOrEmpty(value))
+            {
+                throw new ArgumentNullException("value");
+            }
+            if (Char.IsDigit(value[0]))
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return value;
+            }
+        }
     }
 }
