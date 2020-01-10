@@ -1,9 +1,5 @@
-﻿using Rail.Controls;
-using Rail.Misc;
-using Rail.Properties;
-using System;
+﻿using Rail.Properties;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;

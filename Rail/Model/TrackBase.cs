@@ -500,7 +500,7 @@ namespace Rail.Model
         {
             if (String.IsNullOrEmpty(value))
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException("value", $"Error in article {this.Article}");
             }
             if (list == null || Char.IsDigit(value[0]))
             {
@@ -516,7 +516,7 @@ namespace Rail.Model
         {
             if (String.IsNullOrEmpty(value))
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException("value", $"Error in article {this.Article}");
             }
             if (Char.IsDigit(value[0]))
             {

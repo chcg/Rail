@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class TrackTransferTable : TrackBase
+    public class TrackTransferTable : TrackStraight
     {
 
         [XmlAttribute("RailsA")]
@@ -22,9 +22,6 @@ namespace Rail.Model
 
         [XmlAttribute("Height")]
         public double Height { get; set; }
-
-        [XmlAttribute("Length")]
-        public double Length { get; set; }
 
         [XmlIgnore]
         public override string Name

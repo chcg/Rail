@@ -10,11 +10,8 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class TrackBumper : TrackBase
+    public class TrackBumper : TrackStraight
     {
-        [XmlAttribute("Length")]
-        public double Length { get; set; }
-
         [XmlAttribute("Lantern")]
         public bool Lantern { get; set; }
 

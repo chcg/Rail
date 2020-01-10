@@ -12,19 +12,37 @@ namespace Rail.Model
     public class TrackCurvedTurnout : TrackBase
     {
         [XmlAttribute("InnerRadius")]
+        public string InnerRadiusNameOrValue { get; set; }
+
+        [XmlIgnore]
         public double InnerRadius { get; set; }
 
+        [XmlIgnore]
+        public string InnerRadiusName { get; set; }
+        
         [XmlAttribute("InnerAngle")]
         public double InnerAngle { get; set; }
 
         [XmlAttribute("OuterRadius")]
+        public string OuterRadiusNameOrValue { get; set; }
+
+        [XmlIgnore]
         public double OuterRadius { get; set; }
+
+        [XmlIgnore]
+        public string OuterRadiusName { get; set; }
 
         [XmlAttribute("OuterAngle")]
         public double OuterAngle { get; set; }
 
         [XmlAttribute("Length")]
+        public string LengthNameOrValue { get; set; }
+
+        [XmlIgnore]
         public double Length { get; set; }
+
+        [XmlIgnore]
+        public string LengthName { get; set; }
 
         [XmlAttribute("Direction")]
         public TrackDirection Direction { get; set; }
@@ -56,6 +74,17 @@ namespace Rail.Model
                     $"{this.Article} {Resources.TrackCurvedTurnoutLeft} {drive}" :
                     $"{this.Article} {Resources.TrackCurvedTurnoutRight} {drive}";
             }
+        }
+
+        public override void Update(TrackType trackType)
+        {
+            this.InnerRadius = GetValue(trackType.Radii, this.InnerRadiusNameOrValue);
+            this.InnerRadiusName = GetName(this.InnerRadiusNameOrValue);
+            this.OuterRadius = GetValue(trackType.Radii, this.OuterRadiusNameOrValue);
+            this.OuterRadiusName = GetName(this.OuterRadiusNameOrValue);
+            this.Length = GetValue(trackType.Lengths, this.LengthNameOrValue);
+            this.LengthName = GetName(this.LengthNameOrValue);
+            base.Update(trackType);
         }
 
         protected override Geometry CreateGeometry(double spacing)

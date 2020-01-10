@@ -8,11 +8,8 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class TrackFlex : TrackBase
+    public class TrackFlex : TrackStraight
     {
-        [XmlAttribute("MaxLength")]
-        public double MaxLength { get; set; }
-
         [XmlIgnore]
         public override string Name
         {

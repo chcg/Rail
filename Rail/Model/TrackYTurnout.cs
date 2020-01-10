@@ -12,7 +12,13 @@ namespace Rail.Model
     public class TrackYTurnout : TrackBase
     {
         [XmlAttribute("Radius")]
+        public string RadiusNameOrValue { get; set; }
+
+        [XmlIgnore]
         public double Radius { get; set; }
+
+        [XmlIgnore]
+        public string RadiusName { get; set; }
 
         [XmlAttribute("Angle")]
         public double Angle { get; set; }
@@ -40,6 +46,13 @@ namespace Rail.Model
                               (this.Drive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
                 return $"{this.Article} {Resources.TrackYTurnout} {drive}";
             }
+        }
+
+        public override void Update(TrackType trackType)
+        {
+            this.Radius = GetValue(trackType.Radii, this.RadiusNameOrValue);
+            this.RadiusName = GetName(this.RadiusNameOrValue);
+            base.Update(trackType);
         }
 
         protected override Geometry CreateGeometry(double spacing)

@@ -11,10 +11,22 @@ namespace Rail.Model
     public class TrackCrossing : TrackBase
     {
         [XmlAttribute("Length1")]
+        public string Length1NameOrValue { get; set; }
+
+        [XmlIgnore]
         public double Length1 { get; set; }
 
+        [XmlIgnore]
+        public string Length1Name { get; set; }
+
         [XmlAttribute("Length2")]
+        public string Length2NameOrValue { get; set; }
+
+        [XmlIgnore]
         public double Length2 { get; set; }
+
+        [XmlIgnore]
+        public string Length2Name { get; set; }
 
         [XmlAttribute("Angle")]
         public double Angle { get; set; }
@@ -35,6 +47,15 @@ namespace Rail.Model
             {
                 return $"{this.Article} {Resources.TrackCrossing}";
             }
+        }
+
+        public override void Update(TrackType trackType)
+        {
+            this.Length1 = GetValue(trackType.Lengths, this.Length1NameOrValue);
+            this.Length1Name = GetName(this.Length1NameOrValue);
+            this.Length2 = GetValue(trackType.Lengths, this.Length1NameOrValue);
+            this.Length2Name = GetName(this.Length1NameOrValue);
+            base.Update(trackType);
         }
 
         protected override Geometry CreateGeometry(double spacing)

@@ -11,10 +11,22 @@ namespace Rail.Model
     public class TrackTurnout : TrackBase
     {
         [XmlAttribute("Length")]
+        public string LengthNameOrValue { get; set; }
+
+        [XmlIgnore]
         public double Length { get; set; }
 
+        [XmlIgnore]
+        public string LengthName { get; set; }
+
         [XmlAttribute("Radius")]
+        public string RadiusNameOrValue { get; set; }
+
+        [XmlIgnore]
         public double Radius { get; set; }
+
+        [XmlIgnore]
+        public string RadiusName { get; set; }
 
         [XmlAttribute("Angle")]
         public double Angle { get; set; }
@@ -49,6 +61,15 @@ namespace Rail.Model
                     $"{this.Article} {Resources.TrackTurnoutLeft} {drive}" :
                     $"{this.Article} {Resources.TrackTurnoutRight} {drive}";
             }
+        }
+
+        public override void Update(TrackType trackType)
+        {
+            this.Length = GetValue(trackType.Lengths, this.LengthNameOrValue);
+            this.LengthName = GetName(this.LengthNameOrValue);
+            this.Radius = GetValue(trackType.Radii, this.RadiusNameOrValue);
+            this.RadiusName = GetName(this.RadiusNameOrValue);
+            base.Update(trackType);
         }
 
         protected override Geometry CreateGeometry(double spacing)

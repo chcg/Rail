@@ -8,16 +8,19 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class TrackDoubleSlipSwitch : TrackBase
+    public class TrackDoubleSlipSwitch : TrackStraight
     {
-        [XmlAttribute("Length")]
-        public double Length { get; set; }
-
         [XmlAttribute("Angle")]
         public double Angle { get; set; }
 
         [XmlAttribute("Radius")]
+        public string RadiusNameOrValue { get; set; }
+
+        [XmlIgnore]
         public double Radius { get; set; }
+
+        [XmlIgnore]
+        public string RadiusName { get; set; }
 
         [XmlAttribute("Drive")]
         public TrackDrive Drive { get; set; }
@@ -42,6 +45,13 @@ namespace Rail.Model
                               (this.Drive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
                 return $"{this.Article} {Resources.TrackDoubleSlipSwitch} {drive}";
             }
+        }
+
+        public override void Update(TrackType trackType)
+        {
+            this.Radius = GetValue(trackType.Radii, this.RadiusNameOrValue);
+            this.RadiusName = GetName(this.RadiusNameOrValue);
+            base.Update(trackType);
         }
 
         protected override Geometry CreateGeometry(double spacing)
