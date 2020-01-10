@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Rail.Properties;
 
 namespace Rail.Controls
 {
@@ -31,6 +32,8 @@ namespace Rail.Controls
         private Point selectRecStart;
 
         public DelegateCommand<RailItem> DeleteRailItemCommand { get; private set; }
+        public DelegateCommand<RailItem> RotateRailItemCommand { get; private set; }
+        public DelegateCommand<RailItem> PropertiesRailItemCommand { get; private set; }
 
         protected enum RailAction
         {
@@ -49,6 +52,8 @@ namespace Rail.Controls
         public RailPlanControl()
         {
             this.DeleteRailItemCommand = new DelegateCommand<RailItem>(OnDeleteRailItem);
+            this.RotateRailItemCommand = new DelegateCommand<RailItem>(OnRotateRailItem);
+            this.PropertiesRailItemCommand = new DelegateCommand<RailItem>(OnPropertiesRailItem);
         }
 
         #region ZoomFactor
@@ -354,8 +359,6 @@ namespace Rail.Controls
             railItem.DockPoints.Where(dp => dp.IsDocked).ForEach(dp => { dp.DockedWith.DockedWith = null; dp.DockedWith = null; });
             // remove the item
             this.RailPlan.Rails.Remove(railItem);
-            // redraw control
-            //this.InvalidateVisual();
         }
 
         public void SelectRailItem(RailItem railItem, bool addSelect)
@@ -682,10 +685,11 @@ namespace Rail.Controls
             if (railItem != null)
             {
                 ContextMenu contextMenu = new ContextMenu();
-                contextMenu.DataContext = railItem;
-                contextMenu.Items.Add(new MenuItem() { Header = "Delete", Command = DeleteRailItemCommand, CommandParameter = railItem });
+                //contextMenu.DataContext = railItem;
+                contextMenu.Items.Add(new MenuItem() { Header = Rail.Properties.Resources.MenuDelete, Command = DeleteRailItemCommand, CommandParameter = railItem });
+                contextMenu.Items.Add(new MenuItem() { Header = Rail.Properties.Resources.MenuRotate, Command = RotateRailItemCommand, CommandParameter = railItem, IsEnabled = railItem.HasOnlyOneDock });
                 contextMenu.Items.Add(new Separator());
-                contextMenu.Items.Add(new MenuItem() { Header = "Options", Command = railItem.OptionsCommand });
+                contextMenu.Items.Add(new MenuItem() { Header = Rail.Properties.Resources.MenuProperties, Command = PropertiesRailItemCommand, CommandParameter = railItem });
                 contextMenu.IsOpen = true;
             }
             base.OnMouseRightButtonUp(e);
@@ -698,6 +702,16 @@ namespace Rail.Controls
         private void OnDeleteRailItem(RailItem railItem)
         {
             DeleteRailItem(railItem);
+            this.InvalidateVisual();
+        }
+                
+        private void OnRotateRailItem(RailItem railItem)
+        {
+        }
+        
+        private void OnPropertiesRailItem(RailItem railItem)
+        {
+
         }
 
         #endregion

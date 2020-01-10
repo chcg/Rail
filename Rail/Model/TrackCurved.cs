@@ -59,8 +59,10 @@ namespace Rail.Model
             Point circleCenter = new Point(0, this.Radius);
             return new List<TrackDockPoint>
             {
-                new TrackDockPoint(0, circleCenter - PointExtentions.Circle(-this.Angle / 2, this.Radius),  this.Angle / 2 -  45, this.dockType),
-                new TrackDockPoint(1, circleCenter - PointExtentions.Circle( this.Angle / 2, this.Radius), -this.Angle / 2 + 135, this.dockType)
+                //new TrackDockPoint(0, circleCenter - PointExtentions.Circle(-this.Angle / 2, this.Radius),  this.Angle / 2 -  45, this.dockType),
+                //new TrackDockPoint(1, circleCenter - PointExtentions.Circle( this.Angle / 2, this.Radius), -this.Angle / 2 + 135, this.dockType)
+                new TrackDockPoint(0, circleCenter.CircleCenter(-this.Angle / 2, this.Radius),  this.Angle / 2 -  45, this.dockType),
+                new TrackDockPoint(1, circleCenter.CircleCenter( this.Angle / 2, this.Radius), -this.Angle / 2 + 135, this.dockType)
             };
         }
     }

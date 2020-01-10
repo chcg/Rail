@@ -39,14 +39,21 @@ namespace Rail.Model
         protected double sleepersWidth;
         protected double ballastWidth;
 
-        [XmlAttribute("Id")]
-        public string Id { get; set; }
-
         [XmlAttribute("Article")]
         public string Article { get; set; }
 
+        /// <summary>
+        /// additional articles in package
+        /// </summary>
+        /// <remarks>komma separated article list</remarks>
+        [XmlAttribute("AddArticles")]
+        public string AddArticles { get; set; }        
+
         [XmlAttribute("ViewType")]
         public TrackViewType ViewType { get; set; }
+
+        [XmlIgnore]
+        public string Id { get; set; }
 
         [XmlIgnore]
         public string Manufacturer { get; protected set; }
@@ -86,6 +93,7 @@ namespace Rail.Model
         
         public void Update(TrackType trackType)
         {
+            this.Id = trackType.Manufacturer.Replace(" ","") + this.Article;
             this.RailSpacing = trackType.Spacing;
             // override if not set
             this.ViewType = this.ViewType == TrackViewType.None ? trackType.ViewType : this.ViewType;
@@ -313,15 +321,27 @@ namespace Rail.Model
             case CurvedOrientation.Right: startAngle -= angle; break;
             }
 
+            //return new PathGeometry(new PathFigureCollection
+            //{
+            //    new PathFigure(circleCenter - PointExtentions.Circle(startAngle, innerTrackRadius), new PathSegmentCollection
+            //    {
+            //        new LineSegment(circleCenter - PointExtentions.Circle(startAngle, outerTrackRadius), true),
+            //        new ArcSegment (circleCenter - PointExtentions.Circle(startAngle + angle, outerTrackRadius), outerTrackSize, angle, false, SweepDirection.Counterclockwise, true),
+
+            //        new LineSegment(circleCenter - PointExtentions.Circle(startAngle + angle, innerTrackRadius), true),
+            //        new ArcSegment (circleCenter - PointExtentions.Circle(startAngle,  innerTrackRadius), innerTrackSize, angle, false, SweepDirection.Clockwise, true)
+            //    }, true)
+            //});
+
             return new PathGeometry(new PathFigureCollection
             {
-                new PathFigure(circleCenter - PointExtentions.Circle(startAngle, innerTrackRadius), new PathSegmentCollection
+                new PathFigure(circleCenter.CircleCenter(startAngle, innerTrackRadius), new PathSegmentCollection
                 {
-                    new LineSegment(circleCenter - PointExtentions.Circle(startAngle, outerTrackRadius), true),
-                    new ArcSegment (circleCenter - PointExtentions.Circle(startAngle + angle, outerTrackRadius), outerTrackSize, angle, false, SweepDirection.Counterclockwise, true),
+                    new LineSegment(circleCenter.CircleCenter(startAngle, outerTrackRadius), true),
+                    new ArcSegment (circleCenter.CircleCenter(startAngle + angle, outerTrackRadius), outerTrackSize, angle, false, SweepDirection.Counterclockwise, true),
 
-                    new LineSegment(circleCenter - PointExtentions.Circle(startAngle + angle, innerTrackRadius), true),
-                    new ArcSegment (circleCenter - PointExtentions.Circle(startAngle,  innerTrackRadius), innerTrackSize, angle, false, SweepDirection.Clockwise, true)
+                    new LineSegment(circleCenter.CircleCenter(startAngle + angle, innerTrackRadius), true),
+                    new ArcSegment (circleCenter.CircleCenter(startAngle,  innerTrackRadius), innerTrackSize, angle, false, SweepDirection.Clockwise, true)
                 }, true)
             });
         }
@@ -344,15 +364,27 @@ namespace Rail.Model
             case CurvedOrientation.Right: startAngle -= angle; break;
             }
 
+            //return new GeometryDrawing(TrackBrushes.Ballast, null, new PathGeometry(new PathFigureCollection
+            //{
+            //    new PathFigure(circleCenter - PointExtentions.Circle(startAngle, innerSleepersRadius), new PathSegmentCollection
+            //    {
+            //        new LineSegment(circleCenter - PointExtentions.Circle(startAngle, outerSleepersRadius), true),
+            //        new ArcSegment (circleCenter - PointExtentions.Circle(startAngle + angle, outerSleepersRadius), outerSleepersSize, angle, false, SweepDirection.Counterclockwise, true),
+
+            //        new LineSegment(circleCenter - PointExtentions.Circle(startAngle + angle, innerSleepersRadius), true),
+            //        new ArcSegment (circleCenter - PointExtentions.Circle(startAngle,  innerSleepersRadius), innerSleepersSize, angle, false, SweepDirection.Clockwise, true)
+            //    }, true)
+            //}));
+ 
             return new GeometryDrawing(TrackBrushes.Ballast, null, new PathGeometry(new PathFigureCollection
             {
-                new PathFigure(circleCenter - PointExtentions.Circle(startAngle, innerSleepersRadius), new PathSegmentCollection
+                new PathFigure(circleCenter.CircleCenter(startAngle, innerSleepersRadius), new PathSegmentCollection
                 {
-                    new LineSegment(circleCenter - PointExtentions.Circle(startAngle, outerSleepersRadius), true),
-                    new ArcSegment (circleCenter - PointExtentions.Circle(startAngle + angle, outerSleepersRadius), outerSleepersSize, angle, false, SweepDirection.Counterclockwise, true),
+                    new LineSegment(circleCenter.CircleCenter(startAngle, outerSleepersRadius), true),
+                    new ArcSegment (circleCenter.CircleCenter(startAngle + angle, outerSleepersRadius), outerSleepersSize, angle, false, SweepDirection.Counterclockwise, true),
 
-                    new LineSegment(circleCenter - PointExtentions.Circle(startAngle + angle, innerSleepersRadius), true),
-                    new ArcSegment (circleCenter - PointExtentions.Circle(startAngle,  innerSleepersRadius), innerSleepersSize, angle, false, SweepDirection.Clockwise, true)
+                    new LineSegment(circleCenter.CircleCenter(startAngle + angle, innerSleepersRadius), true),
+                    new ArcSegment (circleCenter.CircleCenter(startAngle,  innerSleepersRadius), innerSleepersSize, angle, false, SweepDirection.Clockwise, true)
                 }, true)
             }));
         }
@@ -383,9 +415,12 @@ namespace Rail.Model
             for (int i = 0; i < num; i++)
             {
                 double ang = startAngle + (sleepersDistance / 2) + sleepersDistance * i;
+                //railDrawing.Children.Add(new GeometryDrawing(null, sleepersPen, new LineGeometry(
+                //    circleCenter - PointExtentions.Circle(ang, innerSleepersRadius),
+                //    circleCenter - PointExtentions.Circle(ang, outerSleepersRadius))));
                 railDrawing.Children.Add(new GeometryDrawing(null, sleepersPen, new LineGeometry(
-                    circleCenter - PointExtentions.Circle(ang, innerSleepersRadius),
-                    circleCenter - PointExtentions.Circle(ang, outerSleepersRadius))));
+                    circleCenter.CircleCenter(ang, innerSleepersRadius),
+                    circleCenter.CircleCenter(ang, outerSleepersRadius))));
             }
 
             return railDrawing;
@@ -411,21 +446,37 @@ namespace Rail.Model
             }
 
             var railDrawing = new DrawingGroup();
-            
+
+            //railDrawing.Children.Add(new GeometryDrawing(null, railPen, new PathGeometry(new PathFigureCollection
+            //{
+            //    new PathFigure(circleCenter - PointExtentions.Circle(startAngle, innerTrackRadius), new PathSegmentCollection
+            //    {
+            //        new ArcSegment (circleCenter - PointExtentions.Circle(startAngle + angle, innerTrackRadius), innerTrackSize, angle, false, SweepDirection.Counterclockwise, true)
+            //    }, false)
+            //})));
+            //railDrawing.Children.Add(new GeometryDrawing(null, railPen, new PathGeometry(new PathFigureCollection
+            //{
+            //    new PathFigure(circleCenter - PointExtentions.Circle(startAngle, outerTrackRadius), new PathSegmentCollection
+            //    {
+            //        new ArcSegment (circleCenter - PointExtentions.Circle(startAngle + angle, outerTrackRadius), innerTrackSize, angle, false, SweepDirection.Counterclockwise, true)
+            //    }, false)
+            //})));
+
             railDrawing.Children.Add(new GeometryDrawing(null, railPen, new PathGeometry(new PathFigureCollection
             {
-                new PathFigure(circleCenter - PointExtentions.Circle(startAngle, innerTrackRadius), new PathSegmentCollection
+                new PathFigure(circleCenter.CircleCenter(startAngle, innerTrackRadius), new PathSegmentCollection
                 {
-                    new ArcSegment (circleCenter - PointExtentions.Circle(startAngle + angle, innerTrackRadius), innerTrackSize, angle, false, SweepDirection.Counterclockwise, true)
+                    new ArcSegment (circleCenter.CircleCenter(startAngle + angle, innerTrackRadius), innerTrackSize, angle, false, SweepDirection.Counterclockwise, true)
                 }, false)
             })));
             railDrawing.Children.Add(new GeometryDrawing(null, railPen, new PathGeometry(new PathFigureCollection
             {
-                new PathFigure(circleCenter - PointExtentions.Circle(startAngle, outerTrackRadius), new PathSegmentCollection
+                new PathFigure(circleCenter.CircleCenter(startAngle, outerTrackRadius), new PathSegmentCollection
                 {
-                    new ArcSegment (circleCenter - PointExtentions.Circle(startAngle + angle, outerTrackRadius), innerTrackSize, angle, false, SweepDirection.Counterclockwise, true)
+                    new ArcSegment (circleCenter.CircleCenter(startAngle + angle, outerTrackRadius), innerTrackSize, angle, false, SweepDirection.Counterclockwise, true)
                 }, false)
             })));
+
             return railDrawing;
         }
 

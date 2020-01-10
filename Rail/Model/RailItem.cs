@@ -18,12 +18,9 @@ namespace Rail.Model
     {
         private static int globalDebugIndex = 0;
         private Angle angle;
-                
-        public DelegateCommand OptionsCommand { get; private set; }
 
         public RailItem(TrackBase track, Point pos, ushort layer) 
         {
-            this.OptionsCommand = new DelegateCommand(OnOptions);
             this.DebugIndex = globalDebugIndex++;
             this.Id = track.Id;
             this.Track = track;
@@ -256,11 +253,6 @@ namespace Rail.Model
             // remove original
             listScanned.Remove(this);
             return listScanned;
-        }
-
-        public void OnOptions()
-        {
-
         }
     }
 }

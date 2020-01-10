@@ -7,6 +7,8 @@ namespace Rail.Trigonometry
 {
     public static class PointExtentions
     {
+        private static double PIFactor = Math.PI / 180.0;
+
         public static Point Move(this Point point, double dx, double dy)
         {
             return point + new Vector(dx, dy);
@@ -22,24 +24,37 @@ namespace Rail.Trigonometry
             return point + vec;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="angle"></param>
-        /// <param name="radius"></param>
-        /// <returns></returns>
-        public static Vector Circle(double angle, double radius)
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="angle"></param>
+        ///// <param name="radius"></param>
+        ///// <returns></returns>
+        //public static Vector Circle(double angle, double radius)
+        //{
+        //    angle *= PIFactor;
+        //    double sin = Math.Sin(angle);
+        //    double cos = Math.Cos(angle);
+
+        //    return new Vector(sin * radius, cos * radius);
+        //}
+
+
+        //circleCenter - PointExtentions.Circle(startAngle, innerTrackRadius)
+
+        public static Point CircleCenter(this Point pos, double angle, double radius)
         {
-            angle *= (Math.PI / 180.0);
+            angle *= PIFactor;
             double sin = Math.Sin(angle);
             double cos = Math.Cos(angle);
 
-            return new Vector(sin * radius, cos * radius);
+            return new Point(pos.X - sin * radius, pos.Y - cos * radius);
         }
+
 
         public static Point Circle(this Point pos, double angle, double radius)
         {
-            angle *= (Math.PI / 180.0);
+            angle *= PIFactor;
             double sin = Math.Sin(angle);
             double cos = Math.Cos(angle);
 
@@ -60,7 +75,7 @@ namespace Rail.Trigonometry
                 return pos;
             }
 
-            angle *= (Math.PI / 180.0);
+            angle *= PIFactor;
             double sin = Math.Sin(angle);
             double cos = Math.Cos(angle);
 
@@ -77,16 +92,14 @@ namespace Rail.Trigonometry
         /// <returns>Rotated position</returns>
         public static Point Rotate(this Point pos, double angle, Point center)
         {
-            angle *= (Math.PI / 180.0);
+            angle *= PIFactor;
             double sin = Math.Sin(angle);
             double cos = Math.Cos(angle);
 
             return new Point(center.X + cos * (pos.X - center.X) - sin * (pos.Y - center.Y),
                              center.Y + sin * (pos.X - center.X) + cos * (pos.Y - center.Y));
         }
-
         
-
         public static Point Scale(this Point point, double factor)
         {
             return new Point(point.X * factor, point.Y * factor);
@@ -95,6 +108,11 @@ namespace Rail.Trigonometry
         public static double Distance(this Point a, Point b)
         {
             return Math.Sqrt(Math.Pow(b.X - a.X, 2) + Math.Pow(b.Y - a.Y, 2));
+        }
+
+        public static Point Round(this Point point, int digits)
+        {
+            return new Point(Math.Round(point.X, digits), Math.Round(point.Y, digits));
         }
 
         //public static Point CircleCenter(this Point point, double angle, double radius)
@@ -119,6 +137,6 @@ namespace Rail.Trigonometry
         //        -sin * radius);
         //}
 
-        
+
     }
 }

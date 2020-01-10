@@ -119,17 +119,14 @@ namespace Rail.Trigonometry
             return (Angle)Vector.AngleBetween(new Vector(100, 0), pos - center);
         }
 
-        public Vector Circle(double radius)
-        {
-            double val = this.Value * (Math.PI / 180.0);
-            double sin = Math.Sin(val);
-            double cos = Math.Cos(val);
+        //public Vector Circle(double radius)
+        //{
+        //    double val = this.Value * (Math.PI / 180.0);
+        //    double sin = Math.Sin(val);
+        //    double cos = Math.Cos(val);
 
-            return new Vector(sin * radius, cos * radius);
-        }
-
-        
+        //    return new Vector(sin * radius, cos * radius);
+        //}
+       
     }
-
-    
 }

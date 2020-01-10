@@ -228,6 +228,15 @@
   <data name="MainZoom" xml:space="preserve">
     <value>Zoomen</value>
   </data>
+  <data name="MenuDelete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="MenuProperties" xml:space="preserve">
+    <value>Optionen</value>
+  </data>
+  <data name="MenuRotate" xml:space="preserve">
+    <value>Drehen</value>
+  </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>

@@ -16,12 +16,9 @@ namespace Rail.Mvvm
     {
         private readonly Action<T> execute;
         private readonly Func<T, bool> canExecute;
-        //private List<WeakReference> _canExecuteChangedHandlers;
-
-        
 
         /// <summary>
-        ///     Constructor
+        /// Constructor
         /// </summary>
         public DelegateCommand(Action<T> execute, Func<T, bool> canExecuteMethod = null)
         {
@@ -48,67 +45,23 @@ namespace Rail.Mvvm
         public void Execute(object parameter)
         {
             this.execute((T)parameter);
+            OnCanExecuteChanged();
         }
 
-        ///// <summary>
-        /////     Raises the CanExecuteChaged event
-        ///// </summary>
-        //public void RaiseCanExecuteChanged()
-        //{
-        //    OnCanExecuteChanged();
-        //}
+        public void OnCanExecuteChanged()
+        {
+            CommandManager.InvalidateRequerySuggested();
+            //this.CanExecuteChanged.Invoke(this, EventArgs.Empty);
+        }
 
-        ///// <summary>
-        /////     Protected virtual method to raise CanExecuteChanged event
-        ///// </summary>
-        //protected virtual void OnCanExecuteChanged()
-        //{
-        //    CommandManagerHelper.CallWeakReferenceHandlers(_canExecuteChangedHandlers);
-        //}
-
-        ///// <summary>
-        /////     Property to enable or disable CommandManager's automatic requery on this command
-        ///// </summary>
-        //public bool IsAutomaticRequeryDisabled
-        //{
-        //    get
-        //    {
-        //        return _isAutomaticRequeryDisabled;
-        //    }
-        //    set
-        //    {
-        //        if (_isAutomaticRequeryDisabled != value)
-        //        {
-        //            if (value)
-        //            {
-        //                CommandManagerHelper.RemoveHandlersFromRequerySuggested(_canExecuteChangedHandlers);
-        //            }
-        //            else
-        //            {
-        //                CommandManagerHelper.AddHandlersToRequerySuggested(_canExecuteChangedHandlers);
-        //            }
-        //            _isAutomaticRequeryDisabled = value;
-        //        }
-        //    }
-        //}
-
-        
 
         /// <summary>
-        ///     ICommand.CanExecuteChanged implementation
+        /// ICommand.CanExecuteChanged implementation
         /// </summary>
         public event EventHandler CanExecuteChanged
         {
-            add
-            {
-                CommandManager.RequerySuggested += value;
-                //CommandManagerHelper.AddWeakReferenceHandler(ref this.canExecuteChangedHandlers, value, 2);
-            }
-            remove
-            {
-                CommandManager.RequerySuggested -= value;
-                //CommandManagerHelper.RemoveWeakReferenceHandler(_canExecuteChangedHandlers, value);
-            }
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
         }
     }
 }
