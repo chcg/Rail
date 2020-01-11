@@ -23,7 +23,7 @@ namespace Rail.Trigonometry
             this.angle = (short)((val % MAX + MAX) % MAX);
         }
 
-        private Rotation(short value)
+        private Rotation(int value)
         {
             this.angle = Normalize(value);
         }
@@ -55,6 +55,30 @@ namespace Rail.Trigonometry
         {
             return a.angle / FAC;
         }
+
+        public static Rotation operator +(Rotation a, Rotation b)
+        {
+            return new Rotation((int)(a.angle + b.angle));
+        }
+
+        public static Rotation operator +(Rotation a, Angle b)
+        {
+            return new Rotation((int)(a.angle + b.IntAngle));
+        }
+
+        
+
+        public static Rotation operator -(Rotation a, Rotation b)
+        {
+            return new Rotation((int)(a.angle - b.angle));
+        }
+
+        public static Rotation operator -(Rotation a, Angle b)
+        {
+            return new Rotation((int)(a.angle - b.IntAngle));
+        }
+
+        
 
         /// <summary>
         /// for internal use only

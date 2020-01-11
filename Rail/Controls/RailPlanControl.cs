@@ -28,7 +28,7 @@ namespace Rail.Controls
         private RailItem actionRailItem;
         private bool hasMoved;
         private List<RailItem> actionRailItemDockedRailItems;
-        private Angle debugRotationAngle;
+        //private Angle debugRotationAngle;
         private Point selectRecStart;
 
         public DelegateCommand<RailItem> DeleteRailItemCommand { get; private set; }
@@ -396,11 +396,11 @@ namespace Rail.Controls
             subgraph?.Where(t => t != railItem).ForEach(t => t.Move(move));
         }
 
-        private void RotateRailItem(RailItem railItem, Angle angle, IEnumerable<RailItem> subgraph = null)
-        {
-            railItem.Angle = angle;
-            subgraph?.Where(t => t != railItem).ForEach(tr => tr.Rotate(angle, railItem));
-        }
+        //private void RotateRailItem(RailItem railItem, Angle angle, IEnumerable<RailItem> subgraph = null)
+        //{
+        //    railItem.Angle = angle;
+        //    subgraph?.Where(t => t != railItem).ForEach(tr => tr.Rotate(angle, railItem));
+        //}
 
         private void RotateRailItem(RailItem railItem, Rotation rotation, IEnumerable<RailItem> subgraph = null)
         {
@@ -722,7 +722,7 @@ namespace Rail.Controls
             double x = scrollViewer?.ContentHorizontalOffset ?? 0;
             double y = scrollViewer?.ContentVerticalOffset ?? 0;
             drawingContext.DrawText(new FormattedText($"Action {this.actionType} RailItem {this.actionRailItem?.DebugIndex} Pos {this.actionRailItem?.Position.X:F2}/{this.actionRailItem?.Position.Y:F2}/{this.actionRailItem?.Angle:F2}", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y));
-            drawingContext.DrawText(new FormattedText($"Rotation debugRotationAngle {debugRotationAngle:F2}", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y + 12));
+            //drawingContext.DrawText(new FormattedText($"Rotation debugRotationAngle {debugRotationAngle:F2}", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y + 12));
             drawingContext.DrawText(new FormattedText("Test zzzzzzzzzzzzzzzzz", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, 1.25), new Point(x, y + 24));
         }
 

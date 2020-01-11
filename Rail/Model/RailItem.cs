@@ -27,7 +27,8 @@ namespace Rail.Model
             this.Position = pos;
             this.Angle = 0.0;
             this.Layer = layer;
-            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp).Move(this.Position)).ToArray();
+//            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp).Move(this.Position)).ToArray();
+            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp, this.Position)).ToArray();
         }
 
         [XmlIgnore]
@@ -95,13 +96,13 @@ namespace Rail.Model
             this.DockPoints.ForEach(dp => dp.Move(vec));
         }
 
-        public void Rotate(Angle angle)
-        {
-            Debug.WriteLine($"++Rotate {this.DebugIndex} RailItemAngle {this.Angle} RotateAngle {angle}");
-            this.Angle += angle;
-            this.DockPoints.ToList().ForEach(dp => dp.Rotate(angle, this.Position));
-            Debug.WriteLine($"--Rotate {this.DebugIndex} RailItemAngle {this.Angle}");
-        }
+        //public void Rotate(Angle angle)
+        //{
+        //    Debug.WriteLine($"++Rotate {this.DebugIndex} RailItemAngle {this.Angle} RotateAngle {angle}");
+        //    this.Angle += angle;
+        //    this.DockPoints.ToList().ForEach(dp => dp.Rotate(angle, this.Position));
+        //    Debug.WriteLine($"--Rotate {this.DebugIndex} RailItemAngle {this.Angle}");
+        //}
 
         public void Rotate(Rotation rotation)
         {
@@ -111,12 +112,12 @@ namespace Rail.Model
             Debug.WriteLine($"--Rotate {this.DebugIndex} RailItemAngle {this.Angle}");
         }
 
-        public void Rotate(Angle angle, Point center)
-        {
-            this.Angle += angle;
-            this.Position = this.Position.Rotate(angle, center);
-            this.DockPoints.ToList().ForEach(dp => dp.Rotate(angle, center));
-        }
+        //public void Rotate(Angle angle, Point center)
+        //{
+        //    this.Angle += angle;
+        //    this.Position = this.Position.Rotate(angle, center);
+        //    this.DockPoints.ToList().ForEach(dp => dp.Rotate(angle, center));
+        //}
 
         public void Rotate(Rotation rotation, Point center)
         {
@@ -125,10 +126,10 @@ namespace Rail.Model
             this.DockPoints.ToList().ForEach(dp => dp.Rotate(rotation, center));
         }
 
-        public void Rotate(Angle angle, RailItem center)
-        {
-            Rotate(angle, center.Position);
-        }
+        //public void Rotate(Angle angle, RailItem center)
+        //{
+        //    Rotate(angle, center.Position);
+        //}
 
         public void Rotate(Rotation rotation, RailItem center)
         {

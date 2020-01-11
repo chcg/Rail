@@ -57,7 +57,12 @@ namespace Rail.Trigonometry
         public static implicit operator double(Angle a)
         {
             return a.angle / FAC;
-        }        
+        }
+
+        public static implicit operator Rotation(Angle a)
+        {
+            return new Rotation(a.angle);
+        }
 
         public static Angle operator +(Angle a, Angle b)
         {
@@ -69,6 +74,11 @@ namespace Rail.Trigonometry
             return new Angle((int)(a.angle + b.IntAngle));
         }
 
+        //public static Rotation operator +(Angle a, Angle b)
+        //{
+        //    return new Rotation((int)(a.IntAngle + b.IntAngle));
+        //}
+
         public static Angle operator -(Angle a, Angle b)
         {
             return new Angle((int)(a.angle - b.angle));
@@ -78,6 +88,11 @@ namespace Rail.Trigonometry
         {
             return new Angle((int)(a.angle - b.IntAngle));
         }
+
+        //public static Rotation operator -(Angle a, Angle b)
+        //{
+        //    return new Rotation((int)(a.IntAngle - b.IntAngle));
+        //}
 
         public static bool operator ==(Angle a, Angle b)
         {
@@ -127,6 +142,10 @@ namespace Rail.Trigonometry
 
         //    return new Vector(sin * radius, cos * radius);
         //}
-       
+
+        /// <summary>
+        /// for internal use only
+        /// </summary>
+        internal int IntAngle { get { return angle; } }
     }
 }

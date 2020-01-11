@@ -6,15 +6,14 @@ namespace Rail.Model
 {
     public class RailDockPoint
     {
-
         private TrackDockPoint trackDockPoint;
 
-        public RailDockPoint(RailItem railItem, TrackDockPoint trackDockPoint)
+        public RailDockPoint(RailItem railItem, TrackDockPoint trackDockPoint, Point pos)
         {
             this.RailItem = railItem;
             this.trackDockPoint = trackDockPoint;
             this.DebugIndexDockPoint = trackDockPoint.DebugIndex;
-            this.Position = trackDockPoint.Position;
+            this.Position = trackDockPoint.Position + (Vector)pos;
             this.Angle = trackDockPoint.Angle;
             this.DockType = trackDockPoint.DockType;
         }
@@ -52,11 +51,11 @@ namespace Rail.Model
             this.Position += vec;
         }
 
-        public RailDockPoint Move(Point pos)
-        {
-            this.Position += (Vector)pos;
-            return this;
-        }
+        //public RailDockPoint Move(Point pos)
+        //{
+        //    this.Position += (Vector)pos;
+        //    return this;
+        //}
 
         public void Rotate(Angle angle)
         {
@@ -106,14 +105,17 @@ namespace Rail.Model
             this.DockedWith = dockTo;
             dockTo.DockedWith = this;
 
-            Angle rotate = dockTo.Angle - this.Angle - new Angle(180);
+            //Rotation rotate = ((Rotation)dockTo.Angle) - ((Rotation)this.Angle) - ((Rotation)new Angle(180));
+            Rotation rotate = dockTo.Angle - this.Angle - new Angle(180);
             Debug.WriteLine($"Dock {this.Angle} op {dockTo.Angle} = {rotate}");
 
             var sub = this.RailItem.FindSubgraph();
             foreach (RailItem rt in sub)
             {
-                rt.Angle += rotate;
-                rt.Position = rt.Position.Rotate(rotate, this.Position);
+                rt.Rotate(rotate);
+                //rt.Move()
+                //rt.Angle += rotate;
+                //rt.Position = rt.Position.Rotate(rotate, this.Position);
             }
             this.RailItem.Rotate(rotate);
             this.RailItem.Move(dockTo.Position - this.Position);
