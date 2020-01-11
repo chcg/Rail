@@ -63,10 +63,21 @@ namespace Rail.Model
             this.Angle += angle;
         }
 
+        public void Rotate(Rotation rotation)
+        {
+            this.Angle += rotation;
+        }
+
         public void Rotate(Angle angle, Point center)
         {
             Rotate(angle);
             this.Position = this.Position.Rotate(angle, center);
+        }
+
+        public void Rotate(Rotation rotation, Point center)
+        {
+            Rotate(rotation);
+            this.Position = this.Position.Rotate(rotation, center);
         }
 
         public double Distance(Point p)

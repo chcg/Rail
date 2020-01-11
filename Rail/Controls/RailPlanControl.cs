@@ -34,7 +34,7 @@ namespace Rail.Controls
         public DelegateCommand<RailItem> DeleteRailItemCommand { get; private set; }
         public DelegateCommand<RailItem> RotateRailItemCommand { get; private set; }
         public DelegateCommand<RailItem> PropertiesRailItemCommand { get; private set; }
-
+        
         protected enum RailAction
         {
             None,
@@ -386,7 +386,6 @@ namespace Rail.Controls
         public void UnselectAllRailItems()
         {
             this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
-            this.InvalidateVisual();
         }
 
         private void MoveRailItem(RailItem railItem, Vector move, IEnumerable<RailItem> subgraph)
@@ -395,17 +394,19 @@ namespace Rail.Controls
 
             railItem.Move(move);
             subgraph?.Where(t => t != railItem).ForEach(t => t.Move(move));
-            FindDocking(railItem, subgraph);
         }
 
         private void RotateRailItem(RailItem railItem, Angle angle, IEnumerable<RailItem> subgraph = null)
         {
             railItem.Angle = angle;
             subgraph?.Where(t => t != railItem).ForEach(tr => tr.Rotate(angle, railItem));
-            FindDocking(railItem, subgraph);
         }
 
-
+        private void RotateRailItem(RailItem railItem, Rotation rotation, IEnumerable<RailItem> subgraph = null)
+        {
+            railItem.Rotate(rotation);
+            subgraph?.Where(t => t != railItem).ForEach(tr => tr.Rotate(rotation, railItem));
+        }
 
 
 
@@ -537,7 +538,7 @@ namespace Rail.Controls
                 {
                     this.actionType = RailAction.Rotate;
                     this.actionRailItemDockedRailItems = this.actionRailItem.FindSubgraph();
-                    this.debugRotationAngle = Angle.Calculate(this.actionRailItem.Position, pos);
+                    //this.debugRotationAngle = Angle.Calculate(this.actionRailItem.Position, pos);
                 }
                 // click outside docking point
                 else
@@ -582,29 +583,25 @@ namespace Rail.Controls
             {
             case RailAction.MoveSingle:
                 this.actionRailItem.Move(pos - this.lastMousePosition);
-                this.lastMousePosition = pos;
                 this.InvalidateVisual();
                 break;
             case RailAction.MoveGraph:
                 MoveRailItem(this.actionRailItem, pos - this.lastMousePosition, this.actionRailItemDockedRailItems);
                 FindDocking(this.actionRailItem, this.actionRailItemDockedRailItems);
-                this.lastMousePosition = pos;
                 this.InvalidateVisual();
                 break;
             case RailAction.Rotate:
-                double rotationAngle = Angle.Calculate(this.actionRailItem.Position, pos);
-                RotateRailItem(this.actionRailItem, rotationAngle, this.actionRailItemDockedRailItems);
+                Rotation rotation = Rotation.Calculate(this.actionRailItem.Position, this.lastMousePosition, pos);
+                RotateRailItem(this.actionRailItem, rotation, this.actionRailItemDockedRailItems);
                 FindDocking(this.actionRailItem, this.actionRailItemDockedRailItems);
-                this.debugRotationAngle = rotationAngle;
-                this.lastMousePosition = pos;
                 this.InvalidateVisual();
                 break;
             case RailAction.SelectRect:
-                this.lastMousePosition = pos;
                 this.InvalidateVisual();
                 break;
             }
-                        
+            this.lastMousePosition = pos;
+
             base.OnMouseMove(e);
             CheckDockings();
         }
@@ -644,10 +641,10 @@ namespace Rail.Controls
                 //}
                 break;
             case RailAction.Rotate:
-                double rotationAngle = Angle.Calculate(this.actionRailItem.Position, pos);
-                RotateRailItem(this.actionRailItem, rotationAngle, this.actionRailItemDockedRailItems);
-                FindDocking(this.actionRailItem, this.actionRailItemDockedRailItems);
-                this.debugRotationAngle = rotationAngle;
+                //double rotationAngle = Angle.Calculate(this.actionRailItem.Position, pos);
+                //RotateRailItem(this.actionRailItem, rotationAngle, this.actionRailItemDockedRailItems);
+                //FindDocking(this.actionRailItem, this.actionRailItemDockedRailItems);
+                //this.debugRotationAngle = rotationAngle;
                 break;
             case RailAction.SelectRect:
                 SelectRectange(new Rect(this.selectRecStart, pos), addSelect);

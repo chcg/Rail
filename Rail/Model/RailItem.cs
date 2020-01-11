@@ -103,6 +103,14 @@ namespace Rail.Model
             Debug.WriteLine($"--Rotate {this.DebugIndex} RailItemAngle {this.Angle}");
         }
 
+        public void Rotate(Rotation rotation)
+        {
+            Debug.WriteLine($"++Rotate {this.DebugIndex} RailItemAngle {this.Angle} RotateAngle {rotation}");
+            this.Angle += rotation;
+            this.DockPoints.ToList().ForEach(dp => dp.Rotate(rotation, this.Position));
+            Debug.WriteLine($"--Rotate {this.DebugIndex} RailItemAngle {this.Angle}");
+        }
+
         public void Rotate(Angle angle, Point center)
         {
             this.Angle += angle;
@@ -110,9 +118,21 @@ namespace Rail.Model
             this.DockPoints.ToList().ForEach(dp => dp.Rotate(angle, center));
         }
 
+        public void Rotate(Rotation rotation, Point center)
+        {
+            this.Angle += rotation;
+            this.Position = this.Position.Rotate(rotation, center);
+            this.DockPoints.ToList().ForEach(dp => dp.Rotate(rotation, center));
+        }
+
         public void Rotate(Angle angle, RailItem center)
         {
             Rotate(angle, center.Position);
+        }
+
+        public void Rotate(Rotation rotation, RailItem center)
+        {
+            Rotate(rotation, center.Position);
         }
 
         public void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode)

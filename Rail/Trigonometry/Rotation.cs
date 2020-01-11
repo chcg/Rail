@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 
 namespace Rail.Trigonometry
 {
@@ -31,9 +32,7 @@ namespace Rail.Trigonometry
         {
             return (int)(value % MAX);
         }
-
         
-
         public double Value
         {
             get
@@ -61,5 +60,13 @@ namespace Rail.Trigonometry
         /// for internal use only
         /// </summary>
         internal int IntAngle {  get { return angle; } }
+
+        public static Rotation Calculate(Point center, Point from, Point to)
+        {
+            Vector fromVec = from - center;
+            Vector toVec = to - center;
+            double ang = Vector.AngleBetween(fromVec, toVec);
+            return new Rotation(ang);
+        }
     }
 }

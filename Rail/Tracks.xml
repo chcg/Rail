@@ -672,12 +672,18 @@
       <Flex Article="55150" Length="G940"/>
     </Tracks>
   </TrackType>
-  
-  
+
   <TrackType Manufacturer="Rokuhan" Gauge="Z" Type="" Spacing="16.5" >
     <Name>
       <LanguageString>Rokuhan Z</LanguageString>
       <LanguageString Lang="de-DE">Rokuhan Z</LanguageString>
+    </Name>
+  </TrackType>
+  
+  <TrackType Manufacturer="Kato" Gauge="Z" Type="" Spacing="16.5" >
+    <Name>
+      <LanguageString>Kato H0</LanguageString>
+      <LanguageString Lang="de-DE">Kato H0</LanguageString>
     </Name>
   </TrackType>
 
