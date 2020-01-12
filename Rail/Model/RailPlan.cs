@@ -16,7 +16,12 @@ namespace Rail.Model
     {
         private RailPlan()
         {
-            this.PlatePoints = new ObservableCollection<Point>()
+        }
+
+        public static RailPlan Create()
+        {
+            RailPlan railPlan = new RailPlan();
+            railPlan.PlatePoints = new ObservableCollection<Point>()
             {
                 new Point(0, 0),
                 new Point(3000, 0),
@@ -27,12 +32,9 @@ namespace Rail.Model
                 new Point(1000, 1500),
                 new Point(0, 1500),
             };
-            this.Rails = new ObservableCollection<RailItem>();
-        }
+            railPlan.Rails = new ObservableCollection<RailItem>();
 
-        public static RailPlan Create()
-        {
-            return new RailPlan();
+            return railPlan;
         }
 
         public static RailPlan Load(string path)
