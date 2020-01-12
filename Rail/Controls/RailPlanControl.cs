@@ -451,14 +451,14 @@ namespace Rail.Controls
         //}
 
 
-        private RailItem FindDocking(RailItem railItem, IEnumerable<RailItem> docked = null)
+        private void FindDocking(RailItem railItem, IEnumerable<RailItem> docked = null)
         {
             if (this.RailPlan.Rails != null)
             {
                 var dockPoints = railItem.DockPoints.Where(dp => !dp.IsDocked).ToList();
                 var otherTracks =
-                    docked != null ?
-                    this.RailPlan.Rails.Where(t => t != railItem).Where(t => !docked.Contains(t)).ToList() :
+                    //docked != null ?
+                    //this.RailPlan.Rails.Where(t => t != railItem).Where(t => !docked.Contains(t)).ToList() :
                     this.RailPlan.Rails.Where(t => t != railItem).ToList();
 
                 DebugDockPoints(dockPoints);
@@ -475,14 +475,14 @@ namespace Rail.Controls
                                 dockPoint.AdjustDock(dp);
 
                                 this.actionType = RailAction.None;
-                                return t;
+                                //return t;
                             }
                         }
                     }
 
                 }
             }
-            return null;
+            //return null;
         }
         
         #endregion
