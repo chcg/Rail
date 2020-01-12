@@ -1,7 +1,9 @@
 ﻿using Rail.Trigonometry;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using System.Xml.Serialization;
 
 namespace Rail.Model
 {
@@ -9,13 +11,26 @@ namespace Rail.Model
     {
         private TrackDockPoint trackDockPoint;
 
+        public RailDockPoint()
+        { }
+
         public RailDockPoint(RailItem railItem, TrackDockPoint trackDockPoint, Point pos)
         {
+            this.Id = Guid.NewGuid();
             this.RailItem = railItem;
             this.trackDockPoint = trackDockPoint;
-            this.DebugIndexDockPoint = trackDockPoint.DebugIndex;
+            this.DebugDockPointIndex = trackDockPoint.DebugIndex;
             this.Position = trackDockPoint.Position + (Vector)pos;
             this.Angle = trackDockPoint.Angle;
+            this.DockType = trackDockPoint.DockType;
+        }
+
+        public void Update(RailItem railItem, TrackDockPoint trackDockPoint)
+        {
+            this.RailItem = railItem;
+            this.RailItem = railItem;
+            this.trackDockPoint = trackDockPoint;
+            this.DebugDockPointIndex = trackDockPoint.DebugIndex;
             this.DockType = trackDockPoint.DockType;
         }
 
@@ -26,24 +41,66 @@ namespace Rail.Model
             this.Angle = this.trackDockPoint.Angle + angle;
         }
 
+        [XmlAttribute("Id")]
+        public Guid Id { get; set; }
+
+        [XmlIgnore]
         public RailItem RailItem { get; private set; }
 
-        public int DebugIndexDockPoint { get; private set; }
+        [XmlIgnore]
+        public int DebugDockPointIndex { get; set; }
 
-        public int DebugIndexRail { get { return this.RailItem.DebugIndex; } }
+        [XmlIgnore]
+        public int DebugRailIndex { get { return this.RailItem.DebugIndex; } }
 
-        public string DebugOutput { get { return $"({DebugIndexRail},{DebugIndexDockPoint})"; } }
+        [XmlIgnore]
+        public string DebugOutput { get { return $"({DebugRailIndex},{DebugDockPointIndex})"; } }
 
-        public Point Position { get; private set; }
+        [XmlIgnore]
+        public Point Position;
 
+        [XmlAttribute("X")]
+        public double X
+        {
+            get { return this.Position.X; }
+            set { this.Position.X = value; }
+        }
+
+        [XmlAttribute("Y")]
+        public double Y
+        {
+            get { return this.Position.Y; }
+            set { this.Position.Y = value; }
+        }
+
+        [XmlIgnore]
         public Angle Angle { get; private set;}
 
+        [XmlAttribute("Angle")]
+        public double AngleInt
+        {
+            get { return this.Angle; }
+            set { this.Angle = value; }
+        }
+
+        [XmlIgnore]
         public string DockType { get; private set; }
 
+        [XmlIgnore]
         public ushort Layer { get { return this.RailItem.Layer; } }
 
-        public RailDockPoint DockedWith { get; set; }
+        [XmlAttribute("DockedWithId")]
+        public Guid DockedWithId { get; set; }
 
+        //[XmlAttribute("DockedWithIndex")]
+        //public int DockedWithIndex { get; set; }
+
+        //private RailDockPoint dockedWith;
+
+        [XmlIgnore]
+        public RailDockPoint DockedWith { get; private set; }
+        
+        [XmlIgnore]
         public bool IsDocked {  get { return this.DockedWith != null; } }
 
 
@@ -100,7 +157,7 @@ namespace Rail.Model
             return this.Distance(p.Position) < this.RailItem.Track.RailSpacing;
         }
 
-        public void Dock(RailDockPoint dockTo)
+        public void AdjustDock(RailDockPoint dockTo)
         {
             Debug.WriteLine($"Dock {this.DebugOutput} to {dockTo.DebugOutput}");
 
@@ -115,14 +172,23 @@ namespace Rail.Model
             Vector move = dockTo.Position - this.Position;
             subgraph.ForEach(i => i.Move(move));
 
+            Dock(dockTo);
+        }
+
+        public void Dock(RailDockPoint dockTo)
+        {
             this.DockedWith = dockTo;
+            this.DockedWithId = dockTo.Id;
             dockTo.DockedWith = this;
+            dockTo.DockedWithId = this.Id;
         }
 
         public void Undock()
         {
             this.DockedWith.DockedWith = null;
+            this.DockedWith.DockedWithId = Guid.Empty;
             this.DockedWith = null;
+            this.DockedWithId = Guid.Empty;
         }
     }
 }

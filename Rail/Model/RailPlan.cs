@@ -46,7 +46,7 @@ namespace Rail.Model
 
         [XmlIgnore]
         public int Height { get { return (int)Math.Round(this.PlatePoints.Select(p => p.Y).Max()); } }
-
+        
         /// <summary>
         /// 
         /// </summary>

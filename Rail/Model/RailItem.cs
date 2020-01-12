@@ -2,6 +2,7 @@
 using Rail.Misc;
 using Rail.Mvvm;
 using Rail.Trigonometry;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -17,12 +18,15 @@ namespace Rail.Model
     public class RailItem
     {
         private static int globalDebugIndex = 0;
-        private Angle angle;
+        
+        public RailItem()
+        { }
 
         public RailItem(TrackBase track, Point pos, ushort layer) 
         {
             this.DebugIndex = globalDebugIndex++;
-            this.Id = track.Id;
+            //this.Id = Guid.NewGuid();
+            this.TrackId = track.Id;
             this.Track = track;
             this.Position = pos;
             this.Angle = 0.0;
@@ -34,14 +38,16 @@ namespace Rail.Model
         [XmlIgnore]
         public int DebugIndex { get; private set; }
 
-        [XmlAttribute("Id")]
-        public string Id { get; set; }
+        //[XmlAttribute("Id")]
+        //public Guid Id { get; set; }
+
+        [XmlAttribute("TrackId")]
+        public string TrackId { get; set; }
 
         [XmlIgnore]
         public TrackBase Track { get; set; }
 
-        [XmlIgnore]
-        public RailDockPoint[] DockPoints { get; private set; }
+        
 
         [XmlIgnore]
         public Point Position;
@@ -60,26 +66,22 @@ namespace Rail.Model
             set { this.Position.Y = value; }
         }
 
+        [XmlIgnore]
+        public Angle Angle { get; set; }
+
         [XmlAttribute("Angle")]
-        public Angle Angle
+        public double AngleInt
         {
-            get
-            {
-                return this.angle;
-            }
-            set
-            {
-                this.angle = value;
-                //this.DockPoints.ForEach(dp => dp.Reset(this.Position, value));
-            }
+            get { return this.Angle; }
+            set { this.Angle = value; }
         }
 
         [XmlAttribute("Layer")]
         public ushort Layer { get; set; }
-
-        //[XmlArray("Docks")]
-        //[XmlArrayItem("Dock")]
-        //public RailDock[] Docks { get; set; }
+        
+        [XmlArray("DockPoints")]
+        [XmlArrayItem("DockPoint")]
+        public RailDockPoint[] DockPoints { get; set; }
 
         [XmlIgnore]
         public bool IsSelected { get; set; }
@@ -170,7 +172,7 @@ namespace Rail.Model
             {
                 Point pos = dp.Position - new Vector((dp.Angle < 45 || dp.Angle > 225 ? width : 0), (dp.Angle < 135 || dp.Angle > 315 ? 20 : 0));
                 drawingContext.DrawRectangle(Brushes.White, new Pen(Brushes.Blue, 1), new Rect(pos, new Size(width, 20)));
-                string str1 = $"{dp.DebugIndexDockPoint}-{dp.DockedWith?.DebugIndexRail},{dp.DockedWith?.DebugIndexDockPoint}";
+                string str1 = $"{dp.DebugDockPointIndex}-{dp.DockedWith?.DebugRailIndex},{dp.DockedWith?.DebugDockPointIndex}";
                 string str2 = $"{dp.Angle}-{dp.DockedWith?.Angle}";
                 drawingContext.DrawText(new FormattedText(str1, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 9, Brushes.Blue, 1.25), pos);
                 drawingContext.DrawText(new FormattedText(str2, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 9, Brushes.Blue, 1.25), pos + new Vector(0, 9));

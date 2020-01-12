@@ -341,7 +341,7 @@ namespace Rail.Controls
 
         public void InsertRailItem(RailDockPoint railDockPoint)
         {
-            Debug.WriteLine($"InsertRailItem at DockPoint ({railDockPoint.DebugIndexDockPoint},{railDockPoint.DebugIndexDockPoint})");
+            Debug.WriteLine($"InsertRailItem at DockPoint ({railDockPoint.DebugDockPointIndex},{railDockPoint.DebugDockPointIndex})");
 
             RailItem railItem = new RailItem(this.SelectedTrack, new Point(0, 0), this.InsertLayer);
             Point pos = railItem.Track.DockPoints.First().Position;
@@ -356,7 +356,7 @@ namespace Rail.Controls
         public void DeleteRailItem(RailItem railItem)
         {
             // delete all docks of the item
-            railItem.DockPoints.Where(dp => dp.IsDocked).ForEach(dp => { dp.DockedWith.DockedWith = null; dp.DockedWith = null; });
+            railItem.DockPoints.Where(dp => dp.IsDocked).ForEach(dp => dp.Undock());
             // remove the item
             this.RailPlan.Rails.Remove(railItem);
         }
@@ -472,7 +472,7 @@ namespace Rail.Controls
                             //if (Math.Abs(dp.X - dockPoint.X) < dockDistance && Math.Abs(dp.Y - dockPoint.Y) < dockDistance)
                             if (dp.IsInside(dockPoint))
                             {
-                                dockPoint.Dock(dp);
+                                dockPoint.AdjustDock(dp);
 
                                 this.actionType = RailAction.None;
                                 return t;
@@ -751,7 +751,7 @@ namespace Rail.Controls
         {
             if (dockPoints != null && dockPoints.Any())
             {
-                Debug.WriteLine(dockPoints.Select(d => $"({d.DebugIndexDockPoint}, {d.RailItem.DebugIndex})").Aggregate((a, b) => $"{a}, {b}"));
+                Debug.WriteLine(dockPoints.Select(d => $"({d.DebugDockPointIndex}, {d.RailItem.DebugIndex})").Aggregate((a, b) => $"{a}, {b}"));
             }
         }
 

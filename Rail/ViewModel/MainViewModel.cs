@@ -362,7 +362,24 @@ namespace Rail.ViewModel
         public override void OnLoad(string path)
         {
             this.RailPlan = RailPlan.Load(path);
-            this.RailPlan.Rails.ForEach(r => r.Track = this.trackDict[r.Id]);
+            foreach (RailItem railItem in this.RailPlan.Rails)
+            {
+                // set track
+                railItem.Track = this.trackDict[railItem.TrackId];
+                // set dock points
+                railItem.DockPoints.ForEach((railDockPoint, index) =>
+                {
+                    railDockPoint.Update(railItem, railItem.Track.DockPoints[index]);
+                });
+            }
+            // link dock points
+            var list = this.RailPlan.Rails.SelectMany(r => r.DockPoints).Where(dp => dp.DockedWithId != Guid.Empty).ToList();
+            foreach (RailDockPoint dp in list)
+            {
+                RailDockPoint x = list.Single(i => i.Id == dp.DockedWithId);
+                x.Dock(dp);
+
+            }
             this.FileChanged = true;
         }
 

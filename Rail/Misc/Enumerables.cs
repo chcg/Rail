@@ -16,9 +16,22 @@ namespace Rail.Misc
 			{
 				return;
 			}
-			foreach(T i in source)
+			foreach(T item in source)
 			{
-				action(i);
+				action(item);
+			}
+		}
+
+		public static void ForEach<T>(this IEnumerable<T> source, Action<T, int> action)
+		{
+			if (source == null)
+			{
+				return;
+			}
+			int index = 0;
+			foreach (T item in source)
+			{
+				action(item, index++);
 			}
 		}
 
