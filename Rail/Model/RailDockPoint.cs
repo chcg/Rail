@@ -109,25 +109,12 @@ namespace Rail.Model
             Rotation rotate = dockTo.Angle - this.Angle;
             rotate -= new Angle(180.0);
             Debug.WriteLine($"Dock {this.Angle} op {dockTo.Angle} = {rotate}");
-            //Vector move = dockTo.Position - this.Position;
-
-            //foreach (RailItem rt in this.RailItem.FindSubgraph())
-            //{
-            //    rt.Rotate(rotate);
-            //    //rt.Move()
-            //    //rt.Angle += rotate;
-            //    //rt.Position = rt.Position.Rotate(rotate, this.Position);
-            //}
-            this.RailItem.Rotate(rotate, this.RailItem.Position);
-            Vector move = dockTo.Position - this.Position;
-            this.RailItem.Move(dockTo.Position - this.Position);
-
-            foreach (RailItem rt in this.RailItem.FindSubgraph().Where(i => i != this.RailItem))
-            {
-                rt.Rotate(rotate, this.RailItem.Position);
-                rt.Move(move);
-            }
             
+            var subgraph = this.RailItem.FindSubgraph();
+            subgraph.ForEach(i => i.Rotate(rotate, this.RailItem.Position));
+            Vector move = dockTo.Position - this.Position;
+            subgraph.ForEach(i => i.Move(move));
+
             this.DockedWith = dockTo;
             dockTo.DockedWith = this;
         }
