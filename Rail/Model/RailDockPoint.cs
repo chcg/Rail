@@ -1,5 +1,6 @@
 ﻿using Rail.Trigonometry;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 
 namespace Rail.Model
@@ -102,23 +103,33 @@ namespace Rail.Model
         public void Dock(RailDockPoint dockTo)
         {
             Debug.WriteLine($"Dock {this.DebugOutput} to {dockTo.DebugOutput}");
-            this.DockedWith = dockTo;
-            dockTo.DockedWith = this;
+
 
             //Rotation rotate = ((Rotation)dockTo.Angle) - ((Rotation)this.Angle) - ((Rotation)new Angle(180));
-            Rotation rotate = dockTo.Angle - this.Angle - new Angle(180);
+            Rotation rotate = dockTo.Angle - this.Angle;
+            rotate -= new Angle(180.0);
             Debug.WriteLine($"Dock {this.Angle} op {dockTo.Angle} = {rotate}");
+            //Vector move = dockTo.Position - this.Position;
 
-            var sub = this.RailItem.FindSubgraph();
-            foreach (RailItem rt in sub)
-            {
-                rt.Rotate(rotate);
-                //rt.Move()
-                //rt.Angle += rotate;
-                //rt.Position = rt.Position.Rotate(rotate, this.Position);
-            }
-            this.RailItem.Rotate(rotate);
+            //foreach (RailItem rt in this.RailItem.FindSubgraph())
+            //{
+            //    rt.Rotate(rotate);
+            //    //rt.Move()
+            //    //rt.Angle += rotate;
+            //    //rt.Position = rt.Position.Rotate(rotate, this.Position);
+            //}
+            this.RailItem.Rotate(rotate, this.RailItem.Position);
+            Vector move = dockTo.Position - this.Position;
             this.RailItem.Move(dockTo.Position - this.Position);
+
+            foreach (RailItem rt in this.RailItem.FindSubgraph().Where(i => i != this.RailItem))
+            {
+                rt.Rotate(rotate, this.RailItem.Position);
+                rt.Move(move);
+            }
+            
+            this.DockedWith = dockTo;
+            dockTo.DockedWith = this;
         }
 
         public void Undock()

@@ -27,7 +27,7 @@ namespace Rail.Controls
         private RailAction actionType;
         private RailItem actionRailItem;
         private bool hasMoved;
-        private List<RailItem> actionRailItemDockedRailItems;
+        private List<RailItem> actionSubgraph;
         //private Angle debugRotationAngle;
         private Point selectRecStart;
 
@@ -388,12 +388,19 @@ namespace Rail.Controls
             this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
         }
 
-        private void MoveRailItem(RailItem railItem, Vector move, IEnumerable<RailItem> subgraph)
-        {
-            Debug.WriteLine($"MoveRailItem {railItem.DebugIndex} ({move.X:F2},{move.Y:F2}) with subgraph");
+        //private void MoveRailItem(RailItem railItem, Vector move, IEnumerable<RailItem> subgraph)
+        //{
+        //    Debug.WriteLine($"MoveRailItem {railItem.DebugIndex} ({move.X:F2},{move.Y:F2}) with subgraph");
 
-            railItem.Move(move);
-            subgraph?.Where(t => t != railItem).ForEach(t => t.Move(move));
+        //    railItem.Move(move);
+        //    subgraph?.Where(t => t != railItem).ForEach(t => t.Move(move));
+        //}
+
+        private void MoveRailItem(IEnumerable<RailItem> subgraph, Vector move)
+        {
+            //Debug.WriteLine($"MoveRailItem {railItem.DebugIndex} ({move.X:F2},{move.Y:F2}) with subgraph");
+
+            subgraph.ForEach(t => t.Move(move));
         }
 
         //private void RotateRailItem(RailItem railItem, Angle angle, IEnumerable<RailItem> subgraph = null)
@@ -402,12 +409,16 @@ namespace Rail.Controls
         //    subgraph?.Where(t => t != railItem).ForEach(tr => tr.Rotate(angle, railItem));
         //}
 
-        private void RotateRailItem(RailItem railItem, Rotation rotation, IEnumerable<RailItem> subgraph = null)
-        {
-            railItem.Rotate(rotation);
-            subgraph?.Where(t => t != railItem).ForEach(tr => tr.Rotate(rotation, railItem));
-        }
+        //private void RotateRailItem(RailItem railItem, Rotation rotation, IEnumerable<RailItem> subgraph = null)
+        //{
+        //    railItem.Rotate(rotation);
+        //    subgraph?.Where(t => t != railItem).ForEach(tr => tr.Rotate(rotation, railItem));
+        //}
 
+        private void RotateRailItem(IEnumerable<RailItem> subgraph, Point center, Rotation rotation)
+        {
+            subgraph.ForEach(t => t.Rotate(rotation, center));
+        }
 
 
 
@@ -520,13 +531,13 @@ namespace Rail.Controls
                 InsertRailItem(pos);
             }
             base.OnMouseDoubleClick(e);
-            CheckDockings();
+            DebugCheckDockings();
         }
 
         
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            Point pos = GetMousePosition(e);
+            Point pos = this.lastMousePosition = GetMousePosition(e);
             this.hasMoved = false;
 
             // click inside track
@@ -537,8 +548,7 @@ namespace Rail.Controls
                 if (dp != null)
                 {
                     this.actionType = RailAction.Rotate;
-                    this.actionRailItemDockedRailItems = this.actionRailItem.FindSubgraph();
-                    //this.debugRotationAngle = Angle.Calculate(this.actionRailItem.Position, pos);
+                    this.actionSubgraph = this.actionRailItem.FindSubgraph();
                 }
                 // click outside docking point
                 else
@@ -548,13 +558,13 @@ namespace Rail.Controls
                     {
                         this.actionRailItem.UndockAll();
                         this.actionType = RailAction.MoveSingle;
-                        this.actionRailItemDockedRailItems = null;
+                        //this.actionSubgraph = null;
                     }
                     // SHIFT not pressed
                     else
                     {
                         this.actionType = RailAction.MoveGraph;
-                        this.actionRailItemDockedRailItems = this.actionRailItem.FindSubgraph();
+                        this.actionSubgraph = this.actionRailItem.FindSubgraph();
                     }
                 }
             }
@@ -563,12 +573,12 @@ namespace Rail.Controls
                 this.actionType = RailAction.SelectRect;
                 this.selectRecStart = pos;
             }
-            this.lastMousePosition = pos;
+            
             this.CaptureMouse();
             this.InvalidateVisual();
 
             base.OnMouseLeftButtonDown(e);
-            CheckDockings();
+            DebugCheckDockings();
         }
 
         
@@ -586,14 +596,15 @@ namespace Rail.Controls
                 this.InvalidateVisual();
                 break;
             case RailAction.MoveGraph:
-                MoveRailItem(this.actionRailItem, pos - this.lastMousePosition, this.actionRailItemDockedRailItems);
-                FindDocking(this.actionRailItem, this.actionRailItemDockedRailItems);
+                MoveRailItem(this.actionSubgraph, pos - this.lastMousePosition);
+                //MoveRailItem(this.actionRailItem, pos - this.lastMousePosition, this.actionSubgraph);
+                FindDocking(this.actionRailItem, this.actionSubgraph);
                 this.InvalidateVisual();
                 break;
             case RailAction.Rotate:
                 Rotation rotation = Rotation.Calculate(this.actionRailItem.Position, this.lastMousePosition, pos);
-                RotateRailItem(this.actionRailItem, rotation, this.actionRailItemDockedRailItems);
-                FindDocking(this.actionRailItem, this.actionRailItemDockedRailItems);
+                RotateRailItem(this.actionSubgraph, this.actionRailItem.Position, rotation);
+                FindDocking(this.actionRailItem, this.actionSubgraph);
                 this.InvalidateVisual();
                 break;
             case RailAction.SelectRect:
@@ -603,7 +614,7 @@ namespace Rail.Controls
             this.lastMousePosition = pos;
 
             base.OnMouseMove(e);
-            CheckDockings();
+            DebugCheckDockings();
         }
 
         
@@ -665,13 +676,13 @@ namespace Rail.Controls
             }
 
             this.actionType = RailAction.None;
-            this.actionRailItemDockedRailItems = null;
+            this.actionSubgraph = null;
             this.actionRailItem = null;
             this.InvalidateVisual();
             this.ReleaseMouseCapture();
 
             base.OnMouseLeftButtonUp(e);
-            CheckDockings();
+            DebugCheckDockings();
         }
 
         protected override void OnMouseRightButtonUp(MouseButtonEventArgs e)
@@ -745,7 +756,7 @@ namespace Rail.Controls
         }
 
         [Conditional("DEBUGINFO")]
-        private void CheckDockings()
+        private void DebugCheckDockings()
         {
             //foreach (var dock in this.RailPlan.Rails.SelectMany(i => i.DockPoints).Where(d => d.IsDocked))
             //{

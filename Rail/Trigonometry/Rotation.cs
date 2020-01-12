@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 
@@ -8,6 +9,7 @@ namespace Rail.Trigonometry
     /// <summary>
     /// Normalized turn angel between -360° and 360°
     /// </summary>
+    [DebuggerDisplay("Rotation {Value}")]
     public class Rotation
     {
         private const int MAX = 3600;
@@ -20,10 +22,10 @@ namespace Rail.Trigonometry
         public Rotation(double value)
         {
             int val = (int)Math.Round(value * FAC);
-            this.angle = (short)((val % MAX + MAX) % MAX);
+            this.angle = Normalize(val);
         }
 
-        private Rotation(int value)
+        public Rotation(int value)
         {
             this.angle = Normalize(value);
         }

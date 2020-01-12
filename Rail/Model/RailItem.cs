@@ -70,7 +70,7 @@ namespace Rail.Model
             set
             {
                 this.angle = value;
-                this.DockPoints.ForEach(dp => dp.Reset(this.Position, value));
+                //this.DockPoints.ForEach(dp => dp.Reset(this.Position, value));
             }
         }
 
@@ -104,13 +104,13 @@ namespace Rail.Model
         //    Debug.WriteLine($"--Rotate {this.DebugIndex} RailItemAngle {this.Angle}");
         //}
 
-        public void Rotate(Rotation rotation)
-        {
-            Debug.WriteLine($"++Rotate {this.DebugIndex} RailItemAngle {this.Angle} RotateAngle {rotation}");
-            this.Angle += rotation;
-            this.DockPoints.ToList().ForEach(dp => dp.Rotate(rotation, this.Position));
-            Debug.WriteLine($"--Rotate {this.DebugIndex} RailItemAngle {this.Angle}");
-        }
+        //public void Rotate(Rotation rotation)
+        //{
+        //    Debug.WriteLine($"++Rotate {this.DebugIndex} RailItemAngle {this.Angle} RotateAngle {rotation}");
+        //    this.Angle += rotation;
+        //    this.DockPoints.ToList().ForEach(dp => dp.Rotate(rotation, this.Position));
+        //    Debug.WriteLine($"--Rotate {this.DebugIndex} RailItemAngle {this.Angle}");
+        //}
 
         //public void Rotate(Angle angle, Point center)
         //{
@@ -131,10 +131,10 @@ namespace Rail.Model
         //    Rotate(angle, center.Position);
         //}
 
-        public void Rotate(Rotation rotation, RailItem center)
-        {
-            Rotate(rotation, center.Position);
-        }
+        //public void Rotate(Rotation rotation, RailItem center)
+        //{
+        //    Rotate(rotation, center.Position);
+        //}
 
         public void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode)
         {
@@ -158,7 +158,8 @@ namespace Rail.Model
         public void DrawDebug(DrawingContext drawingContext)
         {
             drawingContext.DrawRectangle(Brushes.White, new Pen(Brushes.Blue, 1), new Rect(this.Position, new Size(32, 20)));
-            drawingContext.DrawText(new FormattedText(this.DebugIndex.ToString(), CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, Brushes.Blue, 1.25), this.Position);
+            drawingContext.DrawText(new FormattedText(this.DebugIndex.ToString(), CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 9, Brushes.Blue, 1.25), this.Position);
+            drawingContext.DrawText(new FormattedText(this.Angle.Value.ToString(), CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 9, Brushes.Blue, 1.25), this.Position + new Vector(0, 9));
         }
 
         [Conditional("DEBUGINFO")]
@@ -169,8 +170,10 @@ namespace Rail.Model
             {
                 Point pos = dp.Position - new Vector((dp.Angle < 45 || dp.Angle > 225 ? width : 0), (dp.Angle < 135 || dp.Angle > 315 ? 20 : 0));
                 drawingContext.DrawRectangle(Brushes.White, new Pen(Brushes.Blue, 1), new Rect(pos, new Size(width, 20)));
-                string str = $"{dp.DebugIndexDockPoint}-{dp.DockedWith?.DebugIndexRail},{dp.DockedWith?.DebugIndexDockPoint}";
-                drawingContext.DrawText(new FormattedText(str, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, Brushes.Blue, 1.25), pos);
+                string str1 = $"{dp.DebugIndexDockPoint}-{dp.DockedWith?.DebugIndexRail},{dp.DockedWith?.DebugIndexDockPoint}";
+                string str2 = $"{dp.Angle}-{dp.DockedWith?.Angle}";
+                drawingContext.DrawText(new FormattedText(str1, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 9, Brushes.Blue, 1.25), pos);
+                drawingContext.DrawText(new FormattedText(str2, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 9, Brushes.Blue, 1.25), pos + new Vector(0, 9));
             }
         }
 
@@ -223,31 +226,9 @@ namespace Rail.Model
 
 
         /// <summary>
-        /// Find subgraph without railItem.
+        /// Find docked subgraph including this one.
         /// </summary>
-        /// <param name="railItem">Item to find subgraph from.</param>
-        /// <returns>List with rail items.</returns>
-        //public List<RailItem> FindSubgraph()
-        //{
-        //    List<RailItem> railItems = new List<RailItem>();
-        //    FindSubgraphRecursive(railItems, this);
-        //    railItems.Remove(this);
-        //    return railItems;
-        //}
-
-        //private static void FindSubgraphRecursive(List<RailItem> railItems, RailItem railItem)
-        //{
-        //    var dockedItems = railItem.DockPoints.Where(d => d.IsDocked).Select(d => d.DockedWith.RailItem).ToList();
-        //    foreach (RailItem item in dockedItems)
-        //    {
-        //        if (!railItems.Contains(item))
-        //        {
-        //            railItems.Add(item);
-        //            FindSubgraphRecursive(railItems, item);
-        //        }
-        //    }
-        //}
-
+        /// <returns>List of all docked rail items.</returns>
         public List<RailItem> FindSubgraph()
         {
             // list with new items not inspected
@@ -272,7 +253,7 @@ namespace Rail.Model
             }
             
             // remove original
-            listScanned.Remove(this);
+            // listScanned.Remove(this);
             return listScanned;
         }
     }

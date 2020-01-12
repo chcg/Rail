@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 using System.Windows;
@@ -10,6 +11,7 @@ namespace Rail.Trigonometry
     /// <summary>
     /// Normalized angel between 0° and 360°
     /// </summary>
+    [DebuggerDisplay("Angle {Value}")]
     public class Angle
     {
         private const int MAX = 3600;
@@ -28,7 +30,7 @@ namespace Rail.Trigonometry
 
         private Angle(int value)
         {
-            this.angle = (int)((value % MAX + MAX) % MAX);
+            this.angle = Normalize(value);
         }
 
         private static short Normalize(int value)
@@ -79,20 +81,20 @@ namespace Rail.Trigonometry
         //    return new Rotation((int)(a.IntAngle + b.IntAngle));
         //}
 
-        public static Angle operator -(Angle a, Angle b)
-        {
-            return new Angle((int)(a.angle - b.angle));
-        }
+        //public static Angle operator -(Angle a, Angle b)
+        //{
+        //    return new Angle((int)(a.angle - b.angle));
+        //}
 
         public static Angle operator -(Angle a, Rotation b)
         {
             return new Angle((int)(a.angle - b.IntAngle));
         }
 
-        //public static Rotation operator -(Angle a, Angle b)
-        //{
-        //    return new Rotation((int)(a.IntAngle - b.IntAngle));
-        //}
+        public static Rotation operator -(Angle a, Angle b)
+        {
+            return new Rotation((int)(a.IntAngle - b.IntAngle));
+        }
 
         public static bool operator ==(Angle a, Angle b)
         {
