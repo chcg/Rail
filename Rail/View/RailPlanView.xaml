@@ -11,16 +11,18 @@
         Title="{x:Static lang:Resources.RailPlanView}" Height="450" Width="600">
     <DockPanel>
         <mvvm:DialogButtonsView DockPanel.Dock="Bottom"/>
-        <Grid Margin="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>                
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>                
-            </Grid.RowDefinitions>
+        <TabControl TabStripPlacement="Left">
+            <TabItem Header="Plate">
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-            <ctrl:MovableDataGrid Grid.Column="0" Grid.Row="0" 
+                    <ctrl:MovableDataGrid Grid.Column="0" Grid.Row="0" 
                     ItemsSource="{Binding PlatePoints}" 
                     GridLinesVisibility="None" 
                     AutoGenerateColumns="False" 
@@ -29,13 +31,36 @@
                     CanUserAddRows="True"
                     CanUserDeleteRows="True"
                     Margin="3">
-                <ctrl:MovableDataGrid.Columns>
-                    <DataGridTextColumn Header="X mm" Binding="{Binding Path=X}" Width="60" />
-                    <DataGridTextColumn Header="Y mm" Binding="{Binding Path=Y}" Width="60" />
-                </ctrl:MovableDataGrid.Columns>
-            </ctrl:MovableDataGrid>
+                        <ctrl:MovableDataGrid.Columns>
+                            <DataGridTextColumn Header="X mm" Binding="{Binding Path=X}" Width="60" />
+                            <DataGridTextColumn Header="Y mm" Binding="{Binding Path=Y}" Width="60" />
+                        </ctrl:MovableDataGrid.Columns>
+                    </ctrl:MovableDataGrid>
 
-            <ctrl:PlateControl Grid.Row="0" Grid.Column="1" ItemsSource="{Binding PlatePoints}" Margin="3" BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"  />
-        </Grid>
+                    <ctrl:PlateControl Grid.Row="0" Grid.Column="1" ItemsSource="{Binding PlatePoints}" Margin="3" BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"  />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Layer">
+                <Grid Margin="5" >
+                    <ctrl:MovableDataGrid Grid.Column="0" Grid.Row="0" 
+                    ItemsSource="{Binding Layers}" 
+                    GridLinesVisibility="None" 
+                    AutoGenerateColumns="False" 
+                    HeadersVisibility="Column" 
+                    CanUserResizeColumns="False"
+                    CanUserAddRows="True"
+                    CanUserDeleteRows="True"
+                    Margin="3">
+                        <ctrl:MovableDataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="60" />
+                            <DataGridTextColumn Header="Height mm" Binding="{Binding Path=Height}" Width="60" />
+                            <DataGridTextColumn Header="Color" Binding="{Binding Path=Name}" Width="60" />
+                        </ctrl:MovableDataGrid.Columns>
+                    </ctrl:MovableDataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Colors">
+            </TabItem>
+        </TabControl>
     </DockPanel>
 </mvvm:DialogView>

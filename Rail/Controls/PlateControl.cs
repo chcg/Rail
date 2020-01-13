@@ -83,6 +83,11 @@ namespace Rail.Controls
 
         protected override void OnRender(DrawingContext drawingContext)
         {
+            if (this.ItemsSource == null)
+            {
+                return;
+            }
+
             //base.OnRender(drawingContext);
             var list = this.ItemsSource.Cast<PointViewModel>();
 
