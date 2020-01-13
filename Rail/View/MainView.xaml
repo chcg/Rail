@@ -265,6 +265,7 @@
         <Grid>
             <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TrackRailViewModeToVisibilityConverter}}" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
                 <ctrl:RailPlanControl 
+                x:Name="railPlanControl"
                 Background="DarkGray"
                 ZoomFactor="{Binding ZoomFactor}"
                 RailPlan="{Binding RailPlan}"
@@ -274,7 +275,7 @@
                 ShowDockingPoints="{Binding ShowDockingPoints}"
                 ShowLayer="{Binding SelectedShowLayer}"
                 InsertLayer="{Binding SelectedInsertLayer}"
-                RailMargin="40" />
+                RailMargin="40"/>
             </ScrollViewer>
             <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TerrainViewModeToVisibilityConverter}}">
                 <Viewport3D ClipToBounds="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">

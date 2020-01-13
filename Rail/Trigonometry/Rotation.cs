@@ -19,6 +19,9 @@ namespace Rail.Trigonometry
         public Rotation()
         { }
 
+        // Winkel in Prozent = tan(Winkel in Grad) * 100%
+        // Winkel in Grad = atan(Winkel in Prozent / 100%)
+
         public Rotation(double value)
         {
             int val = (int)Math.Round(value * FAC);

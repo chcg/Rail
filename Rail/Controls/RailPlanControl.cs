@@ -54,7 +54,15 @@ namespace Rail.Controls
             this.DeleteRailItemCommand = new DelegateCommand<RailItem>(OnDeleteRailItem);
             this.RotateRailItemCommand = new DelegateCommand<RailItem>(OnRotateRailItem);
             this.PropertiesRailItemCommand = new DelegateCommand<RailItem>(OnPropertiesRailItem);
+            this.Loaded += OnLoaded;
         }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            var window = Window.GetWindow(this);
+            window.KeyDown += OnKeyPress;
+        }
+        
 
         #region ZoomFactor
 
@@ -361,6 +369,14 @@ namespace Rail.Controls
             this.RailPlan.Rails.Remove(railItem);
         }
 
+        public void DeleteSelectedRailItems()
+        {
+            // delete all docks of the item
+            var list = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
+            // remove the item
+            list.ForEach(r => DeleteRailItem(r));
+        }
+
         public void SelectRailItem(RailItem railItem, bool addSelect)
         {
             if (addSelect)
@@ -484,22 +500,30 @@ namespace Rail.Controls
             }
             //return null;
         }
-        
+
         #endregion
 
         #region key handling
 
-        protected override void OnKeyDown(KeyEventArgs e)
+        private void OnKeyPress(object sender, KeyEventArgs e)
         {
-            //if (e.Key == Key.e)
-            base.OnKeyUp(e);
+            if (e.Key == Key.Delete)
+            {
+                DeleteSelectedRailItems();
+                this.InvalidateVisual();
+            }
         }
 
-        protected override void OnPreviewKeyDown(KeyEventArgs e)
-        {
-            base.OnPreviewKeyDown(e);
-        }
-
+        //protected override void OnKeyDown(KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Delete)
+        //    {
+        //        DeleteSelectedRailItems();
+        //        this.InvalidateVisual();
+        //    }
+        //    base.OnKeyUp(e);
+        //}
+        
         #endregion
 
         #region mouse handling
@@ -532,6 +556,7 @@ namespace Rail.Controls
             }
             base.OnMouseDoubleClick(e);
             DebugCheckDockings();
+            Keyboard.Focus(this);
         }
 
         
@@ -579,6 +604,7 @@ namespace Rail.Controls
 
             base.OnMouseLeftButtonDown(e);
             DebugCheckDockings();
+            Keyboard.Focus(this);
         }
 
         
