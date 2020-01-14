@@ -22,7 +22,7 @@ namespace Rail.Model
         public RailItem()
         { }
 
-        public RailItem(TrackBase track, Point pos, ushort layer) 
+        public RailItem(TrackBase track, Point pos, Guid layer) 
         {
             this.DebugIndex = globalDebugIndex++;
             //this.Id = Guid.NewGuid();
@@ -77,7 +77,7 @@ namespace Rail.Model
         }
 
         [XmlAttribute("Layer")]
-        public ushort Layer { get; set; }
+        public Guid Layer { get; set; }
         
         [XmlArray("DockPoints")]
         [XmlArrayItem("DockPoint")]

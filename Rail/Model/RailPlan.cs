@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using System.Xml.Serialization;
 
 namespace Rail.Model
@@ -32,8 +33,14 @@ namespace Rail.Model
                 new Point(1000, 1500),
                 new Point(0, 1500),
             };
+            railPlan.Layers = new ObservableCollection<RailLayer>
+            {
+                new RailLayer{ Id = Guid.NewGuid(), Name = "Shadow Station", Height = 300, TrackColor = Colors.LightGray, PlateColor = Colors.Gray },
+                new RailLayer{ Id = Guid.NewGuid(), Name = "Ground Plate", Height = 100, TrackColor = Colors.White, PlateColor = Colors.Green },
+                new RailLayer{ Id = Guid.NewGuid(), Name = "Bridge", Height = 100, TrackColor = Colors.Yellow, PlateColor = Colors.Transparent }
+            };
             railPlan.Rails = new ObservableCollection<RailItem>();
-
+            
             return railPlan;
         }
 
@@ -55,7 +62,14 @@ namespace Rail.Model
         [XmlArray("PlatePoints")]
         [XmlArrayItem("PlatePoint")]
         public ObservableCollection<Point> PlatePoints { get; set; }
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [XmlArray("Layers")]
+        [XmlArrayItem("Layer")]
+        public ObservableCollection<RailLayer> Layers { get; set; }
+
         /// <summary>
         /// 
         /// </summary>

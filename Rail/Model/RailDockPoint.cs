@@ -87,7 +87,7 @@ namespace Rail.Model
         public string DockType { get; private set; }
 
         [XmlIgnore]
-        public ushort Layer { get { return this.RailItem.Layer; } }
+        public Guid Layer { get { return this.RailItem.Layer; } }
 
         [XmlAttribute("DockedWithId")]
         public Guid DockedWithId { get; set; }

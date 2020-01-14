@@ -139,26 +139,26 @@
                 <RibbonGroup Header="{x:Static lang:Resources.MainLayer}">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="80"/>
-                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="200"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.MainShowLayer}" />
-                        <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding ShowLayers}" SelectedValue="{Binding SelectedShowLayer}" Background="White" Margin="4" >
+                        <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding ShowLayers}" SelectedValue="{Binding SelectedShowLayer}" SelectedIndex="0" Background="White" Margin="4" >
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding .,Converter={StaticResource LayerToTextConverter}}" HorizontalAlignment="Stretch"/>
+                                    <TextBlock Text="{Binding Path=Name}" Background="{Binding Path=TrackBrush}" Width="200"/>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                         <Label Grid.Column="0" Grid.Row="1"  Content="{x:Static lang:Resources.MainInsertLayer}" />
-                        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding InsertLayers}" SelectedValue="{Binding SelectedInsertLayer}" Background="White" Margin="4" >
+                        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding InsertLayers}" SelectedValue="{Binding SelectedInsertLayer}" SelectedIndex="0" Background="White" Margin="4" >
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding .,Converter={StaticResource LayerToTextConverter}}" HorizontalAlignment="Stretch"/>
+                                    <TextBlock Text="{Binding Path=Name}" Background="{Binding Path=TrackBrush}" Width="200"/>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>

@@ -36,11 +36,7 @@ namespace Rail.ViewModel
             this.RailPlanCommand = new DelegateCommand(OnRailPlan);
             this.PrintCommand = new DelegateCommand(OnPrint);
             this.PrintPreviewCommand = new DelegateCommand(OnPrintPreview);
-
-            this.ShowLayers = new List<ushort> { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
-            this.InsertLayers = new List<ushort> { 1, 2, 3, 4, 5, 6, 7, 8 };
-
-
+            
             // load track list
             DependencyObject dep = new DependencyObject();
             if (!DesignerProperties.GetIsInDesignMode(dep))
@@ -318,11 +314,18 @@ namespace Rail.ViewModel
             }
         }
 
-        public List<ushort> ShowLayers { get; private set; }
-        public List<ushort> InsertLayers { get; private set; }
+        public IEnumerable<RailLayer> ShowLayers
+        {
+            get { return new List<RailLayer> { new RailLayer { Id = Guid.Empty, Name = "All", TrackColor = Colors.White } }.Concat(this.RailPlan.Layers); }
+        }
 
-        private ushort selectedShowLayer = 0;
-        public ushort SelectedShowLayer
+        public IEnumerable<RailLayer> InsertLayers
+        { 
+            get { return this.RailPlan.Layers; }
+        }
+
+        private RailLayer selectedShowLayer = null;
+        public RailLayer SelectedShowLayer
         {
             get
             {
@@ -335,8 +338,8 @@ namespace Rail.ViewModel
             }
         }
 
-        private ushort selectedInsertLayer = 1;
-        public ushort SelectedInsertLayer
+        private RailLayer selectedInsertLayer = null;
+        public RailLayer SelectedInsertLayer
         {
             get
             {

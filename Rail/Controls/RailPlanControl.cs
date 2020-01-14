@@ -226,14 +226,14 @@ namespace Rail.Controls
         #region ShowLayer
 
         public static readonly DependencyProperty ShowLayerProperty =
-            DependencyProperty.Register("ShowLayer", typeof(ushort), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata((ushort)0, new PropertyChangedCallback(OnShowLayerChanged)));
+            DependencyProperty.Register("ShowLayer", typeof(RailLayer), typeof(RailPlanControl),
+                new FrameworkPropertyMetadata((RailLayer)null, new PropertyChangedCallback(OnShowLayerChanged)));
 
-        public ushort ShowLayer
+        public RailLayer ShowLayer
         {
             get
             {
-                return (ushort)GetValue(ShowLayerProperty);
+                return (RailLayer)GetValue(ShowLayerProperty);
             }
             set
             {
@@ -252,14 +252,14 @@ namespace Rail.Controls
         #region InsertLayer
 
         public static readonly DependencyProperty InsertLayerProperty =
-            DependencyProperty.Register("InsertLayer", typeof(ushort), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata((ushort)1));
+            DependencyProperty.Register("InsertLayer", typeof(RailLayer), typeof(RailPlanControl),
+                new FrameworkPropertyMetadata((RailLayer)null));
 
-        public ushort InsertLayer
+        public RailLayer InsertLayer
         {
             get
             {
-                return (ushort)GetValue(InsertLayerProperty);
+                return (RailLayer)GetValue(InsertLayerProperty);
             }
             set
             {
@@ -295,7 +295,7 @@ namespace Rail.Controls
             RenderPlate(drawingContext);
 
             // draw tracks
-            var rails = this.RailPlan.Rails.Where(r => this.ShowLayer == 0 || r.Layer == this.ShowLayer).ToArray();
+            var rails = this.RailPlan.Rails.Where(r => this.ShowLayer.Id == Guid.Empty || r.Layer == this.ShowLayer.Id).ToArray();
             rails.ForEach(r => r.DrawRailItem(drawingContext, this.ViewMode));
             if (this.ShowDockingPoints)
             {
@@ -344,14 +344,14 @@ namespace Rail.Controls
             Debug.WriteLine($"InsertRailItem at ({pos.X},{pos.Y})");
             
             // insert selected track at mouse position
-            this.RailPlan.Rails.Add(new RailItem(this.SelectedTrack, pos, this.InsertLayer));
+            this.RailPlan.Rails.Add(new RailItem(this.SelectedTrack, pos, this.InsertLayer.Id));
         }
 
         public void InsertRailItem(RailDockPoint railDockPoint)
         {
             Debug.WriteLine($"InsertRailItem at DockPoint ({railDockPoint.DebugDockPointIndex},{railDockPoint.DebugDockPointIndex})");
 
-            RailItem railItem = new RailItem(this.SelectedTrack, new Point(0, 0), this.InsertLayer);
+            RailItem railItem = new RailItem(this.SelectedTrack, new Point(0, 0), this.InsertLayer.Id);
             Point pos = railItem.Track.DockPoints.First().Position;
             //RailDockPoint newRailDockPoint = railItem.DockPoints.First();
 
