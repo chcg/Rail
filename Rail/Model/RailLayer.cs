@@ -8,8 +8,16 @@ namespace Rail.Model
 {
     public class RailLayer
     {
+        public RailLayer()
+        {
+            this.Show = true;
+        }
+
         [XmlAttribute("Id")]
         public Guid Id { get; set; }
+
+        [XmlAttribute("Show")]
+        public bool Show { get; set; }
 
         [XmlAttribute("Name")]
         public string Name { get; set; }

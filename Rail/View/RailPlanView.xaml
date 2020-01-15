@@ -52,9 +52,16 @@
                     CanUserDeleteRows="True"
                     Margin="3">
                         <ctrl:MovableDataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="60" />
-                            <DataGridTextColumn Header="Height mm" Binding="{Binding Path=Height}" Width="60" />
-                            <DataGridTextColumn Header="Color" Binding="{Binding Path=Name}" Width="60" />
+                            <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="200" />
+                            <DataGridTextColumn Header="Height mm" Binding="{Binding Path=Height}" Width="80" />
+                            <DataGridComboBoxColumn Header="Color" SelectedItemBinding="{Binding TrackColor}" ItemsSource="{Binding Colors}" IsReadOnly="True"  Width="100" >
+                                <!--<DataGridComboBoxColumn.ElementStyle>
+                                    <Style>
+                                        <TextBlock Text="{Binding Name}"/> 
+                                    </Style>
+                                </DataGridComboBoxColumn.ElementStyle>-->
+                            </DataGridComboBoxColumn>
+                            <DataGridCheckBoxColumn Header="Ground Plate" Binding="{Binding Path=GroundPlateLayer}" Width="*"/>
                         </ctrl:MovableDataGrid.Columns>
                     </ctrl:MovableDataGrid>
                 </Grid>

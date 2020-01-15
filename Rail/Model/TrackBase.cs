@@ -16,6 +16,7 @@ namespace Rail.Model
     {
         protected readonly Pen dockPen = new Pen(TrackBrushes.Dock, 2);
         protected readonly Pen linePen = new Pen(TrackBrushes.TrackFrame, 2);
+        protected readonly Pen dotPen = new Pen(Brushes.White, 2) { DashStyle = DashStyles.Dot };
         protected readonly Pen textPen = new Pen(TrackBrushes.Text, 0.5);
         
         protected Pen woodenSleepersPen;
@@ -150,15 +151,29 @@ namespace Rail.Model
         protected abstract List<TrackDockPoint> CreateDockPoints();
 
         // for TrackControl
-        public virtual void Render(DrawingContext drawingContext, RailViewMode viewMode, bool isSelected)
+        public virtual void Render(DrawingContext drawingContext, RailViewMode viewMode, bool isSelected, Brush trackBrush)
         {
             switch (viewMode)
             {
             case RailViewMode.Tracks:
-                drawingContext.DrawDrawing(isSelected ? this.drawingTracksSelected : this.drawingTracks);
+                
+                drawingContext.DrawDrawing(new GeometryDrawing(trackBrush, this.linePen, this.GeometryTracks));
+                if (isSelected)
+                {
+                    drawingContext.DrawDrawing(new GeometryDrawing(null, this.dotPen, this.GeometryTracks));
+                }
+                drawingContext.DrawDrawing(this.textDrawing);
+
+                //drawingContext.DrawDrawing(isSelected ? this.drawingTracksSelected : this.drawingTracks);
                 break;
             case RailViewMode.Rail:
-                drawingContext.DrawDrawing(isSelected ? this.drawingRailSelected : this.drawingRail);
+                drawingContext.DrawDrawing(this.drawingTerrain);
+                if (isSelected)
+                {
+                    drawingContext.DrawDrawing(new GeometryDrawing(null, this.linePen, this.GeometryRail));
+                    drawingContext.DrawDrawing(new GeometryDrawing(null, this.dotPen, this.GeometryRail));
+                }
+                //drawingContext.DrawDrawing(isSelected ? this.drawingRailSelected : this.drawingRail);
                 break;
             case RailViewMode.Terrain:
                 drawingContext.DrawDrawing(this.drawingTerrain);
@@ -194,15 +209,12 @@ namespace Rail.Model
             }
             else
             {
-                switch (this.ViewType & TrackViewType.Sleepers)
+                return (this.ViewType & TrackViewType.Sleepers) switch
                 {
-                case TrackViewType.WoodenSleepers:
-                    return this.woodenSleepersPen;
-                case TrackViewType.ConcreteSleepers:
-                    return this.concreteSleepersPen;
-                default:
-                    return null;
-                }
+                    TrackViewType.WoodenSleepers => this.woodenSleepersPen,
+                    TrackViewType.ConcreteSleepers => this.concreteSleepersPen,
+                    _ => null
+                };
             }
         }
 
@@ -214,15 +226,12 @@ namespace Rail.Model
             }
             else
             {
-                switch (this.ViewType & TrackViewType.Sleepers)
+                return (this.ViewType & TrackViewType.Sleepers) switch
                 {
-                case TrackViewType.WoodenSleepers:
-                    return this.woodenRailPen;
-                case TrackViewType.ConcreteSleepers:
-                    return this.concreteRailPen;
-                default:
-                    return null;
-                }
+                    TrackViewType.WoodenSleepers => this.woodenRailPen,
+                    TrackViewType.ConcreteSleepers => this.concreteRailPen,
+                    _ => null
+                };
             }
         }
 

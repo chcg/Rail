@@ -18,9 +18,9 @@ namespace Rail.ViewModel
 {
     public partial class MainViewModel : FileViewModel
     {
-        private TrackList trackList;
+        private readonly TrackList trackList;
+        private readonly Dictionary<string, TrackBase> trackDict;
         private RailPlan railPlan;
-        private Dictionary<string, TrackBase> trackDict;
 
         public DelegateCommand RailPlanCommand { get; private set; }
         public DelegateCommand PrintCommand { get; private set; }
@@ -191,7 +191,7 @@ namespace Rail.ViewModel
             }
         }
 
-        private bool showMaterialList;
+        private bool showMaterialList = true;
         public bool ShowMaterialList
         {
             get
@@ -314,29 +314,34 @@ namespace Rail.ViewModel
             }
         }
 
-        public IEnumerable<RailLayer> ShowLayers
+        //public IEnumerable<RailLayer> ShowLayers
+        //{
+        //    get { return new List<RailLayer> { new RailLayer { Id = Guid.Empty, Name = "All", TrackColor = Colors.White } }.Concat(this.RailPlan.Layers); }
+        //}
+
+        //public IEnumerable<RailLayer> InsertLayers
+        //{ 
+        //    get { return this.RailPlan.Layers; }
+        //}
+
+        public IEnumerable<RailLayer> Layers
         {
-            get { return new List<RailLayer> { new RailLayer { Id = Guid.Empty, Name = "All", TrackColor = Colors.White } }.Concat(this.RailPlan.Layers); }
+            get { return this.RailPlan.Layers.Reverse(); }
         }
 
-        public IEnumerable<RailLayer> InsertLayers
-        { 
-            get { return this.RailPlan.Layers; }
-        }
-
-        private RailLayer selectedShowLayer = null;
-        public RailLayer SelectedShowLayer
-        {
-            get
-            {
-                return this.selectedShowLayer;
-            }
-            set
-            {
-                this.selectedShowLayer = value;
-                NotifyPropertyChanged(nameof(SelectedShowLayer));
-            }
-        }
+        //private RailLayer selectedShowLayer = null;
+        //public RailLayer SelectedShowLayer
+        //{
+        //    get
+        //    {
+        //        return this.selectedShowLayer;
+        //    }
+        //    set
+        //    {
+        //        this.selectedShowLayer = value;
+        //        NotifyPropertyChanged(nameof(SelectedShowLayer));
+        //    }
+        //}
 
         private RailLayer selectedInsertLayer = null;
         public RailLayer SelectedInsertLayer

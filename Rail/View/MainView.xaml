@@ -136,34 +136,6 @@
                         <RibbonRadioButton Label="{x:Static lang:Resources.MainTerrain}" IsChecked="{Binding ViewMode, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static ctrl:RailViewMode.Terrain}}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
                     </RibbonControlGroup>
                 </RibbonGroup>
-                <RibbonGroup Header="{x:Static lang:Resources.MainLayer}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="120"/>
-                            <ColumnDefinition Width="200"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.MainShowLayer}" />
-                        <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding ShowLayers}" SelectedValue="{Binding SelectedShowLayer}" SelectedIndex="0" Background="White" Margin="4" >
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Path=Name}" Background="{Binding Path=TrackBrush}" Width="200"/>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <Label Grid.Column="0" Grid.Row="1"  Content="{x:Static lang:Resources.MainInsertLayer}" />
-                        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding InsertLayers}" SelectedValue="{Binding SelectedInsertLayer}" SelectedIndex="0" Background="White" Margin="4" >
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Path=Name}" Background="{Binding Path=TrackBrush}" Width="200"/>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </Grid>
-                </RibbonGroup>
             </RibbonTab>
         </mvvm:PersistentRibbon>
         <StatusBar DockPanel.Dock="Bottom">
@@ -223,7 +195,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <ComboBox Grid.Row="0" ItemsSource="{Binding TrackTypes}" SelectedItem="{Binding SelectedTrackType}" SelectedIndex="0" ToolTip="{Binding SelectedTrackType.Description}" MinWidth="200" Margin="8">
+            <ComboBox Grid.Row="0" ItemsSource="{Binding TrackTypes}" SelectedItem="{Binding SelectedTrackType}" SelectedIndex="0" MinWidth="200" Margin="8">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}" ToolTip="{Binding Description}" />
@@ -253,14 +225,103 @@
             </ListView>
         </Grid>
         <Grid DockPanel.Dock="Right" Visibility="{Binding ShowMaterialList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-            <DataGrid ItemsSource="{Binding MaterialList}" AutoGenerateColumns="False"  Margin="8" CanUserAddRows="False" CanUserDeleteRows="False" GridLinesVisibility="None" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="#" Binding="{Binding Number}" Width="30" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="{x:Static lang:Resources.MainManufacturer}" Binding="{Binding Manufacturer}" Width="60" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="{x:Static lang:Resources.MainArticle}" Binding="{Binding Article}" Width="60" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="{x:Static lang:Resources.MainName}" Binding="{Binding Name}" Width="200" IsReadOnly="True"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            <TabControl>
+                <TabItem Header="Layers">
+                    <DataGrid 
+                        ItemsSource="{Binding Layers}" 
+                        SelectedItem="{Binding SelectedInsertLayer}"
+                        SelectedIndex="0"
+                        AutoGenerateColumns="False" 
+                        Margin="8" 
+                        HeadersVisibility="Column"
+                        CanUserAddRows="False" 
+                        CanUserDeleteRows="False" 
+                        GridLinesVisibility="None"
+                        CanUserReorderColumns="False" 
+                        CanUserResizeColumns="False" 
+                        CanUserSortColumns="False" 
+                        CanUserResizeRows="False"
+                        SelectionMode="Single">
+                        <DataGrid.Resources>
+                            <Style TargetType="DataGridRow">
+                                <Style.Resources>
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Blue"/>
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Blue"/>
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey }" Color="White"/>
+
+                                </Style.Resources>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Show" Width="40">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox 
+                                            
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" 
+                                            IsChecked="{Binding Path=Show, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                            Checked="OnRefreshRailPlanControl"
+                                            Unchecked="OnRefreshRailPlanControl"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <!--<DataGridTemplateColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="IsHitTestVisible" Value="False"/>
+                                    </Style>
+                                </DataGridTemplateColumn.CellStyle>-->
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Layer Name" Width="200" IsReadOnly="True" CanUserReorder="False">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Rectangle Fill="{Binding Path=TrackBrush}" Width="12" Height="12" Margin="2" />
+                                            <TextBlock Text="{Binding Path=Name}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                        <!--<DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="Blue"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>-->
+                    </DataGrid>                        
+                </TabItem>
+                <TabItem Header="Material List">
+                    <DataGrid 
+                        ItemsSource="{Binding MaterialList}" 
+                        AutoGenerateColumns="False" 
+                        Margin="8" 
+                        HeadersVisibility="Column"
+                        CanUserAddRows="False" 
+                        CanUserDeleteRows="False" 
+                        GridLinesVisibility="None" 
+                        CanUserReorderColumns="False" 
+                        CanUserResizeColumns="False" 
+                        CanUserSortColumns="False" 
+                        CanUserResizeRows="False"
+                        SelectionMode="Single">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="#" Binding="{Binding Number}" Width="30" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="{x:Static lang:Resources.MainManufacturer}" Binding="{Binding Manufacturer}" Width="60" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="{x:Static lang:Resources.MainArticle}" Binding="{Binding Article}" Width="60" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="{x:Static lang:Resources.MainName}" Binding="{Binding Name}" Width="200" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="IsHitTestVisible" Value="False"/>
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                            </Style> 
+                        </DataGrid.RowStyle>
+                    </DataGrid>
+                </TabItem>
+            </TabControl>
         </Grid>
         <Grid>
             <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TrackRailViewModeToVisibilityConverter}}" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
@@ -273,7 +334,6 @@
                 MousePosition="{Binding MousePosition, Mode=OneWayToSource}"
                 ViewMode="{Binding ViewMode}" 
                 ShowDockingPoints="{Binding ShowDockingPoints}"
-                ShowLayer="{Binding SelectedShowLayer}"
                 InsertLayer="{Binding SelectedInsertLayer}"
                 RailMargin="40"/>
             </ScrollViewer>

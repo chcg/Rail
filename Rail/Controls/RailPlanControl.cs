@@ -223,32 +223,6 @@ namespace Rail.Controls
 
         #endregion
 
-        #region ShowLayer
-
-        public static readonly DependencyProperty ShowLayerProperty =
-            DependencyProperty.Register("ShowLayer", typeof(RailLayer), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata((RailLayer)null, new PropertyChangedCallback(OnShowLayerChanged)));
-
-        public RailLayer ShowLayer
-        {
-            get
-            {
-                return (RailLayer)GetValue(ShowLayerProperty);
-            }
-            set
-            {
-                SetValue(ShowLayerProperty, value);
-            }
-        }
-
-        private static void OnShowLayerChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            RailPlanControl railPlan = (RailPlanControl)o;
-            railPlan.InvalidateVisual();
-        }
-
-        #endregion
-
         #region InsertLayer
 
         public static readonly DependencyProperty InsertLayerProperty =
@@ -294,21 +268,25 @@ namespace Rail.Controls
             // dray plate
             RenderPlate(drawingContext);
 
-            // draw tracks
-            var rails = this.RailPlan.Rails.Where(r => this.ShowLayer.Id == Guid.Empty || r.Layer == this.ShowLayer.Id).ToArray();
-            rails.ForEach(r => r.DrawRailItem(drawingContext, this.ViewMode));
-            if (this.ShowDockingPoints)
+            // loop over all visible layers
+            foreach (RailLayer railLayer in this.RailPlan.Layers.Where(l => l.Show))
             {
-                rails.ForEach(r => r.DrawDockPoints(drawingContext));
+                // draw tracks
+                var rails = this.RailPlan.Rails.Where(r => r.Layer == railLayer.Id).ToArray();
+                rails.ForEach(r => r.DrawRailItem(drawingContext, this.ViewMode, this.RailPlan.Layers.FirstOrDefault(l => l.Id == r.Layer)));
+                if (this.ShowDockingPoints)
+                {
+                    rails.ForEach(r => r.DrawDockPoints(drawingContext));
+                }
             }
 
-            // draw select rex
+            // draw select rect
             if (this.actionType == RailAction.SelectRect)
             {
                 drawingContext.DrawRectangle(null, selectFramePen1, new Rect(this.selectRecStart, this.lastMousePosition));
                 drawingContext.DrawRectangle(null, selectFramePen2, new Rect(this.selectRecStart, this.lastMousePosition));
             }
-
+            
             drawingContext.Pop();
             DebugText(drawingContext);
         }
@@ -399,6 +377,11 @@ namespace Rail.Controls
             this.RailPlan.Rails.Where(r => r.IsInside(rec, this.ViewMode)).ForEach(r => r.IsSelected = true);
         }
 
+        public void SelectAllRailItems()
+        {
+            this.RailPlan.Rails.ForEach(r => r.IsSelected = true);
+        }
+
         public void UnselectAllRailItems()
         {
             this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
@@ -467,7 +450,7 @@ namespace Rail.Controls
         //}
 
 
-        private void FindDocking(RailItem railItem, IEnumerable<RailItem> docked = null)
+        private void FindDocking(RailItem railItem)
         {
             if (this.RailPlan.Rails != null)
             {
@@ -507,10 +490,16 @@ namespace Rail.Controls
 
         private void OnKeyPress(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Delete)
+            switch (e.Key)
             {
+            case Key.Delete:
                 DeleteSelectedRailItems();
                 this.InvalidateVisual();
+                break;
+            case Key.A when e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Control):
+                this.SelectAllRailItems();
+                this.InvalidateVisual();
+                break;
             }
         }
 
@@ -624,13 +613,13 @@ namespace Rail.Controls
             case RailAction.MoveGraph:
                 MoveRailItem(this.actionSubgraph, pos - this.lastMousePosition);
                 //MoveRailItem(this.actionRailItem, pos - this.lastMousePosition, this.actionSubgraph);
-                FindDocking(this.actionRailItem, this.actionSubgraph);
+                FindDocking(this.actionRailItem);
                 this.InvalidateVisual();
                 break;
             case RailAction.Rotate:
                 Rotation rotation = Rotation.Calculate(this.actionRailItem.Position, this.lastMousePosition, pos);
                 RotateRailItem(this.actionSubgraph, this.actionRailItem.Position, rotation);
-                FindDocking(this.actionRailItem, this.actionSubgraph);
+                FindDocking(this.actionRailItem);
                 this.InvalidateVisual();
                 break;
             case RailAction.SelectRect:
@@ -650,7 +639,7 @@ namespace Rail.Controls
             Point pos = GetMousePosition(e);
 
             
-            Vector move = pos - this.lastMousePosition;
+            //Vector move = pos - this.lastMousePosition;
             //RailItem dockingTrack;
 
             bool addSelect = Keyboard.Modifiers.HasFlag(ModifierKeys.Shift) || Keyboard.Modifiers.HasFlag(ModifierKeys.Control);

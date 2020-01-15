@@ -25,5 +25,10 @@ namespace Rail.View
         {
             InitializeComponent();
         }
+
+        public void OnRefreshRailPlanControl(object sender, RoutedEventArgs e)
+        {
+            this.railPlanControl.InvalidateVisual();
+        }
     }
 }

@@ -168,9 +168,6 @@
   <data name="MainGroup" xml:space="preserve">
     <value>Groups</value>
   </data>
-  <data name="MainInsertLayer" xml:space="preserve">
-    <value>Insert Layer</value>
-  </data>
   <data name="MainLayer" xml:space="preserve">
     <value>Layer</value>
   </data>
@@ -197,9 +194,6 @@
   </data>
   <data name="MainShowDockingPoints" xml:space="preserve">
     <value>Show Docking Points</value>
-  </data>
-  <data name="MainShowLayer" xml:space="preserve">
-    <value>Show Layer</value>
   </data>
   <data name="MainShowTrackList" xml:space="preserve">
     <value>Show Track List</value>

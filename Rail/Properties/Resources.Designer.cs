@@ -214,15 +214,6 @@ namespace Rail.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert Layer.
-        /// </summary>
-        public static string MainInsertLayer {
-            get {
-                return ResourceManager.GetString("MainInsertLayer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Layer.
         /// </summary>
         public static string MainLayer {
@@ -300,15 +291,6 @@ namespace Rail.Properties {
         public static string MainShowDockingPoints {
             get {
                 return ResourceManager.GetString("MainShowDockingPoints", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show Layer.
-        /// </summary>
-        public static string MainShowLayer {
-            get {
-                return ResourceManager.GetString("MainShowLayer", resourceCulture);
             }
         }
         

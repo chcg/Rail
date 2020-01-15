@@ -31,7 +31,7 @@ namespace Rail.ViewModel
                     ), true)
                 }));
 
-                this.RailPlan.Rails.ForEach(r => r.DrawRailItem(drawingContext, RailViewMode.Terrain));
+                this.RailPlan.Rails.ForEach(r => r.DrawRailItem(drawingContext, RailViewMode.Terrain, this.RailPlan.Layers.FirstOrDefault(l => l.Id == r.Layer)));
 
             }
             RenderTargetBitmap bitmap = new RenderTargetBitmap(this.railPlan.Width, this.railPlan.Height, 96, 96, PixelFormats.Default);

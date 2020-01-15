@@ -8,12 +8,24 @@
     <AssemblyName>Rail</AssemblyName>
     <StartupObject>Rail.App</StartupObject>
     
-    <!--<PublishReadyToRun>true</PublishReadyToRun>-->
+    <!--
+	<PublishReadyToRun>true</PublishReadyToRun>
+	-->
     
-    <!--<PublishSingleFile>true</PublishSingleFile>
+    <!--
     <PublishTrimmed>true</PublishTrimmed>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
-    
+	-->
+		
+    <!--
+    <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>true</PublishTrimmed>
+	<PublishReadyToRun>true</PublishReadyToRun>
+	<PublishSingleFile>true</PublishSingleFile>
+	-->
+
+
+
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
     <ApplicationIcon />

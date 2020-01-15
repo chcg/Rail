@@ -138,7 +138,7 @@ namespace Rail.Model
         //    Rotate(rotation, center.Position);
         //}
 
-        public void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode)
+        public void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode, RailLayer layer)
         {
             TransformGroup transformGroup = new TransformGroup();
             transformGroup.Children.Add(new RotateTransform (this.Angle));
@@ -146,7 +146,7 @@ namespace Rail.Model
             drawingContext.PushTransform(transformGroup);
 
             //Debug.WriteLine($"DrawRailItem {this.IsSelected}");
-            this.Track.Render(drawingContext, viewMode, this.IsSelected);
+            this.Track.Render(drawingContext, viewMode, this.IsSelected, layer.TrackBrush);
 
             
 
@@ -179,8 +179,8 @@ namespace Rail.Model
             }
         }
 
-        private static Pen dockPen = new Pen(Brushes.Blue, 1);
-        private static Pen positionPen = new Pen(Brushes.Red, 2);
+        private static readonly Pen dockPen = new Pen(Brushes.Blue, 1);
+        private static readonly Pen positionPen = new Pen(Brushes.Red, 2);
         
         public void DrawDockPoints(DrawingContext drawingContext)
         {
