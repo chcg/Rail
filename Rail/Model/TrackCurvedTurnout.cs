@@ -90,7 +90,7 @@ namespace Rail.Model
         protected override Geometry CreateGeometry(double spacing)
         {
             double width = (this.OuterRadius * 2 * Math.PI * this.OuterAngle / 360.0 + this.Length) / 2;
-            double hight = this.OuterRadius * 2 * Math.PI * (this.OuterAngle - 90) / 360.0;
+            //double hight = this.OuterRadius * 2 * Math.PI * (this.OuterAngle - 90) / 360.0;
 
             //Point centerLeft = CurveCenter(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left) + new Vector(this.Length / 2, 0);
             //Point centerRight = CurveCenter(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right) + new Vector(this.Length / 2, 0);
@@ -113,10 +113,10 @@ namespace Rail.Model
                     );
         }
 
-        protected override Drawing CreateRailDrawing(bool isSelected)
+        protected override Drawing CreateRailDrawing()
         {
             double width = (this.OuterRadius * 2 * Math.PI * this.OuterAngle / 360.0 + this.Length) / 2;
-            double hight = this.OuterRadius * 2 * Math.PI * (this.OuterAngle - 90) / 360.0;
+            //double hight = this.OuterRadius * 2 * Math.PI * (this.OuterAngle - 90) / 360.0;
 
             //Point centerLeft = CurveCenter(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left) + new Vector(this.Length / 2, 0);
             //Point centerRight = CurveCenter(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right) + new Vector(this.Length / 2, 0);
@@ -142,21 +142,21 @@ namespace Rail.Model
             }
             if (this.Direction == TrackDirection.Left)
             {
-                drawingRail.Children.Add(CurvedSleepers(isSelected, this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft));
-                drawingRail.Children.Add(StraitSleepers(isSelected, this.Length, StraitOrientation.Left, 0, centerLeft));
-                drawingRail.Children.Add(CurvedSleepers(isSelected, this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft + new Vector(this.Length, 0)));
-                drawingRail.Children.Add(CurvedRail(isSelected, this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft));
-                drawingRail.Children.Add(StraitRail(isSelected, this.Length, StraitOrientation.Left, 0, centerLeft));
-                drawingRail.Children.Add(CurvedRail(isSelected, this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft + new Vector(this.Length, 0)));
+                drawingRail.Children.Add(CurvedSleepers(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft));
+                drawingRail.Children.Add(StraitSleepers(this.Length, StraitOrientation.Left, 0, centerLeft));
+                drawingRail.Children.Add(CurvedSleepers(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft + new Vector(this.Length, 0)));
+                drawingRail.Children.Add(CurvedRail(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft));
+                drawingRail.Children.Add(StraitRail(this.Length, StraitOrientation.Left, 0, centerLeft));
+                drawingRail.Children.Add(CurvedRail(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft + new Vector(this.Length, 0)));
             }
             else
             {
-                drawingRail.Children.Add(CurvedSleepers(isSelected, this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight));
-                drawingRail.Children.Add(StraitSleepers(isSelected, this.Length, StraitOrientation.Right, 0, centerRight));
-                drawingRail.Children.Add(CurvedSleepers(isSelected, this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight - new Vector(this.Length, 0)));
-                drawingRail.Children.Add(CurvedRail(isSelected, this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight));
-                drawingRail.Children.Add(StraitRail(isSelected, this.Length, StraitOrientation.Right, 0, centerRight));
-                drawingRail.Children.Add(CurvedRail(isSelected, this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight - new Vector(this.Length, 0)));
+                drawingRail.Children.Add(CurvedSleepers(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight));
+                drawingRail.Children.Add(StraitSleepers(this.Length, StraitOrientation.Right, 0, centerRight));
+                drawingRail.Children.Add(CurvedSleepers(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight - new Vector(this.Length, 0)));
+                drawingRail.Children.Add(CurvedRail(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight));
+                drawingRail.Children.Add(StraitRail(this.Length, StraitOrientation.Right, 0, centerRight));
+                drawingRail.Children.Add(CurvedRail(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight - new Vector(this.Length, 0)));
             }
             return drawingRail;
         }

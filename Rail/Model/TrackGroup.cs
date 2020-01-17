@@ -26,7 +26,7 @@ namespace Rail.Model
             return null;
         }
 
-        protected override Drawing CreateRailDrawing(bool isSelected)
+        protected override Drawing CreateRailDrawing()
         {
             return null;
         }

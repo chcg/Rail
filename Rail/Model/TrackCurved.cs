@@ -52,15 +52,15 @@ namespace Rail.Model
             return CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Center, spacing, new Point(0, 0));
         }
 
-        protected override Drawing CreateRailDrawing(bool isSelected)
+        protected override Drawing CreateRailDrawing()
         {
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.ViewType.HasFlag(TrackViewType.Ballast))
             {
                 drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Center, new Point(0, 0)));
             }
-            drawingRail.Children.Add(CurvedSleepers(isSelected, this.Angle, this.Radius, CurvedOrientation.Center, new Point(0, 0)));
-            drawingRail.Children.Add(CurvedRail(isSelected, this.Angle, this.Radius, CurvedOrientation.Center, new Point(0, 0)));
+            drawingRail.Children.Add(CurvedSleepers(this.Angle, this.Radius, CurvedOrientation.Center, new Point(0, 0)));
+            drawingRail.Children.Add(CurvedRail(this.Angle, this.Radius, CurvedOrientation.Center, new Point(0, 0)));
             return drawingRail;
         }
 

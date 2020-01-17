@@ -46,7 +46,7 @@ namespace Rail.Model
             return new RectangleGeometry(new Rect(-this.Width / 2, -this.Height / 2, this.Width, this.Height));
         }
 
-        protected override Drawing CreateRailDrawing(bool isSelected)
+        protected override Drawing CreateRailDrawing()
         {
             double rim = (this.Width - this.Length) / 2;
 

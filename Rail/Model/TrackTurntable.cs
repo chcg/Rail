@@ -47,7 +47,7 @@ namespace Rail.Model
             return new EllipseGeometry(new Point(0, 0), this.OuterRadius, this.OuterRadius);
         }
 
-        protected override Drawing CreateRailDrawing(bool isSelected)
+        protected override Drawing CreateRailDrawing()
         {
             DrawingGroup drawingRail = new DrawingGroup();
             // background
@@ -72,13 +72,13 @@ namespace Rail.Model
                 drawingRail.Children.Add(new GeometryDrawing(TrackBrushes.Ballast, null, new RectangleGeometry(new Rect(-this.InnerRadius, -this.RailSpacing, this.InnerRadius * 2, this.RailSpacing * 2))));
             }
             
-            drawingRail.Children.Add(StraitRail(isSelected, this.InnerRadius * 2));
+            drawingRail.Children.Add(StraitRail(this.InnerRadius * 2));
 
             for (int i = 0; i < RailNum; i++)
             {
 
-                drawingRail.Children.Add(new GeometryDrawing(null, isSelected ? selectedRailPen : woodenRailPen, new LineGeometry(new Point(-this.OuterRadius, -this.RailSpacing / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, -this.RailSpacing / 2).Rotate(this.Angle * i)))); ;
-                drawingRail.Children.Add(new GeometryDrawing(null, isSelected ? selectedRailPen : woodenRailPen, new LineGeometry(new Point(-this.OuterRadius, +this.RailSpacing / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, +this.RailSpacing / 2).Rotate(this.Angle * i))));
+                drawingRail.Children.Add(new GeometryDrawing(null, woodenRailPen, new LineGeometry(new Point(-this.OuterRadius, -this.RailSpacing / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, -this.RailSpacing / 2).Rotate(this.Angle * i)))); ;
+                drawingRail.Children.Add(new GeometryDrawing(null, woodenRailPen, new LineGeometry(new Point(-this.OuterRadius, +this.RailSpacing / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, +this.RailSpacing / 2).Rotate(this.Angle * i))));
 
                 double length1 = this.OuterRadius - this.InnerRadius;
                 int num1 = (int)Math.Round(length1 / (this.RailSpacing / 2));
@@ -86,7 +86,7 @@ namespace Rail.Model
 
                 for (int j = 0; j < num1; j++)
                 {
-                    drawingRail.Children.Add(new GeometryDrawing(null, isSelected ? selectedSleepersPen : woodenSleepersPen, new LineGeometry(
+                    drawingRail.Children.Add(new GeometryDrawing(null, woodenSleepersPen, new LineGeometry(
                         new Point(-this.OuterRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, -this.sleepersWidth / 2).Rotate(this.Angle * i),
                         new Point(-this.OuterRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, +this.sleepersWidth / 2).Rotate(this.Angle * i))));
                 }

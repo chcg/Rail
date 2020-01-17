@@ -41,7 +41,7 @@ namespace Rail.Model
                     CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, spacing, new Point(-this.Length / 2, 0))));
         }
 
-        protected override Drawing CreateRailDrawing(bool isSelected)
+        protected override Drawing CreateRailDrawing()
         {
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.ViewType.HasFlag(TrackViewType.Ballast))
@@ -50,12 +50,12 @@ namespace Rail.Model
                 drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.Length / 2, 0)));
                 drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-this.Length / 2, 0)));
             }
-            drawingRail.Children.Add(StraitSleepers(isSelected, this.Length));
-            drawingRail.Children.Add(CurvedSleepers(isSelected, this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.Length / 2, 0)));
-            drawingRail.Children.Add(CurvedSleepers(isSelected, this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-this.Length / 2, 0)));
-            drawingRail.Children.Add(StraitRail(isSelected, this.Length));
-            drawingRail.Children.Add(CurvedRail(isSelected, this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.Length / 2, 0)));
-            drawingRail.Children.Add(CurvedRail(isSelected, this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-this.Length / 2, 0)));
+            drawingRail.Children.Add(StraitSleepers(this.Length));
+            drawingRail.Children.Add(CurvedSleepers(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.Length / 2, 0)));
+            drawingRail.Children.Add(CurvedSleepers(this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-this.Length / 2, 0)));
+            drawingRail.Children.Add(StraitRail(this.Length));
+            drawingRail.Children.Add(CurvedRail(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.Length / 2, 0)));
+            drawingRail.Children.Add(CurvedRail(this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-this.Length / 2, 0)));
             return drawingRail;
         }
 

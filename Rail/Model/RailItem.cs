@@ -76,6 +76,12 @@ namespace Rail.Model
             set { this.Angle = value; }
         }
 
+        [XmlAttribute("Gradient")]
+        public double Gradient { get; set; }
+
+        [XmlAttribute("Height")]
+        public double Height { get; set; }
+
         [XmlAttribute("Layer")]
         public Guid Layer { get; set; }
         

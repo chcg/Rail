@@ -5,6 +5,7 @@ using Rail.Mvvm;
 using Rail.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.IO;
@@ -356,6 +357,77 @@ namespace Rail.ViewModel
                 NotifyPropertyChanged(nameof(SelectedInsertLayer));
             }
         }
+
+
+        private Point? selectedRailsPosition = null;
+        public Point? SelectedRailsPosition
+        {
+            get
+            {
+                return this.selectedRailsPosition;
+            }
+            set
+            {
+                this.selectedRailsPosition = value;
+                NotifyPropertyChanged(nameof(SelectedRailsPosition));
+            }
+        }
+
+        private double? selectedRailsAngle = null;
+        public double? SelectedRailsAngle
+        {
+            get
+            {
+                return this.selectedRailsAngle;
+            }
+            set
+            {
+                this.selectedRailsAngle = value;
+                NotifyPropertyChanged(nameof(SelectedRailsAngle));
+            }
+        }
+
+        private Guid? selectedRailsLayer = null;
+        public Guid? SelectedRailsLayer
+        {
+            get
+            {
+                return this.selectedRailsLayer;
+            }
+            set
+            {
+                this.selectedRailsLayer = value;
+                NotifyPropertyChanged(nameof(SelectedRailsLayer));
+            }
+        }
+
+        private double? selectedRailsGradient = null;
+        public double? SelectedRailsGradient
+        {
+            get
+            {
+                return this.selectedRailsGradient;
+            }
+            set
+            {
+                this.selectedRailsGradient = value;
+                NotifyPropertyChanged(nameof(SelectedRailsGradient));
+            }
+        }
+
+        private double? selectedRailsHeight = null;
+        public double? SelectedRailsHeight
+        {
+            get
+            {
+                return this.selectedRailsHeight;
+            }
+            set
+            {
+                this.selectedRailsHeight = value;
+                NotifyPropertyChanged(nameof(SelectedRailsHeight));
+            }
+        }
         #endregion
 
         #region methods
@@ -419,9 +491,11 @@ namespace Rail.ViewModel
             {
                 PrintCapabilities capabilities = printDialog.PrintQueue.GetPrintCapabilities(printDialog.PrintTicket);
 
-                RailPlanControl ctrl = new RailPlanControl();
-                ctrl.Background = new SolidColorBrush(Colors.White);
-                ctrl.RailPlan = this.RailPlan;
+                RailPlanControl ctrl = new RailPlanControl
+                {
+                    Background = new SolidColorBrush(Colors.White),
+                    RailPlan = this.RailPlan
+                };
                 ctrl.ZoomFactor = Math.Min(capabilities.PageImageableArea.ExtentWidth / (ctrl.Width + pageMargin * 2), capabilities.PageImageableArea.ExtentHeight / (ctrl.Height + pageMargin * 2));
                 
                 printDialog.PrintVisual(ctrl, "Rail Plan");
@@ -430,7 +504,7 @@ namespace Rail.ViewModel
 
         private void OnPrintPreview()
         {
-            
+            //ObservableCollection
             
         }
         #endregion

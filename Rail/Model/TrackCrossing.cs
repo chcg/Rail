@@ -65,7 +65,7 @@ namespace Rail.Model
                 StraitGeometry(this.Length2, StraitOrientation.Center, spacing, +this.Angle / 2));
         }
 
-        protected override Drawing CreateRailDrawing(bool isSelected)
+        protected override Drawing CreateRailDrawing()
         {
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.ViewType.HasFlag(TrackViewType.Ballast))
@@ -73,10 +73,10 @@ namespace Rail.Model
                 drawingRail.Children.Add(StraitBallast(this.Length1, StraitOrientation.Center, -this.Angle / 2));
                 drawingRail.Children.Add(StraitBallast(this.Length2, StraitOrientation.Center, +this.Angle / 2));
             }
-            drawingRail.Children.Add(StraitSleepers(isSelected, this.Length1, StraitOrientation.Center, -this.Angle / 2));
-            drawingRail.Children.Add(StraitSleepers(isSelected, this.Length2, StraitOrientation.Center, +this.Angle / 2));
-            drawingRail.Children.Add(StraitRail(isSelected, this.Length1, StraitOrientation.Center, -this.Angle / 2));
-            drawingRail.Children.Add(StraitRail(isSelected, this.Length2, StraitOrientation.Center, +this.Angle / 2));
+            drawingRail.Children.Add(StraitSleepers(this.Length1, StraitOrientation.Center, -this.Angle / 2));
+            drawingRail.Children.Add(StraitSleepers(this.Length2, StraitOrientation.Center, +this.Angle / 2));
+            drawingRail.Children.Add(StraitRail(this.Length1, StraitOrientation.Center, -this.Angle / 2));
+            drawingRail.Children.Add(StraitRail(this.Length2, StraitOrientation.Center, +this.Angle / 2));
             return drawingRail;
         }
 

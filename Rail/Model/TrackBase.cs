@@ -21,20 +21,15 @@ namespace Rail.Model
         
         protected Pen woodenSleepersPen;
         protected Pen concreteSleepersPen;
-        protected Pen selectedSleepersPen;
 
         protected Pen woodenRailPen;
         protected Pen concreteRailPen;
-        protected Pen selectedRailPen;
         
         protected FormattedText text;
         protected Drawing textDrawing;
         protected string dockType;
 
-        protected Drawing drawingTracks;
-        protected Drawing drawingTracksSelected;
         protected Drawing drawingRail;
-        protected Drawing drawingRailSelected;
         protected Drawing drawingTerrain;
 
         protected double railWidth;
@@ -78,6 +73,12 @@ namespace Rail.Model
         [XmlIgnore]
         public List<TrackDockPoint> DockPoints { get; protected set; }
 
+        /// <summary>
+        /// Get a list with the materials and order numbers of the track.
+        /// </summary>
+        /// <remarks>
+        /// A track can have more than one material / order number for example the track spoke connections for a turntable.  
+        /// </remarks>
         [XmlIgnore]
         public virtual List<TrackMaterial> Materials 
         {
@@ -108,11 +109,9 @@ namespace Rail.Model
 
             this.woodenRailPen = new Pen(TrackBrushes.WoodenRail, this.RailSpacing * railThicknessFactor);
             this.concreteRailPen = new Pen(TrackBrushes.ConcreteRail, this.RailSpacing * railThicknessFactor);
-            this.selectedRailPen = new Pen(TrackBrushes.SelectedRail, this.RailSpacing * railThicknessFactor);
             
             this.woodenSleepersPen = new Pen(TrackBrushes.WoodenSleepers, this.RailSpacing * sleepersThicknessFactor);
             this.concreteSleepersPen = new Pen(TrackBrushes.ConcreteSleepers, this.RailSpacing * sleepersThicknessFactor);
-            this.selectedSleepersPen = new Pen(TrackBrushes.SelectedSleepers, this.RailSpacing * sleepersThicknessFactor);
 
             this.text = new FormattedText(this.Article, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), this.RailSpacing * textFactor, TrackBrushes.Text, 1.25);
             this.textDrawing = new GeometryDrawing(TrackBrushes.Text, textPen, text.BuildGeometry(new Point(0, 0) - new Vector(text.Width / 2, text.Height / 2)));
@@ -123,31 +122,27 @@ namespace Rail.Model
         {
             // Tracks
             this.GeometryTracks = CreateGeometry(this.RailSpacing);
-
-            DrawingGroup drawingTracks = new DrawingGroup();
-            drawingTracks.Children.Add(new GeometryDrawing(TrackBrushes.TrackBackground, this.linePen, this.GeometryTracks));
-            drawingTracks.Children.Add(this.textDrawing);
-            this.drawingTracks = drawingTracks;
-
-            DrawingGroup drawingTracksSelected = new DrawingGroup();
-            drawingTracksSelected.Children.Add(new GeometryDrawing(TrackBrushes.TrackSelectedBackground, this.linePen, this.GeometryTracks));
-            drawingTracksSelected.Children.Add(this.textDrawing);
-            this.drawingTracksSelected = drawingTracksSelected;
+            // no drawing because of different colors for the layers
 
             // Rail
             this.GeometryRail = CreateGeometry(this.sleepersWidth);
-            this.drawingRail = CreateRailDrawing(false);
-            this.drawingRailSelected = CreateRailDrawing(true);
-
+            this.drawingRail = CreateRailDrawing();
+            
             // Terrain
+            // no geometrie because of no clickable
             this.drawingTerrain = drawingRail;
 
             // dock points
             this.DockPoints = CreateDockPoints();
         }
 
+        /// <summary>
+        /// Create geometrie with different spacings
+        /// </summary>
+        /// <param name="spacing">Spacing of the geometrie.</param>
+        /// <returns>The geometrie</returns>
         protected abstract Geometry CreateGeometry(double spacing);
-        protected abstract Drawing CreateRailDrawing(bool isSelected);
+        protected abstract Drawing CreateRailDrawing();
         protected abstract List<TrackDockPoint> CreateDockPoints();
 
         // for TrackControl
@@ -156,32 +151,28 @@ namespace Rail.Model
             switch (viewMode)
             {
             case RailViewMode.Tracks:
-                
                 drawingContext.DrawDrawing(new GeometryDrawing(trackBrush, this.linePen, this.GeometryTracks));
                 if (isSelected)
                 {
                     drawingContext.DrawDrawing(new GeometryDrawing(null, this.dotPen, this.GeometryTracks));
                 }
                 drawingContext.DrawDrawing(this.textDrawing);
-
-                //drawingContext.DrawDrawing(isSelected ? this.drawingTracksSelected : this.drawingTracks);
                 break;
+
             case RailViewMode.Rail:
-                drawingContext.DrawDrawing(this.drawingTerrain);
+                drawingContext.DrawDrawing(this.drawingRail);
                 if (isSelected)
                 {
                     drawingContext.DrawDrawing(new GeometryDrawing(null, this.linePen, this.GeometryRail));
                     drawingContext.DrawDrawing(new GeometryDrawing(null, this.dotPen, this.GeometryRail));
                 }
-                //drawingContext.DrawDrawing(isSelected ? this.drawingRailSelected : this.drawingRail);
                 break;
+
             case RailViewMode.Terrain:
                 drawingContext.DrawDrawing(this.drawingTerrain);
                 break;
             }
         }
-
-        
 
         public enum StraitOrientation
         {
@@ -201,38 +192,24 @@ namespace Rail.Model
             Counterclockwise = 0x10
         }
 
-        protected Pen GetSleepersPen(bool isSelected)
+        protected Pen GetSleepersPen()
         {
-            if (isSelected)
+            return (this.ViewType & TrackViewType.Sleepers) switch
             {
-                return selectedSleepersPen;
-            }
-            else
-            {
-                return (this.ViewType & TrackViewType.Sleepers) switch
-                {
-                    TrackViewType.WoodenSleepers => this.woodenSleepersPen,
-                    TrackViewType.ConcreteSleepers => this.concreteSleepersPen,
-                    _ => null
-                };
-            }
+                TrackViewType.WoodenSleepers => this.woodenSleepersPen,
+                TrackViewType.ConcreteSleepers => this.concreteSleepersPen,
+                _ => null
+            };
         }
 
-        protected Pen GetRailPen(bool isSelected)
+        protected Pen GetRailPen()
         {
-            if (isSelected)
+            return (this.ViewType & TrackViewType.Sleepers) switch
             {
-                return selectedRailPen;
-            }
-            else
-            {
-                return (this.ViewType & TrackViewType.Sleepers) switch
-                {
-                    TrackViewType.WoodenSleepers => this.woodenRailPen,
-                    TrackViewType.ConcreteSleepers => this.concreteRailPen,
-                    _ => null
-                };
-            }
+                TrackViewType.WoodenSleepers => this.woodenRailPen,
+                TrackViewType.ConcreteSleepers => this.concreteRailPen,
+                _ => null
+            };
         }
 
         protected Geometry StraitGeometry(double length, StraitOrientation orientation, double width, double direction = 0, Point? pos = null)
@@ -265,9 +242,9 @@ namespace Rail.Model
             }));
         }
 
-        protected Drawing StraitSleepers(bool isSelected, double length, StraitOrientation orientation = StraitOrientation.Center, double direction = 0, Point? pos = null)
+        protected Drawing StraitSleepers(double length, StraitOrientation orientation = StraitOrientation.Center, double direction = 0, Point? pos = null)
         {
-            Pen sleepersPen = GetSleepersPen(isSelected);
+            Pen sleepersPen = GetSleepersPen();
             
             double x = 0;
             switch (orientation)
@@ -295,9 +272,9 @@ namespace Rail.Model
             return railDrawing;
         }
         
-        protected Drawing StraitRail(bool isSelected, double length, StraitOrientation orientation = StraitOrientation.Center, double direction = 0, Point? pos = null)
+        protected Drawing StraitRail(double length, StraitOrientation orientation = StraitOrientation.Center, double direction = 0, Point? pos = null)
         {
-            Pen railPen = GetRailPen(isSelected);
+            Pen railPen = GetRailPen();
             double x = 0;
             switch (orientation)
             {
@@ -399,9 +376,9 @@ namespace Rail.Model
             }));
         }
 
-        protected Drawing CurvedSleepers(bool isSelected, double angle, double radius, CurvedOrientation orientation, Point pos)
+        protected Drawing CurvedSleepers(double angle, double radius, CurvedOrientation orientation, Point pos)
         {
-            Pen sleepersPen = GetSleepersPen(isSelected);
+            Pen sleepersPen = GetSleepersPen();
 
             double outerSleepersRadius = radius + this.sleepersWidth / 2;
             double innerSleepersRadius = radius - this.sleepersWidth / 2;
@@ -436,9 +413,9 @@ namespace Rail.Model
             return railDrawing;
         }
 
-        protected Drawing CurvedRail(bool isSelected, double angle, double radius, CurvedOrientation orientation, Point pos)
+        protected Drawing CurvedRail(double angle, double radius, CurvedOrientation orientation, Point pos)
         {
-            Pen railPen = GetRailPen(isSelected);
+            Pen railPen = GetRailPen();
 
             double outerTrackRadius = radius + this.railWidth / 2;
             double innerTrackRadius = radius - this.railWidth / 2;

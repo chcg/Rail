@@ -21,27 +21,28 @@ namespace Rail.Model
 
         public static RailPlan Create()
         {
-            RailPlan railPlan = new RailPlan();
-            railPlan.PlatePoints = new ObservableCollection<Point>()
+            return new RailPlan
             {
-                new Point(0, 0),
-                new Point(3000, 0),
-                new Point(3000, 1500),
-                new Point(2000, 1500),
-                new Point(2000, 1000),
-                new Point(1000, 1000),
-                new Point(1000, 1500),
-                new Point(0, 1500),
+                PlatePoints = new ObservableCollection<Point>()
+                {
+                    new Point(0, 0),
+                    new Point(3000, 0),
+                    new Point(3000, 1500),
+                    new Point(2000, 1500),
+                    new Point(2000, 1000),
+                    new Point(1000, 1000),
+                    new Point(1000, 1500),
+                    new Point(0, 1500),
+                },
+                Layers = new ObservableCollection<RailLayer>
+                {
+                    new RailLayer{ Id = Guid.NewGuid(), Name = "Shadow Station", Height = 300, TrackColor = Colors.LightGray, PlateColor = Colors.Gray },
+                    new RailLayer{ Id = Guid.NewGuid(), Name = "Ground Plate", Height = 100, TrackColor = Colors.White, PlateColor = Colors.Green },
+                    new RailLayer{ Id = Guid.NewGuid(), Name = "Tunnel", Height = 100, TrackColor = Colors.Blue, PlateColor = Colors.Transparent },
+                    new RailLayer{ Id = Guid.NewGuid(), Name = "Bridge", Height = 100, TrackColor = Colors.Yellow, PlateColor = Colors.Transparent }
+                },
+                Rails = new ObservableCollection<RailItem>()
             };
-            railPlan.Layers = new ObservableCollection<RailLayer>
-            {
-                new RailLayer{ Id = Guid.NewGuid(), Name = "Shadow Station", Height = 300, TrackColor = Colors.LightGray, PlateColor = Colors.Gray },
-                new RailLayer{ Id = Guid.NewGuid(), Name = "Ground Plate", Height = 100, TrackColor = Colors.White, PlateColor = Colors.Green },
-                new RailLayer{ Id = Guid.NewGuid(), Name = "Bridge", Height = 100, TrackColor = Colors.Yellow, PlateColor = Colors.Transparent }
-            };
-            railPlan.Rails = new ObservableCollection<RailItem>();
-            
-            return railPlan;
         }
 
         public static RailPlan Load(string path)

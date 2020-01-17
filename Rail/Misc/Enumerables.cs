@@ -43,9 +43,21 @@ namespace Rail.Misc
 			}
 		}
 
+		public static bool One<TSource>(this IEnumerable<TSource> source)
+		{
+			return source.Count<TSource>() == 1;
+		}
+
 		public static bool One<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 		{
 			return source.Count<TSource>(predicate) == 1;
+		}
+
+		public static TSource IdenticalOrDefault<TSource>(this IEnumerable<TSource> source)
+		{
+			TSource first = source.FirstOrDefault();
+			int num = source.Where(i => i.Equals(first)).Count();
+			return num == source.Count() ? first : default;
 		}
 
 		//public static void ForEach<T>(this ObservableCollection<T> source, Action<T> action)

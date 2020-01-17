@@ -326,16 +326,21 @@
         <Grid>
             <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TrackRailViewModeToVisibilityConverter}}" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
                 <ctrl:RailPlanControl 
-                x:Name="railPlanControl"
-                Background="DarkGray"
-                ZoomFactor="{Binding ZoomFactor}"
-                RailPlan="{Binding RailPlan}"
-                SelectedTrack="{Binding SelectedTrack}"
-                MousePosition="{Binding MousePosition, Mode=OneWayToSource}"
-                ViewMode="{Binding ViewMode}" 
-                ShowDockingPoints="{Binding ShowDockingPoints}"
-                InsertLayer="{Binding SelectedInsertLayer}"
-                RailMargin="40"/>
+                    x:Name="railPlanControl"
+                    Background="DarkGray"
+                    ZoomFactor="{Binding ZoomFactor}"
+                    RailPlan="{Binding RailPlan}"
+                    SelectedTrack="{Binding SelectedTrack}"
+                    MousePosition="{Binding MousePosition, Mode=OneWayToSource}"
+                    ViewMode="{Binding ViewMode}" 
+                    ShowDockingPoints="{Binding ShowDockingPoints}"
+                    InsertLayer="{Binding SelectedInsertLayer}"
+                    SelectedRailsPosition="{Binding SelectedRailsPosition}"  
+                    SelectedRailsAngle="{Binding SelectedRailsAngle}"
+                    SelectedRailsLayer="{Binding SelectedRailsLayer}"
+                    SelectedRailsGradient="{Binding SelectedRailsGradient}"
+                    SelectedRailsHeight="{Binding SelectedRailsHeight}"
+                    RailMargin="40"/>
             </ScrollViewer>
             <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TerrainViewModeToVisibilityConverter}}">
                 <Viewport3D ClipToBounds="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">

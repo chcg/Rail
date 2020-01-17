@@ -49,15 +49,15 @@ namespace Rail.Model
             return StraitGeometry(this.Length, StraitOrientation.Center, spacing); 
         }
 
-        protected override Drawing CreateRailDrawing(bool isSelected)
+        protected override Drawing CreateRailDrawing()
         {
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.ViewType.HasFlag(TrackViewType.Ballast))
             {
                 drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, 0, null));
             }
-            drawingRail.Children.Add(StraitSleepers(isSelected, this.Length));
-            drawingRail.Children.Add(StraitRail(isSelected, this.Length));
+            drawingRail.Children.Add(StraitSleepers(this.Length));
+            drawingRail.Children.Add(StraitRail(this.Length));
             return drawingRail;
         }
 

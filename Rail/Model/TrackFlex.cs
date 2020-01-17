@@ -33,7 +33,7 @@ namespace Rail.Model
             return CurvedGeometry(20, 360, CurvedOrientation.Center, spacing, new Point());
         }
 
-        protected override Drawing CreateRailDrawing(bool isSelected)
+        protected override Drawing CreateRailDrawing()
         {
             return null;
         }

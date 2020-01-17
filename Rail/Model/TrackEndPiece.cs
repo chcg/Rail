@@ -35,7 +35,7 @@ namespace Rail.Model
             return StraitGeometry(length, StraitOrientation.Left, spacing);
         }
 
-        protected override Drawing CreateRailDrawing(bool isSelected)
+        protected override Drawing CreateRailDrawing()
         {
             double length = this.RailSpacing;
 
@@ -44,8 +44,8 @@ namespace Rail.Model
             {
                 drawingRail.Children.Add(StraitBallast(length, StraitOrientation.Left, 0, null));
             }
-            drawingRail.Children.Add(StraitSleepers(isSelected, length / 2, StraitOrientation.Left, 0, null));
-            drawingRail.Children.Add(StraitRail(isSelected, length / 2, StraitOrientation.Left, 0, null));
+            drawingRail.Children.Add(StraitSleepers(length / 2, StraitOrientation.Left, 0, null));
+            drawingRail.Children.Add(StraitRail(length / 2, StraitOrientation.Left, 0, null));
             return drawingRail;
         }
 
