@@ -89,7 +89,7 @@
                         <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding SnapInDistances}" SelectedValue="{Binding SnapInDistance}" Background="White" Margin="4" >
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding .,Converter={StaticResource DistanceToTextConverter}}" HorizontalAlignment="Stretch"/>
+                                    <TextBlock Text="{Binding .,Converter={StaticResource  DistanceToTextConverter}}" HorizontalAlignment="Stretch"/>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
@@ -122,6 +122,34 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                         
+                    </Grid>
+                </RibbonGroup>
+                <RibbonGroup Header="{x:Static lang:Resources.MainTracks}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Column="0" Grid.Row="0" Text="{Binding SelectedRailsX }" ToolTip="X" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text"/>
+                        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedRailsY }" ToolTip="Y" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text"/>
+                        <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding SelectedRailsAngle}" ToolTip="Angle" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text"/>
+                        <ComboBox Grid.Column="0" Grid.Row="1" SelectedItem="{Binding SelectedRailsLayer}" ItemsSource="{Binding Layers}" ToolTip="Layer">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Fill="{Binding Path=TrackBrush}" Width="12" Height="12" Margin="2" />
+                                        <TextBlock Text="{Binding Path=Name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedRailsGradient }" ItemsSource="{Binding Gradients}" ToolTip="Gradient" IsEditable="True" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="ComboBox.Text"/>
+                        <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding SelectedRailsHeight }" ToolTip="Height" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text"/>
                     </Grid>
                 </RibbonGroup>
                 <RibbonGroup Header="{x:Static lang:Resources.MainSwitches}">
@@ -248,7 +276,6 @@
                                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Blue"/>
                                     <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Blue"/>
                                     <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey }" Color="White"/>
-
                                 </Style.Resources>
                             </Style>
                         </DataGrid.Resources>
@@ -257,7 +284,6 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <CheckBox 
-                                            
                                             HorizontalAlignment="Center" 
                                             VerticalAlignment="Center" 
                                             IsChecked="{Binding Path=Show, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -265,11 +291,6 @@
                                             Unchecked="OnRefreshRailPlanControl"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
-                                <!--<DataGridTemplateColumn.CellStyle>
-                                    <Style TargetType="DataGridCell">
-                                        <Setter Property="IsHitTestVisible" Value="False"/>
-                                    </Style>
-                                </DataGridTemplateColumn.CellStyle>-->
                             </DataGridTemplateColumn>
                             <DataGridTemplateColumn Header="Layer Name" Width="200" IsReadOnly="True" CanUserReorder="False">
                                 <DataGridTemplateColumn.CellTemplate>
@@ -282,15 +303,6 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
-                        <!--<DataGrid.RowStyle>
-                            <Style TargetType="DataGridRow">
-                                <Style.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Background" Value="Blue"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </DataGrid.RowStyle>-->
                     </DataGrid>                        
                 </TabItem>
                 <TabItem Header="Material List">
@@ -335,7 +347,8 @@
                     ViewMode="{Binding ViewMode}" 
                     ShowDockingPoints="{Binding ShowDockingPoints}"
                     InsertLayer="{Binding SelectedInsertLayer}"
-                    SelectedRailsPosition="{Binding SelectedRailsPosition}"  
+                    SelectedRailsX="{Binding SelectedRailsX}"  
+                    SelectedRailsY="{Binding SelectedRailsY}"  
                     SelectedRailsAngle="{Binding SelectedRailsAngle}"
                     SelectedRailsLayer="{Binding SelectedRailsLayer}"
                     SelectedRailsGradient="{Binding SelectedRailsGradient}"

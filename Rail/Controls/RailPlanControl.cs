@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Rail.Properties;
 using System.Collections;
+using System.ComponentModel;
 
 namespace Rail.Controls
 {
@@ -32,6 +33,10 @@ namespace Rail.Controls
         //private Angle debugRotationAngle;
         private Point selectRecStart;
 
+        private RailSelectedMode selectedMode = RailSelectedMode.None;
+        private RailItem selectedRail;
+        private List<RailItem> selectedRails;
+
         public DelegateCommand<RailItem> DeleteRailItemCommand { get; private set; }
         public DelegateCommand<RailItem> RotateRailItemCommand { get; private set; }
         public DelegateCommand<RailItem> PropertiesRailItemCommand { get; private set; }
@@ -43,6 +48,13 @@ namespace Rail.Controls
             MoveGraph,
             Rotate,
             SelectRect
+        }
+
+        public enum RailSelectedMode
+        {
+            None,
+            Single,
+            Multi
         }
 
         static RailPlanControl()
@@ -60,8 +72,12 @@ namespace Rail.Controls
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            var window = Window.GetWindow(this);
-            window.KeyDown += OnKeyPress;
+            DependencyObject dep = new DependencyObject();
+            if (!DesignerProperties.GetIsInDesignMode(dep))
+            {
+                var window = Window.GetWindow(this);
+                window.KeyDown += OnKeyPress;
+            }
         }
         
 
@@ -268,27 +284,36 @@ namespace Rail.Controls
                 this.SelectedRails.Clear();
                 this.RailPlan.Rails.Where(r => r.IsSelected).ForEach(r => this.SelectedRails.Add(r));
             }
-
-            var selectedRails = this.RailPlan.Rails.Where(r => r.IsSelected).ToArray();
+            
+            var selectedRails = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
             switch (selectedRails.Count())
             {
             case 0:
-                this.SelectedRailsPosition = null;
+                this.selectedMode = RailSelectedMode.None;
+                this.SelectedRailsX = null;
+                this.SelectedRailsY = null;
                 this.SelectedRailsAngle = null;
                 this.SelectedRailsLayer = null;
                 this.SelectedRailsGradient = null;
                 this.SelectedRailsHeight = null;
                 break;
             case 1:
-                var selectedRail = selectedRails.Single();
-                this.SelectedRailsPosition = selectedRail.Position;
-                this.SelectedRailsAngle = selectedRail.Angle;
-                this.SelectedRailsLayer = selectedRail.Layer;
-                this.SelectedRailsGradient = selectedRail.Gradient;
-                this.SelectedRailsHeight = selectedRail.Height;
+                this.selectedMode = RailSelectedMode.Single;
+                this.selectedRail = selectedRails.Single();
+
+                this.SelectedRailsX = this.selectedRail.X;
+                this.SelectedRailsY = this.selectedRail.Y;
+                this.SelectedRailsAngle = this.selectedRail.Angle;
+                this.SelectedRailsLayer = this.selectedRail.Layer;
+                this.SelectedRailsGradient = this.selectedRail.Gradient;
+                this.SelectedRailsHeight = this.selectedRail.Height;
                 break;
             default:
-                this.SelectedRailsPosition = null;
+                this.selectedMode = RailSelectedMode.Multi;
+                this.selectedRails = selectedRails;
+
+                this.SelectedRailsX = null;
+                this.SelectedRailsY = null;
                 this.SelectedRailsAngle = null;
                 this.SelectedRailsLayer = selectedRails.Select(r => r.Layer).IdenticalOrDefault();
                 this.SelectedRailsGradient = selectedRails.Select(r => r.Gradient).IdenticalOrDefault();
@@ -300,27 +325,52 @@ namespace Rail.Controls
 
         #endregion
 
-        #region SelectedRailsPosition
+        #region SelectedRailsX
 
-        public static readonly DependencyProperty SelectedRailsPositionProperty =
-            DependencyProperty.Register("SelectedRailsPosition", typeof(Point?), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnSelectedRailsPositionChanged)));
+        public static readonly DependencyProperty SelectedRailsXProperty =
+            DependencyProperty.Register("SelectedRailsX", typeof(double?), typeof(RailPlanControl),
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsXChanged)));
 
-        public Point? SelectedRailsPosition
+        public double? SelectedRailsX
         {
             get
             {
-                return (Point?)GetValue(SelectedRailsPositionProperty);
+                return (double?)GetValue(SelectedRailsXProperty);
             }
             set
             {
-                SetValue(SelectedRailsPositionProperty, value);
+                SetValue(SelectedRailsXProperty, value);
             }
         }
 
-        private static void OnSelectedRailsPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        private static void OnSelectedRailsXChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             RailPlanControl railPlan = (RailPlanControl)o;            
+        }
+
+        #endregion
+
+        #region SelectedRailsY
+
+        public static readonly DependencyProperty SelectedRailsYProperty =
+            DependencyProperty.Register("SelectedRailsY", typeof(double?), typeof(RailPlanControl),
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsYChanged)));
+
+        public double? SelectedRailsY
+        {
+            get
+            {
+                return (double?)GetValue(SelectedRailsYProperty);
+            }
+            set
+            {
+                SetValue(SelectedRailsYProperty, value);
+            }
+        }
+
+        private static void OnSelectedRailsYChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RailPlanControl railPlan = (RailPlanControl)o;
         }
 
         #endregion
@@ -329,7 +379,7 @@ namespace Rail.Controls
 
         public static readonly DependencyProperty SelectedRailsAngleProperty =
             DependencyProperty.Register("SelectedRailsAngle", typeof(double?), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnSelectedRailsAngleChanged)));
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsAngleChanged)));
 
         public double? SelectedRailsAngle
         {
@@ -345,16 +395,34 @@ namespace Rail.Controls
 
         private static void OnSelectedRailsAngleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RailPlanControl railPlan = (RailPlanControl)o;
+            RailPlanControl railPlanControl = (RailPlanControl)o;
+            railPlanControl.OnSelectedRailsAngleChanged();
+        }
+
+        private void OnSelectedRailsAngleChanged()
+        {
+            switch (this.selectedMode)
+            {
+            case RailSelectedMode.Single:
+                var angle = this.SelectedRailsAngle;
+                if (angle != this.selectedRail.Angle)
+                {
+
+                }
+                break;
+            case RailSelectedMode.Multi:
+                // only one can rotated
+                break;
+            }
         }
 
         #endregion
 
-        #region SelectedRailsLayer
+            #region SelectedRailsLayer
 
         public static readonly DependencyProperty SelectedRailsLayerProperty =
             DependencyProperty.Register("SelectedRailsLayer", typeof(Guid?), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnSelectedRailsLayerChanged)));
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsLayerChanged)));
 
         public Guid? SelectedRailsLayer
         {
@@ -379,7 +447,7 @@ namespace Rail.Controls
 
         public static readonly DependencyProperty SelectedRailsGradientProperty =
             DependencyProperty.Register("SelectedRailsGradient", typeof(double?), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnSelectedRailsGradientChanged)));
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsGradientChanged)));
 
         public double? SelectedRailsGradient
         {
@@ -395,8 +463,27 @@ namespace Rail.Controls
 
         private static void OnSelectedRailsGradientChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RailPlanControl railPlan = (RailPlanControl)o;
+            RailPlanControl railPlanControl = (RailPlanControl)o;
+            railPlanControl.OnSelectedRailsGradientChanged();
         }
+
+        private void OnSelectedRailsGradientChanged()
+        {
+            switch (this.selectedMode)
+            {
+            case RailSelectedMode.Single:
+                var gradient = this.SelectedRailsGradient;
+                if (gradient != this.selectedRail.Gradient)
+                {
+
+                }
+                break;
+            case RailSelectedMode.Multi:
+                // only one can rotated
+                break;
+            }
+        }
+
 
         #endregion
 
@@ -404,7 +491,7 @@ namespace Rail.Controls
 
         public static readonly DependencyProperty SelectedRailsHeightProperty =
             DependencyProperty.Register("SelectedRailsHeight", typeof(double?), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnSelectedRailsHeightChanged)));
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsHeightChanged)));
 
         public double? SelectedRailsHeight
         {
@@ -438,6 +525,11 @@ namespace Rail.Controls
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
+
+            if (this.RailPlan == null)
+            {
+                return;
+            }
 
             // drawn background is needed for detecting mouse moves
             drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.Width, this.Height));

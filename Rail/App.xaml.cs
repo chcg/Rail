@@ -1,4 +1,5 @@
 ﻿using Rail.View;
+using Rail.ViewModel;
 using System;
 using System.Diagnostics;
 using System.Globalization;
@@ -20,7 +21,7 @@ namespace Rail
             try
             {
                 AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(OnUnhandledException);
-                new MainView().Show();
+                new MainView()/* { DataContext = new MainViewModel() }*/.Show();
             }
             catch (Exception ex)
             {

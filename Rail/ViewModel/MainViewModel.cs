@@ -359,17 +359,31 @@ namespace Rail.ViewModel
         }
 
 
-        private Point? selectedRailsPosition = null;
-        public Point? SelectedRailsPosition
+        private double? selectedRailsX = null;
+        public double? SelectedRailsX
         {
             get
             {
-                return this.selectedRailsPosition;
+                return this.selectedRailsX;
             }
             set
             {
-                this.selectedRailsPosition = value;
-                NotifyPropertyChanged(nameof(SelectedRailsPosition));
+                this.selectedRailsX = value;
+                NotifyPropertyChanged(nameof(SelectedRailsX));
+            }
+        }
+
+        private double? selectedRailsY = null;
+        public double? SelectedRailsY
+        {
+            get
+            {
+                return this.selectedRailsY;
+            }
+            set
+            {
+                this.selectedRailsY = value;
+                NotifyPropertyChanged(nameof(SelectedRailsY));
             }
         }
 
@@ -387,6 +401,20 @@ namespace Rail.ViewModel
             }
         }
 
+        private Guid? selectedRailsLayerId = null;
+        public Guid? SelectedRailsLayerId
+        {
+            get
+            {
+                return this.selectedRailsLayerId;
+            }
+            set
+            {
+                this.selectedRailsLayerId = value;
+                NotifyPropertyChanged(nameof(SelectedRailsLayerId));
+            }
+        }
+
         private Guid? selectedRailsLayer = null;
         public Guid? SelectedRailsLayer
         {
@@ -400,6 +428,9 @@ namespace Rail.ViewModel
                 NotifyPropertyChanged(nameof(SelectedRailsLayer));
             }
         }
+
+        //public ObservableCollection<RailLayer> Layers { get { return this.RailPlan.Layers; } }
+
 
         private double? selectedRailsGradient = null;
         public double? SelectedRailsGradient
@@ -428,6 +459,9 @@ namespace Rail.ViewModel
                 NotifyPropertyChanged(nameof(SelectedRailsHeight));
             }
         }
+
+        public double[] Gradients { get { return new double[] { 0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0 };  } }
+
         #endregion
 
         #region methods
