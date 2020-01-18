@@ -128,17 +128,24 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="100"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <TextBox Grid.Column="0" Grid.Row="0" Text="{Binding SelectedRailsX }" ToolTip="X" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text"/>
-                        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedRailsY }" ToolTip="Y" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text"/>
-                        <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding SelectedRailsAngle}" ToolTip="Angle" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text"/>
-                        <ComboBox Grid.Column="0" Grid.Row="1" SelectedItem="{Binding SelectedRailsLayer}" ItemsSource="{Binding Layers}" ToolTip="Layer">
+                        <Label Grid.Column="0" Grid.Row="0" Content="X (mm)"  />
+                        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedRailsX }" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
+                        <Label Grid.Column="2" Grid.Row="0" Content="Y (mm)"  />
+                        <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding SelectedRailsY }" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
+                        <Label Grid.Column="4" Grid.Row="0" Content="Angle (°)"  />
+                        <TextBox Grid.Column="5" Grid.Row="0" Text="{Binding SelectedRailsAngle}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
+                        <Label Grid.Column="0" Grid.Row="1" Content="Layer"  />
+                        <ComboBox Grid.Column="1" Grid.Row="1" SelectedItem="{Binding SelectedRailsLayer}" ItemsSource="{Binding Layers}" Margin="4" >
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -148,8 +155,10 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <ComboBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedRailsGradient }" ItemsSource="{Binding Gradients}" ToolTip="Gradient" IsEditable="True" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="ComboBox.Text"/>
-                        <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding SelectedRailsHeight }" ToolTip="Height" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text"/>
+                        <Label Grid.Column="2" Grid.Row="1" Content="Gradient (%)" />
+                        <ComboBox Grid.Column="3" Grid.Row="1" Text="{Binding SelectedRailsGradient }" ItemsSource="{Binding Gradients}" Margin="4"  IsEditable="True" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="ComboBox.Text"/>
+                        <Label Grid.Column="4" Grid.Row="1" Content="Height (mm)" />
+                        <TextBox Grid.Column="5" Grid.Row="1" Text="{Binding SelectedRailsHeight }" Margin="4" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text"/>
                     </Grid>
                 </RibbonGroup>
                 <RibbonGroup Header="{x:Static lang:Resources.MainSwitches}">
@@ -350,7 +359,7 @@
                     SelectedRailsX="{Binding SelectedRailsX}"  
                     SelectedRailsY="{Binding SelectedRailsY}"  
                     SelectedRailsAngle="{Binding SelectedRailsAngle}"
-                    SelectedRailsLayer="{Binding SelectedRailsLayer}"
+                    SelectedRailsLayer="{Binding SelectedRailsLayerId}"
                     SelectedRailsGradient="{Binding SelectedRailsGradient}"
                     SelectedRailsHeight="{Binding SelectedRailsHeight}"
                     RailMargin="40"/>

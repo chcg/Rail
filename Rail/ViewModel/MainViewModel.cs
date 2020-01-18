@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Printing;
@@ -358,7 +359,6 @@ namespace Rail.ViewModel
             }
         }
 
-
         private double? selectedRailsX = null;
         public double? SelectedRailsX
         {
@@ -368,11 +368,15 @@ namespace Rail.ViewModel
             }
             set
             {
-                this.selectedRailsX = value;
-                NotifyPropertyChanged(nameof(SelectedRailsX));
+                Debug.WriteLine($"MainViewModel.SelectedRailsX  new = {value}, old = {this.selectedRailsX}");
+                if (selectedRailsX != value)
+                {
+                    this.selectedRailsX = value;
+                    NotifyPropertyChanged(nameof(SelectedRailsX));
+                }
             }
         }
-
+        
         private double? selectedRailsY = null;
         public double? SelectedRailsY
         {
@@ -401,8 +405,8 @@ namespace Rail.ViewModel
             }
         }
 
-        private Guid? selectedRailsLayerId = null;
-        public Guid? SelectedRailsLayerId
+        private Guid selectedRailsLayerId = Guid.Empty;
+        public Guid SelectedRailsLayerId
         {
             get
             {
@@ -410,13 +414,17 @@ namespace Rail.ViewModel
             }
             set
             {
-                this.selectedRailsLayerId = value;
-                NotifyPropertyChanged(nameof(SelectedRailsLayerId));
+                if (this.selectedRailsLayerId != value)
+                {
+                    this.selectedRailsLayerId = value;
+                    this.SelectedRailsLayer = this.Layers.FirstOrDefault(l => l.Id == value);
+                    NotifyPropertyChanged(nameof(SelectedRailsLayerId));
+                }
             }
         }
 
-        private Guid? selectedRailsLayer = null;
-        public Guid? SelectedRailsLayer
+        private RailLayer selectedRailsLayer = null;
+        public RailLayer SelectedRailsLayer
         {
             get
             {
@@ -424,13 +432,15 @@ namespace Rail.ViewModel
             }
             set
             {
-                this.selectedRailsLayer = value;
-                NotifyPropertyChanged(nameof(SelectedRailsLayer));
+                if (this.selectedRailsLayer != value)
+                {
+                    this.selectedRailsLayer = value;
+                    this.SelectedRailsLayerId = value?.Id ?? Guid.Empty;
+                    NotifyPropertyChanged(nameof(SelectedRailsLayer));
+                }
             }
         }
-
-        //public ObservableCollection<RailLayer> Layers { get { return this.RailPlan.Layers; } }
-
+                
 
         private double? selectedRailsGradient = null;
         public double? SelectedRailsGradient

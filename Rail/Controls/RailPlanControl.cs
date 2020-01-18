@@ -33,6 +33,7 @@ namespace Rail.Controls
         //private Angle debugRotationAngle;
         private Point selectRecStart;
 
+        private bool selectedChangeIntern = false;
         private RailSelectedMode selectedMode = RailSelectedMode.None;
         private RailItem selectedRail;
         private List<RailItem> selectedRails;
@@ -293,7 +294,7 @@ namespace Rail.Controls
                 this.SelectedRailsX = null;
                 this.SelectedRailsY = null;
                 this.SelectedRailsAngle = null;
-                this.SelectedRailsLayer = null;
+                this.SelectedRailsLayer = Guid.Empty;
                 this.SelectedRailsGradient = null;
                 this.SelectedRailsHeight = null;
                 break;
@@ -339,13 +340,34 @@ namespace Rail.Controls
             }
             set
             {
+                Debug.WriteLine($"RailPlanControl.SelectedRailsX new = {value}, old = {this.SelectedRailsX}");
                 SetValue(SelectedRailsXProperty, value);
             }
         }
 
         private static void OnSelectedRailsXChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RailPlanControl railPlan = (RailPlanControl)o;            
+            RailPlanControl railPlanControl = (RailPlanControl)o;
+            railPlanControl.OnSelectedRailsXChanged((double?)e.NewValue, (double?)e.OldValue);
+        }
+
+        private void OnSelectedRailsXChanged(double? newValue, double? oldValue)
+        {
+            Debug.WriteLine($"RailPlanControl.OnSelectedRailsXChanged new = {newValue}, old = {oldValue}, var = {this.SelectedRailsX}");
+            if (newValue.HasValue && oldValue.HasValue && newValue != oldValue && !this.selectedChangeIntern)
+            {
+                switch (this.selectedMode)
+                {
+                case RailSelectedMode.Single:
+                    var subgraph = this.selectedRail.FindSubgraph();
+                    this.MoveRailItem(subgraph, new Vector(newValue.Value - oldValue.Value, 0));
+                    this.InvalidateVisual();
+                    break;
+                case RailSelectedMode.Multi:
+                    // only one can move
+                    break;
+                }
+            }
         }
 
         #endregion
@@ -370,7 +392,25 @@ namespace Rail.Controls
 
         private static void OnSelectedRailsYChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RailPlanControl railPlan = (RailPlanControl)o;
+            RailPlanControl railPlanControl = (RailPlanControl)o;
+            railPlanControl.OnSelectedRailsYChanged((double?)e.NewValue, (double?)e.OldValue);
+        }
+
+        private void OnSelectedRailsYChanged(double? newValue, double? oldValue)
+        {
+            if (newValue.HasValue && SelectedRailsY.HasValue && newValue != SelectedRailsY && !this.selectedChangeIntern)
+            {
+                switch (this.selectedMode)
+                {
+                case RailSelectedMode.Single:
+                    this.selectedRail.Move(new Vector(0, newValue.Value - SelectedRailsY.Value));
+                    this.InvalidateVisual();
+                    break;
+                case RailSelectedMode.Multi:
+                    // only one can move
+                    break;
+                }
+            }
         }
 
         #endregion
@@ -396,39 +436,39 @@ namespace Rail.Controls
         private static void OnSelectedRailsAngleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             RailPlanControl railPlanControl = (RailPlanControl)o;
-            railPlanControl.OnSelectedRailsAngleChanged();
+            railPlanControl.OnSelectedRailsAngleChanged((double?)e.NewValue, (double?)e.OldValue);
         }
 
-        private void OnSelectedRailsAngleChanged()
+        private void OnSelectedRailsAngleChanged(double? newValue, double? oldValue)
         {
-            switch (this.selectedMode)
+            if (newValue.HasValue && oldValue.HasValue && newValue != oldValue)
             {
-            case RailSelectedMode.Single:
-                var angle = this.SelectedRailsAngle;
-                if (angle != this.selectedRail.Angle)
+                switch (this.selectedMode)
                 {
-
+                case RailSelectedMode.Single:
+                    this.selectedRail.Rotate(new Rotation(oldValue.Value) - new Rotation(newValue.Value), this.selectedRail.Position);
+                    this.InvalidateVisual();
+                    break;
+                case RailSelectedMode.Multi:
+                    // only one can rotated
+                    break;
                 }
-                break;
-            case RailSelectedMode.Multi:
-                // only one can rotated
-                break;
             }
         }
 
         #endregion
 
-            #region SelectedRailsLayer
+        #region SelectedRailsLayer
 
         public static readonly DependencyProperty SelectedRailsLayerProperty =
-            DependencyProperty.Register("SelectedRailsLayer", typeof(Guid?), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsLayerChanged)));
+            DependencyProperty.Register("SelectedRailsLayer", typeof(Guid), typeof(RailPlanControl),
+                new FrameworkPropertyMetadata(Guid.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsLayerChanged)));
 
-        public Guid? SelectedRailsLayer
+        public Guid SelectedRailsLayer
         {
             get
             {
-                return (Guid?)GetValue(SelectedRailsLayerProperty);
+                return (Guid)GetValue(SelectedRailsLayerProperty);
             }
             set
             {
@@ -438,7 +478,26 @@ namespace Rail.Controls
 
         private static void OnSelectedRailsLayerChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RailPlanControl railPlan = (RailPlanControl)o;
+            RailPlanControl railPlanControl = (RailPlanControl)o;
+            railPlanControl.OnSelectedRailsLayerChanged((Guid)e.NewValue, (Guid)e.OldValue);
+        }
+
+        private void OnSelectedRailsLayerChanged(Guid newValue, Guid oldValue)
+        {
+            if (newValue != Guid.Empty && newValue != oldValue)
+            {
+                switch (this.selectedMode)
+                {
+                case RailSelectedMode.Single:
+                    this.selectedRail.Layer = newValue;
+                    this.InvalidateVisual();
+                    break;
+                case RailSelectedMode.Multi:
+                    this.selectedRails.ForEach(r => r.Layer = newValue);
+                    this.InvalidateVisual();
+                    break;
+                }
+            }
         }
 
         #endregion
@@ -464,23 +523,24 @@ namespace Rail.Controls
         private static void OnSelectedRailsGradientChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             RailPlanControl railPlanControl = (RailPlanControl)o;
-            railPlanControl.OnSelectedRailsGradientChanged();
+            railPlanControl.OnSelectedRailsGradientChanged((double?)e.NewValue, (double?)e.OldValue);
         }
 
-        private void OnSelectedRailsGradientChanged()
+        private void OnSelectedRailsGradientChanged(double? newValue, double? oldValue)
         {
-            switch (this.selectedMode)
+            if (newValue.HasValue && newValue != oldValue)
             {
-            case RailSelectedMode.Single:
-                var gradient = this.SelectedRailsGradient;
-                if (gradient != this.selectedRail.Gradient)
+                switch (this.selectedMode)
                 {
-
+                case RailSelectedMode.Single:
+                    this.selectedRail.Gradient = newValue.Value;
+                    this.InvalidateVisual();
+                    break;
+                case RailSelectedMode.Multi:
+                    this.selectedRails.ForEach(r => r.Gradient = newValue.Value);
+                    this.InvalidateVisual();
+                    break;
                 }
-                break;
-            case RailSelectedMode.Multi:
-                // only one can rotated
-                break;
             }
         }
 
@@ -507,7 +567,26 @@ namespace Rail.Controls
 
         private static void OnSelectedRailsHeightChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RailPlanControl railPlan = (RailPlanControl)o;
+            RailPlanControl railPlanControl = (RailPlanControl)o;
+            railPlanControl.OnSelectedRailsHeightChanged((double?)e.NewValue, (double?)e.OldValue);
+        }
+
+        private void OnSelectedRailsHeightChanged(double? newValue, double? oldValue)
+        {
+            if (newValue.HasValue && newValue != oldValue)
+            {
+                switch (this.selectedMode)
+                {
+                case RailSelectedMode.Single:
+                    this.selectedRail.Height = newValue.Value;
+                    this.InvalidateVisual();
+                    break;
+                case RailSelectedMode.Multi:
+                    this.selectedRails.ForEach(r => r.Height = newValue.Value);
+                    this.InvalidateVisual();
+                    break;
+                }
+            }
         }
 
         #endregion
@@ -770,6 +849,7 @@ namespace Rail.Controls
 
         private void OnKeyPress(object sender, KeyEventArgs e)
         {
+            this.selectedChangeIntern = true;
             switch (e.Key)
             {
             case Key.Delete:
@@ -781,6 +861,7 @@ namespace Rail.Controls
                 this.Invalidate();
                 break;
             }
+            this.selectedChangeIntern = false;
         }
 
         //protected override void OnKeyDown(KeyEventArgs e)
@@ -805,6 +886,7 @@ namespace Rail.Controls
         protected override void OnMouseDoubleClick(MouseButtonEventArgs e)
         {
             Point pos = GetMousePosition(e);
+            this.selectedChangeIntern = true;
 
             RailItem railItem = FindRailItem(pos);
             if (railItem != null)
@@ -823,9 +905,10 @@ namespace Rail.Controls
             {
                 InsertRailItem(pos);
             }
+            this.selectedChangeIntern = false;
             base.OnMouseDoubleClick(e);
             DebugCheckDockings();
-            Keyboard.Focus(this);
+            //Keyboard.Focus(this);
         }
 
         
@@ -833,6 +916,7 @@ namespace Rail.Controls
         {
             Point pos = this.lastMousePosition = GetMousePosition(e);
             this.hasMoved = false;
+            this.selectedChangeIntern = true;
 
             // click inside track
             if ((this.actionRailItem = FindRailItem(pos)) != null)
@@ -975,6 +1059,7 @@ namespace Rail.Controls
             this.actionRailItem = null;
             Invalidate();
             this.ReleaseMouseCapture();
+            this.selectedChangeIntern = false;
 
             base.OnMouseLeftButtonUp(e);
             DebugCheckDockings();
@@ -1004,7 +1089,9 @@ namespace Rail.Controls
 
         private void OnDeleteRailItem(RailItem railItem)
         {
+            this.selectedChangeIntern = true;
             DeleteRailItem(railItem);
+            this.selectedChangeIntern = false;
             this.InvalidateVisual();
         }
                 
