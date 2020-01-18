@@ -13,7 +13,7 @@ using System.Xml.Serialization;
 namespace Rail.Model
 {
     [XmlRoot("RailPlan")]
-    public class RailPlan : BaseVersionedProject
+    public class RailPlan : BaseProject
     {
         private RailPlan()
         {
@@ -47,7 +47,7 @@ namespace Rail.Model
 
         public static RailPlan Load(string path)
         {
-            RailPlan railPlan = BaseVersionedProject.Load<RailPlan>(path);
+            RailPlan railPlan = BaseProject.Load<RailPlan>(path);
             return railPlan;
         }
 

@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 namespace Rail.Model
 {
     [XmlRoot("TrackList")]
-    public class TrackList : BaseVersionedProject
+    public class TrackList : BaseProject
     {
         public TrackList()
         {
@@ -16,7 +16,7 @@ namespace Rail.Model
 
         public static TrackList Load(string path)
         {
-            TrackList trackList = BaseVersionedProject.Load<TrackList>(path);
+            TrackList trackList = BaseProject.Load<TrackList>(path);
             trackList.TrackTypes.ForEach(trackType => trackType.Update());
             return trackList;
         }

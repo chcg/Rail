@@ -318,34 +318,12 @@ namespace Rail.ViewModel
             }
         }
 
-        //public IEnumerable<RailLayer> ShowLayers
-        //{
-        //    get { return new List<RailLayer> { new RailLayer { Id = Guid.Empty, Name = "All", TrackColor = Colors.White } }.Concat(this.RailPlan.Layers); }
-        //}
-
-        //public IEnumerable<RailLayer> InsertLayers
-        //{ 
-        //    get { return this.RailPlan.Layers; }
-        //}
-
         public IEnumerable<RailLayer> Layers
         {
             get { return this.RailPlan.Layers.Reverse(); }
         }
 
-        //private RailLayer selectedShowLayer = null;
-        //public RailLayer SelectedShowLayer
-        //{
-        //    get
-        //    {
-        //        return this.selectedShowLayer;
-        //    }
-        //    set
-        //    {
-        //        this.selectedShowLayer = value;
-        //        NotifyPropertyChanged(nameof(SelectedShowLayer));
-        //    }
-        //}
+       
 
         private RailLayer selectedInsertLayer = null;
         public RailLayer SelectedInsertLayer
@@ -358,117 +336,6 @@ namespace Rail.ViewModel
             {
                 this.selectedInsertLayer = value;
                 NotifyPropertyChanged(nameof(SelectedInsertLayer));
-            }
-        }
-
-        private double? selectedRailsX = null;
-        public double? SelectedRailsX
-        {
-            get
-            {
-                return this.selectedRailsX;
-            }
-            set
-            {
-                Debug.WriteLine($"MainViewModel.SelectedRailsX  new = {value}, old = {this.selectedRailsX}");
-                if (selectedRailsX != value)
-                {
-                    this.selectedRailsX = value;
-                    NotifyPropertyChanged(nameof(SelectedRailsX));
-                }
-            }
-        }
-        
-        private double? selectedRailsY = null;
-        public double? SelectedRailsY
-        {
-            get
-            {
-                return this.selectedRailsY;
-            }
-            set
-            {
-                this.selectedRailsY = value;
-                NotifyPropertyChanged(nameof(SelectedRailsY));
-            }
-        }
-
-        private double? selectedRailsAngle = null;
-        public double? SelectedRailsAngle
-        {
-            get
-            {
-                return this.selectedRailsAngle;
-            }
-            set
-            {
-                this.selectedRailsAngle = value;
-                NotifyPropertyChanged(nameof(SelectedRailsAngle));
-            }
-        }
-
-        private Guid selectedRailsLayerId = Guid.Empty;
-        public Guid SelectedRailsLayerId
-        {
-            get
-            {
-                return this.selectedRailsLayerId;
-            }
-            set
-            {
-                if (this.selectedRailsLayerId != value)
-                {
-                    this.selectedRailsLayerId = value;
-                    this.SelectedRailsLayer = this.Layers.FirstOrDefault(l => l.Id == value);
-                    NotifyPropertyChanged(nameof(SelectedRailsLayerId));
-                }
-            }
-        }
-
-        private RailLayer selectedRailsLayer = null;
-        public RailLayer SelectedRailsLayer
-        {
-            get
-            {
-                return this.selectedRailsLayer;
-            }
-            set
-            {
-                if (this.selectedRailsLayer != value)
-                {
-                    this.selectedRailsLayer = value;
-                    this.SelectedRailsLayerId = value?.Id ?? Guid.Empty;
-                    NotifyPropertyChanged(nameof(SelectedRailsLayer));
-                }
-            }
-        }
-                
-
-        private double? selectedRailsGradient = null;
-        public double? SelectedRailsGradient
-        {
-            get
-            {
-                return this.selectedRailsGradient;
-            }
-            set
-            {
-                this.selectedRailsGradient = value;
-                NotifyPropertyChanged(nameof(SelectedRailsGradient));
-            }
-        }
-
-        private double? selectedRailsHeight = null;
-        public double? SelectedRailsHeight
-        {
-            get
-            {
-                return this.selectedRailsHeight;
-            }
-            set
-            {
-                this.selectedRailsHeight = value;
-                NotifyPropertyChanged(nameof(SelectedRailsHeight));
             }
         }
 

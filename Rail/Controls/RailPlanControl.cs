@@ -34,7 +34,6 @@ namespace Rail.Controls
         private Point selectRecStart;
 
         private bool selectedChangeIntern = false;
-        private RailSelectedMode selectedMode = RailSelectedMode.None;
         private RailItem selectedRail;
         private List<RailItem> selectedRails;
 
@@ -49,13 +48,6 @@ namespace Rail.Controls
             MoveGraph,
             Rotate,
             SelectRect
-        }
-
-        public enum RailSelectedMode
-        {
-            None,
-            Single,
-            Multi
         }
 
         static RailPlanControl()
@@ -290,7 +282,7 @@ namespace Rail.Controls
             switch (selectedRails.Count())
             {
             case 0:
-                this.selectedMode = RailSelectedMode.None;
+                this.SelectedMode = RailSelectedMode.None;
                 this.SelectedRailsX = null;
                 this.SelectedRailsY = null;
                 this.SelectedRailsAngle = null;
@@ -299,7 +291,7 @@ namespace Rail.Controls
                 this.SelectedRailsHeight = null;
                 break;
             case 1:
-                this.selectedMode = RailSelectedMode.Single;
+                this.SelectedMode = RailSelectedMode.Single;
                 this.selectedRail = selectedRails.Single();
 
                 this.SelectedRailsX = this.selectedRail.X;
@@ -310,7 +302,7 @@ namespace Rail.Controls
                 this.SelectedRailsHeight = this.selectedRail.Height;
                 break;
             default:
-                this.selectedMode = RailSelectedMode.Multi;
+                this.SelectedMode = RailSelectedMode.Multi;
                 this.selectedRails = selectedRails;
 
                 this.SelectedRailsX = null;
@@ -322,6 +314,25 @@ namespace Rail.Controls
                 break;
             }
            
+        }
+
+        #endregion
+
+        #region SelectedMode
+
+        public static readonly DependencyProperty SelectedModeProperty =
+            DependencyProperty.Register("SelectedMode", typeof(RailSelectedMode), typeof(RailPlanControl), new FrameworkPropertyMetadata(RailSelectedMode.None, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public RailSelectedMode SelectedMode
+        {
+            get
+            {
+                return (RailSelectedMode)GetValue(SelectedModeProperty);
+            }
+            set
+            {
+                SetValue(SelectedModeProperty, value);
+            }
         }
 
         #endregion
@@ -356,7 +367,7 @@ namespace Rail.Controls
             Debug.WriteLine($"RailPlanControl.OnSelectedRailsXChanged new = {newValue}, old = {oldValue}, var = {this.SelectedRailsX}");
             if (newValue.HasValue && oldValue.HasValue && newValue != oldValue && !this.selectedChangeIntern)
             {
-                switch (this.selectedMode)
+                switch (this.SelectedMode)
                 {
                 case RailSelectedMode.Single:
                     var subgraph = this.selectedRail.FindSubgraph();
@@ -400,7 +411,7 @@ namespace Rail.Controls
         {
             if (newValue.HasValue && SelectedRailsY.HasValue && newValue != SelectedRailsY && !this.selectedChangeIntern)
             {
-                switch (this.selectedMode)
+                switch (this.SelectedMode)
                 {
                 case RailSelectedMode.Single:
                     this.selectedRail.Move(new Vector(0, newValue.Value - SelectedRailsY.Value));
@@ -443,7 +454,7 @@ namespace Rail.Controls
         {
             if (newValue.HasValue && oldValue.HasValue && newValue != oldValue)
             {
-                switch (this.selectedMode)
+                switch (this.SelectedMode)
                 {
                 case RailSelectedMode.Single:
                     this.selectedRail.Rotate(new Rotation(oldValue.Value) - new Rotation(newValue.Value), this.selectedRail.Position);
@@ -486,7 +497,7 @@ namespace Rail.Controls
         {
             if (newValue != Guid.Empty && newValue != oldValue)
             {
-                switch (this.selectedMode)
+                switch (this.SelectedMode)
                 {
                 case RailSelectedMode.Single:
                     this.selectedRail.Layer = newValue;
@@ -530,7 +541,7 @@ namespace Rail.Controls
         {
             if (newValue.HasValue && newValue != oldValue)
             {
-                switch (this.selectedMode)
+                switch (this.SelectedMode)
                 {
                 case RailSelectedMode.Single:
                     this.selectedRail.Gradient = newValue.Value;
@@ -575,7 +586,7 @@ namespace Rail.Controls
         {
             if (newValue.HasValue && newValue != oldValue)
             {
-                switch (this.selectedMode)
+                switch (this.SelectedMode)
                 {
                 case RailSelectedMode.Single:
                     this.selectedRail.Height = newValue.Value;

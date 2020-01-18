@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TrackList Version="1.0.0">  
+<TrackList Version="0.1.0">  
   <TrackType Manufacturer="Märklin" Gauge="H0" Type="C-Track" DockType="m24" Spacing="16.5" ViewType="BallastWoodenSleepers" Point="34.6,346.666">
     <Name>
       <LanguageString>Märklin H0 C-Tracks</LanguageString>
