@@ -139,11 +139,11 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Label Grid.Column="0" Grid.Row="0" Content="X (mm)"  />
-                        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedRailsX }" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
+                        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedRailsX, StringFormat=0.00}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
                         <Label Grid.Column="2" Grid.Row="0" Content="Y (mm)"  />
-                        <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding SelectedRailsY }" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
+                        <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding SelectedRailsY, StringFormat=0.00}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
                         <Label Grid.Column="4" Grid.Row="0" Content="Angle (°)"  />
-                        <TextBox Grid.Column="5" Grid.Row="0" Text="{Binding SelectedRailsAngle}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
+                        <TextBox Grid.Column="5" Grid.Row="0" Text="{Binding SelectedRailsAngle, StringFormat=0.00}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
                         <Label Grid.Column="0" Grid.Row="1" Content="Layer"  />
                         <ComboBox Grid.Column="1" Grid.Row="1" SelectedItem="{Binding SelectedRailsLayer}" ItemsSource="{Binding Layers}" Margin="4" >
                             <ComboBox.ItemTemplate>
@@ -156,9 +156,9 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                         <Label Grid.Column="2" Grid.Row="1" Content="Gradient (%)" />
-                        <ComboBox Grid.Column="3" Grid.Row="1" Text="{Binding SelectedRailsGradient }" ItemsSource="{Binding Gradients}" Margin="4"  IsEditable="True" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="ComboBox.Text"/>
+                        <ComboBox Grid.Column="3" Grid.Row="1" Text="{Binding SelectedRailsGradient, StringFormat=0.00}" ItemsSource="{Binding Gradients, StringFormat=0.00}" Margin="4" IsEditable="True" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="ComboBox.Text"/>
                         <Label Grid.Column="4" Grid.Row="1" Content="Height (mm)" />
-                        <TextBox Grid.Column="5" Grid.Row="1" Text="{Binding SelectedRailsHeight }" Margin="4" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text"/>
+                        <TextBox Grid.Column="5" Grid.Row="1" Text="{Binding SelectedRailsHeight, StringFormat=0.00}" Margin="4" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text"/>
                     </Grid>
                 </RibbonGroup>
                 <RibbonGroup Header="{x:Static lang:Resources.MainSwitches}">

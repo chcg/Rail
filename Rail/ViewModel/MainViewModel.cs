@@ -38,6 +38,8 @@ namespace Rail.ViewModel
             this.RailPlanCommand = new DelegateCommand(OnRailPlan);
             this.PrintCommand = new DelegateCommand(OnPrint);
             this.PrintPreviewCommand = new DelegateCommand(OnPrintPreview);
+
+            this.Gradients = (new double[] { 0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0 }).Select(d => d.ToString("F2")).ToList(); 
             
             // load track list
             DependencyObject dep = new DependencyObject();
@@ -470,7 +472,7 @@ namespace Rail.ViewModel
             }
         }
 
-        public double[] Gradients { get { return new double[] { 0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0 };  } }
+        public List<string> Gradients { get; private set; }  
 
         #endregion
 
