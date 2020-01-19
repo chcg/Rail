@@ -414,7 +414,8 @@ namespace Rail.Controls
                 switch (this.SelectedMode)
                 {
                 case RailSelectedMode.Single:
-                    this.selectedRail.Move(new Vector(0, newValue.Value - SelectedRailsY.Value));
+                    var subgraph = this.selectedRail.FindSubgraph();
+                    this.MoveRailItem(subgraph, new Vector(0, newValue.Value - SelectedRailsY.Value));
                     this.InvalidateVisual();
                     break;
                 case RailSelectedMode.Multi:
@@ -452,12 +453,14 @@ namespace Rail.Controls
 
         private void OnSelectedRailsAngleChanged(double? newValue, double? oldValue)
         {
-            if (newValue.HasValue && oldValue.HasValue && newValue != oldValue)
+            if (newValue.HasValue && oldValue.HasValue && newValue != oldValue && !this.selectedChangeIntern)
             {
                 switch (this.SelectedMode)
                 {
                 case RailSelectedMode.Single:
-                    this.selectedRail.Rotate(new Rotation(oldValue.Value) - new Rotation(newValue.Value), this.selectedRail.Position);
+                    var subgraph = this.selectedRail.FindSubgraph();
+                    this.RotateRailItem(subgraph, this.selectedRail.Position, new Rotation(newValue.Value) - new Rotation(oldValue.Value));
+                    //this.selectedRail.Rotate(new Rotation(oldValue.Value) - new Rotation(newValue.Value), this.selectedRail.Position);
                     this.InvalidateVisual();
                     break;
                 case RailSelectedMode.Multi:
