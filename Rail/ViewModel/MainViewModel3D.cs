@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
@@ -55,7 +56,7 @@ namespace Rail.ViewModel
             this.Layers3D.Clear();
 
             double height = 0;
-            this.RailPlan.Layers.Where(l => l.Show).ForEach(l => { CreateLayer(l, height); height += l.Height; });
+            this.RailPlan.Layers.ForEach(l => { CreateLayer(l, height); height += l.Height; });
         }
 
         public Brush RenderLayer(RailLayer layer)
@@ -63,15 +64,20 @@ namespace Rail.ViewModel
             DrawingVisual drawingVisual = new DrawingVisual();
             using (DrawingContext drawingContext = drawingVisual.RenderOpen())
             {
-                drawingContext.DrawGeometry(new SolidColorBrush(layer.PlateColor), blackPen, new PathGeometry(new PathFigureCollection
+                if (layer.PlateColor != Colors.Transparent)
                 {
-                    new PathFigure(this.RailPlan.PlatePoints.FirstOrDefault(), new PathSegmentCollection
-                    (
-                        this.RailPlan.PlatePoints.Skip(1).Select(p => new LineSegment(p, true))
-                    ), true)
-                }));
+                    Color ground = layer.PlateColor;
+                    ground.A = 150;
+                    drawingContext.DrawGeometry(new SolidColorBrush(ground), blackPen, new PathGeometry(new PathFigureCollection
+                    {
+                        new PathFigure(this.RailPlan.PlatePoints.FirstOrDefault(), new PathSegmentCollection
+                        (
+                            this.RailPlan.PlatePoints.Skip(1).Select(p => new LineSegment(p, true))
+                        ), true)
+                    }));
+                }
 
-                this.RailPlan.Rails.ForEach(r => r.DrawRailItem(drawingContext, RailViewMode.Terrain, this.RailPlan.Layers.FirstOrDefault(l => l.Id == r.Layer)));
+                this.RailPlan.Rails.Where(r => r.Layer == layer.Id).ForEach(r => r.DrawRailItem(drawingContext, RailViewMode.Terrain, layer));
 
             }
             RenderTargetBitmap bitmap = new RenderTargetBitmap(this.railPlan.Width, this.railPlan.Height, 96, 96, PixelFormats.Default);
@@ -81,6 +87,10 @@ namespace Rail.ViewModel
 
         public void CreateLayer(RailLayer layer, double heigth)
         {
+            if (!layer.Show)
+            {
+                return;
+            }
             GeometryModel3D model = new GeometryModel3D();
 
             // geometrie
@@ -103,6 +113,13 @@ namespace Rail.ViewModel
             // transform
             Transform3DGroup group = new Transform3DGroup();
 
+            //ScaleTransform3D zoomTransformation = new ScaleTransform3D();
+            //Binding zoomBinding = new Binding("ZoomFactor");
+            //zoomBinding.Source = this.ZoomFactor;
+            //BindingOperations.SetBinding(zoomTransformation, ScaleTransform3D.ScaleXProperty, zoomBinding);
+            //BindingOperations.SetBinding(zoomTransformation, ScaleTransform3D.ScaleYProperty, zoomBinding);
+            //BindingOperations.SetBinding(zoomTransformation, ScaleTransform3D.ScaleZProperty, zoomBinding);
+            //group.Children.Add(zoomTransformation);
             group.Children.Add(new ScaleTransform3D(ZoomFactor, ZoomFactor, ZoomFactor));
             group.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), TiltAngle)));
             group.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), RotationAngle)));

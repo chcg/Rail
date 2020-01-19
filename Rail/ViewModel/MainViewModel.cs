@@ -420,6 +420,13 @@ namespace Rail.ViewModel
             //ObservableCollection
             
         }
+
+        protected override void OnRefresh()
+        {
+            Update3D();
+            base.OnRefresh();
+        }
+
         #endregion
     }
 }
