@@ -52,18 +52,10 @@ namespace Rail.ViewModel
 
         public void Update3D()
         {
-            // create 3D plate
-            Point3DCollection plate = new Point3DCollection()
-            {
-                new Point3D(-this.railPlan.Width / 2, -this.railPlan.Height / 2, 0),
-                new Point3D(+this.railPlan.Width / 2, -this.railPlan.Height / 2, 0),
-                new Point3D(-this.railPlan.Width / 2, +this.railPlan.Height / 2, 0),
-                new Point3D(+this.railPlan.Width / 2, +this.railPlan.Height / 2, 0)
-            };
-
             this.Layers3D.Clear();
-            CreateLayer(null, plate);
 
+            double height = 0;
+            this.RailPlan.Layers.Where(l => l.Show).ForEach(l => { CreateLayer(l, height); height += l.Height; });
         }
 
         public Brush RenderLayer(RailLayer layer)
@@ -71,7 +63,7 @@ namespace Rail.ViewModel
             DrawingVisual drawingVisual = new DrawingVisual();
             using (DrawingContext drawingContext = drawingVisual.RenderOpen())
             {
-                drawingContext.DrawGeometry(plateBrush, blackPen, new PathGeometry(new PathFigureCollection
+                drawingContext.DrawGeometry(new SolidColorBrush(layer.PlateColor), blackPen, new PathGeometry(new PathFigureCollection
                 {
                     new PathFigure(this.RailPlan.PlatePoints.FirstOrDefault(), new PathSegmentCollection
                     (
@@ -87,13 +79,19 @@ namespace Rail.ViewModel
             return new ImageBrush(bitmap);
         }
 
-        public void CreateLayer(RailLayer layer, Point3DCollection plate)
+        public void CreateLayer(RailLayer layer, double heigth)
         {
             GeometryModel3D model = new GeometryModel3D();
 
             // geometrie
             MeshGeometry3D geometrie= new MeshGeometry3D();
-            geometrie.Positions = plate;
+            geometrie.Positions = new Point3DCollection()
+            {
+                new Point3D(-this.railPlan.Width / 2, -this.railPlan.Height / 2, heigth),
+                new Point3D(+this.railPlan.Width / 2, -this.railPlan.Height / 2, heigth),
+                new Point3D(-this.railPlan.Width / 2, +this.railPlan.Height / 2, heigth),
+                new Point3D(+this.railPlan.Width / 2, +this.railPlan.Height / 2, heigth)
+            }; 
             geometrie.Normals = new Vector3DCollection(new Vector3D[] { new Vector3D(0, 0, 1), new Vector3D(0, 0, 1), new Vector3D(0, 0, 1), new Vector3D(0, 0, 1) });
             geometrie.TextureCoordinates = new PointCollection( new Point[] { new Point(0, 1), new Point(1, 1), new Point(0, 0), new Point(1, 0) });
             geometrie.TriangleIndices = new Int32Collection(new int[] { 0, 1, 2, 1, 3, 2 });
