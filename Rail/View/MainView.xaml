@@ -377,8 +377,8 @@
                         </ModelVisual3D>
                         <ModelVisual3D>
                             <ModelVisual3D.Content>
-                                <Model3DGroup>
-                                    <GeometryModel3D>
+                                <Model3DGroup Children="{Binding Layers3D}">
+                                    <!--<GeometryModel3D>
                                         <GeometryModel3D.Geometry>
                                             <MeshGeometry3D 
                                               Positions="{Binding PlatePoint3DCollection}"
@@ -412,7 +412,11 @@
                                             </Transform3DGroup>
                                         </GeometryModel3D.Transform>
                                     </GeometryModel3D>
+                                    <GeometryModel3D>
+                                        
+                                    </GeometryModel3D>-->
                                 </Model3DGroup>
+                               
                             </ModelVisual3D.Content>
                         </ModelVisual3D>
                     </Viewport3D.Children>

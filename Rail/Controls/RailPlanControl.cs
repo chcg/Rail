@@ -460,7 +460,6 @@ namespace Rail.Controls
                 case RailSelectedMode.Single:
                     var subgraph = this.selectedRail.FindSubgraph();
                     this.RotateRailItem(subgraph, this.selectedRail.Position, new Rotation(newValue.Value) - new Rotation(oldValue.Value));
-                    //this.selectedRail.Rotate(new Rotation(oldValue.Value) - new Rotation(newValue.Value), this.selectedRail.Position);
                     this.InvalidateVisual();
                     break;
                 case RailSelectedMode.Multi:

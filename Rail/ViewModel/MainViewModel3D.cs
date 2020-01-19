@@ -1,5 +1,6 @@
 ﻿using Rail.Controls;
 using Rail.Misc;
+using Rail.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Rail.ViewModel
         private readonly Pen blackPen = new Pen(Brushes.Black, 1);
         private readonly Brush plateBrush = new SolidColorBrush(Colors.Green);
 
-        public void Update3D()
+        public void Update3Dxxx()
         {
 
             // render plate image
@@ -47,6 +48,69 @@ namespace Rail.ViewModel
                 new Point3D(+this.railPlan.Width / 2, +this.railPlan.Height / 2, 0)
             };
             this.PlatePoint3DCollection = point3DCollection;
+        }
+
+        public void Update3D()
+        {
+            // create 3D plate
+            Point3DCollection plate = new Point3DCollection()
+            {
+                new Point3D(-this.railPlan.Width / 2, -this.railPlan.Height / 2, 0),
+                new Point3D(+this.railPlan.Width / 2, -this.railPlan.Height / 2, 0),
+                new Point3D(-this.railPlan.Width / 2, +this.railPlan.Height / 2, 0),
+                new Point3D(+this.railPlan.Width / 2, +this.railPlan.Height / 2, 0)
+            };
+
+            this.Layers3D.Clear();
+            CreateLayer(null, plate);
+
+        }
+
+        public Brush RenderLayer(RailLayer layer)
+        {
+            DrawingVisual drawingVisual = new DrawingVisual();
+            using (DrawingContext drawingContext = drawingVisual.RenderOpen())
+            {
+                drawingContext.DrawGeometry(plateBrush, blackPen, new PathGeometry(new PathFigureCollection
+                {
+                    new PathFigure(this.RailPlan.PlatePoints.FirstOrDefault(), new PathSegmentCollection
+                    (
+                        this.RailPlan.PlatePoints.Skip(1).Select(p => new LineSegment(p, true))
+                    ), true)
+                }));
+
+                this.RailPlan.Rails.ForEach(r => r.DrawRailItem(drawingContext, RailViewMode.Terrain, this.RailPlan.Layers.FirstOrDefault(l => l.Id == r.Layer)));
+
+            }
+            RenderTargetBitmap bitmap = new RenderTargetBitmap(this.railPlan.Width, this.railPlan.Height, 96, 96, PixelFormats.Default);
+            bitmap.Render(drawingVisual);
+            return new ImageBrush(bitmap);
+        }
+
+        public void CreateLayer(RailLayer layer, Point3DCollection plate)
+        {
+            GeometryModel3D model = new GeometryModel3D();
+
+            // geometrie
+            MeshGeometry3D geometrie= new MeshGeometry3D();
+            geometrie.Positions = plate;
+            geometrie.Normals = new Vector3DCollection(new Vector3D[] { new Vector3D(0, 0, 1), new Vector3D(0, 0, 1), new Vector3D(0, 0, 1), new Vector3D(0, 0, 1) });
+            geometrie.TextureCoordinates = new PointCollection( new Point[] { new Point(0, 1), new Point(1, 1), new Point(0, 0), new Point(1, 0) });
+            geometrie.TriangleIndices = new Int32Collection(new int[] { 0, 1, 2, 1, 3, 2 });
+            model.Geometry = geometrie;
+
+            // material
+            model.Material = new DiffuseMaterial(RenderLayer(layer));
+
+            // transform
+            Transform3DGroup group = new Transform3DGroup();
+
+            group.Children.Add(new ScaleTransform3D(ZoomFactor, ZoomFactor, ZoomFactor));
+            group.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), TiltAngle)));
+            group.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), RotationAngle)));
+            model.Transform = group;
+
+            this.Layers3D.Add(model);
         }
 
         private Point3DCollection platePoint3DCollection;
@@ -103,6 +167,20 @@ namespace Rail.ViewModel
                 this.tiltAngle = value;
                 NotifyPropertyChanged(nameof(TiltAngle));
             }
+        }
+
+        private Model3DCollection layers3D = new Model3DCollection();
+        public Model3DCollection  Layers3D 
+        {
+            get
+            {
+                return this.layers3D;
+            }
+            //set
+            //{
+            //    this.layers3D = value;
+            //    NotifyPropertyChanged(nameof(Layers3D));
+            //}
         }
     }
 }
