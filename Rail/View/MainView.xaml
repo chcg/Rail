@@ -141,13 +141,13 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Content="X (mm)"  />
+                        <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.MainXmm}"  />
                         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedRailsX, ElementName=railPlanControl, StringFormat=0.00}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
-                        <Label Grid.Column="2" Grid.Row="0" Content="Y (mm)"  />
+                        <Label Grid.Column="2" Grid.Row="0" Content="{x:Static lang:Resources.MainYmm}"  />
                         <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding SelectedRailsY, ElementName=railPlanControl, StringFormat=0.00}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
-                        <Label Grid.Column="4" Grid.Row="0" Content="Angle (°)"  />
+                        <Label Grid.Column="4" Grid.Row="0" Content="{x:Static lang:Resources.MainAngleDeg}" />
                         <TextBox Grid.Column="5" Grid.Row="0" Text="{Binding SelectedRailsAngle, ElementName=railPlanControl, StringFormat=0.00}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
-                        <Label Grid.Column="0" Grid.Row="1" Content="Layer"  />
+                        <Label Grid.Column="0" Grid.Row="1" Content="{x:Static lang:Resources.MainLayer}"  />
                         <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Layers}" Margin="4" >
                             <ComboBox.SelectedItem>
                                 <mvvm:ConverterBindableBinding Binding="{Binding SelectedRailsLayer, ElementName=railPlanControl, Mode=TwoWay}" Converter="{StaticResource GuidToLayerConverter}" ConverterParameterBinding="{Binding RailPlan}" />
@@ -161,9 +161,9 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <Label Grid.Column="2" Grid.Row="1" Content="Gradient (%)" />
+                        <Label Grid.Column="2" Grid.Row="1" Content="{x:Static lang:Resources.MainGradientPerc}" />
                         <ComboBox Grid.Column="3" Grid.Row="1" Text="{Binding SelectedRailsGradient, ElementName=railPlanControl, StringFormat=0.00}" ItemsSource="{Binding Gradients, StringFormat=0.00}" Margin="4" IsEditable="True" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="ComboBox.Text"/>
-                        <Label Grid.Column="4" Grid.Row="1" Content="Height (mm)" />
+                        <Label Grid.Column="4" Grid.Row="1" Content="{x:Static lang:Resources.MainHeightmm}" />
                         <TextBox Grid.Column="5" Grid.Row="1" Text="{Binding SelectedRailsHeight, ElementName=railPlanControl, StringFormat=0.00}" Margin="4" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text"/>
                     </Grid>
                 </RibbonGroup>
@@ -236,21 +236,35 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <ComboBox Grid.Row="0" ItemsSource="{Binding TrackTypes}" SelectedItem="{Binding SelectedTrackType}" SelectedIndex="0" MinWidth="200" Margin="8">
+            <TabControl Grid.Row="0" SelectedIndex="{Binding SelectedSelectionIndex}" Margin="8,8,8,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+                <TabItem Header="{x:Static lang:Resources.MainAll}"/>
+                <TabItem Header="{x:Static lang:Resources.MainGauge}"/>
+                <TabItem Header="{x:Static lang:Resources.MainManufacturer}"/>
+            </TabControl>
+            <ComboBox Grid.Row="1" ItemsSource="{Binding TrackSelects}" SelectedItem="{Binding SelectedTrackSelect}" SelectedIndex="0" MinWidth="200" Margin="8,0,8,8">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding .}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <ComboBox Grid.Row="2" ItemsSource="{Binding TrackTypes}" SelectedItem="{Binding SelectedTrackType}" SelectedIndex="0" MinWidth="200" Margin="8,0,8,8">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}" ToolTip="{Binding Description}" />
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <TabControl Grid.Row="1" SelectedIndex="{Binding SelectedGroupIndex}" Margin="8,0,8,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+            <TabControl Grid.Row="3" SelectedIndex="{Binding SelectedGroupIndex}" Margin="8,0,8,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
                 <TabItem Header="{x:Static lang:Resources.MainSingle}"/>
                 <TabItem Header="{x:Static lang:Resources.MainGroup}"/>
                 <TabItem Header="{x:Static lang:Resources.MainCustomer}"/>
             </TabControl>
-            <ListView Grid.Row="2" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" SelectedIndex="0" Margin="8,0,8,8">
+            <ListView Grid.Row="4" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" SelectedIndex="0" Margin="8,0,8,8">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="LightGray" BorderThickness="1,1,1,1">

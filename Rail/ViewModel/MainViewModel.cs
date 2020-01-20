@@ -62,11 +62,63 @@ namespace Rail.ViewModel
             this.RailPlan = RailPlan.Create();
 
             Update3D();
+            this.SelectedSelectionIndex = 0;
         }
 
         #region properties
 
-        public List<TrackType> TrackTypes { get { return this.trackList.TrackTypes; } }
+        private int selectedSelectionIndex = 0;
+
+        public int SelectedSelectionIndex
+        {
+            get
+            {
+                return this.selectedSelectionIndex;
+            }
+            set
+            {
+                this.selectedSelectionIndex = value;
+                NotifyPropertyChanged(nameof(SelectedSelectionIndex));
+                
+                this.TrackSelects = this.selectedSelectionIndex switch
+                {
+                    0 => null,
+                    1 => this.trackList.TrackTypes.Select(t => t.Gauge).Distinct().OrderBy(t => t).ToList(),
+                    2 => this.trackList.TrackTypes.Select(t => t.Manufacturer).Distinct().OrderBy(t => t).ToList(),
+                    _ => null
+                };
+                NotifyPropertyChanged(nameof(TrackSelects));
+                this.SelectedTrackSelect = this.TrackSelects?.FirstOrDefault();
+            }
+        }
+
+        public List<string> TrackSelects { get; private set; }
+
+        public string selectedTrackSelect;
+        public string SelectedTrackSelect
+        {
+            get
+            {
+                return this.selectedTrackSelect;
+            }
+            set
+            {
+                this.selectedTrackSelect = value;
+                NotifyPropertyChanged(nameof(SelectedTrackSelect));
+
+                this.TrackTypes = this.selectedSelectionIndex switch
+                {
+                    0 => this.trackList.TrackTypes,
+                    1 => this.trackList.TrackTypes.Where(t => t.Gauge == SelectedTrackSelect).ToList(),
+                    2 => this.trackList.TrackTypes.Where(t => t.Manufacturer == SelectedTrackSelect).ToList(),
+                    _ => null
+                };
+                NotifyPropertyChanged(nameof(TrackTypes));
+                this.SelectedTrackType = this.TrackTypes.FirstOrDefault();
+            }
+        }
+
+        public List<TrackType> TrackTypes { get; private set; } // { return this.trackList.TrackTypes; } }
 
         private TrackType selectedTrackType;
         public TrackType SelectedTrackType
@@ -113,7 +165,7 @@ namespace Rail.ViewModel
                 break;
             }
             
-            this.SelectedTrack = this.Tracks.FirstOrDefault();
+            this.SelectedTrack = this.Tracks?.FirstOrDefault();
         }
         
 

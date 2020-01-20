@@ -120,8 +120,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>Abbruch</value>
   </data>
+  <data name="MainAll" xml:space="preserve">
+    <value>Alle</value>
+  </data>
   <data name="MainAngle" xml:space="preserve">
     <value>Winkel</value>
+  </data>
+  <data name="MainAngleDeg" xml:space="preserve">
+    <value>Winkel (°)</value>
   </data>
   <data name="MainArticle" xml:space="preserve">
     <value>Artikel</value>
@@ -162,11 +168,20 @@
   <data name="MainFileSaveAs" xml:space="preserve">
     <value>Speichern unter ...</value>
   </data>
+  <data name="MainGauge" xml:space="preserve">
+    <value>Spurbreite</value>
+  </data>
+  <data name="MainGradientPerc" xml:space="preserve">
+    <value>Steigung (%)</value>
+  </data>
   <data name="MainGridLines" xml:space="preserve">
     <value>Gitterlinien</value>
   </data>
   <data name="MainGroup" xml:space="preserve">
     <value>Gruppen</value>
+  </data>
+  <data name="MainHeightmm" xml:space="preserve">
+    <value>Höhe (mm)</value>
   </data>
   <data name="MainLayer" xml:space="preserve">
     <value>Stufe</value>
@@ -218,6 +233,12 @@
   </data>
   <data name="MainViewModes" xml:space="preserve">
     <value>Ansichtsmodi</value>
+  </data>
+  <data name="MainXmm" xml:space="preserve">
+    <value>X (mm)</value>
+  </data>
+  <data name="MainYmm" xml:space="preserve">
+    <value>Y (mm)</value>
   </data>
   <data name="MainZoom" xml:space="preserve">
     <value>Zoomen</value>

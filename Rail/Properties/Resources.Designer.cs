@@ -70,11 +70,29 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string MainAll {
+            get {
+                return ResourceManager.GetString("MainAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Angle.
         /// </summary>
         public static string MainAngle {
             get {
                 return ResourceManager.GetString("MainAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Angle (°).
+        /// </summary>
+        public static string MainAngleDeg {
+            get {
+                return ResourceManager.GetString("MainAngleDeg", resourceCulture);
             }
         }
         
@@ -196,6 +214,24 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gauge.
+        /// </summary>
+        public static string MainGauge {
+            get {
+                return ResourceManager.GetString("MainGauge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gradient (%).
+        /// </summary>
+        public static string MainGradientPerc {
+            get {
+                return ResourceManager.GetString("MainGradientPerc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grid Lines.
         /// </summary>
         public static string MainGridLines {
@@ -210,6 +246,15 @@ namespace Rail.Properties {
         public static string MainGroup {
             get {
                 return ResourceManager.GetString("MainGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height (mm).
+        /// </summary>
+        public static string MainHeightmm {
+            get {
+                return ResourceManager.GetString("MainHeightmm", resourceCulture);
             }
         }
         
@@ -363,6 +408,24 @@ namespace Rail.Properties {
         public static string MainViewModes {
             get {
                 return ResourceManager.GetString("MainViewModes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X (mm).
+        /// </summary>
+        public static string MainXmm {
+            get {
+                return ResourceManager.GetString("MainXmm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y (mm).
+        /// </summary>
+        public static string MainYmm {
+            get {
+                return ResourceManager.GetString("MainYmm", resourceCulture);
             }
         }
         
