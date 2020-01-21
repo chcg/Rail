@@ -31,8 +31,7 @@ namespace Rail.Model
             this.Position = pos;
             this.Angle = 0.0;
             this.Layer = layer;
-//            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp).Move(this.Position)).ToArray();
-            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp, this.Position)).ToArray();
+            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp)).ToArray();
         }
 
         [XmlIgnore]
@@ -45,9 +44,7 @@ namespace Rail.Model
         public string TrackId { get; set; }
 
         [XmlIgnore]
-        public TrackBase Track { get; set; }
-
-        
+        public TrackBase Track { get; set; }        
 
         [XmlIgnore]
         public Point Position;
@@ -101,7 +98,6 @@ namespace Rail.Model
         public void Move(Vector vec)
         {
             this.Position += vec;
-            this.DockPoints.ForEach(dp => dp.Move(vec));
         }
 
         //public void Rotate(Angle angle)
@@ -131,7 +127,6 @@ namespace Rail.Model
         {
             this.Angle += rotation;
             this.Position = this.Position.Rotate(rotation, center);
-            this.DockPoints.ToList().ForEach(dp => dp.Rotate(rotation, center));
         }
 
         //public void Rotate(Angle angle, RailItem center)
