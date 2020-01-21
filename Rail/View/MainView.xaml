@@ -179,6 +179,11 @@
                         <RibbonRadioButton Label="{x:Static lang:Resources.MainTerrain}" IsChecked="{Binding ViewMode, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static ctrl:RailViewMode.Terrain}}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
                     </RibbonControlGroup>
                 </RibbonGroup>
+
+                <RibbonGroup Header="{x:Static lang:Resources.MainTools}">
+                    <RibbonButton Label="{x:Static lang:Resources.MainOptions}" Command="{Binding OptionsCommand}" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
+                </RibbonGroup>
+                
             </RibbonTab>
         </mvvm:PersistentRibbon>
         <StatusBar DockPanel.Dock="Bottom">

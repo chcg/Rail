@@ -479,6 +479,10 @@ namespace Rail.ViewModel
             base.OnRefresh();
         }
 
+        protected override void OnOptions()
+        {
+            (new OptionsView { DataContext = new OptionsViewModel() }).ShowDialog();
+        }
         #endregion
     }
 }

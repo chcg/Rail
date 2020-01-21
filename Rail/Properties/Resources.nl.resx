@@ -118,121 +118,127 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>Abbruch</value>
+    <value>Annuleren</value>
   </data>
   <data name="MainAll" xml:space="preserve">
-    <value>Alle</value>
+    <value>All</value>
   </data>
   <data name="MainAngle" xml:space="preserve">
-    <value>Winkel</value>
+    <value>Hoek</value>
   </data>
   <data name="MainAngleDeg" xml:space="preserve">
-    <value>Winkel (°)</value>
+    <value>Hoek (°)</value>
   </data>
   <data name="MainArticle" xml:space="preserve">
     <value>Artikel</value>
   </data>
   <data name="MainCustomer" xml:space="preserve">
-    <value>Eigenen Gruppen</value>
+    <value>Eigen groepen</value>
   </data>
   <data name="MainDistance" xml:space="preserve">
-    <value>Entfernung</value>
+    <value>Verwijdering</value>
   </data>
   <data name="MainFileAbout" xml:space="preserve">
     <value>Info ...</value>
   </data>
   <data name="MainFileExit" xml:space="preserve">
-    <value>Beenden</value>
+    <value>Afsluiten</value>
   </data>
   <data name="MainFileHelp" xml:space="preserve">
-    <value>Hilfe ...</value>
+    <value>Help ...</value>
   </data>
   <data name="MainFileNew" xml:space="preserve">
-    <value>Neu</value>
+    <value>Nieuw</value>
   </data>
   <data name="MainFileOpen" xml:space="preserve">
-    <value>Öffnen ...</value>
+    <value>Openen ...</value>
   </data>
   <data name="MainFilePrint" xml:space="preserve">
-    <value>Drucken ...</value>
+    <value>Afdrukken ...</value>
   </data>
   <data name="MainFilePrintPreview" xml:space="preserve">
-    <value>Druck Vorschau ...</value>
+    <value>Afdrukvoorbeeld ...</value>
   </data>
   <data name="MainFileRecentFiles" xml:space="preserve">
-    <value>Neueste Dateien</value>
+    <value>Nieuwste bestanden</value>
   </data>
   <data name="MainFileSave" xml:space="preserve">
-    <value>Speichern</value>
+    <value>Opslaan</value>
   </data>
   <data name="MainFileSaveAs" xml:space="preserve">
-    <value>Speichern unter ...</value>
+    <value>Opslaan als ...</value>
   </data>
   <data name="MainGauge" xml:space="preserve">
-    <value>Spurbreite</value>
+    <value>Spoorbreedte</value>
   </data>
   <data name="MainGradientPerc" xml:space="preserve">
-    <value>Steigung (%)</value>
+    <value>Helling (%)</value>
   </data>
   <data name="MainGridLines" xml:space="preserve">
-    <value>Gitterlinien</value>
+    <value>Rasterlijnen</value>
   </data>
   <data name="MainGroup" xml:space="preserve">
-    <value>Gruppen</value>
+    <value>Groepen</value>
   </data>
   <data name="MainHeightmm" xml:space="preserve">
-    <value>Höhe (mm)</value>
+    <value>Hoogte (mm)</value>
   </data>
   <data name="MainLayer" xml:space="preserve">
-    <value>Stufe</value>
+    <value>Stap</value>
   </data>
   <data name="MainManufacturer" xml:space="preserve">
-    <value>Hersteller</value>
+    <value>Fabrikant</value>
   </data>
   <data name="MainName" xml:space="preserve">
-    <value>Name</value>
+    <value>Naam</value>
+  </data>
+  <data name="MainOptions" xml:space="preserve">
+    <value>Opties...</value>
   </data>
   <data name="MainPlan" xml:space="preserve">
     <value>Plan</value>
   </data>
   <data name="MainPosition" xml:space="preserve">
-    <value>Position</value>
+    <value>Positie</value>
   </data>
   <data name="MainRail" xml:space="preserve">
-    <value>Schienen</value>
+    <value>Rails</value>
   </data>
   <data name="MainRailPlan" xml:space="preserve">
-    <value>Schienenplan</value>
+    <value>Railplan</value>
   </data>
   <data name="MainRotation" xml:space="preserve">
-    <value>Rotation</value>
+    <value>Rotatie</value>
   </data>
   <data name="MainShowDockingPoints" xml:space="preserve">
-    <value>Andockpunkte anzeigen</value>
+    <value>Toon koppelpunten</value>
   </data>
   <data name="MainShowTrackList" xml:space="preserve">
-    <value>Gleisliste anzeigen</value>
+    <value>Toon tracklijst</value>
   </data>
   <data name="MainSingle" xml:space="preserve">
-    <value>Gleise</value>
+    <value>Tracks</value>
   </data>
   <data name="MainSnapIn" xml:space="preserve">
-    <value>Einrasten</value>
+    <value>Lock</value>
   </data>
   <data name="MainSwitches" xml:space="preserve">
-    <value>Schalter</value>
+    <value>Schakelaar</value>
   </data>
   <data name="MainTerrain" xml:space="preserve">
-    <value>Gelände</value>
+    <value>Terrein</value>
   </data>
   <data name="MainTilt" xml:space="preserve">
-    <value>Neigung</value>
+    <value>Inclinatie</value>
+  </data>
+  <data name="MainTools" xml:space="preserve">
+    <value>Gereedschap</value>
   </data>
   <data name="MainTracks" xml:space="preserve">
-    <value>Gleise</value>
+    <value>Tracks</value>
   </data>
   <data name="MainViewModes" xml:space="preserve">
-    <value>Ansichtsmodi</value>
+    <value>Weergavemodi</value>
   </data>
   <data name="MainXmm" xml:space="preserve">
     <value>X (mm)</value>
@@ -244,49 +250,58 @@
     <value>Zoomen</value>
   </data>
   <data name="MenuDelete" xml:space="preserve">
-    <value>Löschen</value>
+    <value>Verwijderen</value>
   </data>
   <data name="MenuProperties" xml:space="preserve">
-    <value>Optionen</value>
+    <value>Opties</value>
   </data>
   <data name="MenuRotate" xml:space="preserve">
-    <value>Drehen</value>
+    <value>Schakelen</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="OptionsLanguage" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="OptionsTitle" xml:space="preserve">
+    <value>Opties</value>
+  </data>
+  <data name="OptionsVisibleAfterRestart" xml:space="preserve">
+    <value>Zichtbaar na opnieuw opstarten</value>
+  </data>
   <data name="RailPlanView" xml:space="preserve">
-    <value>Schienenplanansicht</value>
+    <value>Rail bovenaanzicht</value>
   </data>
   <data name="TrackAdapter" xml:space="preserve">
-    <value>Übergangsgleis</value>
+    <value>Adapter</value>
   </data>
   <data name="TrackBumper" xml:space="preserve">
-    <value>Gleisende mit Prellbock</value>
+    <value>Track einde met buffer</value>
   </data>
   <data name="TrackCrossing" xml:space="preserve">
-    <value>Kreuzung</value>
+    <value>Kruising</value>
   </data>
   <data name="TrackCurved" xml:space="preserve">
-    <value>Gebogenes Gleis</value>
+    <value>Gebogen track</value>
   </data>
   <data name="TrackCurvedCircuit" xml:space="preserve">
-    <value>Schaltgleis gebogen</value>
+    <value>Schakeltrack gebogen</value>
   </data>
   <data name="TrackCurvedTurnoutLeft" xml:space="preserve">
-    <value>Bogenweiche links</value>
+    <value>Opkomst links</value>
   </data>
   <data name="TrackCurvedTurnoutRight" xml:space="preserve">
-    <value>Bogenweiche rechts</value>
+    <value>Opkomst rechts</value>
   </data>
   <data name="TrackDoubleCrossover" xml:space="preserve">
-    <value>Hosenträger</value>
+    <value>Dubbele crossover</value>
   </data>
   <data name="TrackDoubleSlipSwitch" xml:space="preserve">
-    <value>Doppelkreuzungsweiche</value>
+    <value>Engelse wissel</value>
   </data>
   <data name="TrackDoubleTurnout" xml:space="preserve">
-    <value>Dreiwegweiche</value>
+    <value>Drie manier</value>
   </data>
   <data name="TrackDriveElectrical" xml:space="preserve">
     <value>elektrisch</value>
@@ -295,13 +310,13 @@
     <value>mechanisch</value>
   </data>
   <data name="TrackEndPiece" xml:space="preserve">
-    <value>Endstück zur Gleisböschung</value>
+    <value>Eindstuk voor de dijk</value>
   </data>
   <data name="TrackFlex" xml:space="preserve">
-    <value>Flexibles Gleis</value>
+    <value>Flexibel track</value>
   </data>
   <data name="TrackStraight" xml:space="preserve">
-    <value>Gerades Gleis</value>
+    <value>Rechte baan</value>
   </data>
   <data name="TrackStraightAdjustment" xml:space="preserve">
     <value>Ausgleichsgleis gerade</value>
@@ -313,30 +328,30 @@
     <value>Kontaktgleis</value>
   </data>
   <data name="TrackStraightFeeder" xml:space="preserve">
-    <value>Anschlussgleis gerade</value>
+    <value>Waterpas recht zetten</value>
   </data>
   <data name="TrackStraightIsolating" xml:space="preserve">
-    <value>Trenngleis gerade</value>
+    <value>Opruimen recht</value>
   </data>
   <data name="TrackStraightUncoupler" xml:space="preserve">
-    <value>Entkupplungsgleis gerade</value>
+    <value>Spoor rechtstreeks ontkoppelen</value>
   </data>
   <data name="TrackTransferTable" xml:space="preserve">
-    <value>Schiebebühne</value>
+    <value>Traverser</value>
   </data>
   <data name="TrackTurnoutLeft" xml:space="preserve">
-    <value>Weiche links</value>
+    <value>Opkomst links</value>
   </data>
   <data name="TrackTurnoutRight" xml:space="preserve">
-    <value>Weiche rechts</value>
+    <value>Opkomst rechts</value>
   </data>
   <data name="TrackTurntable" xml:space="preserve">
-    <value>Drehscheibe</value>
+    <value>Draaischijf</value>
   </data>
   <data name="TrackWithLantern" xml:space="preserve">
-    <value>mit Beleuchtung</value>
+    <value>met verlichting</value>
   </data>
   <data name="TrackYTurnout" xml:space="preserve">
-    <value>Y-Weiche</value>
+    <value>Y-Schakelaar</value>
   </data>
 </root>

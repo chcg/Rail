@@ -29,7 +29,7 @@
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
     <ApplicationIcon />
-    <NeutralLanguage>en-US</NeutralLanguage>
+    <NeutralLanguage>en</NeutralLanguage>
     <Configurations>Debug;Release;DebugInfo</Configurations>
   </PropertyGroup>
 
@@ -111,7 +111,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.de-DE.resx">
+    <EmbeddedResource Update="Properties\Resources.de.resx">
       <Generator></Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.resx">

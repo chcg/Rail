@@ -1,4 +1,5 @@
-﻿using Rail.View;
+﻿using Rail.Properties;
+using Rail.View;
 using Rail.ViewModel;
 using System;
 using System.Diagnostics;
@@ -16,8 +17,14 @@ namespace Rail
         {
             Trace.TraceInformation("Startup {0} {1}", DateTime.Now.ToLocalTime().ToShortTimeString(), DateTime.Now.ToLocalTime().ToShortDateString());
 
-            CultureInfo.CurrentUICulture = new CultureInfo("de-DE");
-            CultureInfo.CurrentCulture = new CultureInfo("de-DE");
+            string language = Settings.Default.Language;
+            if (!string.IsNullOrEmpty(language))
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture = new CultureInfo(language);
+            }
+
+            //CultureInfo.CurrentUICulture = new CultureInfo("de-DE");
+            //CultureInfo.CurrentCulture = new CultureInfo("de-DE");
             //CultureInfo.CurrentUICulture = new CultureInfo("en-US");    // for UI
             //CultureInfo.CurrentCulture = new CultureInfo("en-US");      // for ToString("F2")
             try

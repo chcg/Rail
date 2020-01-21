@@ -286,6 +286,15 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Options....
+        /// </summary>
+        public static string MainOptions {
+            get {
+                return ResourceManager.GetString("MainOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plan.
         /// </summary>
         public static string MainPlan {
@@ -394,6 +403,15 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tools.
+        /// </summary>
+        public static string MainTools {
+            get {
+                return ResourceManager.GetString("MainTools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tracks.
         /// </summary>
         public static string MainTracks {
@@ -471,6 +489,33 @@ namespace Rail.Properties {
         public static string OK {
             get {
                 return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string OptionsLanguage {
+            get {
+                return ResourceManager.GetString("OptionsLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string OptionsTitle {
+            get {
+                return ResourceManager.GetString("OptionsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visible after restart.
+        /// </summary>
+        public static string OptionsVisibleAfterRestart {
+            get {
+                return ResourceManager.GetString("OptionsVisibleAfterRestart", resourceCulture);
             }
         }
         
