@@ -187,15 +187,15 @@
             </RibbonTab>
             <RibbonTab Header="{x:Static lang:Resources.MainGroups}">
                 <RibbonGroup Header="{x:Static lang:Resources.MainGroups}">
-                    <RibbonButton Label="{x:Static lang:Resources.MainGroupCreate}" Click="OnCreateGroup" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
-                    <RibbonButton Label="{x:Static lang:Resources.MainGroupResolve}" Click="OnResolveGroup" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
-                    <RibbonButton Label="{x:Static lang:Resources.MainGroupSaveAs}" Click="OnSaveAsGroup" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainGroupCreate}" Command="{Binding CreateGroupCommand, ElementName=railPlanControl}" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainGroupResolve}" Command="{Binding ResolveGroupCommand, ElementName=railPlanControl}" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainGroupSaveAs}" Command="{Binding SaveAsGroupCommand, ElementName=railPlanControl}" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
                 </RibbonGroup>
             </RibbonTab>
             <RibbonTab Header="{x:Static lang:Resources.MainRamp}">
                 <RibbonGroup Header="{x:Static lang:Resources.MainRamp}">
-                    <RibbonButton Label="{x:Static lang:Resources.MainRampCreate}" Command="{Binding CreateRampCommand}" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
-                    <RibbonButton Label="{x:Static lang:Resources.MainRampDelete}" Command="{Binding DeleteRampCommand}" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainRampCreate}" Command="{Binding CreateRampCommand, ElementName=railPlanControl}" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainRampDelete}" Command="{Binding DeleteRampCommand, ElementName=railPlanControl}" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
                 </RibbonGroup>
             </RibbonTab>
         </mvvm:PersistentRibbon>

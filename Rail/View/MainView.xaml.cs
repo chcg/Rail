@@ -30,20 +30,5 @@ namespace Rail.View
         {
             this.railPlanControl.InvalidateVisual();
         }
-
-        public void OnCreateGroup(object sender, RoutedEventArgs e)
-        {
-            this.railPlanControl.CreateGroup();
-        }
-
-        public void OnResolveGroup(object sender, RoutedEventArgs e)
-        {
-            this.railPlanControl.ResolveGroup();
-        }
-
-        public void OnSaveAsGroup(object sender, RoutedEventArgs e)
-        {
-            this.railPlanControl.SaveAsGroup();
-        }
     }
 }

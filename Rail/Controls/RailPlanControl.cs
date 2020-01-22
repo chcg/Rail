@@ -41,7 +41,15 @@ namespace Rail.Controls
         public DelegateCommand<RailItem> RotateRailItemCommand { get; private set; }
         public DelegateCommand<RailItem> PropertiesRailItemCommand { get; private set; }
 
-        public static readonly RoutedCommand RefreshCommand = new RoutedCommand("Refresh", typeof(RailPlanControl));
+        public DelegateCommand CreateGroupCommand { get; private set; }
+        public DelegateCommand ResolveGroupCommand { get; private set; }
+        public DelegateCommand SaveAsGroupCommand { get; private set; }
+
+
+        public DelegateCommand CreateRampCommand { get; private set; }
+        public DelegateCommand DeleteRampCommand { get; private set; }
+       
+        //public static readonly RoutedCommand RefreshCommand = new RoutedCommand("Refresh", typeof(RailPlanControl));
 
         protected enum RailAction
         {
@@ -63,24 +71,31 @@ namespace Rail.Controls
             this.RotateRailItemCommand = new DelegateCommand<RailItem>(OnRotateRailItem);
             this.PropertiesRailItemCommand = new DelegateCommand<RailItem>(OnPropertiesRailItem);
 
-            CommandBinding commandBinding = new CommandBinding(RefreshCommand);
-            commandBinding.Executed += OnRefresh;
-            commandBinding.CanExecute += OnCanRefresh;
-            CommandManager.RegisterClassCommandBinding(typeof(RailPlanControl), commandBinding);
-            
+            this.CreateGroupCommand = new DelegateCommand(OnCreateGroup, OnCanCreateGroup);
+            this.ResolveGroupCommand = new DelegateCommand(OnResolveGroup, OnCanResolveGroup);
+            this.SaveAsGroupCommand = new DelegateCommand(OnSaveAsGroup, OnCanSaveAsGroup);
+
+            this.CreateRampCommand = new DelegateCommand(OnCreateRamp, OnCanCreateRamp);
+            this.DeleteRampCommand = new DelegateCommand(OnDeleteRamp, OnCanDeleteRamp);
+
+            //CommandBinding commandBinding = new CommandBinding(RefreshCommand);
+            //commandBinding.Executed += OnRefresh;
+            //commandBinding.CanExecute += OnCanRefresh;
+            //CommandManager.RegisterClassCommandBinding(typeof(RailPlanControl), commandBinding);
+
             this.Loaded += OnLoaded;
         }
         
 
-        private void OnCanRefresh(object sender, CanExecuteRoutedEventArgs e)
-        {
+        //private void OnCanRefresh(object sender, CanExecuteRoutedEventArgs e)
+        //{
             
-        }
+        //}
 
-        private void OnRefresh(object target, ExecutedRoutedEventArgs e)
-        {
+        //private void OnRefresh(object target, ExecutedRoutedEventArgs e)
+        //{
             
-        }
+        //}
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
@@ -1139,15 +1154,55 @@ namespace Rail.Controls
         #endregion
 
         #region group
+               
 
-        public void CreateGroup()
+        public void OnCreateGroup()
+        { 
+        }
+
+        public bool OnCanCreateGroup()
+        {
+            return true;
+        }
+
+        public void OnResolveGroup()
         { }
 
-        public void ResolveGroup()
-        { }
+        public bool OnCanResolveGroup()
+        {
+            return false;
+        }
 
-        public void SaveAsGroup()
-        { }
+        public void OnSaveAsGroup()
+        {
+        }
+
+        public bool OnCanSaveAsGroup()
+        {
+            return true;
+        }
+
+        #endregion
+
+        #region ramp
+
+        public void OnCreateRamp()
+        {
+        }
+
+        public bool OnCanCreateRamp()
+        {
+            return true;
+        }
+
+        public void OnDeleteRamp()
+        {
+        }
+
+        public bool OnCanDeleteRamp()
+        {
+            return true;
+        }
 
         #endregion
 
