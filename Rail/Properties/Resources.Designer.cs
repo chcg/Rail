@@ -250,6 +250,42 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Group.
+        /// </summary>
+        public static string MainGroupCreate {
+            get {
+                return ResourceManager.GetString("MainGroupCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ungroup.
+        /// </summary>
+        public static string MainGroupResolve {
+            get {
+                return ResourceManager.GetString("MainGroupResolve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Groups.
+        /// </summary>
+        public static string MainGroups {
+            get {
+                return ResourceManager.GetString("MainGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Group As....
+        /// </summary>
+        public static string MainGroupSaveAs {
+            get {
+                return ResourceManager.GetString("MainGroupSaveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Height (mm).
         /// </summary>
         public static string MainHeightmm {
@@ -327,6 +363,33 @@ namespace Rail.Properties {
         public static string MainRailPlan {
             get {
                 return ResourceManager.GetString("MainRailPlan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ramp.
+        /// </summary>
+        public static string MainRamp {
+            get {
+                return ResourceManager.GetString("MainRamp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Ramp.
+        /// </summary>
+        public static string MainRampCreate {
+            get {
+                return ResourceManager.GetString("MainRampCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Ramp.
+        /// </summary>
+        public static string MainRampDelete {
+            get {
+                return ResourceManager.GetString("MainRampDelete", resourceCulture);
             }
         }
         

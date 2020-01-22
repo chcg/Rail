@@ -28,6 +28,13 @@ namespace Rail.ViewModel
         public DelegateCommand PrintCommand { get; private set; }
         public DelegateCommand PrintPreviewCommand { get; private set; }
 
+        public DelegateCommand CreateGroupCommand { get; private set; }
+        public DelegateCommand ResolveGroupCommand { get; private set; }
+        public DelegateCommand SaveAsGroupCommand { get; private set; }
+        
+        public DelegateCommand CreateRampCommand { get; private set; }
+        public DelegateCommand DeleteRampCommand { get; private set; }
+
         private double zoomFactor = 1.0;
        
         public MainViewModel()
@@ -38,6 +45,13 @@ namespace Rail.ViewModel
             this.RailPlanCommand = new DelegateCommand(OnRailPlan);
             this.PrintCommand = new DelegateCommand(OnPrint);
             this.PrintPreviewCommand = new DelegateCommand(OnPrintPreview);
+
+            this.CreateGroupCommand = new DelegateCommand(OnCreateGroup, OnCanCreateGroup);
+            this.ResolveGroupCommand = new DelegateCommand(OnResolveGroup, OnCanResolveGroup);
+            this.SaveAsGroupCommand = new DelegateCommand(OnSaveAsGroup, OnCanSaveAsGroup);
+
+            this.CreateRampCommand = new DelegateCommand(OnCreateRamp, OnCanCreateRamp);
+            this.DeleteRampCommand = new DelegateCommand(OnDeleteRamp, OnCanDeleteRamp);
 
             this.Gradients = (new double[] { 0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0 }).Select(d => d.ToString("F2")).ToList(); 
             
@@ -483,6 +497,55 @@ namespace Rail.ViewModel
         {
             (new OptionsView { DataContext = new OptionsViewModel() }).ShowDialog();
         }
+
+        #endregion
+
+        #region Group
+
+        private void OnCreateGroup()
+        { }
+
+        private bool OnCanCreateGroup()
+        {
+            return true;
+        }
+
+        private void OnResolveGroup()
+        { }
+
+        private bool OnCanResolveGroup()
+        {
+            return true;
+        }
+
+        private void OnSaveAsGroup()
+        { }
+
+        private bool OnCanSaveAsGroup()
+        {
+            return true;
+        }
+        
+        #endregion
+
+        #region Ramp
+
+        private void OnCreateRamp()
+        { }
+
+        private bool OnCanCreateRamp()
+        {
+            return true;
+        }
+
+        private void OnDeleteRamp()
+        { }
+
+        private bool OnCanDeleteRamp()
+        {
+            return true;
+        }
+
         #endregion
     }
 }

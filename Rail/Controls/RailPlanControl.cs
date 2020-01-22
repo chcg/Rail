@@ -40,7 +40,9 @@ namespace Rail.Controls
         public DelegateCommand<RailItem> DeleteRailItemCommand { get; private set; }
         public DelegateCommand<RailItem> RotateRailItemCommand { get; private set; }
         public DelegateCommand<RailItem> PropertiesRailItemCommand { get; private set; }
-        
+
+        public static readonly RoutedCommand RefreshCommand = new RoutedCommand("Refresh", typeof(RailPlanControl));
+
         protected enum RailAction
         {
             None,
@@ -60,7 +62,24 @@ namespace Rail.Controls
             this.DeleteRailItemCommand = new DelegateCommand<RailItem>(OnDeleteRailItem);
             this.RotateRailItemCommand = new DelegateCommand<RailItem>(OnRotateRailItem);
             this.PropertiesRailItemCommand = new DelegateCommand<RailItem>(OnPropertiesRailItem);
+
+            CommandBinding commandBinding = new CommandBinding(RefreshCommand);
+            commandBinding.Executed += OnRefresh;
+            commandBinding.CanExecute += OnCanRefresh;
+            CommandManager.RegisterClassCommandBinding(typeof(RailPlanControl), commandBinding);
+            
             this.Loaded += OnLoaded;
+        }
+        
+
+        private void OnCanRefresh(object sender, CanExecuteRoutedEventArgs e)
+        {
+            
+        }
+
+        private void OnRefresh(object target, ExecutedRoutedEventArgs e)
+        {
+            
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -1116,6 +1135,19 @@ namespace Rail.Controls
         {
 
         }
+
+        #endregion
+
+        #region group
+
+        public void CreateGroup()
+        { }
+
+        public void ResolveGroup()
+        { }
+
+        public void SaveAsGroup()
+        { }
 
         #endregion
 

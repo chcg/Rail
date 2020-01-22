@@ -180,6 +180,18 @@
   <data name="MainGroup" xml:space="preserve">
     <value>Groups</value>
   </data>
+  <data name="MainGroupCreate" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="MainGroupResolve" xml:space="preserve">
+    <value>Ungroup</value>
+  </data>
+  <data name="MainGroups" xml:space="preserve">
+    <value>Groups</value>
+  </data>
+  <data name="MainGroupSaveAs" xml:space="preserve">
+    <value>Save Group As...</value>
+  </data>
   <data name="MainHeightmm" xml:space="preserve">
     <value>Height (mm)</value>
   </data>
@@ -206,6 +218,15 @@
   </data>
   <data name="MainRailPlan" xml:space="preserve">
     <value>Rail Plan</value>
+  </data>
+  <data name="MainRamp" xml:space="preserve">
+    <value>Ramp</value>
+  </data>
+  <data name="MainRampCreate" xml:space="preserve">
+    <value>Create Ramp</value>
+  </data>
+  <data name="MainRampDelete" xml:space="preserve">
+    <value>Delete Ramp</value>
   </data>
   <data name="MainRotation" xml:space="preserve">
     <value>Rotation</value>
