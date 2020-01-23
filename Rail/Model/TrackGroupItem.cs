@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class TrackItem
+    public class TrackGroupItem
     {
         [XmlAttribute("Id")]
         public string Id { get; set; }

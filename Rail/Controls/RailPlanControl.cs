@@ -27,19 +27,19 @@ namespace Rail.Controls
         // mouse operation variables
         private Point lastMousePosition; 
         private RailAction actionType;
-        private RailItem actionRailItem;
+        private RailBase actionRailItem;
         private bool hasMoved;
-        private List<RailItem> actionSubgraph;
+        private List<RailBase> actionSubgraph;
         //private Angle debugRotationAngle;
         private Point selectRecStart;
 
         private bool selectedChangeIntern = false;
-        private RailItem selectedRail;
-        private List<RailItem> selectedRails;
+        private RailBase selectedRail;
+        private List<RailBase> selectedRails;
 
-        public DelegateCommand<RailItem> DeleteRailItemCommand { get; private set; }
-        public DelegateCommand<RailItem> RotateRailItemCommand { get; private set; }
-        public DelegateCommand<RailItem> PropertiesRailItemCommand { get; private set; }
+        public DelegateCommand<RailBase> DeleteRailItemCommand { get; private set; }
+        public DelegateCommand<RailBase> RotateRailItemCommand { get; private set; }
+        public DelegateCommand<RailBase> PropertiesRailItemCommand { get; private set; }
 
         public DelegateCommand CreateGroupCommand { get; private set; }
         public DelegateCommand ResolveGroupCommand { get; private set; }
@@ -67,9 +67,9 @@ namespace Rail.Controls
 
         public RailPlanControl()
         {
-            this.DeleteRailItemCommand = new DelegateCommand<RailItem>(OnDeleteRailItem);
-            this.RotateRailItemCommand = new DelegateCommand<RailItem>(OnRotateRailItem);
-            this.PropertiesRailItemCommand = new DelegateCommand<RailItem>(OnPropertiesRailItem);
+            this.DeleteRailItemCommand = new DelegateCommand<RailBase>(OnDeleteRailItem);
+            this.RotateRailItemCommand = new DelegateCommand<RailBase>(OnRotateRailItem);
+            this.PropertiesRailItemCommand = new DelegateCommand<RailBase>(OnPropertiesRailItem);
 
             this.CreateGroupCommand = new DelegateCommand(OnCreateGroup, OnCanCreateGroup);
             this.ResolveGroupCommand = new DelegateCommand(OnResolveGroup, OnCanResolveGroup);
@@ -438,10 +438,10 @@ namespace Rail.Controls
         private static void OnSelectedRailsYChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             RailPlanControl railPlanControl = (RailPlanControl)o;
-            railPlanControl.OnSelectedRailsYChanged((double?)e.NewValue, (double?)e.OldValue);
+            railPlanControl.OnSelectedRailsYChanged((double?)e.NewValue);
         }
 
-        private void OnSelectedRailsYChanged(double? newValue, double? oldValue)
+        private void OnSelectedRailsYChanged(double? newValue)
         {
             if (newValue.HasValue && SelectedRailsY.HasValue && newValue != SelectedRailsY && !this.selectedChangeIntern)
             {
@@ -717,9 +717,9 @@ namespace Rail.Controls
 
         #region actions
 
-        private RailItem FindRailItem(Point point)
+        private RailBase FindRailItem(Point point)
         {
-            RailItem track = this.RailPlan.Rails.Where(t => t.IsInside(point, this.ViewMode)).FirstOrDefault();
+            RailBase track = this.RailPlan.Rails.Where(t => t.IsInside(point, this.ViewMode)).FirstOrDefault();
             return track;
         }
 
@@ -735,8 +735,8 @@ namespace Rail.Controls
         {
             Debug.WriteLine($"InsertRailItem at DockPoint ({railDockPoint.DebugDockPointIndex},{railDockPoint.DebugDockPointIndex})");
 
-            RailItem railItem = new RailItem(this.SelectedTrack, new Point(0, 0), this.InsertLayer.Id);
-            Point pos = railItem.Track.DockPoints.First().Position;
+            RailBase railItem = new RailItem(this.SelectedTrack, new Point(0, 0), this.InsertLayer.Id);
+            Point pos = ((RailItem)railItem).Track.DockPoints.First().Position;
             //RailDockPoint newRailDockPoint = railItem.DockPoints.First();
 
             railItem.Move((Vector)railDockPoint.Position + (Vector)pos);
@@ -745,7 +745,7 @@ namespace Rail.Controls
             //FindDocking(this.actionTrack, this.dockedTracks);
         }
 
-        public void DeleteRailItem(RailItem railItem)
+        public void DeleteRailItem(RailBase railItem)
         {
             // delete all docks of the item
             railItem.DockPoints.Where(dp => dp.IsDocked).ForEach(dp => dp.Undock());
@@ -761,7 +761,7 @@ namespace Rail.Controls
             list.ForEach(r => DeleteRailItem(r));
         }
 
-        public void SelectRailItem(RailItem railItem, bool addSelect)
+        public void SelectRailItem(RailBase railItem, bool addSelect)
         {
             if (addSelect)
             {
@@ -801,7 +801,7 @@ namespace Rail.Controls
         //    subgraph?.Where(t => t != railItem).ForEach(t => t.Move(move));
         //}
 
-        private void MoveRailItem(IEnumerable<RailItem> subgraph, Vector move)
+        private void MoveRailItem(IEnumerable<RailBase> subgraph, Vector move)
         {
             //Debug.WriteLine($"MoveRailItem {railItem.DebugIndex} ({move.X:F2},{move.Y:F2}) with subgraph");
 
@@ -820,7 +820,7 @@ namespace Rail.Controls
         //    subgraph?.Where(t => t != railItem).ForEach(tr => tr.Rotate(rotation, railItem));
         //}
 
-        private void RotateRailItem(IEnumerable<RailItem> subgraph, Point center, Rotation rotation)
+        private void RotateRailItem(IEnumerable<RailBase> subgraph, Point center, Rotation rotation)
         {
             subgraph.ForEach(t => t.Rotate(rotation, center));
         }
@@ -856,7 +856,7 @@ namespace Rail.Controls
         //}
 
 
-        private void FindDocking(RailItem railItem)
+        private void FindDocking(RailBase railItem)
         {
             if (this.RailPlan.Rails != null)
             {
@@ -870,7 +870,7 @@ namespace Rail.Controls
                 DebugRailItems(otherTracks);
                 foreach (var dockPoint in dockPoints)
                 {
-                    foreach (RailItem t in otherTracks)
+                    foreach (RailBase t in otherTracks)
                     {
                         foreach (var dp in t.DockPoints.Where(dp => !dp.IsDocked))
                         {
@@ -935,7 +935,7 @@ namespace Rail.Controls
             Point pos = GetMousePosition(e);
             this.selectedChangeIntern = true;
 
-            RailItem railItem = FindRailItem(pos);
+            RailBase railItem = FindRailItem(pos);
             if (railItem != null)
             {
                 RailDockPoint railDockPoint = railItem?.DockPoints.FirstOrDefault(d => d.IsInside(pos));
@@ -1134,7 +1134,7 @@ namespace Rail.Controls
 
         #region commands
 
-        private void OnDeleteRailItem(RailItem railItem)
+        private void OnDeleteRailItem(RailBase railItem)
         {
             this.selectedChangeIntern = true;
             DeleteRailItem(railItem);
@@ -1142,11 +1142,11 @@ namespace Rail.Controls
             this.InvalidateVisual();
         }
                 
-        private void OnRotateRailItem(RailItem railItem)
+        private void OnRotateRailItem(RailBase railItem)
         {
         }
         
-        private void OnPropertiesRailItem(RailItem railItem)
+        private void OnPropertiesRailItem(RailBase railItem)
         {
 
         }
@@ -1154,16 +1154,24 @@ namespace Rail.Controls
         #endregion
 
         #region group
-               
-
-        public void OnCreateGroup()
-        { 
-        }
 
         public bool OnCanCreateGroup()
         {
-            return true;
+            return this.SelectedMode == RailSelectedMode.Multi;
         }
+
+        public void OnCreateGroup()
+        {
+            // take all selected rails
+            var selectedRails = this.RailPlan.Rails.Where(r => r.IsSelected).ToArray();
+
+            // remove from Rails
+            selectedRails.ForEach(r => this.RailPlan.Rails.Remove(r));
+
+            //RailG
+        }
+
+        
 
         public void OnResolveGroup()
         { }
@@ -1220,7 +1228,7 @@ namespace Rail.Controls
         }
 
         [Conditional("DEBUGINFO")]
-        private void DebugRailItems(IEnumerable<RailItem> railItems)
+        private void DebugRailItems(IEnumerable<RailBase> railItems)
         {
             if (railItems != null && railItems.Any())
             {

@@ -1,4 +1,6 @@
-﻿using Rail.Properties;
+﻿using Rail.Controls;
+using Rail.Misc;
+using Rail.Properties;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,26 +11,32 @@ namespace Rail.Model
 {
     public class TrackGroup : TrackBase
     {
+        [XmlElement("Name")]
+        public XmlMultilanguageString GroupName { get; set; }
+
         [XmlElement("Item")]
-        public List<TrackItem> Items { get; set; }
+        public List<TrackGroupItem> GroupItems { get; set; }
 
-        public override string Name { get; }
+        [XmlIgnore]
+        public override string Name { get { return this.GroupName; } }
 
-        public override string Description { get; }
+        [XmlIgnore]
+        public override string Description { get { return this.GroupName; } }
 
-        protected override List<TrackDockPoint> CreateDockPoints()
+        [XmlIgnore]
+        public override List<TrackMaterial> Materials 
         {
-            return null;
+            get { return null; /* this.GroupItems?.TODO;*/ } 
         }
 
-        protected override Geometry CreateGeometry(double spacing)
+        public override void Update(TrackType trackType)
         {
-            return null;
+            this.RailSpacing = trackType.Spacing; 
         }
 
-        protected override Drawing CreateRailDrawing()
+        public override void Render(DrawingContext drawingContext, RailViewMode viewMode, bool isSelected, Brush trackBrush)
         {
-            return null;
+            // TODO
         }
     }
 }

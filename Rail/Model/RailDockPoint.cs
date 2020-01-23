@@ -17,7 +17,7 @@ namespace Rail.Model
         public RailDockPoint()
         { }
 
-        public RailDockPoint(RailItem railItem, TrackDockPoint trackDockPoint)
+        public RailDockPoint(RailBase railItem, TrackDockPoint trackDockPoint)
         {
             this.Id = Guid.NewGuid();
             this.RailItem = railItem;
@@ -34,7 +34,7 @@ namespace Rail.Model
         /// </summary>
         /// <param name="railItem"></param>
         /// <param name="trackDockPoint"></param>
-        public void Update(RailItem railItem, TrackDockPoint trackDockPoint)
+        public void Update(RailBase railItem, TrackDockPoint trackDockPoint)
         {
             this.RailItem = railItem;
             this.RailItem = railItem;
@@ -50,7 +50,7 @@ namespace Rail.Model
         public Guid Id { get; set; }
 
         [XmlIgnore]
-        public RailItem RailItem { get; private set; }
+        public RailBase RailItem { get; private set; }
 
         [XmlIgnore]
         public int DebugDockPointIndex { get; set; }
@@ -94,12 +94,12 @@ namespace Rail.Model
 
         public bool IsInside(Point pos)
         {
-            return this.Distance(pos) < this.RailItem.Track.RailSpacing;
+            return this.Distance(pos) < ((RailItem)this.RailItem).Track.RailSpacing;
         }
 
         public bool IsInside(RailDockPoint p)
         {
-            return this.Distance(p.Position) < this.RailItem.Track.RailSpacing;
+            return this.Distance(p.Position) < ((RailItem)this.RailItem).Track.RailSpacing;
         }
 
         public void AdjustDock(RailDockPoint dockTo)

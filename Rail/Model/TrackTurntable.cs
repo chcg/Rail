@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class TrackTurntable : TrackBase
+    public class TrackTurntable : TrackBaseSingle
     {
         [XmlAttribute("OuterRadius")]
         public double OuterRadius { get; set; }

@@ -15,10 +15,11 @@ namespace Rail.Model
 {
     [DebuggerDisplay("RailItem Index={DebugIndex} Id={Id} X={Position.X} Y={Position.Y} A={Angle}")]
 
-    public class RailItem
+    public class RailItem : RailBase
     {
-        private static int globalDebugIndex = 0;
-        
+        private static readonly Pen dockPen = new Pen(Brushes.Blue, 1);
+        private static readonly Pen positionPen = new Pen(Brushes.Red, 2);
+
         public RailItem()
         { }
 
@@ -33,10 +34,7 @@ namespace Rail.Model
             this.Layer = layer;
             this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp)).ToArray();
         }
-
-        [XmlIgnore]
-        public int DebugIndex { get; private set; }
-
+        
         //[XmlAttribute("Id")]
         //public Guid Id { get; set; }
 
@@ -45,101 +43,8 @@ namespace Rail.Model
 
         [XmlIgnore]
         public TrackBase Track { get; set; }        
-
-        [XmlIgnore]
-        public Point Position;
-
-        [XmlAttribute("X")]
-        public double X 
-        {
-            get { return this.Position.X; } 
-            set { this.Position.X = value; }
-        }
-
-        [XmlAttribute("Y")]
-        public double Y 
-        {
-            get { return this.Position.Y; }
-            set { this.Position.Y = value; }
-        }
-
-        [XmlIgnore]
-        public Angle Angle { get; set; }
-
-        [XmlAttribute("Angle")]
-        public double AngleInt
-        {
-            get { return this.Angle; }
-            set { this.Angle = value; }
-        }
-
-        [XmlAttribute("Gradient")]
-        public double Gradient { get; set; }
-
-        [XmlAttribute("Height")]
-        public double Height { get; set; }
-
-        [XmlAttribute("Layer")]
-        public Guid Layer { get; set; }
         
-        [XmlArray("DockPoints")]
-        [XmlArrayItem("DockPoint")]
-        public RailDockPoint[] DockPoints { get; set; }
-
-        [XmlIgnore]
-        public bool IsSelected { get; set; }
-
-        [XmlIgnore]
-        public bool HasOnlyOneDock { get { return this.DockPoints.One(dp => dp.IsDocked);  } }
-
-        [XmlIgnore]
-        public bool HasDocks { get { return this.DockPoints.Any(dp => dp.IsDocked); } }
-
-        public void Move(Vector vec)
-        {
-            this.Position += vec;
-        }
-
-        //public void Rotate(Angle angle)
-        //{
-        //    Debug.WriteLine($"++Rotate {this.DebugIndex} RailItemAngle {this.Angle} RotateAngle {angle}");
-        //    this.Angle += angle;
-        //    this.DockPoints.ToList().ForEach(dp => dp.Rotate(angle, this.Position));
-        //    Debug.WriteLine($"--Rotate {this.DebugIndex} RailItemAngle {this.Angle}");
-        //}
-
-        //public void Rotate(Rotation rotation)
-        //{
-        //    Debug.WriteLine($"++Rotate {this.DebugIndex} RailItemAngle {this.Angle} RotateAngle {rotation}");
-        //    this.Angle += rotation;
-        //    this.DockPoints.ToList().ForEach(dp => dp.Rotate(rotation, this.Position));
-        //    Debug.WriteLine($"--Rotate {this.DebugIndex} RailItemAngle {this.Angle}");
-        //}
-
-        //public void Rotate(Angle angle, Point center)
-        //{
-        //    this.Angle += angle;
-        //    this.Position = this.Position.Rotate(angle, center);
-        //    this.DockPoints.ToList().ForEach(dp => dp.Rotate(angle, center));
-        //}
-
-        public void Rotate(Rotation rotation, Point center)
-        {
-            this.Angle += rotation;
-            this.Position = this.Position.Rotate(rotation, center);
-        }
-
-        //public void Rotate(Angle angle, RailItem center)
-        //{
-        //    Rotate(angle, center.Position);
-        //}
-
-        //public void Rotate(Rotation rotation, RailItem center)
-        //{
-        //    Rotate(rotation, center.Position);
-        //}
-
-        public void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode, RailLayer layer)
+        public override void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode, RailLayer layer)
         {
             TransformGroup transformGroup = new TransformGroup();
             transformGroup.Children.Add(new RotateTransform (this.Angle));
@@ -155,6 +60,42 @@ namespace Rail.Model
 
             DrawDebug(drawingContext);
             DrawDebugDogpoints(drawingContext);
+        }
+
+        public override void DrawDockPoints(DrawingContext drawingContext)
+        {
+            foreach (var point in this.DockPoints)
+            {
+                drawingContext.DrawEllipse(null, dockPen, point.Position, this.Track.RailSpacing / 2, this.Track.RailSpacing / 2);
+                if (!point.IsDocked)
+                {
+                    drawingContext.DrawLine(positionPen, point.Position, point.Position.Circle(point.Angle, this.Track.RailSpacing));
+                }
+            }
+        }
+
+        public override bool IsInside(Point point, RailViewMode viewMode)
+        {
+            TransformGroup grp = new TransformGroup();
+            grp.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
+            grp.Children.Add(new RotateTransform(this.Angle, this.Position.X, this.Position.Y));
+
+            Geometry geometry = viewMode == RailViewMode.Tracks ? this.Track.GeometryTracks.Clone() : this.Track.GeometryRail.Clone();
+            geometry.Transform = grp;
+            bool f = geometry.FillContains(point);
+            return f;
+        }
+
+        public override bool IsInside(Rect rec, RailViewMode viewMode)
+        {
+            TransformGroup grp = new TransformGroup();
+            grp.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
+            grp.Children.Add(new RotateTransform(this.Angle, this.Position.X, this.Position.Y));
+
+            Geometry geometry = viewMode == RailViewMode.Tracks ? this.Track.GeometryTracks.Clone() : this.Track.GeometryRail.Clone();
+            geometry.Transform = grp;
+            bool f = rec.Contains(geometry.Bounds);
+            return f;
         }
 
         [Conditional("DEBUGINFO")]
@@ -180,84 +121,13 @@ namespace Rail.Model
             }
         }
 
-        private static readonly Pen dockPen = new Pen(Brushes.Blue, 1);
-        private static readonly Pen positionPen = new Pen(Brushes.Red, 2);
         
-        public void DrawDockPoints(DrawingContext drawingContext)
-        {
-            foreach (var point in this.DockPoints)
-            {
-                drawingContext.DrawEllipse(null, dockPen, point.Position, this.Track.RailSpacing / 2, this.Track.RailSpacing / 2);
-                if (!point.IsDocked)
-                {
-                    drawingContext.DrawLine(positionPen, point.Position, point.Position.Circle(point.Angle, this.Track.RailSpacing));
-                }
-            }
-        }
+        
+        
 
-        public bool IsInside(Point point, RailViewMode viewMode)
-        {
-            TransformGroup grp = new TransformGroup();
-            grp.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
-            grp.Children.Add(new RotateTransform(this.Angle, this.Position.X, this.Position.Y));
-
-            Geometry geometry = viewMode == RailViewMode.Tracks ? this.Track.GeometryTracks.Clone() : this.Track.GeometryRail.Clone();
-            geometry.Transform = grp;
-            bool f = geometry.FillContains(point);
-            return f;
-        }
-
-        public bool IsInside(Rect rec, RailViewMode viewMode)
-        {
-            TransformGroup grp = new TransformGroup();
-            grp.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
-            grp.Children.Add(new RotateTransform(this.Angle, this.Position.X, this.Position.Y));
-
-            Geometry geometry = viewMode == RailViewMode.Tracks ? this.Track.GeometryTracks.Clone() : this.Track.GeometryRail.Clone();
-            geometry.Transform = grp;
-            bool f = rec.Contains(geometry.Bounds);
-            return f;
-        }
-
-        public void UndockAll()
-        {
-            foreach (RailDockPoint dockPoint in this.DockPoints.Where(d => d.IsDocked))
-            {
-                dockPoint.Undock();
-            }
-        }
+        
 
 
-        /// <summary>
-        /// Find docked subgraph including this one.
-        /// </summary>
-        /// <returns>List of all docked rail items.</returns>
-        public List<RailItem> FindSubgraph()
-        {
-            // list with new items not inspected
-            List<RailItem> listFound = new List<RailItem>();
-            // list with inspected items
-            List<RailItem> listScanned = new List<RailItem>();
-
-            // add start item
-            listFound.Add(this);
-
-            RailItem item;
-            while ((item = listFound.TakeLastOrDefault()) != null)
-            {
-                // move item from listFound to listScanned
-                listScanned.Add(item);
-
-                // check if children already in one of the lists and add to listFound if not
-                listFound.AddRange(item.DockPoints.
-                    Where(d => d.IsDocked).
-                    Select(d => d.DockedWith.RailItem).
-                    Where(d => (!listFound.Contains(d)) && (!listScanned.Contains(d))));
-            }
-            
-            // remove original
-            // listScanned.Remove(this);
-            return listScanned;
-        }
+        
     }
 }

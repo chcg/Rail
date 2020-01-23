@@ -41,7 +41,7 @@ namespace Rail.Model
                     new RailLayer{ Id = Guid.NewGuid(), Name = "Tunnel", Height = 100, TrackColor = Colors.Blue, PlateColor = Colors.Transparent },
                     new RailLayer{ Id = Guid.NewGuid(), Name = "Bridge", Height = 100, TrackColor = Colors.Yellow, PlateColor = Colors.Transparent }
                 },
-                Rails = new ObservableCollection<RailItem>()
+                Rails = new ObservableCollection<RailBase>()
             };
         }
 
@@ -76,6 +76,6 @@ namespace Rail.Model
         /// </summary>
         [XmlArray("Rails")]
         [XmlArrayItem("Rail")]
-        public ObservableCollection<RailItem> Rails { get; set; }
+        public ObservableCollection<RailBase> Rails { get; set; }
     }
 }

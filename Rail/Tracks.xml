@@ -96,6 +96,44 @@
         <Item Id="M24172" X="172" Y="77.5" Angle="0"/>
         <Item Id="M24172" X="344" Y="77.0" Angle="0"/>
       </Group>
+      <Group Id="xx">
+        <Name>
+          <LanguageString>xyz</LanguageString>
+          <LanguageString Lang="de-DE">xyz</LanguageString>
+        </Name>
+        <GroupItem TrackId="Märklin24740" X="300" Y="333" Angle="0" Gradient="0" Height="0" >
+          <DockPoints>
+            <DockPoint Id="6d9aa6de-0693-4ca2-b319-eb508c1e597c" DockedWithId="56ef0928-2976-43ab-b87f-6ffee334db9c" />
+            <DockPoint Id="366f7120-d143-4df1-8e83-7235e12bae1e" DockedWithId="1eca5f74-01f5-4c73-864d-9341496aada0" />
+            <DockPoint Id="78b29919-1354-4423-972b-fa8f298012cc" DockedWithId="2bcbad60-1bd4-4cc2-acdd-610fbbf326a2" />
+            <DockPoint Id="af2a9a81-8b71-48e9-86ec-0c851a23f28e" DockedWithId="c0d0a7c7-52d9-40ab-88b2-ab3d76992fc9" />
+          </DockPoints>
+        </GroupItem>
+        <GroupItem TrackId="Märklin24071" X="452.5985718223581" Y="349.14234169224443" Angle="6" Gradient="0" Height="0" >
+          <DockPoints>
+            <DockPoint Id="2bcbad60-1bd4-4cc2-acdd-610fbbf326a2" DockedWithId="78b29919-1354-4423-972b-fa8f298012cc" />
+            <DockPoint Id="af3cf73d-b62d-415b-afd7-468c0732d4f4" DockedWithId="00000000-0000-0000-0000-000000000000" />
+          </DockPoints>
+        </GroupItem>
+        <GroupItem TrackId="Märklin24071" X="452.5985718223581" Y="316.85765830775557" Angle="354" Gradient="0" Height="0" >
+          <DockPoints>
+            <DockPoint Id="c0d0a7c7-52d9-40ab-88b2-ab3d76992fc9" DockedWithId="af2a9a81-8b71-48e9-86ec-0c851a23f28e" />
+            <DockPoint Id="fcf70714-33d2-43a7-8ab6-28d8991d5f5d" DockedWithId="00000000-0000-0000-0000-000000000000" />
+          </DockPoints>
+        </GroupItem>
+        <GroupItem TrackId="Märklin24071" X="147.40142817764192" Y="349.14234169224443" Angle="354" Gradient="0" Height="0" Layer="5fbe2225-32ab-4513-9a9e-fe99b7fcb6f0">
+          <DockPoints>
+            <DockPoint Id="c249b746-e67b-41dc-8459-616d2a997828" DockedWithId="00000000-0000-0000-0000-000000000000" />
+            <DockPoint Id="1eca5f74-01f5-4c73-864d-9341496aada0" DockedWithId="366f7120-d143-4df1-8e83-7235e12bae1e" />
+          </DockPoints>
+        </GroupItem>
+        <GroupItem TrackId="Märklin24071" X="147.40142817764192" Y="316.85765830775557" Angle="6" Gradient="0" Height="0" Layer="5fbe2225-32ab-4513-9a9e-fe99b7fcb6f0">
+          <DockPoints>
+            <DockPoint Id="7fa4479a-640f-4e07-a10d-9aca35389b7a" DockedWithId="00000000-0000-0000-0000-000000000000" />
+            <DockPoint Id="56ef0928-2976-43ab-b87f-6ffee334db9c" DockedWithId="6d9aa6de-0693-4ca2-b319-eb508c1e597c" />
+          </DockPoints>
+        </GroupItem>
+      </Group>
     </Groups>
   </TrackType>
   <TrackType Manufacturer="Märklin" Gauge="H0" Type="Kunststoffgleise" DockType="M24" Spacing="16.5" ViewType="BallastWoodenSleepers">

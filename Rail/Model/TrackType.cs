@@ -13,14 +13,14 @@ namespace Rail.Model
 {
     public class TrackType 
     {
-        public class XmLanguageName
-        {
-            [XmlAttribute("Lang")]
-            public string Lang { get; set; }
+        //public class XmLanguageName
+        //{
+        //    [XmlAttribute("Lang")]
+        //    public string Lang { get; set; }
 
-            [XmlText]
-            public string Value { get; set; }
-        }
+        //    [XmlText]
+        //    public string Value { get; set; }
+        //}
 
         /// <summary>
         /// Manufacturer of the track
@@ -80,7 +80,8 @@ namespace Rail.Model
          XmlArrayItem(typeof(TrackStraightFeeder), ElementName = "StraightFeeder"),
          XmlArrayItem(typeof(TrackStraightAdjustment), ElementName = "StraightAdjustment"),
          XmlArrayItem(typeof(TrackDoubleCrossover), ElementName = "Suspender"),
-         XmlArrayItem(typeof(TrackFlex), ElementName = "Flex")]
+         XmlArrayItem(typeof(TrackFlex), ElementName = "Flex"),
+         XmlArrayItem(typeof(TrackGroup), ElementName = "Group")]
         public List<TrackBase> Tracks { get; set; }
 
         [XmlArray("Groups")]

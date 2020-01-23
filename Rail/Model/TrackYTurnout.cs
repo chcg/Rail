@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class TrackYTurnout : TrackBase
+    public class TrackYTurnout : TrackBaseSingle
     {
         [XmlAttribute("Radius")]
         public string RadiusNameOrValue { get; set; }

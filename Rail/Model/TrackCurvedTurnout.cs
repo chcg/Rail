@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class TrackCurvedTurnout : TrackBase
+    public class TrackCurvedTurnout : TrackBaseSingle
     {
         [XmlAttribute("InnerRadius")]
         public string InnerRadiusNameOrValue { get; set; }

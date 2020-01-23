@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 namespace Rail.Model
 {
 
-    public class TrackStraight : TrackBase
+    public class TrackStraight : TrackBaseSingle
     {
 
         [XmlAttribute("Length")]

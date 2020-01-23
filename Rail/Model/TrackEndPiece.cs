@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class TrackEndPiece : TrackBase
+    public class TrackEndPiece : TrackBaseSingle
     {
         [XmlIgnore]
         public override string Name

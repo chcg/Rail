@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class TrackTurnout : TrackBase
+    public class TrackTurnout : TrackBaseSingle
     {
         [XmlAttribute("Length")]
         public string LengthNameOrValue { get; set; }

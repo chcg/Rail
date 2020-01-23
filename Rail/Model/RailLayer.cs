@@ -26,9 +26,23 @@ namespace Rail.Model
         public int Height { get; set; }
 
         [XmlAttribute("TrackColor")]
+        public string TrackColorInt 
+        { 
+            get { return TrackColor.ToString(); }
+            set { this.TrackColor = (Color)ColorConverter.ConvertFromString(value); }
+        }
+
+        [XmlIgnore]
         public Color TrackColor { get; set; }
 
         [XmlAttribute("PlateColor")]
+        public string PlateColorInt
+        {
+            get { return PlateColor.ToString(); }
+            set { this.PlateColor = (Color)ColorConverter.ConvertFromString(value); }
+        }
+        
+        [XmlIgnore]
         public Color PlateColor { get; set; }
 
         [XmlIgnore]

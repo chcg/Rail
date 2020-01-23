@@ -59,8 +59,7 @@ namespace Rail.Mvvm
 
         public override void OnStartup()
         {
-            this.watcher = new FileSystemWatcher();
-            this.watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+            this.watcher = new FileSystemWatcher() { NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName };
             this.watcher.Changed += new FileSystemEventHandler(OnFileChanged);
             this.watcher.Created += new FileSystemEventHandler(OnFileChanged);
             this.watcher.Deleted += new FileSystemEventHandler(OnFileChanged);
