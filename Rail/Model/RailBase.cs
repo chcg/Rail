@@ -67,6 +67,9 @@ namespace Rail.Model
         [XmlIgnore]
         public bool HasDocks { get { return this.DockPoints.Any(dp => dp.IsDocked); } }
 
+        [XmlIgnore]
+        public abstract List<TrackMaterial> Materials { get; }
+
         public abstract void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode, RailLayer layer);
 
         public abstract void DrawDockPoints(DrawingContext drawingContext);

@@ -14,7 +14,6 @@ using System.Xml.Serialization;
 namespace Rail.Model
 {
     [DebuggerDisplay("RailItem Index={DebugIndex} Id={Id} X={Position.X} Y={Position.Y} A={Angle}")]
-
     public class RailItem : RailBase
     {
         private static readonly Pen dockPen = new Pen(Brushes.Blue, 1);
@@ -42,8 +41,14 @@ namespace Rail.Model
         public string TrackId { get; set; }
 
         [XmlIgnore]
-        public TrackBase Track { get; set; }        
-        
+        public TrackBase Track { get; set; }
+
+        [XmlIgnore]
+        public override List<TrackMaterial> Materials
+        {
+            get { return this.Track.Materials; }
+        }
+
         public override void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode, RailLayer layer)
         {
             TransformGroup transformGroup = new TransformGroup();
@@ -98,6 +103,8 @@ namespace Rail.Model
             return f;
         }
 
+        #region debug
+        
         [Conditional("DEBUGINFO")]
         public void DrawDebug(DrawingContext drawingContext)
         {
@@ -121,13 +128,6 @@ namespace Rail.Model
             }
         }
 
-        
-        
-        
-
-        
-
-
-        
+        #endregion
     }
 }

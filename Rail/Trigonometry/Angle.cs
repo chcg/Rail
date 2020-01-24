@@ -58,7 +58,7 @@ namespace Rail.Trigonometry
 
         public static implicit operator double(Angle a)
         {
-            return a.angle / FAC;
+            return a?.angle / FAC ?? 0.0;
         }
 
         public static implicit operator Rotation(Angle a)

@@ -1,4 +1,5 @@
 ﻿using Rail.Controls;
+using Rail.Misc;
 using Rail.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -45,9 +46,32 @@ namespace Rail.Model
             };
         }
 
-        public static RailPlan Load(string path)
+        public static RailPlan Load(string path, Dictionary<string, TrackBase> trackDict)
         {
             RailPlan railPlan = BaseProject.Load<RailPlan>(path);
+
+            // link tracks
+            foreach (RailBase item in railPlan.Rails)
+            {
+                if (item is RailItem railItem)
+                {
+                    // set track
+                    railItem.Track = trackDict[railItem.TrackId];
+                    // set dock points
+                    railItem.DockPoints.ForEach((railDockPoint, index) =>
+                    {
+                        railDockPoint.Update(railItem, railItem.Track.DockPoints[index]);
+                    });
+                }
+            }
+            // link dock points
+            var list = railPlan.Rails.SelectMany(r => r.DockPoints).Where(dp => dp.DockedWithId != Guid.Empty).ToList();
+            foreach (RailDockPoint dp in list)
+            {
+                RailDockPoint x = list.Single(i => i.Id == dp.DockedWithId);
+                x.Dock(dp);
+
+            }
             return railPlan;
         }
 
@@ -75,7 +99,8 @@ namespace Rail.Model
         /// 
         /// </summary>
         [XmlArray("Rails")]
-        [XmlArrayItem("Rail")]
+        [XmlArrayItem("Rail", typeof(RailItem)),
+         XmlArrayItem("Group", typeof(RailGroup))]
         public ObservableCollection<RailBase> Rails { get; set; }
     }
 }

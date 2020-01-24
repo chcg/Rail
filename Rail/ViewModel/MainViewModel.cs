@@ -244,7 +244,7 @@ namespace Rail.ViewModel
             //var l3 = l1.Select(g => new { num = g.Select(m => m.Number).Sum(), material = g.First() }).ToList();
             //this.MaterialList = l3.Select(i => { i.material.Number = i.num; return i.material; }).ToList();
 
-            this.MaterialList = this.RailPlan.Rails.SelectMany(r => ((RailItem)r).Track.Materials).GroupBy(m => m.Id).Select(g => { var m = g.First(); m.Number = g.Select(i => i.Number).Sum(); return m; }).ToList();
+            this.MaterialList = this.RailPlan.Rails.SelectMany(r => r.Materials).GroupBy(m => m.Id).Select(g => { var m = g.First(); m.Number = g.Select(i => i.Number).Sum(); return m; }).ToList();
         }
 
         private List<TrackMaterial> materialList;
@@ -420,25 +420,7 @@ namespace Rail.ViewModel
 
         public override void OnLoad(string path)
         {
-            this.RailPlan = RailPlan.Load(path);
-            foreach (RailBase railItem in this.RailPlan.Rails)
-            {
-                // set track
-                ((RailItem)railItem).Track = this.trackDict[((RailItem)railItem).TrackId];
-                // set dock points
-                railItem.DockPoints.ForEach((railDockPoint, index) =>
-                {
-                    railDockPoint.Update(railItem, ((RailItem)railItem).Track.DockPoints[index]);
-                });
-            }
-            // link dock points
-            var list = this.RailPlan.Rails.SelectMany(r => r.DockPoints).Where(dp => dp.DockedWithId != Guid.Empty).ToList();
-            foreach (RailDockPoint dp in list)
-            {
-                RailDockPoint x = list.Single(i => i.Id == dp.DockedWithId);
-                x.Dock(dp);
-
-            }
+            this.RailPlan = RailPlan.Load(path, this.trackDict);
             this.FileChanged = true;
         }
 

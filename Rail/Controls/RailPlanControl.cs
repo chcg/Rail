@@ -1168,7 +1168,10 @@ namespace Rail.Controls
             // remove from Rails
             selectedRails.ForEach(r => this.RailPlan.Rails.Remove(r));
 
-            //RailG
+            // create rail group
+            this.RailPlan.Rails.Add(new RailGroup(selectedRails));
+
+            Invalidate();
         }
 
         
