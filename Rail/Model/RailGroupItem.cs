@@ -73,28 +73,11 @@ namespace Rail.Model
             DrawDebugDogpoints(drawingContext);
         }
 
-        public override bool IsInside(Point point, RailViewMode viewMode)
+        protected override Geometry GetGeometry(RailViewMode viewMode, Transform transform)
         {
-            TransformGroup grp = new TransformGroup();
-            grp.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
-            grp.Children.Add(new RotateTransform(this.Angle, this.Position.X, this.Position.Y));
-
-            Geometry geometry = viewMode == RailViewMode.Tracks ? this.Track.GeometryTracks.Clone() : this.Track.GeometryRail.Clone();
-            geometry.Transform = grp;
-            bool f = geometry.FillContains(point);
-            return f;
-        }
-
-        public override bool IsInside(Rect rec, RailViewMode viewMode)
-        {
-            TransformGroup grp = new TransformGroup();
-            grp.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
-            grp.Children.Add(new RotateTransform(this.Angle, this.Position.X, this.Position.Y));
-
-            Geometry geometry = viewMode == RailViewMode.Tracks ? this.Track.GeometryTracks.Clone() : this.Track.GeometryRail.Clone();
-            geometry.Transform = grp;
-            bool f = rec.Contains(geometry.Bounds);
-            return f;
+            Geometry geometry = viewMode switch { RailViewMode.Tracks => this.Track.GeometryTracks.Clone(), RailViewMode.Rail => this.Track.GeometryRail.Clone(), _ => null };
+            geometry.Transform = this.RailTransform;
+            return geometry;
         }
 
         #region debug

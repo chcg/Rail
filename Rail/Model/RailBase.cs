@@ -102,10 +102,22 @@ namespace Rail.Model
         {
             this.DockPoints.ForEach(d => d.Draw(drawingContext));
         }
-        
-        public abstract bool IsInside(Point point, RailViewMode viewMode);
-               
-        public abstract bool IsInside(Rect rec, RailViewMode viewMode);
+
+        protected abstract Geometry GetGeometry(RailViewMode viewMode, Transform transform);
+
+        public bool IsInside(Point point, RailViewMode viewMode)
+        {
+            Geometry geometry = GetGeometry(viewMode, this.RailTransform);
+            bool f = geometry.FillContains(point);
+            return f;
+        }
+
+        public bool IsInside(Rect rec, RailViewMode viewMode)
+        {
+            Geometry geometry = GetGeometry(viewMode, this.RailTransform);
+            bool f = rec.Contains(geometry.Bounds);
+            return f;
+        }
 
         public virtual void Move(Vector vec)
         {

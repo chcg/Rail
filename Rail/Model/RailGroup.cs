@@ -86,10 +86,7 @@ namespace Rail.Model
 
         public override void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode, RailLayer layer)
         {
-            TransformGroup transformGroup = new TransformGroup();
-            transformGroup.Children.Add(new RotateTransform(this.Angle));
-            transformGroup.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
-            drawingContext.PushTransform(transformGroup);
+            drawingContext.PushTransform(this.RailTransform);
 
             this.Rails.ForEach(r => r.DrawRailItem(drawingContext, viewMode, layer));
 
@@ -153,21 +150,21 @@ namespace Rail.Model
             //});
         }
 
-        public override bool IsInside(Point point, RailViewMode viewMode)
-        {
-            Geometry geometry = GetGeometry(viewMode, this.RailTransform);
-            bool f = geometry.FillContains(point);
-            return f;
-        }
+        //public override bool IsInside(Point point, RailViewMode viewMode)
+        //{
+        //    Geometry geometry = GetGeometry(viewMode, this.RailTransform);
+        //    bool f = geometry.FillContains(point);
+        //    return f;
+        //}
 
-        public override bool IsInside(Rect rec, RailViewMode viewMode)
-        {
-            Geometry geometry = GetGeometry(viewMode, this.RailTransform);
-            bool f = rec.Contains(geometry.Bounds);
-            return f;
-        }
+        //public override bool IsInside(Rect rec, RailViewMode viewMode)
+        //{
+        //    Geometry geometry = GetGeometry(viewMode, this.RailTransform);
+        //    bool f = rec.Contains(geometry.Bounds);
+        //    return f;
+        //}
 
-        protected Geometry GetGeometry(RailViewMode viewMode, Transform transform)
+        protected override Geometry GetGeometry(RailViewMode viewMode, Transform transform)
         {
             Geometry geometry = viewMode switch { RailViewMode.Tracks => this.combinedGeometryTracks.Clone(), RailViewMode.Rail => this.combinedGeometryRail.Clone(), _ => null };
             geometry.Transform = this.RailTransform;
