@@ -72,6 +72,30 @@ namespace Rail.Model
         [XmlIgnore]
         public abstract List<TrackMaterial> Materials { get; }
 
+
+        public void CopyTo(RailBase railBase)
+        {
+            railBase.DebugIndex = this.DebugIndex;
+            railBase.Position = this.Position;
+            railBase.Angle = this.Angle;
+            railBase.Gradient = this.Gradient;
+            railBase.Height = this.Height;
+            railBase.Layer = this.Layer;
+            railBase.DockPoints = this.DockPoints;
+        }
+
+        [XmlIgnore]
+        public Transform RailTransform
+        {
+            get
+            {
+                TransformGroup transformGroup = new TransformGroup();
+                transformGroup.Children.Add(new RotateTransform(this.Angle));
+                transformGroup.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
+                return transformGroup;
+            }
+        }
+
         public abstract void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode, RailLayer layer);
 
         public void DrawDockPoints(DrawingContext drawingContext)

@@ -1136,7 +1136,7 @@ namespace Rail.Controls
 
         public bool OnCanCreateGroup()
         {
-            return this.SelectedMode == RailSelectedMode.Multi;
+            return this.SelectedMode == RailSelectedMode.Multi && !this.RailPlan.Rails.Where(r => r.IsSelected && r is RailGroup).Any();
         }
 
         public void OnCreateGroup()
@@ -1152,15 +1152,20 @@ namespace Rail.Controls
 
             Invalidate();
         }
-
         
-
         public void OnResolveGroup()
-        { }
+        { 
+            if (this.selectedRail is RailGroup railGroup)
+            {
+                this.RailPlan.Rails.AddRange(railGroup.Resolve());
+                this.RailPlan.Rails.Remove(railGroup);
+                Invalidate();
+            }
+        }
 
         public bool OnCanResolveGroup()
         {
-            return false;
+            return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailGroup;
         }
 
         public void OnSaveAsGroup()
@@ -1169,7 +1174,7 @@ namespace Rail.Controls
 
         public bool OnCanSaveAsGroup()
         {
-            return true;
+            return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailGroup; 
         }
 
         #endregion
