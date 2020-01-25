@@ -793,32 +793,12 @@ namespace Rail.Controls
             this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
         }
 
-        //private void MoveRailItem(RailItem railItem, Vector move, IEnumerable<RailItem> subgraph)
-        //{
-        //    Debug.WriteLine($"MoveRailItem {railItem.DebugIndex} ({move.X:F2},{move.Y:F2}) with subgraph");
-
-        //    railItem.Move(move);
-        //    subgraph?.Where(t => t != railItem).ForEach(t => t.Move(move));
-        //}
-
         private void MoveRailItem(IEnumerable<RailBase> subgraph, Vector move)
         {
             //Debug.WriteLine($"MoveRailItem {railItem.DebugIndex} ({move.X:F2},{move.Y:F2}) with subgraph");
 
             subgraph.ForEach(t => t.Move(move));
         }
-
-        //private void RotateRailItem(RailItem railItem, Angle angle, IEnumerable<RailItem> subgraph = null)
-        //{
-        //    railItem.Angle = angle;
-        //    subgraph?.Where(t => t != railItem).ForEach(tr => tr.Rotate(angle, railItem));
-        //}
-
-        //private void RotateRailItem(RailItem railItem, Rotation rotation, IEnumerable<RailItem> subgraph = null)
-        //{
-        //    railItem.Rotate(rotation);
-        //    subgraph?.Where(t => t != railItem).ForEach(tr => tr.Rotate(rotation, railItem));
-        //}
 
         private void RotateRailItem(IEnumerable<RailBase> subgraph, Point center, Rotation rotation)
         {
@@ -969,7 +949,7 @@ namespace Rail.Controls
             if ((this.actionRailItem = FindRailItem(pos)) != null)
             {
                 // click inside docking point
-                RailDockPoint dp = this.actionRailItem.DockPoints.FirstOrDefault(d => d.IsInside(pos));
+                RailDockPoint dp = this.actionRailItem.DockPoints?.FirstOrDefault(d => d.IsInside(pos));
                 if (dp != null)
                 {
                     this.actionType = RailAction.Rotate;
@@ -1023,7 +1003,6 @@ namespace Rail.Controls
                 break;
             case RailAction.MoveGraph:
                 MoveRailItem(this.actionSubgraph, pos - this.lastMousePosition);
-                //MoveRailItem(this.actionRailItem, pos - this.lastMousePosition, this.actionSubgraph);
                 FindDocking(this.actionRailItem);
                 Invalidate();
                 break;

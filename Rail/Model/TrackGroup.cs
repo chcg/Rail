@@ -34,9 +34,14 @@ namespace Rail.Model
             this.RailSpacing = trackType.Spacing; 
         }
 
-        public override void Render(DrawingContext drawingContext, RailViewMode viewMode, bool isSelected, Brush trackBrush)
+        public override void Render(DrawingContext drawingContext, RailViewMode viewMode, Brush trackBrush)
         {
             // TODO
+        }
+
+        public override void RenderSelection(DrawingContext drawingContext, RailViewMode viewMode)
+        {
+
         }
     }
 }

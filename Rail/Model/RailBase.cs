@@ -13,6 +13,8 @@ namespace Rail.Model
 {
     public abstract class RailBase
     {
+        //protected static readonly Pen dockPen = new Pen(Brushes.Blue, 1);
+        //protected static readonly Pen positionPen = new Pen(Brushes.Red, 2);
         protected static int globalDebugIndex = 0;
 
         [XmlIgnore]
@@ -56,7 +58,7 @@ namespace Rail.Model
 
         [XmlArray("DockPoints")]
         [XmlArrayItem("DockPoint")]
-        public RailDockPoint[] DockPoints { get; set; }
+        public List<RailDockPoint> DockPoints { get; set; }
 
         [XmlIgnore]
         public bool IsSelected { get; set; }
@@ -72,18 +74,21 @@ namespace Rail.Model
 
         public abstract void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode, RailLayer layer);
 
-        public abstract void DrawDockPoints(DrawingContext drawingContext);
-
+        public void DrawDockPoints(DrawingContext drawingContext)
+        {
+            this.DockPoints.ForEach(d => d.Draw(drawingContext));
+        }
+        
         public abstract bool IsInside(Point point, RailViewMode viewMode);
                
         public abstract bool IsInside(Rect rec, RailViewMode viewMode);
 
-        public void Move(Vector vec)
+        public virtual void Move(Vector vec)
         {
             this.Position += vec;
         }
 
-        public void Rotate(Rotation rotation, Point center)
+        public virtual void Rotate(Rotation rotation, Point center)
         {
             this.Angle += rotation;
             this.Position = this.Position.Rotate(rotation, center);

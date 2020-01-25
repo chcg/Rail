@@ -14,6 +14,8 @@ namespace Rail.Model
 {
     public abstract class TrackBaseSingle : TrackBase
     {
+        protected readonly double combineLengthOffset = 0.5;
+        protected readonly double combineAngleOffset = 0.05;
         protected readonly Pen dockPen = new Pen(TrackBrushes.Dock, 2);
         protected readonly Pen linePen = new Pen(TrackBrushes.TrackFrame, 2);
         protected readonly Pen dotPen = new Pen(Brushes.White, 2) { DashStyle = DashStyles.Dot };
@@ -48,9 +50,7 @@ namespace Rail.Model
 
         [XmlAttribute("ViewType")]
         public TrackViewType ViewType { get; set; }
-
         
-
         [XmlIgnore]
         public string Manufacturer { get; protected set; }
                         
@@ -127,30 +127,39 @@ namespace Rail.Model
         protected abstract List<TrackDockPoint> CreateDockPoints();
 
         // for TrackControl
-        public override void Render(DrawingContext drawingContext, RailViewMode viewMode, bool isSelected, Brush trackBrush)
+        public override void Render(DrawingContext drawingContext, RailViewMode viewMode, Brush trackBrush)
         {
             switch (viewMode)
             {
             case RailViewMode.Tracks:
                 drawingContext.DrawDrawing(new GeometryDrawing(trackBrush, this.linePen, this.GeometryTracks));
-                if (isSelected)
-                {
-                    drawingContext.DrawDrawing(new GeometryDrawing(null, this.dotPen, this.GeometryTracks));
-                }
                 drawingContext.DrawDrawing(this.textDrawing);
                 break;
 
             case RailViewMode.Rail:
                 drawingContext.DrawDrawing(this.drawingRail);
-                if (isSelected)
-                {
-                    drawingContext.DrawDrawing(new GeometryDrawing(null, this.linePen, this.GeometryRail));
-                    drawingContext.DrawDrawing(new GeometryDrawing(null, this.dotPen, this.GeometryRail));
-                }
                 break;
 
             case RailViewMode.Terrain:
                 drawingContext.DrawDrawing(this.drawingTerrain);
+                break;
+            }
+        }
+
+        public override void RenderSelection(DrawingContext drawingContext, RailViewMode viewMode)
+        {
+            switch (viewMode)
+            {
+            case RailViewMode.Tracks:
+                drawingContext.DrawDrawing(new GeometryDrawing(null, this.dotPen, this.GeometryTracks));
+                break;
+
+            case RailViewMode.Rail:
+                drawingContext.DrawDrawing(new GeometryDrawing(null, this.linePen, this.GeometryRail));
+                drawingContext.DrawDrawing(new GeometryDrawing(null, this.dotPen, this.GeometryRail));
+                break;
+
+            case RailViewMode.Terrain:
                 break;
             }
         }
@@ -195,7 +204,7 @@ namespace Rail.Model
 
         protected Geometry StraitGeometry(double length, StraitOrientation orientation, double width, double direction = 0, Point? pos = null)
         {
-            Rectangle rec = new Rectangle(orientation, length, width).Rotate(direction).Move(pos);
+            Rectangle rec = new Rectangle(orientation, length + combineLengthOffset, width).Rotate(direction).Move(pos);
             return new PathGeometry(new PathFigureCollection
             {
                 new PathFigure(rec.LeftTop, new PathSegmentCollection
@@ -274,6 +283,7 @@ namespace Rail.Model
 
         protected Geometry CurvedGeometry(double angle, double radius, CurvedOrientation orientation, double width, Point pos)
         {
+            angle += combineAngleOffset;
             double outerTrackRadius = radius + width / 2;
             double innerTrackRadius = radius - width / 2;
             Size outerTrackSize = new Size(outerTrackRadius, outerTrackRadius);

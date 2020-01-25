@@ -35,6 +35,8 @@ namespace Rail.Model
 
         public abstract void Update(TrackType trackType);
 
-        public abstract void Render(DrawingContext drawingContext, RailViewMode viewMode, bool isSelected, Brush trackBrush);
+        public abstract void Render(DrawingContext drawingContext, RailViewMode viewMode, Brush trackBrush);
+
+        public abstract void RenderSelection(DrawingContext drawingContext, RailViewMode viewMode);
     }
 }

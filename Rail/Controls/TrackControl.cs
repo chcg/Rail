@@ -91,7 +91,7 @@ namespace Rail.Controls
             drawingContext.PushTransform(new TranslateTransform(this.ActualWidth / 2, this.ActualHeight / 2 - dh));
             drawingContext.PushTransform(new ScaleTransform(zoom, zoom));
             
-            this.Track.Render(drawingContext, RailViewMode.Tracks, false, Brushes.White);           
+            this.Track.Render(drawingContext, RailViewMode.Tracks, Brushes.White);           
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using System.Xml.Serialization;
 
 namespace Rail.Model
@@ -10,6 +11,8 @@ namespace Rail.Model
     public class RailDockPoint
     {
         //private TrackDockPoint trackDockPoint;
+        protected static readonly Pen dockPen = new Pen(Brushes.Blue, 1);
+        protected static readonly Pen positionPen = new Pen(Brushes.Red, 2);
 
         private Angle angle;
         private Point position;
@@ -36,7 +39,6 @@ namespace Rail.Model
         /// <param name="trackDockPoint"></param>
         public void Update(RailBase railItem, TrackDockPoint trackDockPoint)
         {
-            this.RailItem = railItem;
             this.RailItem = railItem;
             //this.trackDockPoint = trackDockPoint;
             this.DebugDockPointIndex = trackDockPoint.DebugIndex;
@@ -81,7 +83,17 @@ namespace Rail.Model
         
         [XmlIgnore]
         public bool IsDocked {  get { return this.DockedWith != null; } }
-        
+
+        public void Draw(DrawingContext drawingContext)
+        {
+            double spacing = ((RailItem)this.RailItem).Track.RailSpacing;
+            drawingContext.DrawEllipse(null, dockPen, this.Position, spacing / 2, spacing / 2);
+            if (!this.IsDocked)
+            {
+                drawingContext.DrawLine(positionPen, this.Position, this.Position.Circle(this.Angle, spacing));
+            }
+        }
+
         public double Distance(Point p)
         {
             return this.Position.Distance(p);

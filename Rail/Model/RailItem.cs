@@ -16,8 +16,7 @@ namespace Rail.Model
     [DebuggerDisplay("RailItem Index={DebugIndex} Id={Id} X={Position.X} Y={Position.Y} A={Angle}")]
     public class RailItem : RailBase
     {
-        private static readonly Pen dockPen = new Pen(Brushes.Blue, 1);
-        private static readonly Pen positionPen = new Pen(Brushes.Red, 2);
+        
 
         public RailItem()
         { }
@@ -31,7 +30,7 @@ namespace Rail.Model
             this.Position = pos;
             this.Angle = 0.0;
             this.Layer = layer;
-            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp)).ToArray();
+            this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp)).ToList();
         }
         
         //[XmlAttribute("Id")]
@@ -57,26 +56,16 @@ namespace Rail.Model
             drawingContext.PushTransform(transformGroup);
 
             //Debug.WriteLine($"DrawRailItem {this.IsSelected}");
-            this.Track.Render(drawingContext, viewMode, this.IsSelected, layer.TrackBrush);
-
+            this.Track.Render(drawingContext, viewMode, layer.TrackBrush);
+            if (this.IsSelected)
+            {
+                this.Track.RenderSelection(drawingContext, viewMode);
+            }
             
-
             drawingContext.Pop();
 
             DrawDebug(drawingContext);
             DrawDebugDogpoints(drawingContext);
-        }
-
-        public override void DrawDockPoints(DrawingContext drawingContext)
-        {
-            foreach (var point in this.DockPoints)
-            {
-                drawingContext.DrawEllipse(null, dockPen, point.Position, this.Track.RailSpacing / 2, this.Track.RailSpacing / 2);
-                if (!point.IsDocked)
-                {
-                    drawingContext.DrawLine(positionPen, point.Position, point.Position.Circle(point.Angle, this.Track.RailSpacing));
-                }
-            }
         }
 
         public override bool IsInside(Point point, RailViewMode viewMode)
