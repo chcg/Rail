@@ -75,11 +75,9 @@ namespace Rail.Model
 
             this.combinedGeometryRail = this.Rails.Select(r =>
             {
-                TransformGroup transformGroup = new TransformGroup();
-                transformGroup.Children.Add(new RotateTransform(r.Angle));
-                transformGroup.Children.Add(new TranslateTransform(r.Position.X, r.Position.Y));
+                
                 Geometry geometry = r.Track.GeometryRail.Clone();
-                geometry.Transform = transformGroup;
+                geometry.Transform = r.RailTransform;
                 return geometry;
             }).Aggregate((a, b) => new CombinedGeometry(GeometryCombineMode.Union, a, b));
         }

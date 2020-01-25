@@ -55,10 +55,7 @@ namespace Rail.Model
 
         public override void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode, RailLayer layer)
         {
-            TransformGroup transformGroup = new TransformGroup();
-            transformGroup.Children.Add(new RotateTransform(this.Angle));
-            transformGroup.Children.Add(new TranslateTransform(this.Position.X, this.Position.Y));
-            drawingContext.PushTransform(transformGroup);
+            drawingContext.PushTransform(this.RailTransform);
 
             //Debug.WriteLine($"DrawRailItem {this.IsSelected}");
             this.Track.Render(drawingContext, viewMode, layer.TrackBrush);
