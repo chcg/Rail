@@ -21,8 +21,12 @@ namespace Rail.Model
 
         public RailGroup(IEnumerable<RailBase> railItems)
         {
+            this.DebugIndex = globalDebugIndex++;
+
             RailItem firstRailItme = (RailItem)railItems.FirstOrDefault();
             this.Position = firstRailItme.Position; // set before new RailGroupItem
+            this.Angle = 0.0;
+
             this.Layer = firstRailItme.Layer;
 
             this.Rails = railItems.Cast<RailItem>().Select(i => new RailGroupItem(i, this)).ToList();
@@ -125,43 +129,8 @@ namespace Rail.Model
 
             drawingContext.Pop();
         }
-
-        public override void Move(Vector vec)
-        {
-            // move group
-            this.Position += vec;
-
-            // move all items
-            //this.Rails.ForEach(r => r.Position += vec);
-        }
-
-        public override void Rotate(Rotation rotation, Point center)
-        {
-            // rotate group
-            this.Position = this.Position.Rotate(rotation, center);
-
-            // rotate all items
-            //this.Rails.ForEach(r =>
-            //{
-            //    r.Angle += rotation;
-            //    r.Position = r.Position.Rotate(rotation, center);
-            //});
-        }
-
-        //public override bool IsInside(Point point, RailViewMode viewMode)
-        //{
-        //    Geometry geometry = GetGeometry(viewMode, this.RailTransform);
-        //    bool f = geometry.FillContains(point);
-        //    return f;
-        //}
-
-        //public override bool IsInside(Rect rec, RailViewMode viewMode)
-        //{
-        //    Geometry geometry = GetGeometry(viewMode, this.RailTransform);
-        //    bool f = rec.Contains(geometry.Bounds);
-        //    return f;
-        //}
-
+               
+        
         protected override Geometry GetGeometry(RailViewMode viewMode, Transform transform)
         {
             Geometry geometry = viewMode switch { RailViewMode.Tracks => this.combinedGeometryTracks.Clone(), RailViewMode.Rail => this.combinedGeometryRail.Clone(), _ => null };

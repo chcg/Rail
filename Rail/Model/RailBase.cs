@@ -119,12 +119,12 @@ namespace Rail.Model
             return f;
         }
 
-        public virtual void Move(Vector vec)
+        public void Move(Vector vec)
         {
             this.Position += vec;
         }
 
-        public virtual void Rotate(Rotation rotation, Point center)
+        public void Rotate(Rotation rotation, Point center)
         {
             this.Angle += rotation;
             this.Position = this.Position.Rotate(rotation, center);
