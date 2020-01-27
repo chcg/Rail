@@ -11,7 +11,7 @@
         Title="{x:Static lang:Resources.RailPlanView}" Height="450" Width="600">
     <DockPanel>
         <mvvm:DialogButtonsView DockPanel.Dock="Bottom"/>
-        <TabControl TabStripPlacement="Left">
+        <TabControl TabStripPlacement="Left" Margin="8">
             <TabItem Header="Plate">
                 <Grid Margin="5">
                     <Grid.ColumnDefinitions>
@@ -23,14 +23,14 @@
                     </Grid.RowDefinitions>
 
                     <ctrl:MovableDataGrid Grid.Column="0" Grid.Row="0" 
-                    ItemsSource="{Binding PlatePoints}" 
-                    GridLinesVisibility="None" 
-                    AutoGenerateColumns="False" 
-                    HeadersVisibility="Column" 
-                    CanUserResizeColumns="False"
-                    CanUserAddRows="True"
-                    CanUserDeleteRows="True"
-                    Margin="3">
+                        ItemsSource="{Binding PlatePoints}" 
+                        GridLinesVisibility="None" 
+                        AutoGenerateColumns="False" 
+                        HeadersVisibility="Column" 
+                        CanUserResizeColumns="False"
+                        CanUserAddRows="True"
+                        CanUserDeleteRows="True"
+                        Margin="3">
                         <ctrl:MovableDataGrid.Columns>
                             <DataGridTextColumn Header="X mm" Binding="{Binding Path=X}" Width="60" />
                             <DataGridTextColumn Header="Y mm" Binding="{Binding Path=Y}" Width="60" />
@@ -54,14 +54,55 @@
                         <ctrl:MovableDataGrid.Columns>
                             <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="200" />
                             <DataGridTextColumn Header="Height mm" Binding="{Binding Path=Height}" Width="80" />
-                            <DataGridComboBoxColumn Header="Color" SelectedItemBinding="{Binding TrackColor}" ItemsSource="{Binding Colors}" IsReadOnly="True"  Width="100" >
-                                <!--<DataGridComboBoxColumn.ElementStyle>
-                                    <Style>
-                                        <TextBlock Text="{Binding Name}"/> 
-                                    </Style>
-                                </DataGridComboBoxColumn.ElementStyle>-->
-                            </DataGridComboBoxColumn>
-                            <DataGridCheckBoxColumn Header="Ground Plate" Binding="{Binding Path=GroundPlateLayer}" Width="*"/>
+                            <DataGridTemplateColumn Header="Track Color" Width="100" IsReadOnly="False">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Rectangle Fill="{Binding Path=TrackColor.Brush}" Width="12" Height="12" Margin="2" />
+                                            <TextBlock Text="{Binding Path=TrackColor.Name}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <ComboBox ItemsSource="{Binding Colors}" SelectedValue="{Binding TrackColor}" >
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Rectangle Fill="{Binding Path=Brush}" Width="12" Height="12" Margin="2" />
+                                                        <TextBlock Text="{Binding Path=Name}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Plate Color" Width="100" IsReadOnly="False">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Rectangle Fill="{Binding Path=PlateColor.Brush}" Width="12" Height="12" Margin="2" />
+                                            <TextBlock Text="{Binding Path=PlateColor.Name}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <ComboBox ItemsSource="{Binding Colors}" SelectedValue="{Binding PlateColor}" >
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Rectangle Fill="{Binding Path=Brush}" Width="12" Height="12" Margin="2" />
+                                                        <TextBlock Text="{Binding Path=Name}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                            <!--<DataGridCheckBoxColumn Header="Ground Plate" Binding="{Binding Path=GroundPlateLayer}" Width="*"/>-->
                         </ctrl:MovableDataGrid.Columns>
                     </ctrl:MovableDataGrid>
                 </Grid>

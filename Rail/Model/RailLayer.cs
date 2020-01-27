@@ -35,6 +35,9 @@ namespace Rail.Model
         [XmlIgnore]
         public Color TrackColor { get; set; }
 
+        [XmlIgnore]
+        public Brush TrackBrush { get { return new SolidColorBrush(TrackColor); } }
+
         [XmlAttribute("PlateColor")]
         public string PlateColorInt
         {
@@ -46,7 +49,9 @@ namespace Rail.Model
         public Color PlateColor { get; set; }
 
         [XmlIgnore]
-        public Brush TrackBrush {  get { return new SolidColorBrush(TrackColor); } }
+        public Brush PlateBrush { get { return new SolidColorBrush(PlateColor); } }
+
+
 
     }
 }

@@ -18,12 +18,15 @@ namespace Rail.ViewModel
         {
             this.railPlan = railPlan;
             this.PlatePoints = new ObservableCollection<PointViewModel>(railPlan.PlatePoints.Select(p => new PointViewModel(p)));
+            this.Layers = new ObservableCollection<LayerViewModel>(railPlan.Layers.Select(l => new LayerViewModel(l)));
         }
 
         protected override void OnOK()
         {
             this.railPlan.PlatePoints.Clear();
-            this.railPlan.PlatePoints.AddRange(this.PlatePoints.Select(p => (Point)p)); 
+            this.railPlan.PlatePoints.AddRange(this.PlatePoints.Select(p => (Point)p));
+            this.railPlan.Layers.Clear();
+            this.railPlan.Layers.AddRange(this.Layers.Select(l => (RailLayer)l));
             base.OnOK();
         }
 
@@ -31,14 +34,5 @@ namespace Rail.ViewModel
         public ObservableCollection<PointViewModel> PlatePoints { get; private set; }
 
         public ObservableCollection<LayerViewModel> Layers { get; private set; }
-
-        public IEnumerable<ColorViewModel> Colors
-        {
-            get {
-
-
-                return from PropertyInfo property in typeof(Colors).GetProperties() orderby property.Name select new ColorViewModel { Name = property.Name, Color = (Color)property.GetValue(null, null) };
-            }
-        }
     }
 }
