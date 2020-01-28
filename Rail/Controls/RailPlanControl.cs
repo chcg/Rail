@@ -321,8 +321,9 @@ namespace Rail.Controls
                 this.SelectedRailsY = null;
                 this.SelectedRailsAngle = null;
                 this.SelectedRailsLayer = Guid.Empty;
-                this.SelectedRailsGradient = null;
-                this.SelectedRailsHeight = null;
+                //this.SelectedRailsGradient = null;
+                //this.SelectedRailsHeight = null;
+                this.SelectedRamp = null;
                 break;
             case 1:
                 this.SelectedMode = RailSelectedMode.Single;
@@ -332,8 +333,9 @@ namespace Rail.Controls
                 this.SelectedRailsY = this.selectedRail.Y;
                 this.SelectedRailsAngle = this.selectedRail.Angle;
                 this.SelectedRailsLayer = this.selectedRail.Layer;
-                this.SelectedRailsGradient = this.selectedRail.Gradient;
-                this.SelectedRailsHeight = this.selectedRail.Height;
+                //this.SelectedRailsGradient = this.selectedRail.Gradient;
+                //this.SelectedRailsHeight = this.selectedRail.Height;
+                this.SelectedRamp = this.selectedRail as RailRamp;
                 break;
             default:
                 this.SelectedMode = RailSelectedMode.Multi;
@@ -343,8 +345,9 @@ namespace Rail.Controls
                 this.SelectedRailsY = null;
                 this.SelectedRailsAngle = null;
                 this.SelectedRailsLayer = selectedRails.Select(r => r.Layer).IdenticalOrDefault();
-                this.SelectedRailsGradient = selectedRails.Select(r => r.Gradient).IdenticalOrDefault();
-                this.SelectedRailsHeight = selectedRails.Select(r => r.Height).IdenticalOrDefault();
+                //this.SelectedRailsGradient = selectedRails.Select(r => r.Gradient).IdenticalOrDefault();
+                //this.SelectedRailsHeight = selectedRails.Select(r => r.Height).IdenticalOrDefault();
+                this.SelectedRamp = null;
                 break;
             }
            
@@ -549,92 +552,112 @@ namespace Rail.Controls
 
         #endregion
 
-        #region SelectedRailsGradient
+        #region SelectedRamp
 
-        public static readonly DependencyProperty SelectedRailsGradientProperty =
-            DependencyProperty.Register("SelectedRailsGradient", typeof(double?), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsGradientChanged)));
+        public static readonly DependencyProperty SelectedRampProperty =
+            DependencyProperty.Register("SelectedRamp", typeof(RailRamp), typeof(RailPlanControl),
+                new FrameworkPropertyMetadata(null));
 
-        public double? SelectedRailsGradient
+        public RailRamp SelectedRamp
         {
             get
             {
-                return (double?)GetValue(SelectedRailsGradientProperty);
+                return (RailRamp)GetValue(SelectedRampProperty);
             }
             set
             {
-                SetValue(SelectedRailsGradientProperty, value);
+                SetValue(SelectedRampProperty, value);
             }
         }
 
-        private static void OnSelectedRailsGradientChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            RailPlanControl railPlanControl = (RailPlanControl)o;
-            railPlanControl.OnSelectedRailsGradientChanged((double?)e.NewValue, (double?)e.OldValue);
-        }
+        #endregion
 
-        private void OnSelectedRailsGradientChanged(double? newValue, double? oldValue)
-        {
-            if (newValue.HasValue && newValue != oldValue)
-            {
-                switch (this.SelectedMode)
-                {
-                case RailSelectedMode.Single:
-                    this.selectedRail.Gradient = newValue.Value;
-                    this.InvalidateVisual();
-                    break;
-                case RailSelectedMode.Multi:
-                    this.selectedRails.ForEach(r => r.Gradient = newValue.Value);
-                    this.InvalidateVisual();
-                    break;
-                }
-            }
-        }
+        #region SelectedRailsGradient
+
+        //public static readonly DependencyProperty SelectedRailsGradientProperty =
+        //    DependencyProperty.Register("SelectedRailsGradient", typeof(double?), typeof(RailPlanControl),
+        //        new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsGradientChanged)));
+
+        //public double? SelectedRailsGradient
+        //{
+        //    get
+        //    {
+        //        return (double?)GetValue(SelectedRailsGradientProperty);
+        //    }
+        //    set
+        //    {
+        //        SetValue(SelectedRailsGradientProperty, value);
+        //    }
+        //}
+
+        //private static void OnSelectedRailsGradientChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        //{
+        //    RailPlanControl railPlanControl = (RailPlanControl)o;
+        //    railPlanControl.OnSelectedRailsGradientChanged((double?)e.NewValue, (double?)e.OldValue);
+        //}
+
+        //private void OnSelectedRailsGradientChanged(double? newValue, double? oldValue)
+        //{
+        //    if (newValue.HasValue && newValue != oldValue)
+        //    {
+        //        switch (this.SelectedMode)
+        //        {
+        //        case RailSelectedMode.Single:
+        //            this.selectedRail.Gradient = newValue.Value;
+        //            this.InvalidateVisual();
+        //            break;
+        //        case RailSelectedMode.Multi:
+        //            this.selectedRails.ForEach(r => r.Gradient = newValue.Value);
+        //            this.InvalidateVisual();
+        //            break;
+        //        }
+        //    }
+        //}
 
 
         #endregion
 
         #region SelectedRailsHeight
 
-        public static readonly DependencyProperty SelectedRailsHeightProperty =
-            DependencyProperty.Register("SelectedRailsHeight", typeof(double?), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsHeightChanged)));
+        //public static readonly DependencyProperty SelectedRailsHeightProperty =
+        //    DependencyProperty.Register("SelectedRailsHeight", typeof(double?), typeof(RailPlanControl),
+        //        new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsHeightChanged)));
 
-        public double? SelectedRailsHeight
-        {
-            get
-            {
-                return (double?)GetValue(SelectedRailsHeightProperty);
-            }
-            set
-            {
-                SetValue(SelectedRailsHeightProperty, value);
-            }
-        }
+        //public double? SelectedRailsHeight
+        //{
+        //    get
+        //    {
+        //        return (double?)GetValue(SelectedRailsHeightProperty);
+        //    }
+        //    set
+        //    {
+        //        SetValue(SelectedRailsHeightProperty, value);
+        //    }
+        //}
 
-        private static void OnSelectedRailsHeightChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            RailPlanControl railPlanControl = (RailPlanControl)o;
-            railPlanControl.OnSelectedRailsHeightChanged((double?)e.NewValue, (double?)e.OldValue);
-        }
+        //private static void OnSelectedRailsHeightChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        //{
+        //    RailPlanControl railPlanControl = (RailPlanControl)o;
+        //    railPlanControl.OnSelectedRailsHeightChanged((double?)e.NewValue, (double?)e.OldValue);
+        //}
 
-        private void OnSelectedRailsHeightChanged(double? newValue, double? oldValue)
-        {
-            if (newValue.HasValue && newValue != oldValue)
-            {
-                switch (this.SelectedMode)
-                {
-                case RailSelectedMode.Single:
-                    this.selectedRail.Height = newValue.Value;
-                    this.InvalidateVisual();
-                    break;
-                case RailSelectedMode.Multi:
-                    this.selectedRails.ForEach(r => r.Height = newValue.Value);
-                    this.InvalidateVisual();
-                    break;
-                }
-            }
-        }
+        //private void OnSelectedRailsHeightChanged(double? newValue, double? oldValue)
+        //{
+        //    if (newValue.HasValue && newValue != oldValue)
+        //    {
+        //        switch (this.SelectedMode)
+        //        {
+        //        case RailSelectedMode.Single:
+        //            this.selectedRail.Height = newValue.Value;
+        //            this.InvalidateVisual();
+        //            break;
+        //        case RailSelectedMode.Multi:
+        //            this.selectedRails.ForEach(r => r.Height = newValue.Value);
+        //            this.InvalidateVisual();
+        //            break;
+        //        }
+        //    }
+        //}
 
         #endregion
 
@@ -1193,6 +1216,10 @@ namespace Rail.Controls
 
             // remove from Rails
             selectedRails.ForEach(r => this.RailPlan.Rails.Remove(r));
+
+            
+            
+
 
             // create rail group
             this.RailPlan.Rails.Add(new RailRamp(selectedRails));

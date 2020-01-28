@@ -1,4 +1,5 @@
 ﻿using Rail.Controls;
+using Rail.Misc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace Rail.Model
 {
     public class RailRamp : RailBase
     {
+        private static readonly double PIFactor = Math.PI / 180.0;
+
         protected readonly Pen linePen = new Pen(TrackBrushes.TrackFrame, 2);
         protected readonly Pen dotPen = new Pen(Brushes.White, 2) { DashStyle = DashStyles.Dot };
 
@@ -29,6 +32,18 @@ namespace Rail.Model
             this.Rails = railItems.Cast<RailItem>().Select(i => new RailRampItem(i, this)).ToList();
 
             this.Rails.ForEach(r => r.IsSelected = false);
+
+            // calculate slope gradient
+            double height = this.LayerHeigh;
+            height -= this.Rails[0].SetGradientInPercent(1.5);
+            height -= this.Rails[1].SetGradientInPercent(2.5);
+            height -= this.Rails[this.Rails.Count() - 2].SetGradientInPercent(2.5);
+            height -= this.Rails[this.Rails.Count() - 1].SetGradientInPercent(1.5); 
+            var innerRails = this.Rails.Skip(2).SkipLast(2).ToList();
+            double length = innerRails.Sum(r => r.Length);
+            double angle = Math.Asin(height / length) / PIFactor;
+            innerRails.ForEach(r => r.SetGradient(angle));
+
             this.DockPoints = new List<RailDockPoint>();
             this.IsSelected = true;
 
@@ -55,6 +70,9 @@ namespace Rail.Model
         {
             get { return this.Rails.SelectMany(r => r.Materials).ToList(); }
         }
+
+        [XmlIgnore]
+        public double LayerHeigh = 100.0;
 
         private Geometry combinedGeometryTracks;
         private Geometry combinedGeometryRail;

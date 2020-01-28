@@ -53,6 +53,18 @@ namespace Rail.Model
             get { return this.Track.Materials; }
         }
 
+        [XmlAttribute("Gradient")]
+        public double Gradient { get; set; }
+
+        [XmlAttribute("Height")]
+        public double Height { get; set; }
+
+        [XmlIgnore]
+        public double Length 
+        { 
+            get { return ((TrackStraight)this.Track).Length;  }
+        }
+
         public override void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode, RailLayer layer)
         {
             drawingContext.PushTransform(this.RailTransform);
@@ -75,6 +87,22 @@ namespace Rail.Model
             Geometry geometry = viewMode switch { RailViewMode.Tracks => this.Track.GeometryTracks.Clone(), RailViewMode.Rail => this.Track.GeometryRail.Clone(), _ => null };
             geometry.Transform = this.RailTransform;
             return geometry;
+        }
+
+        private static readonly double PIFactor = Math.PI / 180.0;
+
+        public double SetGradient(double value)
+        {
+            this.Gradient = value;
+            this.Height = Math.Sin(value * PIFactor) * this.Length;
+            //this.Height = Math.Tan(value * PIFactor) * this.Length;
+            return this.Height;
+        }
+
+        public double SetGradientInPercent(double value)
+        {
+            double val = Math.Atan(value / 100.0) / PIFactor;
+            return SetGradient(val);
         }
 
         #region debug

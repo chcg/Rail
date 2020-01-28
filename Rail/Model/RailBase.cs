@@ -47,12 +47,6 @@ namespace Rail.Model
             set { this.Angle = value; }
         }
 
-        [XmlAttribute("Gradient")]
-        public double Gradient { get; set; }
-
-        [XmlAttribute("Height")]
-        public double Height { get; set; }
-
         [XmlAttribute("Layer")]
         public Guid Layer { get; set; }
 
@@ -71,15 +65,14 @@ namespace Rail.Model
 
         [XmlIgnore]
         public abstract List<TrackMaterial> Materials { get; }
-
-
+        
         public void CopyTo(RailBase railBase)
         {
             railBase.DebugIndex = this.DebugIndex;
             railBase.Position = this.Position;
             railBase.Angle = this.Angle;
-            railBase.Gradient = this.Gradient;
-            railBase.Height = this.Height;
+            //railBase.Gradient = this.Gradient;
+            //railBase.Height = this.Height;
             railBase.Layer = this.Layer;
             railBase.DockPoints = this.DockPoints;
         }

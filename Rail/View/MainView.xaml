@@ -29,6 +29,7 @@
         <conv:TrackRailViewModeToVisibilityConverter x:Key="TrackRailViewModeToVisibilityConverter"/>
         <conv:TerrainViewModeToVisibilityConverter x:Key="TerrainViewModeToVisibilityConverter"/>
         <conv:GuidToLayerConverter x:Key="GuidToLayerConverter"/>
+        <conv:ReferensNullToVisibilityCollapsedConverter x:Key="ReferensNullToVisibilityCollapsedConverter"/>
     </RibbonWindow.Resources>
     <DockPanel>
         <mvvm:PersistentRibbon DockPanel.Dock="Top">
@@ -134,8 +135,6 @@
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="80"/>
                             <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="80"/>
-                            <ColumnDefinition Width="100"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -145,10 +144,10 @@
                         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedRailsX, ElementName=railPlanControl, StringFormat=0.00}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
                         <Label Grid.Column="2" Grid.Row="0" Content="{x:Static lang:Resources.MainYmm}"  />
                         <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding SelectedRailsY, ElementName=railPlanControl, StringFormat=0.00}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
-                        <Label Grid.Column="4" Grid.Row="0" Content="{x:Static lang:Resources.MainAngleDeg}" />
-                        <TextBox Grid.Column="5" Grid.Row="0" Text="{Binding SelectedRailsAngle, ElementName=railPlanControl, StringFormat=0.00}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
-                        <Label Grid.Column="0" Grid.Row="1" Content="{x:Static lang:Resources.MainLayer}"  />
-                        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Layers}" Margin="4" >
+                        <Label Grid.Column="0" Grid.Row="1" Content="{x:Static lang:Resources.MainAngleDeg}" />
+                        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedRailsAngle, ElementName=railPlanControl, StringFormat=0.00}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
+                        <Label Grid.Column="2" Grid.Row="1" Content="{x:Static lang:Resources.MainLayer}"  />
+                        <ComboBox Grid.Column="3" Grid.Row="1" ItemsSource="{Binding Layers}" Margin="4" >
                             <ComboBox.SelectedItem>
                                 <mvvm:ConverterBindableBinding Binding="{Binding SelectedRailsLayer, ElementName=railPlanControl, Mode=TwoWay}" Converter="{StaticResource GuidToLayerConverter}" ConverterParameterBinding="{Binding RailPlan}" />
                             </ComboBox.SelectedItem>
@@ -161,10 +160,6 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <Label Grid.Column="2" Grid.Row="1" Content="{x:Static lang:Resources.MainGradientPerc}" />
-                        <ComboBox Grid.Column="3" Grid.Row="1" Text="{Binding SelectedRailsGradient, ElementName=railPlanControl, StringFormat=0.00}" ItemsSource="{Binding Gradients, StringFormat=0.00}" Margin="4" IsEditable="True" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="ComboBox.Text"/>
-                        <Label Grid.Column="4" Grid.Row="1" Content="{x:Static lang:Resources.MainHeightmm}" />
-                        <TextBox Grid.Column="5" Grid.Row="1" Text="{Binding SelectedRailsHeight, ElementName=railPlanControl, StringFormat=0.00}" Margin="4" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text"/>
                     </Grid>
                 </RibbonGroup>
                 <RibbonGroup Header="{x:Static lang:Resources.MainSwitches}">
@@ -196,6 +191,11 @@
                 <RibbonGroup Header="{x:Static lang:Resources.MainRamp}">
                     <RibbonButton Label="{x:Static lang:Resources.MainRampCreate}" Command="{Binding CreateRampCommand, ElementName=railPlanControl}" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
                     <RibbonButton Label="{x:Static lang:Resources.MainRampDelete}" Command="{Binding DeleteRampCommand, ElementName=railPlanControl}" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
+                </RibbonGroup>
+                <RibbonGroup Header="{x:Static lang:Resources.MainRamp}">
+                    <RibbonControl>
+                        <ctrl:RampControl Ramp="{Binding SelectedRamp, ElementName=railPlanControl}" Width="500"  Height="60" BorderBrush="Gray" BorderThickness="1"/>
+                    </RibbonControl>
                 </RibbonGroup>
             </RibbonTab>
         </mvvm:PersistentRibbon>
@@ -382,6 +382,9 @@
                 </TabItem>
             </TabControl>
         </Grid>
+        <Grid DockPanel.Dock="Bottom" Height="400" Visibility="{Binding SelectedRamp, ElementName=railPlanControl, Converter={StaticResource ReferensNullToVisibilityCollapsedConverter}}" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+            <ctrl:RampControl Ramp="{Binding SelectedRamp, ElementName=railPlanControl}"  BorderBrush="Gray" BorderThickness="1" Margin="8"/>
+        </Grid> 
         <Grid>
             <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TrackRailViewModeToVisibilityConverter}}" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
                 <ctrl:RailPlanControl 

@@ -7,7 +7,7 @@ namespace Rail.Trigonometry
 {
     public static class PointExtentions
     {
-        private static double PIFactor = Math.PI / 180.0;
+        private static readonly double PIFactor = Math.PI / 180.0;
 
         public static Point Move(this Point point, double dx, double dy)
         {
