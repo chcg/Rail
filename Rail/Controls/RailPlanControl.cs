@@ -1136,7 +1136,7 @@ namespace Rail.Controls
 
         public bool OnCanCreateGroup()
         {
-            return this.SelectedMode == RailSelectedMode.Multi && !this.RailPlan.Rails.Where(r => r.IsSelected && r is RailGroup).Any();
+            return this.SelectedMode == RailSelectedMode.Multi && this.RailPlan.Rails.Where(r => r.IsSelected).All(r => r is RailItem);
         }
 
         public void OnCreateGroup()
@@ -1181,22 +1181,40 @@ namespace Rail.Controls
 
         #region ramp
 
-        public void OnCreateRamp()
-        {
-        }
-
         public bool OnCanCreateRamp()
         {
-            return true;
+            return this.SelectedMode == RailSelectedMode.Multi && this.RailPlan.Rails.Where(r => r.IsSelected).All(r => r is RailItem);
         }
+
+        public void OnCreateRamp()
+        {
+            // take all selected rails
+            var selectedRails = this.RailPlan.Rails.Where(r => r.IsSelected).ToArray();
+
+            // remove from Rails
+            selectedRails.ForEach(r => this.RailPlan.Rails.Remove(r));
+
+            // create rail group
+            this.RailPlan.Rails.Add(new RailRamp(selectedRails));
+
+            Invalidate();
+        }
+
+        
 
         public void OnDeleteRamp()
         {
+            if (this.selectedRail is RailRamp railRamp)
+            {
+                this.RailPlan.Rails.AddRange(railRamp.Resolve());
+                this.RailPlan.Rails.Remove(railRamp);
+                Invalidate();
+            }
         }
 
         public bool OnCanDeleteRamp()
         {
-            return true;
+            return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailRamp;
         }
 
         #endregion

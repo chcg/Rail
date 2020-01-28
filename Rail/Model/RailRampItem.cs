@@ -1,27 +1,22 @@
 ﻿using Rail.Controls;
-using Rail.Misc;
-using Rail.Mvvm;
-using Rail.Trigonometry;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    [DebuggerDisplay("RailItem Index={DebugIndex} Id={Id} X={Position.X} Y={Position.Y} A={Angle}")]
-    public class RailItem : RailBase
+    public class RailRampItem : RailBase
     {
-        
-
-        public RailItem()
+        public RailRampItem()
         { }
 
-        public RailItem(TrackBase track, Point pos, Guid layer) 
+        public RailRampItem(TrackBase track, Point pos, Guid layer)
         {
             this.DebugIndex = globalDebugIndex++;
             //this.Id = Guid.NewGuid();
@@ -33,22 +28,18 @@ namespace Rail.Model
             this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp)).ToList();
         }
 
-        public RailItem(RailGroupItem railGroupItem)
+        /// <summary>
+        /// Constructor to convert RailItem to RailGroupItem during CreateGroup.
+        /// </summary>
+        /// <param name="railItem">RailItem to create RailGroupItem from.</param>
+        /// <param name="masterRailItem">RailItem </param>
+        public RailRampItem(RailItem railItem, RailRamp railRamp)
         {
-            railGroupItem.CopyTo(this);
-            this.Track = railGroupItem.Track;
-            this.TrackId = railGroupItem.TrackId;
+            railItem.CopyTo(this);
+            this.TrackId = railItem.TrackId;
+            this.Track = railItem.Track;
+            this.Position = railItem.Position - (Vector)railRamp.Position;
         }
-
-        public RailItem(RailRampItem railRampItem)
-        {
-            railRampItem.CopyTo(this);
-            this.Track = railRampItem.Track;
-            this.TrackId = railRampItem.TrackId;
-        }
-
-        //[XmlAttribute("Id")]
-        //public Guid Id { get; set; }
 
         [XmlAttribute("TrackId")]
         public string TrackId { get; set; }
@@ -72,13 +63,12 @@ namespace Rail.Model
             {
                 this.Track.RenderSelection(drawingContext, viewMode);
             }
-            
+
             drawingContext.Pop();
 
             DrawDebug(drawingContext);
             DrawDebugDogpoints(drawingContext);
         }
-
 
         protected override Geometry GetGeometry(RailViewMode viewMode, Transform transform)
         {
