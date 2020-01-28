@@ -57,11 +57,16 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <None Remove="Images\Clipboard.png" />
+    <None Remove="Images\Copy.png" />
+    <None Remove="Images\Cut.png" />
+    <None Remove="Images\Delete.png" />
     <None Remove="Images\Help.png" />
     <None Remove="Images\Info.png" />
     <None Remove="Images\List.png" />
     <None Remove="Images\New.png" />
     <None Remove="Images\Open.png" />
+    <None Remove="Images\Paste.png" />
     <None Remove="Images\Printer.png" />
     <None Remove="Images\Rail.ico" />
     <None Remove="Images\Rail.png" />
@@ -78,11 +83,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\Clipboard.png" />
+    <Resource Include="Images\Copy.png" />
+    <Resource Include="Images\Cut.png" />
+    <Resource Include="Images\Delete.png" />
     <Resource Include="Images\Help.png" />
     <Resource Include="Images\Info.png" />
     <Resource Include="Images\List.png" />
     <Resource Include="Images\New.png" />
     <Resource Include="Images\Open.png" />
+    <Resource Include="Images\Paste.png" />
     <Resource Include="Images\Printer.png" />
     <Resource Include="Images\Rail.ico" />
     <Resource Include="Images\Rail.png" />

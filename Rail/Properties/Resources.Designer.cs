@@ -106,6 +106,24 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clipboard.
+        /// </summary>
+        public static string MainClipboard {
+            get {
+                return ResourceManager.GetString("MainClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        public static string MainCopy {
+            get {
+                return ResourceManager.GetString("MainCopy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Own Groups.
         /// </summary>
         public static string MainCustomer {
@@ -115,11 +133,38 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cut.
+        /// </summary>
+        public static string MainCut {
+            get {
+                return ResourceManager.GetString("MainCut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string MainDelete {
+            get {
+                return ResourceManager.GetString("MainDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Distance.
         /// </summary>
         public static string MainDistance {
             get {
                 return ResourceManager.GetString("MainDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate.
+        /// </summary>
+        public static string MainDuplicate {
+            get {
+                return ResourceManager.GetString("MainDuplicate", resourceCulture);
             }
         }
         
@@ -331,6 +376,15 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paste.
+        /// </summary>
+        public static string MainPaste {
+            get {
+                return ResourceManager.GetString("MainPaste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plan.
         /// </summary>
         public static string MainPlan {
@@ -399,6 +453,15 @@ namespace Rail.Properties {
         public static string MainRotation {
             get {
                 return ResourceManager.GetString("MainRotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SelectAll.
+        /// </summary>
+        public static string MainSelectAll {
+            get {
+                return ResourceManager.GetString("MainSelectAll", resourceCulture);
             }
         }
         

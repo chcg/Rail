@@ -132,11 +132,26 @@
   <data name="MainArticle" xml:space="preserve">
     <value>Article</value>
   </data>
+  <data name="MainClipboard" xml:space="preserve">
+    <value>Clipboard</value>
+  </data>
+  <data name="MainCopy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
   <data name="MainCustomer" xml:space="preserve">
     <value>Own Groups</value>
   </data>
+  <data name="MainCut" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="MainDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="MainDistance" xml:space="preserve">
     <value>Distance</value>
+  </data>
+  <data name="MainDuplicate" xml:space="preserve">
+    <value>Duplicate</value>
   </data>
   <data name="MainFileAbout" xml:space="preserve">
     <value>About ...</value>
@@ -207,6 +222,9 @@
   <data name="MainOptions" xml:space="preserve">
     <value>Options...</value>
   </data>
+  <data name="MainPaste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
   <data name="MainPlan" xml:space="preserve">
     <value>Plan</value>
   </data>
@@ -230,6 +248,9 @@
   </data>
   <data name="MainRotation" xml:space="preserve">
     <value>Rotation</value>
+  </data>
+  <data name="MainSelectAll" xml:space="preserve">
+    <value>SelectAll</value>
   </data>
   <data name="MainShowDockingPoints" xml:space="preserve">
     <value>Show Docking Points</value>

@@ -784,6 +784,26 @@ namespace Rail.Controls
             list.ForEach(r => DeleteRailItem(r));
         }
 
+        public void CopySelectedRailItems()
+        {
+            //  TODO
+        }
+
+        public void CutSelectedRailItems()
+        {
+            //  TODO
+        }
+
+        public void PastSelectedRailItems()
+        {
+            //  TODO
+        }
+
+        public void DuplicateSelectedRailItems()
+        {
+            //  TODO
+        }
+
         public void SelectRailItem(RailBase railItem, bool addSelect)
         {
             if (addSelect)
@@ -900,14 +920,42 @@ namespace Rail.Controls
         private void OnKeyPress(object sender, KeyEventArgs e)
         {
             this.selectedChangeIntern = true;
+
+            bool IsControlPressed = e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Control);
+            bool IsShiftPressed = e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Shift);
             switch (e.Key)
             {
-            case Key.Delete:
+            // delete all selected
+            case Key.Delete when !IsShiftPressed:
                 DeleteSelectedRailItems();
                 this.Invalidate();
                 break;
-            case Key.A when e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Control):
+            // select all
+            case Key.A when IsControlPressed:
                 this.SelectAllRailItems();
+                this.Invalidate();
+                break;
+            // copy all selected
+            case Key.C when IsControlPressed:
+            case Key.Insert when IsControlPressed:
+                this.CopySelectedRailItems();
+                this.Invalidate();
+                break;
+            // cut all selected
+            case Key.X when IsControlPressed:
+            case Key.Delete when IsShiftPressed:
+                this.CutSelectedRailItems();
+                this.Invalidate();
+                break;
+            // past all copied
+            case Key.C when IsControlPressed:
+            case Key.Insert when IsShiftPressed:
+                this.PastSelectedRailItems();
+                this.Invalidate();
+                break;
+            // duplicate all selected
+            case Key.D when IsControlPressed:
+                this.DuplicateSelectedRailItems();
                 this.Invalidate();
                 break;
             }
