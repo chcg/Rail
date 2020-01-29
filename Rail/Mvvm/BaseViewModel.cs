@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Threading;
 using System.Xml.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Rail.Mvvm
 {
@@ -37,7 +38,7 @@ namespace Rail.Mvvm
         /// <example>
         /// &lt;Button Grid.Column="2" Grid.Row="0" Content="..." Command="{Binding SelectFolderCommand}" CommandParameter="PathProperty" Margin="3"/&gt;
         /// </example>
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public DelegateCommand<string> SelectFolderCommand { get; private set; }
         
         /// <summary>
@@ -75,11 +76,7 @@ namespace Rail.Mvvm
 
             if (Dispatcher.CurrentDispatcher.CheckAccess())
             {
-                PropertyChangedEventHandler handler = PropertyChanged;
-                if (handler != null)
-                {
-                    handler(this, new PropertyChangedEventArgs(propertyName));
-                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
             else
             {
@@ -91,11 +88,7 @@ namespace Rail.Mvvm
         {
             if (Dispatcher.CurrentDispatcher.CheckAccess())
             {
-                PropertyChangedEventHandler handler = PropertyChanged;
-                if (handler != null)
-                {
-                    handler(this, new PropertyChangedEventArgs(null));
-                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
             }
             else
             {

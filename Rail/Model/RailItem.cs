@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
@@ -47,19 +48,51 @@ namespace Rail.Model
             this.TrackId = railRampItem.TrackId;
         }
 
-        //[XmlAttribute("Id")]
+        //[XmlElement("Id")]
         //public Guid Id { get; set; }
 
-        [XmlAttribute("TrackId")]
+        [XmlElement("TrackId")]
         public string TrackId { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public TrackBase Track { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public override List<TrackMaterial> Materials
         {
             get { return this.Track.Materials; }
+        }
+
+        public override RailBase Clone()
+        {
+            var clone = new RailItem()
+            {
+                DebugIndex = this.DebugIndex,
+                Position = this.Position,
+                Angle = this.Angle,
+                Layer = this.Layer,
+                //DockPoints = this.DockPoints.Select(d => d.Clone()).ToList(),
+                TrackId = this.TrackId,
+                Track = this.Track
+            };
+            clone.DockPoints = this.DockPoints.Select(d => d.Clone(clone)).ToList();
+            return clone;
+        }
+
+        public override RailBase Copy()
+        {
+            var copy = new RailItem()
+            {
+                DebugIndex = globalDebugIndex++,
+                Position = this.Position,
+                Angle = this.Angle,
+                Layer = this.Layer,
+                //DockPoints = this.DockPoints.Select(d => d.Copy()).ToList(),
+                TrackId = this.TrackId,
+                Track = this.Track
+            };
+            copy.DockPoints = this.DockPoints.Select(d => d.Copy(copy)).ToList();
+            return copy;
         }
 
         public override void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode, RailLayer layer)

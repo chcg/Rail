@@ -3,6 +3,7 @@ using Rail.Properties;
 using Rail.Trigonometry;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
@@ -14,10 +15,10 @@ namespace Rail.Model
         [XmlAttribute("InnerRadius")]
         public string InnerRadiusNameOrValue { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public double InnerRadius { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public string InnerRadiusName { get; set; }
         
         [XmlAttribute("InnerAngle")]
@@ -26,10 +27,10 @@ namespace Rail.Model
         [XmlAttribute("OuterRadius")]
         public string OuterRadiusNameOrValue { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public double OuterRadius { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public string OuterRadiusName { get; set; }
 
         [XmlAttribute("OuterAngle")]
@@ -38,10 +39,10 @@ namespace Rail.Model
         [XmlAttribute("Length")]
         public string LengthNameOrValue { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public double Length { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public string LengthName { get; set; }
 
         [XmlAttribute("Direction")]
@@ -50,7 +51,7 @@ namespace Rail.Model
         [XmlAttribute("Drive")]
         public TrackDrive Drive { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public override string Name
         {
             get
@@ -63,7 +64,7 @@ namespace Rail.Model
             }
         }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public override string Description
         {
             get

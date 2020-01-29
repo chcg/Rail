@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
@@ -51,39 +52,60 @@ namespace Rail.Model
         [XmlAttribute("Id")]
         public Guid Id { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public RailBase RailItem { get; private set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public int DebugDockPointIndex { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public int DebugRailIndex { get { return this.RailItem.DebugIndex; } }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public string DebugOutput { get { return $"({DebugRailIndex},{DebugDockPointIndex})"; } }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public Point Position { get { return this.RailItem.Position + (Vector)this.position.Rotate(this.RailItem.Angle); } }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public Angle Angle { get { return this.RailItem.Angle + this.angle;  } }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public string DockType { get; private set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public Guid Layer { get { return this.RailItem.Layer; } }
 
         [XmlAttribute("DockedWithId")]
         public Guid DockedWithId { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public RailDockPoint DockedWith { get; private set; }
         
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public bool IsDocked {  get { return this.DockedWith != null; } }
 
+        public RailDockPoint Clone(RailBase railItem)
+        {
+            return new RailDockPoint()
+            { 
+                Id = this.Id,
+                RailItem = railItem,
+                DebugDockPointIndex = this.DebugDockPointIndex,
+                DockType = this.DockType,
+            };
+        }
+
+        public RailDockPoint Copy(RailBase railItem)
+        {
+            return new RailDockPoint()
+            {
+                Id = Guid.NewGuid(),
+                RailItem = railItem,
+                DebugDockPointIndex = this.DebugDockPointIndex,
+                DockType = this.DockType
+            };
+        }
         public void Draw(DrawingContext drawingContext)
         {
             double spacing = ((RailItem)this.RailItem).Track.RailSpacing;

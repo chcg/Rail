@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Windows;
 using System.Xml.Serialization;
 
@@ -12,15 +13,18 @@ namespace Rail.Trigonometry
     /// Normalized angel between 0° and 360°
     /// </summary>
     [DebuggerDisplay("Angle {Value}")]
-    public class Angle
+    public struct Angle
     {
         private const int MAX = 3600;
         private const int REV = 1800;
         private const double FAC = 10.0;
-        private int angle = 0;
 
-        public Angle()
-        { }
+        [XmlText]
+        [JsonPropertyName("Angle")]
+        public int angle { get; set; }
+
+        //public Angle()
+        //{ }
 
         public Angle(double value)
         {
@@ -38,6 +42,7 @@ namespace Rail.Trigonometry
             return (short)((value % MAX + MAX) % MAX);
         }
 
+        [XmlIgnore, JsonIgnore]
         public double Value
         {
             get 
@@ -58,7 +63,7 @@ namespace Rail.Trigonometry
 
         public static implicit operator double(Angle a)
         {
-            return a?.angle / FAC ?? 0.0;
+            return a.angle / FAC;
         }
 
         public static implicit operator Rotation(Angle a)
@@ -148,6 +153,7 @@ namespace Rail.Trigonometry
         /// <summary>
         /// for internal use only
         /// </summary>
+        [XmlIgnore, JsonIgnore]
         internal int IntAngle { get { return angle; } }
     }
 }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
@@ -17,55 +18,40 @@ namespace Rail.Model
         //protected static readonly Pen positionPen = new Pen(Brushes.Red, 2);
         protected static int globalDebugIndex = 0;
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public int DebugIndex { get; protected set; }
 
-        [XmlIgnore]
-        public Point Position;
+        [XmlElement("Position")]
+        [JsonPropertyName("Position")]
+        public Point Position { get; set; }
 
-        [XmlAttribute("X")]
-        public double X
-        {
-            get { return this.Position.X; }
-            set { this.Position.X = value; }
-        }
-
-        [XmlAttribute("Y")]
-        public double Y
-        {
-            get { return this.Position.Y; }
-            set { this.Position.Y = value; }
-        }
-
-        [XmlIgnore]
+        [XmlElement("Angle")]
+        [JsonPropertyName("Angle")]
         public Angle Angle { get; set; }
 
-        [XmlAttribute("Angle")]
-        public double AngleInt
-        {
-            get { return this.Angle; }
-            set { this.Angle = value; }
-        }
-
-        [XmlAttribute("Layer")]
+        [XmlElement("Layer")]
         public Guid Layer { get; set; }
 
         [XmlArray("DockPoints")]
         [XmlArrayItem("DockPoint")]
         public List<RailDockPoint> DockPoints { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public bool IsSelected { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public bool HasOnlyOneDock { get { return this.DockPoints.One(dp => dp.IsDocked); } }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public bool HasDocks { get { return this.DockPoints.Any(dp => dp.IsDocked); } }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public abstract List<TrackMaterial> Materials { get; }
-        
+
+        public abstract RailBase Clone();
+
+        public abstract RailBase Copy();
+
         public void CopyTo(RailBase railBase)
         {
             railBase.DebugIndex = this.DebugIndex;
@@ -77,7 +63,7 @@ namespace Rail.Model
             railBase.DockPoints = this.DockPoints;
         }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public Transform RailTransform
         {
             get
@@ -112,9 +98,10 @@ namespace Rail.Model
             return f;
         }
 
-        public void Move(Vector vec)
+        public RailBase Move(Vector vec)
         {
             this.Position += vec;
+            return this;
         }
 
         public void Rotate(Rotation rotation, Point center)

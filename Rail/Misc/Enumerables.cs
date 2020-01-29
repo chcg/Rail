@@ -67,5 +67,10 @@ namespace Rail.Misc
 		//		action(i);
 		//	}
 		//}
+
+		public static ObservableCollection<TSource> ToObservableCollection<TSource>(this IEnumerable<TSource> source)
+		{
+			return new ObservableCollection<TSource>(source);
+		}
 	}
 }

@@ -79,13 +79,17 @@
                 <RibbonGroup Header="{x:Static lang:Resources.MainTracks}">
                     <RibbonButton Label="{x:Static lang:Resources.MainRailPlan}" Command="{Binding RailPlanCommand}" LargeImageSource="/Rail;component/Images/Settings.png" />
                 </RibbonGroup>
+                <RibbonGroup Header="{x:Static lang:Resources.MainHistory}" SmallImageSource="/Rail;component/Images/Clipboard.png" LargeImageSource="/Rail;component/Images/Clipboard.png" >
+                    <RibbonButton Label="{x:Static lang:Resources.MainUndo}" Command="{Binding UndoCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Undo.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainRedo}" Command="{Binding RedoCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Redo.png" />
+                </RibbonGroup>
                 <RibbonGroup Header="{x:Static lang:Resources.MainClipboard}" SmallImageSource="/Rail;component/Images/Clipboard.png" LargeImageSource="/Rail;component/Images/Clipboard.png" >
-                    <RibbonButton Label="{x:Static lang:Resources.MainCopy}" Command="{Binding CopyCommand}" SmallImageSource="/Rail;component/Images/Copy.png" />
-                    <RibbonButton Label="{x:Static lang:Resources.MainCut}" Command="{Binding CutCommand}" SmallImageSource="/Rail;component/Images/Cut.png" />
-                    <RibbonButton Label="{x:Static lang:Resources.MainPaste}" Command="{Binding PasteCommand}" SmallImageSource="/Rail;component/Images/Paste.png" />
-                    <RibbonButton Label="{x:Static lang:Resources.MainDelete}" Command="{Binding DeleteCommand}" SmallImageSource="/Rail;component/Images/delete.png" />
-                    <RibbonButton Label="{x:Static lang:Resources.MainDuplicate}" Command="{Binding DuplicateCommand}" SmallImageSource="/Rail;component/Images/Copy.png" />
-                    <RibbonButton Label="{x:Static lang:Resources.MainSelectAll}" Command="{Binding SelectAllCommand}" SmallImageSource="/Rail;component/Images/Copy.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainCopy}" Command="{Binding CopyCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Copy.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainCut}" Command="{Binding CutCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Cut.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainPaste}" Command="{Binding PasteCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Paste.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainDelete}" Command="{Binding DeleteCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/delete.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainDuplicate}" Command="{Binding DuplicateCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Copy.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainSelectAll}" Command="{Binding SelectAllCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Copy.png" />
                 </RibbonGroup>
                 <RibbonGroup Header="{x:Static lang:Resources.MainSnapIn}">
                     <Grid>

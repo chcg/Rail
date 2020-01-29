@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Rail.Misc;
 using Rail.Trigonometry;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace Rail.Model
 {
@@ -51,7 +52,7 @@ namespace Rail.Model
         [XmlAttribute("ViewType")]
         public TrackViewType ViewType { get; set; }
         
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public string Manufacturer { get; protected set; }
                         
         /// <summary>
@@ -60,7 +61,7 @@ namespace Rail.Model
         /// <remarks>
         /// A track can have more than one material / order number for example the track spoke connections for a turntable.  
         /// </remarks>
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public override List<TrackMaterial> Materials 
         {
             get

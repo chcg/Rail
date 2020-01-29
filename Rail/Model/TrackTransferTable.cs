@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
@@ -23,7 +24,7 @@ namespace Rail.Model
         [XmlAttribute("Height")]
         public double Height { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public override string Name
         {
             get
@@ -32,7 +33,7 @@ namespace Rail.Model
             }
         }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public override string Description
         {
             get

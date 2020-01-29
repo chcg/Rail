@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Windows.Media;
 using System.Xml.Serialization;
 
@@ -65,7 +66,7 @@ namespace Rail.Model
         [XmlArrayItem("Rail")]
         public List<RailRampItem> Rails { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public override List<TrackMaterial> Materials
         {
             get { return this.Rails.SelectMany(r => r.Materials).ToList(); }
@@ -73,6 +74,37 @@ namespace Rail.Model
 
         [XmlIgnore]
         public double LayerHeigh = 100.0;
+
+        public override RailBase Clone()
+        {
+            var clone = new RailRamp()
+            {
+                DebugIndex = this.DebugIndex,
+                Position = this.Position,
+                Angle = this.Angle,
+                Layer = this.Layer,
+                //DockPoints = this.DockPoints.Select(d => d.Clone()).ToList(),
+                Rails = this.Rails.Select(r => (RailRampItem)r.Clone()).ToList()
+            };
+            clone.DockPoints = this.DockPoints.Select(d => d.Clone(clone)).ToList();
+            return clone;
+        }
+
+        public override RailBase Copy()
+        {
+            var copy = new RailRamp()
+            {
+                DebugIndex = globalDebugIndex++,
+                Position = this.Position,
+                Angle = this.Angle,
+                Layer = this.Layer,
+                //DockPoints = this.DockPoints.Select(d => d.Copy()).ToList(),
+                Rails = this.Rails.Select(r => (RailRampItem)r.Clone()).ToList()
+
+            };
+            copy.DockPoints = this.DockPoints.Select(d => d.Copy(copy)).ToList();
+            return copy;
+        }
 
         private Geometry combinedGeometryTracks;
         private Geometry combinedGeometryRail;

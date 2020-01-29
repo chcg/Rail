@@ -210,6 +210,9 @@
   <data name="MainHeightmm" xml:space="preserve">
     <value>Height (mm)</value>
   </data>
+  <data name="MainHistory" xml:space="preserve">
+    <value>History</value>
+  </data>
   <data name="MainLayer" xml:space="preserve">
     <value>Layer</value>
   </data>
@@ -246,6 +249,9 @@
   <data name="MainRampDelete" xml:space="preserve">
     <value>Delete Ramp</value>
   </data>
+  <data name="MainRedo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
   <data name="MainRotation" xml:space="preserve">
     <value>Rotation</value>
   </data>
@@ -278,6 +284,9 @@
   </data>
   <data name="MainTracks" xml:space="preserve">
     <value>Tracks</value>
+  </data>
+  <data name="MainUndo" xml:space="preserve">
+    <value>Undo</value>
   </data>
   <data name="MainViewModes" xml:space="preserve">
     <value>View Modes</value>

@@ -2,6 +2,7 @@
 using Rail.Properties;
 using Rail.Trigonometry;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
@@ -13,25 +14,25 @@ namespace Rail.Model
         [XmlAttribute("Length1")]
         public string Length1NameOrValue { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public double Length1 { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public string Length1Name { get; set; }
 
         [XmlAttribute("Length2")]
         public string Length2NameOrValue { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public double Length2 { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public string Length2Name { get; set; }
 
         [XmlAttribute("Angle")]
         public double Angle { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public override string Name
         {
             get
@@ -40,7 +41,7 @@ namespace Rail.Model
             }
         }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public override string Description
         {
             get

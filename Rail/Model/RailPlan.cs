@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -75,12 +76,12 @@ namespace Rail.Model
             return railPlan;
         }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public int Width { get { return (int)Math.Round(this.PlatePoints.Select(p => p.X).Max()); } }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public int Height { get { return (int)Math.Round(this.PlatePoints.Select(p => p.Y).Max()); } }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -102,5 +103,15 @@ namespace Rail.Model
         [XmlArrayItem("Rail", typeof(RailItem)),
          XmlArrayItem("Group", typeof(RailGroup))]
         public ObservableCollection<RailBase> Rails { get; set; }
+
+        public RailPlan Clone()
+        {
+            return new RailPlan()
+            {
+                PlatePoints = this.PlatePoints.ToObservableCollection(),
+                Layers = this.Layers.Select(l => l.Clone()).ToObservableCollection(),
+                Rails = this.Rails.Select(l => l.Clone()).ToObservableCollection()
+            };
+        }
     }
 }

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Rail.Misc;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Windows.Media;
 using System.Xml.Serialization;
 
@@ -16,42 +18,40 @@ namespace Rail.Model
         [XmlAttribute("Id")]
         public Guid Id { get; set; }
 
-        [XmlAttribute("Show")]
+        [XmlElement("Show")]
         public bool Show { get; set; }
 
-        [XmlAttribute("Name")]
+        [XmlElement("Name")]
         public string Name { get; set; }
 
-        [XmlAttribute("Height")]
+        [XmlElement("Height")]
         public int Height { get; set; }
 
-        [XmlAttribute("TrackColor")]
-        public string TrackColorInt 
-        { 
-            get { return TrackColor.ToString(); }
-            set { this.TrackColor = (Color)ColorConverter.ConvertFromString(value); }
-        }
-
-        [XmlIgnore]
+        //[XmlElement("TrackColor", typeof(XmlColor))]
+        [XmlElement("TrackColor")]
         public Color TrackColor { get; set; }
 
-        [XmlIgnore]
-        public Brush TrackBrush { get { return new SolidColorBrush(TrackColor); } }
-
-        [XmlAttribute("PlateColor")]
-        public string PlateColorInt
-        {
-            get { return PlateColor.ToString(); }
-            set { this.PlateColor = (Color)ColorConverter.ConvertFromString(value); }
-        }
-        
-        [XmlIgnore]
+        //[XmlElement("PlateColor", typeof(XmlColor))]
+        [XmlElement("PlateColor")]
         public Color PlateColor { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
+        public Brush TrackBrush { get { return new SolidColorBrush(TrackColor); } }
+
+        [XmlIgnore, JsonIgnore]
         public Brush PlateBrush { get { return new SolidColorBrush(PlateColor); } }
 
-
-
+        public RailLayer Clone()
+        {
+            return new RailLayer()
+            {
+                Id = this.Id,
+                Show = this.Show,
+                Name = this.Name,
+                Height = this.Height,
+                TrackColor = this.TrackColor,
+                PlateColor = this.PlateColor
+            };
+        }
     }
 }

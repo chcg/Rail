@@ -37,9 +37,9 @@ namespace Rail.Controls
         private RailBase selectedRail;
         private List<RailBase> selectedRails;
 
-        public DelegateCommand<RailBase> DeleteRailItemCommand { get; private set; }
-        public DelegateCommand<RailBase> RotateRailItemCommand { get; private set; }
-        public DelegateCommand<RailBase> PropertiesRailItemCommand { get; private set; }
+        //public DelegateCommand<RailBase> DeleteRailItemCommand { get; private set; }
+        //public DelegateCommand<RailBase> RotateRailItemCommand { get; private set; }
+        //public DelegateCommand<RailBase> PropertiesRailItemCommand { get; private set; }
 
         public DelegateCommand CreateGroupCommand { get; private set; }
         public DelegateCommand ResolveGroupCommand { get; private set; }
@@ -48,7 +48,19 @@ namespace Rail.Controls
 
         public DelegateCommand CreateRampCommand { get; private set; }
         public DelegateCommand DeleteRampCommand { get; private set; }
-       
+
+        public DelegateCommand UndoCommand { get; private set; }
+        public DelegateCommand RedoCommand { get; private set; }
+        public DelegateCommand CopyCommand { get; private set; }
+        public DelegateCommand CutCommand { get; private set; }
+        public DelegateCommand PasteCommand { get; private set; }
+        public DelegateCommand DeleteCommand { get; private set; }
+        public DelegateCommand DuplicateCommand { get; private set; }
+        public DelegateCommand SelectAllCommand { get; private set; }
+
+
+
+
         //public static readonly RoutedCommand RefreshCommand = new RoutedCommand("Refresh", typeof(RailPlanControl));
 
         protected enum RailAction
@@ -67,9 +79,9 @@ namespace Rail.Controls
 
         public RailPlanControl()
         {
-            this.DeleteRailItemCommand = new DelegateCommand<RailBase>(OnDeleteRailItem);
-            this.RotateRailItemCommand = new DelegateCommand<RailBase>(OnRotateRailItem);
-            this.PropertiesRailItemCommand = new DelegateCommand<RailBase>(OnPropertiesRailItem);
+            //this.DeleteRailItemCommand = new DelegateCommand<RailBase>(OnDeleteRailItem);
+            //this.RotateRailItemCommand = new DelegateCommand<RailBase>(OnRotateRailItem);
+            //this.PropertiesRailItemCommand = new DelegateCommand<RailBase>(OnPropertiesRailItem);
 
             this.CreateGroupCommand = new DelegateCommand(OnCreateGroup, OnCanCreateGroup);
             this.ResolveGroupCommand = new DelegateCommand(OnResolveGroup, OnCanResolveGroup);
@@ -77,6 +89,15 @@ namespace Rail.Controls
 
             this.CreateRampCommand = new DelegateCommand(OnCreateRamp, OnCanCreateRamp);
             this.DeleteRampCommand = new DelegateCommand(OnDeleteRamp, OnCanDeleteRamp);
+
+            this.UndoCommand = new DelegateCommand(OnUndo, OnCanUndo);
+            this.RedoCommand = new DelegateCommand(OnRedo, OnCanRedo);
+            this.CopyCommand = new DelegateCommand(OnCopy, OnCanCopy);
+            this.CutCommand = new DelegateCommand(OnCut, OnCanCut);
+            this.PasteCommand = new DelegateCommand(OnPaste, OnCanPaste);
+            this.DeleteCommand = new DelegateCommand(OnDelete, OnCanDelete);
+            this.DuplicateCommand = new DelegateCommand(OnDuplicate, OnCanDuplicate);
+            this.SelectAllCommand =  new DelegateCommand(OnSelectAll);
 
             //CommandBinding commandBinding = new CommandBinding(RefreshCommand);
             //commandBinding.Executed += OnRefresh;
@@ -173,7 +194,7 @@ namespace Rail.Controls
 
         public static readonly DependencyProperty RailPlanProperty =
             DependencyProperty.Register("RailPlan", typeof(RailPlan), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnRailPlanPropertyChanged)));
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnRailPlanPropertyChanged)));
 
         public RailPlan RailPlan
         {
@@ -329,8 +350,8 @@ namespace Rail.Controls
                 this.SelectedMode = RailSelectedMode.Single;
                 this.selectedRail = selectedRails.Single();
 
-                this.SelectedRailsX = this.selectedRail.X;
-                this.SelectedRailsY = this.selectedRail.Y;
+                this.SelectedRailsX = this.selectedRail.Position.X;
+                this.SelectedRailsY = this.selectedRail.Position.Y;
                 this.SelectedRailsAngle = this.selectedRail.Angle;
                 this.SelectedRailsLayer = this.selectedRail.Layer;
                 //this.SelectedRailsGradient = this.selectedRail.Gradient;
@@ -572,94 +593,6 @@ namespace Rail.Controls
 
         #endregion
 
-        #region SelectedRailsGradient
-
-        //public static readonly DependencyProperty SelectedRailsGradientProperty =
-        //    DependencyProperty.Register("SelectedRailsGradient", typeof(double?), typeof(RailPlanControl),
-        //        new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsGradientChanged)));
-
-        //public double? SelectedRailsGradient
-        //{
-        //    get
-        //    {
-        //        return (double?)GetValue(SelectedRailsGradientProperty);
-        //    }
-        //    set
-        //    {
-        //        SetValue(SelectedRailsGradientProperty, value);
-        //    }
-        //}
-
-        //private static void OnSelectedRailsGradientChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        //{
-        //    RailPlanControl railPlanControl = (RailPlanControl)o;
-        //    railPlanControl.OnSelectedRailsGradientChanged((double?)e.NewValue, (double?)e.OldValue);
-        //}
-
-        //private void OnSelectedRailsGradientChanged(double? newValue, double? oldValue)
-        //{
-        //    if (newValue.HasValue && newValue != oldValue)
-        //    {
-        //        switch (this.SelectedMode)
-        //        {
-        //        case RailSelectedMode.Single:
-        //            this.selectedRail.Gradient = newValue.Value;
-        //            this.InvalidateVisual();
-        //            break;
-        //        case RailSelectedMode.Multi:
-        //            this.selectedRails.ForEach(r => r.Gradient = newValue.Value);
-        //            this.InvalidateVisual();
-        //            break;
-        //        }
-        //    }
-        //}
-
-
-        #endregion
-
-        #region SelectedRailsHeight
-
-        //public static readonly DependencyProperty SelectedRailsHeightProperty =
-        //    DependencyProperty.Register("SelectedRailsHeight", typeof(double?), typeof(RailPlanControl),
-        //        new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsHeightChanged)));
-
-        //public double? SelectedRailsHeight
-        //{
-        //    get
-        //    {
-        //        return (double?)GetValue(SelectedRailsHeightProperty);
-        //    }
-        //    set
-        //    {
-        //        SetValue(SelectedRailsHeightProperty, value);
-        //    }
-        //}
-
-        //private static void OnSelectedRailsHeightChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        //{
-        //    RailPlanControl railPlanControl = (RailPlanControl)o;
-        //    railPlanControl.OnSelectedRailsHeightChanged((double?)e.NewValue, (double?)e.OldValue);
-        //}
-
-        //private void OnSelectedRailsHeightChanged(double? newValue, double? oldValue)
-        //{
-        //    if (newValue.HasValue && newValue != oldValue)
-        //    {
-        //        switch (this.SelectedMode)
-        //        {
-        //        case RailSelectedMode.Single:
-        //            this.selectedRail.Height = newValue.Value;
-        //            this.InvalidateVisual();
-        //            break;
-        //        case RailSelectedMode.Multi:
-        //            this.selectedRails.ForEach(r => r.Height = newValue.Value);
-        //            this.InvalidateVisual();
-        //            break;
-        //        }
-        //    }
-        //}
-
-        #endregion
 
         private void CalcGroundSize()
         {
@@ -784,26 +717,6 @@ namespace Rail.Controls
             list.ForEach(r => DeleteRailItem(r));
         }
 
-        public void CopySelectedRailItems()
-        {
-            //  TODO
-        }
-
-        public void CutSelectedRailItems()
-        {
-            //  TODO
-        }
-
-        public void PastSelectedRailItems()
-        {
-            //  TODO
-        }
-
-        public void DuplicateSelectedRailItems()
-        {
-            //  TODO
-        }
-
         public void SelectRailItem(RailBase railItem, bool addSelect)
         {
             if (addSelect)
@@ -824,11 +737,6 @@ namespace Rail.Controls
                 this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
             }
             this.RailPlan.Rails.Where(r => r.IsInside(rec, this.ViewMode)).ForEach(r => r.IsSelected = true);
-        }
-
-        public void SelectAllRailItems()
-        {
-            this.RailPlan.Rails.ForEach(r => r.IsSelected = true);
         }
 
         public void UnselectAllRailItems()
@@ -927,36 +835,30 @@ namespace Rail.Controls
             {
             // delete all selected
             case Key.Delete when !IsShiftPressed:
-                DeleteSelectedRailItems();
-                this.Invalidate();
+                this.OnDelete();
                 break;
             // select all
             case Key.A when IsControlPressed:
-                this.SelectAllRailItems();
-                this.Invalidate();
+                this.OnSelectAll();
                 break;
             // copy all selected
             case Key.C when IsControlPressed:
             case Key.Insert when IsControlPressed:
-                this.CopySelectedRailItems();
-                this.Invalidate();
+                this.OnCopy();
                 break;
             // cut all selected
             case Key.X when IsControlPressed:
             case Key.Delete when IsShiftPressed:
-                this.CutSelectedRailItems();
-                this.Invalidate();
+                this.OnCut();
                 break;
-            // past all copied
+            // paste all copied
             case Key.C when IsControlPressed:
             case Key.Insert when IsShiftPressed:
-                this.PastSelectedRailItems();
-                this.Invalidate();
+                this.OnPaste();
                 break;
             // duplicate all selected
             case Key.D when IsControlPressed:
-                this.DuplicateSelectedRailItems();
-                this.Invalidate();
+                this.OnDuplicate();
                 break;
             }
             this.selectedChangeIntern = false;
@@ -993,6 +895,8 @@ namespace Rail.Controls
                 if (railDockPoint != null)
                 {
                     InsertRailItem(railDockPoint);
+                    Invalidate();
+                    StoreToHistory();
                 }
                 else
                 {
@@ -1002,6 +906,8 @@ namespace Rail.Controls
             else
             {
                 InsertRailItem(pos);
+                Invalidate();
+                StoreToHistory();
             }
             this.selectedChangeIntern = false;
             base.OnMouseDoubleClick(e);
@@ -1162,45 +1068,184 @@ namespace Rail.Controls
             DebugCheckDockings();
         }
 
-        protected override void OnMouseRightButtonUp(MouseButtonEventArgs e)
-        {
-            Point pos = GetMousePosition(e);
+        //protected override void OnMouseRightButtonUp(MouseButtonEventArgs e)
+        //{
+        //    //Point pos = GetMousePosition(e);
 
-            var railItem = FindRailItem(pos);
-            if (railItem != null)
-            {
-                ContextMenu contextMenu = new ContextMenu();
-                //contextMenu.DataContext = railItem;
-                contextMenu.Items.Add(new MenuItem() { Header = Rail.Properties.Resources.MenuDelete, Command = DeleteRailItemCommand, CommandParameter = railItem });
-                contextMenu.Items.Add(new MenuItem() { Header = Rail.Properties.Resources.MenuRotate, Command = RotateRailItemCommand, CommandParameter = railItem, IsEnabled = railItem.HasOnlyOneDock });
-                contextMenu.Items.Add(new Separator());
-                contextMenu.Items.Add(new MenuItem() { Header = Rail.Properties.Resources.MenuProperties, Command = PropertiesRailItemCommand, CommandParameter = railItem });
-                contextMenu.IsOpen = true;
-            }
-            base.OnMouseRightButtonUp(e);
-        }
+        //    //var railItem = FindRailItem(pos);
+        //    //if (railItem != null)
+        //    //{
+        //    //    ContextMenu contextMenu = new ContextMenu();
+        //    //    //contextMenu.DataContext = railItem;
+        //    //    contextMenu.Items.Add(new MenuItem() { Header = Rail.Properties.Resources.MenuDelete, Command = DeleteRailItemCommand, CommandParameter = railItem });
+        //    //    contextMenu.Items.Add(new MenuItem() { Header = Rail.Properties.Resources.MenuRotate, Command = RotateRailItemCommand, CommandParameter = railItem, IsEnabled = railItem.HasOnlyOneDock });
+        //    //    contextMenu.Items.Add(new Separator());
+        //    //    contextMenu.Items.Add(new MenuItem() { Header = Rail.Properties.Resources.MenuProperties, Command = PropertiesRailItemCommand, CommandParameter = railItem });
+        //    //    contextMenu.IsOpen = true;
+        //    //}
+        //    //base.OnMouseRightButtonUp(e);
+        //}
 
         #endregion
 
         #region commands
 
-        private void OnDeleteRailItem(RailBase railItem)
-        {
-            this.selectedChangeIntern = true;
-            DeleteRailItem(railItem);
-            this.selectedChangeIntern = false;
-            this.InvalidateVisual();
-        }
+        //private void OnDeleteRailItem(RailBase railItem)
+        //{
+        //    this.selectedChangeIntern = true;
+        //    DeleteRailItem(railItem);
+        //    this.selectedChangeIntern = false;
+        //    this.InvalidateVisual();
+        //}
                 
-        private void OnRotateRailItem(RailBase railItem)
+        //private void OnRotateRailItem(RailBase railItem)
+        //{
+        //}
+        
+        //private void OnPropertiesRailItem(RailBase railItem)
+        //{
+
+        //}
+
+        #endregion
+
+        #region history
+
+        private int historyIndex = -1;
+        private readonly List<RailPlan> history = new List<RailPlan>();
+
+        private void OnUndo()
+        { 
+            if (OnCanUndo())
+            {
+                this.RailPlan = history[--historyIndex];
+            }
+        }
+
+        private bool OnCanUndo()
         {
+            return historyIndex > 0;
         }
         
-        private void OnPropertiesRailItem(RailBase railItem)
+        private void OnRedo()
         {
-
+            if (OnCanRedo())
+            {
+                this.RailPlan = history[++historyIndex];
+            }
+        }
+        
+        private bool OnCanRedo()
+        {
+            return historyIndex >= 0 && historyIndex < history.Count - 1; 
         }
 
+        /// <summary>
+        /// call always befor manipulating the RailPlan
+        /// </summary>
+        private void StoreToHistory()
+        {
+            if (historyIndex >= 0 && historyIndex < history.Count - 1)
+            {
+                this.history.RemoveRange(historyIndex + 1, history.Count - 1 - historyIndex);
+            }
+            this.history.Add(this.RailPlan.Clone());
+            historyIndex = this.history.Count - 1;
+        }
+
+        #endregion
+
+        #region copy & past
+
+        private List<RailBase> copy = null;
+
+        private void OnCopy()
+        {
+            if (OnCanCopy())
+            {
+                this.copy = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
+            }
+        }
+
+        private bool OnCanCopy()
+        {
+            return this.RailPlan.Rails.Any(r => r.IsSelected);
+        }
+
+        private void OnCut()
+        {
+            if (OnCanCut())
+            {
+                this.copy = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
+                this.copy.ForEach(r => DeleteRailItem(r));
+                StoreToHistory();
+                this.Invalidate();
+            }
+        }
+        private bool OnCanCut()
+        { 
+            return this.RailPlan.Rails.Any(r => r.IsSelected); 
+        }
+
+        private void OnPaste()
+        {
+            if (OnCanPaste())
+            {
+                this.RailPlan.Rails.AddRange(copy.Select(r => r.Copy().Move(new Vector(100, 100))));
+                StoreToHistory();
+                this.Invalidate();
+            }
+        }
+
+        private bool OnCanPaste()
+        {
+            return copy != null; 
+        }
+
+        private void OnDelete()
+        {
+            if (OnCanDelete())
+            {
+                var list = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
+                list.ForEach(r => DeleteRailItem(r));
+                StoreToHistory();
+                this.Invalidate();
+            }
+        }
+        
+        private bool OnCanDelete()
+        { 
+            return this.RailPlan.Rails.Any(r => r.IsSelected); 
+        }
+
+        private void OnDuplicate()
+        {
+            if (OnCanDuplicate())
+            {
+                var list = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
+                this.RailPlan.Rails.AddRange(list.Select(r => r.Copy().Move(new Vector(100, 100))));
+                StoreToHistory();
+                this.Invalidate();
+            }
+        }
+
+        private bool OnCanDuplicate()
+        { 
+            return this.RailPlan.Rails.Any(r => r.IsSelected); 
+        }
+        
+        private void OnSelectAll()
+        {
+            this.RailPlan.Rails.ForEach(r => r.IsSelected = true);
+            this.Invalidate();
+        }
+
+        //private void OnUnselectAll()
+        //{
+        //    this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
+        //    this.Invalidate();
+        //}
+               
         #endregion
 
         #region group

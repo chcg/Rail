@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.IO;
 
 namespace Rail.Mvvm
 {
@@ -42,6 +45,13 @@ namespace Rail.Mvvm
                 writer.Indentation = 2;
                 XmlSerializer serializer = new XmlSerializer(this.GetType());
                 serializer.Serialize(writer, this);
+            }
+
+            JsonWriterOptions options = default;
+            options.Indented = true;
+            using (Utf8JsonWriter writer = new Utf8JsonWriter(File.Create(Path.ChangeExtension(path, "jrail")), options))
+            {
+                JsonSerializer.Serialize(writer, this, this.GetType());
             }
         }
     }

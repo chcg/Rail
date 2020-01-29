@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
@@ -44,10 +45,10 @@ namespace Rail.Model
         [XmlAttribute("TrackId")]
         public string TrackId { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public TrackBase Track { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public override List<TrackMaterial> Materials
         {
             get { return this.Track.Materials; }
@@ -59,10 +60,46 @@ namespace Rail.Model
         [XmlAttribute("Height")]
         public double Height { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public double Length 
         { 
             get { return ((TrackStraight)this.Track).Length;  }
+        }
+
+        public override RailBase Clone()
+        {
+            var clone = new RailRampItem()
+            {
+                DebugIndex = this.DebugIndex,
+                Position = this.Position,
+                Angle = this.Angle,
+                Layer = this.Layer,
+                //DockPoints = this.DockPoints.Select(d => d.Clone()).ToList(),
+                TrackId = this.TrackId,
+                Track = this.Track,
+                Gradient = this.Gradient,
+                Height = this.Height
+            };
+            clone.DockPoints = this.DockPoints.Select(d => d.Clone(clone)).ToList();
+            return clone;
+        }
+
+        public override RailBase Copy()
+        {
+            var copy = new RailRampItem()
+            {
+                DebugIndex = globalDebugIndex++,
+                Position = this.Position,
+                Angle = this.Angle,
+                Layer = this.Layer,
+                //DockPoints = this.DockPoints.Select(d => d.Copy()).ToList(),
+                TrackId = this.TrackId,
+                Track = this.Track,
+                Gradient = this.Gradient,
+                Height = this.Height
+            };
+            copy.DockPoints = this.DockPoints.Select(d => d.Clone(copy)).ToList();
+            return copy;
         }
 
         public override void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode, RailLayer layer)

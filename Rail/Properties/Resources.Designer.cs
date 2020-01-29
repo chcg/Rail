@@ -340,6 +340,15 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to History.
+        /// </summary>
+        public static string MainHistory {
+            get {
+                return ResourceManager.GetString("MainHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Layer.
         /// </summary>
         public static string MainLayer {
@@ -448,6 +457,15 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Redo.
+        /// </summary>
+        public static string MainRedo {
+            get {
+                return ResourceManager.GetString("MainRedo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rotation.
         /// </summary>
         public static string MainRotation {
@@ -543,6 +561,15 @@ namespace Rail.Properties {
         public static string MainTracks {
             get {
                 return ResourceManager.GetString("MainTracks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo.
+        /// </summary>
+        public static string MainUndo {
+            get {
+                return ResourceManager.GetString("MainUndo", resourceCulture);
             }
         }
         

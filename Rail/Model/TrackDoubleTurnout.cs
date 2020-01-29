@@ -2,6 +2,7 @@
 using Rail.Properties;
 using Rail.Trigonometry;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
@@ -10,7 +11,7 @@ namespace Rail.Model
 {
     public class TrackDoubleTurnout : TrackTurnout
     {
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public override string Name
         {
             get
@@ -21,7 +22,7 @@ namespace Rail.Model
             }
         }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public override string Description
         {
             get

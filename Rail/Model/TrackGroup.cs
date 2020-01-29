@@ -4,6 +4,7 @@ using Rail.Properties;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Windows.Media;
 using System.Xml.Serialization;
 
@@ -17,13 +18,13 @@ namespace Rail.Model
         [XmlElement("Item")]
         public List<TrackGroupItem> GroupItems { get; set; }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public override string Name { get { return this.GroupName; } }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public override string Description { get { return this.GroupName; } }
 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public override List<TrackMaterial> Materials 
         {
             get { return null; /* this.GroupItems?.TODO;*/ } 
