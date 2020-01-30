@@ -1144,6 +1144,7 @@ namespace Rail.Controls
         #region copy & past
 
         private List<RailBase> copy = null;
+        private int copyFactor;
         
         public void Clone()
         {
@@ -1158,6 +1159,7 @@ namespace Rail.Controls
             if (OnCanCopy())
             {
                 this.copy = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
+                this.copyFactor = 1;
             }
         }
 
@@ -1172,6 +1174,7 @@ namespace Rail.Controls
             {
                 this.copy = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
                 this.copy.ForEach(r => DeleteRailItem(r));
+                this.copyFactor = 1;
                 StoreToHistory();
                 this.Invalidate();
             }
@@ -1185,7 +1188,8 @@ namespace Rail.Controls
         {
             if (OnCanPaste())
             {
-                this.RailPlan.Rails.AddRange(copy.Select(r => r.Clone().Move(new Vector(100, 100))));
+                this.RailPlan.Rails.AddRange(copy.Select(r => r.Clone().Move(new Vector(100 * this.copyFactor, 100 * this.copyFactor))));
+                this.copyFactor++;
                 // clone dock point links
                 RailDockPoint.CloneDockPointLinks();
 
@@ -1220,7 +1224,8 @@ namespace Rail.Controls
             if (OnCanDuplicate())
             {
                 var selectedRails = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
-                this.RailPlan.Rails.AddRange(selectedRails.Select(r => r.Clone().Move(new Vector(100, 100))));
+                this.RailPlan.Rails.AddRange(selectedRails.Select(r => r.Clone().Move(new Vector(100 * this.copyFactor, 100 * this.copyFactor))));
+                this.copyFactor = 1;
                 // clone dock point links
                 RailDockPoint.CloneDockPointLinks();
 

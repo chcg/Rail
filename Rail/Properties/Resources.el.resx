@@ -154,64 +154,64 @@
     <value>Αντίγραφο</value>
   </data>
   <data name="MainFileAbout" xml:space="preserve">
-    <value>About ...</value>
+    <value>Σχετικά με ...</value>
   </data>
   <data name="MainFileExit" xml:space="preserve">
-    <value>Exit</value>
+    <value>Εξοδος</value>
   </data>
   <data name="MainFileHelp" xml:space="preserve">
-    <value>Help ...</value>
+    <value>Βοήθεια ...</value>
   </data>
   <data name="MainFileNew" xml:space="preserve">
-    <value>New</value>
+    <value>Νέος</value>
   </data>
   <data name="MainFileOpen" xml:space="preserve">
-    <value>Open ...</value>
+    <value>Ανοιξε ...</value>
   </data>
   <data name="MainFilePrint" xml:space="preserve">
-    <value>Print ...</value>
+    <value>Τυπώνω ...</value>
   </data>
   <data name="MainFilePrintPreview" xml:space="preserve">
-    <value>Print Preview ...</value>
+    <value>Προεπισκόπηση εκτύπωσης ...</value>
   </data>
   <data name="MainFileRecentFiles" xml:space="preserve">
-    <value>Recent Files</value>
+    <value>Πρόσφατοι φάκελοι</value>
   </data>
   <data name="MainFileSave" xml:space="preserve">
-    <value>Save</value>
+    <value>Αποθηκεύσετε</value>
   </data>
   <data name="MainFileSaveAs" xml:space="preserve">
-    <value>Save As ...</value>
+    <value>Αποθήκευση ως ...</value>
   </data>
   <data name="MainGauge" xml:space="preserve">
-    <value>Gauge</value>
+    <value>Μετρητής</value>
   </data>
   <data name="MainGradientPerc" xml:space="preserve">
-    <value>Gradient (%)</value>
+    <value>Βαθμίδα (%)</value>
   </data>
   <data name="MainGridLines" xml:space="preserve">
-    <value>Grid Lines</value>
+    <value>Γραμμές πλέγματος</value>
   </data>
   <data name="MainGroup" xml:space="preserve">
-    <value>Groups</value>
+    <value>Ομάδες</value>
   </data>
   <data name="MainGroupCreate" xml:space="preserve">
-    <value>Group</value>
+    <value>Ομάδα</value>
   </data>
   <data name="MainGroupResolve" xml:space="preserve">
-    <value>Ungroup</value>
+    <value>απόσπαση</value>
   </data>
   <data name="MainGroups" xml:space="preserve">
-    <value>Groups</value>
+    <value>Ομάδες</value>
   </data>
   <data name="MainGroupSaveAs" xml:space="preserve">
-    <value>Save Group As...</value>
+    <value>Αποθήκευση ομάδας ως ...</value>
   </data>
   <data name="MainHeightmm" xml:space="preserve">
-    <value>Height (mm)</value>
+    <value>Υψος (mm)</value>
   </data>
   <data name="MainHistory" xml:space="preserve">
-    <value>History</value>
+    <value>Ιστορία</value>
   </data>
   <data name="MainLayer" xml:space="preserve">
     <value>Layer</value>

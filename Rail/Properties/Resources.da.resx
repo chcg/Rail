@@ -121,112 +121,112 @@
     <value>Afbestille</value>
   </data>
   <data name="MainAll" xml:space="preserve">
-    <value>All</value>
+    <value>Alle</value>
   </data>
   <data name="MainAngle" xml:space="preserve">
-    <value>Angle</value>
+    <value>Vinkel</value>
   </data>
   <data name="MainAngleDeg" xml:space="preserve">
-    <value>Angle (°)</value>
+    <value>Vinkel (°)</value>
   </data>
   <data name="MainArticle" xml:space="preserve">
-    <value>Article</value>
+    <value>Genstand</value>
   </data>
   <data name="MainClipboard" xml:space="preserve">
-    <value>Clipboard</value>
+    <value>Udklipsholder</value>
   </data>
   <data name="MainCopy" xml:space="preserve">
-    <value>Copy</value>
+    <value>Kopi</value>
   </data>
   <data name="MainCustomer" xml:space="preserve">
-    <value>Own Groups</value>
+    <value>Egne grupper</value>
   </data>
   <data name="MainCut" xml:space="preserve">
-    <value>Cut</value>
+    <value>Skære</value>
   </data>
   <data name="MainDelete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Slet</value>
   </data>
   <data name="MainDistance" xml:space="preserve">
-    <value>Distance</value>
+    <value>Afstand</value>
   </data>
   <data name="MainDuplicate" xml:space="preserve">
-    <value>Duplicate</value>
+    <value>Duplikere</value>
   </data>
   <data name="MainFileAbout" xml:space="preserve">
-    <value>About ...</value>
+    <value>Om ...</value>
   </data>
   <data name="MainFileExit" xml:space="preserve">
-    <value>Exit</value>
+    <value>Afslut</value>
   </data>
   <data name="MainFileHelp" xml:space="preserve">
-    <value>Help ...</value>
+    <value>Hjælp ...</value>
   </data>
   <data name="MainFileNew" xml:space="preserve">
-    <value>New</value>
+    <value>Ny</value>
   </data>
   <data name="MainFileOpen" xml:space="preserve">
-    <value>Open ...</value>
+    <value>Åben ...</value>
   </data>
   <data name="MainFilePrint" xml:space="preserve">
-    <value>Print ...</value>
+    <value>Tryk ...</value>
   </data>
   <data name="MainFilePrintPreview" xml:space="preserve">
-    <value>Print Preview ...</value>
+    <value>udskriv forhåndsvisning ...</value>
   </data>
   <data name="MainFileRecentFiles" xml:space="preserve">
-    <value>Recent Files</value>
+    <value>Seneste filer</value>
   </data>
   <data name="MainFileSave" xml:space="preserve">
-    <value>Save</value>
+    <value>Gemme</value>
   </data>
   <data name="MainFileSaveAs" xml:space="preserve">
-    <value>Save As ...</value>
+    <value>Gem som ...</value>
   </data>
   <data name="MainGauge" xml:space="preserve">
-    <value>Gauge</value>
+    <value>Målestok</value>
   </data>
   <data name="MainGradientPerc" xml:space="preserve">
-    <value>Gradient (%)</value>
+    <value>Gradienter (%)</value>
   </data>
   <data name="MainGridLines" xml:space="preserve">
-    <value>Grid Lines</value>
+    <value>Netlinjer</value>
   </data>
   <data name="MainGroup" xml:space="preserve">
-    <value>Groups</value>
+    <value>Grupper</value>
   </data>
   <data name="MainGroupCreate" xml:space="preserve">
-    <value>Group</value>
+    <value>Gruppe</value>
   </data>
   <data name="MainGroupResolve" xml:space="preserve">
-    <value>Ungroup</value>
+    <value>Opdel gruppe</value>
   </data>
   <data name="MainGroups" xml:space="preserve">
-    <value>Groups</value>
+    <value>Grupper</value>
   </data>
   <data name="MainGroupSaveAs" xml:space="preserve">
-    <value>Save Group As...</value>
+    <value>Gem gruppe som ...</value>
   </data>
   <data name="MainHeightmm" xml:space="preserve">
-    <value>Height (mm)</value>
+    <value>Højde (mm)</value>
   </data>
   <data name="MainHistory" xml:space="preserve">
-    <value>History</value>
+    <value>Historie</value>
   </data>
   <data name="MainLayer" xml:space="preserve">
-    <value>Layer</value>
+    <value>Lag</value>
   </data>
   <data name="MainManufacturer" xml:space="preserve">
-    <value>Manufacturer</value>
+    <value>Fabrikant</value>
   </data>
   <data name="MainName" xml:space="preserve">
-    <value>Name</value>
+    <value>Navn</value>
   </data>
   <data name="MainOptions" xml:space="preserve">
-    <value>Options...</value>
+    <value>Muligheder ...</value>
   </data>
   <data name="MainPaste" xml:space="preserve">
-    <value>Paste</value>
+    <value>Sæt ind</value>
   </data>
   <data name="MainPlan" xml:space="preserve">
     <value>Plan</value>

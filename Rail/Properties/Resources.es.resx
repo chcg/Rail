@@ -118,121 +118,121 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="MainAll" xml:space="preserve">
-    <value>All</value>
+    <value>Todos</value>
   </data>
   <data name="MainAngle" xml:space="preserve">
-    <value>Angle</value>
+    <value>Ángulo</value>
   </data>
   <data name="MainAngleDeg" xml:space="preserve">
-    <value>Angle (°)</value>
+    <value>Ángulo (°)</value>
   </data>
   <data name="MainArticle" xml:space="preserve">
-    <value>Article</value>
+    <value>Artículo</value>
   </data>
   <data name="MainClipboard" xml:space="preserve">
-    <value>Clipboard</value>
+    <value>Portapapeles</value>
   </data>
   <data name="MainCopy" xml:space="preserve">
-    <value>Copy</value>
+    <value>Copiar</value>
   </data>
   <data name="MainCustomer" xml:space="preserve">
-    <value>Own Groups</value>
+    <value>Grupos propios</value>
   </data>
   <data name="MainCut" xml:space="preserve">
-    <value>Cut</value>
+    <value>Cortar</value>
   </data>
   <data name="MainDelete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Eliminar</value>
   </data>
   <data name="MainDistance" xml:space="preserve">
-    <value>Distance</value>
+    <value>Distancia</value>
   </data>
   <data name="MainDuplicate" xml:space="preserve">
-    <value>Duplicate</value>
+    <value>Duplicar</value>
   </data>
   <data name="MainFileAbout" xml:space="preserve">
-    <value>About ...</value>
+    <value>Acerca de ...</value>
   </data>
   <data name="MainFileExit" xml:space="preserve">
-    <value>Exit</value>
+    <value>Salida</value>
   </data>
   <data name="MainFileHelp" xml:space="preserve">
-    <value>Help ...</value>
+    <value>Ayuda ...</value>
   </data>
   <data name="MainFileNew" xml:space="preserve">
-    <value>New</value>
+    <value>Nuevo</value>
   </data>
   <data name="MainFileOpen" xml:space="preserve">
-    <value>Open ...</value>
+    <value>Abierto ...</value>
   </data>
   <data name="MainFilePrint" xml:space="preserve">
-    <value>Print ...</value>
+    <value>Impresión ...</value>
   </data>
   <data name="MainFilePrintPreview" xml:space="preserve">
-    <value>Print Preview ...</value>
+    <value>Vista previa de impresión ...</value>
   </data>
   <data name="MainFileRecentFiles" xml:space="preserve">
-    <value>Recent Files</value>
+    <value>Archivos recientes</value>
   </data>
   <data name="MainFileSave" xml:space="preserve">
-    <value>Save</value>
+    <value>Salvar</value>
   </data>
   <data name="MainFileSaveAs" xml:space="preserve">
-    <value>Save As ...</value>
+    <value>Guardar como ...</value>
   </data>
   <data name="MainGauge" xml:space="preserve">
-    <value>Gauge</value>
+    <value>Calibre</value>
   </data>
   <data name="MainGradientPerc" xml:space="preserve">
-    <value>Gradient (%)</value>
+    <value>Degradado (%)</value>
   </data>
   <data name="MainGridLines" xml:space="preserve">
-    <value>Grid Lines</value>
+    <value>Líneas de cuadrícula</value>
   </data>
   <data name="MainGroup" xml:space="preserve">
-    <value>Groups</value>
+    <value>Grupos</value>
   </data>
   <data name="MainGroupCreate" xml:space="preserve">
-    <value>Group</value>
+    <value>Grupo</value>
   </data>
   <data name="MainGroupResolve" xml:space="preserve">
-    <value>Ungroup</value>
+    <value>Desagrupar</value>
   </data>
   <data name="MainGroups" xml:space="preserve">
-    <value>Groups</value>
+    <value>Grupos</value>
   </data>
   <data name="MainGroupSaveAs" xml:space="preserve">
-    <value>Save Group As...</value>
+    <value>Guardar grupo como ...</value>
   </data>
   <data name="MainHeightmm" xml:space="preserve">
-    <value>Height (mm)</value>
+    <value>Altura (mm)</value>
   </data>
   <data name="MainHistory" xml:space="preserve">
-    <value>History</value>
+    <value>Historia</value>
   </data>
   <data name="MainLayer" xml:space="preserve">
-    <value>Layer</value>
+    <value>Capa</value>
   </data>
   <data name="MainManufacturer" xml:space="preserve">
-    <value>Manufacturer</value>
+    <value>Fabricante</value>
   </data>
   <data name="MainName" xml:space="preserve">
-    <value>Name</value>
+    <value>Nombre</value>
   </data>
   <data name="MainOptions" xml:space="preserve">
-    <value>Options...</value>
+    <value>Opciones ...</value>
   </data>
   <data name="MainPaste" xml:space="preserve">
-    <value>Paste</value>
+    <value>Pegar</value>
   </data>
   <data name="MainPlan" xml:space="preserve">
     <value>Plan</value>
   </data>
   <data name="MainPosition" xml:space="preserve">
-    <value>Position</value>
+    <value>Posición</value>
   </data>
   <data name="MainRail" xml:space="preserve">
     <value>Rail</value>
