@@ -106,6 +106,14 @@ namespace Rail.Model
 
         public RailPlan Clone()
         {
+            //DockPointCopyDictionary = new Dictionary<RailDockPoint, RailDockPoint>();
+            //this.RailPlan.Rails.AddRange(copy.Select(r => r.Copy().Move(new Vector(100, 100))));
+            //DockPointCopyDictionary.ForEach(d =>
+            //{
+            //    d.Key.DockedWithId = d.Value.DockedWithId;
+            //    // TODO
+            //});
+
             return new RailPlan()
             {
                 PlatePoints = this.PlatePoints.ToObservableCollection(),

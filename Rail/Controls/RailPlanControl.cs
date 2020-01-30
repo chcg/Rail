@@ -66,9 +66,25 @@ namespace Rail.Controls
         protected enum RailAction
         {
             None,
+            /// <summary>
+            /// Move only one rail and undock if it is docked
+            /// </summary>
             MoveSingle,
+            /// <summary>
+            /// Move graph without finding new docks
+            /// </summary>
+            MoveSimple,
+            /// <summary>
+            /// Move graph with finding new docks
+            /// </summary>
             MoveGraph,
+            /// <summary>
+            /// Rotage graph
+            /// </summary>
             Rotate,
+            /// <summary>
+            /// show a select rectangle
+            /// </summary>
             SelectRect
         }
 
@@ -935,14 +951,19 @@ namespace Rail.Controls
                 // click outside docking point
                 else
                 {
-                    // SHIFT pressed
-                    if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
+                    // CTRL pressed
+                    if (Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
                     {
                         this.actionRailItem.UndockAll();
                         this.actionType = RailAction.MoveSingle;
-                        //this.actionSubgraph = null;
+                        this.actionSubgraph = null;
                     }
-                    // SHIFT not pressed
+                    // SHIFT pressed
+                    else if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
+                    {
+                        this.actionType = RailAction.MoveSimple;
+                        this.actionSubgraph = this.actionRailItem.FindSubgraph();
+                    }
                     else
                     {
                         this.actionType = RailAction.MoveGraph;
@@ -976,6 +997,11 @@ namespace Rail.Controls
             {
             case RailAction.MoveSingle:
                 this.actionRailItem.Move(pos - this.lastMousePosition);
+                Invalidate();
+                break;
+            case RailAction.MoveSimple:
+                MoveRailItem(this.actionSubgraph, pos - this.lastMousePosition);
+                // don't find docks
                 Invalidate();
                 break;
             case RailAction.MoveGraph:
@@ -1021,6 +1047,7 @@ namespace Rail.Controls
                 //    DockTo(this.actionRailItem, dockingTrack);
                 //}
                 break;
+            case RailAction.MoveSimple:
             case RailAction.MoveGraph:
                 //this.actionRailItem.Position += pos - this.lastMousePosition;
                 //dockingTrack = FindDocking(this.actionRailItem);
@@ -1067,6 +1094,8 @@ namespace Rail.Controls
             base.OnMouseLeftButtonUp(e);
             DebugCheckDockings();
         }
+
+        // no right mouse button because Apple has no one
 
         //protected override void OnMouseRightButtonUp(MouseButtonEventArgs e)
         //{
@@ -1158,12 +1187,15 @@ namespace Rail.Controls
         #region copy & past
 
         private List<RailBase> copy = null;
-
+        public static Dictionary<RailDockPoint, RailDockPoint> DockPointCopyDictionary; 
         private void OnCopy()
         {
             if (OnCanCopy())
             {
+                
                 this.copy = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
+
+                
             }
         }
 
@@ -1191,7 +1223,14 @@ namespace Rail.Controls
         {
             if (OnCanPaste())
             {
+                DockPointCopyDictionary = new Dictionary<RailDockPoint, RailDockPoint>();
                 this.RailPlan.Rails.AddRange(copy.Select(r => r.Copy().Move(new Vector(100, 100))));
+                DockPointCopyDictionary.ForEach(d =>
+                {
+                    d.Key.DockedWithId = d.Value.DockedWithId;
+                    // TODO
+                });
+
                 StoreToHistory();
                 this.Invalidate();
             }

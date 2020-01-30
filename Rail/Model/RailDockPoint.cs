@@ -1,4 +1,5 @@
-﻿using Rail.Trigonometry;
+﻿using Rail.Controls;
+using Rail.Trigonometry;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -98,13 +99,17 @@ namespace Rail.Model
 
         public RailDockPoint Copy(RailBase railItem)
         {
-            return new RailDockPoint()
+            var copy = new RailDockPoint()
             {
                 Id = Guid.NewGuid(),
                 RailItem = railItem,
                 DebugDockPointIndex = this.DebugDockPointIndex,
                 DockType = this.DockType
             };
+
+            RailPlanControl.DockPointCopyDictionary.Add(this, copy);
+
+            return copy;
         }
         public void Draw(DrawingContext drawingContext)
         {
