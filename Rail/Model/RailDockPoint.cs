@@ -1,6 +1,8 @@
 ﻿using Rail.Controls;
+using Rail.Misc;
 using Rail.Trigonometry;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text.Json.Serialization;
@@ -10,6 +12,9 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
+    //[DebuggerDisplay("RailDockPoint Id={Id} DockPointIndex={DebugDockPointIndex} RailIndex={DebugRailIndex}")]
+    //[DebuggerDisplay("RailDockPoint Id={Id} DockedWith={DockedWithId}")]
+    [DebuggerDisplay("RailDockPoint Id={DebugRailIndex}/{DebugDockPointIndex} DockedWith={DockedWith.DebugRailIndex}/{DockedWith.DebugDockPointIndex}")]
     public class RailDockPoint
     {
         //private TrackDockPoint trackDockPoint;
@@ -88,29 +93,25 @@ namespace Rail.Model
 
         public RailDockPoint Clone(RailBase railItem)
         {
-            return new RailDockPoint()
-            { 
-                Id = this.Id,
-                RailItem = railItem,
-                DebugDockPointIndex = this.DebugDockPointIndex,
-                DockType = this.DockType,
-            };
-        }
-
-        public RailDockPoint Copy(RailBase railItem)
-        {
-            var copy = new RailDockPoint()
+            var clone = new RailDockPoint()
             {
                 Id = Guid.NewGuid(),
                 RailItem = railItem,
                 DebugDockPointIndex = this.DebugDockPointIndex,
-                DockType = this.DockType
+                DockType = this.DockType,
+                angle = this.angle,
+                position = this.position
+                // at this time a cone has no dock
             };
 
-            RailPlanControl.DockPointCopyDictionary.Add(this, copy);
-
-            return copy;
+            if (IsDocked)
+            {
+                DockPointCloneDictionary.Add(this, clone);
+            }
+            
+            return clone;
         }
+        
         public void Draw(DrawingContext drawingContext)
         {
             double spacing = ((RailItem)this.RailItem).Track.RailSpacing;
@@ -174,5 +175,27 @@ namespace Rail.Model
             this.DockedWith = null;
             this.DockedWithId = Guid.Empty;
         }
+
+        #region Clone
+
+        public static Dictionary<RailDockPoint, RailDockPoint> DockPointCloneDictionary = new Dictionary<RailDockPoint, RailDockPoint>();
+
+        public static void CloneDockPointLinks()
+        {
+            
+            DockPointCloneDictionary.ForEach(d =>
+            {
+                var oldDP = d.Key;
+                var newDP = d.Value;
+                var docked = DockPointCloneDictionary[oldDP.DockedWith];
+                
+                newDP.DockedWithId = docked.Id;
+                newDP.DockedWith = docked;
+                
+            });
+            DockPointCloneDictionary.Clear();
+        }
+
+        #endregion
     }
 }

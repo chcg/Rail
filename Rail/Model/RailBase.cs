@@ -50,8 +50,6 @@ namespace Rail.Model
 
         public abstract RailBase Clone();
 
-        public abstract RailBase Copy();
-
         public void CopyTo(RailBase railBase)
         {
             railBase.DebugIndex = this.DebugIndex;

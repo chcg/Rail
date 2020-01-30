@@ -118,303 +118,291 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="MainAll" xml:space="preserve">
-    <value>All</value>
+    <value>所有</value>
   </data>
   <data name="MainAngle" xml:space="preserve">
-    <value>Angle</value>
+    <value>角度</value>
   </data>
   <data name="MainAngleDeg" xml:space="preserve">
-    <value>Angle (°)</value>
+    <value>角度 (°)</value>
   </data>
   <data name="MainArticle" xml:space="preserve">
-    <value>Article</value>
+    <value>文章</value>
   </data>
   <data name="MainClipboard" xml:space="preserve">
-    <value>Clipboard</value>
+    <value>剪贴板</value>
   </data>
   <data name="MainCopy" xml:space="preserve">
-    <value>Copy</value>
+    <value>复制</value>
   </data>
   <data name="MainCustomer" xml:space="preserve">
-    <value>Own Groups</value>
+    <value>自己的团体</value>
   </data>
   <data name="MainCut" xml:space="preserve">
-    <value>Cut</value>
+    <value>切</value>
   </data>
   <data name="MainDelete" xml:space="preserve">
-    <value>Delete</value>
+    <value>删除</value>
   </data>
   <data name="MainDistance" xml:space="preserve">
-    <value>Distance</value>
+    <value>距离</value>
   </data>
   <data name="MainDuplicate" xml:space="preserve">
-    <value>Duplicate</value>
+    <value>重复</value>
   </data>
   <data name="MainFileAbout" xml:space="preserve">
-    <value>About ...</value>
+    <value>关于 ...</value>
   </data>
   <data name="MainFileExit" xml:space="preserve">
-    <value>Exit</value>
+    <value>出口</value>
   </data>
   <data name="MainFileHelp" xml:space="preserve">
-    <value>Help ...</value>
+    <value>救命 ...</value>
   </data>
   <data name="MainFileNew" xml:space="preserve">
-    <value>New</value>
+    <value>新</value>
   </data>
   <data name="MainFileOpen" xml:space="preserve">
-    <value>Open ...</value>
+    <value>打开 ...</value>
   </data>
   <data name="MainFilePrint" xml:space="preserve">
-    <value>Print ...</value>
+    <value>打印 ...</value>
   </data>
   <data name="MainFilePrintPreview" xml:space="preserve">
-    <value>Print Preview ...</value>
+    <value>打印预览 ...</value>
   </data>
   <data name="MainFileRecentFiles" xml:space="preserve">
-    <value>Recent Files</value>
+    <value>最近的文件</value>
   </data>
   <data name="MainFileSave" xml:space="preserve">
-    <value>Save</value>
+    <value>保存</value>
   </data>
   <data name="MainFileSaveAs" xml:space="preserve">
-    <value>Save As ...</value>
+    <value>另存为 ...</value>
   </data>
   <data name="MainGauge" xml:space="preserve">
-    <value>Gauge</value>
+    <value>量规</value>
   </data>
   <data name="MainGradientPerc" xml:space="preserve">
-    <value>Gradient (%)</value>
+    <value>梯度 (%)</value>
   </data>
   <data name="MainGridLines" xml:space="preserve">
-    <value>Grid Lines</value>
+    <value>网格线</value>
   </data>
   <data name="MainGroup" xml:space="preserve">
-    <value>Groups</value>
+    <value>团体</value>
   </data>
   <data name="MainGroupCreate" xml:space="preserve">
-    <value>Group</value>
+    <value>创建组</value>
   </data>
   <data name="MainGroupResolve" xml:space="preserve">
-    <value>Ungroup</value>
+    <value>取消分组</value>
   </data>
   <data name="MainGroups" xml:space="preserve">
-    <value>Groups</value>
+    <value>团体</value>
   </data>
   <data name="MainGroupSaveAs" xml:space="preserve">
-    <value>Save Group As...</value>
+    <value>将群组另存为 ...</value>
   </data>
   <data name="MainHeightmm" xml:space="preserve">
-    <value>Height (mm)</value>
+    <value>高度 (mm)</value>
   </data>
   <data name="MainHistory" xml:space="preserve">
-    <value>History</value>
+    <value>历史</value>
   </data>
   <data name="MainLayer" xml:space="preserve">
-    <value>Layer</value>
-  </data>
-  <data name="MainLayerName" xml:space="preserve">
-    <value>Layer Name</value>
-  </data>
-  <data name="MainLayers" xml:space="preserve">
-    <value>Layers</value>
+    <value>层</value>
   </data>
   <data name="MainManufacturer" xml:space="preserve">
-    <value>Manufacturer</value>
-  </data>
-  <data name="MainMaterialList" xml:space="preserve">
-    <value>Material List</value>
+    <value>制造商</value>
   </data>
   <data name="MainName" xml:space="preserve">
-    <value>Name</value>
+    <value>名称</value>
   </data>
   <data name="MainOptions" xml:space="preserve">
-    <value>Options...</value>
+    <value>选件 ...</value>
   </data>
   <data name="MainPaste" xml:space="preserve">
-    <value>Paste</value>
+    <value>糊</value>
   </data>
   <data name="MainPlan" xml:space="preserve">
-    <value>Plan</value>
+    <value>计划</value>
   </data>
   <data name="MainPosition" xml:space="preserve">
-    <value>Position</value>
+    <value>位置</value>
   </data>
   <data name="MainRail" xml:space="preserve">
-    <value>Rail</value>
+    <value>轨</value>
   </data>
   <data name="MainRailPlan" xml:space="preserve">
-    <value>Rail Plan</value>
+    <value>铁路计划</value>
   </data>
   <data name="MainRamp" xml:space="preserve">
-    <value>Ramp</value>
+    <value>坡道</value>
   </data>
   <data name="MainRampCreate" xml:space="preserve">
-    <value>Create Ramp</value>
+    <value>创建坡道</value>
   </data>
   <data name="MainRampDelete" xml:space="preserve">
-    <value>Delete Ramp</value>
+    <value>删除坡道</value>
   </data>
   <data name="MainRedo" xml:space="preserve">
-    <value>Redo</value>
+    <value>重做</value>
   </data>
   <data name="MainRotation" xml:space="preserve">
-    <value>Rotation</value>
+    <value>回转</value>
   </data>
   <data name="MainSelectAll" xml:space="preserve">
-    <value>SelectAll</value>
-  </data>
-  <data name="MainShow" xml:space="preserve">
-    <value>Show</value>
+    <value>全选</value>
   </data>
   <data name="MainShowDockingPoints" xml:space="preserve">
-    <value>Show Docking Points</value>
+    <value>显示停靠点</value>
   </data>
   <data name="MainShowTrackList" xml:space="preserve">
-    <value>Show Track List</value>
+    <value>显示曲目列表</value>
   </data>
   <data name="MainSingle" xml:space="preserve">
-    <value>Tracks</value>
+    <value>曲目</value>
   </data>
   <data name="MainSnapIn" xml:space="preserve">
-    <value>Snap In</value>
+    <value>抢购</value>
   </data>
   <data name="MainSwitches" xml:space="preserve">
-    <value>Switches</value>
+    <value>开关</value>
   </data>
   <data name="MainTerrain" xml:space="preserve">
-    <value>Terrain</value>
+    <value>地形</value>
   </data>
   <data name="MainTilt" xml:space="preserve">
-    <value>Tilt</value>
+    <value>倾斜</value>
   </data>
   <data name="MainTools" xml:space="preserve">
-    <value>Tools</value>
+    <value>工具</value>
   </data>
   <data name="MainTracks" xml:space="preserve">
-    <value>Tracks</value>
+    <value>轨道</value>
   </data>
   <data name="MainUndo" xml:space="preserve">
-    <value>Undo</value>
+    <value>撤消</value>
   </data>
   <data name="MainViewModes" xml:space="preserve">
-    <value>View Modes</value>
+    <value>查看模式</value>
   </data>
   <data name="MainXmm" xml:space="preserve">
-    <value>X (mm)</value>
+    <value>x坐标 (mm)</value>
   </data>
   <data name="MainYmm" xml:space="preserve">
-    <value>Y (mm)</value>
+    <value>y坐标 (mm)</value>
   </data>
   <data name="MainZoom" xml:space="preserve">
-    <value>Zoom</value>
+    <value>放大</value>
   </data>
   <data name="MenuDelete" xml:space="preserve">
-    <value>Delete</value>
+    <value>删除</value>
   </data>
   <data name="MenuProperties" xml:space="preserve">
-    <value>Properties</value>
+    <value>物产</value>
   </data>
   <data name="MenuRotate" xml:space="preserve">
-    <value>Rotate</value>
+    <value>旋转</value>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>OK</value>
+    <value>好</value>
   </data>
   <data name="OptionsLanguage" xml:space="preserve">
-    <value>Language</value>
+    <value>语言</value>
   </data>
   <data name="OptionsTitle" xml:space="preserve">
-    <value>Options</value>
+    <value>选件</value>
   </data>
   <data name="OptionsVisibleAfterRestart" xml:space="preserve">
-    <value>Visible after restart</value>
+    <value>重新启动后可见</value>
   </data>
   <data name="RailPlanView" xml:space="preserve">
-    <value>Rail Plan View</value>
+    <value>铁路平面图</value>
   </data>
   <data name="TrackAdapter" xml:space="preserve">
-    <value>Adapter Track</value>
+    <value>适配器轨道</value>
   </data>
   <data name="TrackBumper" xml:space="preserve">
-    <value>Track End with a Bumper</value>
+    <value>轨道末端带保险杠</value>
   </data>
   <data name="TrackCrossing" xml:space="preserve">
-    <value>Crossing</value>
+    <value>穿越</value>
   </data>
   <data name="TrackCurved" xml:space="preserve">
-    <value>Curved Track</value>
+    <value>弯轨</value>
   </data>
   <data name="TrackCurvedCircuit" xml:space="preserve">
-    <value>Curved Circuit Track</value>
+    <value>弯曲电路轨迹</value>
   </data>
   <data name="TrackCurvedTurnoutLeft" xml:space="preserve">
-    <value>Left Curved Turnout</value>
+    <value>左弯道</value>
   </data>
   <data name="TrackCurvedTurnoutRight" xml:space="preserve">
-    <value>Right Curved Turnout</value>
+    <value>右弯道岔</value>
   </data>
   <data name="TrackDoubleCrossover" xml:space="preserve">
-    <value>Double Crossover</value>
+    <value>双交叉</value>
   </data>
   <data name="TrackDoubleSlipSwitch" xml:space="preserve">
-    <value>Double Slip Switch</value>
+    <value>双滑动开关</value>
   </data>
   <data name="TrackDoubleTurnout" xml:space="preserve">
-    <value>Three-Way Turnout</value>
+    <value>三通道岔</value>
   </data>
   <data name="TrackDriveElectrical" xml:space="preserve">
-    <value>electrical</value>
+    <value>电的</value>
   </data>
   <data name="TrackDriveMechanical" xml:space="preserve">
-    <value>mechanical</value>
+    <value>机械</value>
   </data>
   <data name="TrackEndPiece" xml:space="preserve">
-    <value>End Piece with Track Roadbed</value>
+    <value>末端带轨道路基</value>
   </data>
   <data name="TrackFlex" xml:space="preserve">
-    <value>Flex Track</value>
+    <value>弹性轨道</value>
   </data>
   <data name="TrackStraight" xml:space="preserve">
-    <value>Straight Track</value>
+    <value>直轨</value>
   </data>
   <data name="TrackStraightAdjustment" xml:space="preserve">
-    <value>Straight Adjustment</value>
+    <value>直调</value>
   </data>
   <data name="TrackStraightCircuit" xml:space="preserve">
-    <value>Straight Circuit Track</value>
+    <value>直线轨道</value>
   </data>
   <data name="TrackStraightContact" xml:space="preserve">
-    <value>Contact Track</value>
+    <value>联系人跟踪</value>
   </data>
   <data name="TrackStraightFeeder" xml:space="preserve">
-    <value>Straight Feeder</value>
+    <value>直进料机</value>
   </data>
   <data name="TrackStraightIsolating" xml:space="preserve">
-    <value>Straight Isolating</value>
+    <value>直隔离</value>
   </data>
   <data name="TrackStraightUncoupler" xml:space="preserve">
-    <value>Straight Uncoupler</value>
+    <value>直型解耦器</value>
   </data>
   <data name="TrackTransferTable" xml:space="preserve">
-    <value>Transfer Table</value>
+    <value>转移表</value>
   </data>
   <data name="TrackTurnoutLeft" xml:space="preserve">
-    <value>Left Turnout</value>
+    <value>左道</value>
   </data>
   <data name="TrackTurnoutRight" xml:space="preserve">
-    <value>Right Turnout</value>
+    <value>正确的道岔</value>
   </data>
   <data name="TrackTurntable" xml:space="preserve">
-    <value>Turntable</value>
+    <value>转盘</value>
   </data>
   <data name="TrackWithLantern" xml:space="preserve">
-    <value>with a lantern</value>
+    <value>用灯笼</value>
   </data>
   <data name="TrackYTurnout" xml:space="preserve">
-    <value>Y-Turnout</value>
+    <value>Y形道</value>
   </data>
 </root>

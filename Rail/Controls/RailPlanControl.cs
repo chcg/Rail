@@ -144,7 +144,6 @@ namespace Rail.Controls
             }
         }
         
-
         #region ZoomFactor
 
         public static readonly DependencyProperty ZoomFactorProperty =
@@ -928,7 +927,6 @@ namespace Rail.Controls
             this.selectedChangeIntern = false;
             base.OnMouseDoubleClick(e);
             DebugCheckDockings();
-            //Keyboard.Focus(this);
         }
 
         
@@ -1040,31 +1038,10 @@ namespace Rail.Controls
             switch (this.actionType)
             {
             case RailAction.MoveSingle:
-                //this.actionRailItem.Position += pos - this.lastMousePosition;
-                //dockingTrack = FindDocking(this.actionRailItem);
-                //if (dockingTrack != null)
-                //{
-                //    DockTo(this.actionRailItem, dockingTrack);
-                //}
-                break;
             case RailAction.MoveSimple:
             case RailAction.MoveGraph:
-                //this.actionRailItem.Position += pos - this.lastMousePosition;
-                //dockingTrack = FindDocking(this.actionRailItem);
-                //if (dockingTrack != null)
-                //{
-                //    DockTo(this.actionRailItem, dockingTrack);
-                //}
-                //foreach (RailItem track in this.actionRailItemDockedRailItems)
-                //{
-                //    track.Position += pos - this.lastMousePosition;
-                //}
-                break;
             case RailAction.Rotate:
-                //double rotationAngle = Angle.Calculate(this.actionRailItem.Position, pos);
-                //RotateRailItem(this.actionRailItem, rotationAngle, this.actionRailItemDockedRailItems);
-                //FindDocking(this.actionRailItem, this.actionRailItemDockedRailItems);
-                //this.debugRotationAngle = rotationAngle;
+                StoreToHistory();
                 break;
             case RailAction.SelectRect:
                 SelectRectange(new Rect(this.selectRecStart, pos), addSelect);
@@ -1117,27 +1094,6 @@ namespace Rail.Controls
 
         #endregion
 
-        #region commands
-
-        //private void OnDeleteRailItem(RailBase railItem)
-        //{
-        //    this.selectedChangeIntern = true;
-        //    DeleteRailItem(railItem);
-        //    this.selectedChangeIntern = false;
-        //    this.InvalidateVisual();
-        //}
-                
-        //private void OnRotateRailItem(RailBase railItem)
-        //{
-        //}
-        
-        //private void OnPropertiesRailItem(RailBase railItem)
-        //{
-
-        //}
-
-        #endregion
-
         #region history
 
         private int historyIndex = -1;
@@ -1172,6 +1128,7 @@ namespace Rail.Controls
         /// <summary>
         /// call always befor manipulating the RailPlan
         /// </summary>
+        [Conditional("USERHISTORY")]
         private void StoreToHistory()
         {
             if (historyIndex >= 0 && historyIndex < history.Count - 1)
@@ -1187,15 +1144,20 @@ namespace Rail.Controls
         #region copy & past
 
         private List<RailBase> copy = null;
-        public static Dictionary<RailDockPoint, RailDockPoint> DockPointCopyDictionary; 
+        
+        public void Clone()
+        {
+            // clone tree
+            this.RailPlan = this.RailPlan.Clone();
+            // clone dock point links
+            RailDockPoint.CloneDockPointLinks();
+        }
+
         private void OnCopy()
         {
             if (OnCanCopy())
             {
-                
                 this.copy = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
-
-                
             }
         }
 
@@ -1223,13 +1185,9 @@ namespace Rail.Controls
         {
             if (OnCanPaste())
             {
-                DockPointCopyDictionary = new Dictionary<RailDockPoint, RailDockPoint>();
-                this.RailPlan.Rails.AddRange(copy.Select(r => r.Copy().Move(new Vector(100, 100))));
-                DockPointCopyDictionary.ForEach(d =>
-                {
-                    d.Key.DockedWithId = d.Value.DockedWithId;
-                    // TODO
-                });
+                this.RailPlan.Rails.AddRange(copy.Select(r => r.Clone().Move(new Vector(100, 100))));
+                // clone dock point links
+                RailDockPoint.CloneDockPointLinks();
 
                 StoreToHistory();
                 this.Invalidate();
@@ -1261,8 +1219,11 @@ namespace Rail.Controls
         {
             if (OnCanDuplicate())
             {
-                var list = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
-                this.RailPlan.Rails.AddRange(list.Select(r => r.Copy().Move(new Vector(100, 100))));
+                var selectedRails = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
+                this.RailPlan.Rails.AddRange(selectedRails.Select(r => r.Clone().Move(new Vector(100, 100))));
+                // clone dock point links
+                RailDockPoint.CloneDockPointLinks();
+
                 StoreToHistory();
                 this.Invalidate();
             }

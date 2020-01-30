@@ -58,7 +58,7 @@ namespace Rail.Model
         {
             var clone = new RailGroupItem()
             {
-                DebugIndex = this.DebugIndex,
+                DebugIndex = globalDebugIndex++,
                 Position = this.Position,
                 Angle = this.Angle,
                 Layer = this.Layer,
@@ -68,22 +68,6 @@ namespace Rail.Model
             };
             clone.DockPoints = this.DockPoints.Select(d => d.Clone(clone)).ToList();
             return clone;
-        }
-
-        public override RailBase Copy()
-        {
-            var copy = new RailGroupItem()
-            {
-                DebugIndex = globalDebugIndex++,
-                Position = this.Position,
-                Angle = this.Angle,
-                Layer = this.Layer,
-                //DockPoints = this.DockPoints.Select(d => d.Copy()).ToList(),
-                TrackId = this.TrackId,
-                Track = this.Track
-            };
-            copy.DockPoints = this.DockPoints.Select(d => d.Copy(copy)).ToList();
-            return copy;
         }
 
         public override void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode, RailLayer layer)

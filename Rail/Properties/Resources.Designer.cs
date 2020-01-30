@@ -358,11 +358,38 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Layer Name.
+        /// </summary>
+        public static string MainLayerName {
+            get {
+                return ResourceManager.GetString("MainLayerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layers.
+        /// </summary>
+        public static string MainLayers {
+            get {
+                return ResourceManager.GetString("MainLayers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manufacturer.
         /// </summary>
         public static string MainManufacturer {
             get {
                 return ResourceManager.GetString("MainManufacturer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Material List.
+        /// </summary>
+        public static string MainMaterialList {
+            get {
+                return ResourceManager.GetString("MainMaterialList", resourceCulture);
             }
         }
         
@@ -480,6 +507,15 @@ namespace Rail.Properties {
         public static string MainSelectAll {
             get {
                 return ResourceManager.GetString("MainSelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show.
+        /// </summary>
+        public static string MainShow {
+            get {
+                return ResourceManager.GetString("MainShow", resourceCulture);
             }
         }
         

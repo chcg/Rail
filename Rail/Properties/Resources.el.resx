@@ -118,40 +118,40 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Ματαίωση</value>
   </data>
   <data name="MainAll" xml:space="preserve">
-    <value>All</value>
+    <value>Ολα</value>
   </data>
   <data name="MainAngle" xml:space="preserve">
-    <value>Angle</value>
+    <value>Γωνία</value>
   </data>
   <data name="MainAngleDeg" xml:space="preserve">
-    <value>Angle (°)</value>
+    <value>Γωνία (°)</value>
   </data>
   <data name="MainArticle" xml:space="preserve">
-    <value>Article</value>
+    <value>Αρθρο</value>
   </data>
   <data name="MainClipboard" xml:space="preserve">
-    <value>Clipboard</value>
+    <value>Πρόχειρο</value>
   </data>
   <data name="MainCopy" xml:space="preserve">
-    <value>Copy</value>
+    <value>αντίγραφο</value>
   </data>
   <data name="MainCustomer" xml:space="preserve">
     <value>Own Groups</value>
   </data>
   <data name="MainCut" xml:space="preserve">
-    <value>Cut</value>
+    <value>Τομή</value>
   </data>
   <data name="MainDelete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Διαγράφω</value>
   </data>
   <data name="MainDistance" xml:space="preserve">
-    <value>Distance</value>
+    <value>Απόσταση</value>
   </data>
   <data name="MainDuplicate" xml:space="preserve">
-    <value>Duplicate</value>
+    <value>Αντίγραφο</value>
   </data>
   <data name="MainFileAbout" xml:space="preserve">
     <value>About ...</value>
@@ -216,17 +216,8 @@
   <data name="MainLayer" xml:space="preserve">
     <value>Layer</value>
   </data>
-  <data name="MainLayerName" xml:space="preserve">
-    <value>Layer Name</value>
-  </data>
-  <data name="MainLayers" xml:space="preserve">
-    <value>Layers</value>
-  </data>
   <data name="MainManufacturer" xml:space="preserve">
     <value>Manufacturer</value>
-  </data>
-  <data name="MainMaterialList" xml:space="preserve">
-    <value>Material List</value>
   </data>
   <data name="MainName" xml:space="preserve">
     <value>Name</value>
@@ -235,7 +226,7 @@
     <value>Options...</value>
   </data>
   <data name="MainPaste" xml:space="preserve">
-    <value>Paste</value>
+    <value>Επικόλληση</value>
   </data>
   <data name="MainPlan" xml:space="preserve">
     <value>Plan</value>
@@ -259,16 +250,13 @@
     <value>Delete Ramp</value>
   </data>
   <data name="MainRedo" xml:space="preserve">
-    <value>Redo</value>
+    <value>Ξανακάνω</value>
   </data>
   <data name="MainRotation" xml:space="preserve">
     <value>Rotation</value>
   </data>
   <data name="MainSelectAll" xml:space="preserve">
     <value>SelectAll</value>
-  </data>
-  <data name="MainShow" xml:space="preserve">
-    <value>Show</value>
   </data>
   <data name="MainShowDockingPoints" xml:space="preserve">
     <value>Show Docking Points</value>
@@ -313,28 +301,28 @@
     <value>Zoom</value>
   </data>
   <data name="MenuDelete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Διαγράφω</value>
   </data>
   <data name="MenuProperties" xml:space="preserve">
-    <value>Properties</value>
+    <value>Ιδιότητες</value>
   </data>
   <data name="MenuRotate" xml:space="preserve">
     <value>Rotate</value>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>OK</value>
+    <value>Εντάξει</value>
   </data>
   <data name="OptionsLanguage" xml:space="preserve">
-    <value>Language</value>
+    <value>Γλώσσα</value>
   </data>
   <data name="OptionsTitle" xml:space="preserve">
-    <value>Options</value>
+    <value>Επιλογές</value>
   </data>
   <data name="OptionsVisibleAfterRestart" xml:space="preserve">
-    <value>Visible after restart</value>
+    <value>Ορατό μετά την επανεκκίνηση</value>
   </data>
   <data name="RailPlanView" xml:space="preserve">
-    <value>Rail Plan View</value>
+    <value>Προβολή σιδηροδρομικού σχεδίου</value>
   </data>
   <data name="TrackAdapter" xml:space="preserve">
     <value>Adapter Track</value>

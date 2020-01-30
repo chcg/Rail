@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annulla</value>
   </data>
   <data name="MainAll" xml:space="preserve">
     <value>All</value>
@@ -216,17 +216,8 @@
   <data name="MainLayer" xml:space="preserve">
     <value>Layer</value>
   </data>
-  <data name="MainLayerName" xml:space="preserve">
-    <value>Layer Name</value>
-  </data>
-  <data name="MainLayers" xml:space="preserve">
-    <value>Layers</value>
-  </data>
   <data name="MainManufacturer" xml:space="preserve">
     <value>Manufacturer</value>
-  </data>
-  <data name="MainMaterialList" xml:space="preserve">
-    <value>Material List</value>
   </data>
   <data name="MainName" xml:space="preserve">
     <value>Name</value>
@@ -266,9 +257,6 @@
   </data>
   <data name="MainSelectAll" xml:space="preserve">
     <value>SelectAll</value>
-  </data>
-  <data name="MainShow" xml:space="preserve">
-    <value>Show</value>
   </data>
   <data name="MainShowDockingPoints" xml:space="preserve">
     <value>Show Docking Points</value>
