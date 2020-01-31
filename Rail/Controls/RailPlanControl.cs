@@ -931,6 +931,25 @@ namespace Rail.Controls
                     {
                         OnEditRamp();
                     }
+                    else if (railItem is RailItem item)
+                    {
+                        if (item.Track is TrackTurntable)
+                        {
+                            TurntableView view = new TurntableView { DataContext = new TurntableViewModel(item) };
+                            if (view.ShowDialog().Value)
+                            {
+                                Invalidate();
+                            }
+                        }
+                        else if (item.Track is TrackTransferTable)
+                        {
+                            TransferTableView view = new TransferTableView { DataContext = new TransferTableViewModel(item) };
+                            if (view.ShowDialog().Value)
+                            {
+                                Invalidate();
+                            }
+                        }
+                    }
                 }
             }
             else
@@ -984,7 +1003,7 @@ namespace Rail.Controls
                     }
                 }
             }
-            else
+            else if(e.ClickCount == 1)
             {
                 this.actionType = RailAction.SelectRect;
                 this.selectRecStart = pos;

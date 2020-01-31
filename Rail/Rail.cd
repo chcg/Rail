@@ -7,7 +7,7 @@
       <FileName>Model\RailBase.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Rail.Model.RailItem" Collapsed="true">
+  <Class Name="Rail.Model.RailItem">
     <Position X="2.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAgAAgEAAAAQAAAAAAAAAAAAEAAAAAAAAAAAAABE=</HashCode>
@@ -69,6 +69,13 @@
     <TypeIdentifier>
       <HashCode>AFACBgAAhEBAAAQAAAAAAABAAAAEAAAAAAAAAAAAABE=</HashCode>
       <FileName>Model\RailRampItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rail.Model.TrackBase">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQCAAAAAAAgAAAIAAAAAAQEEAAAAAAAADAAAQAAAAA=</HashCode>
+      <FileName>Model\TrackBase.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
