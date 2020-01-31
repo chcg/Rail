@@ -16,7 +16,6 @@ namespace Rail.ViewModel
         public OptionsViewModel()
         {
             this.settings = Settings.Default;
-            this.settings.Upgrade();
 
             ResourceManager resourceManager = new ResourceManager("Rail.Properties.Resources", typeof(Resources).Assembly);
 
@@ -24,11 +23,16 @@ namespace Rail.ViewModel
                 Where(c => resourceManager.GetResourceSet(c, true, false) != null).
                 Select(c => new Language { Name = string.IsNullOrEmpty(c.Name) ? "Windows" : c.NativeName, Id = c.Name }).ToList();
             this.SelectedLanguage = this.Languages.FirstOrDefault(l => l.Id == this.settings.Language) ?? this.Languages.FirstOrDefault();
+
+            this.MaxPitch = this.settings.RampMaxPitch;
+            this.KinkAngle = this.settings.RampKinkAngle;
         }
 
         protected override void OnOK()
         {
             this.settings.Language = this.SelectedLanguage?.Id;
+            this.settings.RampMaxPitch = this.MaxPitch;
+            this.settings.RampKinkAngle = this.KinkAngle;
             this.settings.Save();
 
             base.OnOK();
@@ -54,6 +58,34 @@ namespace Rail.ViewModel
             {
                 this.selectedLanguage = value;
                 NotifyPropertyChanged(nameof(SelectedLanguage));
+            }
+        }
+
+        private double maxPitch;
+        public double MaxPitch
+        {
+            get
+            {
+                return this.maxPitch;
+            }
+            set
+            {
+                this.maxPitch = value;
+                NotifyPropertyChanged(nameof(MaxPitch));
+            }
+        }
+
+        private double kinkAngle;
+        public double KinkAngle
+        {
+            get
+            {
+                return this.kinkAngle;
+            }
+            set
+            {
+                this.kinkAngle = value;
+                NotifyPropertyChanged(nameof(KinkAngle));
             }
         }
     }

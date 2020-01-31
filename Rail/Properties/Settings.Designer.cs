@@ -57,5 +57,29 @@ namespace Rail.Properties {
                 this["Language"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.2")]
+        public double RampKinkAngle {
+            get {
+                return ((double)(this["RampKinkAngle"]));
+            }
+            set {
+                this["RampKinkAngle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.2")]
+        public double RampMaxPitch {
+            get {
+                return ((double)(this["RampMaxPitch"]));
+            }
+            set {
+                this["RampMaxPitch"] = value;
+            }
+        }
     }
 }

@@ -14,11 +14,14 @@ using System.Windows.Media;
 using Rail.Properties;
 using System.Collections;
 using System.ComponentModel;
+using Rail.View;
+using Rail.ViewModel;
 
 namespace Rail.Controls
 {
     public class RailPlanControl : Control
     {
+        private readonly double copyPositionDrift = 50;
         private double margin = 0;
         private readonly Pen plateFramePen = new Pen(TrackBrushes.PlateFrame, 1);
         private readonly Pen selectFramePen1 = new Pen(Brushes.Black, 2);
@@ -45,9 +48,13 @@ namespace Rail.Controls
         public DelegateCommand ResolveGroupCommand { get; private set; }
         public DelegateCommand SaveAsGroupCommand { get; private set; }
 
-
         public DelegateCommand CreateRampCommand { get; private set; }
         public DelegateCommand DeleteRampCommand { get; private set; }
+        public DelegateCommand EditRampCommand { get; private set; }
+
+        public DelegateCommand CreateHelixCommand { get; private set; }
+        public DelegateCommand DeleteHelixCommand { get; private set; }
+        public DelegateCommand EditHelixCommand { get; private set; }
 
         public DelegateCommand UndoCommand { get; private set; }
         public DelegateCommand RedoCommand { get; private set; }
@@ -105,15 +112,20 @@ namespace Rail.Controls
 
             this.CreateRampCommand = new DelegateCommand(OnCreateRamp, OnCanCreateRamp);
             this.DeleteRampCommand = new DelegateCommand(OnDeleteRamp, OnCanDeleteRamp);
+            this.EditRampCommand = new DelegateCommand(OnEditRamp, OnCanEditRamp);
 
-            this.UndoCommand = new DelegateCommand(OnUndo, OnCanUndo);
+            this.CreateHelixCommand = new DelegateCommand(OnCreateHelix, OnCanCreateHelix);
+            this.DeleteHelixCommand = new DelegateCommand(OnDeleteHelix, OnCanDeleteHelix);
+            this.EditHelixCommand = new DelegateCommand(OnEditHelix, OnCanEditHelix);
+
+                this.UndoCommand = new DelegateCommand(OnUndo, OnCanUndo);
             this.RedoCommand = new DelegateCommand(OnRedo, OnCanRedo);
             this.CopyCommand = new DelegateCommand(OnCopy, OnCanCopy);
             this.CutCommand = new DelegateCommand(OnCut, OnCanCut);
             this.PasteCommand = new DelegateCommand(OnPaste, OnCanPaste);
             this.DeleteCommand = new DelegateCommand(OnDelete, OnCanDelete);
             this.DuplicateCommand = new DelegateCommand(OnDuplicate, OnCanDuplicate);
-            this.SelectAllCommand =  new DelegateCommand(OnSelectAll);
+            this.SelectAllCommand =  new DelegateCommand(OnSelectAll, OnCanSelectAll);
 
             //CommandBinding commandBinding = new CommandBinding(RefreshCommand);
             //commandBinding.Executed += OnRefresh;
@@ -915,7 +927,10 @@ namespace Rail.Controls
                 }
                 else
                 {
-                    // do nothing
+                    if (railItem is RailRamp)
+                    {
+                        OnEditRamp();
+                    }
                 }
             }
             else
@@ -1188,7 +1203,7 @@ namespace Rail.Controls
         {
             if (OnCanPaste())
             {
-                this.RailPlan.Rails.AddRange(copy.Select(r => r.Clone().Move(new Vector(100 * this.copyFactor, 100 * this.copyFactor))));
+                this.RailPlan.Rails.AddRange(copy.Select(r => r.Clone().Move(new Vector(copyPositionDrift * this.copyFactor, copyPositionDrift * this.copyFactor))));
                 this.copyFactor++;
                 // clone dock point links
                 RailDockPoint.CloneDockPointLinks();
@@ -1224,7 +1239,7 @@ namespace Rail.Controls
             if (OnCanDuplicate())
             {
                 var selectedRails = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
-                this.RailPlan.Rails.AddRange(selectedRails.Select(r => r.Clone().Move(new Vector(100 * this.copyFactor, 100 * this.copyFactor))));
+                this.RailPlan.Rails.AddRange(selectedRails.Select(r => r.Clone().Move(new Vector(copyPositionDrift * this.copyFactor, copyPositionDrift * this.copyFactor))));
                 this.copyFactor = 1;
                 // clone dock point links
                 RailDockPoint.CloneDockPointLinks();
@@ -1245,22 +1260,27 @@ namespace Rail.Controls
             this.Invalidate();
         }
 
+        private bool OnCanSelectAll()
+        {
+            return this.RailPlan.Rails.Count() > 0; 
+        }
+
         //private void OnUnselectAll()
         //{
         //    this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
         //    this.Invalidate();
         //}
-               
+
         #endregion
 
         #region group
 
-        public bool OnCanCreateGroup()
+        private bool OnCanCreateGroup()
         {
             return this.SelectedMode == RailSelectedMode.Multi && this.RailPlan.Rails.Where(r => r.IsSelected).All(r => r is RailItem);
         }
 
-        public void OnCreateGroup()
+        private void OnCreateGroup()
         {
             // take all selected rails
             var selectedRails = this.RailPlan.Rails.Where(r => r.IsSelected).ToArray();
@@ -1273,8 +1293,8 @@ namespace Rail.Controls
 
             Invalidate();
         }
-        
-        public void OnResolveGroup()
+
+        private void OnResolveGroup()
         { 
             if (this.selectedRail is RailGroup railGroup)
             {
@@ -1284,16 +1304,16 @@ namespace Rail.Controls
             }
         }
 
-        public bool OnCanResolveGroup()
+        private bool OnCanResolveGroup()
         {
             return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailGroup;
         }
 
-        public void OnSaveAsGroup()
+        private void OnSaveAsGroup()
         {
         }
 
-        public bool OnCanSaveAsGroup()
+        private bool OnCanSaveAsGroup()
         {
             return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailGroup; 
         }
@@ -1302,34 +1322,35 @@ namespace Rail.Controls
 
         #region ramp
 
-        public bool OnCanCreateRamp()
+        private bool OnCanCreateRamp()
         {
-            return this.SelectedMode == RailSelectedMode.Multi && this.RailPlan.Rails.Where(r => r.IsSelected).All(r => r is RailItem);
+            return 
+                this.SelectedMode == RailSelectedMode.Multi && 
+                this.RailPlan.Rails.Where(r => r.IsSelected).All(r => r is RailItem) &&
+                this.RailPlan.Rails.Where(r => r.IsSelected).Count() >= 8;
         }
 
-        public void OnCreateRamp()
+        private void OnCreateRamp()
         {
             // take all selected rails
             var selectedRails = this.RailPlan.Rails.Where(r => r.IsSelected).ToArray();
 
-            // remove from Rails
-            selectedRails.ForEach(r => this.RailPlan.Rails.Remove(r));
+            RailRamp railRamp = new RailRamp(selectedRails);
 
-            
-            
-
-
-            // create rail group
-            this.RailPlan.Rails.Add(new RailRamp(selectedRails));
-
-            Invalidate();
+            RampView rampView = new RampView { DataContext = new RampViewModel { RailRamp = railRamp } };
+            if (rampView.ShowDialog().Value)
+            {
+                // remove from Rails
+                selectedRails.ForEach(r => this.RailPlan.Rails.Remove(r));
+                // add rail group
+                this.RailPlan.Rails.Add(railRamp);
+                Invalidate();
+            }
         }
 
-        
-
-        public void OnDeleteRamp()
+        private void OnDeleteRamp()
         {
-            if (this.selectedRail is RailRamp railRamp)
+            if (OnCanDeleteRamp() && this.selectedRail is RailRamp railRamp)
             {
                 this.RailPlan.Rails.AddRange(railRamp.Resolve());
                 this.RailPlan.Rails.Remove(railRamp);
@@ -1337,16 +1358,60 @@ namespace Rail.Controls
             }
         }
 
-        public bool OnCanDeleteRamp()
+        private bool OnCanDeleteRamp()
         {
             return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailRamp;
         }
 
+        private void OnEditRamp()
+        {
+            if (OnCanEditRamp())
+            {
+                RampView rampView = new RampView { DataContext = new RampViewModel { RailRamp = (RailRamp)this.selectedRail } };
+                if (rampView.ShowDialog().Value)
+                {
+                }
+            }
+        }
+
+        private bool OnCanEditRamp()
+        {
+            return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailRamp;
+        }
         #endregion
 
-        #region Debug
+        #region helix
 
-        [Conditional("DEBUGINFO")]
+        private void OnCreateHelix()
+        { }
+        private bool OnCanCreateHelix()
+        {
+            return  this.SelectedMode == RailSelectedMode.Multi &&
+                    this.RailPlan.Rails.Where(r => r.IsSelected).All(r => r is RailItem ri && ri.Track is TrackCurved) &&
+                    this.RailPlan.Rails.Where(r => r.IsSelected).Count() >= 16;
+        }
+
+        private void OnDeleteHelix()
+        { }
+
+        private bool OnCanDeleteHelix()
+        {
+            return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailHelix;
+        }
+
+        private void OnEditHelix() 
+        { }
+
+        private bool OnCanEditHelix()
+        {
+            return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailHelix;
+        }
+
+    #endregion
+
+    #region Debug
+
+    [Conditional("DEBUGINFO")]
         private void DebugText(DrawingContext drawingContext)
         {
             ScrollViewer scrollViewer = this.Parent as ScrollViewer;

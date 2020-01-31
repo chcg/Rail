@@ -2,6 +2,7 @@
 using Rail.Misc;
 using Rail.Model;
 using Rail.Mvvm;
+using Rail.Properties;
 using Rail.View;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Printing;
@@ -463,7 +465,27 @@ namespace Rail.ViewModel
 
         protected override void OnOptions()
         {
-            (new OptionsView { DataContext = new OptionsViewModel() }).ShowDialog();
+            if (new OptionsView { DataContext = new OptionsViewModel() }.ShowDialog().Value)
+            {
+                CultureInfo newCultureInfo = string.IsNullOrEmpty(Settings.Default.Language) ? CultureInfo.InstalledUICulture : new CultureInfo(Settings.Default.Language);
+                if (newCultureInfo.Name != CultureInfo.CurrentUICulture.Name)
+                {
+                    CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture = newCultureInfo;
+
+                    Window oldWindow = Application.Current.MainWindow;
+                    Application.Current.MainWindow = new MainView
+                    {
+                        WindowState = oldWindow.WindowState,
+                        Left = oldWindow.Left,
+                        Top = oldWindow.Top,
+                        Width = oldWindow.Width,
+                        Height = oldWindow.Height,
+                        DataContext = this
+                    };
+                    Application.Current.MainWindow.Show();
+                    oldWindow.Close();
+                }
+            }
         }
 
         #endregion

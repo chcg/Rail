@@ -151,15 +151,6 @@ namespace Rail.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Distance.
-        /// </summary>
-        public static string MainDistance {
-            get {
-                return ResourceManager.GetString("MainDistance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Duplicate.
         /// </summary>
         public static string MainDuplicate {
@@ -277,16 +268,7 @@ namespace Rail.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grid Lines.
-        /// </summary>
-        public static string MainGridLines {
-            get {
-                return ResourceManager.GetString("MainGridLines", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Groups.
+        ///   Looks up a localized string similar to Group.
         /// </summary>
         public static string MainGroup {
             get {
@@ -313,15 +295,6 @@ namespace Rail.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Groups.
-        /// </summary>
-        public static string MainGroups {
-            get {
-                return ResourceManager.GetString("MainGroups", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Save Group As....
         /// </summary>
         public static string MainGroupSaveAs {
@@ -331,11 +304,56 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Groups.
+        /// </summary>
+        public static string MainGroupTitle {
+            get {
+                return ResourceManager.GetString("MainGroupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Height (mm).
         /// </summary>
         public static string MainHeightmm {
             get {
                 return ResourceManager.GetString("MainHeightmm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Helix.
+        /// </summary>
+        public static string MainHelixCreate {
+            get {
+                return ResourceManager.GetString("MainHelixCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resolve Helix.
+        /// </summary>
+        public static string MainHelixDelete {
+            get {
+                return ResourceManager.GetString("MainHelixDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Helix.
+        /// </summary>
+        public static string MainHelixEdit {
+            get {
+                return ResourceManager.GetString("MainHelixEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helixes.
+        /// </summary>
+        public static string MainHelixTitle {
+            get {
+                return ResourceManager.GetString("MainHelixTitle", resourceCulture);
             }
         }
         
@@ -457,15 +475,6 @@ namespace Rail.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ramp.
-        /// </summary>
-        public static string MainRamp {
-            get {
-                return ResourceManager.GetString("MainRamp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Create Ramp.
         /// </summary>
         public static string MainRampCreate {
@@ -480,6 +489,24 @@ namespace Rail.Properties {
         public static string MainRampDelete {
             get {
                 return ResourceManager.GetString("MainRampDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string MainRampEdit {
+            get {
+                return ResourceManager.GetString("MainRampEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ramps.
+        /// </summary>
+        public static string MainRampTitle {
+            get {
+                return ResourceManager.GetString("MainRampTitle", resourceCulture);
             }
         }
         
@@ -547,15 +574,6 @@ namespace Rail.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Snap In.
-        /// </summary>
-        public static string MainSnapIn {
-            get {
-                return ResourceManager.GetString("MainSnapIn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Switches.
         /// </summary>
         public static string MainSwitches {
@@ -610,11 +628,47 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Grid Distance.
+        /// </summary>
+        public static string MainViewGridDistance {
+            get {
+                return ResourceManager.GetString("MainViewGridDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View Modes.
         /// </summary>
         public static string MainViewModes {
             get {
                 return ResourceManager.GetString("MainViewModes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snap In Angle.
+        /// </summary>
+        public static string MainViewSnapInAngle {
+            get {
+                return ResourceManager.GetString("MainViewSnapInAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snap In Distance.
+        /// </summary>
+        public static string MainViewSnapInDistance {
+            get {
+                return ResourceManager.GetString("MainViewSnapInDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        public static string MainViewTitle {
+            get {
+                return ResourceManager.GetString("MainViewTitle", resourceCulture);
             }
         }
         
@@ -682,11 +736,38 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kink Angle.
+        /// </summary>
+        public static string OptionsKinkAngle {
+            get {
+                return ResourceManager.GetString("OptionsKinkAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string OptionsLanguage {
             get {
                 return ResourceManager.GetString("OptionsLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Pitch.
+        /// </summary>
+        public static string OptionsMaximumPitch {
+            get {
+                return ResourceManager.GetString("OptionsMaximumPitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ramp.
+        /// </summary>
+        public static string OptionsRamp {
+            get {
+                return ResourceManager.GetString("OptionsRamp", resourceCulture);
             }
         }
         

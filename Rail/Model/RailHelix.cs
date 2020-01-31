@@ -1,5 +1,4 @@
 ﻿using Rail.Controls;
-using Rail.Misc;
 using Rail.Properties;
 using System;
 using System.Collections.Generic;
@@ -11,17 +10,17 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class RailRamp : RailBase
+    public class RailHelix : RailBase
     {
         private static readonly double PIFactor = Math.PI / 180.0;
 
         protected readonly Pen linePen = new Pen(TrackBrushes.TrackFrame, 2);
         protected readonly Pen dotPen = new Pen(Brushes.White, 2) { DashStyle = DashStyles.Dot };
 
-        public RailRamp()
+        public RailHelix()
         { }
 
-        public RailRamp(IEnumerable<RailBase> railItems)
+        public RailHelix(IEnumerable<RailBase> railItems)
         {
             Settings settings = Settings.Default;
 
@@ -33,7 +32,7 @@ namespace Rail.Model
 
             this.Layer = firstRailItme.Layer;
 
-            this.Rails = railItems.Cast<RailItem>().Select(i => new RailRampItem(i, this)).ToList();
+            this.Rails = railItems.Cast<RailItem>().Select(i => new RailHelixItem(i, this)).ToList();
 
             this.Rails.ForEach(r => r.IsSelected = false);
 
@@ -48,7 +47,7 @@ namespace Rail.Model
             }
             //    height -= this.Rails[1].SetGradientInPercent(2.5);
             //height -= this.Rails[this.Rails.Count() - 2].SetGradientInPercent(2.5);
-             
+
             var innerRails = this.Rails.Skip(4).SkipLast(4).ToList();
             double length = innerRails.Sum(r => r.Length);
             double angle = Math.Asin(height / length) / PIFactor;
@@ -73,7 +72,7 @@ namespace Rail.Model
         /// </summary>
         [XmlArray("Rails")]
         [XmlArrayItem("Rail")]
-        public List<RailRampItem> Rails { get; set; }
+        public List<RailHelixItem> Rails { get; set; }
 
         [XmlIgnore, JsonIgnore]
         public override List<TrackMaterial> Materials
@@ -86,14 +85,14 @@ namespace Rail.Model
 
         public override RailBase Clone()
         {
-            var clone = new RailRamp()
+            var clone = new RailHelix()
             {
                 DebugIndex = globalDebugIndex++,
                 Position = this.Position,
                 Angle = this.Angle,
                 Layer = this.Layer,
                 //DockPoints = this.DockPoints.Select(d => d.Clone()).ToList(),
-                Rails = this.Rails.Select(r => (RailRampItem)r.Clone()).ToList()
+                Rails = this.Rails.Select(r => (RailHelixItem)r.Clone()).ToList()
             };
             clone.DockPoints = this.DockPoints.Select(d => d.Clone(clone)).ToList();
             return clone;
@@ -179,3 +178,4 @@ namespace Rail.Model
         }
     }
 }
+

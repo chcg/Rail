@@ -7,22 +7,43 @@
         xmlns:mvvm="clr-namespace:Rail.Mvvm"
         xmlns:lang="clr-namespace:Rail.Properties;assembly=Rail"
         mc:Ignorable="d"
-        Title="{x:Static lang:Resources.OptionsTitle}" Height="200" Width="300">
+        Title="{x:Static lang:Resources.OptionsTitle}" Height="300" Width="500">
     <DockPanel>
         <mvvm:DialogButtonsView DockPanel.Dock="Bottom"/>
-        <Grid Margin="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.OptionsLanguage}" Margin="3"/>
-            <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedLanguage}" DisplayMemberPath="Name" Margin="3"/>
-            <Label Grid.Column="1" Grid.Row="1" Content="{x:Static lang:Resources.OptionsVisibleAfterRestart}" Margin="3,0,3,0"/>
-        </Grid>
+        <TabControl Margin="8" TabStripPlacement="Left">
+            <TabItem Header="{x:Static lang:Resources.OptionsLanguage}">
+                <Grid Margin="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.OptionsLanguage}" />
+                    <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedLanguage}" DisplayMemberPath="Name" Margin="3"/>
+                    <!--<Label Grid.Column="1" Grid.Row="1" Content="{x:Static lang:Resources.OptionsVisibleAfterRestart}" Margin="3,0,3,0"/>-->
+                </Grid>
+            </TabItem>
+            <TabItem Header="{x:Static lang:Resources.OptionsRamp}">
+                <Grid Margin="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.OptionsMaximumPitch}" />
+                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding MaxPitch}" Margin="3"/>
+                    <Label Grid.Column="0" Grid.Row="1" Content="{x:Static lang:Resources.OptionsKinkAngle}" />
+                    <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding KinkAngle}" Margin="3"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </DockPanel>
 </mvvm:DialogView>

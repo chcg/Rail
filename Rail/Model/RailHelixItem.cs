@@ -1,28 +1,23 @@
 ﻿using Rail.Controls;
-using Rail.Misc;
-using Rail.Mvvm;
-using Rail.Trigonometry;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
+using System.Globalization;
 
 namespace Rail.Model
 {
-    [DebuggerDisplay("RailItem Index={DebugIndex} Id={Id} X={Position.X} Y={Position.Y} A={Angle}")]
-    public class RailItem : RailBase
+    public class RailHelixItem : RailBase
     {
-        
-
-        public RailItem()
+        public RailHelixItem()
         { }
 
-        public RailItem(TrackBase track, Point pos, Guid layer) 
+        public RailHelixItem(TrackBase track, Point pos, Guid layer)
         {
             this.DebugIndex = globalDebugIndex++;
             //this.Id = Guid.NewGuid();
@@ -34,31 +29,20 @@ namespace Rail.Model
             this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp)).ToList();
         }
 
-        public RailItem(RailGroupItem railGroupItem)
+        /// <summary>
+        /// Constructor to convert RailItem to RailGroupItem during CreateGroup.
+        /// </summary>
+        /// <param name="railItem">RailItem to create RailGroupItem from.</param>
+        /// <param name="masterRailItem">RailItem </param>
+        public RailHelixItem(RailItem railItem, RailHelix railHelix)
         {
-            railGroupItem.CopyTo(this);
-            this.Track = railGroupItem.Track;
-            this.TrackId = railGroupItem.TrackId;
+            railItem.CopyTo(this);
+            this.TrackId = railItem.TrackId;
+            this.Track = railItem.Track;
+            this.Position = railItem.Position - (Vector)railHelix.Position;
         }
 
-        public RailItem(RailRampItem railRampItem)
-        {
-            railRampItem.CopyTo(this);
-            this.Track = railRampItem.Track;
-            this.TrackId = railRampItem.TrackId;
-        }
-
-        public RailItem(RailHelixItem railHelixItem)
-        {
-            railHelixItem.CopyTo(this);
-            this.Track = railHelixItem.Track;
-            this.TrackId = railHelixItem.TrackId;
-        }
-
-        //[XmlElement("Id")]
-        //public Guid Id { get; set; }
-
-        [XmlElement("TrackId")]
+        [XmlAttribute("TrackId")]
         public string TrackId { get; set; }
 
         [XmlIgnore, JsonIgnore]
@@ -70,9 +54,21 @@ namespace Rail.Model
             get { return this.Track.Materials; }
         }
 
+        [XmlAttribute("Gradient")]
+        public double Gradient { get; set; }
+
+        [XmlAttribute("Height")]
+        public double Height { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public double Length
+        {
+            get { return ((TrackStraight)this.Track).Length; }
+        }
+
         public override RailBase Clone()
         {
-            var clone = new RailItem()
+            var clone = new RailHelixItem()
             {
                 DebugIndex = globalDebugIndex++,
                 Position = this.Position,
@@ -80,7 +76,9 @@ namespace Rail.Model
                 Layer = this.Layer,
                 //DockPoints = this.DockPoints.Select(d => d.Clone()).ToList(),
                 TrackId = this.TrackId,
-                Track = this.Track
+                Track = this.Track,
+                Gradient = this.Gradient,
+                Height = this.Height
             };
             clone.DockPoints = this.DockPoints.Select(d => d.Clone(clone)).ToList();
             return clone;
@@ -96,19 +94,34 @@ namespace Rail.Model
             {
                 this.Track.RenderSelection(drawingContext, viewMode);
             }
-            
+
             drawingContext.Pop();
 
             DrawDebug(drawingContext);
             DrawDebugDogpoints(drawingContext);
         }
 
-
         protected override Geometry GetGeometry(RailViewMode viewMode, Transform transform)
         {
             Geometry geometry = viewMode switch { RailViewMode.Tracks => this.Track.GeometryTracks.Clone(), RailViewMode.Rail => this.Track.GeometryRail.Clone(), _ => null };
             geometry.Transform = this.RailTransform;
             return geometry;
+        }
+
+        private static readonly double PIFactor = Math.PI / 180.0;
+
+        public double SetGradient(double value)
+        {
+            this.Gradient = value;
+            this.Height = Math.Sin(value * PIFactor) * this.Length;
+            //this.Height = Math.Tan(value * PIFactor) * this.Length;
+            return this.Height;
+        }
+
+        public double SetGradientInPercent(double value)
+        {
+            double val = Math.Atan(value / 100.0) / PIFactor;
+            return SetGradient(val);
         }
 
         #region debug

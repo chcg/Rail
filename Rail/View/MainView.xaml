@@ -91,62 +91,51 @@
                     <RibbonButton Label="{x:Static lang:Resources.MainDuplicate}" Command="{Binding DuplicateCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Copy.png" />
                     <RibbonButton Label="{x:Static lang:Resources.MainSelectAll}" Command="{Binding SelectAllCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Copy.png" />
                 </RibbonGroup>
-                <RibbonGroup Header="{x:Static lang:Resources.MainSnapIn}">
+                <RibbonGroup Header="{x:Static lang:Resources.MainViewTitle}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="80"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="22"/>
+                            <RowDefinition Height="22"/>
+                            <RowDefinition Height="22"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.MainDistance}" />
-                        <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding SnapInDistances}" SelectedValue="{Binding SnapInDistance}" Background="White" Margin="4" >
+                        <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.MainViewSnapInDistance}" Margin="0,-2,0,-2" />
+                        <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding SnapInDistances}" SelectedValue="{Binding SnapInDistance}" Background="White" Margin="1" >
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding .,Converter={StaticResource  DistanceToTextConverter}}" HorizontalAlignment="Stretch"/>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <Label Grid.Column="0" Grid.Row="1"  Content="{x:Static lang:Resources.MainAngle}" />
-                        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding SnapInAngels}" SelectedValue="{Binding SnapInAngel}" Background="White" Margin="4" >
+                        <Label Grid.Column="0" Grid.Row="1"  Content="{x:Static lang:Resources.MainViewSnapInAngle}" Margin="0,-2,0,-2"/>
+                        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding SnapInAngels}" SelectedValue="{Binding SnapInAngel}" Background="White" Margin="1" >
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding .,Converter={StaticResource AngelToTextConverter}}" HorizontalAlignment="Stretch"/>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                    </Grid>
-                </RibbonGroup>
-                <RibbonGroup Header="{x:Static lang:Resources.MainGridLines}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="60"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.MainDistance}" />
-                        <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding GridLinesDistances}" SelectedValue="{Binding GridLinesDistance}" Background="White" Margin="4" >
+                        <Label Grid.Column="0" Grid.Row="2" Content="{x:Static lang:Resources.MainViewGridDistance}" Margin="0,-2,0,-2"/>
+                        <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding GridLinesDistances}" SelectedValue="{Binding GridLinesDistance}" Background="White" Margin="1" >
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding .,Converter={StaticResource DistanceToTextConverter}}" HorizontalAlignment="Stretch"/>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        
                     </Grid>
                 </RibbonGroup>
                 <RibbonGroup Header="{x:Static lang:Resources.MainTracks}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="60"/>
                             <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="60"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -154,12 +143,12 @@
                         </Grid.RowDefinitions>
                         <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.MainXmm}"  />
                         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedRailsX, ElementName=railPlanControl, StringFormat=0.00}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
-                        <Label Grid.Column="2" Grid.Row="0" Content="{x:Static lang:Resources.MainYmm}"  />
-                        <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding SelectedRailsY, ElementName=railPlanControl, StringFormat=0.00}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
-                        <Label Grid.Column="0" Grid.Row="1" Content="{x:Static lang:Resources.MainAngleDeg}" />
-                        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedRailsAngle, ElementName=railPlanControl, StringFormat=0.00}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
+                        <Label Grid.Column="0" Grid.Row="1" Content="{x:Static lang:Resources.MainYmm}"  />
+                        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedRailsY, ElementName=railPlanControl, StringFormat=0.00}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
+                        <Label Grid.Column="2" Grid.Row="0" Content="{x:Static lang:Resources.MainAngleDeg}" />
+                        <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding SelectedRailsAngle, ElementName=railPlanControl, StringFormat=0.00}" mvvm:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Margin="4" />
                         <Label Grid.Column="2" Grid.Row="1" Content="{x:Static lang:Resources.MainLayer}"  />
-                        <ComboBox Grid.Column="3" Grid.Row="1" ItemsSource="{Binding Layers}" Margin="4" >
+                        <ComboBox Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1" ItemsSource="{Binding Layers}" Margin="4" >
                             <ComboBox.SelectedItem>
                                 <mvvm:ConverterBindableBinding Binding="{Binding SelectedRailsLayer, ElementName=railPlanControl, Mode=TwoWay}" Converter="{StaticResource GuidToLayerConverter}" ConverterParameterBinding="{Binding RailPlan}" />
                             </ComboBox.SelectedItem>
@@ -174,11 +163,6 @@
                         </ComboBox>
                     </Grid>
                 </RibbonGroup>
-                <RibbonGroup Header="{x:Static lang:Resources.MainSwitches}">
-                    <RibbonToggleButton Label="{x:Static lang:Resources.MainShowTrackList}" IsChecked="{Binding ShowMaterialList}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
-                    <RibbonToggleButton Label="{x:Static lang:Resources.MainShowDockingPoints}" IsChecked="{Binding ShowDockingPoints}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
-                </RibbonGroup>
-
                 <RibbonGroup Header="{x:Static lang:Resources.MainViewModes}">
                     <RibbonControlGroup>
                         <RibbonRadioButton Label="{x:Static lang:Resources.MainTracks}" IsChecked="{Binding ViewMode, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static ctrl:RailViewMode.Tracks}}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
@@ -186,29 +170,35 @@
                         <RibbonRadioButton Label="{x:Static lang:Resources.MainTerrain}" IsChecked="{Binding ViewMode, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static ctrl:RailViewMode.Terrain}}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
                     </RibbonControlGroup>
                 </RibbonGroup>
+                <RibbonGroup Header="{x:Static lang:Resources.MainGroupTitle}">
+                    <RibbonButton Label="{x:Static lang:Resources.MainGroupCreate}" Command="{Binding CreateGroupCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainGroupResolve}" Command="{Binding ResolveGroupCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainGroupSaveAs}" Command="{Binding SaveAsGroupCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
+                </RibbonGroup>
+
+                <RibbonGroup Header="{x:Static lang:Resources.MainRampTitle}">
+                    <RibbonButton Label="{x:Static lang:Resources.MainRampCreate}" Command="{Binding CreateRampCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainRampDelete}" Command="{Binding DeleteRampCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainRampEdit}" Command="{Binding EditRampCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
+                </RibbonGroup>
+
+                <RibbonGroup Header="{x:Static lang:Resources.MainHelixTitle}">
+                    <RibbonButton Label="{x:Static lang:Resources.MainHelixCreate}" Command="{Binding CreateHelixCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainHelixDelete}" Command="{Binding DeleteHelixCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainHelixEdit}" Command="{Binding EditHelixCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
+                </RibbonGroup>
+            
+                <RibbonGroup Header="{x:Static lang:Resources.MainSwitches}">
+                    <RibbonToggleButton Label="{x:Static lang:Resources.MainShowTrackList}" IsChecked="{Binding ShowMaterialList}"  SmallImageSource="/Images/List.png" />
+                    <RibbonToggleButton Label="{x:Static lang:Resources.MainShowDockingPoints}" IsChecked="{Binding ShowDockingPoints}"  SmallImageSource="/Images/List.png" />
+                </RibbonGroup>
+
+                
 
                 <RibbonGroup Header="{x:Static lang:Resources.MainTools}">
                     <RibbonButton Label="{x:Static lang:Resources.MainOptions}" Command="{Binding OptionsCommand}" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
                 </RibbonGroup>
                 
-            </RibbonTab>
-            <RibbonTab Header="{x:Static lang:Resources.MainGroups}">
-                <RibbonGroup Header="{x:Static lang:Resources.MainGroups}">
-                    <RibbonButton Label="{x:Static lang:Resources.MainGroupCreate}" Command="{Binding CreateGroupCommand, ElementName=railPlanControl}" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
-                    <RibbonButton Label="{x:Static lang:Resources.MainGroupResolve}" Command="{Binding ResolveGroupCommand, ElementName=railPlanControl}" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
-                    <RibbonButton Label="{x:Static lang:Resources.MainGroupSaveAs}" Command="{Binding SaveAsGroupCommand, ElementName=railPlanControl}" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
-                </RibbonGroup>
-            </RibbonTab>
-            <RibbonTab Header="{x:Static lang:Resources.MainRamp}">
-                <RibbonGroup Header="{x:Static lang:Resources.MainRamp}">
-                    <RibbonButton Label="{x:Static lang:Resources.MainRampCreate}" Command="{Binding CreateRampCommand, ElementName=railPlanControl}" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
-                    <RibbonButton Label="{x:Static lang:Resources.MainRampDelete}" Command="{Binding DeleteRampCommand, ElementName=railPlanControl}" LargeImageSource="/Rail;component/Images/Settings.png" SmallImageSource="/Rail;component/Images/Settings.png" />
-                </RibbonGroup>
-                <RibbonGroup Header="{x:Static lang:Resources.MainRamp}">
-                    <RibbonControl>
-                        <ctrl:RampControl Ramp="{Binding SelectedRamp, ElementName=railPlanControl}" Width="500"  Height="60" BorderBrush="Gray" BorderThickness="1"/>
-                    </RibbonControl>
-                </RibbonGroup>
             </RibbonTab>
         </mvvm:PersistentRibbon>
         <StatusBar DockPanel.Dock="Bottom">
@@ -257,11 +247,6 @@
                 <ctrl:DoubleSlider FormatString="P0" Minimum="0.1" Maximum="2" Increment="0.05" Value="{Binding ZoomFactor}" SliderWidth="100" />
             </StatusBarItem>
         </StatusBar>
-        <!--<v:RailPlanView 
-            DataContext="{Binding RailPlan}" />-->
-            <!--SnapInDistance="{Binding SnapInDistance}"
-            SnapInAngel="{Binding SnapInAngel}"
-            GridLinesDistance="{Binding GridLinesDistance}"-->
         <Grid DockPanel.Dock="Left" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
