@@ -736,7 +736,7 @@ namespace Rail.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kink Angle.
+        ///   Looks up a localized string similar to Kink Angle (%).
         /// </summary>
         public static string OptionsKinkAngle {
             get {
@@ -754,7 +754,7 @@ namespace Rail.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max Pitch.
+        ///   Looks up a localized string similar to Max Pitch (%).
         /// </summary>
         public static string OptionsMaximumPitch {
             get {

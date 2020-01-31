@@ -350,13 +350,15 @@
     <value>OK</value>
   </data>
   <data name="OptionsKinkAngle" xml:space="preserve">
-    <value>Kink Angle</value>
+    <value>Kink Angle (%)</value>
+    <comment>Options dialog ramp kink angle in percent</comment>
   </data>
   <data name="OptionsLanguage" xml:space="preserve">
     <value>Language</value>
   </data>
   <data name="OptionsMaximumPitch" xml:space="preserve">
-    <value>Max Pitch</value>
+    <value>Max Pitch (%)</value>
+    <comment>Options dialog ramp maximum pitch in percent</comment>
   </data>
   <data name="OptionsRamp" xml:space="preserve">
     <value>Ramp</value>
