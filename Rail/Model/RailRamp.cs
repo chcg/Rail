@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class RailRamp : RailBase
+    public class RailRamp : RailGroupBase
     {
         private static readonly double PIFactor = Math.PI / 180.0;
 

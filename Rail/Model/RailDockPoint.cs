@@ -21,6 +21,7 @@ namespace Rail.Model
         protected static readonly Pen dockPen = new Pen(Brushes.Blue, 1);
         protected static readonly Pen positionPen = new Pen(Brushes.Red, 2);
 
+        // no serialization, will be set from RailBase
         private Angle angle;
         private Point position;
 
@@ -30,7 +31,20 @@ namespace Rail.Model
         public RailDockPoint(RailBase railItem, TrackDockPoint trackDockPoint)
         {
             this.Id = Guid.NewGuid();
-            this.RailItem = railItem;
+            this.RailItem = this.RailItemIntern = railItem;
+            //this.trackDockPoint = trackDockPoint;
+            this.DebugDockPointIndex = trackDockPoint.DebugIndex;
+            this.DockType = trackDockPoint.DockType;
+
+            this.angle = trackDockPoint.Angle;
+            this.position = trackDockPoint.Position;
+        }
+
+        public RailDockPoint(RailGroupBase railGroup, RailBase railItem,  TrackDockPoint trackDockPoint)
+        {
+            this.Id = Guid.NewGuid();
+            this.RailItem = railGroup;
+            this.RailItemIntern = railItem;
             //this.trackDockPoint = trackDockPoint;
             this.DebugDockPointIndex = trackDockPoint.DebugIndex;
             this.DockType = trackDockPoint.DockType;
@@ -46,7 +60,7 @@ namespace Rail.Model
         /// <param name="trackDockPoint"></param>
         public void Update(RailBase railItem, TrackDockPoint trackDockPoint)
         {
-            this.RailItem = railItem;
+            this.RailItem = this.RailItemIntern = railItem;
             //this.trackDockPoint = trackDockPoint;
             this.DebugDockPointIndex = trackDockPoint.DebugIndex;
             this.DockType = trackDockPoint.DockType;
@@ -55,11 +69,52 @@ namespace Rail.Model
             this.position = trackDockPoint.Position;
         }
 
+        public void Update(RailGroupBase railGroup, RailBase railItem, TrackDockPoint trackDockPoint)
+        {
+            this.RailItem = railGroup;
+            this.RailItemIntern = railItem;
+            //this.trackDockPoint = trackDockPoint;
+            this.DebugDockPointIndex = trackDockPoint.DebugIndex;
+            this.DockType = trackDockPoint.DockType;
+
+            this.angle = trackDockPoint.Angle;
+            this.position = trackDockPoint.Position;
+        }
+
+        public void Group(RailGroupBase railGroup)
+        {
+            this.RailItem = railGroup;
+            // TODO move and rotate
+        }
+
+        public void Ungroup()
+        {
+            this.RailItem = this.RailItemIntern;
+            // TODO move and rotate
+        }
+
         [XmlAttribute("Id")]
         public Guid Id { get; set; }
 
+        /// <summary>
+        /// Reference to RailItem or RailGroupBase 
+        /// </summary>
+        /// <remarks>
+        /// For external handling like graph operations.
+        /// If this is a docking point between a group and extern, this is the group
+        /// </remarks>
         [XmlIgnore, JsonIgnore]
         public RailBase RailItem { get; private set; }
+
+        /// <summary>
+        /// Reference to RailItem of RailGroupItemBase
+        /// </summary>
+        /// <remarks>
+        /// For internal use like drawing.
+        /// If this is a docking point between a group and extern, this is the item inside the group
+        /// </remarks>
+        [XmlIgnore, JsonIgnore]
+        private RailBase RailItemIntern { get; set; }
 
         [XmlIgnore, JsonIgnore]
         public int DebugDockPointIndex { get; set; }
@@ -71,10 +126,10 @@ namespace Rail.Model
         public string DebugOutput { get { return $"({DebugRailIndex},{DebugDockPointIndex})"; } }
 
         [XmlIgnore, JsonIgnore]
-        public Point Position { get { return this.RailItem.Position + (Vector)this.position.Rotate(this.RailItem.Angle); } }
+        public Point Position { get { return this.RailItemIntern.Position + (Vector)this.position.Rotate(this.RailItemIntern.Angle); } }
 
         [XmlIgnore, JsonIgnore]
-        public Angle Angle { get { return this.RailItem.Angle + this.angle;  } }
+        public Angle Angle { get { return this.RailItemIntern.Angle + this.angle;  } }
 
         [XmlIgnore, JsonIgnore]
         public string DockType { get; private set; }
@@ -97,6 +152,7 @@ namespace Rail.Model
             {
                 Id = Guid.NewGuid(),
                 RailItem = railItem,
+                RailItemIntern = railItem,
                 DebugDockPointIndex = this.DebugDockPointIndex,
                 DockType = this.DockType,
                 angle = this.angle,
@@ -111,10 +167,32 @@ namespace Rail.Model
             
             return clone;
         }
-        
+
+        public RailDockPoint Clone(RailGroupBase railGroup, RailBase railItem)
+        {
+            var clone = new RailDockPoint()
+            {
+                Id = Guid.NewGuid(),
+                RailItem = railGroup,
+                RailItemIntern = railItem,
+                DebugDockPointIndex = this.DebugDockPointIndex,
+                DockType = this.DockType,
+                angle = this.angle,
+                position = this.position
+                // at this time a cone has no dock
+            };
+
+            if (IsDocked)
+            {
+                DockPointCloneDictionary.Add(this, clone);
+            }
+
+            return clone;
+        }
+
         public void Draw(DrawingContext drawingContext)
         {
-            double spacing = ((RailItem)this.RailItem).Track.RailSpacing;
+            double spacing = ((RailItem)this.RailItemIntern).Track.RailSpacing;
             drawingContext.DrawEllipse(null, dockPen, this.Position, spacing / 2, spacing / 2);
             if (!this.IsDocked)
             {
@@ -134,12 +212,12 @@ namespace Rail.Model
 
         public bool IsInside(Point pos)
         {
-            return this.Distance(pos) < ((RailItem)this.RailItem).Track.RailSpacing;
+            return this.Distance(pos) < ((RailItem)this.RailItemIntern).Track.RailSpacing;
         }
 
         public bool IsInside(RailDockPoint p)
         {
-            return this.Distance(p.Position) < ((RailItem)this.RailItem).Track.RailSpacing;
+            return this.Distance(p.Position) < ((RailItem)this.RailItemIntern).Track.RailSpacing;
         }
 
         public void AdjustDock(RailDockPoint dockTo)

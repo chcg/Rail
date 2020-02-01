@@ -45,6 +45,9 @@ namespace Rail.Model
         [XmlIgnore, JsonIgnore]
         public string LengthName { get; set; }
 
+        [XmlIgnore, JsonIgnore]
+        public override double RampLength { get { return this.Length; } }
+
         [XmlAttribute("Direction")]
         public TrackDirection Direction { get; set; }
 

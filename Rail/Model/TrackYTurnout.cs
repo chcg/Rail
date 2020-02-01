@@ -28,6 +28,9 @@ namespace Rail.Model
         public TrackDrive Drive { get; set; }
 
         [XmlIgnore, JsonIgnore]
+        public override double RampLength { get { return 0; /* TODO clac length */ } }
+        
+        [XmlIgnore, JsonIgnore]
         public override string Name
         {
             get

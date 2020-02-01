@@ -1,6 +1,7 @@
 ﻿using Rail.Misc;
 using Rail.Properties;
 using Rail.Trigonometry;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Windows;
@@ -28,6 +29,9 @@ namespace Rail.Model
 
         [XmlIgnore, JsonIgnore]
         public string Length2Name { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public override double RampLength { get { return Math.Max(this.Length1, this.Length2); } }
 
         [XmlAttribute("Angle")]
         public double Angle { get; set; }

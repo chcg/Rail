@@ -25,6 +25,13 @@ namespace Rail.Model
         [XmlAttribute("RailNum")]
         public int RailNum { get; set; }
 
+        /// <summary>
+        /// Ramp length
+        /// </summary>
+        /// <remarks>Turntable can not be used in ramps</remarks>
+        [XmlIgnore, JsonIgnore]
+        public override double RampLength { get { return 0; } }
+
         [XmlIgnore, JsonIgnore]
         public override string Name
         {

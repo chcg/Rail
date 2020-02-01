@@ -24,6 +24,9 @@ namespace Rail.Model
         public double Angle { get; set; }
 
         [XmlIgnore, JsonIgnore]
+        public override double RampLength { get { return 0; /* TODO calc length */  } }
+
+        [XmlIgnore, JsonIgnore]
         public override string Name
         {
             get

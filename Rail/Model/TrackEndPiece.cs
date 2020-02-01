@@ -12,6 +12,9 @@ namespace Rail.Model
     public class TrackEndPiece : TrackBaseSingle
     {
         [XmlIgnore, JsonIgnore]
+        public override double RampLength { get { return 0; } }
+
+        [XmlIgnore, JsonIgnore]
         public override string Name
         {
             get

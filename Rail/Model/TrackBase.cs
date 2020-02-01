@@ -14,6 +14,9 @@ namespace Rail.Model
         public string Id { get; set; }
 
         [XmlIgnore, JsonIgnore]
+        public abstract double RampLength { get; }
+
+        [XmlIgnore, JsonIgnore]
         public abstract string Name { get; }
 
         [XmlIgnore, JsonIgnore]

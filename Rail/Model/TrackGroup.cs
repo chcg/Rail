@@ -25,6 +25,9 @@ namespace Rail.Model
         public override string Description { get { return this.GroupName; } }
 
         [XmlIgnore, JsonIgnore]
+        public override double RampLength { get { return 0; /* TODO sum length */ } }
+
+        [XmlIgnore, JsonIgnore]
         public override List<TrackMaterial> Materials 
         {
             get { return null; /* this.GroupItems?.TODO;*/ } 

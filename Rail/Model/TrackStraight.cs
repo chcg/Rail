@@ -21,6 +21,9 @@ namespace Rail.Model
         public string LengthName { get; set; }
 
         [XmlIgnore, JsonIgnore]
+        public override double RampLength { get { return this.Length; } }
+
+        [XmlIgnore, JsonIgnore]
         public override string Name 
         { 
             get 

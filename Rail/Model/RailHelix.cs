@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class RailHelix : RailBase
+    public class RailHelix : RailGroupBase
     {
         private static readonly double PIFactor = Math.PI / 180.0;
 

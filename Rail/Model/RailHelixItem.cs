@@ -12,7 +12,7 @@ using System.Globalization;
 
 namespace Rail.Model
 {
-    public class RailHelixItem : RailBase
+    public class RailHelixItem : RailGroupItemBase
     {
         public RailHelixItem()
         { }

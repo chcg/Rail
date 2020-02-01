@@ -37,7 +37,10 @@ namespace Rail.Model
 
         [XmlAttribute("Drive")]
         public TrackDrive Drive { get; set; }
-        
+
+        [XmlIgnore, JsonIgnore]
+        public override double RampLength { get { return this.Length; } }
+
         [XmlIgnore, JsonIgnore]
         public override string Name
         {
