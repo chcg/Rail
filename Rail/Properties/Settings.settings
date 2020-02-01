@@ -12,10 +12,10 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="RampKinkAngle" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">1.2</Value>
+      <Value Profile="(Default)">1.5</Value>
     </Setting>
     <Setting Name="RampMaxPitch" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">4.2</Value>
+      <Value Profile="(Default)">8</Value>
     </Setting>
   </Settings>
 </SettingsFile>

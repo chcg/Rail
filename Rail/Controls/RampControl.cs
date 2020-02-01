@@ -84,6 +84,32 @@ namespace Rail.Controls
         }
 
         #endregion
+
+        private double factor = 1;
+
+        protected override Size ArrangeOverride(Size arrangeBounds)
+        {
+            if (this.Ramp != null)
+            {
+                this.factor = arrangeBounds.Width / this.Ramp.Rails.Sum(r => r.Length);
+                arrangeBounds.Height = this.factor * this.Ramp.LayerHeigh;
+            }
+            return base.ArrangeOverride(arrangeBounds);
+        }
+
+        protected override Size MeasureOverride(Size constraint)
+        {
+            if (this.Ramp != null)
+            {
+                this.factor = constraint.Width / this.Ramp.Rails.Sum(r => r.Length);
+                constraint.Height = this.factor * this.Ramp.LayerHeigh;
+            }
+            return base.MeasureOverride(constraint);
+        }
+
+        private readonly Pen bluePen = new Pen(Brushes.Blue, 2);
+        private readonly Pen redPen = new Pen(Brushes.Red, 2);
+
         protected override void OnRender(DrawingContext drawingContext)
         {
             drawingContext.DrawRectangle(whiteBrush, null, new Rect(0, 0, this.ActualWidth, this.ActualHeight));
@@ -97,30 +123,45 @@ namespace Rail.Controls
             double height = this.Ramp.LayerHeigh;
 
             var transform = new TransformGroup();
-            transform.Children.Add(new ScaleTransform(this.ActualWidth / width, this.ActualHeight / height));
+            transform.Children.Add(new ScaleTransform(this.factor, this.factor));
             //transform.Children.Add(new TranslateTransform(0, height));
             drawingContext.PushTransform(transform);
 
+            drawingContext.DrawLine(bluePen, new Point(0, 0), new Point(width, 0));
+            drawingContext.DrawLine(redPen, new Point(0, height), new Point(width, height));
 
-            //drawingContext.DrawRectangle(null, blackPen, new Rect(10, 10, width-20, height-20));
-            Point start = new Point(0, height);
-            foreach (var item in this.Ramp.Rails)
+            try
             {
-                var p = new Point(item.Length, 0);
-                p = p.Rotate(-item.Gradient);
+                //drawingContext.DrawRectangle(null, blackPen, new Rect(10, 10, width-20, height-20));
+                Point from = new Point(0, height);
+                Point to = new Point(0, 0);
+                foreach (var item in this.Ramp.Rails)
+                {
+                    //var p = new Point(item.Length, 0);
+                    //p = p.Rotate(item.Gradient);
+                    double dh = Gradient.CalcHeight(item.Gradient, item.Length);
+                    to = from + new Vector(item.Length, -dh);
 
-                drawingContext.DrawLine(blackPen, start, start + (Vector)p);
+                    drawingContext.DrawLine(blackPen, from, to);
 
-                double perc = Gradient.AngleToPercent(item.Gradient);
+                    double perc = Gradient.AngleToPercent(item.Gradient);
 
-                Point pos = start.Y > height / 2 ? start + new Vector(item.Length / 2, -28) : start + new Vector(item.Length / 2, 0);
-                drawingContext.DrawText(new FormattedText($"{perc:F2}", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Verdana"), 28, blackBrush, 1.25), pos);
+                    Point pos = new Point(from.X + item.Length / 2, height);
+                    drawingContext.DrawText(new FormattedText($"{perc:F2}%", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Verdana"), 12 / this.factor, blackBrush, 1.25), pos);
+                    drawingContext.DrawText(new FormattedText($"{item.Gradient:F2}°", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Verdana"), 12 / this.factor, blackBrush, 1.25), pos + new Vector(0, 12 / this.factor));
+                    drawingContext.DrawText(new FormattedText($"{dh:F2}mm", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Verdana"), 12 / this.factor, blackBrush, 1.25), pos + new Vector(0, 24 / this.factor));
+                    drawingContext.DrawText(new FormattedText($"{item.Length:F2}mm", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Verdana"), 12 / this.factor, blackBrush, 1.25), pos + new Vector(0, 36 / this.factor));
 
 
 
-                start += new Vector(item.Length, p.Y);
+                    from = to;
 
-                drawingContext.DrawEllipse(null, blackPen, start, 5, 5);
+                    drawingContext.DrawEllipse(null, blackPen, from, 5, 5);
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
 
 

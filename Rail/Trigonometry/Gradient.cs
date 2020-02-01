@@ -8,14 +8,19 @@ namespace Rail.Trigonometry
     {
         private static readonly double PIFactor = Math.PI / 180.0;
 
-        public static double AngleToPercent(double value)
+        public static double AngleToPercent(double angle)
         {
-            return Math.Tan(value * PIFactor) * 100.0;
+            return Math.Tan(angle * PIFactor) * 100.0;
         }
 
-        public static double PercentToAngle(double value)
+        public static double PercentToAngle(double perc)
         {
-            return Math.Atan(value / 100.0) / PIFactor;
+            return Math.Atan(perc / 100.0) / PIFactor;
+        }
+
+        public static double CalcHeight(double angle, double radius)
+        {
+            return Math.Tan(angle * PIFactor) * radius;
         }
     }
 }

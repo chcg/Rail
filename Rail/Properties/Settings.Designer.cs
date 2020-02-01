@@ -60,7 +60,7 @@ namespace Rail.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1.2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.5")]
         public double RampKinkAngle {
             get {
                 return ((double)(this["RampKinkAngle"]));
@@ -72,7 +72,7 @@ namespace Rail.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4.2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
         public double RampMaxPitch {
             get {
                 return ((double)(this["RampMaxPitch"]));
