@@ -357,10 +357,10 @@ namespace Rail.Controls
             if (this.SelectedRails != null)
             {
                 this.SelectedRails.Clear();
-                this.RailPlan.Rails.Where(r => r.IsSelected).ForEach(r => this.SelectedRails.Add(r));
+                this.RailPlan.SelectedRails.ForEach(r => this.SelectedRails.Add(r));
             }
             
-            var selectedRails = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
+            var selectedRails = this.RailPlan.SelectedRails.ToList();
             switch (selectedRails.Count())
             {
             case 0:
@@ -620,6 +620,25 @@ namespace Rail.Controls
 
         #endregion
 
+        #region Materials
+
+        public static readonly DependencyProperty MaterialsProperty =
+            DependencyProperty.Register("Materials", typeof(IList), typeof(RailPlanControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public IList Materials
+        {
+            get 
+            {
+                return (IList)GetValue(MaterialsProperty);
+            }
+            set
+            {
+                SetValue(MaterialsProperty, value);
+            }
+        }
+
+        #endregion
+
 
         private void CalcGroundSize()
         {
@@ -627,6 +646,36 @@ namespace Rail.Controls
             this.Height = margin * 2 + this.RailPlan.Height * this.ZoomFactor;
             this.InvalidateMeasure();
             this.InvalidateVisual();
+        }
+
+        private void Invalidate()
+        {
+            this.UpdateSelectedRails();
+            this.UpdateMaterials();
+            
+            this.InvalidateVisual();
+        }
+
+        private void UpdateMaterials()
+        {
+            if (this.Materials == null)
+            {
+                return;
+            }
+            
+            this.Materials.Clear();
+
+            var list = this.RailPlan.Rails.SelectMany(r => r.Materials).GroupBy(m => m.Id).Select(g => new TrackMaterial
+            {
+                Id = g.First().Id,
+                Number = g.Select(i => i.Number).Sum(),
+                Manufacturer = g.First().Manufacturer,
+                Article = g.First().Article,
+                Name = g.First().Name
+            }).OrderBy(g => g.Article).ToList();
+
+            list.ForEach(m => this.Materials.Add(m));
+            //this.RailPlan.Rails.SelectMany(r => r.Materials).ForEach(m => this.Materials.Add(m));
         }
 
         #region render
@@ -690,11 +739,7 @@ namespace Rail.Controls
             }));
         }
 
-        private void Invalidate()
-        {
-            this.UpdateSelectedRails();
-            this.InvalidateVisual();
-        }
+        
 
         #endregion
 
@@ -739,7 +784,7 @@ namespace Rail.Controls
         public void DeleteSelectedRailItems()
         {
             // delete all docks of the item
-            var list = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
+            var list = this.RailPlan.SelectedRails.ToList();
             // remove the item
             list.ForEach(r => DeleteRailItem(r));
         }
@@ -1192,7 +1237,7 @@ namespace Rail.Controls
         {
             if (OnCanCopy())
             {
-                this.copy = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
+                this.copy = this.RailPlan.SelectedRails.ToList();
                 this.copyFactor = 1;
             }
         }
@@ -1206,7 +1251,7 @@ namespace Rail.Controls
         {
             if (OnCanCut())
             {
-                this.copy = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
+                this.copy = this.RailPlan.SelectedRails.ToList();
                 this.copy.ForEach(r => DeleteRailItem(r));
                 this.copyFactor = 1;
                 StoreToHistory();
@@ -1241,7 +1286,7 @@ namespace Rail.Controls
         {
             if (OnCanDelete())
             {
-                var list = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
+                var list = this.RailPlan.SelectedRails.ToList();
                 list.ForEach(r => DeleteRailItem(r));
                 StoreToHistory();
                 this.Invalidate();
@@ -1257,7 +1302,7 @@ namespace Rail.Controls
         {
             if (OnCanDuplicate())
             {
-                var selectedRails = this.RailPlan.Rails.Where(r => r.IsSelected).ToList();
+                var selectedRails = this.RailPlan.SelectedRails.ToList();
                 this.RailPlan.Rails.AddRange(selectedRails.Select(r => r.Clone().Move(new Vector(copyPositionDrift * this.copyFactor, copyPositionDrift * this.copyFactor))));
                 this.copyFactor = 1;
                 // clone dock point links
@@ -1296,13 +1341,13 @@ namespace Rail.Controls
 
         private bool OnCanCreateGroup()
         {
-            return this.SelectedMode == RailSelectedMode.Multi && this.RailPlan.Rails.Where(r => r.IsSelected).All(r => r is RailItem);
+            return this.SelectedMode == RailSelectedMode.Multi && this.RailPlan.SelectedRails.All(r => r is RailItem);
         }
 
         private void OnCreateGroup()
         {
             // take all selected rails
-            var selectedRails = this.RailPlan.Rails.Where(r => r.IsSelected).ToArray();
+            var selectedRails = this.RailPlan.SelectedRails.ToArray();
 
             // remove from Rails
             selectedRails.ForEach(r => this.RailPlan.Rails.Remove(r));
@@ -1345,14 +1390,14 @@ namespace Rail.Controls
         {
             return 
                 this.SelectedMode == RailSelectedMode.Multi && 
-                this.RailPlan.Rails.Where(r => r.IsSelected).All(r => r is RailItem) &&
-                this.RailPlan.Rails.Where(r => r.IsSelected).Count() >= 8;
+                this.RailPlan.SelectedRails.All(r => r is RailItem) &&
+                this.RailPlan.SelectedRails.Count() >= 8;
         }
 
         private void OnCreateRamp()
         {
             // take all selected rails
-            var selectedRails = this.RailPlan.Rails.Where(r => r.IsSelected).ToArray();
+            var selectedRails = this.RailPlan.SelectedRails.ToArray();
 
             RailRamp railRamp = new RailRamp(selectedRails);
 
@@ -1406,8 +1451,8 @@ namespace Rail.Controls
         private bool OnCanCreateHelix()
         {
             return  this.SelectedMode == RailSelectedMode.Multi &&
-                    this.RailPlan.Rails.Where(r => r.IsSelected).All(r => r is RailItem ri && ri.Track is TrackCurved) &&
-                    this.RailPlan.Rails.Where(r => r.IsSelected).Count() >= 16;
+                    this.RailPlan.SelectedRails.All(r => r is RailItem ri && ri.Track is TrackCurved) &&
+                    this.RailPlan.SelectedRails.Count() >= 16;
         }
 
         private void OnDeleteHelix()

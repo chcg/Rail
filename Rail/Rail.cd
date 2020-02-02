@@ -42,13 +42,6 @@
       <FileName>Model\RailHelixItem.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Rail.Model.RailPlan" Collapsed="true">
-    <Position X="3" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAgQAABAAAAAAAAAAAAEAABAAAAEAEAAAAAAAAABA=</HashCode>
-      <FileName>Model\RailPlan.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Rail.Model.RailRamp" Collapsed="true">
     <Position X="13.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
@@ -80,8 +73,15 @@
   <Class Name="Rail.Model.RailDockPoint" Collapsed="true">
     <Position X="2" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gQQCGEAAAEAgAhAgAgAAIEAAAAAAAABEAMIABABAClA=</HashCode>
+      <HashCode>gQQCGEAAAEAgAhAwAgAAJEAAAAAAAABEAMIABABAClA=</HashCode>
       <FileName>Model\RailDockPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rail.Model.RailPlan" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgQAABAACBAAAAAAAAEAABAAAAEAEAAAAAAAAABA=</HashCode>
+      <FileName>Model\RailPlan.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

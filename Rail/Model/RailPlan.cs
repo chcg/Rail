@@ -25,7 +25,7 @@ namespace Rail.Model
         {
             return new RailPlan
             {
-                PlatePoints = new ObservableCollection<Point>()
+                PlatePoints = new List<Point>()
                 {
                     new Point(0, 0),
                     new Point(3000, 0),
@@ -36,14 +36,14 @@ namespace Rail.Model
                     new Point(1000, 1500),
                     new Point(0, 1500),
                 },
-                Layers = new ObservableCollection<RailLayer>
+                Layers = new List<RailLayer>
                 {
                     new RailLayer{ Id = Guid.NewGuid(), Name = "Shadow Station", Height = 300, TrackColor = Colors.LightGray, PlateColor = Colors.Gray },
                     new RailLayer{ Id = Guid.NewGuid(), Name = "Ground Plate", Height = 100, TrackColor = Colors.White, PlateColor = Colors.Green },
                     new RailLayer{ Id = Guid.NewGuid(), Name = "Tunnel", Height = 100, TrackColor = Colors.Blue, PlateColor = Colors.Transparent },
                     new RailLayer{ Id = Guid.NewGuid(), Name = "Bridge", Height = 100, TrackColor = Colors.Yellow, PlateColor = Colors.Transparent }
                 },
-                Rails = new ObservableCollection<RailBase>()
+                Rails = new List<RailBase>()
             };
         }
 
@@ -87,14 +87,14 @@ namespace Rail.Model
         /// </summary>
         [XmlArray("PlatePoints")]
         [XmlArrayItem("PlatePoint")]
-        public ObservableCollection<Point> PlatePoints { get; set; }
+        public List<Point> PlatePoints { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         [XmlArray("Layers")]
         [XmlArrayItem("Layer")]
-        public ObservableCollection<RailLayer> Layers { get; set; }
+        public List<RailLayer> Layers { get; set; }
 
         /// <summary>
         /// 
@@ -102,16 +102,56 @@ namespace Rail.Model
         [XmlArray("Rails")]
         [XmlArrayItem("Rail", typeof(RailItem)),
          XmlArrayItem("Group", typeof(RailGroup))]
-        public ObservableCollection<RailBase> Rails { get; set; }
+        public List<RailBase> Rails { get; set; }
+
+
+        [XmlIgnore, JsonIgnore]
+        public IEnumerable<RailBase> SelectedRails { get { return this.Rails.Where(r => r.IsSelected); } }
+
+        [XmlIgnore, JsonIgnore]
+        public IEnumerable<RailBase> SelectedRampRails 
+        { 
+            get 
+            {
+                // check if all items are RailItems
+                var selectedRailBase = SelectedRails.ToList();
+                if (!selectedRailBase.All(r => r is RailItem))
+                {
+                    // not all items are RailItems
+                    return null;
+                }
+                var selected = selectedRailBase.Cast<RailItem>().ToList();
+
+                // find singe extern docked RailItem
+                var externDocked = selected.SelectMany(r => r.DockPoints).Where(d => d.DockedWith != null && !selected.Contains(d.DockedWith.RailItem)).ToList();
+                if (!externDocked.One())
+                {
+                    // more or less than one external dock
+                    return null;
+                }
+                RailItem item = (RailItem)externDocked.Single().RailItem;
+
+                // sort ramp items
+
+
+                List<RailItem> rampList = new List<RailItem>();
+                while (item != null)
+                {
+                    rampList.Add(item);
+                    item = (RailItem)item.DockPoints.Where(d => d.IsDocked && selected.Contains(d.DockedWith.RailItem) && !rampList.Contains(d.DockedWith.RailItem)).SingleOrDefault()?.DockedWith.RailItem;
+                }
+                return rampList;
+            } 
+        }
 
         public RailPlan Clone()
         {
             // clone RailPlan with rails tree
             var clone = new RailPlan()
             {
-                PlatePoints = this.PlatePoints.ToObservableCollection(),
-                Layers = this.Layers.Select(l => l.Clone()).ToObservableCollection(),
-                Rails = this.Rails.Select(l => l.Clone()).ToObservableCollection()
+                PlatePoints = this.PlatePoints.ToList(),
+                Layers = this.Layers.Select(l => l.Clone()).ToList(),
+                Rails = this.Rails.Select(l => l.Clone()).ToList()
             };
 
             // clone dock point links

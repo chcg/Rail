@@ -208,16 +208,16 @@ namespace Rail.ViewModel
             }
             set
             {
-                if (this.railPlan != null)
-                {
-                    this.railPlan.Rails.CollectionChanged -= OnRailsChanged;
-                }
+                //if (this.railPlan != null)
+                //{
+                //    this.railPlan.Rails.CollectionChanged -= OnRailsChanged;
+                //}
                 this.railPlan = value;
-                NotifyPropertyChanged(nameof(RailPlan));
-                if (this.railPlan != null)
-                {
-                    this.railPlan.Rails.CollectionChanged += OnRailsChanged;
-                }
+                //NotifyPropertyChanged(nameof(RailPlan));
+                //if (this.railPlan != null)
+                //{
+                //    this.railPlan.Rails.CollectionChanged += OnRailsChanged;
+                //}
             }
         }
 
@@ -374,7 +374,7 @@ namespace Rail.ViewModel
 
         public IEnumerable<RailLayer> Layers
         {
-            get { return this.RailPlan.Layers.Reverse(); }
+            get { return this.RailPlan.Layers.Reverse<RailLayer>(); }
         }
 
        
