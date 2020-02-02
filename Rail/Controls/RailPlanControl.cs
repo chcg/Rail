@@ -1391,7 +1391,7 @@ namespace Rail.Controls
 
             RailRamp railRamp = new RailRamp(selectedRails);
 
-            RampView rampView = new RampView { DataContext = new RampViewModel { RailRamp = railRamp } };
+            RampView rampView = new RampView { DataContext = new RampViewModel { RailRamp = railRamp, LayerHight = railRamp.LayerHeigh } };
             if (rampView.ShowDialog().Value)
             {
                 // remove from Rails

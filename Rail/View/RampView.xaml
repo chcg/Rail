@@ -6,26 +6,30 @@
         xmlns:local="clr-namespace:Rail.View"
         xmlns:mvvm="clr-namespace:Rail.Mvvm"
         xmlns:ctrl="clr-namespace:Rail.Controls"
+        xmlns:lang="clr-namespace:Rail.Properties;assembly=Rail"
         mc:Ignorable="d"
-        Title="Ramp" Height="Auto" Width="800">
+        Title="Ramp" Height="Auto" Width="1200">
     <DockPanel Height="Auto">
         <mvvm:DialogButtonsView DockPanel.Dock="Bottom"/>
         <Grid Margin="8" Height="Auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="100"/>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" MinWidth="100"/>
+                <ColumnDefinition Width="120" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" Content="XXXX"/>
-            <TextBox Grid.Column="1" Grid.Row="0" Margin="3"/>
-            <Label Grid.Column="2" Grid.Row="1" Content="XXXX"/>
-            <ctrl:RampControl Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="2" 
+            <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.RampMaximumPitch}" />
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding MaxPitch}" Margin="3"/>
+            <Label Grid.Column="0" Grid.Row="1" Content="{x:Static lang:Resources.RampKinkAngle}" />
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding KinkAngle}" Margin="3"/>
+            <Label Grid.Column="0" Grid.Row="2" Content="{x:Static lang:Resources.RampLayerHeight}" />
+            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding LayerHight}" Margin="3"/>
+            <ctrl:RampControl Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" 
                 Ramp="{Binding RailRamp}" BorderBrush="Gray" BorderThickness="0.5" Margin="8" MinHeight="50"/>
         </Grid>
     </DockPanel>

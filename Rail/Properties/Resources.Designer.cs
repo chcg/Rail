@@ -799,6 +799,33 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kink Angle.
+        /// </summary>
+        public static string RampKinkAngle {
+            get {
+                return ResourceManager.GetString("RampKinkAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layer Height.
+        /// </summary>
+        public static string RampLayerHeight {
+            get {
+                return ResourceManager.GetString("RampLayerHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum Pitch.
+        /// </summary>
+        public static string RampMaximumPitch {
+            get {
+                return ResourceManager.GetString("RampMaximumPitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adapter Track.
         /// </summary>
         public static string TrackAdapter {
