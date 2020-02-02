@@ -658,14 +658,7 @@ namespace Rail.Controls
 
         private void UpdateMaterials()
         {
-            if (this.Materials == null)
-            {
-                return;
-            }
-            
-            this.Materials.Clear();
-
-            var list = this.RailPlan.Rails.SelectMany(r => r.Materials).GroupBy(m => m.Id).Select(g => new TrackMaterial
+            this.Materials = this.RailPlan.Rails.SelectMany(r => r.Materials).GroupBy(m => m.Id).Select(g => new TrackMaterial
             {
                 Id = g.First().Id,
                 Number = g.Select(i => i.Number).Sum(),
@@ -673,9 +666,6 @@ namespace Rail.Controls
                 Article = g.First().Article,
                 Name = g.First().Name
             }).OrderBy(g => g.Article).ToList();
-
-            list.ForEach(m => this.Materials.Add(m));
-            //this.RailPlan.Rails.SelectMany(r => r.Materials).ForEach(m => this.Materials.Add(m));
         }
 
         #region render
