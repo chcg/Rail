@@ -91,7 +91,7 @@ namespace Rail.Controls
         {
             if (this.Ramp != null)
             {
-                this.factor = arrangeBounds.Width / this.Ramp.Rails.Sum(r => r.Length);
+                this.factor = arrangeBounds.Width / this.Ramp.Rails.Cast<RailRampItem>().Sum(r => r.Length);
                 arrangeBounds.Height = this.factor * this.Ramp.LayerHeigh;
             }
             return base.ArrangeOverride(arrangeBounds);
@@ -101,7 +101,7 @@ namespace Rail.Controls
         {
             if (this.Ramp != null)
             {
-                this.factor = constraint.Width / this.Ramp.Rails.Sum(r => r.Length);
+                this.factor = constraint.Width / this.Ramp.Rails.Cast<RailRampItem>().Sum(r => r.Length);
                 constraint.Height = this.factor * this.Ramp.LayerHeigh;
             }
             return base.MeasureOverride(constraint);
@@ -119,7 +119,7 @@ namespace Rail.Controls
                 return;
             }
 
-            double width = this.Ramp.Rails.Sum(r => r.Length);
+            double width = this.Ramp.Rails.Cast<RailRampItem>().Sum(r => r.Length);
             double height = this.Ramp.LayerHeigh;
 
             var transform = new TransformGroup();
@@ -135,7 +135,7 @@ namespace Rail.Controls
                 //drawingContext.DrawRectangle(null, blackPen, new Rect(10, 10, width-20, height-20));
                 Point from = new Point(0, height);
                 Point to = new Point(0, 0);
-                foreach (var item in this.Ramp.Rails)
+                foreach (var item in this.Ramp.Rails.Cast<RailRampItem>())
                 {
                     //var p = new Point(item.Length, 0);
                     //p = p.Rotate(item.Gradient);

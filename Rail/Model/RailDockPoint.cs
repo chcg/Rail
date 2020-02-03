@@ -40,7 +40,7 @@ namespace Rail.Model
             this.position = trackDockPoint.Position;
         }
 
-        public RailDockPoint(RailGroupBase railGroup, RailBase railItem,  TrackDockPoint trackDockPoint)
+        public RailDockPoint(RailGroup railGroup, RailBase railItem,  TrackDockPoint trackDockPoint)
         {
             this.Id = Guid.NewGuid();
             this.RailItem = railGroup;
@@ -69,7 +69,7 @@ namespace Rail.Model
             this.position = trackDockPoint.Position;
         }
 
-        public void Update(RailGroupBase railGroup, RailBase railItem, TrackDockPoint trackDockPoint)
+        public void Update(RailGroup railGroup, RailBase railItem, TrackDockPoint trackDockPoint)
         {
             this.RailItem = railGroup;
             this.RailItemIntern = railItem;
@@ -81,7 +81,7 @@ namespace Rail.Model
             this.position = trackDockPoint.Position;
         }
 
-        public void Group(RailGroupBase railGroup)
+        public void Group(RailGroup railGroup)
         {
             this.RailItem = railGroup;
             // TODO move and rotate
@@ -168,7 +168,7 @@ namespace Rail.Model
             return clone;
         }
 
-        public RailDockPoint Clone(RailGroupBase railGroup, RailBase railItem)
+        public RailDockPoint Clone(RailGroup railGroup, RailBase railItem)
         {
             var clone = new RailDockPoint()
             {

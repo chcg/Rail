@@ -12,7 +12,7 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class RailGroup : RailGroupBase
+    public class RailGroup : RailBase
     {
         protected readonly Pen linePen = new Pen(TrackBrushes.TrackFrame, 2);
         protected readonly Pen dotPen = new Pen(Brushes.White, 2) { DashStyle = DashStyles.Dot };

@@ -12,7 +12,7 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class RailGroupItem : RailGroupItemBase
+    public class RailGroupItem : RailBase
     {
         public RailGroupItem()
         { }

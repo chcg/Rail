@@ -29,7 +29,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Rail.Model.RailHelix" Collapsed="true">
-    <Position X="10" Y="4.75" Width="1.5" />
+    <Position X="11" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AFAAAgAAgACAAAAAAEAAGAIABAAAAAAAAAAACAAAABA=</HashCode>
       <FileName>Model\RailHelix.cs</FileName>
@@ -43,7 +43,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Rail.Model.RailRamp" Collapsed="true">
-    <Position X="13.5" Y="4.75" Width="1.5" />
+    <Position X="12.75" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AFAAAgAAgACAAAAAAEAAGAIABAAAAAAAAAAACAAAABA=</HashCode>
       <FileName>Model\RailRamp.cs</FileName>
@@ -54,20 +54,6 @@
     <TypeIdentifier>
       <HashCode>AFACBgAAhEBAAAQAAAAAAABAAAAEAAAAAAAAAAAAABE=</HashCode>
       <FileName>Model\RailRampItem.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Rail.Model.RailGroupItemBase" Collapsed="true">
-    <Position X="6.5" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\RailGroupItemBase.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Rail.Model.RailGroupBase" Collapsed="true">
-    <Position X="11.75" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\RailGroupBase.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rail.Model.RailDockPoint" Collapsed="true">
