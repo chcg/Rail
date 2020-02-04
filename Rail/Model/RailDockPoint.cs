@@ -14,9 +14,11 @@ namespace Rail.Model
 {
     //[DebuggerDisplay("RailDockPoint Id={Id} DockPointIndex={DebugDockPointIndex} RailIndex={DebugRailIndex}")]
     //[DebuggerDisplay("RailDockPoint Id={Id} DockedWith={DockedWithId}")]
-    [DebuggerDisplay("RailDockPoint Id={DebugRailIndex}/{DebugDockPointIndex} DockedWith={DockedWith.DebugRailIndex}/{DockedWith.DebugDockPointIndex}")]
+    [DebuggerDisplay("RailDockPoint DebugIndex={DebugIndex} Id={DebugRailIndex}/{DebugDockPointIndex} DockedWith={DockedWith.DebugRailIndex}/{DockedWith.DebugDockPointIndex}")]
     public class RailDockPoint
     {
+        private static int debugIndex = 1000;
+
         //private TrackDockPoint trackDockPoint;
         protected static readonly Pen dockPen = new Pen(Brushes.Blue, 1);
         protected static readonly Pen positionPen = new Pen(Brushes.Red, 2);
@@ -26,10 +28,14 @@ namespace Rail.Model
         private Point position;
 
         public RailDockPoint()
-        { }
+        {
+            this.DebugIndex = debugIndex++;
+        }
 
         public RailDockPoint(RailBase railItem, TrackDockPoint trackDockPoint)
         {
+            this.DebugIndex = debugIndex++;
+
             this.Id = Guid.NewGuid();
             this.RailItem = this.RailItemIntern = railItem;
             //this.trackDockPoint = trackDockPoint;
@@ -40,8 +46,10 @@ namespace Rail.Model
             this.position = trackDockPoint.Position;
         }
 
-        public RailDockPoint(RailGroup railGroup, RailBase railItem,  TrackDockPoint trackDockPoint)
+        public RailDockPoint(RailGroup railGroup, RailBase railItem, TrackDockPoint trackDockPoint)
         {
+            this.DebugIndex = debugIndex++;
+
             this.Id = Guid.NewGuid();
             this.RailItem = railGroup;
             this.RailItemIntern = railItem;
@@ -81,9 +89,17 @@ namespace Rail.Model
             this.position = trackDockPoint.Position;
         }
 
-        public void Group(RailGroup railGroup)
+        public void Group(RailBase railbase)
+        {
+            this.RailItem = railbase;
+            this.RailItemIntern = railbase;
+            // TODO move and rotate
+        }
+
+        public void Group(RailGroupItem railGroupItem, RailGroup railGroup)
         {
             this.RailItem = railGroup;
+            this.RailItemIntern = railGroupItem;
             // TODO move and rotate
         }
 
@@ -92,6 +108,9 @@ namespace Rail.Model
             this.RailItem = this.RailItemIntern;
             // TODO move and rotate
         }
+
+        [XmlIgnore, JsonIgnore]
+        public int DebugIndex { get; private set; }
 
         [XmlAttribute("Id")]
         public Guid Id { get; set; }
@@ -104,7 +123,7 @@ namespace Rail.Model
         /// If this is a docking point between a group and extern, this is the group
         /// </remarks>
         [XmlIgnore, JsonIgnore]
-        public RailBase RailItem { get; private set; }
+        public RailBase RailItem { get; set; }
 
         /// <summary>
         /// Reference to RailItem of RailGroupItemBase
@@ -129,7 +148,7 @@ namespace Rail.Model
         public Point Position { get { return this.RailItemIntern.Position + (Vector)this.position.Rotate(this.RailItemIntern.Angle); } }
 
         [XmlIgnore, JsonIgnore]
-        public Angle Angle { get { return this.RailItemIntern.Angle + this.angle;  } }
+        public Angle Angle { get { return this.RailItemIntern.Angle + this.angle; } }
 
         [XmlIgnore, JsonIgnore]
         public string DockType { get; private set; }
@@ -142,9 +161,9 @@ namespace Rail.Model
 
         [XmlIgnore, JsonIgnore]
         public RailDockPoint DockedWith { get; private set; }
-        
+
         [XmlIgnore, JsonIgnore]
-        public bool IsDocked {  get { return this.DockedWith != null; } }
+        public bool IsDocked { get { return this.DockedWith != null; } }
 
         public RailDockPoint Clone(RailBase railItem)
         {
@@ -164,7 +183,7 @@ namespace Rail.Model
             {
                 DockPointCloneDictionary.Add(this, clone);
             }
-            
+
             return clone;
         }
 
@@ -229,7 +248,7 @@ namespace Rail.Model
             Rotation rotate = dockTo.Angle - this.Angle;
             rotate -= new Angle(180.0);
             Debug.WriteLine($"Dock {this.Angle} op {dockTo.Angle} = {rotate}");
-            
+
             var subgraph = this.RailItem.FindSubgraph();
             subgraph.ForEach(i => i.Rotate(rotate, this.RailItem.Position));
             Vector move = dockTo.Position - this.Position;
@@ -260,18 +279,29 @@ namespace Rail.Model
 
         public static void CloneDockPointLinks()
         {
-            
+
             DockPointCloneDictionary.ForEach(d =>
             {
                 var oldDP = d.Key;
                 var newDP = d.Value;
                 var docked = DockPointCloneDictionary[oldDP.DockedWith];
-                
+
                 newDP.DockedWithId = docked.Id;
                 newDP.DockedWith = docked;
-                
+
             });
             DockPointCloneDictionary.Clear();
+        }
+
+        #endregion
+
+        #region Debug
+
+        [Conditional("DEBUG")]
+        public void DebugInfo()
+        {
+            //Debug.WriteLine($"RailDockPoint DebugIndex={DebugIndex} Id={DebugRailIndex}/{DebugDockPointIndex} DockedWith={DockedWith?.DebugRailIndex}/{DockedWith?.DebugDockPointIndex}");
+            Debug.WriteLine($"RailDockPoint DebugIndex={DebugIndex} RailItem={RailItem?.DebugIndex} RailItemItern={RailItemIntern?.DebugIndex} DockedWith={DockedWith?.DebugIndex}/{DockedWith?.RailItem.DebugIndex}");
         }
 
         #endregion

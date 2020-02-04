@@ -34,12 +34,12 @@ namespace Rail.Model
         /// </summary>
         /// <param name="railItem">RailItem to create RailGroupItem from.</param>
         /// <param name="masterRailItem">RailItem </param>
-        public RailGroupItem(RailItem railItem, RailGroup railGroup)
+        public RailGroupItem(RailItem railItem, RailGroup railGroup) : base(railItem)
         {
-            railItem.CopyTo(this);
             this.TrackId = railItem.TrackId;
             this.Track = railItem.Track;
             this.Position = railItem.Position - (Vector)railGroup.Position;
+            //this.DockPoints.ForEach(d => d.Group(this, railGroup));
         }
 
         [XmlAttribute("TrackId")]

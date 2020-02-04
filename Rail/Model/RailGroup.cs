@@ -3,12 +3,14 @@ using Rail.Trigonometry;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
+using Rail.Misc;
 
 namespace Rail.Model
 {
@@ -24,21 +26,43 @@ namespace Rail.Model
         {
             this.DebugIndex = globalDebugIndex++;
 
+            //var allDockPoints = railItems.SelectMany(r => r.DockPoints).ToList();
+            var extDockPoints = railItems.SelectMany(r => r.DockPoints).Where(d => !d.IsDocked || !railItems.Contains(d.DockedWith.RailItem)).ToList(); 
+
             RailItem firstRailItme = (RailItem)railItems.FirstOrDefault();
+            this.Layer = firstRailItme.Layer;
             this.Position = firstRailItme.Position; // set before new RailGroupItem
             this.Angle = 0.0;
 
-            this.Layer = firstRailItme.Layer;
-
+            railItems.DebugList($"RailGroup Const original rails");
             this.Rails = railItems.Cast<RailItem>().Select(i => new RailGroupItem(i, this)).ToList();
-            
             this.Rails.ForEach(r => r.IsSelected = false);
-            this.DockPoints = new List<RailDockPoint>();
+
+            extDockPoints.ForEach(d => d.RailItem = this);
+
+            // remove ext from GroupItems
+            this.Rails.ForEach(r => extDockPoints.ForEach(e => r.DockPoints.Remove(e)));
+                    
+            
+
+            this.DockPoints = extDockPoints;
+
+            //this.Rails.DebugList($"RailGroup DebugIndex={DebugIndex} Rails");
+            DebugInfo();
+
+            
             this.IsSelected = true;
 
-            var intDockPoints =
-            this.DockPoints = this.Rails.SelectMany(r => r.DockPoints).Where(d => !d.IsDocked || !this.Rails.Contains(d.DockedWith.RailItem)).ToList();
+            //// find external dock points and group them
+            //this.DockPoints = this.Rails.SelectMany(r => r.DockPoints).Where(d => !d.IsDocked).ToList();
+            ////var allDockPoints = this.Rails.SelectMany(r => r.DockPoints).ToList();
+            //var allDockPointsx = this.Rails.SelectMany(r => r.DockPoints).Where(d => d.IsDocked).Select(d => d.DockedWith.RailItem).ToList();
 
+            //this.DockPoints = this.Rails.SelectMany(r => r.DockPoints).Where(d =>
+
+            //d.IsDocked && this.Rails.Contains(d.DockedWith.RailItem)).ToList();
+
+            
             CreateCombinedGeometries();
         }
 
@@ -156,5 +180,18 @@ namespace Rail.Model
             return geometry;
         }
 
+        #region Debug
+
+        [Conditional("DEBUG")]
+        public new void DebugInfo()
+        {
+            Debug.WriteLine($"RailGroup DebugIndex={DebugIndex}");
+            Debug.Indent();
+            this.DockPoints.DebugList();
+            this.Rails.DebugList("Children");
+            Debug.Unindent();
+        }
+
+        #endregion
     }
 }

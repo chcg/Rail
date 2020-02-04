@@ -3,6 +3,7 @@ using Rail.Misc;
 using Rail.Trigonometry;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -17,6 +18,19 @@ namespace Rail.Model
         //protected static readonly Pen dockPen = new Pen(Brushes.Blue, 1);
         //protected static readonly Pen positionPen = new Pen(Brushes.Red, 2);
         protected static int globalDebugIndex = 0;
+
+        public RailBase()
+        { }
+        
+        public RailBase(RailBase railBase)
+        {
+            this.DebugIndex = globalDebugIndex++;
+            this.Position = railBase.Position;
+            this.Angle = railBase.Angle;
+            this.Layer = railBase.Layer;
+            this.DockPoints = railBase.DockPoints;
+            this.DockPoints.ForEach(d => d.Group(this));
+        }
 
         [XmlIgnore, JsonIgnore]
         public int DebugIndex { get; protected set; }
@@ -40,6 +54,9 @@ namespace Rail.Model
         public bool IsSelected { get; set; }
 
         [XmlIgnore, JsonIgnore]
+        public List<RailDockPoint> FreeDockPoints {  get { return DockPoints.Where(d => !d.IsDocked).ToList(); } }
+        
+        [XmlIgnore, JsonIgnore]
         public bool HasOnlyOneDock { get { return this.DockPoints.One(dp => dp.IsDocked); } }
 
         [XmlIgnore, JsonIgnore]
@@ -49,17 +66,6 @@ namespace Rail.Model
         public abstract List<TrackMaterial> Materials { get; }
 
         public abstract RailBase Clone();
-
-        public void CopyTo(RailBase railBase)
-        {
-            railBase.DebugIndex = this.DebugIndex;
-            railBase.Position = this.Position;
-            railBase.Angle = this.Angle;
-            //railBase.Gradient = this.Gradient;
-            //railBase.Height = this.Height;
-            railBase.Layer = this.Layer;
-            railBase.DockPoints = this.DockPoints;
-        }
 
         [XmlIgnore, JsonIgnore]
         public Transform RailTransform
@@ -147,5 +153,24 @@ namespace Rail.Model
             // listScanned.Remove(this);
             return listScanned;
         }
+
+        #region Debug
+
+        [Conditional("DEBUG")]
+        public virtual void DebugInfo()
+        {
+            Debug.WriteLine($"{this.GetType().Name} DebugIndex={DebugIndex} Position={Position} Angle={Angle} DockPoints");
+            Debug.Indent();
+            if (this.DockPoints != null)
+            {
+                foreach (RailDockPoint dockPoint in this.DockPoints)
+                {
+                    dockPoint.DebugInfo();
+                }
+            }
+            Debug.Unindent();
+        }
+
+        #endregion
     }
 }

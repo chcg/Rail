@@ -1331,21 +1331,29 @@ namespace Rail.Controls
 
         private bool OnCanCreateGroup()
         {
-            return this.SelectedMode == RailSelectedMode.Multi && this.RailPlan.SelectedRails.All(r => r is RailItem);
+            return
+                this.SelectedMode == RailSelectedMode.Multi &&
+                // cannot group other group
+                this.RailPlan.SelectedRails.All(r => r is RailItem) &&
+                // all must have the same layer
+                this.RailPlan.SelectedRails.Select(r => r.Layer).Distinct().Count() == 1;
         }
 
         private void OnCreateGroup()
         {
-            // take all selected rails
-            var selectedRails = this.RailPlan.SelectedRails.ToArray();
+            if (OnCanCreateGroup())
+            {
+                // take all selected rails
+                var selectedRails = this.RailPlan.SelectedRails.ToArray();
 
-            // remove from Rails
-            selectedRails.ForEach(r => this.RailPlan.Rails.Remove(r));
+                // create rail group
+                this.RailPlan.Rails.Add(new RailGroup(selectedRails));
 
-            // create rail group
-            this.RailPlan.Rails.Add(new RailGroup(selectedRails));
+                // remove from Rails
+                selectedRails.ForEach(r => this.RailPlan.Rails.Remove(r));
 
-            Invalidate();
+                Invalidate();
+            }
         }
 
         private void OnResolveGroup()

@@ -14,11 +14,9 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    [DebuggerDisplay("RailItem Index={DebugIndex} Id={Id} X={Position.X} Y={Position.Y} A={Angle}")]
+    [DebuggerDisplay("RailItem Index={DebugIndex} X={Position.X} Y={Position.Y} A={Angle}")]
     public class RailItem : RailBase
     {
-        
-
         public RailItem()
         { }
 
@@ -34,26 +32,25 @@ namespace Rail.Model
             this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp)).ToList();
         }
 
-        public RailItem(RailGroupItem railGroupItem)
+        public RailItem(RailGroupItem railGroupItem) : base(railGroupItem)
         {
-            railGroupItem.CopyTo(this);
             this.Track = railGroupItem.Track;
             this.TrackId = railGroupItem.TrackId;
         }
 
-        public RailItem(RailRampItem railRampItem)
-        {
-            railRampItem.CopyTo(this);
-            this.Track = railRampItem.Track;
-            this.TrackId = railRampItem.TrackId;
-        }
+        //public RailItem(RailRampItem railRampItem) : base(railRampItem)
+        //{
+        //    railRampItem.CopyTo(this);
+        //    this.Track = railRampItem.Track;
+        //    this.TrackId = railRampItem.TrackId;
+        //}
 
-        public RailItem(RailHelixItem railHelixItem)
-        {
-            railHelixItem.CopyTo(this);
-            this.Track = railHelixItem.Track;
-            this.TrackId = railHelixItem.TrackId;
-        }
+        //public RailItem(RailHelixItem railHelixItem) : base(railHelixItem)
+        //{
+        //    railHelixItem.CopyTo(this);
+        //    this.Track = railHelixItem.Track;
+        //    this.TrackId = railHelixItem.TrackId;
+        //}
 
         //[XmlElement("Id")]
         //public Guid Id { get; set; }
