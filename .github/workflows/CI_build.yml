@@ -10,7 +10,7 @@ jobs:
       max-parallel: 2
       matrix:
         build_configuration: [Release, Debug]
-        build_platform: [Any CPU]
+        build_platform: [Any CPU, x86, x64]
         
     steps:
     - name: Checkout repo
@@ -37,5 +37,5 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
           name: Rail
-          path: Rail\bin\${{ matrix.build_configuration }}\netcoreapp3.0\Rail.exe
+          path: Rail\bin\${{ matrix.build_configuration }}\netcoreapp3.1\Rail.exe
 
