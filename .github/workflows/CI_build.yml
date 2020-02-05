@@ -9,8 +9,8 @@ jobs:
     strategy:
       max-parallel: 2
       matrix:
-        build_configuration: [Release, Debug]
-        build_platform: [Any CPU, x86, x64]
+        build_configuration: [Release]
+        build_platform: [x86, x64]
         
     steps:
     - name: Checkout repo
