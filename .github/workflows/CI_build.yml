@@ -18,13 +18,7 @@ jobs:
 
     - name: Setup to add MSBuild.exe to path
       uses: warrenbuckley/Setup-MSBuild@v1
-      
-    - name: Install NuGet client
-      uses: warrenbuckley/Setup-Nuget@v1
 
-    - name: Nuget restore
-      run: nuget restore .\Rail\Rail.csproj -PackagesDirectory .\packages\
-      
     - name: restore
       working-directory: 
       run: msbuild Rail.sln /m /verbosity:minimal /t:restore /p:configuration="${{ matrix.build_configuration }}" /p:platform="${{ matrix.build_platform }}"
@@ -36,6 +30,13 @@ jobs:
     - name: Archive artifacts
       uses: actions/upload-artifact@v1
       with:
-          name: Rail
-          path: Rail\bin\${{ matrix.build_configuration }}\netcoreapp3.1\Rail.exe
+          name: Rail (x64)
+          path: Rail.Installer\Installs\Rail-0.1.0.0-Release-x64.msi"
+          
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v1
+      with:
+          name: Rail (x32)
+          path: Rail.Installer\Installs\Rail-0.1.0.0-Release-x32.msi"
+
 
