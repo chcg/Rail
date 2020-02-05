@@ -331,3 +331,6 @@ ASALocalRun/
 
 # Documents
 Doc/
+
+#MSI
+*.msi
