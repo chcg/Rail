@@ -3,6 +3,10 @@ Model railway track layout application
 
 Layout application for a large number of tracks.
 
+## Releases
+
+https://github.com/Bassman2/Rail/releases/
+
 ## Features
 
 * multiple layers
