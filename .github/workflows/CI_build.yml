@@ -31,4 +31,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
           name: Rail (${{ matrix.build_platform }})
-          path: Rail\Rail.Installer\Installs\Rail-0.1.0.0-Release-${{ matrix.build_platform }}.msi"
+          path: Rail.Installer\Installs\Rail-0.1.0.0-Release-${{ matrix.build_platform }}.msi"
