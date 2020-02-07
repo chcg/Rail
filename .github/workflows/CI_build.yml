@@ -30,13 +30,5 @@ jobs:
     - name: Archive artifacts
       uses: actions/upload-artifact@v1
       with:
-          name: Rail (x64)
-          path: ..\Rail.Installer\Installs\Rail-0.1.0.0-Release-x64.msi"
-          
-    - name: Archive artifacts
-      uses: actions/upload-artifact@v1
-      with:
-          name: Rail (x32)
-          path: ..\Rail.Installer\Installs\Rail-0.1.0.0-Release-x32.msi"
-
-
+          name: Rail (${{ matrix.build_platform }})
+          path: Rail.Installer\Installs\Rail-0.1.0.0-Release-${{ matrix.build_platform }}.msi"
