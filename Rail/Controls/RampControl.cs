@@ -16,6 +16,7 @@ using System.Linq;
 using Rail.Model;
 using Rail.Trigonometry;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace Rail.Controls
 {
@@ -161,7 +162,7 @@ namespace Rail.Controls
             }
             catch (Exception ex)
             {
-
+                Debug.WriteLine(ex);
             }
 
 

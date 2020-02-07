@@ -22,6 +22,7 @@ namespace Rail.Model
         //private TrackDockPoint trackDockPoint;
         protected static readonly Pen dockPen = new Pen(Brushes.Blue, 1);
         protected static readonly Pen positionPen = new Pen(Brushes.Red, 2);
+        protected static readonly Brush dockBrush = Brushes.Yellow;
 
         // no serialization, will be set from RailBase
         private Angle angle;
@@ -207,6 +208,15 @@ namespace Rail.Model
             }
 
             return clone;
+        }
+
+        public void DrawOpen(DrawingContext drawingContext)
+        {
+            if (!this.IsDocked)
+            {
+                double spacing = ((RailItem)this.RailItemIntern).Track.RailSpacing;
+                drawingContext.DrawEllipse(dockBrush, dockPen, this.Position, spacing / 2, spacing / 2);
+            }
         }
 
         public void Draw(DrawingContext drawingContext)

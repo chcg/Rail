@@ -379,9 +379,9 @@
                 </TabItem>
             </TabControl>
         </Grid>
-        <Grid DockPanel.Dock="Bottom" Height="400" Visibility="{Binding SelectedRamp, ElementName=railPlanControl, Converter={StaticResource ReferensNullToVisibilityCollapsedConverter}}" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+        <!--<Grid DockPanel.Dock="Bottom" Height="400" Visibility="{Binding SelectedRamp, ElementName=railPlanControl, Converter={StaticResource ReferensNullToVisibilityCollapsedConverter}}" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
             <ctrl:RampControl Ramp="{Binding SelectedRamp, ElementName=railPlanControl}"  BorderBrush="Gray" BorderThickness="1" Margin="8"/>
-        </Grid> 
+        </Grid>--> 
         <Grid>
             <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TrackRailViewModeToVisibilityConverter}}" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
                 <ctrl:RailPlanControl 

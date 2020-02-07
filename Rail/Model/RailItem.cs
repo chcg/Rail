@@ -85,6 +85,8 @@ namespace Rail.Model
 
         public override void DrawRailItem(DrawingContext drawingContext, RailViewMode viewMode, RailLayer layer)
         {
+            this.DockPoints.ForEach(d => d.DrawOpen(drawingContext));
+
             drawingContext.PushTransform(this.RailTransform);
 
             //Debug.WriteLine($"DrawRailItem {this.IsSelected}");

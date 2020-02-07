@@ -45,7 +45,7 @@
     <!-- Use the icon.ico icon for this installer (shows up in Add/Remove programs) -->
     <Property Id="ARPPRODUCTICON">icon.ico</Property>
     <!-- Help/Support website (shows in the Add/Remove programs) -->
-    <Property Id="ARPURLINFOABOUT">http://www.angelsix.com</Property>
+    <Property Id="ARPURLINFOABOUT">https://github.com/Bassman2/Rail</Property>
 
     <!-- Create a basic UI for the installer -->
     <UIRef Id="WixUI_Minimal" />

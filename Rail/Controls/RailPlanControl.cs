@@ -31,6 +31,7 @@ namespace Rail.Controls
         private Point lastMousePosition; 
         private RailAction actionType;
         private RailBase actionRailItem;
+        private RailDockPoint actionDockPoint;
         private bool hasMoved;
         private List<RailBase> actionSubgraph;
         //private Angle debugRotationAngle;
@@ -92,7 +93,11 @@ namespace Rail.Controls
             /// <summary>
             /// show a select rectangle
             /// </summary>
-            SelectRect
+            SelectRect,
+            /// <summary>
+            /// show dock point binding line
+            /// </summary>
+            BindingLine
         }
 
         static RailPlanControl()
@@ -118,7 +123,7 @@ namespace Rail.Controls
             this.DeleteHelixCommand = new DelegateCommand(OnDeleteHelix, OnCanDeleteHelix);
             this.EditHelixCommand = new DelegateCommand(OnEditHelix, OnCanEditHelix);
 
-                this.UndoCommand = new DelegateCommand(OnUndo, OnCanUndo);
+            this.UndoCommand = new DelegateCommand(OnUndo, OnCanUndo);
             this.RedoCommand = new DelegateCommand(OnRedo, OnCanRedo);
             this.CopyCommand = new DelegateCommand(OnCopy, OnCanCopy);
             this.CutCommand = new DelegateCommand(OnCut, OnCanCut);
@@ -134,18 +139,7 @@ namespace Rail.Controls
 
             this.Loaded += OnLoaded;
         }
-        
-
-        //private void OnCanRefresh(object sender, CanExecuteRoutedEventArgs e)
-        //{
-            
-        //}
-
-        //private void OnRefresh(object target, ExecutedRoutedEventArgs e)
-        //{
-            
-        //}
-
+       
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             DependencyObject dep = new DependencyObject();
@@ -639,7 +633,6 @@ namespace Rail.Controls
 
         #endregion
 
-
         private void CalcGroundSize()
         {
             this.Width =  margin * 2 + this.RailPlan.Width  * this.ZoomFactor;
@@ -702,13 +695,21 @@ namespace Rail.Controls
                 }
             }
 
-            // draw select rect
-            if (this.actionType == RailAction.SelectRect)
+
+            switch (this.actionType)
             {
+            // draw select rect
+            case RailAction.SelectRect:
                 drawingContext.DrawRectangle(null, selectFramePen1, new Rect(this.selectRecStart, this.lastMousePosition));
                 drawingContext.DrawRectangle(null, selectFramePen2, new Rect(this.selectRecStart, this.lastMousePosition));
+                break;
+
+            // draw binding line
+            case RailAction.BindingLine:
+                drawingContext.DrawLine(selectFramePen1, this.selectRecStart, this.lastMousePosition);
+                drawingContext.DrawLine(selectFramePen2, this.selectRecStart, this.lastMousePosition);
+                break;
             }
-            
             drawingContext.Pop();
             DebugText(drawingContext);
         }
@@ -741,12 +742,23 @@ namespace Rail.Controls
             return track;
         }
 
+        private RailDockPoint FindFreeDockPoint(Point point)
+        {
+            RailDockPoint dockPoint = this.RailPlan.Rails.SelectMany(r => r.DockPoints).Where(d => !d.IsDocked).Where(d => d.IsInside(point)).FirstOrDefault();
+            return dockPoint;
+        }
+
         public void InsertRailItem(Point pos)
         {
+            InsertRailItem(pos, this.SelectedTrack);
+        }
+
+        public void InsertRailItem(Point pos, TrackBase trackBase)
+        {
             Debug.WriteLine($"InsertRailItem at ({pos.X},{pos.Y})");
-            
+
             // insert selected track at mouse position
-            this.RailPlan.Rails.Add(new RailItem(this.SelectedTrack, pos, this.InsertLayer.Id));
+            this.RailPlan.Rails.Add(new RailItem(trackBase, pos, this.InsertLayer.Id));
         }
 
         public void InsertRailItem(RailDockPoint railDockPoint)
@@ -818,7 +830,21 @@ namespace Rail.Controls
             subgraph.ForEach(t => t.Rotate(rotation, center));
         }
 
+        private void BindDockingPoints(RailDockPoint from, RailDockPoint to)
+        {
+            if (from == null || to == null)
+            {
+                return;
+            }
 
+            // TODO
+        }
+
+        private void SwitchRailItemDocking(RailItem railItem)
+        {
+
+            // TODO
+        }
 
         //private RailItem FindDocking(RailItem railItem)
         //{
@@ -950,43 +976,47 @@ namespace Rail.Controls
             Point pos = GetMousePosition(e);
             this.selectedChangeIntern = true;
 
-            RailBase railItem = FindRailItem(pos);
-            if (railItem != null)
+            RailDockPoint dockPoint;
+            RailBase railItem;
+            // double click on free dock point
+            if ((dockPoint = FindFreeDockPoint(pos)) != null)
             {
-                RailDockPoint railDockPoint = railItem?.DockPoints.FirstOrDefault(d => d.IsInside(pos));
-                if (railDockPoint != null)
+                InsertRailItem(dockPoint);
+                Invalidate();
+                StoreToHistory();
+            }
+            // double click onrail item
+            else if ((railItem = FindRailItem(pos)) != null)
+            {
+                if (railItem is RailRamp)
                 {
-                    InsertRailItem(railDockPoint);
-                    Invalidate();
-                    StoreToHistory();
+                    OnEditRamp();
                 }
-                else
+                else if (railItem is RailItem item)
                 {
-                    if (railItem is RailRamp)
+                    if (item.Track is TrackTurntable)
                     {
-                        OnEditRamp();
+                        TurntableView view = new TurntableView { DataContext = new TurntableViewModel(item) };
+                        if (view.ShowDialog().Value)
+                        {
+                            Invalidate();
+                        }
                     }
-                    else if (railItem is RailItem item)
+                    else if (item.Track is TrackTransferTable)
                     {
-                        if (item.Track is TrackTurntable)
+                        TransferTableView view = new TransferTableView { DataContext = new TransferTableViewModel(item) };
+                        if (view.ShowDialog().Value)
                         {
-                            TurntableView view = new TurntableView { DataContext = new TurntableViewModel(item) };
-                            if (view.ShowDialog().Value)
-                            {
-                                Invalidate();
-                            }
+                            Invalidate();
                         }
-                        else if (item.Track is TrackTransferTable)
-                        {
-                            TransferTableView view = new TransferTableView { DataContext = new TransferTableViewModel(item) };
-                            if (view.ShowDialog().Value)
-                            {
-                                Invalidate();
-                            }
-                        }
+                    }
+                    else
+                    {
+                        SwitchRailItemDocking(item);
                     }
                 }
             }
+            // double click on plate
             else
             {
                 InsertRailItem(pos);
@@ -1038,6 +1068,11 @@ namespace Rail.Controls
                     }
                 }
             }
+            else if ((this.actionDockPoint = FindFreeDockPoint(pos)) != null)
+            {
+                this.actionType = RailAction.BindingLine;
+                this.selectRecStart = pos;
+            }
             else if(e.ClickCount == 1)
             {
                 this.actionType = RailAction.SelectRect;
@@ -1049,7 +1084,7 @@ namespace Rail.Controls
 
             base.OnMouseLeftButtonDown(e);
             DebugCheckDockings();
-            Keyboard.Focus(this);
+            //Keyboard.Focus(this);
         }
 
         
@@ -1083,6 +1118,7 @@ namespace Rail.Controls
                 Invalidate();
                 break;
             case RailAction.SelectRect:
+            case RailAction.BindingLine:
                 Invalidate();
                 break;
             }
@@ -1114,6 +1150,9 @@ namespace Rail.Controls
                 break;
             case RailAction.SelectRect:
                 SelectRectange(new Rect(this.selectRecStart, pos), addSelect);
+                break;
+            case RailAction.BindingLine:
+                BindDockingPoints(this.actionDockPoint, FindFreeDockPoint(pos));
                 break;
             }
            
@@ -1160,6 +1199,34 @@ namespace Rail.Controls
         //    //}
         //    //base.OnMouseRightButtonUp(e);
         //}
+
+        #endregion
+
+        #region drag & drop
+
+        protected override void OnDragEnter(DragEventArgs e)
+        {
+            string[] dataFormats = e.Data.GetFormats();
+            if (dataFormats.Length > 0 && e.Data.GetData(dataFormats[0]) is TrackBase)
+            {
+                e.Handled = true;
+            }
+
+            base.OnDragEnter(e);
+        }
+
+        protected override void OnDrop(DragEventArgs e)
+        {
+            string[] dataFormats = e.Data.GetFormats();
+            if (dataFormats.Length > 0 && e.Data.GetData(dataFormats[0]) is TrackBase trackBase)
+            {
+                var pos = e.GetPosition(this).Move(-this.margin, -this.margin).Scale(1.0 / this.ZoomFactor); 
+                InsertRailItem(pos, trackBase);
+                Invalidate();
+                e.Handled = true;
+            }
+            base.OnDrop(e);
+        }
 
         #endregion
 
@@ -1469,11 +1536,11 @@ namespace Rail.Controls
             return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailHelix;
         }
 
-    #endregion
+        #endregion
 
-    #region Debug
+        #region Debug
 
-    [Conditional("DEBUGINFO")]
+        [Conditional("DEBUGINFO")]
         private void DebugText(DrawingContext drawingContext)
         {
             ScrollViewer scrollViewer = this.Parent as ScrollViewer;

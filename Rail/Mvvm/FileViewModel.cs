@@ -348,6 +348,11 @@ namespace Rail.Mvvm
         /// &lt;/example&gt;
         protected virtual void OnDrag(DragEventArgs args)
         {
+            if (args == null)
+            {
+                return; 
+            }
+
             bool isCorrect = true;
             if (args.Data.GetDataPresent(DataFormats.FileDrop, true))
             {
@@ -384,6 +389,11 @@ namespace Rail.Mvvm
         /// &lt;/example&gt;
         protected virtual void OnDrop(DragEventArgs args)
         {
+            if (args == null)
+            {
+                return;
+            }
+
             if (args.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] files = args.Data.GetData(DataFormats.FileDrop, true) as string[];

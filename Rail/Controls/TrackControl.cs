@@ -93,5 +93,18 @@ namespace Rail.Controls
             
             this.Track.Render(drawingContext, RailViewMode.Tracks, Brushes.White);           
         }
+
+        #region drag & drop
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragDrop.DoDragDrop(this, this.Track, DragDropEffects.Copy);
+            }
+            base.OnMouseMove(e);
+        }
+
+        #endregion
     }
 }
