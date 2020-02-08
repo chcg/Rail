@@ -390,6 +390,7 @@
                     ZoomFactor="{Binding ZoomFactor}"
                     RailPlan="{Binding RailPlan}"
                     SelectedTrack="{Binding SelectedTrack}"
+                    SelectedTrackType="{Binding SelectedTrackType}"
                     MousePosition="{Binding MousePosition, Mode=OneWayToSource}"
                     ViewMode="{Binding ViewMode}" 
                     ShowDockingPoints="{Binding ShowDockingPoints}"

@@ -211,6 +211,25 @@ namespace Rail.Controls
 
         #endregion
 
+        #region SelectedTrackType
+
+        public static readonly DependencyProperty SelectedTrackTypeProperty =
+            DependencyProperty.Register("SelectedTrackType", typeof(TrackType), typeof(RailPlanControl));
+
+        public TrackType SelectedTrackType
+        {
+            get
+            {
+                return (TrackType)GetValue(SelectedTrackTypeProperty);
+            }
+            set
+            {
+                SetValue(SelectedTrackTypeProperty, value);
+            }
+        }
+
+        #endregion
+
         #region RailPlan
 
         public static readonly DependencyProperty RailPlanProperty =
@@ -837,7 +856,8 @@ namespace Rail.Controls
                 return;
             }
 
-            // TODO
+            RailBinder.Bind(this.RailPlan, this.SelectedTrackType, from, to);
+            Invalidate();
         }
 
         private void SwitchRailItemDocking(RailItem railItem)
