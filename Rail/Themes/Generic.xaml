@@ -4,7 +4,7 @@
     xmlns:c="clr-namespace:Rail.Controls"
     xmlns:conv="clr-namespace:Rail.Converter">
 
-    <conv:TaskbarItemProgressStateToVisibilityConverter x:Key="TaskbarItemProgressStateToVisibilityConverter"/>
+    <!--<conv:TaskbarItemProgressStateToVisibilityConverter x:Key="TaskbarItemProgressStateToVisibilityConverter"/>
     <conv:DoubleToPercentageConverter x:Key="DoubleToPercentageConverter"/>
     <conv:DistanceToTextConverter x:Key="DistanceToTextConverter"/>
     <conv:AngelToTextConverter x:Key="AngelToTextConverter"/>
@@ -105,7 +105,7 @@
         </Setter>
     </Style>
 
-    <!--<Style TargetType="{x:Type c:IntegerSlider}" BasedOn="{StaticResource NumericSlider}" />-->
+    --><!--<Style TargetType="{x:Type c:IntegerSlider}" BasedOn="{StaticResource NumericSlider}" />--><!--
 
     <Style TargetType="{x:Type c:DoubleSlider}" BasedOn="{StaticResource NumericSlider}" />
 
@@ -160,5 +160,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
+    
 </ResourceDictionary>

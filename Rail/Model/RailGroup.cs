@@ -180,6 +180,19 @@ namespace Rail.Model
             return geometry;
         }
 
+        public override RailBase Move(Vector vec)
+        {
+            base.Move(vec);
+            this.Rails.ForEach(r => r.Move(vec));
+            return this;
+        }
+
+        public override void Rotate(Rotation rotation, Point center)
+        {
+            base.Rotate(rotation, center);
+            this.Rails.ForEach(r => r.Rotate(rotation, center));
+        }
+
         #region Debug
 
         [Conditional("DEBUG")]

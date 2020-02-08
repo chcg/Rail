@@ -102,13 +102,13 @@ namespace Rail.Model
             return f;
         }
 
-        public RailBase Move(Vector vec)
+        public virtual RailBase Move(Vector vec)
         {
             this.Position += vec;
             return this;
         }
 
-        public void Rotate(Rotation rotation, Point center)
+        public virtual void Rotate(Rotation rotation, Point center)
         {
             this.Angle += rotation;
             this.Position = this.Position.Rotate(rotation, center);

@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Rail.Model
 {
+
+    #pragma warning disable CS0414  
+
     public class RailBinder
     {
         private RailPlan railPlan;
