@@ -35,7 +35,7 @@ namespace Rail.Model
             this.Angle = 0.0;
 
             railItems.DebugList($"RailGroup Const original rails");
-            this.Rails = railItems.Cast<RailItem>().Select(i => new RailGroupItem(i, this)).ToList();
+            this.Rails = railItems.Cast<RailItem>()./*Select(i => new RailItem(i, this)).*/ToList();
             this.Rails.ForEach(r => r.IsSelected = false);
 
             extDockPoints.ForEach(d => d.RailItem = this);
@@ -68,7 +68,7 @@ namespace Rail.Model
 
         public IEnumerable<RailItem> Resolve()
         {
-            return this.Rails.Select(r => new RailItem(r)).ToList();
+            return this.Rails./*Select(r => new RailItem(r)).*/ToList();
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Rail.Model
         /// </summary>
         [XmlArray("Rails")]
         [XmlArrayItem("Rail")]
-        public List<RailGroupItem> Rails { get; set; }
+        public List<RailItem> Rails { get; set; }
 
         [XmlIgnore, JsonIgnore]
         public override List<TrackMaterial> Materials
@@ -94,7 +94,7 @@ namespace Rail.Model
                 Angle = this.Angle,
                 Layer = this.Layer,
                 //DockPoints = this.DockPoints.Select(d => d.Clone()).ToList(),
-                Rails = this.Rails.Select(r => (RailGroupItem)r.Clone()).ToList()
+                Rails = this.Rails.Select(r => (RailItem)r.Clone()).ToList()
                  
             };
             clone.DockPoints = this.DockPoints.Select(d => d.Clone(clone)).ToList();

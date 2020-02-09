@@ -32,11 +32,11 @@ namespace Rail.Model
             this.DockPoints = track.DockPoints.Select(dp => new RailDockPoint(this, dp)).ToList();
         }
 
-        public RailItem(RailGroupItem railGroupItem) : base(railGroupItem)
-        {
-            this.Track = railGroupItem.Track;
-            this.TrackId = railGroupItem.TrackId;
-        }
+        //public RailItem(RailGroupItem railGroupItem) : base(railGroupItem)
+        //{
+        //    this.Track = railGroupItem.Track;
+        //    this.TrackId = railGroupItem.TrackId;
+        //}
 
         //public RailItem(RailRampItem railRampItem) : base(railRampItem)
         //{

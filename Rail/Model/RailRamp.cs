@@ -93,7 +93,7 @@ namespace Rail.Model
                 Angle = this.Angle,
                 Layer = this.Layer,
                 //DockPoints = this.DockPoints.Select(d => d.Clone()).ToList(),
-                Rails = this.Rails.Cast<RailRampItem>().Select(r => (RailGroupItem)r.Clone()).ToList()
+                Rails = this.Rails.Cast<RailRampItem>().Select(r => (RailItem)r.Clone()).ToList()
             };
             clone.DockPoints = this.DockPoints.Select(d => d.Clone(clone)).ToList();
             return clone;

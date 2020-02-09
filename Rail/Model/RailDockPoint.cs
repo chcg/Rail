@@ -97,10 +97,10 @@ namespace Rail.Model
             // TODO move and rotate
         }
 
-        public void Group(RailGroupItem railGroupItem, RailGroup railGroup)
+        public void Group(RailItem railItem, RailGroup railGroup)
         {
             this.RailItem = railGroup;
-            this.RailItemIntern = railGroupItem;
+            this.RailItemIntern = railItem;
             // TODO move and rotate
         }
 

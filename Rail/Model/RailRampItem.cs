@@ -12,7 +12,7 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public class RailRampItem : RailGroupItem
+    public class RailRampItem : RailItem
     {
         [XmlAttribute("Gradient")]
         public double Gradient { get; set; }
