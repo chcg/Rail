@@ -90,21 +90,22 @@ namespace Rail.Model
         //    this.position = trackDockPoint.Position;
         //}
 
-        public void Group(RailBase railbase)
-        {
-            this.RailItem = railbase;
-            this.RailItemIntern = railbase;
-        }
+        //public void Group(RailBase railbase)
+        //{
+        //    this.RailItem = railbase;
+        //    this.RailItemIntern = railbase;
+        //}
 
-        public void Group(RailItem railItem, RailGroup railGroup)
+        public void Group(RailGroup railGroup)
         {
             this.RailItem = railGroup;
-            this.RailItemIntern = railItem;
+            this.RailItemIntern.DockPoints.Remove(this);
         }
 
         public void Ungroup()
         {
             this.RailItem = this.RailItemIntern;
+            this.RailItem.DockPoints.Add(this);
         }
 
         [XmlIgnore, JsonIgnore]

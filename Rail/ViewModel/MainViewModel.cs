@@ -208,16 +208,8 @@ namespace Rail.ViewModel
             }
             set
             {
-                //if (this.railPlan != null)
-                //{
-                //    this.railPlan.Rails.CollectionChanged -= OnRailsChanged;
-                //}
                 this.railPlan = value;
-                //NotifyPropertyChanged(nameof(RailPlan));
-                //if (this.railPlan != null)
-                //{
-                //    this.railPlan.Rails.CollectionChanged += OnRailsChanged;
-                //}
+                NotifyPropertyChanged(nameof(RailPlan));
             }
         }
 
@@ -409,6 +401,8 @@ namespace Rail.ViewModel
         public override void OnLoad(string path)
         {
             this.RailPlan = RailPlan.Load(path, this.trackDict);
+
+            this.SelectedInsertLayer = this.RailPlan.Layers.FirstOrDefault();
             this.FileChanged = true;
         }
 

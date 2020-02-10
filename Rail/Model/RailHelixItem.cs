@@ -14,10 +14,6 @@ namespace Rail.Model
 {
     public class RailHelixItem : RailItem
     {
-        
-
-        
-
         [XmlAttribute("Gradient")]
         public double Gradient { get; set; }
 

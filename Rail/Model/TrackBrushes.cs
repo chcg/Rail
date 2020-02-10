@@ -10,7 +10,7 @@ namespace Rail.Model
         public static Brush Text { get { return Brushes.Black; } }
 
         public static Brush TrackFrame { get { return Brushes.Black; } }
-        public static Brush TrackBackground { get { return Brushes.White; } }
+        //public static Brush TrackBackground { get { return Brushes.White; } }
 
         public static Brush WoodenRail { get { return Brushes.Silver; } }
         public static Brush ConcreteRail { get { return Brushes.Black; } }

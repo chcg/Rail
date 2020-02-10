@@ -26,6 +26,7 @@ namespace Rail.ViewModel
             this.TrackColor = ColorViewModel.colors.FirstOrDefault(c => c.Color == System.Windows.Media.Colors.White);
             this.PlateColor = ColorViewModel.colors.FirstOrDefault(c => c.Color == System.Windows.Media.Colors.Green);
         }
+
         public LayerViewModel(RailLayer layer)
         {
             this.Id = layer.Id;

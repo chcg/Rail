@@ -15,6 +15,9 @@ namespace Rail.Model
 {
     public abstract class RailBase
     {
+        protected readonly Pen linePen = new Pen(TrackBrushes.TrackFrame, 2);
+        protected readonly Pen dotPen = new Pen(Brushes.White, 2) { DashStyle = DashStyles.Dot };
+
         //protected static readonly Pen dockPen = new Pen(Brushes.Blue, 1);
         //protected static readonly Pen positionPen = new Pen(Brushes.Red, 2);
         protected static int globalDebugIndex = 0;
@@ -86,18 +89,18 @@ namespace Rail.Model
             this.DockPoints.ForEach(d => d.Draw(drawingContext));
         }
 
-        protected abstract Geometry GetGeometry(RailViewMode viewMode, Transform transform);
+        protected abstract Geometry GetGeometry(RailViewMode viewMode);
 
         public virtual bool IsInside(Point point, RailViewMode viewMode)
         {
-            Geometry geometry = GetGeometry(viewMode, this.RailTransform);
+            Geometry geometry = GetGeometry(viewMode);
             bool f = geometry.FillContains(point);
             return f;
         }
 
         public virtual bool IsInside(Rect rec, RailViewMode viewMode)
         {
-            Geometry geometry = GetGeometry(viewMode, this.RailTransform);
+            Geometry geometry = GetGeometry(viewMode);
             bool f = rec.Contains(geometry.Bounds);
             return f;
         }
