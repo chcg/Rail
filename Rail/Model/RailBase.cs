@@ -22,15 +22,15 @@ namespace Rail.Model
         public RailBase()
         { }
         
-        public RailBase(RailBase railBase)
-        {
-            this.DebugIndex = globalDebugIndex++;
-            this.Position = railBase.Position;
-            this.Angle = railBase.Angle;
-            this.Layer = railBase.Layer;
-            this.DockPoints = railBase.DockPoints;
-            this.DockPoints.ForEach(d => d.Group(this));
-        }
+        //public RailBase(RailBase railBase)
+        //{
+        //    this.DebugIndex = globalDebugIndex++;
+        //    this.Position = railBase.Position;
+        //    this.Angle = railBase.Angle;
+        //    this.Layer = railBase.Layer;
+        //    this.DockPoints = railBase.DockPoints;
+        //    this.DockPoints.ForEach(d => d.Group(this));
+        //}
 
         [XmlIgnore, JsonIgnore]
         public int DebugIndex { get; protected set; }
@@ -88,14 +88,14 @@ namespace Rail.Model
 
         protected abstract Geometry GetGeometry(RailViewMode viewMode, Transform transform);
 
-        public bool IsInside(Point point, RailViewMode viewMode)
+        public virtual bool IsInside(Point point, RailViewMode viewMode)
         {
             Geometry geometry = GetGeometry(viewMode, this.RailTransform);
             bool f = geometry.FillContains(point);
             return f;
         }
 
-        public bool IsInside(Rect rec, RailViewMode viewMode)
+        public virtual bool IsInside(Rect rec, RailViewMode viewMode)
         {
             Geometry geometry = GetGeometry(viewMode, this.RailTransform);
             bool f = rec.Contains(geometry.Bounds);

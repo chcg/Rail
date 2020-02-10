@@ -78,36 +78,33 @@ namespace Rail.Model
             this.position = trackDockPoint.Position;
         }
 
-        public void Update(RailGroup railGroup, RailBase railItem, TrackDockPoint trackDockPoint)
-        {
-            this.RailItem = railGroup;
-            this.RailItemIntern = railItem;
-            //this.trackDockPoint = trackDockPoint;
-            this.DebugDockPointIndex = trackDockPoint.DebugIndex;
-            this.DockType = trackDockPoint.DockType;
+        //public void Update(RailGroup railGroup, RailBase railItem, TrackDockPoint trackDockPoint)
+        //{
+        //    this.RailItem = railGroup;
+        //    this.RailItemIntern = railItem;
+        //    //this.trackDockPoint = trackDockPoint;
+        //    this.DebugDockPointIndex = trackDockPoint.DebugIndex;
+        //    this.DockType = trackDockPoint.DockType;
 
-            this.angle = trackDockPoint.Angle;
-            this.position = trackDockPoint.Position;
-        }
+        //    this.angle = trackDockPoint.Angle;
+        //    this.position = trackDockPoint.Position;
+        //}
 
         public void Group(RailBase railbase)
         {
             this.RailItem = railbase;
             this.RailItemIntern = railbase;
-            // TODO move and rotate
         }
 
         public void Group(RailItem railItem, RailGroup railGroup)
         {
             this.RailItem = railGroup;
             this.RailItemIntern = railItem;
-            // TODO move and rotate
         }
 
         public void Ungroup()
         {
             this.RailItem = this.RailItemIntern;
-            // TODO move and rotate
         }
 
         [XmlIgnore, JsonIgnore]

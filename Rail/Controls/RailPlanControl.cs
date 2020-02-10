@@ -1445,7 +1445,7 @@ namespace Rail.Controls
 
         private void OnResolveGroup()
         { 
-            if (this.selectedRail is RailGroup railGroup)
+            if (OnCanResolveGroup() && this.selectedRail is RailGroup railGroup)
             {
                 this.RailPlan.Rails.AddRange(railGroup.Resolve());
                 this.RailPlan.Rails.Remove(railGroup);
