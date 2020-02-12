@@ -95,7 +95,7 @@ namespace Rail.Model
             this.woodenSleepersPen = new Pen(TrackBrushes.WoodenSleepers, this.RailSpacing * sleepersThicknessFactor);
             this.concreteSleepersPen = new Pen(TrackBrushes.ConcreteSleepers, this.RailSpacing * sleepersThicknessFactor);
 
-            this.text = new FormattedText(this.Article, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), this.RailSpacing * textFactor, TrackBrushes.Text, 1.25);
+            this.text = new FormattedText(this.Article, CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, new Typeface("Verdana"), this.RailSpacing * textFactor, TrackBrushes.Text, 1.25);
             this.textDrawing = new GeometryDrawing(TrackBrushes.Text, textPen, text.BuildGeometry(new Point(0, 0) - new Vector(text.Width / 2, text.Height / 2)));
             Create();
         }

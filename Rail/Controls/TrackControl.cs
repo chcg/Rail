@@ -1,6 +1,7 @@
 ﻿using Rail.Model;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -78,20 +79,34 @@ namespace Rail.Controls
             trackControl.InvalidateVisual();
         }
 
+        private readonly Pen blackPen = new Pen(Brushes.Black, 1);
+
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
 
-            Rect bounds = this.Track.GeometryTracks.Bounds;
-            double zoom = Math.Min(10.0 / this.Track.RailSpacing, Math.Min((this.ActualHeight - 10) / bounds.Height, (this.ActualWidth - 10) / bounds.Width));
-            double dh = bounds.Top + bounds.Height / 2;
-            
             drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.ActualWidth, this.ActualHeight)); // need for tooltip
             
-            drawingContext.PushTransform(new TranslateTransform(this.ActualWidth / 2, this.ActualHeight / 2 - dh));
-            drawingContext.PushTransform(new ScaleTransform(zoom, zoom));
-            
-            this.Track.Render(drawingContext, RailViewMode.Tracks, Brushes.White);           
+
+            Geometry geometry = this.Track.GeometryTracks.Clone();
+            Size size = geometry.Bounds.Size;
+            double zoom = Math.Min(10.0 / this.Track.RailSpacing, Math.Min((this.ActualHeight - 10) / size.Height, (this.ActualWidth - 10) / size.Width));
+            double my = (geometry.Bounds.Bottom + geometry.Bounds.Top) / 2;
+           
+            // set zero point to center
+            drawingContext.PushTransform(new TranslateTransform(this.ActualWidth / 2, this.ActualHeight / 2 - my));
+
+
+            geometry.Transform = new ScaleTransform(zoom, zoom);
+            drawingContext.DrawGeometry(null, blackPen, geometry);
+
+            if (this.Track is TrackBaseSingle track)
+            {
+                FormattedText text = new FormattedText(track.Article, CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, new Typeface("Verdana"), 10, Brushes.Black, 1.25);
+                drawingContext.DrawText(text, new Point(-text.Width / 2, -text.Height / 2));
+            }
+
+            drawingContext.Pop();
         }
 
         #region drag & drop
