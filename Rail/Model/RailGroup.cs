@@ -95,7 +95,7 @@ namespace Rail.Model
         {
             return this.Rails.Select(r =>
             {
-                Geometry geometry = viewMode == RailViewMode.Tracks ? r.Track.GeometryTracks.Clone() : r.Track.GeometryRail.Clone();
+                Geometry geometry = r.Track.TrackGeometry.Clone();
                 geometry.Transform = r.RailTransform;
                 return geometry;
             }).Aggregate((a, b) => new CombinedGeometry(GeometryCombineMode.Union, a, b));

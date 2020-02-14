@@ -85,8 +85,8 @@ namespace Rail.ViewModel
                 this.TrackSelects = this.selectedSelectionIndex switch
                 {
                     0 => null,
-                    1 => this.trackList.TrackTypes.Select(t => t.Gauge).Distinct().OrderBy(t => t).ToList(),
-                    2 => this.trackList.TrackTypes.Select(t => t.Manufacturer).Distinct().OrderBy(t => t).ToList(),
+                    1 => this.trackList.TrackTypes.Select(t => t.Parameter.GaugeName).Distinct().OrderBy(t => t).ToList(),
+                    2 => this.trackList.TrackTypes.Select(t => t.Parameter.Manufacturer).Distinct().OrderBy(t => t).ToList(),
                     _ => null
                 };
                 NotifyPropertyChanged(nameof(TrackSelects));
@@ -111,8 +111,8 @@ namespace Rail.ViewModel
                 this.TrackTypes = this.selectedSelectionIndex switch
                 {
                     0 => this.trackList.TrackTypes,
-                    1 => this.trackList.TrackTypes.Where(t => t.Gauge == SelectedTrackSelect).ToList(),
-                    2 => this.trackList.TrackTypes.Where(t => t.Manufacturer == SelectedTrackSelect).ToList(),
+                    1 => this.trackList.TrackTypes.Where(t => t.Parameter.GaugeName == SelectedTrackSelect).ToList(),
+                    2 => this.trackList.TrackTypes.Where(t => t.Parameter.Manufacturer == SelectedTrackSelect).ToList(),
                     _ => null
                 };
                 NotifyPropertyChanged(nameof(TrackTypes));

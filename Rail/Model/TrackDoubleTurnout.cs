@@ -33,19 +33,19 @@ namespace Rail.Model
             }
         }
 
-        protected override Geometry CreateGeometry(double spacing)
+        protected override Geometry CreateGeometry()
         {
             return new CombinedGeometry(
-               StraitGeometry(this.Length, StraitOrientation.Center, spacing),
+               StraitGeometry(this.Length, StraitOrientation.Center),
                new CombinedGeometry(
-                    CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, spacing, new Point(-this.Length / 2, 0)),
-                    CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, spacing, new Point(-this.Length / 2, 0))));
+                    CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.Length / 2, 0)),
+                    CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-this.Length / 2, 0))));
         }
 
         protected override Drawing CreateRailDrawing()
         {
             DrawingGroup drawingRail = new DrawingGroup();
-            if (this.ViewType.HasFlag(TrackViewType.Ballast))
+            if (this.HasBedding)
             {
                 drawingRail.Children.Add(StraitBallast(this.Length));
                 drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.Length / 2, 0)));

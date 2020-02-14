@@ -212,14 +212,14 @@ namespace Rail.Model
         {
             if (!this.IsDocked)
             {
-                double spacing = ((RailItem)this.RailItemIntern).Track.RailSpacing;
+                double spacing = ((RailItem)this.RailItemIntern).Track.GaugeWidth;
                 drawingContext.DrawEllipse(dockBrush, dockPen, this.Position, spacing / 2, spacing / 2);
             }
         }
 
         public void Draw(DrawingContext drawingContext)
         {
-            double spacing = ((RailItem)this.RailItemIntern).Track.RailSpacing;
+            double spacing = ((RailItem)this.RailItemIntern).Track.GaugeWidth;
             drawingContext.DrawEllipse(null, dockPen, this.Position, spacing / 2, spacing / 2);
             if (!this.IsDocked)
             {
@@ -239,12 +239,12 @@ namespace Rail.Model
 
         public bool IsInside(Point pos)
         {
-            return this.Distance(pos) < ((RailItem)this.RailItemIntern).Track.RailSpacing;
+            return this.Distance(pos) < ((RailItem)this.RailItemIntern).Track.GaugeWidth;
         }
 
         public bool IsInside(RailDockPoint p)
         {
-            return this.Distance(p.Position) < ((RailItem)this.RailItemIntern).Track.RailSpacing;
+            return this.Distance(p.Position) < ((RailItem)this.RailItemIntern).Track.GaugeWidth;
         }
 
         public void AdjustDock(RailDockPoint dockTo)

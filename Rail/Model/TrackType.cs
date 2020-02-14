@@ -22,33 +22,39 @@ namespace Rail.Model
         //    public string Value { get; set; }
         //}
 
-        /// <summary>
-        /// Manufacturer of the track
-        /// </summary>
-        [XmlAttribute("Manufacturer")]
-        public string Manufacturer { get; set; }
+        ///// <summary>
+        ///// Manufacturer of the track
+        ///// </summary>
+        //[XmlAttribute("Manufacturer")]
+        //public string Manufacturer { get; set; }
 
-        /// <summary>
-        /// Gauge of the Track H0, TT, N, 1, Z, G, H0e
-        /// </summary>
-        [XmlAttribute("Gauge")]
-        public string Gauge { get; set; }
+        ///// <summary>
+        ///// Gauge of the Track H0, TT, N, 1, Z, G, H0e
+        ///// </summary>
+        //[XmlAttribute("GaugeName")]
+        //public string GaugeName { get; set; }
 
-        [XmlAttribute("Type")]
-        public string Type { get; set; }
+        ////[XmlAttribute("Type")]
+        ////public string Type { get; set; }
 
-        [XmlAttribute("DockType")]
-        public string DockType { get; set; }
+        //[XmlAttribute("DockType")]
+        //public string DockType { get; set; }
 
-        [XmlAttribute("Spacing")]
-        public double Spacing { get; set; }
-        
-        [XmlAttribute("ViewType")]
-        public TrackViewType ViewType { get; set; }
+        //[XmlAttribute("GaugeWidth")]
+        //public double GaugeWidth { get; set; }        
+
+        //[XmlAttribute("TrackWidth")]
+        //public double TrackWidth { get; set; }
+
+        //[XmlAttribute("ViewType")]
+        //public TrackViewType ViewType { get; set; }
 
         [XmlElement("Name")]
-        public XmlMultilanguageString Name { get; set; }     
-        
+        public XmlMultilanguageString Name { get; set; }
+
+        [XmlElement("Parameter")]
+        public TrackParameter Parameter { get; set; }
+
         [XmlArray("Radii")]
         [XmlArrayItem("Radius")]
         public List<TrackLength> Radii { get; set; } 
@@ -90,6 +96,7 @@ namespace Rail.Model
 
         public void Update()
         {
+            _ = this.Parameter ?? throw new Exception($"Parameter not set");
             this.Tracks.ForEach(track => track.Update(this));
         }
     }

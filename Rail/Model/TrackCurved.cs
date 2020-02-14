@@ -51,15 +51,15 @@ namespace Rail.Model
             base.Update(trackType);
         }
 
-        protected override Geometry CreateGeometry(double spacing)
+        protected override Geometry CreateGeometry()
         {
-            return CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Center, spacing, new Point(0, 0));
+            return CurvedGeometry(this.Angle, this.Radius, CurvedOrientation.Center, new Point(0, 0));
         }
 
         protected override Drawing CreateRailDrawing()
         {
             DrawingGroup drawingRail = new DrawingGroup();
-            if (this.ViewType.HasFlag(TrackViewType.Ballast))
+            if (this.HasBedding)
             {
                 drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Center, new Point(0, 0)));
             }

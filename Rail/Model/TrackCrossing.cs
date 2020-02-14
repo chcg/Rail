@@ -63,17 +63,17 @@ namespace Rail.Model
             base.Update(trackType);
         }
 
-        protected override Geometry CreateGeometry(double spacing)
+        protected override Geometry CreateGeometry()
         {
             return new CombinedGeometry(
-                StraitGeometry(this.Length1, StraitOrientation.Center, spacing, -this.Angle / 2),
-                StraitGeometry(this.Length2, StraitOrientation.Center, spacing, +this.Angle / 2));
+                StraitGeometry(this.Length1, StraitOrientation.Center, -this.Angle / 2),
+                StraitGeometry(this.Length2, StraitOrientation.Center, +this.Angle / 2));
         }
 
         protected override Drawing CreateRailDrawing()
         {
             DrawingGroup drawingRail = new DrawingGroup();
-            if (this.ViewType.HasFlag(TrackViewType.Ballast))
+            if (this.HasBedding)
             {
                 drawingRail.Children.Add(StraitBallast(this.Length1, StraitOrientation.Center, -this.Angle / 2));
                 drawingRail.Children.Add(StraitBallast(this.Length2, StraitOrientation.Center, +this.Angle / 2));

@@ -32,19 +32,19 @@ namespace Rail.Model
             }
         }
 
-        protected override Geometry CreateGeometry(double spacing)
+        protected override Geometry CreateGeometry()
         {
-            double length = this.RailSpacing;
+            double length = this.GaugeWidth;
 
-            return StraitGeometry(length, StraitOrientation.Left, spacing);
+            return StraitGeometry(length, StraitOrientation.Left);
         }
 
         protected override Drawing CreateRailDrawing()
         {
-            double length = this.RailSpacing;
+            double length = this.GaugeWidth;
 
             DrawingGroup drawingRail = new DrawingGroup();
-            if (this.ViewType.HasFlag(TrackViewType.Ballast))
+            if (this.HasBedding)
             {
                 drawingRail.Children.Add(StraitBallast(length, StraitOrientation.Left, 0, null));
             }
@@ -57,7 +57,7 @@ namespace Rail.Model
         {
             return new List<TrackDockPoint>
             {
-                new TrackDockPoint(0, new Point(this.RailSpacing / 2.0, 0.0), 315, this.dockType)
+                new TrackDockPoint(0, new Point(this.GaugeWidth / 2.0, 0.0), 315, this.dockType)
             };
         }
     }

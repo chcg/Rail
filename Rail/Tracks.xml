@@ -1,10 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TrackList Version="0.1.0">  
-  <TrackType Manufacturer="Märklin" Gauge="H0" Type="C-Track" DockType="m24" Spacing="16.5" ViewType="BallastWoodenSleepers" Point="34.6,346.666">
+<TrackList Version="0.1.0">
+  <TrackType>
     <Name>
       <LanguageString>Märklin H0 C-Tracks</LanguageString>
       <LanguageString Lang="de-DE">Märklin H0 C-Gleise</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Märklin</Manufacturer>
+      <GaugeName>H0</GaugeName>
+      <Type>C-Track</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>true</Bedding>
+    </Parameter>
     <Radii>
       <Radius Name="R1" Length="360.0" />
       <Radius Name="R2" Length="437.5" />
@@ -78,14 +88,14 @@
 
       <!-- end piece -->
       <EndPiece Article="24001" />
-      
+
       <!-- adapter -->
       <Adapter Article="24922" Length="180.0" DockType="M22"/>
       <Adapter Article="24951" Length="180.0" DockType="M20"/>
-      
+
       <!-- Turntable -->
       <Turntable Article="74861" OuterRadius="189" InnerRadius="131.5" Angle="15" RailNum="30" />
-      
+
     </Tracks>
     <Groups>
       <Group Id="G00001" Name="Parallel Group">
@@ -136,11 +146,21 @@
       </Group>
     </Groups>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="H0" Type="Kunststoffgleise" DockType="M24" Spacing="16.5" ViewType="BallastWoodenSleepers">
+  <TrackType>
     <Name>
       <LanguageString>Märklin H0 my world Plastic Tracks</LanguageString>
       <LanguageString Lang="de-DE">Märklin H0 my world Kunststoffgleise</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Märklin</Manufacturer>
+      <GaugeName>H0</GaugeName>
+      <Type>Kunststoffgleise</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>true</Bedding>
+    </Parameter>
     <Radii>
       <Radius Name="R1" Length="360.0" Description="R1 Radius" />
       <Radius Name="R2" Length="437.5" Description="R2 Radius for turnouts only" />
@@ -161,11 +181,21 @@
       <Bumper Article="23977" Length="82.5" />
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="H0" Type="K" DockType="M22" Spacing="16.5" ViewType="WoodenSleepers">
+  <TrackType>
     <Name>
       <LanguageString>Märklin H0 K-Tracks</LanguageString>
       <LanguageString Lang="de-DE">Märklin H0 K-Gleise</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Märklin</Manufacturer>
+      <GaugeName>H0</GaugeName>
+      <Type>K-Track</Type>
+      <DockType>m22</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>false</Bedding>
+    </Parameter>
     <Radii>
       <Radius Name="R0" Length="295.4" Description="R0 Industrie Radius 295.4 mm"/>
       <Radius Name="R1" Length="360.0" Description="R1 Radius 360.0 mm" />
@@ -227,11 +257,21 @@
       <Flex Article="2205" Length="900" />
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="H0" Type="M" DockType="M72" Spacing="16.5" ViewType="WoodenSleepers">
+  <TrackType>
     <Name>
       <LanguageString>Märklin H0 M-Tracks</LanguageString>
       <LanguageString Lang="de-DE">Märklin H0 M-Gleise</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Märklin</Manufacturer>
+      <GaugeName>H0</GaugeName>
+      <Type>M-Track</Type>
+      <DockType>m72</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>true</Bedding>
+    </Parameter>
     <Radii>
       <Radius Name="I" Length="282.6" />
       <Radius Name="R1" Length="360.0" />
@@ -289,11 +329,21 @@
       <TransferTable Id="M72941" Article="72941" RailsA="5" RailsB="5" Width="381" Height="422" Length="288" />
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="1" Type="" Spacing="45.0" ViewType="WoodenSleepers" >
+  <TrackType>
     <Name>
       <LanguageString>Märklin 1 Tracks</LanguageString>
       <LanguageString Lang="de-DE">Märklin 1 Gleise</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Märklin</Manufacturer>
+      <GaugeName>1</GaugeName>
+      <Type></Type>
+      <DockType>m59</DockType>
+      <GaugeWidth>45.0</GaugeWidth>
+      <TrackWidth>55.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>false</Bedding>
+    </Parameter>
     <!-- R1 = 1020 mm -->
     <!-- R2 = 1176 mm -->
     <!-- R3 = 1394 mm -->
@@ -336,11 +386,21 @@
     
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Märklin" Gauge="Z" Type="" Spacing="6.5" ViewType="WoodenSleepers" >
+  <TrackType Manufacturer="Märklin" GaugeName="Z" Type="" GaugeWidth="6.5" ViewType="WoodenSleepers" >
     <Name>
       <LanguageString>Märklin Z Tracks</LanguageString>
       <LanguageString Lang="de-DE">Märklin Z Gleise</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Märklin</Manufacturer>
+      <GaugeName>Z</GaugeName>
+      <Type>Z-Track</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>6.5</GaugeWidth>
+      <TrackWidth>8.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>false</Bedding>
+    </Parameter>
     <!-- R1 = 145 mm -->
     <!-- R2 = 195 mm -->
     <!-- R3 = 220 mm -->
@@ -394,18 +454,38 @@
       
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Trix" Gauge="H0" Type="C" Spacing="16.5" >
+  <TrackType>
     <Name>
       <LanguageString>Trix H0 C-Tracks</LanguageString>
       <LanguageString Lang="de-DE">Trix H0 C-Gleise</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Trix</Manufacturer>
+      <GaugeName>H0</GaugeName>
+      <Type>C-Track</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>true</Bedding>
+    </Parameter>
   </TrackType>
   
-  <TrackType Manufacturer="LGB" Gauge="G" Type="LGB" DockType="G" Spacing="45" >
+  <TrackType>
     <Name>
       <LanguageString>LGB Tracks</LanguageString>
       <LanguageString Lang="de-DE">LGB Gleise</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>LGB</Manufacturer>
+      <GaugeName>G</GaugeName>
+      <Type>G-Track</Type>
+      <DockType>m10</DockType>
+      <GaugeWidth>45.5</GaugeWidth>
+      <TrackWidth>52.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>false</Bedding>
+    </Parameter>
     <Radii>
       <Radius Name="R1" Length="600" />
       <Radius Name="R2" Length="780" />
@@ -449,11 +529,21 @@
     </Tracks>
   </TrackType>
 
-  <TrackType Manufacturer="Fleischmann" Gauge="H0" Type="" Spacing="45" >
+  <TrackType>
     <Name>
       <LanguageString>Fleischmann H0 Tracks</LanguageString>
       <LanguageString Lang="de-DE">Fleischmann H0 Gleise</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Fleischmann</Manufacturer>
+      <GaugeName>H0</GaugeName>
+      <Type>C-Track</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>false</Bedding>
+    </Parameter>
     <!-- R1 = 356.5 mm -->
     <!-- R2 = 420.0 mm -->
     <!-- R3 = 483.5 mm -->
@@ -462,22 +552,42 @@
     <!-- R  = 788.0 mm -->
   </TrackType>
 
-  <TrackType Manufacturer="Fleischmann" Gauge="N" Type="with Bedding" Spacing="45" >
+  <TrackType>
     <Name>
       <LanguageString>Fleischmann N Tracks with Bedding</LanguageString>
       <LanguageString Lang="de-DE">Fleischmann N Gleise mit Bettung</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Fleischmann</Manufacturer>
+      <GaugeName>N</GaugeName>
+      <Type>C-Track</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>45.0</GaugeWidth>
+      <TrackWidth>52.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>true</Bedding>
+    </Parameter>
     <!-- R1 = 192.0 mm -->
     <!-- R2 = 225.6 mm -->
     <!-- R3 = 396.4 mm -->
     <!-- R4 = 430.0 mm -->
   </TrackType>
 
-  <TrackType Manufacturer="Fleischmann" Gauge="N" Type="" Spacing="45" >
+  <TrackType Manufacturer="Fleischmann" GaugeName="N" Type="" GaugeWidth="45" >
     <Name>
       <LanguageString>Fleischmann N Tracks</LanguageString>
       <LanguageString Lang="de-DE">Fleischmann N Gleise</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Fleischmann</Manufacturer>
+      <GaugeName>N</GaugeName>
+      <Type>N-Track</Type>
+      <DockType>f24</DockType>
+      <GaugeWidth>45.0</GaugeWidth>
+      <TrackWidth>52.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>false</Bedding>
+    </Parameter>
     <!-- R1 = 194.6 mm -->
     <!-- R2 = 228.2 mm -->
     <!-- R3 = 261.8 mm -->
@@ -488,45 +598,105 @@
     <!-- R7 = 765.0 mm -->
   </TrackType>
 
-  <TrackType Manufacturer="Roco" Gauge="H0" Type="geoLine" Spacing="16.5" >
+  <TrackType>
     <Name>
       <LanguageString>Roco H0 geoLine</LanguageString>
       <LanguageString Lang="de-DE">Roco H0 geoLine</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Roco</Manufacturer>
+      <GaugeName>H0</GaugeName>
+      <Type>geoLine</Type>
+      <DockType>r24</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>true</Bedding>
+    </Parameter>
   </TrackType>
-  <TrackType Manufacturer="Roco" Gauge="H0" Type="Roco-Line" Spacing="16.5" >
+  <TrackType Manufacturer="Roco" GaugeName="H0" Type="Roco-Line" GaugeWidth="16.5" >
     <Name>
       <LanguageString>Roco H0 Roco-Line</LanguageString>
       <LanguageString Lang="de-DE">Roco H0 Roco-Line</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Roco</Manufacturer>
+      <GaugeName>H0</GaugeName>
+      <Type>Roco-Line</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>true</Bedding>
+    </Parameter>
   </TrackType>
 
-  <TrackType Manufacturer="Roco" Gauge="H0" Type="Roco-Line with Bedding" Spacing="16.5" >
+  <TrackType>
     <Name>
       <LanguageString>Roco-Line with Bedding</LanguageString>
       <LanguageString Lang="de-DE">Roco-Line with Bedding</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Roco</Manufacturer>
+      <GaugeName>H0</GaugeName>
+      <Type>Roco-Line with Bedding</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>true</Bedding>
+    </Parameter>
   </TrackType>
 
-  <TrackType Manufacturer="Roco" Gauge="H0e" Type="Railtracks" Spacing="16.5" >
+  <TrackType>
     <Name>
       <LanguageString>Roco H0e</LanguageString>
       <LanguageString Lang="de-DE">Roco H0e</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Roco</Manufacturer>
+      <GaugeName>H0e</GaugeName>
+      <Type>C-Track</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>true</Bedding>
+    </Parameter>
   </TrackType>
 
-  <TrackType Manufacturer="Roco" Gauge="H0e" Type="Feldbahn" Spacing="16.5" >
+  <TrackType>
     <Name>
       <LanguageString>Roco H0e Feldbahn</LanguageString>
       <LanguageString Lang="de-DE">Roco H0e Feldbahn</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Roco</Manufacturer>
+      <GaugeName>H0e</GaugeName>
+      <Type>Feldbahn</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>true</Bedding>
+    </Parameter>
   </TrackType>
 
-  <TrackType Manufacturer="Pico" Gauge="G" Type="G-Tracks" DockType="G" Spacing="45" >
+  <TrackType Manufacturer="Pico" GaugeName="G" Type="G-Tracks" DockType="G" GaugeWidth="45" >
     <Name>
       <LanguageString>Pico G-Traks</LanguageString>
       <LanguageString Lang="de-DE">Pico G-Gleise</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Pico</Manufacturer>
+      <GaugeName>G</GaugeName>
+      <Type>G-Track</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>45.0</GaugeWidth>
+      <TrackWidth>52.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>false</Bedding>
+    </Parameter>
     <Radii>
       <Radius Name="R1" Length="600.00" />
       <Radius Name="R3" Length="921.54" />
@@ -564,11 +734,21 @@
       <Crossing Article="35240" Length1="320" Length2="320" Angle="30" />
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Pico" Gauge="H0" Type="A-Tracks" DockType="P5" Spacing="16.5" ViewType="BallastWoodenSleepers" >
+  <TrackType>
     <Name>
       <LanguageString>Pico H0 A-Track with roadbed</LanguageString>
       <LanguageString Lang="de-DE">Pico H0 A-Gleis mit Bettung</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Pico</Manufacturer>
+      <GaugeName>H0</GaugeName>
+      <Type>A-Track</Type>
+      <DockType>p5</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>true</Bedding>
+    </Parameter>
     <Radii>
       <Radius Name="R1" Length="360.00" />
       <Radius Name="R2" Length="421.88" />
@@ -625,11 +805,21 @@
       <StraightFeeder Article="55406" Length="G231" />
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Pico" Gauge="H0" Type="A-Tracks" Spacing="16.5" ViewType="WoodenSleepers" >
+  <TrackType>
     <Name>
       <LanguageString>Pico H0 A-Track with wooden sleepers</LanguageString>
       <LanguageString Lang="de-DE">Pico H0 A-Gleis mit Holzschwellen</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Pico</Manufacturer>
+      <GaugeName>H0</GaugeName>
+      <Type>A-Track</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>false</Bedding>
+    </Parameter>
     <Radii>
       <Radius Name="R1" Length="360.00" />
       <Radius Name="R2" Length="421.88" />
@@ -681,11 +871,21 @@
       <Crossing Article="55241" Length1="G119" Length2="G119" Angle="30" />
     </Tracks>
   </TrackType>
-  <TrackType Manufacturer="Pico" Gauge="H0" Type="A-Tracks" DockType="P5" Spacing="16.5" ViewType="ConcreteSleepers" >
+  <TrackType>
     <Name>
       <LanguageString>Pico H0 A-Track with concrete sleepers</LanguageString>
       <LanguageString Lang="de-DE">Pico H0 A-Gleis mit Betonschwellen</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Pico</Manufacturer>
+      <GaugeName>H0</GaugeName>
+      <Type>A-Track</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>ConcreteSleepers</Sleepers>
+      <Bedding>false</Bedding>
+    </Parameter>
     <Radii>
       <Radius Name="R1" Length="360.00" />
       <Radius Name="R2" Length="421.88" />
@@ -711,35 +911,75 @@
     </Tracks>
   </TrackType>
 
-  <TrackType Manufacturer="Rokuhan" Gauge="Z" Type="" Spacing="16.5" >
+  <TrackType>
     <Name>
       <LanguageString>Rokuhan Z</LanguageString>
       <LanguageString Lang="de-DE">Rokuhan Z</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Rokuhan</Manufacturer>
+      <GaugeName>Z</GaugeName>
+      <Type>C-Track</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>true</Bedding>
+    </Parameter>
   </TrackType>
   
-  <TrackType Manufacturer="Kato" Gauge="Z" Type="" Spacing="16.5" >
+  <TrackType>
     <Name>
       <LanguageString>Kato H0</LanguageString>
       <LanguageString Lang="de-DE">Kato H0</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Kato</Manufacturer>
+      <GaugeName>Z</GaugeName>
+      <Type>C-Track</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>true</Bedding>
+    </Parameter>
   </TrackType>
 
-  <TrackType Manufacturer="Lego" Gauge="Lego" Type="" Spacing="16.5" >
+  <TrackType>
     <Name>
       <LanguageString>Lego City</LanguageString>
       <LanguageString Lang="de-DE">Lego City</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Lego</Manufacturer>
+      <GaugeName>Lego</GaugeName>
+      <Type>C-Track</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>false</Bedding>
+    </Parameter>
     <Radii>
       <Radius Name="R40" Length="704" Description="(40 + 4) * 2 * 8 mm = 704 mm" />
     </Radii>
   </TrackType>
 
-  <TrackType Manufacturer="Trixbrix" Gauge="Lego" Type="" Spacing="16.5" >
+  <TrackType>
     <Name>
       <LanguageString>Trixbrix compatible to Lego City</LanguageString>
       <LanguageString Lang="de-DE">Trixbrix kompatible zu Lego City</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Trixbrix</Manufacturer>
+      <GaugeName>Lego</GaugeName>
+      <Type>C-Track</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>false</Bedding>
+    </Parameter>
     <Radii>
       <Radius Name="R24" Length="448" Description="(24 + 4) * 2 * 8 mm = 448 mm" />
       <Radius Name="R40" Length="704" Description="(40 + 4) * 2 * 8 mm = 704 mm" />
@@ -751,11 +991,21 @@
     </Radii>
   </TrackType>
 
-  <TrackType Manufacturer="Caterpillar Red" Gauge="Lego" Type="" Spacing="16.5" >
+  <TrackType>
     <Name>
       <LanguageString>Caterpillar Red compatible to Lego City</LanguageString>
       <LanguageString Lang="de-DE">Caterpillar Red kompatible zu Lego City</LanguageString>
     </Name>
+    <Parameter>
+      <Manufacturer>Caterpillar Red</Manufacturer>
+      <GaugeName>Lego</GaugeName>
+      <Type>C-Track</Type>
+      <DockType>m24</DockType>
+      <GaugeWidth>16.5</GaugeWidth>
+      <TrackWidth>20.0</TrackWidth>
+      <Sleepers>WoodenSleepers</Sleepers>
+      <Bedding>false</Bedding>
+    </Parameter>
   </TrackType>
 
 </TrackList>

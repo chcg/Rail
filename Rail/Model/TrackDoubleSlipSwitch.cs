@@ -55,17 +55,17 @@ namespace Rail.Model
             base.Update(trackType);
         }
 
-        protected override Geometry CreateGeometry(double spacing)
+        protected override Geometry CreateGeometry()
         {
             double curveAngle = 30;
             return 
                 new CombinedGeometry(
                     new CombinedGeometry(
-                        StraitGeometry(this.Length, StraitOrientation.Center, spacing, -this.Angle / 2),
-                        StraitGeometry(this.Length, StraitOrientation.Center, spacing, +this.Angle / 2)),
+                        StraitGeometry(this.Length, StraitOrientation.Center, -this.Angle / 2),
+                        StraitGeometry(this.Length, StraitOrientation.Center, +this.Angle / 2)),
                     new CombinedGeometry(
-                        CurvedGeometry(curveAngle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Center, spacing, new Point(0, +spacing / 2 )),
-                        CurvedGeometry(curveAngle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Center, spacing, new Point(0, -spacing / 2))));
+                        CurvedGeometry(curveAngle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Center, new Point(0, +this.TrackWidth / 2 )),
+                        CurvedGeometry(curveAngle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Center, new Point(0, -this.TrackWidth / 2))));
 
         }
 
@@ -73,7 +73,7 @@ namespace Rail.Model
         {
             double curveAngle = 30;
             DrawingGroup drawingRail = new DrawingGroup();
-            if (this.ViewType.HasFlag(TrackViewType.Ballast))
+            if (this.HasBedding)
             {
                 drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, -this.Angle / 2));
                 drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, +this.Angle / 2));

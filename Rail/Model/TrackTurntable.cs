@@ -50,7 +50,7 @@ namespace Rail.Model
             }
         }
 
-        protected override Geometry CreateGeometry(double spacing)
+        protected override Geometry CreateGeometry()
         {
             return new EllipseGeometry(new Point(0, 0), this.OuterRadius, this.OuterRadius);
         }
@@ -61,23 +61,23 @@ namespace Rail.Model
             // background
             drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.DarkGray), linePen, new EllipseGeometry(new Point(0, 0), this.OuterRadius, this.OuterRadius)));
             drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new EllipseGeometry(new Point(0, 0), this.InnerRadius, this.InnerRadius)));
-            if (this.ViewType.HasFlag(TrackViewType.Ballast))
+            if (this.HasBedding)
             {
                 for (int i = 0; i < this.RailNum; i++)
                 {
                     drawingRail.Children.Add(new GeometryDrawing(TrackBrushes.Ballast, null,
                         new PathGeometry(new PathFigureCollection
                         {
-                        new PathFigure(new Point(-this.OuterRadius, -this.RailSpacing).Rotate(this.Angle * i), new PathSegmentCollection
+                        new PathFigure(new Point(-this.OuterRadius, -this.GaugeWidth).Rotate(this.Angle * i), new PathSegmentCollection
                         {
-                            new LineSegment(new Point(-this.InnerRadius, -this.RailSpacing).Rotate(this.Angle * i), true),
-                            new LineSegment(new Point(-this.InnerRadius,  this.RailSpacing).Rotate(this.Angle * i), true),
-                            new LineSegment(new Point(-this.OuterRadius,  this.RailSpacing).Rotate(this.Angle * i), true),
-                            new LineSegment(new Point(-this.OuterRadius, -this.RailSpacing).Rotate(this.Angle * i), true)
+                            new LineSegment(new Point(-this.InnerRadius, -this.GaugeWidth).Rotate(this.Angle * i), true),
+                            new LineSegment(new Point(-this.InnerRadius,  this.GaugeWidth).Rotate(this.Angle * i), true),
+                            new LineSegment(new Point(-this.OuterRadius,  this.GaugeWidth).Rotate(this.Angle * i), true),
+                            new LineSegment(new Point(-this.OuterRadius, -this.GaugeWidth).Rotate(this.Angle * i), true)
                         }, true)
                         })));
                 }
-                drawingRail.Children.Add(new GeometryDrawing(TrackBrushes.Ballast, null, new RectangleGeometry(new Rect(-this.InnerRadius, -this.RailSpacing, this.InnerRadius * 2, this.RailSpacing * 2))));
+                drawingRail.Children.Add(new GeometryDrawing(TrackBrushes.Ballast, null, new RectangleGeometry(new Rect(-this.InnerRadius, -this.GaugeWidth, this.InnerRadius * 2, this.GaugeWidth * 2))));
             }
             
             drawingRail.Children.Add(StraitRail(this.InnerRadius * 2));
@@ -85,11 +85,11 @@ namespace Rail.Model
             for (int i = 0; i < RailNum; i++)
             {
 
-                drawingRail.Children.Add(new GeometryDrawing(null, woodenRailPen, new LineGeometry(new Point(-this.OuterRadius, -this.RailSpacing / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, -this.RailSpacing / 2).Rotate(this.Angle * i)))); ;
-                drawingRail.Children.Add(new GeometryDrawing(null, woodenRailPen, new LineGeometry(new Point(-this.OuterRadius, +this.RailSpacing / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, +this.RailSpacing / 2).Rotate(this.Angle * i))));
+                drawingRail.Children.Add(new GeometryDrawing(null, woodenRailPen, new LineGeometry(new Point(-this.OuterRadius, -this.GaugeWidth / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, -this.GaugeWidth / 2).Rotate(this.Angle * i)))); ;
+                drawingRail.Children.Add(new GeometryDrawing(null, woodenRailPen, new LineGeometry(new Point(-this.OuterRadius, +this.GaugeWidth / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, +this.GaugeWidth / 2).Rotate(this.Angle * i))));
 
                 double length1 = this.OuterRadius - this.InnerRadius;
-                int num1 = (int)Math.Round(length1 / (this.RailSpacing / 2));
+                int num1 = (int)Math.Round(length1 / (this.GaugeWidth / 2));
                 double sleepersDistance1 = length1 / num1;
 
                 for (int j = 0; j < num1; j++)

@@ -29,9 +29,9 @@ namespace Rail.Model
             }
         }
 
-        protected override Geometry CreateGeometry(double spacing)
+        protected override Geometry CreateGeometry()
         {
-            return CurvedGeometry(20, 360, CurvedOrientation.Center, spacing, new Point());
+            return CurvedGeometry(20, 360, CurvedOrientation.Center, new Point());
         }
 
         protected override Drawing CreateRailDrawing()

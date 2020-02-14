@@ -91,7 +91,7 @@ namespace Rail.Model
             base.Update(trackType);
         }
 
-        protected override Geometry CreateGeometry(double spacing)
+        protected override Geometry CreateGeometry()
         {
             double width = (this.OuterRadius * 2 * Math.PI * this.OuterAngle / 360.0 + this.Length) / 2;
             //double hight = this.OuterRadius * 2 * Math.PI * (this.OuterAngle - 90) / 360.0;
@@ -104,16 +104,16 @@ namespace Rail.Model
 
             return this.Direction == TrackDirection.Left ?
                 new CombinedGeometry(
-                    CurvedGeometry(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, spacing, centerLeft),
+                    CurvedGeometry(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft),
                     new CombinedGeometry(
-                        StraitGeometry(this.Length, StraitOrientation.Left, spacing, 0, centerLeft),
-                        CurvedGeometry(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, spacing, centerLeft + new Vector(this.Length, 0)))
+                        StraitGeometry(this.Length, StraitOrientation.Left, 0, centerLeft),
+                        CurvedGeometry(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft + new Vector(this.Length, 0)))
                     ) :
                 new CombinedGeometry(
-                    CurvedGeometry(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, spacing, centerRight),
+                    CurvedGeometry(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight),
                     new CombinedGeometry(
-                        StraitGeometry(this.Length, StraitOrientation.Right, spacing, 0, centerRight),
-                        CurvedGeometry(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, spacing, centerRight - new Vector(this.Length, 0)))
+                        StraitGeometry(this.Length, StraitOrientation.Right, 0, centerRight),
+                        CurvedGeometry(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight - new Vector(this.Length, 0)))
                     );
         }
 
@@ -129,7 +129,7 @@ namespace Rail.Model
             Point centerRight = new Point(width, 0);
 
             DrawingGroup drawingRail = new DrawingGroup();
-            if (this.ViewType.HasFlag(TrackViewType.Ballast))
+            if (this.HasBedding)
             {
                 if (this.Direction == TrackDirection.Left)
                 {

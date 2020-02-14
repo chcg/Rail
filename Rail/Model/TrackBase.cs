@@ -23,16 +23,16 @@ namespace Rail.Model
         public abstract string Description { get; }
 
         [XmlIgnore, JsonIgnore]
-        public double RailSpacing { get; protected set; }
+        public double GaugeWidth { get; protected set; }
+
+        [XmlIgnore, JsonIgnore]
+        public double TrackWidth { get; protected set; }
 
         [XmlIgnore, JsonIgnore]
         public abstract List<TrackMaterial> Materials { get; }
-
+        
         [XmlIgnore, JsonIgnore]
-        public Geometry GeometryTracks { get; protected set; }
-
-        [XmlIgnore, JsonIgnore]
-        public Geometry GeometryRail { get; protected set; }
+        public Geometry TrackGeometry { get; protected set; }
 
         [XmlIgnore, JsonIgnore]
         public List<TrackDockPoint> DockPoints { get; protected set; }

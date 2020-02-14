@@ -88,9 +88,9 @@ namespace Rail.Controls
             drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.ActualWidth, this.ActualHeight)); // need for tooltip
             
 
-            Geometry geometry = this.Track.GeometryTracks.Clone();
+            Geometry geometry = this.Track.TrackGeometry.Clone();
             Size size = geometry.Bounds.Size;
-            double zoom = Math.Min(10.0 / this.Track.RailSpacing, Math.Min((this.ActualHeight - 10) / size.Height, (this.ActualWidth - 10) / size.Width));
+            double zoom = Math.Min(10.0 / this.Track.GaugeWidth, Math.Min((this.ActualHeight - 10) / size.Height, (this.ActualWidth - 10) / size.Width));
             double my = (geometry.Bounds.Bottom + geometry.Bounds.Top) / 2;
            
             // set zero point to center

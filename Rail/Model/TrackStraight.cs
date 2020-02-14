@@ -48,15 +48,15 @@ namespace Rail.Model
             base.Update(trackType);
         }
 
-        protected override Geometry CreateGeometry(double spacing)
+        protected override Geometry CreateGeometry()
         {
-            return StraitGeometry(this.Length, StraitOrientation.Center, spacing); 
+            return StraitGeometry(this.Length, StraitOrientation.Center); 
         }
 
         protected override Drawing CreateRailDrawing()
         {
             DrawingGroup drawingRail = new DrawingGroup();
-            if (this.ViewType.HasFlag(TrackViewType.Ballast))
+            if (this.HasBedding)
             {
                 drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, 0, null));
             }

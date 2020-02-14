@@ -105,7 +105,7 @@ namespace Rail.Model
 
         protected override Geometry GetGeometry(RailViewMode viewMode)
         {
-            Geometry geometry = viewMode == RailViewMode.Tracks ? this.Track.GeometryTracks.Clone() : this.Track.GeometryRail.Clone();
+            Geometry geometry = this.Track.TrackGeometry.Clone();
             geometry.Transform = this.RailTransform;
             return geometry;
         }
