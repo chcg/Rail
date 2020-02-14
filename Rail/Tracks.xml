@@ -8,12 +8,11 @@
     <Parameter>
       <Manufacturer>Märklin</Manufacturer>
       <GaugeName>H0</GaugeName>
-      <Type>C-Track</Type>
       <DockType>m24</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>true</Bedding>
+      <GaugeWidth>18.0</GaugeWidth>
+      <SleeperWidth>27.0</SleeperWidth>
+      <BallastWidth>39.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
     <Radii>
       <Radius Name="R1" Length="360.0" />
@@ -154,12 +153,11 @@
     <Parameter>
       <Manufacturer>Märklin</Manufacturer>
       <GaugeName>H0</GaugeName>
-      <Type>Kunststoffgleise</Type>
       <DockType>m24</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>true</Bedding>
+      <GaugeWidth>18.0</GaugeWidth>
+      <SleeperWidth>27.0</SleeperWidth>
+      <BallastWidth>39.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
     <Radii>
       <Radius Name="R1" Length="360.0" Description="R1 Radius" />
@@ -189,12 +187,10 @@
     <Parameter>
       <Manufacturer>Märklin</Manufacturer>
       <GaugeName>H0</GaugeName>
-      <Type>K-Track</Type>
       <DockType>m22</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>false</Bedding>
+      <GaugeWidth>18.0</GaugeWidth>
+      <SleeperWidth>29.5</SleeperWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
     <Radii>
       <Radius Name="R0" Length="295.4" Description="R0 Industrie Radius 295.4 mm"/>
@@ -265,12 +261,11 @@
     <Parameter>
       <Manufacturer>Märklin</Manufacturer>
       <GaugeName>H0</GaugeName>
-      <Type>M-Track</Type>
       <DockType>m72</DockType>
       <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>true</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastWidth>20.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
     <Radii>
       <Radius Name="I" Length="282.6" />
@@ -337,12 +332,11 @@
     <Parameter>
       <Manufacturer>Märklin</Manufacturer>
       <GaugeName>1</GaugeName>
-      <Type></Type>
       <DockType>m59</DockType>
       <GaugeWidth>45.0</GaugeWidth>
-      <TrackWidth>55.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>false</Bedding>
+      <SleeperWidth>55.0</SleeperWidth>
+      <BallastWidth>55.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
     <!-- R1 = 1020 mm -->
     <!-- R2 = 1176 mm -->
@@ -394,12 +388,11 @@
     <Parameter>
       <Manufacturer>Märklin</Manufacturer>
       <GaugeName>Z</GaugeName>
-      <Type>Z-Track</Type>
       <DockType>m24</DockType>
       <GaugeWidth>6.5</GaugeWidth>
-      <TrackWidth>8.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>false</Bedding>
+      <SleeperWidth>8.0</SleeperWidth>
+      <BallastWidth>8.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
     <!-- R1 = 145 mm -->
     <!-- R2 = 195 mm -->
@@ -462,12 +455,11 @@
     <Parameter>
       <Manufacturer>Trix</Manufacturer>
       <GaugeName>H0</GaugeName>
-      <Type>C-Track</Type>
       <DockType>m24</DockType>
       <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>true</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastWidth>20.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
   </TrackType>
   
@@ -479,12 +471,11 @@
     <Parameter>
       <Manufacturer>LGB</Manufacturer>
       <GaugeName>G</GaugeName>
-      <Type>G-Track</Type>
       <DockType>m10</DockType>
       <GaugeWidth>45.5</GaugeWidth>
-      <TrackWidth>52.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>false</Bedding>
+      <SleeperWidth>52.0</SleeperWidth>
+      <BallastWidth>52.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
     <Radii>
       <Radius Name="R1" Length="600" />
@@ -537,12 +528,11 @@
     <Parameter>
       <Manufacturer>Fleischmann</Manufacturer>
       <GaugeName>H0</GaugeName>
-      <Type>C-Track</Type>
       <DockType>m24</DockType>
       <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>false</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastWidth>20.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
     <!-- R1 = 356.5 mm -->
     <!-- R2 = 420.0 mm -->
@@ -560,12 +550,11 @@
     <Parameter>
       <Manufacturer>Fleischmann</Manufacturer>
       <GaugeName>N</GaugeName>
-      <Type>C-Track</Type>
       <DockType>m24</DockType>
       <GaugeWidth>45.0</GaugeWidth>
-      <TrackWidth>52.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>true</Bedding>
+      <SleeperWidth>52.0</SleeperWidth>
+      <BallastWidth>52.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
     <!-- R1 = 192.0 mm -->
     <!-- R2 = 225.6 mm -->
@@ -581,12 +570,10 @@
     <Parameter>
       <Manufacturer>Fleischmann</Manufacturer>
       <GaugeName>N</GaugeName>
-      <Type>N-Track</Type>
       <DockType>f24</DockType>
       <GaugeWidth>45.0</GaugeWidth>
-      <TrackWidth>52.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>false</Bedding>
+      <SleeperWidth>52.0</SleeperWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
     <!-- R1 = 194.6 mm -->
     <!-- R2 = 228.2 mm -->
@@ -606,12 +593,11 @@
     <Parameter>
       <Manufacturer>Roco</Manufacturer>
       <GaugeName>H0</GaugeName>
-      <Type>geoLine</Type>
       <DockType>r24</DockType>
       <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>true</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastWidth>20.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
   </TrackType>
   <TrackType Manufacturer="Roco" GaugeName="H0" Type="Roco-Line" GaugeWidth="16.5" >
@@ -622,12 +608,11 @@
     <Parameter>
       <Manufacturer>Roco</Manufacturer>
       <GaugeName>H0</GaugeName>
-      <Type>Roco-Line</Type>
       <DockType>m24</DockType>
       <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>true</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastWidth>20.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
   </TrackType>
 
@@ -639,12 +624,11 @@
     <Parameter>
       <Manufacturer>Roco</Manufacturer>
       <GaugeName>H0</GaugeName>
-      <Type>Roco-Line with Bedding</Type>
       <DockType>m24</DockType>
       <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>true</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastWidth>20.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
   </TrackType>
 
@@ -656,12 +640,11 @@
     <Parameter>
       <Manufacturer>Roco</Manufacturer>
       <GaugeName>H0e</GaugeName>
-      <Type>C-Track</Type>
       <DockType>m24</DockType>
       <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>true</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastWidth>20.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
   </TrackType>
 
@@ -673,12 +656,11 @@
     <Parameter>
       <Manufacturer>Roco</Manufacturer>
       <GaugeName>H0e</GaugeName>
-      <Type>Feldbahn</Type>
       <DockType>m24</DockType>
       <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>true</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastWidth>20.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
   </TrackType>
 
@@ -690,12 +672,10 @@
     <Parameter>
       <Manufacturer>Pico</Manufacturer>
       <GaugeName>G</GaugeName>
-      <Type>G-Track</Type>
       <DockType>m24</DockType>
       <GaugeWidth>45.0</GaugeWidth>
-      <TrackWidth>52.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>false</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
     <Radii>
       <Radius Name="R1" Length="600.00" />
@@ -742,12 +722,11 @@
     <Parameter>
       <Manufacturer>Pico</Manufacturer>
       <GaugeName>H0</GaugeName>
-      <Type>A-Track</Type>
       <DockType>p5</DockType>
       <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>true</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastWidth>20.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
     <Radii>
       <Radius Name="R1" Length="360.00" />
@@ -813,12 +792,11 @@
     <Parameter>
       <Manufacturer>Pico</Manufacturer>
       <GaugeName>H0</GaugeName>
-      <Type>A-Track</Type>
       <DockType>m24</DockType>
       <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>false</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastWidth>20.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
     <Radii>
       <Radius Name="R1" Length="360.00" />
@@ -879,12 +857,10 @@
     <Parameter>
       <Manufacturer>Pico</Manufacturer>
       <GaugeName>H0</GaugeName>
-      <Type>A-Track</Type>
       <DockType>m24</DockType>
       <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>ConcreteSleepers</Sleepers>
-      <Bedding>false</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <SleeperType>ConcreteSleepers</SleeperType>
     </Parameter>
     <Radii>
       <Radius Name="R1" Length="360.00" />
@@ -919,12 +895,11 @@
     <Parameter>
       <Manufacturer>Rokuhan</Manufacturer>
       <GaugeName>Z</GaugeName>
-      <Type>C-Track</Type>
       <DockType>m24</DockType>
       <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>true</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastWidth>20.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
   </TrackType>
   
@@ -936,12 +911,11 @@
     <Parameter>
       <Manufacturer>Kato</Manufacturer>
       <GaugeName>Z</GaugeName>
-      <Type>C-Track</Type>
       <DockType>m24</DockType>
       <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>true</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastWidth>20.0</BallastWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
   </TrackType>
 
@@ -953,12 +927,10 @@
     <Parameter>
       <Manufacturer>Lego</Manufacturer>
       <GaugeName>Lego</GaugeName>
-      <Type>C-Track</Type>
-      <DockType>m24</DockType>
+      <DockType>lego</DockType>
       <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>false</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
     <Radii>
       <Radius Name="R40" Length="704" Description="(40 + 4) * 2 * 8 mm = 704 mm" />
@@ -973,12 +945,10 @@
     <Parameter>
       <Manufacturer>Trixbrix</Manufacturer>
       <GaugeName>Lego</GaugeName>
-      <Type>C-Track</Type>
-      <DockType>m24</DockType>
+      <DockType>lego</DockType>
       <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>false</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
     <Radii>
       <Radius Name="R24" Length="448" Description="(24 + 4) * 2 * 8 mm = 448 mm" />
@@ -999,12 +969,10 @@
     <Parameter>
       <Manufacturer>Caterpillar Red</Manufacturer>
       <GaugeName>Lego</GaugeName>
-      <Type>C-Track</Type>
-      <DockType>m24</DockType>
+      <DockType>lego</DockType>
       <GaugeWidth>16.5</GaugeWidth>
-      <TrackWidth>20.0</TrackWidth>
-      <Sleepers>WoodenSleepers</Sleepers>
-      <Bedding>false</Bedding>
+      <SleeperWidth>20.0</SleeperWidth>
+      <SleeperType>WoodenSleepers</SleeperType>
     </Parameter>
   </TrackType>
 

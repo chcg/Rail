@@ -20,25 +20,19 @@ namespace Rail.Model
         [XmlElement("GaugeName"), JsonPropertyName("GaugeName")]
         public string GaugeName { get; set; }
 
-        //[XmlAttribute("Type"), JsonPropertyName("Type")]
-        //public string Type { get; set; }
-
         [XmlElement("DockType"), JsonPropertyName("DockType")]
         public string DockType { get; set; }
 
         [XmlElement("GaugeWidth"), JsonPropertyName("GaugeWidth")]
         public double GaugeWidth { get; set; }
 
-        [XmlElement("TrackWidth"), JsonPropertyName("TrackWidth")]
-        public double TrackWidth { get; set; }
+        [XmlElement("SleeperWidth"), JsonPropertyName("SleeperWidth")]
+        public double SleeperWidth { get; set; }
 
-        //[XmlElement("ViewType"), JsonPropertyName("ViewType")]
-        //public TrackViewType ViewType { get; set; }
+        [XmlElement("BallastWidth"), JsonPropertyName("BallastWidth")]
+        public double BallastWidth { get; set; }
 
-        [XmlElement("Sleepers"), JsonPropertyName("Sleepers")]
-        public TrackSleepers Sleepers { get; set; }
-
-        [XmlElement("Bedding"), JsonPropertyName("Bedding")]
-        public bool HasBedding { get; set; }
+        [XmlElement("SleeperType"), JsonPropertyName("SleeperType")]
+        public TrackSleeperType SleeperType{ get; set; }
     }
 }

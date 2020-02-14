@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.IO;
+using System.Xml.Schema;
 
 namespace Rail.Mvvm
 {
@@ -25,6 +26,21 @@ namespace Rail.Mvvm
         {
             BaseProject project = null;
             using (XmlTextReader reader = new XmlTextReader(path))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                project = (BaseProject)serializer.Deserialize(reader);
+            }
+            return (T)project;
+        }
+
+        public static T Load<T>(string path, XmlSchema schema) where T : BaseProject
+        {
+            BaseProject project = null;
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.CheckCharacters = true;
+            settings.Schemas.Add(schema);
+            settings.ValidationType = ValidationType.Schema;
+            using (XmlReader reader = XmlReader.Create(path, settings)) 
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(T));
                 project = (BaseProject)serializer.Deserialize(reader);

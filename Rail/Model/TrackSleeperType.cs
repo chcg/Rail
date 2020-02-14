@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace Rail.Model
 {
-    public enum TrackSleepers
+    public enum TrackSleeperType
     {
         Unknown,
         [XmlEnum("WoodenSleepers")]

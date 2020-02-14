@@ -212,14 +212,14 @@ namespace Rail.Model
         {
             if (!this.IsDocked)
             {
-                double spacing = ((RailItem)this.RailItemIntern).Track.GaugeWidth;
+                double spacing = ((RailItem)this.RailItemIntern).Track.TrackWidth;
                 drawingContext.DrawEllipse(dockBrush, dockPen, this.Position, spacing / 2, spacing / 2);
             }
         }
 
         public void Draw(DrawingContext drawingContext)
         {
-            double spacing = ((RailItem)this.RailItemIntern).Track.GaugeWidth;
+            double spacing = ((RailItem)this.RailItemIntern).Track.TrackWidth;
             drawingContext.DrawEllipse(null, dockPen, this.Position, spacing / 2, spacing / 2);
             if (!this.IsDocked)
             {

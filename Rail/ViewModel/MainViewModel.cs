@@ -17,6 +17,7 @@ using System.Printing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Xml.Schema;
 
 namespace Rail.ViewModel
 {
@@ -56,7 +57,14 @@ namespace Rail.ViewModel
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error in File Tracks.xml\r\n" + ex.Message);
+                    if (ex.InnerException is XmlSchemaValidationException valEx)
+                    {
+                        MessageBox.Show($"Error in File Tracks.xml\r\n{ex.Message}\r\n{valEx.Message}");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error in File Tracks.xml\r\n{ex.Message}");
+                    }
                     throw ex;
                 }
             }

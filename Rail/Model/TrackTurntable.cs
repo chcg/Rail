@@ -95,8 +95,8 @@ namespace Rail.Model
                 for (int j = 0; j < num1; j++)
                 {
                     drawingRail.Children.Add(new GeometryDrawing(null, woodenSleepersPen, new LineGeometry(
-                        new Point(-this.OuterRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, -this.sleepersWidth / 2).Rotate(this.Angle * i),
-                        new Point(-this.OuterRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, +this.sleepersWidth / 2).Rotate(this.Angle * i))));
+                        new Point(-this.OuterRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, -this.sleeperWidth / 2).Rotate(this.Angle * i),
+                        new Point(-this.OuterRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, +this.sleeperWidth / 2).Rotate(this.Angle * i))));
                 }
             }
             return drawingRail;

@@ -13,42 +13,6 @@ namespace Rail.Model
 {
     public class TrackType 
     {
-        //public class XmLanguageName
-        //{
-        //    [XmlAttribute("Lang")]
-        //    public string Lang { get; set; }
-
-        //    [XmlText]
-        //    public string Value { get; set; }
-        //}
-
-        ///// <summary>
-        ///// Manufacturer of the track
-        ///// </summary>
-        //[XmlAttribute("Manufacturer")]
-        //public string Manufacturer { get; set; }
-
-        ///// <summary>
-        ///// Gauge of the Track H0, TT, N, 1, Z, G, H0e
-        ///// </summary>
-        //[XmlAttribute("GaugeName")]
-        //public string GaugeName { get; set; }
-
-        ////[XmlAttribute("Type")]
-        ////public string Type { get; set; }
-
-        //[XmlAttribute("DockType")]
-        //public string DockType { get; set; }
-
-        //[XmlAttribute("GaugeWidth")]
-        //public double GaugeWidth { get; set; }        
-
-        //[XmlAttribute("TrackWidth")]
-        //public double TrackWidth { get; set; }
-
-        //[XmlAttribute("ViewType")]
-        //public TrackViewType ViewType { get; set; }
-
         [XmlElement("Name")]
         public XmlMultilanguageString Name { get; set; }
 
@@ -62,7 +26,6 @@ namespace Rail.Model
         [XmlArray("Lengths")]
         [XmlArrayItem("Length")]
         public List<TrackLength> Lengths { get; set; }
-
 
         [XmlArray("Tracks")]
         [XmlArrayItem(typeof(TrackStraight), ElementName = "Straight"),

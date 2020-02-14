@@ -33,10 +33,9 @@ namespace Rail.Model
         protected string dockType;
 
         protected Drawing drawingRail;
-        protected Drawing drawingTerrain;
-
+        
         protected double gaugeWidth;
-        protected double sleepersWidth;
+        protected double sleeperWidth;
         protected double ballastWidth;
 
         [XmlAttribute("Article")]
@@ -50,7 +49,7 @@ namespace Rail.Model
         public string AddArticles { get; set; }        
 
         [XmlAttribute("Sleepers")]
-        public TrackSleepers Sleepers { get; set; }
+        public TrackSleeperType SleeperType { get; set; }
 
         [XmlAttribute("Bedding")]
         public bool HasBedding { get; set; }
@@ -81,19 +80,22 @@ namespace Rail.Model
         
         public override void Update(TrackType trackType)
         {
-            this.Id = trackType.Parameter.Manufacturer.Replace(" ","") + this.Article;
-            this.GaugeWidth = trackType.Parameter.GaugeWidth;
-            this.TrackWidth = trackType.Parameter.TrackWidth;
+            TrackParameter parameter = trackType.Parameter;
+
+            this.Id = parameter.Manufacturer.Replace(" ","") + this.Article;
+            
+            this.Manufacturer = parameter.Manufacturer;
+            this.dockType = parameter.DockType;
+
+            this.gaugeWidth = this.GaugeWidth = parameter.GaugeWidth;
+            this.sleeperWidth = parameter.SleeperWidth;
+            this.ballastWidth = parameter.BallastWidth;
+            this.TrackWidth = Math.Max(parameter.BallastWidth, parameter.SleeperWidth);
+
             // override if not set
-            this.Sleepers = this.Sleepers == TrackSleepers.Unknown ? trackType.Parameter.Sleepers : this.Sleepers;
-            this.HasBedding = trackType.Parameter.HasBedding;
-            this.dockType = trackType.Parameter.DockType;
-            this.Manufacturer = trackType.Parameter.Manufacturer;
-
-            this.gaugeWidth = this.GaugeWidth;
-            this.ballastWidth = this.TrackWidth;
-            this.sleepersWidth = trackType.Parameter.HasBedding ? (this.GaugeWidth + this.TrackWidth) / 2 : this.TrackWidth;
-
+            this.SleeperType = this.SleeperType == TrackSleeperType.Unknown ? parameter.SleeperType : this.SleeperType;
+            this.HasBedding = parameter.BallastWidth > 0;
+            
             this.woodenRailPen = new Pen(TrackBrushes.WoodenRail, this.GaugeWidth * railThicknessFactor);
             this.concreteRailPen = new Pen(TrackBrushes.ConcreteRail, this.GaugeWidth * railThicknessFactor);
             
@@ -107,18 +109,8 @@ namespace Rail.Model
 
         protected virtual void Create()
         {
-            // Geometry
             this.TrackGeometry = CreateGeometry();
-            // no drawing because of different colors for the layers
-
-            // Rail
             this.drawingRail = CreateRailDrawing();
-            
-            // Terrain
-            // no geometrie because of no clickable
-            this.drawingTerrain = drawingRail;
-
-            // dock points
             this.DockPoints = CreateDockPoints();
         }
 
@@ -146,7 +138,7 @@ namespace Rail.Model
                 break;
 
             case RailViewMode.Terrain:
-                drawingContext.DrawDrawing(this.drawingTerrain);
+                drawingContext.DrawDrawing(this.drawingRail);
                 break;
             }
         }
@@ -186,20 +178,20 @@ namespace Rail.Model
 
         protected Pen GetSleepersPen()
         {
-            return this.Sleepers switch
+            return this.SleeperType switch
             {
-                TrackSleepers.WoodenSleepers => this.woodenSleepersPen,
-                TrackSleepers.ConcreteSleepers => this.concreteSleepersPen,
+                TrackSleeperType.WoodenSleepers => this.woodenSleepersPen,
+                TrackSleeperType.ConcreteSleepers => this.concreteSleepersPen,
                 _ => null
             };
         }
 
         protected Pen GetRailPen()
         {
-            return this.Sleepers switch
+            return this.SleeperType switch
             {
-                TrackSleepers.WoodenSleepers => this.woodenRailPen,
-                TrackSleepers.ConcreteSleepers => this.concreteRailPen,
+                TrackSleeperType.WoodenSleepers => this.woodenRailPen,
+                TrackSleeperType.ConcreteSleepers => this.concreteRailPen,
                 _ => null
             };
         }
@@ -255,7 +247,7 @@ namespace Rail.Model
             for (int i = 0; i < num; i++)
             {
                 double sx = x + sleepersDistance / 2 + sleepersDistance * i;
-                double sy = this.sleepersWidth / 2;
+                double sy = this.sleeperWidth / 2;
                 railDrawing.Children.Add(new GeometryDrawing(null, sleepersPen, new LineGeometry(
                     new Point(sx, -sy).Rotate(direction).Move(pos),
                     new Point(sx, +sy).Rotate(direction).Move(pos))));
@@ -373,8 +365,8 @@ namespace Rail.Model
         {
             Pen sleepersPen = GetSleepersPen();
 
-            double outerSleepersRadius = radius + this.sleepersWidth / 2;
-            double innerSleepersRadius = radius - this.sleepersWidth / 2;
+            double outerSleepersRadius = radius + this.sleeperWidth / 2;
+            double innerSleepersRadius = radius - this.sleeperWidth / 2;
 
             Point circleCenter = pos + (orientation.HasFlag(CurvedOrientation.Counterclockwise) ? new Vector(0, -radius) : new Vector(0, +radius));
             double startAngle = orientation.HasFlag(CurvedOrientation.Counterclockwise) ? 180 : 0;
