@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="bcde641e-78aa-44ce-9e44-79394ba6d72c" revisionNumber="1">
+  <developerSampleDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <summary>
+      <para>Mouse and keyboard commands</para>
+    </summary>
+
+    <introduction>
+      <para>Required introduction</para>
+    </introduction>
+    
+    <section>
+      <title>Commands</title>
+      <content>
+        
+        <table>
+          <title>Keys Table</title>
+          <tableHeader>
+            <row>
+              <entry>
+                <para>Action</para>
+              </entry>
+              <entry>
+                <para>Description</para>
+              </entry>
+            </row>
+          </tableHeader>
+          <row>
+            <entry>
+              <para>Mouse left click on track</para>
+            </entry>
+            <entry>
+              <para>Select track</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>Mouse double left click on plate</para>
+            </entry>
+            <entry>
+              <para>Add selected track</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>Mouse double left click on track</para>
+            </entry>
+            <entry>
+              <para>On special tracks open dialog and on simple tracks switch docking points.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>Mouse double left click on free docking point</para>
+            </entry>
+            <entry>
+              <para>Add and dock selected track</para>
+            </entry>
+          </row>
+          
+          <row>
+            <entry>
+              <para>Mouse click on track and move</para>
+            </entry>
+            <entry>
+              <para>Move track and all docked tracks</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>Press Ctrl and mouse click on track and move</para>
+            </entry>
+            <entry>
+              <para>Extract track from dockings and move</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>Press Strg and mouse click on track and move</para>
+            </entry>
+            <entry>
+              <para>Move track and all docked tracks without docking during move.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>Mouse click on track near docking point and move</para>
+            </entry>
+            <entry>
+              <para>Rotate track and all docked tracks</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>Mouse click on free docking point move to another free docking point.</para>
+            </entry>
+            <entry>
+              <para>Calculate railes to connect the docking points.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>Mouse click on plate and move.</para>
+            </entry>
+            <entry>
+              <para>Define a rectangel to select all included tracks.</para>
+            </entry>
+          </row>
+
+          <row>
+            <entry>
+              <para>Press Alt and mouse click and move.</para>
+            </entry>
+            <entry>
+              <para>Calculate distance.</para>
+            </entry>
+          </row>
+          
+        </table>
+        
+        
+        
+      </content>
+    </section>
+
+    <relatedTopics>
+    </relatedTopics>
+  </developerSampleDocument>
+</topic>

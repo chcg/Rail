@@ -171,6 +171,12 @@
                         <RibbonRadioButton Label="{x:Static lang:Resources.MainTerrain}" IsChecked="{Binding ViewMode, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static ctrl:RailViewMode.Terrain}}" LargeImageSource="/Images/List.png" SmallImageSource="/Images/List.png" />
                     </RibbonControlGroup>
                 </RibbonGroup>
+
+                <RibbonGroup Header="{x:Static lang:Resources.MainLockTitle}">
+                    <RibbonButton Label="{x:Static lang:Resources.MainLockLock}" Command="{Binding LockCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainLockUnlock}" Command="{Binding UnlockCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
+                </RibbonGroup>
+                
                 <RibbonGroup Header="{x:Static lang:Resources.MainGroupTitle}">
                     <RibbonButton Label="{x:Static lang:Resources.MainGroupCreate}" Command="{Binding CreateGroupCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
                     <RibbonButton Label="{x:Static lang:Resources.MainGroupResolve}" Command="{Binding ResolveGroupCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
@@ -192,6 +198,7 @@
                 <RibbonGroup Header="{x:Static lang:Resources.MainSwitches}">
                     <RibbonToggleButton Label="{x:Static lang:Resources.MainShowTrackList}" IsChecked="{Binding ShowMaterialList}"  SmallImageSource="/Images/List.png" />
                     <RibbonToggleButton Label="{x:Static lang:Resources.MainShowDockingPoints}" IsChecked="{Binding ShowDockingPoints}"  SmallImageSource="/Images/List.png" />
+                    <RibbonToggleButton Label="{x:Static lang:Resources.MainShowClearSpace}" IsChecked="{Binding ShowClearSpace}"  SmallImageSource="/Images/List.png" />
                 </RibbonGroup>
 
                 

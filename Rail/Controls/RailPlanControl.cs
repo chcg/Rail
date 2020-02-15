@@ -26,6 +26,7 @@ namespace Rail.Controls
         private readonly Pen plateFramePen = new Pen(TrackBrushes.PlateFrame, 1);
         private readonly Pen selectFramePen1 = new Pen(Brushes.Black, 2);
         private readonly Pen selectFramePen2 = new Pen(Brushes.White, 2) { DashStyle = DashStyles.Dot };
+        private readonly Pen selectFramePen3 = new Pen(Brushes.White, 2) { DashStyle = DashStyles.Dash };
 
         // mouse operation variables
         private Point lastMousePosition; 
@@ -97,7 +98,11 @@ namespace Rail.Controls
             /// <summary>
             /// show dock point binding line
             /// </summary>
-            BindingLine
+            BindingLine,
+            /// <summary>
+            /// measure distance between two points
+            /// </summary>
+            Measure
         }
 
         static RailPlanControl()
@@ -728,6 +733,10 @@ namespace Rail.Controls
                 drawingContext.DrawLine(selectFramePen1, this.selectRecStart, this.lastMousePosition);
                 drawingContext.DrawLine(selectFramePen2, this.selectRecStart, this.lastMousePosition);
                 break;
+            case RailAction.Measure:
+                drawingContext.DrawLine(selectFramePen1, this.selectRecStart, this.lastMousePosition);
+                drawingContext.DrawLine(selectFramePen3, this.selectRecStart, this.lastMousePosition);
+                break;
             }
             drawingContext.Pop();
             DebugText(drawingContext);
@@ -1055,50 +1064,58 @@ namespace Rail.Controls
             this.hasMoved = false;
             this.selectedChangeIntern = true;
 
-            // click inside track
-            if ((this.actionRailItem = FindRailItem(pos)) != null)
+            // Alt pressed
+            if (Keyboard.Modifiers.HasFlag(ModifierKeys.Alt))
             {
-                // click inside docking point
-                RailDockPoint dp = this.actionRailItem.DockPoints?.FirstOrDefault(d => d.IsInside(pos));
-                if (dp != null)
+                this.actionType = RailAction.Measure;
+                this.selectRecStart = pos;
+            }
+            else
+            {
+                // click inside track
+                if ((this.actionRailItem = FindRailItem(pos)) != null)
                 {
-                    this.actionType = RailAction.Rotate;
-                    this.actionSubgraph = this.actionRailItem.FindSubgraph();
-                }
-                // click outside docking point
-                else
-                {
-                    // CTRL pressed
-                    if (Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+                    // click inside docking point
+                    RailDockPoint dp = this.actionRailItem.DockPoints?.FirstOrDefault(d => d.IsInside(pos));
+                    if (dp != null)
                     {
-                        this.actionRailItem.UndockAll();
-                        this.actionType = RailAction.MoveSingle;
-                        this.actionSubgraph = null;
-                    }
-                    // SHIFT pressed
-                    else if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
-                    {
-                        this.actionType = RailAction.MoveSimple;
+                        this.actionType = RailAction.Rotate;
                         this.actionSubgraph = this.actionRailItem.FindSubgraph();
                     }
+                    // click outside docking point
                     else
                     {
-                        this.actionType = RailAction.MoveGraph;
-                        this.actionSubgraph = this.actionRailItem.FindSubgraph();
+                        // CTRL pressed
+                        if (Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+                        {
+                            this.actionRailItem.UndockAll();
+                            this.actionType = RailAction.MoveSingle;
+                            this.actionSubgraph = null;
+                        }
+                        // SHIFT pressed
+                        else if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
+                        {
+                            this.actionType = RailAction.MoveSimple;
+                            this.actionSubgraph = this.actionRailItem.FindSubgraph();
+                        }
+                        else
+                        {
+                            this.actionType = RailAction.MoveGraph;
+                            this.actionSubgraph = this.actionRailItem.FindSubgraph();
+                        }
                     }
                 }
+                else if ((this.actionDockPoint = FindFreeDockPoint(pos)) != null)
+                {
+                    this.actionType = RailAction.BindingLine;
+                    this.selectRecStart = pos;
+                }
+                else if (e.ClickCount == 1)
+                {
+                    this.actionType = RailAction.SelectRect;
+                    this.selectRecStart = pos;
+                }
             }
-            else if ((this.actionDockPoint = FindFreeDockPoint(pos)) != null)
-            {
-                this.actionType = RailAction.BindingLine;
-                this.selectRecStart = pos;
-            }
-            else if(e.ClickCount == 1)
-            {
-                this.actionType = RailAction.SelectRect;
-                this.selectRecStart = pos;
-            }
-            
             this.CaptureMouse();
             this.Invalidate();
 
@@ -1139,6 +1156,7 @@ namespace Rail.Controls
                 break;
             case RailAction.SelectRect:
             case RailAction.BindingLine:
+            case RailAction.Measure:
                 Invalidate();
                 break;
             }
@@ -1173,6 +1191,9 @@ namespace Rail.Controls
                 break;
             case RailAction.BindingLine:
                 BindDockingPoints(this.actionDockPoint, FindFreeDockPoint(pos));
+                break;
+            case RailAction.Measure:
+                ShowMeasure(this.selectRecStart, pos);
                 break;
             }
            
@@ -1554,6 +1575,19 @@ namespace Rail.Controls
         private bool OnCanEditHelix()
         {
             return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailHelix;
+        }
+
+        #endregion
+
+        #region Measure
+
+        private void ShowMeasure(Point from, Point to)
+        {
+            MeasureViewModel viewModel = new MeasureViewModel();
+            viewModel.Distance = from.Distance(to);
+            viewModel.DistanceX = Math.Abs(from.X - to.X);
+            viewModel.DistanceY = Math.Abs(from.Y - to.Y);
+            new MeasureView { DataContext = viewModel }.ShowDialog();
         }
 
         #endregion

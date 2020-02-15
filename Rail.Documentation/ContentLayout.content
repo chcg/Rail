@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Topics>
+  <Topic id="74616c04-f871-4516-82c2-aaf88f386f19" visible="True" isDefault="true" isSelected="true" title="Welcome to the [TODO: Add project name]">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="Welcome" />
+    </HelpKeywords>
+  </Topic>
+  <Topic id="5bc66a26-d1f3-4275-bd42-0e0426932777" visible="True" title="Version History">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="version, history" />
+    </HelpKeywords>
+    <Topic id="bcc14795-b267-4acf-9dce-0484539fa952" visible="True" title="Version 1.0.0.0">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="version, 1.0.0.0" />
+      </HelpKeywords>
+    </Topic>
+  </Topic>
+  <Topic id="05b3a1e7-309f-4a90-936d-912f2e7a01c6" visible="True" isExpanded="true" title="English">
+    <Topic id="bcde641e-78aa-44ce-9e44-79394ba6d72c" visible="True" title="Keys" />
+  </Topic>
+  <Topic id="75ae64dc-3201-4e01-bf3b-688302b84363" visible="True" isExpanded="true" title="Deutsch">
+    <Topic id="03077421-d39a-4864-adc7-b7058a42f26e" visible="True" title="Tasten" />
+  </Topic>
+</Topics>

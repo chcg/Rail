@@ -394,6 +394,33 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lock Rail.
+        /// </summary>
+        public static string MainLockLock {
+            get {
+                return ResourceManager.GetString("MainLockLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lock.
+        /// </summary>
+        public static string MainLockTitle {
+            get {
+                return ResourceManager.GetString("MainLockTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock Rail.
+        /// </summary>
+        public static string MainLockUnlock {
+            get {
+                return ResourceManager.GetString("MainLockUnlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manufacturer.
         /// </summary>
         public static string MainManufacturer {
@@ -547,6 +574,15 @@ namespace Rail.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show Clear Space.
+        /// </summary>
+        public static string MainShowClearSpace {
+            get {
+                return ResourceManager.GetString("MainShowClearSpace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show Docking Points.
         /// </summary>
         public static string MainShowDockingPoints {
@@ -696,6 +732,51 @@ namespace Rail.Properties {
         public static string MainZoom {
             get {
                 return ResourceManager.GetString("MainZoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delta X.
+        /// </summary>
+        public static string MeasureDeltaX {
+            get {
+                return ResourceManager.GetString("MeasureDeltaX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delta Y.
+        /// </summary>
+        public static string MeasureDeltaY {
+            get {
+                return ResourceManager.GetString("MeasureDeltaY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance.
+        /// </summary>
+        public static string MeasureDistance {
+            get {
+                return ResourceManager.GetString("MeasureDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mm.
+        /// </summary>
+        public static string MeasureMM {
+            get {
+                return ResourceManager.GetString("MeasureMM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance Measurement.
+        /// </summary>
+        public static string MeasureTitle {
+            get {
+                return ResourceManager.GetString("MeasureTitle", resourceCulture);
             }
         }
         

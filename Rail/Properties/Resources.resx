@@ -232,6 +232,15 @@
   <data name="MainLayers" xml:space="preserve">
     <value>Layers</value>
   </data>
+  <data name="MainLockLock" xml:space="preserve">
+    <value>Lock Rail</value>
+  </data>
+  <data name="MainLockTitle" xml:space="preserve">
+    <value>Lock</value>
+  </data>
+  <data name="MainLockUnlock" xml:space="preserve">
+    <value>Unlock Rail</value>
+  </data>
   <data name="MainManufacturer" xml:space="preserve">
     <value>Manufacturer</value>
   </data>
@@ -286,6 +295,9 @@
   <data name="MainShow" xml:space="preserve">
     <value>Show</value>
   </data>
+  <data name="MainShowClearSpace" xml:space="preserve">
+    <value>Show Clear Space</value>
+  </data>
   <data name="MainShowDockingPoints" xml:space="preserve">
     <value>Show Docking Points</value>
   </data>
@@ -336,6 +348,21 @@
   </data>
   <data name="MainZoom" xml:space="preserve">
     <value>Zoom</value>
+  </data>
+  <data name="MeasureDeltaX" xml:space="preserve">
+    <value>Delta X</value>
+  </data>
+  <data name="MeasureDeltaY" xml:space="preserve">
+    <value>Delta Y</value>
+  </data>
+  <data name="MeasureDistance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="MeasureMM" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="MeasureTitle" xml:space="preserve">
+    <value>Distance Measurement</value>
   </data>
   <data name="MenuDelete" xml:space="preserve">
     <value>Delete</value>
