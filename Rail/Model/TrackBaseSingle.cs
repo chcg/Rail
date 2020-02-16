@@ -87,7 +87,7 @@ namespace Rail.Model
             this.Manufacturer = parameter.Manufacturer;
             this.dockType = parameter.DockType;
 
-            this.gaugeWidth = this.GaugeWidth = parameter.GaugeWidth;
+            this.gaugeWidth = this.GaugeWidth = parameter.RailWidth;
             this.sleeperWidth = parameter.SleeperWidth;
             this.ballastWidth = parameter.BallastWidth;
             this.TrackWidth = Math.Max(parameter.BallastWidth, parameter.SleeperWidth);

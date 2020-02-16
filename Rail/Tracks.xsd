@@ -25,12 +25,14 @@
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="Manufacturer" type="xs:string" />
-                    <xs:element name="GaugeName" type="xs:string" />
+                    <xs:element name="Gauge" type="Gauge" />
                     <xs:element name="DockType" type="xs:string" />
-                    <xs:element name="GaugeWidth" type="xs:decimal" />
+                    <xs:element name="RailType" type="RailType" />
+                    <xs:element name="RailWidth" type="xs:decimal" />
+                    <xs:element name="SleeperType" type="SleeperType" />
                     <xs:element name="SleeperWidth" type="xs:decimal" />
+                    <xs:element name="BallastType" type="BallastType" />
                     <xs:element minOccurs="0" name="BallastWidth" type="xs:decimal" />
-                    <xs:element name="SleeperType" type="xs:string" />
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -300,4 +302,46 @@
       <xs:attribute name="Version" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
+
+  <xs:simpleType name="Gauge" >
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="T" />
+      <xs:enumeration value="Z" />
+      <xs:enumeration value="N" />
+      <xs:enumeration value="TT" />
+      <xs:enumeration value="H0" />
+      <xs:enumeration value="H0e" />
+      <xs:enumeration value="00" />
+      <xs:enumeration value="S" />
+      <xs:enumeration value="0" />
+      <xs:enumeration value="1" />
+      <xs:enumeration value="2" />
+      <xs:enumeration value="G" />
+      <xs:enumeration value="Lego" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="RailType" >
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Silver" />
+      <xs:enumeration value="Copper" />
+      <xs:enumeration value="Black" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SleeperType" >
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="WoodenSleepers" />
+      <xs:enumeration value="ConcreteSleepers" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="BallastType" >
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No" />
+      <xs:enumeration value="Light" />
+      <xs:enumeration value="Medium" />
+      <xs:enumeration value="Dark" />
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>

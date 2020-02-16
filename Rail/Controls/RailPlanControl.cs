@@ -657,6 +657,32 @@ namespace Rail.Controls
 
         #endregion
 
+        #region GridLinesDistance
+
+        public static readonly DependencyProperty GridLinesDistanceProperty =
+            DependencyProperty.Register("GridLinesDistance", typeof(double), typeof(RailPlanControl),
+                new FrameworkPropertyMetadata(0.0, new PropertyChangedCallback(OnGridLinesDistanceChanged)));
+
+        public double GridLinesDistance
+        {
+            get
+            {
+                return (double)GetValue(GridLinesDistanceProperty);
+            }
+            set
+            {
+                SetValue(GridLinesDistanceProperty, value);
+            }
+        }
+
+        private static void OnGridLinesDistanceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RailPlanControl railPlan = (RailPlanControl)o;
+            railPlan.InvalidateVisual();
+        }
+
+        #endregion
+
         private void CalcGroundSize()
         {
             this.Width =  margin * 2 + this.RailPlan.Width  * this.ZoomFactor;
@@ -738,6 +764,9 @@ namespace Rail.Controls
                 drawingContext.DrawLine(selectFramePen3, this.selectRecStart, this.lastMousePosition);
                 break;
             }
+
+            RenderGridLines(drawingContext);
+
             drawingContext.Pop();
             DebugText(drawingContext);
         }
@@ -757,8 +786,25 @@ namespace Rail.Controls
                 ), true)
             }));
         }
-
         
+        Pen gridLinePen = new Pen(Brushes.Black, 0.2);
+
+        protected void RenderGridLines(DrawingContext drawingContext)
+        {
+            if (this.GridLinesDistance > 0)
+            {
+                double w = this.RailPlan.Width;
+                double h = this.RailPlan.Height;
+                for (double x = 0; x < w; x += this.GridLinesDistance)
+                {
+                    drawingContext.DrawLine(gridLinePen, new Point(x, 0), new Point(x, h));
+                }
+                for (double y = 0; y < h; y += this.GridLinesDistance)
+                {
+                    drawingContext.DrawLine(gridLinePen, new Point(0, y), new Point(w, y));
+                }
+            }
+        }
 
         #endregion
 

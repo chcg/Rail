@@ -93,7 +93,7 @@ namespace Rail.ViewModel
                 this.TrackSelects = this.selectedSelectionIndex switch
                 {
                     0 => null,
-                    1 => this.trackList.TrackTypes.Select(t => t.Parameter.GaugeName).Distinct().OrderBy(t => t).ToList(),
+                    1 => this.trackList.TrackTypes.Select(t => t.Parameter.Gauge.ToString()).Distinct().OrderBy(t => t).ToList(),
                     2 => this.trackList.TrackTypes.Select(t => t.Parameter.Manufacturer).Distinct().OrderBy(t => t).ToList(),
                     _ => null
                 };
@@ -119,7 +119,7 @@ namespace Rail.ViewModel
                 this.TrackTypes = this.selectedSelectionIndex switch
                 {
                     0 => this.trackList.TrackTypes,
-                    1 => this.trackList.TrackTypes.Where(t => t.Parameter.GaugeName == SelectedTrackSelect).ToList(),
+                    1 => this.trackList.TrackTypes.Where(t => t.Parameter.Gauge.ToString() == SelectedTrackSelect).ToList(),
                     2 => this.trackList.TrackTypes.Where(t => t.Parameter.Manufacturer == SelectedTrackSelect).ToList(),
                     _ => null
                 };
@@ -314,7 +314,7 @@ namespace Rail.ViewModel
 
         public double[] SnapInDistances { get { return new double[] { 0, 100, 1000, 10000, 100000 }; } }
         public double[] SnapInAngels { get { return new double[] { 0, 30, 15, 7.5 }; } }
-        public double[] GridLinesDistances { get { return new double[] { 0, 100, 1000, 10000, 100000 }; } }
+        public double[] GridLinesDistances { get { return new double[] { 0, 10, 25, 50, 100, 250, 500 }; } }
 
         private double snapInDistance = 0;
         public double SnapInDistance

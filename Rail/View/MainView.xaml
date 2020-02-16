@@ -403,6 +403,7 @@
                     ViewMode="{Binding ViewMode}" 
                     ShowDockingPoints="{Binding ShowDockingPoints}"
                     InsertLayer="{Binding SelectedInsertLayer}"
+                    GridLinesDistance="{Binding GridLinesDistance}"
                     RailMargin="40"/>
             </ScrollViewer>
             <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TerrainViewModeToVisibilityConverter}}">

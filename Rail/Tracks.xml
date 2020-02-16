@@ -7,12 +7,14 @@
     </Name>
     <Parameter>
       <Manufacturer>Märklin</Manufacturer>
-      <GaugeName>H0</GaugeName>
+      <Gauge>H0</Gauge>
       <DockType>m24</DockType>
-      <GaugeWidth>18.0</GaugeWidth>
-      <SleeperWidth>27.0</SleeperWidth>
-      <BallastWidth>39.0</BallastWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>18.0</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>27.0</SleeperWidth>
+      <BallastType>Dark</BallastType>
+      <BallastWidth>39.0</BallastWidth>
     </Parameter>
     <Radii>
       <Radius Name="R1" Length="360.0" />
@@ -152,12 +154,14 @@
     </Name>
     <Parameter>
       <Manufacturer>Märklin</Manufacturer>
-      <GaugeName>H0</GaugeName>
+      <Gauge>H0</Gauge>
       <DockType>m24</DockType>
-      <GaugeWidth>18.0</GaugeWidth>
-      <SleeperWidth>27.0</SleeperWidth>
-      <BallastWidth>39.0</BallastWidth>
+      <RailType>Black</RailType>
+      <RailWidth>18.0</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>27.0</SleeperWidth>
+      <BallastType>Dark</BallastType>
+      <BallastWidth>39.0</BallastWidth>
     </Parameter>
     <Radii>
       <Radius Name="R1" Length="360.0" Description="R1 Radius" />
@@ -186,11 +190,13 @@
     </Name>
     <Parameter>
       <Manufacturer>Märklin</Manufacturer>
-      <GaugeName>H0</GaugeName>
+      <Gauge>H0</Gauge>
       <DockType>m22</DockType>
-      <GaugeWidth>18.0</GaugeWidth>
-      <SleeperWidth>29.5</SleeperWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>18.0</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>29.5</SleeperWidth>
+      <BallastType>No</BallastType>
     </Parameter>
     <Radii>
       <Radius Name="R0" Length="295.4" Description="R0 Industrie Radius 295.4 mm"/>
@@ -260,12 +266,14 @@
     </Name>
     <Parameter>
       <Manufacturer>Märklin</Manufacturer>
-      <GaugeName>H0</GaugeName>
+      <Gauge>H0</Gauge>
       <DockType>m72</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
-      <BallastWidth>20.0</BallastWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>16.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>Light</BallastType>
+      <BallastWidth>20.0</BallastWidth>
     </Parameter>
     <Radii>
       <Radius Name="I" Length="282.6" />
@@ -331,12 +339,13 @@
     </Name>
     <Parameter>
       <Manufacturer>Märklin</Manufacturer>
-      <GaugeName>1</GaugeName>
+      <Gauge>1</Gauge>
       <DockType>m59</DockType>
-      <GaugeWidth>45.0</GaugeWidth>
-      <SleeperWidth>55.0</SleeperWidth>
-      <BallastWidth>55.0</BallastWidth>
+      <RailType>Copper</RailType>
+      <RailWidth>45.0</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>55.0</SleeperWidth>
+      <BallastType>No</BallastType>
     </Parameter>
     <!-- R1 = 1020 mm -->
     <!-- R2 = 1176 mm -->
@@ -387,12 +396,13 @@
     </Name>
     <Parameter>
       <Manufacturer>Märklin</Manufacturer>
-      <GaugeName>Z</GaugeName>
+      <Gauge>Z</Gauge>
       <DockType>m24</DockType>
-      <GaugeWidth>6.5</GaugeWidth>
-      <SleeperWidth>8.0</SleeperWidth>
-      <BallastWidth>8.0</BallastWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>6.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>8.0</SleeperWidth>
+      <BallastType>No</BallastType>
     </Parameter>
     <!-- R1 = 145 mm -->
     <!-- R2 = 195 mm -->
@@ -454,12 +464,14 @@
     </Name>
     <Parameter>
       <Manufacturer>Trix</Manufacturer>
-      <GaugeName>H0</GaugeName>
+      <Gauge>H0</Gauge>
       <DockType>m24</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
-      <BallastWidth>20.0</BallastWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>16.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>Dark</BallastType>
+      <BallastWidth>20.0</BallastWidth>
     </Parameter>
   </TrackType>
   
@@ -470,12 +482,13 @@
     </Name>
     <Parameter>
       <Manufacturer>LGB</Manufacturer>
-      <GaugeName>G</GaugeName>
+      <Gauge>G</Gauge>
       <DockType>m10</DockType>
-      <GaugeWidth>45.5</GaugeWidth>
-      <SleeperWidth>52.0</SleeperWidth>
-      <BallastWidth>52.0</BallastWidth>
+      <RailType>Copper</RailType>
+      <RailWidth>45.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>52.0</SleeperWidth>
+      <BallastType>No</BallastType>
     </Parameter>
     <Radii>
       <Radius Name="R1" Length="600" />
@@ -527,12 +540,14 @@
     </Name>
     <Parameter>
       <Manufacturer>Fleischmann</Manufacturer>
-      <GaugeName>H0</GaugeName>
+      <Gauge>H0</Gauge>
       <DockType>m24</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
-      <BallastWidth>20.0</BallastWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>16.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>Medium</BallastType>
+      <BallastWidth>20.0</BallastWidth>
     </Parameter>
     <!-- R1 = 356.5 mm -->
     <!-- R2 = 420.0 mm -->
@@ -549,12 +564,14 @@
     </Name>
     <Parameter>
       <Manufacturer>Fleischmann</Manufacturer>
-      <GaugeName>N</GaugeName>
+      <Gauge>N</Gauge>
       <DockType>m24</DockType>
-      <GaugeWidth>45.0</GaugeWidth>
-      <SleeperWidth>52.0</SleeperWidth>
-      <BallastWidth>52.0</BallastWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>45.0</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>52.0</SleeperWidth>
+      <BallastType>No</BallastType>
+      <BallastWidth>52.0</BallastWidth>
     </Parameter>
     <!-- R1 = 192.0 mm -->
     <!-- R2 = 225.6 mm -->
@@ -569,11 +586,13 @@
     </Name>
     <Parameter>
       <Manufacturer>Fleischmann</Manufacturer>
-      <GaugeName>N</GaugeName>
+      <Gauge>N</Gauge>
       <DockType>f24</DockType>
-      <GaugeWidth>45.0</GaugeWidth>
-      <SleeperWidth>52.0</SleeperWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>45.0</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>52.0</SleeperWidth>
+      <BallastType>No</BallastType>
     </Parameter>
     <!-- R1 = 194.6 mm -->
     <!-- R2 = 228.2 mm -->
@@ -592,12 +611,14 @@
     </Name>
     <Parameter>
       <Manufacturer>Roco</Manufacturer>
-      <GaugeName>H0</GaugeName>
+      <Gauge>H0</Gauge>
       <DockType>r24</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
-      <BallastWidth>20.0</BallastWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>16.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>Medium</BallastType>
+      <BallastWidth>20.0</BallastWidth>
     </Parameter>
   </TrackType>
   <TrackType Manufacturer="Roco" GaugeName="H0" Type="Roco-Line" GaugeWidth="16.5" >
@@ -607,12 +628,14 @@
     </Name>
     <Parameter>
       <Manufacturer>Roco</Manufacturer>
-      <GaugeName>H0</GaugeName>
+      <Gauge>H0</Gauge>
       <DockType>m24</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
-      <BallastWidth>20.0</BallastWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>16.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>Medium</BallastType>
+      <BallastWidth>20.0</BallastWidth>
     </Parameter>
   </TrackType>
 
@@ -623,12 +646,14 @@
     </Name>
     <Parameter>
       <Manufacturer>Roco</Manufacturer>
-      <GaugeName>H0</GaugeName>
+      <Gauge>H0</Gauge>
       <DockType>m24</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
-      <BallastWidth>20.0</BallastWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>16.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>Medium</BallastType>
+      <BallastWidth>20.0</BallastWidth>
     </Parameter>
   </TrackType>
 
@@ -639,12 +664,14 @@
     </Name>
     <Parameter>
       <Manufacturer>Roco</Manufacturer>
-      <GaugeName>H0e</GaugeName>
+      <Gauge>H0e</Gauge>
       <DockType>m24</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
-      <BallastWidth>20.0</BallastWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>16.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>Dark</BallastType>
+      <BallastWidth>20.0</BallastWidth>
     </Parameter>
   </TrackType>
 
@@ -655,12 +682,14 @@
     </Name>
     <Parameter>
       <Manufacturer>Roco</Manufacturer>
-      <GaugeName>H0e</GaugeName>
+      <Gauge>H0e</Gauge>
       <DockType>m24</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
-      <BallastWidth>20.0</BallastWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>16.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>Dark</BallastType>
+      <BallastWidth>20.0</BallastWidth>
     </Parameter>
   </TrackType>
 
@@ -671,11 +700,13 @@
     </Name>
     <Parameter>
       <Manufacturer>Pico</Manufacturer>
-      <GaugeName>G</GaugeName>
+      <Gauge>G</Gauge>
       <DockType>m24</DockType>
-      <GaugeWidth>45.0</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>45.0</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>Dark</BallastType>
     </Parameter>
     <Radii>
       <Radius Name="R1" Length="600.00" />
@@ -721,12 +752,14 @@
     </Name>
     <Parameter>
       <Manufacturer>Pico</Manufacturer>
-      <GaugeName>H0</GaugeName>
+      <Gauge>H0</Gauge>
       <DockType>p5</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
-      <BallastWidth>20.0</BallastWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>16.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>Dark</BallastType>
+      <BallastWidth>20.0</BallastWidth>
     </Parameter>
     <Radii>
       <Radius Name="R1" Length="360.00" />
@@ -791,12 +824,14 @@
     </Name>
     <Parameter>
       <Manufacturer>Pico</Manufacturer>
-      <GaugeName>H0</GaugeName>
+      <Gauge>H0</Gauge>
       <DockType>m24</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
-      <BallastWidth>20.0</BallastWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>16.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>Dark</BallastType>
+      <BallastWidth>20.0</BallastWidth>
     </Parameter>
     <Radii>
       <Radius Name="R1" Length="360.00" />
@@ -856,11 +891,13 @@
     </Name>
     <Parameter>
       <Manufacturer>Pico</Manufacturer>
-      <GaugeName>H0</GaugeName>
+      <Gauge>H0</Gauge>
       <DockType>m24</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>16.5</RailWidth>
       <SleeperType>ConcreteSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>No</BallastType>
     </Parameter>
     <Radii>
       <Radius Name="R1" Length="360.00" />
@@ -894,12 +931,14 @@
     </Name>
     <Parameter>
       <Manufacturer>Rokuhan</Manufacturer>
-      <GaugeName>Z</GaugeName>
+      <Gauge>Z</Gauge>
       <DockType>m24</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
-      <BallastWidth>20.0</BallastWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>16.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>Dark</BallastType>
+      <BallastWidth>20.0</BallastWidth>
     </Parameter>
   </TrackType>
   
@@ -910,12 +949,14 @@
     </Name>
     <Parameter>
       <Manufacturer>Kato</Manufacturer>
-      <GaugeName>Z</GaugeName>
+      <Gauge>Z</Gauge>
       <DockType>m24</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
-      <BallastWidth>20.0</BallastWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>16.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>Dark</BallastType>
+      <BallastWidth>20.0</BallastWidth>
     </Parameter>
   </TrackType>
 
@@ -926,11 +967,13 @@
     </Name>
     <Parameter>
       <Manufacturer>Lego</Manufacturer>
-      <GaugeName>Lego</GaugeName>
+      <Gauge>Lego</Gauge>
       <DockType>lego</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>16.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>No</BallastType>
     </Parameter>
     <Radii>
       <Radius Name="R40" Length="704" Description="(40 + 4) * 2 * 8 mm = 704 mm" />
@@ -944,11 +987,13 @@
     </Name>
     <Parameter>
       <Manufacturer>Trixbrix</Manufacturer>
-      <GaugeName>Lego</GaugeName>
+      <Gauge>Lego</Gauge>
       <DockType>lego</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>16.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>No</BallastType>
     </Parameter>
     <Radii>
       <Radius Name="R24" Length="448" Description="(24 + 4) * 2 * 8 mm = 448 mm" />
@@ -968,11 +1013,13 @@
     </Name>
     <Parameter>
       <Manufacturer>Caterpillar Red</Manufacturer>
-      <GaugeName>Lego</GaugeName>
+      <Gauge>Lego</Gauge>
       <DockType>lego</DockType>
-      <GaugeWidth>16.5</GaugeWidth>
-      <SleeperWidth>20.0</SleeperWidth>
+      <RailType>Silver</RailType>
+      <RailWidth>16.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
+      <SleeperWidth>20.0</SleeperWidth>
+      <BallastType>No</BallastType>
     </Parameter>
   </TrackType>
 
