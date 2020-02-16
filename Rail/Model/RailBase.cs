@@ -21,6 +21,8 @@ namespace Rail.Model
         //protected static readonly Pen dockPen = new Pen(Brushes.Blue, 1);
         //protected static readonly Pen positionPen = new Pen(Brushes.Red, 2);
         protected static int globalDebugIndex = 0;
+        protected static readonly Geometry anchorGeometry = Geometry.Parse("M 0,-20 V 20 M -10,-10 H 10 M -20,10 A 30,30 15 0 0 20,10");
+        protected static readonly Pen anchorPen = new Pen(Brushes.Red, 5); 
 
         public RailBase()
         { }
@@ -52,6 +54,9 @@ namespace Rail.Model
         [XmlArray("DockPoints")]
         [XmlArrayItem("DockPoint")]
         public List<RailDockPoint> DockPoints { get; set; }
+
+        [XmlElement("IsAnchored"), JsonPropertyName("IsAnchored")]
+        public bool IsAnchored { get; set; }
 
         [XmlIgnore, JsonIgnore]
         public bool IsSelected { get; set; }

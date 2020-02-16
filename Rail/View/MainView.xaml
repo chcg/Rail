@@ -173,8 +173,8 @@
                 </RibbonGroup>
 
                 <RibbonGroup Header="{x:Static lang:Resources.MainLockTitle}">
-                    <RibbonButton Label="{x:Static lang:Resources.MainLockLock}" Command="{Binding LockCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
-                    <RibbonButton Label="{x:Static lang:Resources.MainLockUnlock}" Command="{Binding UnlockCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainLockLock}" Command="{Binding AnchorCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
+                    <RibbonButton Label="{x:Static lang:Resources.MainLockUnlock}" Command="{Binding UnanchorCommand, ElementName=railPlanControl}" SmallImageSource="/Rail;component/Images/Settings.png" />
                 </RibbonGroup>
                 
                 <RibbonGroup Header="{x:Static lang:Resources.MainGroupTitle}">

@@ -67,7 +67,8 @@ namespace Rail.Controls
         public DelegateCommand DuplicateCommand { get; private set; }
         public DelegateCommand SelectAllCommand { get; private set; }
 
-
+        public DelegateCommand AnchorCommand { get; private set; }
+        public DelegateCommand UnanchorCommand { get; private set; }
 
 
         //public static readonly RoutedCommand RefreshCommand = new RoutedCommand("Refresh", typeof(RailPlanControl));
@@ -136,6 +137,9 @@ namespace Rail.Controls
             this.DeleteCommand = new DelegateCommand(OnDelete, OnCanDelete);
             this.DuplicateCommand = new DelegateCommand(OnDuplicate, OnCanDuplicate);
             this.SelectAllCommand =  new DelegateCommand(OnSelectAll, OnCanSelectAll);
+
+            this.AnchorCommand = new DelegateCommand(OnAnchor, OnCanAnchor);
+            this.UnanchorCommand = new DelegateCommand(OnUnanchor, OnCanUnanchor);
 
             //CommandBinding commandBinding = new CommandBinding(RefreshCommand);
             //commandBinding.Executed += OnRefresh;
@@ -1119,14 +1123,15 @@ namespace Rail.Controls
             else
             {
                 // click inside track
-                if ((this.actionRailItem = FindRailItem(pos)) != null)
+                this.actionRailItem = FindRailItem(pos);
+                this.actionSubgraph = this.actionRailItem?.FindSubgraph();
+                if (this.actionRailItem != null && !IsAnchored(this.actionSubgraph))
                 {
                     // click inside docking point
                     RailDockPoint dp = this.actionRailItem.DockPoints?.FirstOrDefault(d => d.IsInside(pos));
                     if (dp != null)
                     {
                         this.actionType = RailAction.Rotate;
-                        this.actionSubgraph = this.actionRailItem.FindSubgraph();
                     }
                     // click outside docking point
                     else
@@ -1142,12 +1147,10 @@ namespace Rail.Controls
                         else if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
                         {
                             this.actionType = RailAction.MoveSimple;
-                            this.actionSubgraph = this.actionRailItem.FindSubgraph();
                         }
                         else
                         {
                             this.actionType = RailAction.MoveGraph;
-                            this.actionSubgraph = this.actionRailItem.FindSubgraph();
                         }
                     }
                 }
@@ -1478,6 +1481,44 @@ namespace Rail.Controls
         //    this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
         //    this.Invalidate();
         //}
+
+        #endregion
+
+        #region anchor
+        
+        
+        private bool OnCanAnchor()
+        {
+            return this.SelectedMode == RailSelectedMode.Single && !this.selectedRail.IsAnchored;
+        }
+
+        private void OnAnchor()
+        { 
+            if (OnCanAnchor())
+            {
+                this.selectedRail.IsAnchored = true;
+                this.InvalidateVisual();
+            }
+        }
+
+        private bool OnCanUnanchor()
+        {
+            return this.SelectedMode == RailSelectedMode.Single && this.selectedRail.IsAnchored;
+        }
+
+        private void OnUnanchor()
+        {
+            if (OnCanUnanchor())
+            {
+                this.selectedRail.IsAnchored = false;
+                this.InvalidateVisual();
+            }
+        }
+
+        private bool IsAnchored(List<RailBase> rails)
+        {
+            return rails.Any(r => r.IsAnchored);
+        }
 
         #endregion
 

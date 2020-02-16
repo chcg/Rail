@@ -95,6 +95,10 @@ namespace Rail.Model
             {
                 this.Track.RenderSelection(drawingContext, viewMode);
             }
+            if (this.IsAnchored)
+            {
+                drawingContext.DrawGeometry(null, anchorPen, anchorGeometry);
+            }
             
             drawingContext.Pop();
 
