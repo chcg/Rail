@@ -97,7 +97,9 @@ namespace Rail.Model
             }
             if (this.IsAnchored)
             {
-                drawingContext.DrawGeometry(null, anchorPen, anchorGeometry);
+                Geometry geometry = anchorGeometry.Clone();
+                geometry.Transform = new ScaleTransform(0.15, 0.15, 20, -20);
+                drawingContext.DrawGeometry(Brushes.Red, anchorPen, geometry);
             }
             
             drawingContext.Pop();
