@@ -89,8 +89,7 @@ namespace Rail.Mvvm
             }
 
             int childIndex = 0;
-            DependencyObject dependencyObject = parent as DependencyObject;
-            if (dependencyObject != null)
+            if (parent is DependencyObject dependencyObject)
             {
                 IEnumerable children = LogicalTreeHelper.GetChildren(dependencyObject);
                 foreach (object child in children)
@@ -105,17 +104,14 @@ namespace Rail.Mvvm
             }
 
             // if we failed to get any logical children, enumerate the visual ones
-            Visual visual = parent as Visual;
-            if (visual == null)
+            if (parent is Visual visual)
             {
-                return;
+                for (childIndex = 0; childIndex < VisualTreeHelper.GetChildrenCount(visual); childIndex++)
+                {
+                    Visual child = VisualTreeHelper.GetChild(visual, childIndex) as Visual;
+                    SaveQatItemsAmongChildren(remainingItems, child, childIndex);
+                }
             }
-            for (childIndex = 0; childIndex < VisualTreeHelper.GetChildrenCount(visual); childIndex++)
-            {
-                Visual child = VisualTreeHelper.GetChild(visual, childIndex) as Visual;
-                SaveQatItemsAmongChildren(remainingItems, child, childIndex);
-            }
-
         }
 
         private bool IsLeaf(object element)
@@ -130,9 +126,9 @@ namespace Rail.Mvvm
                 return true;
             }
 
-            RibbonMenuItem menuItem = element as RibbonMenuItem;
-            if (menuItem != null &&
-                menuItem.Items.Count == 0)
+            //RibbonMenuItem menuItem = element as RibbonMenuItem;
+            //if (menuItem != null && menuItem.Items.Count == 0)
+            if (element is RibbonMenuItem menuItem && menuItem.Items.Count == 0)
             {
                 return true;
             }
@@ -143,8 +139,7 @@ namespace Rail.Mvvm
         private bool SaveQatItemsIfMatchesControl(List<QatItem> remainingItems, object control)
         {
             bool matched = false;
-            FrameworkElement element = control as FrameworkElement;
-            if (element != null)
+            if (control is FrameworkElement element)
             {
                 object getQuickAccessToolBarId = RibbonControlService.GetQuickAccessToolBarId(element);
                 if (getQuickAccessToolBarId != null)
@@ -243,8 +238,7 @@ namespace Rail.Mvvm
                 matchedItems.Clear();
                 matchedItems.AddRange(qatItems.Where(qat => qat.ControlIndices[0] == tabIndex));
 
-                RibbonTab tab = this.Items[tabIndex] as RibbonTab;
-                if (tab != null)
+                if (this.Items[tabIndex] is RibbonTab tab)
                 {
                     LoadQatItemsAmongChildren(matchedItems, 0, tabIndex, tab, ref remainingItemsCount);
                 }
@@ -263,8 +257,7 @@ namespace Rail.Mvvm
             }
 
             int childIndex = 0;
-            DependencyObject dependencyObject = parent as DependencyObject;
-            if (dependencyObject != null)
+            if (parent is DependencyObject dependencyObject)
             {
                 IEnumerable children = LogicalTreeHelper.GetChildren(dependencyObject);
                 foreach (object child in children)
@@ -286,22 +279,21 @@ namespace Rail.Mvvm
             }
 
             // if we failed to get any logical children, enumerate the visual ones
-            Visual visual = parent as Visual;
-            if (visual == null)
+            if (parent is Visual visual)
             {
-                return;
-            }
-            for (childIndex = 0; childIndex < VisualTreeHelper.GetChildrenCount(visual); childIndex++)
-            {
-                if (remainingItemsCount == 0)
-                {
-                    break;
-                }
 
-                Visual child = VisualTreeHelper.GetChild(visual, childIndex) as Visual;
-                List<QatItem> matchedItems = new List<QatItem>();
-                LoadQatItemIfMatchesControl(previouslyMatchedItems, matchedItems, matchLevel + 1, childIndex, child, ref remainingItemsCount);
-                LoadQatItemsAmongChildren(matchedItems, matchLevel + 1, childIndex, child, ref remainingItemsCount);
+                for (childIndex = 0; childIndex < VisualTreeHelper.GetChildrenCount(visual); childIndex++)
+                {
+                    if (remainingItemsCount == 0)
+                    {
+                        break;
+                    }
+
+                    Visual child = VisualTreeHelper.GetChild(visual, childIndex) as Visual;
+                    List<QatItem> matchedItems = new List<QatItem>();
+                    LoadQatItemIfMatchesControl(previouslyMatchedItems, matchedItems, matchLevel + 1, childIndex, child, ref remainingItemsCount);
+                    LoadQatItemsAmongChildren(matchedItems, matchLevel + 1, childIndex, child, ref remainingItemsCount);
+                }
             }
         }
 

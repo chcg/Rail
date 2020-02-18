@@ -86,6 +86,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Rail.Mvvm\Rail.Mvvm.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\Clipboard.png" />
     <Resource Include="Images\Copy.png" />
     <Resource Include="Images\Cut.png" />
@@ -107,9 +111,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Mvvm\DialogButtonsView.xaml.cs">
-      <DependentUpon>DialogButtonsView.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -119,6 +120,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="View\DialogButtonsView.xaml.cs">
+      <DependentUpon>DialogButtonsView.xaml</DependentUpon>
     </Compile>
     <Compile Update="View\MainView.xaml.cs">
       <SubType>Code</SubType>
@@ -147,7 +151,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Mvvm\DialogButtonsView.xaml">
+    <Page Update="View\DialogButtonsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\DialogButtonView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\MainView.xaml">

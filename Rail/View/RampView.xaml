@@ -4,13 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rail.View"
-        xmlns:mvvm="clr-namespace:Rail.Mvvm"
+        xmlns:mvvm="clr-namespace:Rail.Mvvm;assembly=Rail.Mvvm"
         xmlns:ctrl="clr-namespace:Rail.Controls"
         xmlns:lang="clr-namespace:Rail.Properties;assembly=Rail"
         mc:Ignorable="d"
         Title="Ramp" Height="Auto" Width="1200">
     <DockPanel Height="Auto">
-        <mvvm:DialogButtonsView DockPanel.Dock="Bottom"/>
+        <local:DialogButtonsView DockPanel.Dock="Bottom"/>
         <Grid Margin="8" Height="Auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="100"/>

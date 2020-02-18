@@ -1,5 +1,4 @@
-﻿using Rail.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;

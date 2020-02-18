@@ -1,5 +1,5 @@
 ﻿using Microsoft.Win32;
-using Rail.Properties;
+using Rail.Mvvm.Properties;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

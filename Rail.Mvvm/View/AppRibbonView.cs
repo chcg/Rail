@@ -34,9 +34,7 @@ namespace Rail.Mvvm
                     return (Ribbon)obj;
                 }
 
-                int c= VisualTreeHelper.GetChildrenCount(obj);
-                //int c2 = VisualTreeHelper.g.GetChildrenCount(obj);
-
+                int c = VisualTreeHelper.GetChildrenCount(obj);
                 for (int i = 0; i < c; i++)
                 {
                     DependencyObject childReturn = FindRibbon(VisualTreeHelper.GetChild(obj, i));

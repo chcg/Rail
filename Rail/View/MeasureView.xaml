@@ -3,13 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:mvvm="clr-namespace:Rail.Mvvm"
+        xmlns:mvvm="clr-namespace:Rail.Mvvm;assembly=Rail.Mvvm"
         xmlns:lang="clr-namespace:Rail.Properties;assembly=Rail"
         xmlns:local="clr-namespace:Rail.View"
         mc:Ignorable="d"
         Title="{x:Static lang:Resources.MeasureTitle}" ResizeMode="NoResize" ShowInTaskbar="False" SizeToContent="WidthAndHeight" Topmost="True" WindowStartupLocation="CenterOwner">
     <DockPanel>
-        <mvvm:DialogButtonView DockPanel.Dock="Bottom"/>
+        <local:DialogButtonView DockPanel.Dock="Bottom"/>
         <Grid Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

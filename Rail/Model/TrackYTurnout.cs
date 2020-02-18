@@ -73,7 +73,7 @@ namespace Rail.Model
             double length = this.Radius * 2 * Math.PI * this.Angle / 360.0;
 
             DrawingGroup drawingRail = new DrawingGroup();
-            if (this.HasBedding)
+            if (this.HasBallast)
             {
                 drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-length / 2, 0)));
                 drawingRail.Children.Add(CurvedBallast(this.Angle, this.Radius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-length / 2, 0)));

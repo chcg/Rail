@@ -4,12 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rail.View"
-        xmlns:mvvm="clr-namespace:Rail.Mvvm"
+        xmlns:mvvm="clr-namespace:Rail.Mvvm;assembly=Rail.Mvvm"
         xmlns:lang="clr-namespace:Rail.Properties;assembly=Rail"
         mc:Ignorable="d"
         Title="{x:Static lang:Resources.OptionsTitle}" Height="300" Width="500">
     <DockPanel>
-        <mvvm:DialogButtonsView DockPanel.Dock="Bottom"/>
+        <local:DialogButtonsView DockPanel.Dock="Bottom"/>
         <TabControl Margin="8" TabStripPlacement="Left">
             <TabItem Header="{x:Static lang:Resources.OptionsLanguage}">
                 <Grid Margin="8">

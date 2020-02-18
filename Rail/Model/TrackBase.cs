@@ -23,7 +23,7 @@ namespace Rail.Model
         public abstract string Description { get; }
 
         [XmlIgnore, JsonIgnore]
-        public double GaugeWidth { get; protected set; }
+        public double RailWidth { get; protected set; }
 
         [XmlIgnore, JsonIgnore]
         public double TrackWidth { get; protected set; }

@@ -7,7 +7,7 @@
         
         xmlns:vm="clr-namespace:Rail.ViewModel"
         xmlns:ctrl="clr-namespace:Rail.Controls"
-        xmlns:mvvm="clr-namespace:Rail.Mvvm"
+        xmlns:mvvm="clr-namespace:Rail.Mvvm;assembly=Rail.Mvvm"
         xmlns:conv="clr-namespace:Rail.Converter"
         xmlns:lang="clr-namespace:Rail.Properties;assembly=Rail"
         xmlns:local="clr-namespace:Rail.View" 

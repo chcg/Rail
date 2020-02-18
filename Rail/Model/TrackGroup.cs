@@ -35,7 +35,7 @@ namespace Rail.Model
 
         public override void Update(TrackType trackType)
         {
-            this.GaugeWidth = trackType.Parameter.RailWidth; 
+            this.RailWidth = trackType.Parameter.RailWidth; 
         }
 
         public override void Render(DrawingContext drawingContext, RailViewMode viewMode, Brush trackBrush)

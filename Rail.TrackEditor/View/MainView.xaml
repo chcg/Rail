@@ -1,0 +1,67 @@
+﻿<mvvm:AppView x:Class="Rail.TrackEditor.View.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mvvm="clr-namespace:Rail.Mvvm;assembly=Rail.Mvvm"
+        xmlns:local="clr-namespace:Rail.TrackEditor"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="trackTypes" Grid.Column="0" ItemsSource="{Binding TrackTypes}" Margin="8" DisplayMemberPath="Name"/>
+        <Grid Grid.Column="1" DataContext="{Binding ElementName=trackTypes, Path=SelectedItem}" Margin="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Content="Track Type Name"/>
+            <DataGrid Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="0" Margin="3"/>
+
+            <Label Grid.Column="0" Grid.Row="1" Content="Manufacturer"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Manufacturer}" Margin="3"/>
+            <Label Grid.Column="2" Grid.Row="1" Content="Gauge"/>
+            <ComboBox Grid.Column="3" Grid.Row="1" ItemsSource="{Binding Gauges}" SelectedValue="{Binding Gauge}" Margin="3"/>
+            <Label Grid.Column="4" Grid.Row="1" Content="Dock Type"/>
+            <TextBox Grid.Column="5" Grid.Row="1" Text="{Binding DockType}" Margin="3"/>
+            
+            <Label Grid.Column="0" Grid.Row="2" Content="Rail Type"/>
+            <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding RailTypes}" SelectedValue="{Binding RailType}" Margin="3"/>
+            <Label Grid.Column="0" Grid.Row="3" Content="Rail Width"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding RailWidth}" Margin="3"/>
+
+            <Label Grid.Column="2" Grid.Row="2" Content="Sleeper Type"/>
+            <ComboBox Grid.Column="3" Grid.Row="2" ItemsSource="{Binding SleeperTypes}" SelectedValue="{Binding SleeperType}" Margin="3"/>
+            <Label Grid.Column="2" Grid.Row="3" Content="Sleeper Width"/>
+            <TextBox Grid.Column="3" Grid.Row="3" Text="{Binding SleeperWidth}" Margin="3"/>
+            
+            <Label Grid.Column="4" Grid.Row="2" Content="Ballast Type"/>
+            <ComboBox Grid.Column="5" Grid.Row="2" ItemsSource="{Binding BallastTypes}" SelectedValue="{Binding BallastType}" Margin="3"/>
+            <Label Grid.Column="4" Grid.Row="3" Content="Ballast Width"/>
+            <TextBox Grid.Column="5" Grid.Row="3" Text="{Binding BallastWidth}" Margin="3"/>
+
+            <Grid Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ListBox x:Name="trackList" Grid.Column="0" ItemsSource="{Binding Tracks}" Margin="3"/>
+                <ContentPresenter DataContext="{Binding ElementName=trackList, Path=SelectedItem}" Margin="3"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</mvvm:AppView>

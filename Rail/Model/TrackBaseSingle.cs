@@ -25,17 +25,22 @@ namespace Rail.Model
         protected Pen woodenSleepersPen;
         protected Pen concreteSleepersPen;
 
-        protected Pen woodenRailPen;
-        protected Pen concreteRailPen;
+        protected Pen silverRailPen;
+        protected Pen copperRailPen;
+        protected Pen blackRailPen;
         
         protected FormattedText text;
         protected Drawing textDrawing;
         protected string dockType;
 
         protected Drawing drawingRail;
-        
-        protected double gaugeWidth;
+
+
+        protected TrackRailType railType;
+        protected double railWidth;
+        protected TrackSleeperType sleeperType;
         protected double sleeperWidth;
+        protected TrackBallastType ballastType;
         protected double ballastWidth;
 
         [XmlAttribute("Article")]
@@ -51,12 +56,15 @@ namespace Rail.Model
         [XmlAttribute("Sleepers")]
         public TrackSleeperType SleeperType { get; set; }
 
-        [XmlAttribute("Bedding")]
-        public bool HasBedding { get; set; }
+        //[XmlAttribute("Bedding")]
+        //public bool HasBedding { get; set; }
 
         [XmlIgnore, JsonIgnore]
         public string Manufacturer { get; protected set; }
-                        
+
+        [XmlIgnore, JsonIgnore]
+        protected bool HasBallast { get { return this.ballastType >= TrackBallastType.Light; } }
+
         /// <summary>
         /// Get a list with the materials and order numbers of the track.
         /// </summary>
@@ -87,22 +95,27 @@ namespace Rail.Model
             this.Manufacturer = parameter.Manufacturer;
             this.dockType = parameter.DockType;
 
-            this.gaugeWidth = this.GaugeWidth = parameter.RailWidth;
+            this.railType = parameter.RailType;
+            this.railWidth = this.RailWidth = parameter.RailWidth;
+            this.sleeperType = this.SleeperType = this.SleeperType == TrackSleeperType.Unknown ? parameter.SleeperType : this.SleeperType;
             this.sleeperWidth = parameter.SleeperWidth;
+            this.ballastType = parameter.BallastType;
             this.ballastWidth = parameter.BallastWidth;
+
             this.TrackWidth = Math.Max(parameter.BallastWidth, parameter.SleeperWidth);
 
             // override if not set
             this.SleeperType = this.SleeperType == TrackSleeperType.Unknown ? parameter.SleeperType : this.SleeperType;
-            this.HasBedding = parameter.BallastWidth > 0;
-            
-            this.woodenRailPen = new Pen(TrackBrushes.WoodenRail, this.GaugeWidth * railThicknessFactor);
-            this.concreteRailPen = new Pen(TrackBrushes.ConcreteRail, this.GaugeWidth * railThicknessFactor);
-            
-            this.woodenSleepersPen = new Pen(TrackBrushes.WoodenSleepers, this.GaugeWidth * sleepersThicknessFactor);
-            this.concreteSleepersPen = new Pen(TrackBrushes.ConcreteSleepers, this.GaugeWidth * sleepersThicknessFactor);
+            //this.HasBedding = parameter.BallastWidth > 0;
 
-            this.text = new FormattedText(this.Article, CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, new Typeface("Verdana"), this.GaugeWidth * textFactor, TrackBrushes.Text, 1.25);
+            this.silverRailPen = new Pen(TrackBrushes.SilverRail, this.RailWidth * railThicknessFactor);
+            this.copperRailPen = new Pen(TrackBrushes.CopperRail, this.RailWidth * railThicknessFactor);
+            this.blackRailPen = new Pen(TrackBrushes.BlackRail, this.RailWidth * railThicknessFactor);
+            
+            this.woodenSleepersPen = new Pen(TrackBrushes.WoodenSleepers, this.RailWidth * sleepersThicknessFactor);
+            this.concreteSleepersPen = new Pen(TrackBrushes.ConcreteSleepers, this.RailWidth * sleepersThicknessFactor);
+            
+            this.text = new FormattedText(this.Article, CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, new Typeface("Verdana"), this.RailWidth * textFactor, TrackBrushes.Text, 1.25);
             this.textDrawing = new GeometryDrawing(TrackBrushes.Text, textPen, text.BuildGeometry(new Point(0, 0) - new Vector(text.Width / 2, text.Height / 2)));
             Create();
         }
@@ -176,6 +189,17 @@ namespace Rail.Model
             Counterclockwise = 0x10
         }
 
+        protected Pen GetRailPen()
+        {
+            return this.railType switch
+            {
+                TrackRailType.Silver => this.silverRailPen,
+                TrackRailType.Copper => this.copperRailPen,
+                TrackRailType.Black => this.blackRailPen,
+                _ => null
+            };
+        }
+
         protected Pen GetSleepersPen()
         {
             return this.SleeperType switch
@@ -186,15 +210,17 @@ namespace Rail.Model
             };
         }
 
-        protected Pen GetRailPen()
+        protected Brush GetBallastBrush()
         {
-            return this.SleeperType switch
+            return this.ballastType switch
             {
-                TrackSleeperType.WoodenSleepers => this.woodenRailPen,
-                TrackSleeperType.ConcreteSleepers => this.concreteRailPen,
+                TrackBallastType.Light => TrackBrushes.LightBallast,
+                TrackBallastType.Medium => TrackBrushes.MediumBallast,
+                TrackBallastType.Dark => TrackBrushes.DarkBallast,
                 _ => null
             };
         }
+        
 
         protected Geometry StraitGeometry(double length, StraitOrientation orientation, double direction = 0, Point? pos = null)
         {
@@ -213,8 +239,10 @@ namespace Rail.Model
 
         protected Drawing StraitBallast(double length, StraitOrientation orientation = StraitOrientation.Center, double direction = 0, Point? pos = null)
         {
+            Brush ballastBrush = GetBallastBrush();
+
             Rectangle rec = new Rectangle(orientation, length, this.ballastWidth).Rotate(direction).Move(pos);
-            return new GeometryDrawing(TrackBrushes.Ballast, null, new PathGeometry(new PathFigureCollection
+            return new GeometryDrawing(ballastBrush, null, new PathGeometry(new PathFigureCollection
             {
                 new PathFigure(rec.LeftTop, new PathSegmentCollection
                 {
@@ -239,7 +267,7 @@ namespace Rail.Model
             }
 
 
-            int num = (int)Math.Round(length / (this.GaugeWidth / 2));
+            int num = (int)Math.Round(length / (this.RailWidth / 2));
             double sleepersDistance = length / num;
 
             var railDrawing = new DrawingGroup();
@@ -269,8 +297,8 @@ namespace Rail.Model
 
             var railDrawing = new DrawingGroup();            
 
-            railDrawing.Children.Add(new GeometryDrawing(null, railPen, new LineGeometry(new Point(x, -this.gaugeWidth / 2).Rotate(direction).Move(pos), new Point(x + length, -this.gaugeWidth / 2).Rotate(direction).Move(pos))));
-            railDrawing.Children.Add(new GeometryDrawing(null, railPen, new LineGeometry(new Point(x, +this.gaugeWidth / 2).Rotate(direction).Move(pos), new Point(x + length, +this.gaugeWidth / 2).Rotate(direction).Move(pos))));
+            railDrawing.Children.Add(new GeometryDrawing(null, railPen, new LineGeometry(new Point(x, -this.railWidth / 2).Rotate(direction).Move(pos), new Point(x + length, -this.railWidth / 2).Rotate(direction).Move(pos))));
+            railDrawing.Children.Add(new GeometryDrawing(null, railPen, new LineGeometry(new Point(x, +this.railWidth / 2).Rotate(direction).Move(pos), new Point(x + length, +this.railWidth / 2).Rotate(direction).Move(pos))));
             
             return railDrawing;
         }
@@ -320,6 +348,8 @@ namespace Rail.Model
 
         protected Drawing CurvedBallast(double angle, double radius, CurvedOrientation orientation, Point pos)
         {
+            Brush ballastBrush = GetBallastBrush();
+
             double outerSleepersRadius = radius + this.ballastWidth / 2;
             double innerSleepersRadius = radius - this.ballastWidth / 2;
 
@@ -348,7 +378,7 @@ namespace Rail.Model
             //    }, true)
             //}));
  
-            return new GeometryDrawing(TrackBrushes.Ballast, null, new PathGeometry(new PathFigureCollection
+            return new GeometryDrawing(ballastBrush, null, new PathGeometry(new PathFigureCollection
             {
                 new PathFigure(circleCenter.CircleCenter(startAngle, innerSleepersRadius), new PathSegmentCollection
                 {
@@ -379,7 +409,7 @@ namespace Rail.Model
             }
 
             double lenth = radius * 2 * Math.PI * angle / 360.0;
-            int num = (int)Math.Round(lenth / (this.GaugeWidth / 2));
+            int num = (int)Math.Round(lenth / (this.RailWidth / 2));
             double sleepersDistance = angle / num;
 
             var railDrawing = new DrawingGroup();
@@ -402,8 +432,8 @@ namespace Rail.Model
         {
             Pen railPen = GetRailPen();
 
-            double outerTrackRadius = radius + this.gaugeWidth / 2;
-            double innerTrackRadius = radius - this.gaugeWidth / 2;
+            double outerTrackRadius = radius + this.railWidth / 2;
+            double innerTrackRadius = radius - this.railWidth / 2;
             
             Size innerTrackSize = new Size(innerTrackRadius, innerTrackRadius);
 

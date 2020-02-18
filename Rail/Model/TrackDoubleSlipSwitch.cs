@@ -73,7 +73,7 @@ namespace Rail.Model
         {
             double curveAngle = 30;
             DrawingGroup drawingRail = new DrawingGroup();
-            if (this.HasBedding)
+            if (this.HasBallast)
             {
                 drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, -this.Angle / 2));
                 drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, +this.Angle / 2));

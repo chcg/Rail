@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rail.Mvvm;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,14 +14,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Rail.Mvvm
+namespace Rail.TrackEditor.View
 {
     /// <summary>
-    /// Interaction logic for DialogButtonsView.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class DialogButtonsView : UserControl
+    public partial class MainView : AppView
     {
-        public DialogButtonsView()
+        public MainView()
         {
             InitializeComponent();
         }

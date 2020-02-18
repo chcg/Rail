@@ -239,12 +239,12 @@ namespace Rail.Model
 
         public bool IsInside(Point pos)
         {
-            return this.Distance(pos) < ((RailItem)this.RailItemIntern).Track.GaugeWidth;
+            return this.Distance(pos) < ((RailItem)this.RailItemIntern).Track.RailWidth;
         }
 
         public bool IsInside(RailDockPoint p)
         {
-            return this.Distance(p.Position) < ((RailItem)this.RailItemIntern).Track.GaugeWidth;
+            return this.Distance(p.Position) < ((RailItem)this.RailItemIntern).Track.RailWidth;
         }
 
         public void AdjustDock(RailDockPoint dockTo)

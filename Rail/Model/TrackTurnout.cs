@@ -88,7 +88,7 @@ namespace Rail.Model
         protected override Drawing CreateRailDrawing()
         {
             DrawingGroup drawingRail = new DrawingGroup();
-            if (this.HasBedding)
+            if (this.HasBallast)
             {
                 drawingRail.Children.Add(StraitBallast(this.Length));
                 drawingRail.Children.Add(this.Direction == TrackDirection.Left ?

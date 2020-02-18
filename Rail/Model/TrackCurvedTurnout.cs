@@ -129,7 +129,7 @@ namespace Rail.Model
             Point centerRight = new Point(width, 0);
 
             DrawingGroup drawingRail = new DrawingGroup();
-            if (this.HasBedding)
+            if (this.HasBallast)
             {
                 if (this.Direction == TrackDirection.Left)
                 {
