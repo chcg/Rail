@@ -1,7 +1,5 @@
 ﻿using Rail.Controls;
-using Rail.Misc;
-using Rail.Mvvm;
-using Rail.Trigonometry;
+using Rail.Tracks;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -90,10 +88,20 @@ namespace Rail.Model
             drawingContext.PushTransform(this.RailTransform);
 
             //Debug.WriteLine($"DrawRailItem {this.IsSelected}");
-            this.Track.Render(drawingContext, viewMode, layer.TrackBrush);
+            switch (viewMode)
+            {
+            case RailViewMode.Tracks:
+                this.Track.RenderTrack(drawingContext, layer.TrackBrush);
+                break;
+            case RailViewMode.Rail:
+            case RailViewMode.Terrain:
+                this.Track.RenderRail(drawingContext);
+                break;
+            }
+            
             if (this.IsSelected)
             {
-                this.Track.RenderSelection(drawingContext, viewMode);
+                this.Track.RenderSelection(drawingContext);
             }
             if (this.IsAnchored)
             {

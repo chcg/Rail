@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 using System.Windows;
 using System.Xml.Serialization;
 
-namespace Rail.Model
+namespace Rail.Tracks
 {
     public class TrackGroupItem
     {

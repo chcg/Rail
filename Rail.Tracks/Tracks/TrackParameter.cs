@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace Rail.Model
+namespace Rail.Tracks
 {
     public class TrackParameter
     {
@@ -41,8 +41,14 @@ namespace Rail.Model
         [XmlElement("BallastWidth"), JsonPropertyName("BallastWidth")]
         public double BallastWidth { get; set; }
 
-        
+        [XmlElement("WagonMaxLength"), JsonPropertyName("WagonMaxLength")]
+        public double WagonMaxLength { get; set; }
 
-        
+        [XmlElement("WagonMaxWidth"), JsonPropertyName("WagonMaxWidth")]
+        public double WagonMaxWidth { get; set; }
+
+        [XmlElement("WagonMaxBogieDistance"), JsonPropertyName("WagonMaxBogieDistance")]
+        public double WagonMaxBogieDistance { get; set; }
+
     }
 }

@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
 
-namespace Rail.Model
+namespace Rail.Tracks
 {
     public class TrackCurved : TrackBaseSingle
     {

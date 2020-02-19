@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rail.TrackEditor", "Rail.Tr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rail.Mvvm", "Rail.Mvvm\Rail.Mvvm.csproj", "{920EED0B-2BE5-4915-A88B-2203DB9C43B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rail.Tracks", "Rail.Tracks\Rail.Tracks.csproj", "{3E6B6E3D-63DA-4EA7-BFC5-4D9815A2234A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rail.Tracks", "Rail.Tracks\Rail.Tracks.csproj", "{3E6B6E3D-63DA-4EA7-BFC5-4D9815A2234A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,12 +78,12 @@ Global
 		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.DebugInfo|x86.ActiveCfg = Debug|x86
 		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.DebugInfo|x86.Build.0 = Debug|x86
 		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Release|Any CPU.ActiveCfg = Release|x86
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Release|Any CPU.Build.0 = Release|x86
 		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Release|x64.ActiveCfg = Release|x64
 		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Release|x64.Build.0 = Release|x64
 		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Release|x86.ActiveCfg = Release|x86
 		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Release|x86.Build.0 = Release|x86
 		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.Debug|x64.Build.0 = Debug|Any CPU
 		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.Debug|x86.ActiveCfg = Debug|Any CPU

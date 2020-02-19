@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Rail.Tracks;
 
 namespace Rail.Model
 {
 
-    #pragma warning disable CS0414  
+#pragma warning disable CS0414
 
     public class RailBinder
     {

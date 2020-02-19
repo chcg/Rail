@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace Rail.Model
+namespace Rail.Tracks
 {
     public class TrackType 
     {

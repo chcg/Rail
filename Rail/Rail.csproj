@@ -7,25 +7,6 @@
     <RootNamespace>Rail</RootNamespace>
     <AssemblyName>Rail</AssemblyName>
     <StartupObject>Rail.App</StartupObject>
-    
-    <!--
-	<PublishReadyToRun>true</PublishReadyToRun>
-	-->
-    
-    <!--
-    <PublishTrimmed>true</PublishTrimmed>
-	-->
-		
-    <!--
-    <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
-    <PublishSingleFile>true</PublishSingleFile>
-    <PublishTrimmed>true</PublishTrimmed>
-	<PublishReadyToRun>true</PublishReadyToRun>
-	<PublishSingleFile>true</PublishSingleFile>
-	-->
-
-
-
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
     <ApplicationIcon />
@@ -74,19 +55,15 @@
     <None Remove="Images\Save.png" />
     <None Remove="Images\Settings.png" />
     <None Remove="Images\Undo.png" />
-    <None Remove="Tracks.xsd" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Rail.Mvvm\Rail.Mvvm.csproj" />
+    <ProjectReference Include="..\Rail.Tracks\Rail.Tracks.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -107,7 +84,6 @@
     <Resource Include="Images\Save.png" />
     <Resource Include="Images\Settings.png" />
     <Resource Include="Images\Undo.png" />
-    <Resource Include="Tracks.xsd" />
   </ItemGroup>
 
   <ItemGroup>
@@ -144,9 +120,6 @@
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Update="Tracks.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

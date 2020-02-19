@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
 using System.Globalization;
+using Rail.Tracks;
 
 namespace Rail.Model
 {

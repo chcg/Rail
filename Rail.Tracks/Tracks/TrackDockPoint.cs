@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Rail.Model
+namespace Rail.Tracks
 {
     public class TrackDockPoint
     {

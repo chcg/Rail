@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Media;
 
-namespace Rail.Model
+namespace Rail.Tracks
 {
     public static class TrackBrushes
     {

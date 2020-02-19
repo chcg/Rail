@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using static Rail.Model.TrackBaseSingle;
+﻿using System.Windows;
+using static Rail.Tracks.TrackBaseSingle;
 
 namespace Rail.Trigonometry
 {

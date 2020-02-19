@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
-using static Rail.Model.TrackBaseSingle;
+using static Rail.Tracks.TrackBaseSingle;
 
 namespace Rail.Tracks.Trigonometry
 {

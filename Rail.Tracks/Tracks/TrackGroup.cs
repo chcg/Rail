@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 using System.Windows.Media;
 using System.Xml.Serialization;
 
-namespace Rail.Model
+namespace Rail.Tracks
 {
     public class TrackGroup : TrackBase
     {

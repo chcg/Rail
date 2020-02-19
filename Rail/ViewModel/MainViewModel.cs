@@ -3,6 +3,7 @@ using Rail.Misc;
 using Rail.Model;
 using Rail.Mvvm;
 using Rail.Properties;
+using Rail.Tracks;
 using Rail.View;
 using System;
 using System.Collections.Generic;
@@ -23,8 +24,8 @@ namespace Rail.ViewModel
 {
     public partial class MainViewModel : FileViewModel
     {
-        private readonly TrackList trackList;
-        private readonly Dictionary<string, TrackBase> trackDict;
+        private TrackList trackList;
+        private Dictionary<string, TrackBase> trackDict;
         private RailPlan railPlan;
 
         public DelegateCommand RailPlanCommand { get; private set; }
@@ -43,7 +44,7 @@ namespace Rail.ViewModel
             this.PrintPreviewCommand = new DelegateCommand(OnPrintPreview);
 
             //this.Gradients = (new double[] { 0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0 }).Select(d => d.ToString("F2")).ToList(); 
-            
+
             // load track list
             DependencyObject dep = new DependencyObject();
             if (!DesignerProperties.GetIsInDesignMode(dep))
@@ -73,6 +74,40 @@ namespace Rail.ViewModel
 
             Update3D();
             this.SelectedSelectionIndex = 0;
+        }
+
+        public override void OnStartup()
+        {
+           base.OnStartup();
+
+           // load track list
+           //DependencyObject dep = new DependencyObject();
+           // if (!DesignerProperties.GetIsInDesignMode(dep))
+           // {
+
+           //     try
+           //     {
+           //         string path = System.AppDomain.CurrentDomain.BaseDirectory;
+           //         this.trackList = TrackList.Load(Path.Combine(path, "Tracks.xml"));
+           //         this.trackDict = trackList.TrackTypes.SelectMany(t => t.Tracks).ToDictionary(t => t.Id, t => t);
+           //     }
+           //     catch (Exception ex)
+           //     {
+           //         if (ex.InnerException is XmlSchemaValidationException valEx)
+           //         {
+           //             MessageBox.Show($"Error in File Tracks.xml\r\n{ex.Message}\r\n{valEx.Message}");
+           //         }
+           //         else
+           //         {
+           //             MessageBox.Show("Error in File Tracks.xml\r\n{ex.Message}");
+           //         }
+           //         throw ex;
+           //     }
+           // }
+
+           // this.RailPlan = RailPlan.Create();
+
+           // Update3D();
         }
 
         #region properties
@@ -374,7 +409,7 @@ namespace Rail.ViewModel
 
         public IEnumerable<RailLayer> Layers
         {
-            get { return this.RailPlan.Layers.Reverse<RailLayer>(); }
+            get { return this.RailPlan?.Layers.Reverse<RailLayer>(); }
         }
 
        

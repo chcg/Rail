@@ -10,14 +10,16 @@
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
     <FileVersion>0.1.0.0</FileVersion>
     <Version>0.1.0</Version>
+    <Authors>Ralf Beckers</Authors>
+    <Company>Ralf Beckers</Company>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <None Remove="Tracks.xsd" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Tracks.xsd" />
+    <EmbeddedResource Include="Tracks.xsd" />
   </ItemGroup>
 
   <ItemGroup>

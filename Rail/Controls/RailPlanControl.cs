@@ -1,9 +1,14 @@
 ﻿using Rail.Misc;
 using Rail.Model;
 using Rail.Mvvm;
+using Rail.Tracks;
 using Rail.Trigonometry;
+using Rail.View;
+using Rail.ViewModel;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
@@ -11,11 +16,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using Rail.Properties;
-using System.Collections;
-using System.ComponentModel;
-using Rail.View;
-using Rail.ViewModel;
 
 namespace Rail.Controls
 {
@@ -791,7 +791,7 @@ namespace Rail.Controls
             }));
         }
         
-        Pen gridLinePen = new Pen(Brushes.Black, 0.2);
+        private readonly Pen gridLinePen = new Pen(Brushes.Black, 0.2);
 
         protected void RenderGridLines(DrawingContext drawingContext)
         {

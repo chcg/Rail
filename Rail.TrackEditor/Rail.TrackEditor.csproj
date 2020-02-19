@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Tracks.xsd" />
+    <None Remove="Images\Save.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,9 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Tracks.xsd">
-      <SubType>Designer</SubType>
-    </Resource>
+    <Resource Include="Images\Save.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Rail.Model
+namespace Rail.Tracks
 {
     public class TrackMaterial
     {
