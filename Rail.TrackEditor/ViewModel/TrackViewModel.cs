@@ -12,6 +12,7 @@ namespace Rail.TrackEditor.ViewModel
             {
                 nameof(TrackStraight) => new TrackStraightViewModel((TrackStraight)track),
                 nameof(TrackCurved) => new TrackCurvedViewModel((TrackCurved)track),
+                nameof(TrackTurnout) => new TrackTurnoutViewModel((TrackTurnout)track),
                 _ => null
             };
         }

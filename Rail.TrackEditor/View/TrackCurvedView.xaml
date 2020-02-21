@@ -7,7 +7,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="TrackCurvedView"/>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Content="Article"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Article}" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="1" Content="Radius"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Radius, StringFormat=0.00}" Margin="3"/>
+        <Label Grid.Column="2" Grid.Row="1" Content="mm"/>
+
+        <Label Grid.Column="0" Grid.Row="2" Content="Angle"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Angle, StringFormat=0.00}" Margin="3"/>
+        <Label Grid.Column="2" Grid.Row="2" Content="°"/>
     </Grid>
 </UserControl>

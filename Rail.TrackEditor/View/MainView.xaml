@@ -157,6 +157,9 @@
                                 <DataTemplate DataType="{x:Type vm:TrackCurvedViewModel}" >
                                     <v:TrackCurvedView/>
                                 </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackTurnoutViewModel}" >
+                                    <v:TrackTurnoutView/>
+                                </DataTemplate>
                             </ContentControl.Resources>
                         </ContentControl>
                     </Grid>

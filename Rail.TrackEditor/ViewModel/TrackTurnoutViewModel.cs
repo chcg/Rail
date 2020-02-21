@@ -1,21 +1,20 @@
-﻿using Rail.Mvvm;
-using Rail.Tracks;
+﻿using Rail.Tracks;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Rail.TrackEditor.ViewModel
 {
-    public class TrackCurvedViewModel : TrackViewModel
+    public class TrackTurnoutViewModel : TrackViewModel
     {
-        private readonly TrackCurved track;
+        private readonly TrackTurnout track;
 
-        public TrackCurvedViewModel()
+        public TrackTurnoutViewModel()
         {
-            this.track = new TrackCurved();
+            this.track = new TrackTurnout();
         }
 
-        public TrackCurvedViewModel(TrackCurved track)
+        public TrackTurnoutViewModel(TrackTurnout track)
         {
             this.track = track;
         }
@@ -28,6 +27,12 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.Article = value; NotifyPropertyChanged(nameof(Article)); }
         }
 
+        public double Length
+        {
+            get { return this.track.Length; }
+            set { this.track.Length = value; NotifyPropertyChanged(nameof(Length)); }
+        }
+
         public double Radius
         {
             get { return this.track.Radius; }
@@ -38,6 +43,12 @@ namespace Rail.TrackEditor.ViewModel
         {
             get { return this.track.Angle; }
             set { this.track.Angle = value; NotifyPropertyChanged(nameof(Angle)); }
+        }
+
+        public TrackDirection Direction
+        {
+            get { return this.track.Direction; }
+            set { this.track.Direction = value; NotifyPropertyChanged(nameof(Direction)); }
         }
     }
 }
