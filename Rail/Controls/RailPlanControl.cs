@@ -1670,10 +1670,12 @@ namespace Rail.Controls
 
         private void ShowMeasure(Point from, Point to)
         {
-            MeasureViewModel viewModel = new MeasureViewModel();
-            viewModel.Distance = from.Distance(to);
-            viewModel.DistanceX = Math.Abs(from.X - to.X);
-            viewModel.DistanceY = Math.Abs(from.Y - to.Y);
+            MeasureViewModel viewModel = new MeasureViewModel
+            {
+                Distance = from.Distance(to),
+                DistanceX = Math.Abs(from.X - to.X),
+                DistanceY = Math.Abs(from.Y - to.Y)
+            };
             new MeasureView { DataContext = viewModel }.ShowDialog();
         }
 

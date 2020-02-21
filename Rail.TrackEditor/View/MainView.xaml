@@ -4,9 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mvvm="clr-namespace:Rail.Mvvm;assembly=Rail.Mvvm"
+        xmlns:vm="clr-namespace:Rail.TrackEditor.ViewModel"
+        xmlns:v="clr-namespace:Rail.TrackEditor.View"
+        xmlns:ctrl="clr-namespace:Rail.TrackEditor.Controls"
         xmlns:local="clr-namespace:Rail.TrackEditor"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="800" Width="1200">
+    <mvvm:AppView.Resources>
+        <mvvm:BindingProxy x:Key="BindingProxy" Data="{Binding}" />
+    </mvvm:AppView.Resources>
     <DockPanel>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar >
@@ -23,7 +29,24 @@
                 <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="trackTypes" Grid.Column="0" ItemsSource="{Binding TrackTypes}" Margin="8" DisplayMemberPath="Name"/>
+            <ListBox x:Name="trackTypes" Grid.Column="0" ItemsSource="{Binding TrackTypes}" Margin="8" >
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="New Track Type" Command="{Binding NewTrackTypeCommand}" />
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Stretch" >
+                            <TextBlock.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Delete" Command="{Binding Data.DeleteTrackTypeCommand, Source={StaticResource BindingProxy}}" CommandParameter="{Binding .}" />
+                                </ContextMenu>
+                            </TextBlock.ContextMenu>
+                        </TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
             <Grid Grid.Column="1" DataContext="{Binding ElementName=trackTypes, Path=SelectedItem}" Margin="8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -117,9 +140,25 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <ListBox x:Name="trackList" Grid.Column="0" ItemsSource="{Binding Tracks}" Margin="3"/>
-                        <ContentPresenter DataContext="{Binding ElementName=trackList, Path=SelectedItem}" Margin="3"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="150"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <ListBox x:Name="trackList" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding Tracks}" Margin="3" DisplayMemberPath="Name"/>
+                        <ctrl:TrackControl Grid.Column="1" Grid.Row="0" BorderBrush="LightGray" Margin="3" BorderThickness="1" />
+                        <ctrl:RailControl Grid.Column="2" Grid.Row="0" BorderBrush="LightGray" Margin="3" BorderThickness="1"/>
+                        <ContentControl Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding ElementName=trackList, Path=SelectedItem}" Margin="3" >
+                            <ContentControl.Resources>
+                                <DataTemplate DataType="{x:Type vm:TrackStraightViewModel}" >
+                                    <v:TrackStraightView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackCurvedViewModel}" >
+                                    <v:TrackCurvedView/>
+                                </DataTemplate>
+                            </ContentControl.Resources>
+                        </ContentControl>
                     </Grid>
                 </GroupBox>
             </Grid>

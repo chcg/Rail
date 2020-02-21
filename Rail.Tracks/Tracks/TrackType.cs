@@ -5,8 +5,15 @@ using System.Xml.Serialization;
 
 namespace Rail.Tracks
 {
-    public class TrackType 
+    public class TrackType
     {
+        public TrackType()
+        {
+            this.Tracks = new List<TrackBase>();
+            this.Name = new XmlMultilanguageString("New Track Type");
+            this.Parameter = new TrackParameter();
+        }
+
         [XmlElement("Name")]
         public XmlMultilanguageString Name { get; set; }
 

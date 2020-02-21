@@ -11,12 +11,15 @@ namespace Rail.TrackEditor.ViewModel
         private readonly TrackType trackType;
 
         public TrackTypeViewModel()
-        { }
+        {
+            this.trackType = new TrackType();
+            this.Tracks = new ObservableCollection<TrackViewModel>(trackType.Tracks.Select(t => TrackViewModel.Create(t)));
+        }
 
         public TrackTypeViewModel(TrackType trackType)
         {
             this.trackType = trackType;
-            this.Tracks = new ObservableCollection<TrackViewModel>(trackType.Tracks.Select(t => new TrackViewModel(t)));
+            this.Tracks = new ObservableCollection<TrackViewModel>(trackType.Tracks.Select(t => TrackViewModel.Create(t)));
         }
 
         public string Name { get { return this.trackType.Name; } }

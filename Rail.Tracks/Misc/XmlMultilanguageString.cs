@@ -16,6 +16,16 @@ namespace Rail.Tracks.Misc
         private const string attributetName = "Lang";
         private Dictionary<string, string> languageDictionary;
 
+        public XmlMultilanguageString()
+        {
+            this.languageDictionary = new Dictionary<string, string>();
+        }
+
+        public XmlMultilanguageString(string val)
+        {
+            this.languageDictionary = new Dictionary<string, string> { { defaultKey, val } };
+        }
+
         public XmlSchema GetSchema()
         {
             return null;

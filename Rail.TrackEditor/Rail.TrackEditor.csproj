@@ -30,8 +30,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="View\DialogButtonsView.xaml.cs">
-      <DependentUpon>DialogButtonsView.xaml</DependentUpon>
+    <Compile Update="View\TrackCurvedView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\TrackStraightView.xaml.cs">
+      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
 
@@ -43,10 +46,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="View\DialogButtonsView.xaml">
+    <Page Update="View\TrackCurvedView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\DialogButtonView.xaml">
+    <Page Update="View\TrackStraightView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

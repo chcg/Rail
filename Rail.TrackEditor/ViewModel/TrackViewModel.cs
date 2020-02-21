@@ -5,11 +5,17 @@ namespace Rail.TrackEditor.ViewModel
 {
     public class TrackViewModel : BaseViewModel
     {
-        public TrackViewModel(TrackBase trackBase)
+        public static TrackViewModel Create(TrackBase track)
         {
-
+            string typeName = track.GetType().Name;
+            return typeName switch
+            {
+                nameof(TrackStraight) => new TrackStraightViewModel((TrackStraight)track),
+                nameof(TrackCurved) => new TrackCurvedViewModel((TrackCurved)track),
+                _ => null
+            };
         }
 
-        
+
     }
 }
