@@ -70,6 +70,7 @@
                           <xs:attribute name="Article" type="xs:unsignedInt" use="required" />
                           <xs:attribute name="Length" type="xs:string" use="required" />
                           <xs:attribute name="ViewType" type="xs:string" use="optional" />
+                          <xs:attribute name="Extra" type="Extras" use="optional" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="Curved">
@@ -78,6 +79,7 @@
                           <xs:attribute name="Radius" type="xs:string" use="required" />
                           <xs:attribute name="Angle" type="xs:decimal" use="required" />
                           <xs:attribute name="RadiusName" type="xs:string" use="optional" />
+                          <xs:attribute name="Extra" type="Extras" use="optional" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="Turnout">
@@ -114,14 +116,6 @@
                           <xs:attribute name="Drive" type="xs:string" use="optional" />
                         </xs:complexType>
                       </xs:element>
-                      <xs:element maxOccurs="unbounded" name="CurvedCircuit">
-                        <xs:complexType>
-                          <xs:attribute name="Article" type="xs:unsignedShort" use="required" />
-                          <xs:attribute name="Radius" type="xs:decimal" use="required" />
-                          <xs:attribute name="RadiusName" type="xs:string" use="required" />
-                          <xs:attribute name="Angle" type="xs:decimal" use="required" />
-                        </xs:complexType>
-                      </xs:element>
                       <xs:element name="DoubleTurnout">
                         <xs:complexType>
                           <xs:attribute name="Article" type="xs:unsignedShort" use="required" />
@@ -144,30 +138,6 @@
                           <xs:attribute name="Length1" type="xs:string" use="required" />
                           <xs:attribute name="Length2" type="xs:string" use="required" />
                           <xs:attribute name="Angle" type="xs:decimal" use="required" />
-                        </xs:complexType>
-                      </xs:element>
-                      <xs:element name="StraightUncoupler">
-                        <xs:complexType>
-                          <xs:attribute name="Article" type="xs:unsignedShort" use="required" />
-                          <xs:attribute name="Length" type="xs:decimal" use="required" />
-                        </xs:complexType>
-                      </xs:element>
-                      <xs:element name="StraightIsolating">
-                        <xs:complexType>
-                          <xs:attribute name="Article" type="xs:unsignedShort" use="required" />
-                          <xs:attribute name="Length" type="xs:decimal" use="required" />
-                        </xs:complexType>
-                      </xs:element>
-                      <xs:element name="StraightCircuit">
-                        <xs:complexType>
-                          <xs:attribute name="Article" type="xs:unsignedShort" use="required" />
-                          <xs:attribute name="Length" type="xs:decimal" use="required" />
-                        </xs:complexType>
-                      </xs:element>
-                      <xs:element name="StraightFeeder">
-                        <xs:complexType>
-                          <xs:attribute name="Article" type="xs:unsignedShort" use="required" />
-                          <xs:attribute name="Length" type="xs:string" use="required" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element name="StraightAdjustment">
@@ -344,4 +314,16 @@
       <xs:enumeration value="Dark" />
     </xs:restriction>
   </xs:simpleType>
+
+  <xs:simpleType name="Extras" >
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No" />
+      <xs:enumeration value="Circuit" />
+      <xs:enumeration value="Contact" />
+      <xs:enumeration value="Uncoupler" />
+      <xs:enumeration value="Isolating" />
+      <xs:enumeration value="Feeder" />
+    </xs:restriction>
+  </xs:simpleType>
+  
 </xs:schema>

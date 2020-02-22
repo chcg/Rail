@@ -9,8 +9,8 @@ namespace Rail.Tracks
         No,
         Circuit,
         Contact,
-        Uncouple,
-        Isolatin,
+        Uncoupler,
+        Isolating,
         Feeder
     }
 }

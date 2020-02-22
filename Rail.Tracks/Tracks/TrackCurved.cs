@@ -38,8 +38,8 @@ namespace Rail.Tracks
                     TrackExtras.No => $"{Resources.TrackCurved} {RadiusName} {Radius} mm {Angle}°",
                     TrackExtras.Circuit => $"{Resources.TrackCurvedCircuit} {RadiusName} {Radius} mm {Angle}°",
                     TrackExtras.Contact => $"{Resources.TrackCurvedContact} {RadiusName} {Radius} mm {Angle}°",
-                    TrackExtras.Uncouple => $"{Resources.TrackCurvedUncoupler} {RadiusName} {Radius} mm {Angle}°",
-                    TrackExtras.Isolatin => $"{Resources.TrackCurvedIsolating} {RadiusName} {Radius} mm {Angle}°",
+                    TrackExtras.Uncoupler => $"{Resources.TrackCurvedUncoupler} {RadiusName} {Radius} mm {Angle}°",
+                    TrackExtras.Isolating => $"{Resources.TrackCurvedIsolating} {RadiusName} {Radius} mm {Angle}°",
                     TrackExtras.Feeder => $"{Resources.TrackCurvedFeeder} {RadiusName} {Radius} mm {Angle}°",
                     _ => null
 
@@ -57,8 +57,8 @@ namespace Rail.Tracks
                     TrackExtras.No => $"{this.Article} {Resources.TrackCurved} {Radius} {Radius} mm {Angle}°",
                     TrackExtras.Circuit => $"{this.Article} {Resources.TrackCurvedCircuit} {RadiusName} {Radius} mm {Angle}°",
                     TrackExtras.Contact => $"{this.Article} {Resources.TrackCurvedContact} {RadiusName} {Radius} mm {Angle}°",
-                    TrackExtras.Uncouple => $"{this.Article} {Resources.TrackCurvedUncoupler} {RadiusName} {Radius} mm {Angle}°",
-                    TrackExtras.Isolatin => $"{this.Article} {Resources.TrackCurvedIsolating} {RadiusName} {Radius} mm {Angle}°",
+                    TrackExtras.Uncoupler => $"{this.Article} {Resources.TrackCurvedUncoupler} {RadiusName} {Radius} mm {Angle}°",
+                    TrackExtras.Isolating => $"{this.Article} {Resources.TrackCurvedIsolating} {RadiusName} {Radius} mm {Angle}°",
                     TrackExtras.Feeder => $"{this.Article} {Resources.TrackCurvedFeeder} {RadiusName} {Radius} mm {Angle}°",
                     _ => null
                 };

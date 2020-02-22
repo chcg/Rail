@@ -437,18 +437,18 @@
       <DoubleSlipSwitch Article="8560" Length="112.8" Angle="13.0" Radius="323.0" />
 
       <!-- curved circuit-->
-      <CurvedCircuit Article="8529" Radius="195.0" RadiusName="R2" Angle="30.0"  />
-      <CurvedCircuit Article="8539" Radius="220.0" RadiusName="R3" Angle="30.0"  />
+      <Curved Article="8529" Radius="195.0" RadiusName="R2" Angle="30.0" Extra="Circuit" />
+      <Curved Article="8539" Radius="220.0" RadiusName="R3" Angle="30.0" Extra="Circuit" />
       <!-- crossing -->
       <Crossing Article="8559" Length1="112.8" Length2="112.8" Angle="13.0" />
       <!-- straight uncoupler -->
-      <StraightUncoupler Article="8587" Length="55.0" />
+      <Straight Article="8587" Length="55.0" Extra="Uncoupler" />
       <!-- straight isolating -->
-      <StraightIsolating Article="8588" Length="55.0"/>
+      <Straight Article="8588" Length="55.0" Extra="Isolating"/>
       <!-- straight circuit -->
-      <StraightCircuit Article="8589" Length="55.0"/>
+      <Straight Article="8589" Length="55.0" Extra="Circuit"/>
       <!-- straight feeder -->
-      <StraightFeeder Article="8590" Length="110.0"/>
+      <Straight Article="8590" Length="110.0" Extra="Feeder"/>
       <!-- straight adjustment-->
       <StraightAdjustment Article="8592" Length="100.0" LengthTo="120.0"/>
       <!-- flex-->
@@ -814,7 +814,7 @@
       <Crossing Article="55440" Length1="G239" Length2="G239" Angle="15" />
       <Crossing Article="55441" Length1="G119" Length2="G119" Angle="30" />
       <!-- straight feeder -->
-      <StraightFeeder Article="55406" Length="G231" />
+      <Straight Article="55406" Length="G231" Extra="Feeder" />
     </Tracks>
   </TrackType>
   <TrackType>

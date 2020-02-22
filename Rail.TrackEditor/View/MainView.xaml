@@ -159,21 +159,15 @@
                                     <MenuItem Header="New Turnout Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Turnout}" />
                                     <MenuItem Header="New Curved Turnout Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.CurvedTurnout}" />
                                     <MenuItem Header="New Double Slip Switch Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.DoubleSlipSwitch}" />
-                                    <MenuItem Header="New Double TurnoutTrack" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.DoubleTurnout}" />
+                                    <MenuItem Header="New Double Turnout Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.DoubleTurnout}" />
                                     <MenuItem Header="New Y-Turnout Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.YTurnout}" />
                                     <MenuItem Header="New Crossing Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Crossing}" />
                                     <MenuItem Header="New Bumper Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Bumper}" />
                                     <MenuItem Header="New Adapter Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Adapter}" />
                                     <MenuItem Header="New Turntable Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Turntable}" />
                                     <MenuItem Header="New Transfer Table Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.TransferTable}" />
-                                    <MenuItem Header="New End PieceTrack" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.EndPiece}" />
-                                    <MenuItem Header="New Curved CircuitTrack" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.CurvedCircuit}" />
-                                    <MenuItem Header="New Straight Circuit Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.StraightCircuit}" />
-                                    <MenuItem Header="New Straight Contact Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.StraightContact}" />
-                                    <MenuItem Header="New Straight Uncouple Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.StraightUncouple}" />
-                                    <MenuItem Header="New Straight Isolatin Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.StraightIsolatin}" />
-                                    <MenuItem Header="New Straight Feeder Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.StraightFeeder}" />
-                                    <MenuItem Header="New Straight Adjustme Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.StraightAdjustme}" />
+                                    <MenuItem Header="New End Piece Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.EndPiece}" />
+                                    <MenuItem Header="New Straight Adjustment Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.StraightAdjustme}" />
                                     <MenuItem Header="New Double Crossover Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.DoubleCrossover}" />
                                     <MenuItem Header="New Flex Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Flex}" />
                                     <MenuItem Header="New Group Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Group}" />
@@ -189,21 +183,15 @@
                                                 <MenuItem Header="New Turnout Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Turnout}" />
                                                 <MenuItem Header="New Curved Turnout Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.CurvedTurnout}" />
                                                 <MenuItem Header="New Double Slip Switch Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.DoubleSlipSwitch}" />
-                                                <MenuItem Header="New Double TurnoutTrack" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.DoubleTurnout}" />
+                                                <MenuItem Header="New Double Turnout Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.DoubleTurnout}" />
                                                 <MenuItem Header="New Y-Turnout Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.YTurnout}" />
                                                 <MenuItem Header="New Crossing Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Crossing}" />
                                                 <MenuItem Header="New Bumper Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Bumper}" />
                                                 <MenuItem Header="New Adapter Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Adapter}" />
                                                 <MenuItem Header="New Turntable Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Turntable}" />
                                                 <MenuItem Header="New Transfer Table Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.TransferTable}" />
-                                                <MenuItem Header="New End PieceTrack" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.EndPiece}" />
-                                                <MenuItem Header="New Curved CircuitTrack" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.CurvedCircuit}" />
-                                                <MenuItem Header="New Straight Circuit Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.StraightCircuit}" />
-                                                <MenuItem Header="New Straight Contact Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.StraightContact}" />
-                                                <MenuItem Header="New Straight Uncouple Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.StraightUncouple}" />
-                                                <MenuItem Header="New Straight Isolatin Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.StraightIsolatin}" />
-                                                <MenuItem Header="New Straight Feeder Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.StraightFeeder}" />
-                                                <MenuItem Header="New Straight Adjustme Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.StraightAdjustme}" />
+                                                <MenuItem Header="New End Piece Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.EndPiece}" />
+                                                <MenuItem Header="New Straight Adjustment Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.StraightAdjustme}" />
                                                 <MenuItem Header="New Double Crossover Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.DoubleCrossover}" />
                                                 <MenuItem Header="New Flex Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Flex}" />
                                                 <MenuItem Header="New Group Track" Command="{Binding NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Group}" />
