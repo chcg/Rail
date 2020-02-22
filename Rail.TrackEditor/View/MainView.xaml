@@ -55,18 +55,41 @@
                 </Grid.Resources>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="200"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <GroupBox Header="Name" Grid.Column="0" Grid.Row="0">
-                    <DataGrid Margin="3"/>
+                    <DataGrid ItemsSource="{Binding Names}" Margin="3">
+                        <DataGrid.Columns>
+                            <DataGridComboBoxColumn Header="Language"/>
+                            <DataGridTextColumn Header="Track Type Name"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </GroupBox>
-                <GroupBox Header="Parameter" Grid.Column="0" Grid.Row="1">
+                <GroupBox Header="Lenths" Grid.Column="1" Grid.Row="0">
+                    <DataGrid ItemsSource="{Binding Lengths}" Margin="3">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Name}"  Header="Length Name"/>
+                            <DataGridTextColumn Binding="{Binding Length}"  Header="Length Value (mm)"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+                <GroupBox Header="Radiuses" Grid.Column="2" Grid.Row="0">
+                    <DataGrid ItemsSource="{Binding Radiuses}" Margin="3">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Name}" Header="Radius Name"/>
+                            <DataGridTextColumn Binding="{Binding Length}" Header="Radius Value (mm)"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+                <GroupBox Header="Parameter" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1">
                     <Grid Margin="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="{Binding LabelWith}" SharedSizeGroup="Label"/>
@@ -87,7 +110,7 @@
                         <TextBox Grid.Column="5" Grid.Row="0" Text="{Binding DockType}" Margin="3"/>
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Drawing" Grid.Column="0" Grid.Row="2">
+                <GroupBox Header="Drawing" Grid.Column="0"  Grid.ColumnSpan="3" Grid.Row="2">
                     <Grid Margin="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition SharedSizeGroup="Label"/>
@@ -118,7 +141,7 @@
                         <TextBox Grid.Column="5" Grid.Row="1" Text="{Binding BallastWidth}" Margin="3"/>
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Clear Room" Grid.Column="0" Grid.Row="3">
+                <GroupBox Header="Clear Room" Grid.Column="0"  Grid.ColumnSpan="3" Grid.Row="3">
                     <Grid Margin="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition SharedSizeGroup="Label"/>
@@ -139,7 +162,7 @@
                         <TextBox Grid.Column="5" Grid.Row="0" Text="{Binding WagonMaxBogieDistance}" Margin="3"/>
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Track" Grid.Column="0" Grid.Row="4">
+                <GroupBox Header="Track" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4">
 
                     <Grid Margin="3">
                         <Grid.ColumnDefinitions>

@@ -19,7 +19,10 @@ namespace Rail.TrackEditor.ViewModel
             this.DeleteTrackCommand = new DelegateCommand<TrackViewModel>(OnDeleteNewTrack);
 
             this.trackType = new TrackType();
-            this.Tracks = new ObservableCollection<TrackViewModel>(trackType.Tracks.Select(t => TrackViewModel.Create(t)));
+            this.Tracks = new ObservableCollection<TrackViewModel>(this.trackType.Tracks.Select(t => TrackViewModel.Create(t)));
+            this.Names = new ObservableCollection<TrackTypeNameViewModel>(this.trackType.Name.LanguageDictionary.Select(n => new TrackTypeNameViewModel(n)));
+            this.Lengths = new ObservableCollection<TrackLengthViewModel>(this.trackType.Lengths.Select(l => new TrackLengthViewModel(l)));
+            this.Radii = new ObservableCollection<TrackLengthViewModel>(this.trackType.Radii.Select(l => new TrackLengthViewModel(l)));
         }
 
         public TrackTypeViewModel(TrackType trackType)
@@ -32,6 +35,13 @@ namespace Rail.TrackEditor.ViewModel
         }
 
         public string Name { get { return this.trackType.Name; } }
+
+        public ObservableCollection<TrackTypeNameViewModel> Names { get; private set; }
+
+        public ObservableCollection<TrackLengthViewModel> Lengths { get; private set; }
+
+        public ObservableCollection<TrackLengthViewModel> Radii { get; private set; }
+
 
         public string Manufacturer
         {
