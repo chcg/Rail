@@ -215,6 +215,48 @@
                                 <DataTemplate DataType="{x:Type vm:TrackTurnoutViewModel}" >
                                     <v:TrackTurnoutView/>
                                 </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackCurvedTurnoutViewModel}" >
+                                    <v:TrackCurvedTurnoutView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackDoubleSlipSwitchViewModel}" >
+                                    <v:TrackDoubleSlipSwitchView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackDoubleTurnoutViewModel}" >
+                                    <v:TrackDoubleTurnoutView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackYTurnoutViewModel}" >
+                                    <v:TrackYTurnoutView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackCrossingViewModel}" >
+                                    <v:TrackCrossingView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackBumperViewModel}" >
+                                    <v:TrackBumperView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackAdapterViewModel}" >
+                                    <v:TrackAdapterView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackTurntableViewModel}" >
+                                    <v:TrackTurntableView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackTransferTableViewModel}" >
+                                    <v:TrackTransferTableView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackEndPieceViewModel}" >
+                                    <v:TrackEndPieceView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackStraightAdjustmentViewModel}" >
+                                    <v:TrackStraightAdjustmentView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackDoubleCrossoverViewModel}" >
+                                    <v:TrackDoubleCrossoverView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackFlexViewModel}" >
+                                    <v:TrackFlexView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackGroupViewModel}" >
+                                    <v:TrackGroupView/>
+                                </DataTemplate>
                             </ContentControl.Resources>
                         </ContentControl>
                     </Grid>
