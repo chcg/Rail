@@ -132,11 +132,23 @@
   <data name="TrackCurvedCircuit" xml:space="preserve">
     <value>Curved Circuit Track</value>
   </data>
+  <data name="TrackCurvedContact" xml:space="preserve">
+    <value>Curved Contact Track</value>
+  </data>
+  <data name="TrackCurvedFeeder" xml:space="preserve">
+    <value>Curved Feeder</value>
+  </data>
+  <data name="TrackCurvedIsolating" xml:space="preserve">
+    <value>Curved Isolating</value>
+  </data>
   <data name="TrackCurvedTurnoutLeft" xml:space="preserve">
     <value>Left Curved Turnout</value>
   </data>
   <data name="TrackCurvedTurnoutRight" xml:space="preserve">
     <value>Right Curved Turnout</value>
+  </data>
+  <data name="TrackCurvedUncoupler" xml:space="preserve">
+    <value>Curved Uncoupler</value>
   </data>
   <data name="TrackDoubleCrossover" xml:space="preserve">
     <value>Double Crossover</value>
@@ -169,7 +181,7 @@
     <value>Straight Circuit Track</value>
   </data>
   <data name="TrackStraightContact" xml:space="preserve">
-    <value>Contact Track</value>
+    <value>Straight Contact Track</value>
   </data>
   <data name="TrackStraightFeeder" xml:space="preserve">
     <value>Straight Feeder</value>

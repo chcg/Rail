@@ -33,5 +33,13 @@ namespace Rail.TrackEditor.ViewModel
             get { return this.track.Length; }
             set { this.track.Length = value; NotifyPropertyChanged(nameof(Length)); }
         }
+
+        public TrackExtras[] Extras {  get { return (TrackExtras[])Enum.GetValues(typeof(TrackExtras));  } }
+        
+        public TrackExtras Extra
+        {
+            get { return this.track.Extra; }
+            set { this.track.Extra = value; NotifyPropertyChanged(nameof(Extra)); }
+        }
     }
 }

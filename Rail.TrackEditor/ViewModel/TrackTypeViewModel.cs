@@ -10,14 +10,23 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackType trackType;
 
+        public DelegateCommand<TrackTypes> NewTrackCommand { get; private set; }
+        public DelegateCommand<TrackViewModel> DeleteTrackCommand { get; private set; }
+
         public TrackTypeViewModel()
         {
+            this.NewTrackCommand = new DelegateCommand<TrackTypes>(OnNewTrack);
+            this.DeleteTrackCommand = new DelegateCommand<TrackViewModel>(OnDeleteNewTrack);
+
             this.trackType = new TrackType();
             this.Tracks = new ObservableCollection<TrackViewModel>(trackType.Tracks.Select(t => TrackViewModel.Create(t)));
         }
 
         public TrackTypeViewModel(TrackType trackType)
         {
+            this.NewTrackCommand = new DelegateCommand<TrackTypes>(OnNewTrack);
+            this.DeleteTrackCommand = new DelegateCommand<TrackViewModel>(OnDeleteNewTrack);
+
             this.trackType = trackType;
             this.Tracks = new ObservableCollection<TrackViewModel>(trackType.Tracks.Select(t => TrackViewModel.Create(t)));
         }
@@ -105,5 +114,41 @@ namespace Rail.TrackEditor.ViewModel
         }
 
         public ObservableCollection<TrackViewModel> Tracks { get; private set; }
+
+        private void OnNewTrack(TrackTypes type)
+        {
+            this.Tracks.Add(type switch
+            {
+                TrackTypes.Straight => new TrackStraightViewModel(),
+                TrackTypes.Curved => new TrackCurvedViewModel(),
+                TrackTypes.Turnout => new TrackTurnoutViewModel(),
+                //TrackTypes.CurvedTurnout,
+                //TrackTypes.DoubleSlipSwitch,
+                //TrackTypes.DoubleTurnout,
+                //TrackTypes.YTurnout,
+                //TrackTypes.Crossing,
+                //TrackTypes.Bumper,
+                //TrackTypes.Adapter,
+                //TrackTypes.Turntable,
+                //TrackTypes.TransferTable,
+                //TrackTypes.EndPiece,
+                //TrackTypes.CurvedCircuit,
+                //TrackTypes.StraightCircuit,
+                //TrackTypes.StraightContact,
+                //TrackTypes.StraightUncouple,
+                //TrackTypes.StraightIsolatin,
+                //TrackTypes.StraightFeeder,
+                //TrackTypes.StraightAdjustme,
+                //TrackTypes.DoubleCrossover,
+                //TrackTypes.Flex,
+                //TrackTypes.Group,
+                _ => null
+            });   
+        }
+
+        private void OnDeleteNewTrack(TrackViewModel track)
+        {
+            this.Tracks.Remove(track);
+        }
     }
 }

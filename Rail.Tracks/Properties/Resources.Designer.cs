@@ -106,6 +106,33 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curved Contact Track.
+        /// </summary>
+        public static string TrackCurvedContact {
+            get {
+                return ResourceManager.GetString("TrackCurvedContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curved Feeder.
+        /// </summary>
+        public static string TrackCurvedFeeder {
+            get {
+                return ResourceManager.GetString("TrackCurvedFeeder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curved Isolating.
+        /// </summary>
+        public static string TrackCurvedIsolating {
+            get {
+                return ResourceManager.GetString("TrackCurvedIsolating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Left Curved Turnout.
         /// </summary>
         public static string TrackCurvedTurnoutLeft {
@@ -120,6 +147,15 @@ namespace Rail.Tracks.Properties {
         public static string TrackCurvedTurnoutRight {
             get {
                 return ResourceManager.GetString("TrackCurvedTurnoutRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curved Uncoupler.
+        /// </summary>
+        public static string TrackCurvedUncoupler {
+            get {
+                return ResourceManager.GetString("TrackCurvedUncoupler", resourceCulture);
             }
         }
         
@@ -214,7 +250,7 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contact Track.
+        ///   Looks up a localized string similar to Straight Contact Track.
         /// </summary>
         public static string TrackStraightContact {
             get {

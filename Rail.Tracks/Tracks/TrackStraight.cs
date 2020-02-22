@@ -14,6 +14,9 @@ namespace Rail.Tracks
         [XmlAttribute("Length")]
         public string LengthNameOrValue { get; set; }
 
+        [XmlAttribute("Extra")]
+        public TrackExtras Extra { get; set; }
+
         [XmlIgnore, JsonIgnore]
         public double Length { get; set; }
 
@@ -27,8 +30,18 @@ namespace Rail.Tracks
         public override string Name 
         { 
             get 
-            { 
-                return $"{Resources.TrackStraight} {LengthName} {Length} mm"; 
+            {
+                return this.Extra switch
+                {
+                    TrackExtras.No => $"{Resources.TrackStraight} {LengthName} {Length} mm",
+                    TrackExtras.Circuit => $"{Resources.TrackStraightCircuit}",
+                    TrackExtras.Contact => $"{Resources.TrackStraightContact}",
+                    TrackExtras.Uncouple => $"{Resources.TrackStraightUncoupler} {Length} mm",
+                    TrackExtras.Isolatin => $"{Resources.TrackStraightIsolating} {Length} mm",
+                    TrackExtras.Feeder => $"{Resources.TrackStraightFeeder} {Length} mm",
+                    _ => null
+                    
+                };
             } 
         }
 
@@ -37,7 +50,16 @@ namespace Rail.Tracks
         {
             get
             {
-                return $"{this.Article} {Resources.TrackStraight} {LengthName} {Length} mm";
+                return this.Extra switch
+                {
+                    TrackExtras.No => $"{this.Article} {Resources.TrackStraight} {LengthName} {Length} mm",
+                    TrackExtras.Circuit => $"{this.Article} {Resources.TrackStraightCircuit}",
+                    TrackExtras.Contact => $"{this.Article} {Resources.TrackStraightContact}",
+                    TrackExtras.Uncouple => $"{this.Article} {Resources.TrackStraightUncoupler} {Length} mm",
+                    TrackExtras.Isolatin => $"{this.Article} {Resources.TrackStraightIsolating} {Length} mm",
+                    TrackExtras.Feeder => $"{this.Article} {Resources.TrackStraightFeeder} {Length} mm",
+                    _ => null
+                };
             }
         }
 
