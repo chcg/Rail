@@ -10,17 +10,13 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackCurved track;
 
-        public TrackCurvedViewModel()
-        {
-            this.track = new TrackCurved();
-        }
+        public TrackCurvedViewModel() : this(new TrackCurved())
+        { }
 
-        public TrackCurvedViewModel(TrackCurved track)
+        public TrackCurvedViewModel(TrackCurved track) : base(track)
         {
             this.track = track;
         }
-
-        public string Name { get { return this.track.Name; } }
 
         public string Article
         {

@@ -10,18 +10,14 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackStraight track;
 
-        public TrackStraightViewModel()
-        {
-            this.track = new TrackStraight();
-        }
+        public TrackStraightViewModel() : this(new TrackStraight())
+        { }
 
-        public TrackStraightViewModel(TrackStraight track)
+        public TrackStraightViewModel(TrackStraight track) : base(track)
         {
             this.track = track;
         }
-
-        public string Name {  get { return this.track.Name; } }
-
+                
         public string Article
         {
             get { return this.track.Article; }

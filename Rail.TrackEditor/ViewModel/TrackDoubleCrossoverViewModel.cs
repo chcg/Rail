@@ -9,18 +9,14 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackDoubleCrossover track;
 
-        public TrackDoubleCrossoverViewModel()
-        {
-            this.track = new TrackDoubleCrossover();
-        }
+        public TrackDoubleCrossoverViewModel() : this(new TrackDoubleCrossover())
+        { }
 
-        public TrackDoubleCrossoverViewModel(TrackDoubleCrossover track)
+        public TrackDoubleCrossoverViewModel(TrackDoubleCrossover track) : base(track)
         {
             this.track = track;
         }
-
-        public string Name { get { return this.track.Name; } }
-
+        
         public string Article
         {
             get { return this.track.Article; }

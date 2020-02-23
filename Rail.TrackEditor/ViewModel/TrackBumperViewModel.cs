@@ -9,17 +9,13 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackBumper track;
 
-        public TrackBumperViewModel()
-        {
-            this.track = new TrackBumper();
-        }
+        public TrackBumperViewModel() : this(new TrackBumper())
+        { }
 
-        public TrackBumperViewModel(TrackBumper track)
+        public TrackBumperViewModel(TrackBumper track) : base(track)
         {
             this.track = track;
         }
-
-        public string Name { get { return this.track.Name; } }
 
         public string Article
         {

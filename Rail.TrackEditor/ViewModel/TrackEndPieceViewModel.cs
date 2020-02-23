@@ -9,17 +9,13 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackEndPiece track;
 
-        public TrackEndPieceViewModel()
-        {
-            this.track = new TrackEndPiece();
-        }
+        public TrackEndPieceViewModel() : this(new TrackEndPiece())
+        { }
 
-        public TrackEndPieceViewModel(TrackEndPiece track)
+        public TrackEndPieceViewModel(TrackEndPiece track) : base(track)
         {
             this.track = track;
         }
-
-        public string Name { get { return this.track.Name; } }
 
         public string Article
         {

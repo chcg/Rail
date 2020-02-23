@@ -3,8 +3,19 @@ using Rail.Tracks;
 
 namespace Rail.TrackEditor.ViewModel
 {
-    public class TrackViewModel : BaseViewModel
+    public abstract class TrackViewModel : BaseViewModel
     {
+        private TrackBase trackBase;
+
+        public TrackViewModel(TrackBase trackBase)
+        {
+            this.trackBase = trackBase;
+        }
+
+        public string Name { get { return this.trackBase.Name; } }
+
+        public TrackBase Track { get { return this.trackBase; } }
+
         public static TrackViewModel Create(TrackBase track)
         {
             string typeName = track.GetType().Name;

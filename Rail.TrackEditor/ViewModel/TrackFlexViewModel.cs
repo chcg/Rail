@@ -9,17 +9,13 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackFlex track;
 
-        public TrackFlexViewModel()
-        {
-            this.track = new TrackFlex();
-        }
+        public TrackFlexViewModel() : this(new TrackFlex())
+        { }
 
-        public TrackFlexViewModel(TrackFlex track)
+        public TrackFlexViewModel(TrackFlex track) : base(track)
         {
             this.track = track;
         }
-
-        public string Name { get { return this.track.Name; } }
 
         public string Article
         {

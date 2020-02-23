@@ -9,17 +9,13 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackTurnout track;
 
-        public TrackTurnoutViewModel()
-        {
-            this.track = new TrackTurnout();
-        }
+        public TrackTurnoutViewModel() : this(new TrackTurnout())
+        { }
 
-        public TrackTurnoutViewModel(TrackTurnout track)
+        public TrackTurnoutViewModel(TrackTurnout track) : base(track)
         {
             this.track = track;
         }
-
-        public string Name { get { return this.track.Name; } }
 
         public string Article
         {

@@ -9,17 +9,13 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackCrossing track;
 
-        public TrackCrossingViewModel()
-        {
-            this.track = new TrackCrossing();
-        }
+        public TrackCrossingViewModel() : this(new TrackCrossing())
+        { }
 
-        public TrackCrossingViewModel(TrackCrossing track)
+        public TrackCrossingViewModel(TrackCrossing track) : base(track)
         {
             this.track = track;
         }
-
-        public string Name { get { return this.track.Name; } }
 
         public string Article
         {

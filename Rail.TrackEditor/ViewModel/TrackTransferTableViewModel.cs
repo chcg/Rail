@@ -9,17 +9,13 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackTransferTable track;
 
-        public TrackTransferTableViewModel()
-        {
-            this.track = new TrackTransferTable();
-        }
+        public TrackTransferTableViewModel() : this(new TrackTransferTable())
+        { }
 
-        public TrackTransferTableViewModel(TrackTransferTable track)
+        public TrackTransferTableViewModel(TrackTransferTable track) : base(track)
         {
             this.track = track;
         }
-
-        public string Name { get { return this.track.Name; } }
 
         public string Article
         {
