@@ -10,20 +10,26 @@ namespace Rail.TrackEditor.ViewModel
     {
         private TrackList trackList;
 
+        public DelegateCommand SaveCommand { get; private set; }
         public DelegateCommand NewTrackTypeCommand { get; private set; }
         public DelegateCommand<TrackTypeViewModel> DeleteTrackTypeCommand { get; private set; }
 
         public MainViewModel()
         {
+            this.SaveCommand = new DelegateCommand(OnSave);
             this.NewTrackTypeCommand = new DelegateCommand(OnNewTrackType);
             this.DeleteTrackTypeCommand = new DelegateCommand<TrackTypeViewModel>(OnDeleteTrackType);
         }
 
         public override void OnStartup()
         {
-            string path = System.AppDomain.CurrentDomain.BaseDirectory;
-            this.trackList = TrackList.Load(Path.Combine(path, "Tracks.xml"));
+            this.trackList = TrackList.Load();
             this.TrackTypes = new ObservableCollection<TrackTypeViewModel>(this.trackList.TrackTypes.Select(t => new TrackTypeViewModel(t)));
+        }
+
+        public void OnSave()
+        {
+            this.trackList.Save();
         }
 
 

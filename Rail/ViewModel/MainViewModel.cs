@@ -53,7 +53,8 @@ namespace Rail.ViewModel
                 try
                 {
                     string path = System.AppDomain.CurrentDomain.BaseDirectory;
-                    this.trackList = TrackList.Load(Path.Combine(path, "Tracks.xml"));
+                    //this.trackList = TrackList.Load(Path.Combine(path, "Tracks.xml"));
+                    this.trackList = TrackList.Load();
                     this.trackDict = trackList.TrackTypes.SelectMany(t => t.Tracks).ToDictionary(t => t.Id, t => t);
                 }
                 catch (Exception ex)

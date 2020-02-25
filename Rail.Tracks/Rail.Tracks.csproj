@@ -15,10 +15,14 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <None Remove="Tracks.xml" />
     <None Remove="Tracks.xsd" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Tracks.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tracks.xsd" />
   </ItemGroup>
 
@@ -39,12 +43,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Tracks.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

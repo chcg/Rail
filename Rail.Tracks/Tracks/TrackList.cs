@@ -25,68 +25,61 @@ namespace Rail.Tracks
         [XmlElement("TrackType")]
         public List<TrackType> TrackTypes { get; set; }
 
-        public static TrackList Load(string path)
+        public static TrackList Load()
         {
-            using Stream stream = typeof(TrackList).Assembly.GetManifestResourceStream("Rail.Tracks.Tracks.xsd");
+            Assembly trackAssembly = typeof(TrackList).Assembly;
+
+            // read schema
+            using Stream stream = trackAssembly.GetManifestResourceStream("Rail.Tracks.Tracks.xsd");
             XmlSchema schema = XmlSchema.Read(stream, Validation);
-            TrackList trackList = TrackList.Load(path, schema);
+
+            XmlReaderSettings settings = new XmlReaderSettings
+            {
+                CheckCharacters = true,
+                ValidationType = ValidationType.Schema
+            };
+            settings.Schemas.Add(schema);
+            
+
+            string file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Rail\\Tracks.xml");
+            
+            using Stream xmlStream = File.Exists(file) ? File.OpenRead(file) : trackAssembly.GetManifestResourceStream("Rail.Tracks.Tracks.xml");
+
+            // read from file
+            XmlSerializer serializer = new XmlSerializer(typeof(TrackList));
+            TrackList trackList = (TrackList)serializer.Deserialize(XmlReader.Create(xmlStream, settings));
+                        
             trackList.TrackTypes.ForEach(trackType => trackType.Update());
             return trackList;
         }
 
-        ///// <summary>
-        ///// Load the file 
-        ///// </summary>
-        ///// <typeparam name="T">Type of the project class</typeparam>
-        ///// <param name="path">Path to load</param>
-        ///// <returns>Instance of the loaded project class</returns>
-        //public static TrackList Load(string path) 
-        //{
-        //    TrackList project = null;
-        //    using (XmlTextReader reader = new XmlTextReader(path))
-        //    {
-        //        XmlSerializer serializer = new XmlSerializer(typeof(TrackList));
-        //        project = (TrackList)serializer.Deserialize(reader);
-        //    }
-        //    return project;
-        //}
-
-        public static TrackList Load(string path, XmlSchema schema) 
+        
+        public void Save()
         {
-            TrackList project = null;
-            XmlReaderSettings settings = new XmlReaderSettings();
-            settings.CheckCharacters = true;
-            settings.Schemas.Add(schema);
-            settings.ValidationType = ValidationType.Schema;
-            using (XmlReader reader = XmlReader.Create(path, settings))
+            string file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Rail\\Tracks.xml");
+
+            if (File.Exists(file))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(TrackList));
-                project = (TrackList)serializer.Deserialize(reader);
+                int i = 0;
+                while (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), $"Rail\\Tracks{++i}.xml")));
+                File.Move(file, Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), $"Rail\\Tracks{i}.xml"));    
             }
-            return project;
-        }
 
-        /// <summary>
-        /// Save project to file
-        /// </summary>
-        /// <param name="path">Path to save to.</param>
-        public void Save(string path)
-        {
             // set current file version
-            using (XmlTextWriter writer = new XmlTextWriter(path, Encoding.UTF8))
+            using XmlTextWriter writer = new XmlTextWriter(file, Encoding.UTF8)
             {
-                writer.Formatting = Formatting.Indented;
-                writer.Indentation = 2;
-                XmlSerializer serializer = new XmlSerializer(this.GetType());
-                serializer.Serialize(writer, this);
-            }
+                Formatting = Formatting.Indented,
+                Indentation = 2
+            };
+            XmlSerializer serializer = new XmlSerializer(this.GetType());
+            serializer.Serialize(writer, this);
 
-            JsonWriterOptions options = default;
-            options.Indented = true;
-            using (Utf8JsonWriter writer = new Utf8JsonWriter(File.Create(Path.ChangeExtension(path, "jrail")), options))
-            {
-                JsonSerializer.Serialize(writer, this, this.GetType());
-            }
+            //JsonWriterOptions options = default;
+            //options.Indented = true;
+            //using (Utf8JsonWriter writer = new Utf8JsonWriter(File.Create(Path.ChangeExtension(path, "jrail")), options))
+            //{
+            //    JsonSerializer.Serialize(writer, this, this.GetType());
+            //}
         }
 
         private static void Validation(object sender, ValidationEventArgs e)
