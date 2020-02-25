@@ -23,28 +23,40 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.Article = value; NotifyPropertyChanged(nameof(Article)); }
         }
 
-        public double Length
+        public string StraightLength
         {
-            get { return this.track.Length; }
-            set { this.track.Length = value; NotifyPropertyChanged(nameof(Length)); }
+            get { return this.track.StraightLengthName; }
+            set { this.track.StraightLengthName = value; NotifyPropertyChanged(nameof(StraightLength)); }
         }
 
-        public double Radius
+        public string TurnoutLength
         {
-            get { return this.track.Radius; }
-            set { this.track.Radius = value; NotifyPropertyChanged(nameof(Radius)); }
+            get { return this.track.TurnoutLengthName; }
+            set { this.track.TurnoutLengthName = value; NotifyPropertyChanged(nameof(TurnoutLength)); }
         }
 
-        public double Angle
+        public string TurnoutRadius
         {
-            get { return this.track.Angle; }
-            set { this.track.Angle = value; NotifyPropertyChanged(nameof(Angle)); }
+            get { return this.track.TurnoutRadiusName; }
+            set { this.track.TurnoutRadiusName = value; NotifyPropertyChanged(nameof(TurnoutRadius)); }
+        }
+
+        public string TurnoutAngle
+        {
+            get { return this.track.TurnoutAngleName; }
+            set { this.track.TurnoutAngleName = value; NotifyPropertyChanged(nameof(TurnoutAngle)); }
         }
 
         public TrackDirection Direction
         {
             get { return this.track.Direction; }
             set { this.track.Direction = value; NotifyPropertyChanged(nameof(Direction)); }
+        }
+
+        public TrackDrive Drive
+        {
+            get { return this.track.Drive; }
+            set { this.track.Drive = value; NotifyPropertyChanged(nameof(Drive)); }
         }
     }
 }

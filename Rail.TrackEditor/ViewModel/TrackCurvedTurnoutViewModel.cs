@@ -22,5 +22,53 @@ namespace Rail.TrackEditor.ViewModel
             get { return this.track.Article; }
             set { this.track.Article = value; NotifyPropertyChanged(nameof(Article)); }
         }
+
+        public string InnerLength
+        {
+            get { return this.track.InnerLengthName; }
+            set { this.track.InnerLengthName = value; NotifyPropertyChanged(nameof(InnerLength)); }
+        }
+
+        public string InnerRadius
+        {
+            get { return this.track.InnerRadiusName; }
+            set { this.track.InnerRadiusName = value; NotifyPropertyChanged(nameof(InnerRadius)); }
+        }
+
+        public string InnerAngle
+        {
+            get { return this.track.InnerAngleName; }
+            set { this.track.InnerAngleName = value; NotifyPropertyChanged(nameof(InnerAngle)); }
+        }
+
+        public string OuterLength
+        {
+            get { return this.track.OuterLengthName; }
+            set { this.track.OuterLengthName = value; NotifyPropertyChanged(nameof(OuterLength)); }
+        }
+
+        public string OuterRadius
+        {
+            get { return this.track.OuterRadiusName; }
+            set { this.track.OuterRadiusName = value; NotifyPropertyChanged(nameof(OuterRadius)); }
+        }
+
+        public string OuterAngle
+        {
+            get { return this.track.OuterAngleName; }
+            set { this.track.OuterAngleName = value; NotifyPropertyChanged(nameof(OuterAngle)); }
+        }
+
+        public TrackDirection Direction
+        {
+            get { return this.track.Direction; }
+            set { this.track.Direction = value; NotifyPropertyChanged(nameof(Direction)); }
+        }
+
+        public TrackDrive Drive
+        {
+            get { return this.track.Drive; }
+            set { this.track.Drive = value; NotifyPropertyChanged(nameof(Drive)); }
+        }
     }
 }
