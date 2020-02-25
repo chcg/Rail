@@ -91,6 +91,10 @@ namespace Rail.Tracks.Misc
             return this.Value;
         }
 
-        public Dictionary<string, string> LanguageDictionary {  get { return this.languageDictionary; } }
+        public Dictionary<string, string> LanguageDictionary 
+        {
+            get { return this.languageDictionary; }
+            set { this.languageDictionary = value; }
+        }
     }
 }

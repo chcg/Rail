@@ -5,7 +5,7 @@ namespace Rail.TrackEditor.ViewModel
 {
     public abstract class TrackViewModel : BaseViewModel
     {
-        private TrackBase trackBase;
+        private readonly TrackBase trackBase;
 
         public TrackViewModel(TrackBase trackBase)
         {
@@ -42,6 +42,11 @@ namespace Rail.TrackEditor.ViewModel
             };
         }
 
+        public void UpdateTrack(TrackType trackType)
+        {
+            this.trackBase.Update(trackType);
+            NotifyPropertyChanged(nameof(Track));
+        }
 
     }
 }

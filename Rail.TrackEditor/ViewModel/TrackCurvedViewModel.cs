@@ -24,16 +24,16 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.Article = value; NotifyPropertyChanged(nameof(Article)); }
         }
 
-        public double Radius
+        public string RadiusName
         {
-            get { return this.track.Radius; }
-            set { this.track.Radius = value; NotifyPropertyChanged(nameof(Radius)); }
+            get { return this.track.RadiusName; }
+            set { this.track.RadiusName = value; NotifyPropertyChanged(nameof(RadiusName)); }
         }
 
-        public double Angle
+        public string AngleName
         {
-            get { return this.track.Angle; }
-            set { this.track.Angle = value; NotifyPropertyChanged(nameof(Angle)); }
+            get { return this.track.AngleName; }
+            set { this.track.AngleName = value; NotifyPropertyChanged(nameof(AngleName)); }
         }
 
         public TrackExtras[] Extras { get { return (TrackExtras[])Enum.GetValues(typeof(TrackExtras)); } }

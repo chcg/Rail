@@ -42,8 +42,7 @@
                     <xs:element maxOccurs="unbounded" name="Radius">
                       <xs:complexType>
                         <xs:attribute name="Name" type="xs:string" use="required" />
-                        <xs:attribute name="Length" type="xs:decimal" use="required" />
-                        <xs:attribute name="Description" type="xs:string" use="optional" />
+                        <xs:attribute name="Value" type="xs:decimal" use="required" />
                       </xs:complexType>
                     </xs:element>
                   </xs:sequence>
@@ -55,7 +54,19 @@
                     <xs:element maxOccurs="unbounded" name="Length">
                       <xs:complexType>
                         <xs:attribute name="Name" type="xs:string" use="required" />
-                        <xs:attribute name="Length" type="xs:decimal" use="required" />
+                        <xs:attribute name="Value" type="xs:decimal" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="Angles">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="Angle">
+                      <xs:complexType>
+                        <xs:attribute name="Name" type="xs:string" use="required" />
+                        <xs:attribute name="Value" type="xs:decimal" use="required" />
                       </xs:complexType>
                     </xs:element>
                   </xs:sequence>

@@ -477,7 +477,7 @@ namespace Rail.Tracks
         //    return (Point)((a - b) / -2);
         //}
 
-        protected double GetValue(List<TrackLength> list, string value)
+        protected double GetValue(List<TrackNamedValue> list, string value)
         {
             if (String.IsNullOrEmpty(value))
             {
@@ -489,7 +489,7 @@ namespace Rail.Tracks
             }
             else
             {
-                return list.First(i => i.Name == value).Length;
+                return list.First(i => i.Name == value).Value;
             }
         }
 

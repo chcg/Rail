@@ -20,7 +20,14 @@ namespace Rail.Tracks
         public string RadiusName { get; set; }
 
         [XmlAttribute("Angle")]
+        public string AngleNameOrValue { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public string AngleName { get; set; }
+
+        [XmlIgnore, JsonIgnore]
         public double Angle { get; set; }
+                
 
         [XmlAttribute("Extra")]
         public TrackExtras Extra { get; set; }
@@ -69,6 +76,8 @@ namespace Rail.Tracks
         {
             this.Radius = GetValue(trackType.Radii, this.RadiusNameOrValue);
             this.RadiusName = GetName(this.RadiusNameOrValue);
+            this.Angle = GetValue(trackType.Angles, this.AngleNameOrValue);
+            this.AngleName = GetName(this.AngleNameOrValue);
             base.Update(trackType);
         }
 

@@ -5,12 +5,12 @@ using System.Xml.Serialization;
 
 namespace Rail.Tracks
 {
-    public class TrackLength
+    public class TrackNamedValue
     {
         [XmlAttribute("Name")]
         public string Name { get; set; }
 
-        [XmlAttribute("Length")]
-        public double Length { get; set; }
+        [XmlAttribute("Value")]
+        public double Value { get; set; }
     }
 }

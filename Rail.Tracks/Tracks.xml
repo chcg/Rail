@@ -17,25 +17,34 @@
       <BallastWidth>39.0</BallastWidth>
     </Parameter>
     <Radii>
-      <Radius Name="R1" Length="360.0" />
-      <Radius Name="R2" Length="437.5" />
-      <Radius Name="R3" Length="515.0" />
-      <Radius Name="R4" Length="579.3" />
-      <Radius Name="R5" Length="643.6" />
-      <Radius Name="R6" Length="1114.6" />
+      <Radius Name="R1" Value="360.0" />
+      <Radius Name="R2" Value="437.5" />
+      <Radius Name="R3" Value="515.0" />
+      <Radius Name="R4" Value="579.3" />
+      <Radius Name="R5" Value="643.6" />
+      <Radius Name="R6" Value="1114.6" />
     </Radii>
     <Lengths>
-      <Length Name="G360" Length="360.0"/>
-      <Length Name="G236" Length="236.1"/>
-      <Length Name="G229" Length="229.3"/>
-      <Length Name="G188" Length="188.3"/>
-      <Length Name="G172" Length="171.7"/>
-      <Length Name="G103" Length="103.3"/>
-      <Length Name="G94" Length="94.2"/>
-      <Length Name="G77" Length="77.5"/>
-      <Length Name="G71" Length="70.8"/>
-      <Length Name="G64" Length="64.3"/>
+      <Length Name="G360" Value="360.0"/>
+      <Length Name="G236" Value="236.1"/>
+      <Length Name="G229" Value="229.3"/>
+      <Length Name="G188" Value="188.3"/>
+      <Length Name="G172" Value="171.7"/>
+      <Length Name="G103" Value="103.3"/>
+      <Length Name="G94" Value="94.2"/>
+      <Length Name="G77" Value="77.5"/>
+      <Length Name="G71" Value="70.8"/>
+      <Length Name="G64" Value="64.3"/>
     </Lengths>
+    <Angles>
+      <Angle Name="A30" Value="30.0"/>
+      <Angle Name="A24" Value="24.3"/>
+      <Angle Name="A15" Value="15.0"/>
+      <Angle Name="A12" Value="12.1"/>
+      <Angle Name="A10" Value="10.0"/>
+      <Angle Name="A8" Value="7.5"/>
+      <Angle Name="A6" Value="5.7"/>
+    </Angles>
     <Tracks>
       <!-- strait tracks -->
       <Straight Article="24064" Length="G64" />
@@ -164,8 +173,8 @@
       <BallastWidth>39.0</BallastWidth>
     </Parameter>
     <Radii>
-      <Radius Name="R1" Length="360.0" Description="R1 Radius" />
-      <Radius Name="R2" Length="437.5" Description="R2 Radius for turnouts only" />
+      <Radius Name="R1" Value="360.0" />
+      <Radius Name="R2" Value="437.5" />
     </Radii>
     <Tracks>
       <!-- strait tracks -->
@@ -199,12 +208,12 @@
       <BallastType>No</BallastType>
     </Parameter>
     <Radii>
-      <Radius Name="R0" Length="295.4" Description="R0 Industrie Radius 295.4 mm"/>
-      <Radius Name="R1" Length="360.0" Description="R1 Radius 360.0 mm" />
-      <Radius Name="R2" Length="424.6" Description="R2 Radius 424.6 mm" />
-      <Radius Name="R3" Length="553.9" Description="R3 Radius 553.9 mm" />
-      <Radius Name="R4" Length="618.5" Description="R4 Radius 618.5 mm" />
-      <Radius Name="Rx" Length="902.4" Description="Rx Radius 902.4 mm" />
+      <Radius Name="R0" Value="295.4" />
+      <Radius Name="R1" Value="360.0" />
+      <Radius Name="R2" Value="424.6" />
+      <Radius Name="R3" Value="553.9" />
+      <Radius Name="R4" Value="618.5" />
+      <Radius Name="Rx" Value="902.4" />
     </Radii>
     <Tracks>
       <!-- strait tracks -->
@@ -276,9 +285,9 @@
       <BallastWidth>20.0</BallastWidth>
     </Parameter>
     <Radii>
-      <Radius Name="I" Length="282.6" />
-      <Radius Name="R1" Length="360.0" />
-      <Radius Name="R2" Length="437.5" />
+      <Radius Name="I" Value="282.6" />
+      <Radius Name="R1" Value="360.0" />
+      <Radius Name="R2" Value="437.5" />
     </Radii>
     <Tracks>
       <!-- strait tracks -->
@@ -491,10 +500,10 @@
       <BallastType>No</BallastType>
     </Parameter>
     <Radii>
-      <Radius Name="R1" Length="600" />
-      <Radius Name="R2" Length="780" />
-      <Radius Name="R4" Length="1195" />
-      <Radius Name="R5" Length="2320" />
+      <Radius Name="R1" Value="600" />
+      <Radius Name="R2" Value="780" />
+      <Radius Name="R4" Value="1195" />
+      <Radius Name="R5" Value="2320" />
     </Radii>
     <Tracks>
       <!-- strait tracks -->
@@ -709,10 +718,10 @@
       <BallastType>Dark</BallastType>
     </Parameter>
     <Radii>
-      <Radius Name="R1" Length="600.00" />
-      <Radius Name="R3" Length="921.54" />
-      <Radius Name="R5" Length="1243.08" />
-      <Radius Name="R7" Length="1564.62" />
+      <Radius Name="R1" Value="600.00" />
+      <Radius Name="R3" Value="921.54" />
+      <Radius Name="R5" Value="1243.08" />
+      <Radius Name="R7" Value="1564.62" />
     </Radii>
     <Tracks>
       <!-- strait tracks -->
@@ -762,20 +771,20 @@
       <BallastWidth>20.0</BallastWidth>
     </Parameter>
     <Radii>
-      <Radius Name="R1" Length="360.00" />
-      <Radius Name="R2" Length="421.88" />
-      <Radius Name="R3" Length="483.75" />
-      <Radius Name="R4" Length="545.63" />
-      <Radius Name="R9" Length="907.97" />
+      <Radius Name="R1" Value="360.00" />
+      <Radius Name="R2" Value="421.88" />
+      <Radius Name="R3" Value="483.75" />
+      <Radius Name="R4" Value="545.63" />
+      <Radius Name="R9" Value="907.97" />
     </Radii>
     <Lengths>
-      <Length Name="G940" Length="940.00"/>
-      <Length Name="G239" Length="239.07"/>
-      <Length Name="G231" Length="230.93"/>
-      <Length Name="G119" Length="219.54"/>
-      <Length Name="G115" Length="115.46"/>
-      <Length Name="G107" Length="107.32"/>
-      <Length Name="G62" Length="61.88"/>
+      <Length Name="G940" Value="940.00"/>
+      <Length Name="G239" Value="239.07"/>
+      <Length Name="G231" Value="230.93"/>
+      <Length Name="G119" Value="219.54"/>
+      <Length Name="G115" Value="115.46"/>
+      <Length Name="G107" Value="107.32"/>
+      <Length Name="G62" Value="61.88"/>
     </Lengths>
     <Tracks>
       <!-- strait tracks -->
@@ -834,20 +843,20 @@
       <BallastWidth>20.0</BallastWidth>
     </Parameter>
     <Radii>
-      <Radius Name="R1" Length="360.00" />
-      <Radius Name="R2" Length="421.88" />
-      <Radius Name="R3" Length="483.75" />
-      <Radius Name="R4" Length="545.63" />
-      <Radius Name="R9" Length="907.97" />
+      <Radius Name="R1" Value="360.00" />
+      <Radius Name="R2" Value="421.88" />
+      <Radius Name="R3" Value="483.75" />
+      <Radius Name="R4" Value="545.63" />
+      <Radius Name="R9" Value="907.97" />
     </Radii>
     <Lengths>
-      <Length Name="G940" Length="940.00"/>
-      <Length Name="G239" Length="239.07"/>
-      <Length Name="G231" Length="230.93"/>
-      <Length Name="G119" Length="219.54"/>
-      <Length Name="G115" Length="115.46"/>
-      <Length Name="G107" Length="107.32"/>
-      <Length Name="G62" Length="61.88"/>
+      <Length Name="G940" Value="940.00"/>
+      <Length Name="G239" Value="239.07"/>
+      <Length Name="G231" Value="230.93"/>
+      <Length Name="G119" Value="219.54"/>
+      <Length Name="G115" Value="115.46"/>
+      <Length Name="G107" Value="107.32"/>
+      <Length Name="G62" Value="61.88"/>
     </Lengths>
     <Tracks>
       <!-- strait tracks -->
@@ -900,20 +909,20 @@
       <BallastType>No</BallastType>
     </Parameter>
     <Radii>
-      <Radius Name="R1" Length="360.00" />
-      <Radius Name="R2" Length="421.88" />
-      <Radius Name="R3" Length="483.75" />
-      <Radius Name="R4" Length="545.63" />
-      <Radius Name="R9" Length="907.97" />
+      <Radius Name="R1" Value="360.00" />
+      <Radius Name="R2" Value="421.88" />
+      <Radius Name="R3" Value="483.75" />
+      <Radius Name="R4" Value="545.63" />
+      <Radius Name="R9" Value="907.97" />
     </Radii>
     <Lengths>
-      <Length Name="G940" Length="940.00"/>
-      <Length Name="G239" Length="239.07"/>
-      <Length Name="G231" Length="230.93"/>
-      <Length Name="G119" Length="219.54"/>
-      <Length Name="G115" Length="115.46"/>
-      <Length Name="G107" Length="107.32"/>
-      <Length Name="G62" Length="61.88"/>
+      <Length Name="G940" Value="940.00"/>
+      <Length Name="G239" Value="239.07"/>
+      <Length Name="G231" Value="230.93"/>
+      <Length Name="G119" Value="219.54"/>
+      <Length Name="G115" Value="115.46"/>
+      <Length Name="G107" Value="107.32"/>
+      <Length Name="G62" Value="61.88"/>
     </Lengths>
     <Tracks>
       <!-- turnout tracks -->
@@ -976,7 +985,7 @@
       <BallastType>No</BallastType>
     </Parameter>
     <Radii>
-      <Radius Name="R40" Length="704" Description="(40 + 4) * 2 * 8 mm = 704 mm" />
+      <Radius Name="R40" Value="704" />
     </Radii>
   </TrackType>
 
@@ -996,13 +1005,13 @@
       <BallastType>No</BallastType>
     </Parameter>
     <Radii>
-      <Radius Name="R24" Length="448" Description="(24 + 4) * 2 * 8 mm = 448 mm" />
-      <Radius Name="R40" Length="704" Description="(40 + 4) * 2 * 8 mm = 704 mm" />
-      <Radius Name="R56" Length="960" Description="(56 + 4) * 2 * 8 mm = 960 mm" />
-      <Radius Name="R72" Length="1216" Description="(72 + 4) * 2 * 8 mm = 1216 mm" />
-      <Radius Name="R88" Length="1472" Description="(88 + 4) * 2 * 8 mm = 1472 mm" />
-      <Radius Name="R104" Length="1728" Description="(104 + 4) * 2 * 8 mm = 1728 mm"  />
-      <Radius Name="R120" Length="1984" Description="(120 + 4) * 2 * 8 mm = 1984 mm " />
+      <Radius Name="R24" Value="448" />
+      <Radius Name="R40" Value="704" />
+      <Radius Name="R56" Value="960" />
+      <Radius Name="R72" Value="1216" />
+      <Radius Name="R88" Value="1472" />
+      <Radius Name="R104" Value="1728" />
+      <Radius Name="R120" Value="1984" />
     </Radii>
   </TrackType>
 

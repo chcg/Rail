@@ -22,11 +22,15 @@ namespace Rail.Tracks
 
         [XmlArray("Radii")]
         [XmlArrayItem("Radius")]
-        public List<TrackLength> Radii { get; set; } 
+        public List<TrackNamedValue> Radii { get; set; } 
 
         [XmlArray("Lengths")]
         [XmlArrayItem("Length")]
-        public List<TrackLength> Lengths { get; set; }
+        public List<TrackNamedValue> Lengths { get; set; }
+
+        [XmlArray("Angles")]
+        [XmlArrayItem("Angle")]
+        public List<TrackNamedValue> Angles { get; set; }
 
         [XmlArray("Tracks")]
         [XmlArrayItem(typeof(TrackStraight), ElementName = "Straight"),

@@ -29,6 +29,7 @@ namespace Rail.TrackEditor.ViewModel
 
         public void OnSave()
         {
+            this.trackList.TrackTypes = this.TrackTypes.Select(t => t.GetTrackType()).ToList();
             this.trackList.Save();
         }
 

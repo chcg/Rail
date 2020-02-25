@@ -1,26 +1,25 @@
 ﻿using Rail.Mvvm;
 using Rail.Tracks;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Windows.Data;
 
 namespace Rail.TrackEditor.ViewModel
 {
     public class TrackTypeViewModel : BaseViewModel
     {
         private readonly TrackType trackType;
+        
+
 
         public DelegateCommand<TrackTypes> NewTrackCommand { get; private set; }
         public DelegateCommand<TrackViewModel> DeleteTrackCommand { get; private set; }
 
         public TrackTypeViewModel() : this(new TrackType())
-        {
-            //this.NewTrackCommand = new DelegateCommand<TrackTypes>(OnNewTrack);
-            //this.DeleteTrackCommand = new DelegateCommand<TrackViewModel>(OnDeleteNewTrack);
-
-            //this.trackType = new TrackType();
-            //this.Tracks = new ObservableCollection<TrackViewModel>(this.trackType.Tracks.Select(t => TrackViewModel.Create(t)));
-        }
+        { }
 
         public TrackTypeViewModel(TrackType trackType)
         {
@@ -30,18 +29,40 @@ namespace Rail.TrackEditor.ViewModel
             this.trackType = trackType;
             this.Tracks = new ObservableCollection<TrackViewModel>(trackType.Tracks.Select(t => TrackViewModel.Create(t)));
             this.Names = new ObservableCollection<TrackTypeNameViewModel>(this.trackType.Name.LanguageDictionary.Select(n => new TrackTypeNameViewModel(n)));
-            this.Lengths = new ObservableCollection<TrackLengthViewModel>(this.trackType.Lengths.Select(l => new TrackLengthViewModel(l)));
-            this.Radii = new ObservableCollection<TrackLengthViewModel>(this.trackType.Radii.Select(l => new TrackLengthViewModel(l)));
+            this.Lengths = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Lengths.Select(v => new TrackNamedValueViewModel(v)));
+            this.Radii = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Radii.Select(v => new TrackNamedValueViewModel(v)));
+            this.Angles = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Angles.Select(v => new TrackNamedValueViewModel(v)));
+
+            this.Lengths.CollectionChanged += (o, i) => NotifyPropertyChanged(nameof(LengthNames));
+            this.Radii.CollectionChanged += (o, i) => NotifyPropertyChanged(nameof(RadiusNames));
+            this.Angles.CollectionChanged += (o, i) => NotifyPropertyChanged(nameof(AngleNames));
+        }
+
+
+        public TrackType GetTrackType()
+        {
+            this.trackType.Tracks = this.Tracks.Select(t => t.Track).ToList();
+            this.trackType.Name.LanguageDictionary = this.Names.ToDictionary(n => n.Language, n => n.Name);
+            this.trackType.Lengths = this.Lengths.Select(l => l.NamedValue).ToList();
+            this.trackType.Radii = this.Radii.Select(l => l.NamedValue).ToList();
+            this.trackType.Angles = this.Angles.Select(l => l.NamedValue).ToList();
+            return this.trackType;
         }
 
         public string Name { get { return this.trackType.Name; } }
 
         public ObservableCollection<TrackTypeNameViewModel> Names { get; private set; }
 
-        public ObservableCollection<TrackLengthViewModel> Lengths { get; private set; }
+        public ObservableCollection<TrackNamedValueViewModel> Lengths { get; private set; }
 
-        public ObservableCollection<TrackLengthViewModel> Radii { get; private set; }
+        public ObservableCollection<TrackNamedValueViewModel> Radii { get; private set; }
 
+        public ObservableCollection<TrackNamedValueViewModel> Angles { get; private set; }
+
+
+        public List<string> LengthNames { get { return this.Lengths.Select(l => l.Name).ToList(); } }
+        public List<string> RadiusNames { get { return this.Radii.Select(l => l.Name).ToList(); } }
+        public List<string> AngleNames { get { return this.Angles.Select(l => l.Name).ToList(); } }
 
         public string Manufacturer
         {
@@ -54,7 +75,7 @@ namespace Rail.TrackEditor.ViewModel
         public TrackGauge Gauge
         {
             get { return this.trackType.Parameter.Gauge; }
-            set { this.trackType.Parameter.Gauge = value; NotifyPropertyChanged(nameof(Gauge)); }
+            set { this.trackType.Parameter.Gauge = value; NotifyPropertyChanged(nameof(Gauge));  }
         }
 
         public string DockType
@@ -68,13 +89,13 @@ namespace Rail.TrackEditor.ViewModel
         public TrackRailType RailType
         {
             get { return this.trackType.Parameter.RailType; }
-            set { this.trackType.Parameter.RailType = value; NotifyPropertyChanged(nameof(RailType)); }
+            set { this.trackType.Parameter.RailType = value; NotifyPropertyChanged(nameof(RailType)); UpdateAllTracks(); }
         }
 
         public double RailWidth
         {
             get { return this.trackType.Parameter.RailWidth; }
-            set { this.trackType.Parameter.RailWidth = value; NotifyPropertyChanged(nameof(RailWidth)); }
+            set { this.trackType.Parameter.RailWidth = value; NotifyPropertyChanged(nameof(RailWidth)); UpdateAllTracks(); }
         }
 
         public TrackSleeperType[] SleeperTypes { get { return Enum.GetValues(typeof(TrackSleeperType)).Cast<TrackSleeperType>().ToArray(); } }
@@ -82,13 +103,13 @@ namespace Rail.TrackEditor.ViewModel
         public TrackSleeperType SleeperType
         {
             get { return this.trackType.Parameter.SleeperType; }
-            set { this.trackType.Parameter.SleeperType = value; NotifyPropertyChanged(nameof(SleeperType)); }
+            set { this.trackType.Parameter.SleeperType = value; NotifyPropertyChanged(nameof(SleeperType)); UpdateAllTracks(); }
         }
 
         public double SleeperWidth
         {
             get { return this.trackType.Parameter.SleeperWidth; }
-            set { this.trackType.Parameter.SleeperWidth = value; NotifyPropertyChanged(nameof(SleeperWidth)); }
+            set { this.trackType.Parameter.SleeperWidth = value; NotifyPropertyChanged(nameof(SleeperWidth)); UpdateAllTracks(); }
         }
 
         public TrackBallastType[] BallastTypes { get { return Enum.GetValues(typeof(TrackBallastType)).Cast<TrackBallastType>().ToArray(); } }
@@ -96,13 +117,13 @@ namespace Rail.TrackEditor.ViewModel
         public TrackBallastType BallastType
         {
             get { return this.trackType.Parameter.BallastType; }
-            set { this.trackType.Parameter.BallastType = value; NotifyPropertyChanged(nameof(BallastType)); }
+            set { this.trackType.Parameter.BallastType = value; NotifyPropertyChanged(nameof(BallastType)); UpdateAllTracks(); }
         }
 
         public double BallastWidth
         {
             get { return this.trackType.Parameter.BallastWidth; }
-            set { this.trackType.Parameter.BallastWidth = value; NotifyPropertyChanged(nameof(BallastWidth)); }
+            set { this.trackType.Parameter.BallastWidth = value; NotifyPropertyChanged(nameof(BallastWidth)); UpdateAllTracks(); }
         }
 
         public double WagonMaxLength
@@ -125,6 +146,10 @@ namespace Rail.TrackEditor.ViewModel
 
         public ObservableCollection<TrackViewModel> Tracks { get; private set; }
 
+        private void UpdateAllTracks()
+        {
+            this.Tracks.ToList().ForEach(t => t.UpdateTrack(trackType));
+        }
         private void OnNewTrack(TrackTypes type)
         {
             this.Tracks.Add(type switch
