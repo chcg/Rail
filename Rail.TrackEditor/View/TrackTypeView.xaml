@@ -11,7 +11,7 @@
              xmlns:local="clr-namespace:Rail.TrackEditor.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid  Margin="8">
+    <Grid  Margin="3">
         <Grid.Resources>
             <mvvm:BindingProxy x:Key="TrackTypeBindingProxy" Data="{Binding}" />
         </Grid.Resources>

@@ -78,43 +78,42 @@
                     <xs:choice maxOccurs="unbounded">
                       <xs:element maxOccurs="unbounded" name="Straight">
                         <xs:complexType>
-                          <xs:attribute name="Article" type="xs:unsignedInt" use="required" />
+                          <xs:attribute name="Article" type="xs:string" use="required" />
                           <xs:attribute name="Length" type="xs:string" use="required" />
-                          <xs:attribute name="ViewType" type="xs:string" use="optional" />
                           <xs:attribute name="Extra" type="Extras" use="optional" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="Curved">
                         <xs:complexType>
-                          <xs:attribute name="Article" type="xs:unsignedShort" use="required" />
+                          <xs:attribute name="Article" type="xs:string" use="required" />
                           <xs:attribute name="Radius" type="xs:string" use="required" />
-                          <xs:attribute name="Angle" type="xs:decimal" use="required" />
-                          <xs:attribute name="RadiusName" type="xs:string" use="optional" />
+                          <xs:attribute name="Angle" type="xs:string" use="required" />
                           <xs:attribute name="Extra" type="Extras" use="optional" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="Turnout">
                         <xs:complexType>
-                          <xs:attribute name="Article" type="xs:unsignedShort" use="required" />
-                          <xs:attribute name="Length" type="xs:string" use="required" />
-                          <xs:attribute name="Radius" type="xs:string" use="required" />
-                          <xs:attribute name="Angle" type="xs:decimal" use="required" />
-                          <xs:attribute name="Direction" type="xs:string" use="required" />
-                          <xs:attribute name="Drive" type="xs:string" use="optional" />
-                          <xs:attribute name="RadiusName" type="xs:string" use="optional" />
+                          <xs:attribute name="Article" type="xs:string" use="required" />
+                          <xs:attribute name="StraightLength" type="xs:string" use="required" />
+                          <xs:attribute name="TurnoutLength" type="xs:string" use="required" />
+                          <xs:attribute name="TurnoutRadius" type="xs:string" use="required" />
+                          <xs:attribute name="TurnoutAngle" type="xs:string" use="required" />
+                          <xs:attribute name="TurnoutDirection" type="Direction" use="required" />
+                          <xs:attribute name="TurnoutDrive" type="Drive" use="optional" />
                           <xs:attribute name="AddArticles" type="xs:string" use="optional" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="CurvedTurnout">
                         <xs:complexType>
-                          <xs:attribute name="Article" type="xs:unsignedShort" use="required" />
-                          <xs:attribute name="Length" type="xs:string" use="required" />
+                          <xs:attribute name="Article" type="xs:string" use="required" />
+                          <xs:attribute name="InnerLength" type="xs:string" use="required" />
                           <xs:attribute name="InnerRadius" type="xs:string" use="required" />
                           <xs:attribute name="InnerAngle" type="xs:decimal" use="required" />
+                          <xs:attribute name="OuterLength" type="xs:string" use="required" />
                           <xs:attribute name="OuterRadius" type="xs:string" use="required" />
                           <xs:attribute name="OuterAngle" type="xs:decimal" use="required" />
-                          <xs:attribute name="Direction" type="xs:string" use="required" />
-                          <xs:attribute name="Drive" type="xs:string" use="optional" />
+                          <xs:attribute name="TurnoutDirection" type="Direction" use="required" />
+                          <xs:attribute name="TurnoutDrive" type="Drive" use="optional" />
                           <xs:attribute name="AddArticles" type="xs:string" use="optional" />
                         </xs:complexType>
                       </xs:element>
@@ -127,16 +126,20 @@
                           <xs:attribute name="Drive" type="xs:string" use="optional" />
                         </xs:complexType>
                       </xs:element>
-                      <xs:element name="DoubleTurnout">
+                      <xs:element maxOccurs="unbounded" name="DoubleTurnout">
                         <xs:complexType>
                           <xs:attribute name="Article" type="xs:unsignedShort" use="required" />
-                          <xs:attribute name="Length" type="xs:string" use="required" />
-                          <xs:attribute name="Radius" type="xs:string" use="required" />
-                          <xs:attribute name="Angle" type="xs:decimal" use="required" />
-                          <xs:attribute name="Drive" type="xs:string" use="optional" />
+                          <xs:attribute name="StraightLength" type="xs:string" use="required" />
+                          <xs:attribute name="LeftTurnoutLength" type="xs:string" use="required" />
+                          <xs:attribute name="LeftTurnoutRadius" type="xs:string" use="required" />
+                          <xs:attribute name="LeftTurnoutAngle" type="xs:string" use="required" />
+                          <xs:attribute name="RightTurnoutLength" type="xs:string" use="required" />
+                          <xs:attribute name="RightTurnoutRadius" type="xs:string" use="required" />
+                          <xs:attribute name="RightTurnoutAngle" type="xs:string" use="required" />
+                          <xs:attribute name="TurnoutDrive" type="Drive" use="optional" />
                         </xs:complexType>
                       </xs:element>
-                      <xs:element name="YTurnout">
+                      <xs:element maxOccurs="unbounded" name="YTurnout">
                         <xs:complexType>
                           <xs:attribute name="Article" type="xs:unsignedShort" use="required" />
                           <xs:attribute name="Radius" type="xs:string" use="required" />
@@ -151,7 +154,7 @@
                           <xs:attribute name="Angle" type="xs:decimal" use="required" />
                         </xs:complexType>
                       </xs:element>
-                      <xs:element name="StraightAdjustment">
+                      <xs:element maxOccurs="unbounded" name="StraightAdjustment">
                         <xs:complexType>
                           <xs:attribute name="Article" type="xs:unsignedShort" use="required" />
                           <xs:attribute name="Length" type="xs:decimal" use="required" />
@@ -172,7 +175,7 @@
                           <xs:attribute name="Lantern" type="xs:boolean" use="optional" />
                         </xs:complexType>
                       </xs:element>
-                      <xs:element name="EndPiece">
+                      <xs:element maxOccurs="unbounded" name="EndPiece">
                         <xs:complexType>
                           <xs:attribute name="Article" type="xs:unsignedShort" use="required" />
                         </xs:complexType>
@@ -184,7 +187,7 @@
                           <xs:attribute name="DockType" type="xs:string" use="required" />
                         </xs:complexType>
                       </xs:element>
-                      <xs:element name="Turntable">
+                      <xs:element maxOccurs="unbounded" name="Turntable">
                         <xs:complexType>
                           <xs:attribute name="Article" type="xs:unsignedInt" use="required" />
                           <xs:attribute name="OuterRadius" type="xs:unsignedByte" use="required" />
@@ -193,7 +196,7 @@
                           <xs:attribute name="RailNum" type="xs:unsignedByte" use="required" />
                         </xs:complexType>
                       </xs:element>
-                      <xs:element name="TransferTable">
+                      <xs:element maxOccurs="unbounded" name="TransferTable">
                         <xs:complexType>
                           <xs:attribute name="Id" type="xs:string" use="required" />
                           <xs:attribute name="Article" type="xs:unsignedInt" use="required" />
@@ -336,5 +339,19 @@
       <xs:enumeration value="Feeder" />
     </xs:restriction>
   </xs:simpleType>
-  
+
+  <xs:simpleType name="Direction" >
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Left" />
+      <xs:enumeration value="Right" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Drive" >
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Electrical" />
+      <xs:enumeration value="Mechanical" />
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>

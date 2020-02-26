@@ -24,25 +24,30 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
         <Label Grid.Column="0" Grid.Row="0" Content="Article"/>
         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Article}" Margin="3"/>
 
-        <Label Grid.Column="0" Grid.Row="1" Content="Strait Length"/>
-        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding DataContext.LengthNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding StraightLengthName}" IsReadOnly="True" Margin="3"/>
+        <Label Grid.Column="0" Grid.Row="1" Content="Straight Length"/>
+        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding DataContext.LengthNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding StraightLengt}" IsReadOnly="True" Margin="3"/>
 
-        <Label Grid.Column="0" Grid.Row="2" Content="Radius"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Radius, StringFormat=0.00}" Margin="3"/>
-        <Label Grid.Column="2" Grid.Row="2" Content="mm"/>
+        <Label Grid.Column="0" Grid.Row="2" Content="Turnout Length"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding DataContext.LengthNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding TurnoutLength}" IsReadOnly="True" Margin="3"/>
 
-        <Label Grid.Column="0" Grid.Row="3" Content="Angle"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Angle, StringFormat=0.00}" Margin="3"/>
-        <Label Grid.Column="2" Grid.Row="3" Content="°"/>
+        <Label Grid.Column="0" Grid.Row="3" Content="Turnout Radius"/>
+        <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding DataContext.RadiusNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding TurnoutRadius}" IsReadOnly="True" Margin="3"/>
 
-        <Label Grid.Column="0" Grid.Row="4" Content="Direction"/>
-        <RadioButton Grid.Column="1" Grid.Row="4" Content="Left" IsChecked="{Binding Direction, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static tr:TrackDirection.Left}}" Margin="3"/>
-        <RadioButton Grid.Column="1" Grid.Row="5" Content="Right" IsChecked="{Binding Direction, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static tr:TrackDirection.Right}}" Margin="3"/>
-    </Grid>
+        <Label Grid.Column="0" Grid.Row="4" Content="Turnout Angle"/>
+        <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding DataContext.AngleNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding TurnoutAngle}" IsReadOnly="True" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="5" Content="Turnout Direction"/>
+        <ComboBox Grid.Column="1" Grid.Row="5" ItemsSource="{Binding DataContext.TurnoutDirections, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding TurnoutDirection}" IsReadOnly="True" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="6" Content="Turnout Drive"/>
+        <ComboBox Grid.Column="1" Grid.Row="6" ItemsSource="{Binding DataContext.TurnoutDrives, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding TurnoutDrive}" IsReadOnly="True" Margin="3"/>
+
+     </Grid>
 </UserControl>

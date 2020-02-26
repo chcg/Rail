@@ -31,11 +31,11 @@ namespace Rail.Tracks
         [XmlAttribute("OuterAngle")]
         public string OuterAngleName { get; set; }
 
-        [XmlAttribute("Direction")]
-        public TrackDirection Direction { get; set; }
+        [XmlAttribute("TurnoutDirection")]
+        public TrackDirection TurnoutDirection { get; set; }
 
-        [XmlAttribute("Drive")]
-        public TrackDrive Drive { get; set; }
+        [XmlAttribute("TurnoutDrive")]
+        public TrackDrive TurnoutDrive { get; set; }
 
         #endregion
 
@@ -58,7 +58,11 @@ namespace Rail.Tracks
 
         [XmlIgnore, JsonIgnore]
         public double OuterAngle { get; set; }
-               
+
+        #endregion
+
+        #region override
+
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.OuterLength; } }
         
@@ -67,9 +71,9 @@ namespace Rail.Tracks
         {
             get
             {
-                string drive = this.Drive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
-                              (this.Drive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
-                return Direction == TrackDirection.Left ?
+                string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
+                return TurnoutDirection == TrackDirection.Left ?
                     $"{Resources.TrackCurvedTurnoutLeft} {drive}" :
                     $"{Resources.TrackCurvedTurnoutRight} {drive}";
             }
@@ -80,16 +84,14 @@ namespace Rail.Tracks
         {
             get
             {
-                string drive = this.Drive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
-                              (this.Drive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
-                return Direction == TrackDirection.Left ?
+                string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
+                return TurnoutDirection == TrackDirection.Left ?
                     $"{this.Article} {Resources.TrackCurvedTurnoutLeft} {drive}" :
                     $"{this.Article} {Resources.TrackCurvedTurnoutRight} {drive}";
             }
         }
-
-        #endregion
-
+        
         public override void Update(TrackType trackType)
         {
             this.InnerLength = GetValue(trackType.Lengths, this.InnerLengthName);
@@ -113,7 +115,7 @@ namespace Rail.Tracks
             Point centerLeft = new Point(-width, 0);
             Point centerRight = new Point(width, 0);
 
-            return this.Direction == TrackDirection.Left ?
+            return this.TurnoutDirection == TrackDirection.Left ?
                 new CombinedGeometry(
                     CurvedGeometry(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft),
                     new CombinedGeometry(
@@ -142,7 +144,7 @@ namespace Rail.Tracks
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.HasBallast)
             {
-                if (this.Direction == TrackDirection.Left)
+                if (this.TurnoutDirection == TrackDirection.Left)
                 {
                     drawingRail.Children.Add(CurvedBallast(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft));
                     drawingRail.Children.Add(StraitBallast(this.OuterLength, StraitOrientation.Left, 0, centerLeft));
@@ -155,7 +157,7 @@ namespace Rail.Tracks
                     drawingRail.Children.Add(CurvedBallast(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight - new Vector(this.OuterLength, 0)));
                 }
             }
-            if (this.Direction == TrackDirection.Left)
+            if (this.TurnoutDirection == TrackDirection.Left)
             {
                 drawingRail.Children.Add(CurvedSleepers(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft));
                 drawingRail.Children.Add(StraitSleepers(this.OuterLength, StraitOrientation.Left, 0, centerLeft));
@@ -193,7 +195,7 @@ namespace Rail.Tracks
             
             
 
-            return this.Direction == TrackDirection.Left ? 
+            return this.TurnoutDirection == TrackDirection.Left ? 
                 new List<TrackDockPoint>
                 {
                     new TrackDockPoint(0, new Point(-innerWidth, 0.0), 90 + 45, this.dockType),
@@ -210,5 +212,7 @@ namespace Rail.Tracks
                     //new TrackDockPoint(1, new Point(this.InnerRadius, 0), 45.0, this.dockType)
                 };
         }
+
+        #endregion
     }
 }

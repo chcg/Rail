@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="trackTypes" Grid.Column="0" ItemsSource="{Binding TrackTypes}" SelectedIndex="0" Margin="8" >
+            <ListBox x:Name="trackTypes" Grid.Column="0" ItemsSource="{Binding TrackTypes}" SelectedIndex="0" Margin="3" >
                 <ListBox.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="New Track Type" Command="{Binding NewTrackTypeCommand}" />
@@ -49,7 +49,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <v:TrackTypeView  Grid.Column="1" DataContext="{Binding ElementName=trackTypes, Path=SelectedItem}" Margin="8"/>
+            <v:TrackTypeView  Grid.Column="1" DataContext="{Binding ElementName=trackTypes, Path=SelectedItem}" />
         </Grid>
     </DockPanel>
 </mvvm:AppView>

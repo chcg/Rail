@@ -71,21 +71,21 @@
       <Curved Article="24530" Radius="R5" Angle="30.0" />
       <Curved Article="24912" Radius="R6" Angle="12.1" />
       <!-- turnout tracks -->
-      <Turnout Article="24611" Length="G188" Radius="R2" Angle="24.3" Direction="Left" />
-      <Turnout Article="24612" Length="G188" Radius="R2" Angle="24.3" Direction="Right" />
-      <Turnout Article="24711" Length="G236" Radius="R6" Angle="12.1" Direction="Left" />
-      <Turnout Article="24712" Length="G236" Radius="R6" Angle="12.1" Direction="Right" />
+      <Turnout Article="24611" StraightLength="G188" TurnoutLength="G188" TurnoutRadius="R2" TurnoutAngle="24.3" TurnoutDirection="Left" />
+      <Turnout Article="24612" StraightLength="G188" TurnoutLength="G188" TurnoutRadius="R2" TurnoutAngle="24.3" TurnoutDirection="Right" />
+      <Turnout Article="24711" StraightLength="G236" TurnoutLength="G236" TurnoutRadius="R6" TurnoutAngle="12.1" TurnoutDirection="Left" />
+      <Turnout Article="24712" StraightLength="G236" TurnoutLength="G236" TurnoutRadius="R6" TurnoutAngle="12.1" TurnoutDirection="Right" />
       <!-- curved turnout tracks -->
-      <CurvedTurnout Article="24671" Length="G77" InnerRadius="R1" InnerAngle="30" OuterRadius="R1" OuterAngle="30" Direction="Left" />
-      <CurvedTurnout Article="24672" Length="G77" InnerRadius="R1" InnerAngle="30" OuterRadius="R1" OuterAngle="30" Direction="Right" />
-      <CurvedTurnout Article="24771" Length="G64" InnerRadius="R3" InnerAngle="30" OuterRadius="R3" OuterAngle="30" Direction="Left" />
-      <CurvedTurnout Article="24772" Length="G64" InnerRadius="R3" InnerAngle="30" OuterRadius="R3" OuterAngle="30" Direction="Right" />
+      <CurvedTurnout Article="24671" InnerLength="0" InnerRadius="R1" InnerAngle="30" OuterLength="G77" OuterRadius="R1" OuterAngle="30" TurnoutDirection="Left" />
+      <CurvedTurnout Article="24672" InnerLength="0" InnerRadius="R1" InnerAngle="30" OuterLength="G77" OuterRadius="R1" OuterAngle="30" TurnoutDirection="Right" />
+      <CurvedTurnout Article="24771" InnerLength="0" InnerRadius="R3" InnerAngle="30" OuterLength="G64" OuterRadius="R3" OuterAngle="30" TurnoutDirection="Left" />
+      <CurvedTurnout Article="24772" InnerLength="0" InnerRadius="R3" InnerAngle="30" OuterLength="G64" OuterRadius="R3" OuterAngle="30" TurnoutDirection="Right" />
 
       <!-- double slip switch -->
       <DoubleSlipSwitch Article="24624" Length="G188" Angle="24.3" Radius="R1"  />
 
       <!-- double turnout -->
-      <DoubleTurnout Article="24630" Length="G188" Radius="437.5" Angle="24.3" />
+      <DoubleTurnout Article="24630" StraightLength="G188" LeftTurnoutLength="0" LeftTurnoutRadius="437.5" LeftTurnoutAngle="24.3" RightTurnoutLength="0" RightTurnoutRadius="437.5" RightTurnoutAngle="24.3" />
 
       <!-- crossing -->
       <Crossing Article="24640" Length1="G188" Length2="G188" Angle="24.3" />
@@ -184,8 +184,8 @@
       <Curved Article="23130" Radius="360.0" Angle="30.0" />
       <Curved Article="23224" Radius="437.5" Angle="24.3" />
       <!-- turnout tracks -->
-      <Turnout Article ="23611" Length="188.3" Radius="437.5" Angle="24.3" Direction="Left" />
-      <Turnout Article ="23612" Length="188.3" Radius="437.5" Angle="24.3" Direction="Right" />
+      <Turnout Article ="23611" StraightLength="188.3" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Left" />
+      <Turnout Article ="23612" StraightLength="188.3" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Right" />
       <!-- crossing -->
       <Crossing Article="23640" Length1="188.3" Length2="188.3" Angle="24.3" />
       <!-- bumper -->
@@ -243,21 +243,22 @@
       <!--<Curved Id="2274" Radius="0" Angle="14.26" Decription="Curved mm 14.26°" />-->
 
       <!-- turnout tracks -->
-      <Turnout Article="2262" Length="168.9" Radius="424.6" Angle="22.5" Direction="Left" />
-      <Turnout Article="2263" Length="168.9" Radius="424.6" Angle="22.5" Direction="Right" />
-      <Turnout Article="22715" Length="225.0" Radius="902.4" Angle="14.26" Direction="Left" />
-      <Turnout Article="22716" Length="225.0" Radius="902.4" Angle="14.26" Direction="Right" />
+      <Turnout Article="2262" StraightLength="168.9" TurnoutLength="0" TurnoutRadius="424.6" TurnoutAngle="22.5" TurnoutDirection="Left" />
+      <Turnout Article="2263" StraightLength="168.9" TurnoutLength="0" TurnoutRadius="424.6" TurnoutAngle="22.5" TurnoutDirection="Right" />
+      <Turnout Article="22715" StraightLength="225.0" TurnoutLength="0" TurnoutRadius="902.4" TurnoutAngle="14.26" TurnoutDirection="Left" />
+      <Turnout Article="22716" StraightLength="225.0" TurnoutLength="0" TurnoutRadius="902.4" TurnoutAngle="14.26" TurnoutDirection="Right" />
 
       <!-- curved turnout tracks -->
-      <CurvedTurnout Article="2268" Length="64.6" InnerRadius="360.0" InnerAngle="30.0" OuterRadius="360.0" OuterAngle="30.0" Direction="Left" />
-      <CurvedTurnout Article="2269" Length="64.6" InnerRadius="360.0" InnerAngle="30.0" OuterRadius="360.0" OuterAngle="30.0" Direction="Right" />
+      <CurvedTurnout Article="2268" InnerLength="0" InnerRadius="360.0" InnerAngle="30.0" OuterLength="0" OuterRadius="360.0" OuterAngle="30.0" TurnoutDirection="Left" />
+      <CurvedTurnout Article="2269" InnerLength="0" InnerRadius="360.0" InnerAngle="30.0" OuterLength="0" OuterRadius="360.0" OuterAngle="30.0" TurnoutDirection="Right" />
 
       <!-- double slip switch -->
       <DoubleSlipSwitch Article="2260" Length="168.9" Angle="22.50" Radius="360.0" />
       <DoubleSlipSwitch Article="2275" Length="225.0" Angle="14.26" Radius="360.0" />
 
       <!-- double turnout -->
-      <DoubleTurnout Article="2270" Length="168.9" Radius="424.6" Angle="22.3" />
+      <!--<DoubleTurnout Article="2270" StraightLength="G169" LeftTurnoutLength="0" LeftTurnoutRadius="424.6" LeftTurnoutAngle="24.3" RightTurnoutLength="0" RightTurnoutRadius="424.6" RightTurnoutAngle="24.3" />-->
+
 
       <!-- crossing -->
       <Crossing Article="2257" Length1="225.0" Length2="225.0" Angle="14.26" />
@@ -300,33 +301,33 @@
       <Straight Article="5298" Length="8.0" />
       <Straight Article="5210" Length="16.0" />
       <!-- curved tracks -->
-      <Curved Article="5100" Radius="360.0" RadiusName="R1" Angle="30.0" />
-      <Curved Article="5101" Radius="360.0" RadiusName="R1" Angle="15.0" />
-      <Curved Article="5102" Radius="360.0" RadiusName="R1" Angle="7.5" />
-      <Curved Article="5120" Radius="282.6" RadiusName="I" Angle="45.0" />
-      <Curved Article="5200" Radius="437.5" RadiusName="R2" Angle="30.0" />
-      <Curved Article="5201" Radius="437.5" RadiusName="R2" Angle="15.0" />
-      <Curved Article="5205" Radius="437.5" RadiusName="R2" Angle="5.7" />
-      <Curved Article="5206" Radius="437.5" RadiusName="R2" Angle="24.3" />
+      <Curved Article="5100" Radius="R1" Angle="30.0" />
+      <Curved Article="5101" Radius="R1" Angle="15.0" />
+      <Curved Article="5102" Radius="R1" Angle="7.5" />
+      <Curved Article="5120" Radius="I" Angle="45.0" />
+      <Curved Article="5200" Radius="R2" Angle="30.0" />
+      <Curved Article="5201" Radius="R2" Angle="15.0" />
+      <Curved Article="5205" Radius="R2" Angle="5.7" />
+      <Curved Article="5206" Radius="R2" Angle="24.3" />
       <!-- turnout tracks -->
-      <Turnout Article="5118" Length="180.0" Radius="360.0" Angle="30.0" Direction="Left" Drive="Electrical" />
-      <Turnout Article="5119" Length="180.0" Radius="360.0" Angle="30.0" Direction="Right" Drive="Electrical" />
-      <Turnout Article="5122" Length="180.0" Radius="360.0" Angle="30.0" Direction="Left" Drive="Mechanical" />
-      <Turnout Article="5123" Length="180.0" Radius="360.0" Angle="30.0" Direction="Right" Drive="Mechanical" />
-      <Turnout Article="5138" Length="180.0" Radius="360.0" Angle="22.5" Direction="Left" Drive="Electrical" />
-      <Turnout Article="5139" Length="180.0" Radius="360.0" Angle="22.5" Direction="Right" Drive="Electrical" />
-      <Turnout Article="5203" Length="180.0" Radius="437.5" Angle="24.3" Direction="Left" Drive="Electrical" />
-      <Turnout Article="5204" Length="180.0" Radius="437.5" Angle="24.3" Direction="Right" Drive="Electrical" />
-      <Turnout Article="5222" Length="180.0" Radius="437.5" Angle="24.3" Direction="Left" Drive="Mechanical" />
-      <Turnout Article="5223" Length="180.0" Radius="437.5" Angle="24.3" Direction="Right" Drive="Mechanical" />
+      <Turnout Article="5118" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="30.0" TurnoutDirection="Left" TurnoutDrive="Electrical" />
+      <Turnout Article="5119" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="30.0" TurnoutDirection="Right" TurnoutDrive="Electrical" />
+      <Turnout Article="5122" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="30.0" TurnoutDirection="Left" TurnoutDrive="Mechanical" />
+      <Turnout Article="5123" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="30.0" TurnoutDirection="Right" TurnoutDrive="Mechanical" />
+      <Turnout Article="5138" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="22.5" TurnoutDirection="Left" TurnoutDrive="Electrical" />
+      <Turnout Article="5139" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="22.5" TurnoutDirection="Right" TurnoutDrive="Electrical" />
+      <Turnout Article="5203" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Left" TurnoutDrive="Electrical" />
+      <Turnout Article="5204" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Right" TurnoutDrive="Electrical" />
+      <Turnout Article="5222" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Left" TurnoutDrive="Mechanical" />
+      <Turnout Article="5223" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Right" TurnoutDrive="Mechanical" />
       <!-- curved turnout tracks -->
-      <CurvedTurnout Article="5141" Length="0.0" InnerRadius="360.0" InnerAngle="30.0" OuterRadius="437.5" OuterAngle="30.0" Direction="Left" Drive="Electrical" />
-      <CurvedTurnout Article="5142" Length="0.0" InnerRadius="360.0" InnerAngle="30.0" OuterRadius="437.5" OuterAngle="30.0" Direction="Right" Drive="Electrical" />
+      <CurvedTurnout Article="5141" InnerLength="0.0" InnerRadius="360.0" InnerAngle="30.0" OuterLength="0.0" OuterRadius="437.5" OuterAngle="30.0" TurnoutDirection="Left" TurnoutDrive="Electrical" />
+      <CurvedTurnout Article="5142" InnerLength="0.0" InnerRadius="360.0" InnerAngle="30.0" OuterLength="0.0" OuterRadius="437.5" OuterAngle="30.0" TurnoutDirection="Right" TurnoutDrive="Electrical" />
       <!-- double slip switch -->
       <DoubleSlipSwitch Article="5128" Length="193.0" Angle="30.0" Radius="360.0" Drive="Electrical" />
       <DoubleSlipSwitch Article="5207" Length="193.0" Angle="24.3" Radius="437.5" Drive="Electrical" />
       <!-- double turnout -->
-      <DoubleTurnout Article="5214" Length="193.0" Radius="437.5" Angle="24.3" Drive="Electrical" />
+      <!--<DoubleTurnout Article="5214" Length="193.0" Radius="437.5" Angle="24.3" Drive="Electrical" />-->
       <!-- crossing -->
       <Crossing Article="5114" Length1="193.0" Length2="193.0" Angle="30.0" />
       <Crossing Article="5211" Length1="98.0" Length2="98.0" Angle="48.5" />
@@ -376,25 +377,25 @@
       <Straight Article="59059" Length="600.0" />
       <Straight Article="59061" Length="900.0" />
       <!-- curved tracks -->
-      <Curved Article="59035" Radius="1020.0" RadiusName="R1" Angle="22.5" />
-      <Curved Article="59071" Radius="2461.0" RadiusName="R7" Angle="10.0" />
-      <Curved Article="59072" Radius="1176.0" RadiusName="R2" Angle="22.5" />
-      <Curved Article="59073" Radius="1394.0" RadiusName="R3" Angle="22.5" />
-      <Curved Article="59074" Radius="1550.0" RadiusName="R4" Angle="15.0" />
-      <Curved Article="59075" Radius="1394.0" RadiusName="R3" Angle="15.0" />
-      <Curved Article="59076" Radius="1550.0" RadiusName="R4" Angle="22.5" />
-      <Curved Article="59077" Radius="1715.0" RadiusName="R5" Angle="22.5" />
-      <Curved Article="59078" Radius="2321.0" RadiusName="R6" Angle="10.0" />
+      <!--<Curved Article="59035" Radius="R1" Angle="22.5" />
+      <Curved Article="59071" Radius="R7" Angle="10.0" />
+      <Curved Article="59072" Radius="R2" Angle="22.5" />
+      <Curved Article="59073" Radius="R3" Angle="22.5" />
+      <Curved Article="59074" Radius="R4" Angle="15.0" />
+      <Curved Article="59075" Radius="R3" Angle="15.0" />
+      <Curved Article="59076" Radius="R4" Angle="22.5" />
+      <Curved Article="59077" Radius="R5" Angle="22.5" />
+      <Curved Article="59078" Radius="R6" Angle="10.0" />-->
       <!-- turnout tracks -->
-      <Turnout Article="59083" Length="420.0" Radius="2321.0" Angle="10.0" Direction="Right" />
-      <Turnout Article="59084" Length="420.0" Radius="2321.0" Angle="10.0" Direction="Left" />
-      <Turnout Article="59087" Length="400.0" Radius="1394.0" Angle="15.0" Direction="Right" />
-      <Turnout Article="59088" Length="400.0" Radius="1394.0" Angle="15.0" Direction="Left" />
+      <!--<Turnout Article="59083" StraigthLength="420.0" TurnoutRadius="2321.0" TurnoutAngle="10.0" TurnoutDirection="Right" />
+      <Turnout Article="59084" StraigthLength="420.0" TurnoutRadius="2321.0" TurnoutAngle="10.0" TurnoutDirection="Left" />
+      <Turnout Article="59087" StraigthLength="400.0" TurnoutRadius="1394.0" TurnoutAngle="15.0" TurnoutDirection="Right" />
+      <Turnout Article="59088" StraigthLength="400.0" TurnoutRadius="1394.0" TurnoutAngle="15.0" TurnoutDirection="Left" />-->
       <!-- curved turnout tracks -->
-      <CurvedTurnout Article="59085" Length="0.0" InnerRadius="1394.0" InnerAngle="22.5" OuterRadius="1550.0" OuterAngle="22.5" Direction="Left" />
-      <CurvedTurnout Article="59086" Length="0.0" InnerRadius="1394.0" InnerAngle="22.5" OuterRadius="1550.0" OuterAngle="22.5" Direction="Right" />
+      <!--<CurvedTurnout Article="59085" Length="0.0" InnerRadius="1394.0" InnerAngle="22.5" OuterRadius="1550.0" OuterAngle="22.5" Direction="Left" />
+      <CurvedTurnout Article="59086" Length="0.0" InnerRadius="1394.0" InnerAngle="22.5" OuterRadius="1550.0" OuterAngle="22.5" Direction="Right" />-->
       <!-- double turnout -->
-      <DoubleTurnout Article="59091" Length="379.0" Angle="15.0" Radius="1394.0" />
+      <!--<DoubleTurnout Article="59091" Length="379.0" Angle="15.0" Radius="1394.0" />-->
     
     </Tracks>
   </TrackType>
@@ -423,46 +424,46 @@
       <Straight Article="8503" Length="55.0" />
       <Straight Article="8504" Length="25.0" />
       <Straight Article="8505" Length="220.0" />
-      <Straight Article="85051" Length="220.0" ViewType="ConcreteSleepers"/>
+      <Straight Article="85051" Length="220.0"/>
       <Straight Article="8506" Length="108.6" />
       <Straight Article="8507" Length="112.8" />
       <!-- curved tracks -->
-      <Curved Article="8510" Radius="145.0" RadiusName="R1" Angle="45.0" />
-      <Curved Article="8520" Radius="195.0" RadiusName="R2" Angle="45.0" />
-      <Curved Article="8521" Radius="195.0" RadiusName="R2" Angle="30.0" />
-      <Curved Article="8530" Radius="220.0" RadiusName="R3" Angle="45.0" />
-      <Curved Article="8531" Radius="220.0" RadiusName="R3" Angle="30.0" />
-      <Curved Article="8591" Radius="490.0" RadiusName="R4" Angle="13.0" />
+      <!--<Curved Article="8510"  Radius="R1" Angle="45.0" />
+      <Curved Article="8520"  Radius="R2" Angle="45.0" />
+      <Curved Article="8521"  Radius="R2" Angle="30.0" />
+      <Curved Article="8530"  Radius="R3" Angle="45.0" />
+      <Curved Article="8531"  Radius="R3" Angle="30.0" />
+      <Curved Article="8591"  Radius="R4" Angle="13.0" />-->
       <!-- turnout tracks -->
-      <Turnout Article="8562" Length="110.0" Radius="490.0" RadiusName="R4" Angle="13.0" Direction="Left" />
+      <!--<Turnout Article="8562" Length="110.0" Radius="490.0" RadiusName="R4" Angle="13.0" Direction="Left" />
       <Turnout Article="8563" Length="110.0" Radius="490.0" RadiusName="R4" Angle="13.0" Direction="Right" />
       <Turnout Article="8565" Length="110.0" Radius="490.0" RadiusName="R4" Angle="13.0" Direction="Left" />
       <Turnout Article="8566" Length="110.0" Radius="490.0" RadiusName="R4" Angle="13.0" Direction="Right" />
-      <!-- curved turnout tracks -->
+      --><!-- curved turnout tracks --><!--
       <CurvedTurnout Article="8568" Length="25.0" InnerRadius="195.0" InnerAngle="30.0" OuterRadius="195.0" OuterAngle="30.0" Direction="Left" />
       <CurvedTurnout Article="8569" Length="25.0" InnerRadius="195.0" InnerAngle="30.0" OuterRadius="195.0" OuterAngle="30.0" Direction="Right" />
 
-      <!-- double slip switch -->
+      --><!-- double slip switch --><!--
       <DoubleSlipSwitch Article="8560" Length="112.8" Angle="13.0" Radius="323.0" />
 
-      <!-- curved circuit-->
+      --><!-- curved circuit--><!--
       <Curved Article="8529" Radius="195.0" RadiusName="R2" Angle="30.0" Extra="Circuit" />
       <Curved Article="8539" Radius="220.0" RadiusName="R3" Angle="30.0" Extra="Circuit" />
-      <!-- crossing -->
+      --><!-- crossing --><!--
       <Crossing Article="8559" Length1="112.8" Length2="112.8" Angle="13.0" />
-      <!-- straight uncoupler -->
+      --><!-- straight uncoupler --><!--
       <Straight Article="8587" Length="55.0" Extra="Uncoupler" />
-      <!-- straight isolating -->
+      --><!-- straight isolating --><!--
       <Straight Article="8588" Length="55.0" Extra="Isolating"/>
-      <!-- straight circuit -->
+      --><!-- straight circuit --><!--
       <Straight Article="8589" Length="55.0" Extra="Circuit"/>
-      <!-- straight feeder -->
+      --><!-- straight feeder --><!--
       <Straight Article="8590" Length="110.0" Extra="Feeder"/>
-      <!-- straight adjustment-->
+      --><!-- straight adjustment--><!--
       <StraightAdjustment Article="8592" Length="100.0" LengthTo="120.0"/>
-      <!-- flex-->
+      --><!-- flex--><!--
       <Flex Article="8594" Length="660.0"/>
-      <Flex Article="85941" Length="660.0" ViewType="ConcreteSleepers"/>
+      <Flex Article="85941" Length="660.0" ViewType="ConcreteSleepers"/>-->
       
     </Tracks>
   </TrackType>
@@ -523,21 +524,21 @@
       <Curved Article="16000" Radius="1195" Angle="22.5" />
       <Curved Article="18020" Radius="2320" Angle="7.5" />
       <!-- turnout tracks -->
-      <Turnout Article="12100" Length="300" Radius="600" Angle="30"    Direction="Left" />
+      <!--<Turnout Article="12100" Length="300" Radius="600" Angle="30"    Direction="Left" />
       <Turnout Article="12000" Length="300" Radius="600" Angle="30"    Direction="Right" />
       <Turnout Article="16140" Length="440" Radius="1195" Angle="22.5" Direction="Left" />
       <Turnout Article="16040" Length="440" Radius="1195" Angle="22.5" Direction="Right" />
       <Turnout Article="18150" Length="600" Radius="2320" Angle="15"   Direction="Left" />
       <Turnout Article="18050" Length="600" Radius="2320" Angle="15"   Direction="Right" />
-      <!-- double slip switch -->
+      --><!-- double slip switch --><!--
       <DoubleSlipSwitch Article="12260" Length="375" Angle="22.5" Radius="360.0" />
-      <!-- double turnout -->
+      --><!-- double turnout --><!--
       <DoubleTurnout Article="12360" Length="375" Radius="600" Angle="30" />
-      <!-- crossing -->
+      --><!-- crossing --><!--
       <Crossing Article="13000" Length1="300" Length2="341" Angle="30" />
       <Crossing Article="13100" Length1="150" Length2="185" Angle="90"  />
       <Crossing Article="13200" Length1="375" Length2="375" Angle="22.5" />
-      <!-- bumper -->
+      --><!-- bumper -->
       <Bumper Article="10320" Length="300" />
     </Tracks>
   </TrackType>
@@ -741,17 +742,17 @@
       <Curved Article="35217" Radius="1564.62" Angle="15.0" />
       <Curved Article="35218" Radius="1564.62" Angle="7.5" />
       <!-- turnout tracks -->
-      <Turnout Article="35220" Length="320" Radius="600.00" Angle="30.0" Direction="Left" />
+      <!--<Turnout Article="35220" Length="320" Radius="600.00" Angle="30.0" Direction="Left" />
       <Turnout Article="35221" Length="320" Radius="600.00" Angle="30.0" Direction="Right" />
       <Turnout Article="35222" AddArticles="35216,35216" Length="480" Radius="1243.08" Angle="22.5" Direction="Left" />
       <Turnout Article="35223" AddArticles="35216,35216" Length="480" Radius="1243.08" Angle="22.5" Direction="Right" />
       <Turnout Article="35226" AddArticles="35218,35218" Length="600" Radius="1564.62" Angle="22.5" Direction="Left" />
       <Turnout Article="35227" AddArticles="35218,35218" Length="600" Radius="1564.62" Angle="22.5" Direction="Right" />
-      <!-- curved turnout tracks -->
+      --><!-- curved turnout tracks --><!--
       <CurvedTurnout Article="35224" AddArticles="35214,35216" Length="0" InnerRadius="921.54" InnerAngle="52.5" OuterRadius="1243.08" OuterAngle="37.5" Direction="Left" />
       <CurvedTurnout Article="35225" AddArticles="35214,35216" Length="0" InnerRadius="921.54" InnerAngle="52.5" OuterRadius="1243.08" OuterAngle="37.5" Direction="Right" />
-      <!-- crossing -->
-      <Crossing Article="35240" Length1="320" Length2="320" Angle="30" />
+      --><!-- crossing --><!--
+      <Crossing Article="35240" Length1="320" Length2="320" Angle="30" />-->
     </Tracks>
   </TrackType>
   <TrackType>
@@ -806,24 +807,24 @@
       <Curved Article="55451" Radius="R1" Angle="7.5" />
       <Curved Article="55452" Radius="R2" Angle="7.5" />
       <!-- turnout tracks -->
-      <Turnout Article="55420" Length="G239" Radius="R9" Angle="15" Direction="Left" />
+      <!--<Turnout Article="55420" Length="G239" Radius="R9" Angle="15" Direction="Left" />
       <Turnout Article="55421" Length="G239" Radius="R9" Angle="15" Direction="Right" />
-      <!-- curved turnout tracks -->
+      --><!-- curved turnout tracks --><!--
       <CurvedTurnout Article="55422" Length="G62" InnerRadius="R2" InnerAngle="15" OuterRadius="R2" OuterAngle="15" Direction="Left" />
       <CurvedTurnout Article="55423" Length="G62" InnerRadius="R2" InnerAngle="15" OuterRadius="R2" OuterAngle="15" Direction="Right" />
       <CurvedTurnout Article="55427" Length="G62" InnerRadius="R3" InnerAngle="15" OuterRadius="R3" OuterAngle="15" Direction="Left" />
       <CurvedTurnout Article="55428" Length="G62" InnerRadius="R3" InnerAngle="15" OuterRadius="R3" OuterAngle="15" Direction="Right" />
-      <!-- double slip switch -->
+      --><!-- double slip switch --><!--
       <DoubleSlipSwitch Article="55424" Length="G239" Angle="15" Radius="R9" />
-      <!-- double turnout -->
+      --><!-- double turnout --><!--
       <DoubleTurnout Article="55425" Length="G239" Radius="R9" Angle="15" />
-      <!-- Y turnout -->
+      --><!-- Y turnout --><!--
       <YTurnout Article="55426" Radius="R9" Angle="15" />
-      <!-- crossing -->
+      --><!-- crossing --><!--
       <Crossing Article="55440" Length1="G239" Length2="G239" Angle="15" />
       <Crossing Article="55441" Length1="G119" Length2="G119" Angle="30" />
-      <!-- straight feeder -->
-      <Straight Article="55406" Length="G231" Extra="Feeder" />
+      --><!-- straight feeder --><!--
+      <Straight Article="55406" Length="G231" Extra="Feeder" />-->
     </Tracks>
   </TrackType>
   <TrackType>
@@ -875,22 +876,22 @@
       <Curved Article="55251" Radius="R1" Angle="7.5" />
       <Curved Article="55252" Radius="R2" Angle="7.5" />
       <!-- turnout tracks -->
-      <Turnout Article="55220" Length="G239" Radius="R9" Angle="15" Direction="Left" />
+      <!--<Turnout Article="55220" Length="G239" Radius="R9" Angle="15" Direction="Left" />
       <Turnout Article="55221" Length="G239" Radius="R9" Angle="15" Direction="Right" />
-      <!-- curved turnout tracks -->
+      --><!-- curved turnout tracks --><!--
       <CurvedTurnout Article="55222" Length="G62" InnerRadius="R2" InnerAngle="15" OuterRadius="R2" OuterAngle="15.0" Direction="Left" />
       <CurvedTurnout Article="55223" Length="G62" InnerRadius="R2" InnerAngle="15" OuterRadius="R2" OuterAngle="15.0" Direction="Right" />
       <CurvedTurnout Article="55227" Length="G62" InnerRadius="R3" InnerAngle="15" OuterRadius="R3" OuterAngle="15.0" Direction="Left" />
       <CurvedTurnout Article="55228" Length="G62" InnerRadius="R3" InnerAngle="15" OuterRadius="R3" OuterAngle="15.0" Direction="Right" />
-      <!-- double slip switch -->
+      --><!-- double slip switch --><!--
       <DoubleSlipSwitch Article="55224" Length="G239" Angle="15" Radius="R9"  />
-      <!-- Y turnout -->
+      --><!-- Y turnout --><!--
       <YTurnout Article="55226" Angle="15" Radius="R9" />
-      <!-- double turnout -->
+      --><!-- double turnout --><!--
       <DoubleTurnout Article="55225" Length="G239" Radius="R9" Angle="15" />
-      <!-- crossing -->
+      --><!-- crossing --><!--
       <Crossing Article="55240" Length1="G239" Length2="G239" Angle="15" />
-      <Crossing Article="55241" Length1="G119" Length2="G119" Angle="30" />
+      <Crossing Article="55241" Length1="G119" Length2="G119" Angle="30" />-->
     </Tracks>
   </TrackType>
   <TrackType>
@@ -924,13 +925,8 @@
       <Length Name="G107" Value="107.32"/>
       <Length Name="G62" Value="61.88"/>
     </Lengths>
-    <Tracks>
-      <!-- turnout tracks -->
-      <Turnout Article="55170" Length="G239" Radius="R9" Angle="15" Direction="Left" />
-      <Turnout Article="55171" Length="G239" Radius="R9" Angle="15" Direction="Right" />
-      <!-- flex-->
-      <Flex Article="55150" Length="G940"/>
-    </Tracks>
+    <!--<Tracks>
+    </Tracks>-->
   </TrackType>
 
   <TrackType>

@@ -33,8 +33,8 @@ namespace Rail.Tracks
         [XmlAttribute("RightTurnoutAngle")]
         public string RightTurnoutAngleName { get; set; }
 
-        [XmlAttribute("Drive")]
-        public TrackDrive Drive { get; set; }
+        [XmlAttribute("TurnoutDrive")]
+        public TrackDrive TurnoutDrive { get; set; }
 
         #endregion
 
@@ -61,6 +61,10 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public double RightTurnoutAngle { get; set; }
 
+        #endregion
+
+        #region override
+
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.StraightLength; } }
 
@@ -69,8 +73,8 @@ namespace Rail.Tracks
         {
             get
             {
-                string drive = this.Drive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
-                              (this.Drive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
+                string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
                 return $"{Resources.TrackDoubleTurnout} {drive}";
             }
         }
@@ -80,13 +84,25 @@ namespace Rail.Tracks
         {
             get
             {
-                string drive = this.Drive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
-                              (this.Drive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
+                string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
                 return $"{this.Article} {Resources.TrackDoubleTurnout} {drive}";
             }
         }
 
-        #endregion
+        public override void Update(TrackType trackType)
+        {
+            this.StraightLength = GetValue(trackType.Lengths, this.StraightLengthName);
+            this.LeftTurnoutLength = GetValue(trackType.Lengths, this.LeftTurnoutLengthName);
+            this.LeftTurnoutRadius = GetValue(trackType.Radii, this.LeftTurnoutRadiusName);
+            this.LeftTurnoutAngle = GetValue(trackType.Angles, this.LeftTurnoutAngleName);
+            this.RightTurnoutLength = GetValue(trackType.Lengths, this.RightTurnoutLengthName);
+            this.RightTurnoutRadius = GetValue(trackType.Radii, this.RightTurnoutRadiusName);
+            this.RightTurnoutAngle = GetValue(trackType.Angles, this.RightTurnoutAngleName);
+
+            base.Update(trackType);
+        }
+
 
         protected override Geometry CreateGeometry()
         {
@@ -127,5 +143,7 @@ namespace Rail.Tracks
                 new TrackDockPoint(3, new Point(-this.StraightLength / 2.0, 0.0).Rotate( this.RightTurnoutAngle, circleCenterRight), this.RightTurnoutAngle - 45, this.dockType)
             };
         }
+
+        #endregion
     }
 }

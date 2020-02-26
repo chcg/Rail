@@ -10,27 +10,30 @@ namespace Rail.Tracks
 {
     public class TrackCurved : TrackBaseSingle
     {
+        #region store 
+        
         [XmlAttribute("Radius")]
-        public string RadiusNameOrValue { get; set; }
-
-        [XmlIgnore, JsonIgnore]
-        public double Radius { get; set; }
-
-        [XmlIgnore, JsonIgnore]
         public string RadiusName { get; set; }
 
         [XmlAttribute("Angle")]
-        public string AngleNameOrValue { get; set; }
-
-        [XmlIgnore, JsonIgnore]
         public string AngleName { get; set; }
-
-        [XmlIgnore, JsonIgnore]
-        public double Angle { get; set; }
-                
 
         [XmlAttribute("Extra")]
         public TrackExtras Extra { get; set; }
+
+        #endregion
+
+        #region internal
+
+        [XmlIgnore, JsonIgnore]
+        public double Radius { get; set; }
+        
+        [XmlIgnore, JsonIgnore]
+        public double Angle { get; set; }
+
+        #endregion
+
+        #region override
 
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return 0; /* TODO calc length */  } }
@@ -74,10 +77,8 @@ namespace Rail.Tracks
 
         public override void Update(TrackType trackType)
         {
-            this.Radius = GetValue(trackType.Radii, this.RadiusNameOrValue);
-            this.RadiusName = GetName(this.RadiusNameOrValue);
-            this.Angle = GetValue(trackType.Angles, this.AngleNameOrValue);
-            this.AngleName = GetName(this.AngleNameOrValue);
+            this.Radius = GetValue(trackType.Radii, this.RadiusName);
+            this.Angle = GetValue(trackType.Angles, this.AngleName);
             base.Update(trackType);
         }
 
@@ -109,5 +110,7 @@ namespace Rail.Tracks
                 new TrackDockPoint(1, circleCenter.CircleCenter( this.Angle / 2, this.Radius), -this.Angle / 2 + 135, this.dockType)
             };
         }
+
+        #endregion
     }
 }

@@ -59,16 +59,16 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.OuterAngleName = value; NotifyPropertyChanged(nameof(OuterAngle)); }
         }
 
-        public TrackDirection Direction
+        public TrackDirection TurnoutDirection
         {
-            get { return this.track.Direction; }
-            set { this.track.Direction = value; NotifyPropertyChanged(nameof(Direction)); }
+            get { return this.track.TurnoutDirection; }
+            set { this.track.TurnoutDirection = value; NotifyPropertyChanged(nameof(TurnoutDirection)); }
         }
 
-        public TrackDrive Drive
+        public TrackDrive TurnoutDrive
         {
-            get { return this.track.Drive; }
-            set { this.track.Drive = value; NotifyPropertyChanged(nameof(Drive)); }
+            get { return this.track.TurnoutDrive; }
+            set { this.track.TurnoutDrive = value; NotifyPropertyChanged(nameof(TurnoutDrive)); }
         }
     }
 }

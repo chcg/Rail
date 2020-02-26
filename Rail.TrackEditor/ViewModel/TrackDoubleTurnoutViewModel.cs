@@ -65,10 +65,10 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.RightTurnoutAngleName = value; NotifyPropertyChanged(nameof(RightTurnoutAngle)); }
         }
 
-        public TrackDrive Drive
+        public TrackDrive TurnoutDrive
         {
-            get { return this.track.Drive; }
-            set { this.track.Drive = value; NotifyPropertyChanged(nameof(Drive)); }
+            get { return this.track.TurnoutDrive; }
+            set { this.track.TurnoutDrive = value; NotifyPropertyChanged(nameof(TurnoutDrive)); }
         }
     }
 }

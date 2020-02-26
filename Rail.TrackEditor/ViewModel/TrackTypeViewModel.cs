@@ -64,6 +64,9 @@ namespace Rail.TrackEditor.ViewModel
         public List<string> RadiusNames { get { return this.Radii.Select(l => l.Name).ToList(); } }
         public List<string> AngleNames { get { return this.Angles.Select(l => l.Name).ToList(); } }
 
+        public TrackDirection[] TurnoutDirections { get { return (TrackDirection[])Enum.GetValues(typeof(TrackDirection)); } }
+        public TrackDrive[] TurnoutDrives { get { return (TrackDrive[])Enum.GetValues(typeof(TrackDrive)); } }
+
         public string Manufacturer
         {
             get { return this.trackType.Parameter.Manufacturer; }

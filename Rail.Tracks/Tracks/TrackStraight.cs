@@ -10,18 +10,24 @@ namespace Rail.Tracks
 
     public class TrackStraight : TrackBaseSingle
     {
+        #region store 
 
         [XmlAttribute("Length")]
-        public string LengthNameOrValue { get; set; }
+        public string LengthName { get; set; }
 
         [XmlAttribute("Extra")]
         public TrackExtras Extra { get; set; }
 
+        #endregion
+
+        #region internal
+
         [XmlIgnore, JsonIgnore]
         public double Length { get; set; }
 
-        [XmlIgnore, JsonIgnore]
-        public string LengthName { get; set; }
+        #endregion
+
+        #region override
 
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.Length; } }
@@ -65,8 +71,7 @@ namespace Rail.Tracks
 
         public override void Update(TrackType trackType)
         {
-            this.Length = GetValue(trackType.Lengths, this.LengthNameOrValue);
-            this.LengthName = GetName(this.LengthNameOrValue);
+            this.Length = GetValue(trackType.Lengths, this.LengthName);
             base.Update(trackType);
         }
 
@@ -95,5 +100,7 @@ namespace Rail.Tracks
                 new TrackDockPoint(1, new Point(+this.Length / 2.0, 0.0), 315, this.dockType)
             };
         }
+
+        #endregion
     }
 }
