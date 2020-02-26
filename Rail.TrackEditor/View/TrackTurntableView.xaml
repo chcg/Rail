@@ -18,10 +18,24 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" Content="Article"/>
         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Article}" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="1" Content="Outer Radius"/>
+        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding DataContext.RadiusNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding OuterRadius}" IsReadOnly="True" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="2" Content="Inner Radius"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding DataContext.RadiusNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding InnerRadius}" IsReadOnly="True" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="3" Content="Angle"/>
+        <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding DataContext.AngleNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding Angle}" IsReadOnly="True" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="4" Content="Rail Num"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding RailNum}" Margin="3"/>
+
     </Grid>
 </UserControl>

@@ -8,10 +8,29 @@ using System.Xml.Serialization;
 
 namespace Rail.Tracks
 {
-    public class TrackBumper : TrackStraight
+    public class TrackBumper : TrackBaseSingle
     {
+        #region store
+
+        [XmlAttribute("Length")]
+        public string LengthName { get; set; }
+
         [XmlAttribute("Lantern")]
         public bool Lantern { get; set; }
+
+        #endregion
+
+        #region internal
+
+        [XmlIgnore, JsonIgnore]
+        public double Length { get; set; }
+
+        #endregion
+
+        #region override
+
+        [XmlIgnore, JsonIgnore]
+        public override double RampLength { get { return this.Length; } }
 
         [XmlIgnore, JsonIgnore]
         public override string Name
@@ -31,6 +50,12 @@ namespace Rail.Tracks
                 string lantern = this.Lantern ? Resources.TrackWithLantern : String.Empty;
                 return $"{this.Article} {Resources.TrackBumper} {lantern}";
             }
+        }
+
+        public override void Update(TrackType trackType)
+        {
+            this.Length = GetValue(trackType.Lengths, this.LengthName);
+            base.Update(trackType);
         }
 
         protected override Geometry CreateGeometry()
@@ -57,5 +82,7 @@ namespace Rail.Tracks
                 new TrackDockPoint(0, new Point(this.Length / 2.0, 0.0), 315, this.dockType)
             };
         }
+
+        #endregion
     }
 }

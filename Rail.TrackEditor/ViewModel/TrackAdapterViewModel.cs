@@ -22,5 +22,17 @@ namespace Rail.TrackEditor.ViewModel
             get { return this.track.Article; }
             set { this.track.Article = value; NotifyPropertyChanged(nameof(Article)); }
         }
+
+        public string Length
+        {
+            get { return this.track.LengthName; }
+            set { this.track.LengthName = value; NotifyPropertyChanged(nameof(Length)); NotifyPropertyChanged(nameof(Track)); }
+        }
+
+        public string DockType
+        {
+            get { return this.track.DockType; }
+            set { this.track.DockType = value; NotifyPropertyChanged(nameof(DockType)); NotifyPropertyChanged(nameof(Track)); }
+        }
     }
 }

@@ -11,29 +11,37 @@ namespace Rail.Tracks
 {
     public class TrackCrossing : TrackBaseSingle
     {
-        [XmlAttribute("Length1")]
-        public string Length1NameOrValue { get; set; }
+        #region store 
+
+        [XmlAttribute("LengthA")]
+        public string LengthAName { get; set; }
+
+        [XmlAttribute("LengthB")]
+        public string LengthBName { get; set; }
+
+        [XmlAttribute("CrossingAngle")]
+        public string CrossingAngleName { get; set; }
+
+        #endregion
+
+        #region internal
 
         [XmlIgnore, JsonIgnore]
-        public double Length1 { get; set; }
+        public double LengthA { get; set; }
 
         [XmlIgnore, JsonIgnore]
-        public string Length1Name { get; set; }
-
-        [XmlAttribute("Length2")]
-        public string Length2NameOrValue { get; set; }
+        public double LengthB { get; set; }
 
         [XmlIgnore, JsonIgnore]
-        public double Length2 { get; set; }
+        public double CrossingAngle { get; set; }
+
+        #endregion
+
+        #region override
 
         [XmlIgnore, JsonIgnore]
-        public string Length2Name { get; set; }
-
-        [XmlIgnore, JsonIgnore]
-        public override double RampLength { get { return Math.Max(this.Length1, this.Length2); } }
-
-        [XmlAttribute("Angle")]
-        public double Angle { get; set; }
+        public override double RampLength { get { return Math.Max(this.LengthA, this.LengthB); } }
+               
 
         [XmlIgnore, JsonIgnore]
         public override string Name
@@ -55,18 +63,17 @@ namespace Rail.Tracks
 
         public override void Update(TrackType trackType)
         {
-            this.Length1 = GetValue(trackType.Lengths, this.Length1NameOrValue);
-            this.Length1Name = GetName(this.Length1NameOrValue);
-            this.Length2 = GetValue(trackType.Lengths, this.Length1NameOrValue);
-            this.Length2Name = GetName(this.Length1NameOrValue);
+            this.LengthA = GetValue(trackType.Lengths, this.LengthAName);
+            this.LengthB = GetValue(trackType.Lengths, this.LengthBName);
+            this.CrossingAngle = GetValue(trackType.Angles, this.CrossingAngleName);
             base.Update(trackType);
         }
 
         protected override Geometry CreateGeometry()
         {
             return new CombinedGeometry(
-                StraitGeometry(this.Length1, StraitOrientation.Center, -this.Angle / 2),
-                StraitGeometry(this.Length2, StraitOrientation.Center, +this.Angle / 2));
+                StraitGeometry(this.LengthA, StraitOrientation.Center, -this.CrossingAngle / 2),
+                StraitGeometry(this.LengthB, StraitOrientation.Center, +this.CrossingAngle / 2));
         }
 
         protected override Drawing CreateRailDrawing()
@@ -74,13 +81,13 @@ namespace Rail.Tracks
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.HasBallast)
             {
-                drawingRail.Children.Add(StraitBallast(this.Length1, StraitOrientation.Center, -this.Angle / 2));
-                drawingRail.Children.Add(StraitBallast(this.Length2, StraitOrientation.Center, +this.Angle / 2));
+                drawingRail.Children.Add(StraitBallast(this.LengthA, StraitOrientation.Center, -this.CrossingAngle / 2));
+                drawingRail.Children.Add(StraitBallast(this.LengthB, StraitOrientation.Center, +this.CrossingAngle / 2));
             }
-            drawingRail.Children.Add(StraitSleepers(this.Length1, StraitOrientation.Center, -this.Angle / 2));
-            drawingRail.Children.Add(StraitSleepers(this.Length2, StraitOrientation.Center, +this.Angle / 2));
-            drawingRail.Children.Add(StraitRail(this.Length1, StraitOrientation.Center, -this.Angle / 2));
-            drawingRail.Children.Add(StraitRail(this.Length2, StraitOrientation.Center, +this.Angle / 2));
+            drawingRail.Children.Add(StraitSleepers(this.LengthA, StraitOrientation.Center, -this.CrossingAngle / 2));
+            drawingRail.Children.Add(StraitSleepers(this.LengthB, StraitOrientation.Center, +this.CrossingAngle / 2));
+            drawingRail.Children.Add(StraitRail(this.LengthA, StraitOrientation.Center, -this.CrossingAngle / 2));
+            drawingRail.Children.Add(StraitRail(this.LengthB, StraitOrientation.Center, +this.CrossingAngle / 2));
             return drawingRail;
         }
 
@@ -88,11 +95,13 @@ namespace Rail.Tracks
         {
             return new List<TrackDockPoint>
             {
-                new TrackDockPoint(0, new Point(-this.Length1 / 2.0, 0.0).Rotate( this.Angle /2),  this.Angle /2 + 135, this.dockType),
-                new TrackDockPoint(1, new Point(-this.Length1 / 2.0, 0.0).Rotate(-this.Angle /2), -this.Angle /2 + 135, this.dockType),
-                new TrackDockPoint(2, new Point( this.Length1 / 2.0, 0.0).Rotate( this.Angle /2),  this.Angle /2 + 45-90, this.dockType),
-                new TrackDockPoint(3, new Point( this.Length1 / 2.0, 0.0).Rotate(-this.Angle /2), -this.Angle /2 + 45-90, this.dockType),
+                new TrackDockPoint(0, new Point(-this.LengthA / 2.0, 0.0).Rotate( this.CrossingAngle /2),  this.CrossingAngle /2 + 135, this.dockType),
+                new TrackDockPoint(1, new Point(-this.LengthA / 2.0, 0.0).Rotate(-this.CrossingAngle /2), -this.CrossingAngle /2 + 135, this.dockType),
+                new TrackDockPoint(2, new Point( this.LengthA / 2.0, 0.0).Rotate( this.CrossingAngle /2),  this.CrossingAngle /2 + 45-90, this.dockType),
+                new TrackDockPoint(3, new Point( this.LengthA / 2.0, 0.0).Rotate(-this.CrossingAngle /2), -this.CrossingAngle /2 + 45-90, this.dockType),
             };
         }
+
+        #endregion
     }
 }

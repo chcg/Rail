@@ -22,5 +22,28 @@ namespace Rail.TrackEditor.ViewModel
             get { return this.track.Article; }
             set { this.track.Article = value; NotifyPropertyChanged(nameof(Article)); }
         }
+
+        public string Length
+        {
+            get { return this.track.LengthName; }
+            set { this.track.LengthName = value; NotifyPropertyChanged(nameof(Length)); }
+        }
+
+        public string CrossingAngle
+        {
+            get { return this.track.CrossingAngleName; }
+            set { this.track.CrossingAngleName = value; NotifyPropertyChanged(nameof(CrossingAngle)); }
+        }
+
+        public string SlipRadius
+        {
+            get { return this.track.SlipRadiusName; }
+            set { this.track.SlipRadiusName = value; NotifyPropertyChanged(nameof(SlipRadius)); }
+        }
+        public TrackDrive TurnoutDrive
+        {
+            get { return this.track.TurnoutDrive; }
+            set { this.track.TurnoutDrive = value; NotifyPropertyChanged(nameof(TurnoutDrive)); }
+        }
     }
 }

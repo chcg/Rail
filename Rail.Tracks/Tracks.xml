@@ -82,15 +82,15 @@
       <CurvedTurnout Article="24772" InnerLength="0" InnerRadius="R3" InnerAngle="30" OuterLength="G64" OuterRadius="R3" OuterAngle="30" TurnoutDirection="Right" />
 
       <!-- double slip switch -->
-      <DoubleSlipSwitch Article="24624" Length="G188" Angle="24.3" Radius="R1"  />
+      <DoubleSlipSwitch Article="24624" Length="G188" CrossingAngle="24.3" SlipRadius="R1"  />
 
       <!-- double turnout -->
       <DoubleTurnout Article="24630" StraightLength="G188" LeftTurnoutLength="0" LeftTurnoutRadius="437.5" LeftTurnoutAngle="24.3" RightTurnoutLength="0" RightTurnoutRadius="437.5" RightTurnoutAngle="24.3" />
 
       <!-- crossing -->
-      <Crossing Article="24640" Length1="G188" Length2="G188" Angle="24.3" />
-      <Crossing Article="24649" Length1="G103" Length2="G103" Angle="48.6" />
-      <Crossing Article="24740" Length1="G236" Length2="G236" Angle="12.1" />
+      <Crossing Article="24640" LengthA="G188" LengthB="G188" CrossingAngle="24.3" />
+      <Crossing Article="24649" LengthA="G103" LengthB="G103" CrossingAngle="48.6" />
+      <Crossing Article="24740" LengthA="G236" LengthB="G236" CrossingAngle="12.1" />
 
       <!-- bumper -->
       <Bumper Article="24977" Length="82.5"/>
@@ -187,7 +187,7 @@
       <Turnout Article ="23611" StraightLength="188.3" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Left" />
       <Turnout Article ="23612" StraightLength="188.3" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Right" />
       <!-- crossing -->
-      <Crossing Article="23640" Length1="188.3" Length2="188.3" Angle="24.3" />
+      <Crossing Article="23640" LengthA="188.3" LengthB="188.3" CrossingAngle="24.3" />
       <!-- bumper -->
       <Bumper Article="23977" Length="82.5" />
     </Tracks>
@@ -253,17 +253,17 @@
       <CurvedTurnout Article="2269" InnerLength="0" InnerRadius="360.0" InnerAngle="30.0" OuterLength="0" OuterRadius="360.0" OuterAngle="30.0" TurnoutDirection="Right" />
 
       <!-- double slip switch -->
-      <DoubleSlipSwitch Article="2260" Length="168.9" Angle="22.50" Radius="360.0" />
-      <DoubleSlipSwitch Article="2275" Length="225.0" Angle="14.26" Radius="360.0" />
+      <DoubleSlipSwitch Article="2260" Length="168.9" CrossingAngle="22.50" SlipRadius="360.0" />
+      <DoubleSlipSwitch Article="2275" Length="225.0" CrossingAngle="14.26" SlipRadius="360.0" />
 
       <!-- double turnout -->
       <!--<DoubleTurnout Article="2270" StraightLength="G169" LeftTurnoutLength="0" LeftTurnoutRadius="424.6" LeftTurnoutAngle="24.3" RightTurnoutLength="0" RightTurnoutRadius="424.6" RightTurnoutAngle="24.3" />-->
 
 
       <!-- crossing -->
-      <Crossing Article="2257" Length1="225.0" Length2="225.0" Angle="14.26" />
-      <Crossing Article="2258" Length1="90.0" Length2="90.0" Angle="45.0" />
-      <Crossing Article="2259" Length1="168.9" Length2="168.9" Angle="22.30" />
+      <Crossing Article="2257" LengthA="225.0" LengthB="225.0" CrossingAngle="14.26" />
+      <Crossing Article="2258" LengthA="90.0" LengthB="90.0" CrossingAngle="45.0" />
+      <Crossing Article="2259" LengthA="168.9" LengthB="168.9" CrossingAngle="22.30" />
 
       <!-- flex -->
       <Flex Article="2205" Length="900" />
@@ -324,14 +324,14 @@
       <CurvedTurnout Article="5141" InnerLength="0.0" InnerRadius="360.0" InnerAngle="30.0" OuterLength="0.0" OuterRadius="437.5" OuterAngle="30.0" TurnoutDirection="Left" TurnoutDrive="Electrical" />
       <CurvedTurnout Article="5142" InnerLength="0.0" InnerRadius="360.0" InnerAngle="30.0" OuterLength="0.0" OuterRadius="437.5" OuterAngle="30.0" TurnoutDirection="Right" TurnoutDrive="Electrical" />
       <!-- double slip switch -->
-      <DoubleSlipSwitch Article="5128" Length="193.0" Angle="30.0" Radius="360.0" Drive="Electrical" />
-      <DoubleSlipSwitch Article="5207" Length="193.0" Angle="24.3" Radius="437.5" Drive="Electrical" />
+      <DoubleSlipSwitch Article="5128" Length="193.0" CrossingAngle="30.0" SlipRadius="360.0" TurnoutDrive="Electrical" />
+      <DoubleSlipSwitch Article="5207" Length="193.0" CrossingAngle="24.3" SlipRadius="437.5" TurnoutDrive="Electrical" />
       <!-- double turnout -->
       <!--<DoubleTurnout Article="5214" Length="193.0" Radius="437.5" Angle="24.3" Drive="Electrical" />-->
       <!-- crossing -->
-      <Crossing Article="5114" Length1="193.0" Length2="193.0" Angle="30.0" />
-      <Crossing Article="5211" Length1="98.0" Length2="98.0" Angle="48.5" />
-      <Crossing Article="5215" Length1="180.0" Length2="180.0" Angle="24.3" />
+      <Crossing Article="5114" LengthA="193.0" LengthB="193.0" CrossingAngle="30.0" />
+      <Crossing Article="5211" LengthA="98.0" LengthB="98.0" CrossingAngle="48.5" />
+      <Crossing Article="5215" LengthA="180.0" LengthB="180.0" CrossingAngle="24.3" />
       <!-- bumper -->
       <Bumper Article="7190" Length="70.0" Lantern="false" />
       <Bumper Article="7191" Length="70.0" Lantern="true" />

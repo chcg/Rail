@@ -11,17 +11,36 @@ namespace Rail.Tracks
 {
     public class TrackTurntable : TrackBaseSingle
     {
+        #region store
+
         [XmlAttribute("OuterRadius")]
-        public double OuterRadius { get; set; }
+        public string OuterRadiusName { get; set; }
 
         [XmlAttribute("InnerRadius")]
-        public double InnerRadius { get; set; }
+        public string InnerRadiusName { get; set; }
 
         [XmlAttribute("Angle")]
-        public double Angle { get; set; }
+        public string AngleName { get; set; }
 
         [XmlAttribute("RailNum")]
         public int RailNum { get; set; }
+
+        #endregion
+
+        #region intern
+
+        [XmlIgnore, JsonIgnore]
+        public double OuterRadius { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public double InnerRadius { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public double Angle { get; set; }
+
+        #endregion
+
+        #region override
 
         /// <summary>
         /// Ramp length
@@ -47,6 +66,15 @@ namespace Rail.Tracks
                 return $"{this.Article} {Resources.TrackTurntable}";
             }
         }
+
+        public override void Update(TrackType trackType)
+        {
+            this.OuterRadius = GetValue(trackType.Radii, this.OuterRadiusName);
+            this.InnerRadius = GetValue(trackType.Radii, this.InnerRadiusName);
+            this.Angle = GetValue(trackType.Angles, this.AngleName);
+            base.Update(trackType);
+        }
+
 
         protected override Geometry CreateGeometry()
         {
@@ -112,5 +140,7 @@ namespace Rail.Tracks
             }
             return dockPoints;
         }
+
+        #endregion
     }
 }

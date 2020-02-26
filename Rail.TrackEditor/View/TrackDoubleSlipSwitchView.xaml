@@ -18,10 +18,24 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" Content="Article"/>
         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Article}" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="1" Content="Length"/>
+        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding DataContext.LengthNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding Length}" IsReadOnly="True" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="2" Content="Crossing Angle"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding DataContext.AnglehNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding CrossingAngle}" IsReadOnly="True" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="3" Content="Slip Radius"/>
+        <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding DataContext.RadiusNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding SlipRadius}" IsReadOnly="True" Margin="3"/>
+        
+        <Label Grid.Column="0" Grid.Row="4" Content="Turnout Drive"/>
+        <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding DataContext.TurnoutDrives, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding TurnoutDrive}" IsReadOnly="True" Margin="3"/>
+
     </Grid>
 </UserControl>

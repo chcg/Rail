@@ -18,10 +18,36 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" Content="Article"/>
         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Article}" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="1" Content="Left Turnout Length"/>
+        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding DataContext.LengthNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding LeftTurnoutLength}" IsReadOnly="True" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="2" Content="Left Turnout Radius"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding DataContext.RadiusNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding LeftTurnoutRadius}" IsReadOnly="True" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="3" Content="Left Turnout Angle"/>
+        <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding DataContext.AngleNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding LeftTurnoutAngle}" IsReadOnly="True" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="4" Content="Right Turnout Length"/>
+        <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding DataContext.LengthNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding RightTurnoutLength}" IsReadOnly="True" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="5" Content="Right Turnout Radius"/>
+        <ComboBox Grid.Column="1" Grid.Row="5" ItemsSource="{Binding DataContext.RadiusNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding RightTurnoutRadius}" IsReadOnly="True" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="6" Content="Right Turnout Angle"/>
+        <ComboBox Grid.Column="1" Grid.Row="6" ItemsSource="{Binding DataContext.AngleNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding RightTurnoutAngle}" IsReadOnly="True" Margin="3"/>
+
+        <Label Grid.Column="0" Grid.Row="7" Content="Turnout Drive"/>
+        <ComboBox Grid.Column="1" Grid.Row="7" ItemsSource="{Binding DataContext.TurnoutDrives, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding TurnoutDrive}" IsReadOnly="True" Margin="3"/>
+
     </Grid>
 </UserControl>
