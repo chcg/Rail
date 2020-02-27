@@ -32,7 +32,10 @@
                     <xs:element name="SleeperType" type="SleeperType" />
                     <xs:element name="SleeperWidth" type="xs:decimal" />
                     <xs:element name="BallastType" type="BallastType" />
-                    <xs:element minOccurs="0" name="BallastWidth" type="xs:decimal" />
+                    <xs:element name="BallastWidth" type="xs:decimal" minOccurs="0" />
+                    <xs:element name="WagonMaxLength" type="xs:decimal" />
+                    <xs:element name="WagonMaxWidth" type="xs:decimal" />
+                    <xs:element name="WagonMaxBogieDistance" type="xs:decimal" />
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>

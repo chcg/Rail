@@ -57,7 +57,18 @@ namespace Rail.Tracks.Misc
 
         public void WriteXml(XmlWriter writer)
         {
-            throw new Exception("XmlMultilanguageString only readable!");
+            //writer.WriteStartElement("Name");
+            foreach (var entry in this.languageDictionary)
+            {
+                writer.WriteStartElement(elementName);
+                if (!string.IsNullOrEmpty(entry.Key) && entry.Key != defaultKey)
+                {
+                    writer.WriteAttributeString(attributetName, entry.Key);
+                }
+                writer.WriteString(entry.Value);
+                writer.WriteEndElement();
+            }
+            //writer.WriteEndElement();
         }
 
         public string Value

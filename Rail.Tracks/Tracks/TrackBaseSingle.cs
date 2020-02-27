@@ -50,7 +50,7 @@ namespace Rail.Tracks
         [XmlAttribute("AddArticles")]
         public string AddArticles { get; set; }        
 
-        [XmlAttribute("Sleepers")]
+        [XmlIgnore, JsonIgnore]
         public TrackSleeperType SleeperType { get; set; }
 
         //[XmlAttribute("Bedding")]

@@ -35,7 +35,7 @@
         <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding DataContext.LengthNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding StraightLengt}" IsReadOnly="True" Margin="3"/>
 
         <Label Grid.Column="0" Grid.Row="2" Content="Turnout Length"/>
-        <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding DataContext.LengthNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding TurnoutLength}" IsReadOnly="True" Margin="3"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding DataContext.LengthNamesAndNull, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding TurnoutLength}" IsReadOnly="True" Margin="3"/>
 
         <Label Grid.Column="0" Grid.Row="3" Content="Turnout Radius"/>
         <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding DataContext.RadiusNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding TurnoutRadius}" IsReadOnly="True" Margin="3"/>

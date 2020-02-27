@@ -1,14 +1,9 @@
-﻿using Rail.Tracks;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Reflection;
-using System.Resources;
 using System.Text;
-using System.Text.Json;
 using System.Windows;
-using System.Windows.Resources;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -46,11 +41,18 @@ namespace Rail.Tracks
             using Stream xmlStream = File.Exists(file) ? File.OpenRead(file) : trackAssembly.GetManifestResourceStream("Rail.Tracks.Tracks.xml");
 
             // read from file
-            XmlSerializer serializer = new XmlSerializer(typeof(TrackList));
-            TrackList trackList = (TrackList)serializer.Deserialize(XmlReader.Create(xmlStream, settings));
-                        
-            trackList.TrackTypes.ForEach(trackType => trackType.Update());
-            return trackList;
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(TrackList));
+                TrackList trackList = (TrackList)serializer.Deserialize(XmlReader.Create(xmlStream, settings));
+                trackList.TrackTypes.ForEach(trackType => trackType.Update());
+                return trackList;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return null;
         }
 
         
@@ -64,6 +66,8 @@ namespace Rail.Tracks
                 while (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), $"Rail\\Tracks{++i}.xml")));
                 File.Move(file, Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), $"Rail\\Tracks{i}.xml"));    
             }
+
+            Directory.CreateDirectory(Path.GetDirectoryName(file));
 
             // set current file version
             using XmlTextWriter writer = new XmlTextWriter(file, Encoding.UTF8)

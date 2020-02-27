@@ -10,22 +10,25 @@
       <Gauge>H0</Gauge>
       <DockType>m24</DockType>
       <RailType>Silver</RailType>
-      <RailWidth>18.0</RailWidth>
+      <RailWidth>18</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
-      <SleeperWidth>27.0</SleeperWidth>
+      <SleeperWidth>27</SleeperWidth>
       <BallastType>Dark</BallastType>
-      <BallastWidth>39.0</BallastWidth>
+      <BallastWidth>39</BallastWidth>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
     <Radii>
-      <Radius Name="R1" Value="360.0" />
+      <Radius Name="R1" Value="360" />
       <Radius Name="R2" Value="437.5" />
-      <Radius Name="R3" Value="515.0" />
+      <Radius Name="R3" Value="515" />
       <Radius Name="R4" Value="579.3" />
       <Radius Name="R5" Value="643.6" />
       <Radius Name="R6" Value="1114.6" />
     </Radii>
     <Lengths>
-      <Length Name="G360" Value="360.0"/>
+      <Length Name="G360" Value="360" />
       <Length Name="G236" Value="236.1"/>
       <Length Name="G229" Value="229.3"/>
       <Length Name="G188" Value="188.3"/>
@@ -37,11 +40,11 @@
       <Length Name="G64" Value="64.3"/>
     </Lengths>
     <Angles>
-      <Angle Name="A30" Value="30.0"/>
+      <Angle Name="A30" Value="30" />
       <Angle Name="A24" Value="24.3"/>
-      <Angle Name="A15" Value="15.0"/>
+      <Angle Name="A15" Value="15" />
       <Angle Name="A12" Value="12.1"/>
-      <Angle Name="A10" Value="10.0"/>
+      <Angle Name="A10" Value="10" />
       <Angle Name="A8" Value="7.5"/>
       <Angle Name="A6" Value="5.7"/>
     </Angles>
@@ -171,6 +174,9 @@
       <SleeperWidth>27.0</SleeperWidth>
       <BallastType>Dark</BallastType>
       <BallastWidth>39.0</BallastWidth>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
     <Radii>
       <Radius Name="R1" Value="360.0" />
@@ -206,6 +212,9 @@
       <SleeperType>WoodenSleepers</SleeperType>
       <SleeperWidth>29.5</SleeperWidth>
       <BallastType>No</BallastType>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
     <Radii>
       <Radius Name="R0" Value="295.4" />
@@ -284,6 +293,9 @@
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>Light</BallastType>
       <BallastWidth>20.0</BallastWidth>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
     <Radii>
       <Radius Name="I" Value="282.6" />
@@ -356,6 +368,9 @@
       <SleeperType>WoodenSleepers</SleeperType>
       <SleeperWidth>55.0</SleeperWidth>
       <BallastType>No</BallastType>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
     <!-- R1 = 1020 mm -->
     <!-- R2 = 1176 mm -->
@@ -413,6 +428,9 @@
       <SleeperType>WoodenSleepers</SleeperType>
       <SleeperWidth>8.0</SleeperWidth>
       <BallastType>No</BallastType>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
     <!-- R1 = 145 mm -->
     <!-- R2 = 195 mm -->
@@ -482,6 +500,9 @@
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>Dark</BallastType>
       <BallastWidth>20.0</BallastWidth>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
   </TrackType>
   
@@ -499,6 +520,9 @@
       <SleeperType>WoodenSleepers</SleeperType>
       <SleeperWidth>52.0</SleeperWidth>
       <BallastType>No</BallastType>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
     <Radii>
       <Radius Name="R1" Value="600" />
@@ -558,6 +582,9 @@
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>Medium</BallastType>
       <BallastWidth>20.0</BallastWidth>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
     <!-- R1 = 356.5 mm -->
     <!-- R2 = 420.0 mm -->
@@ -582,6 +609,9 @@
       <SleeperWidth>52.0</SleeperWidth>
       <BallastType>No</BallastType>
       <BallastWidth>52.0</BallastWidth>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
     <!-- R1 = 192.0 mm -->
     <!-- R2 = 225.6 mm -->
@@ -603,6 +633,9 @@
       <SleeperType>WoodenSleepers</SleeperType>
       <SleeperWidth>52.0</SleeperWidth>
       <BallastType>No</BallastType>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
     <!-- R1 = 194.6 mm -->
     <!-- R2 = 228.2 mm -->
@@ -629,6 +662,9 @@
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>Medium</BallastType>
       <BallastWidth>20.0</BallastWidth>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
   </TrackType>
   <TrackType Manufacturer="Roco" GaugeName="H0" Type="Roco-Line" GaugeWidth="16.5" >
@@ -646,6 +682,9 @@
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>Medium</BallastType>
       <BallastWidth>20.0</BallastWidth>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
   </TrackType>
 
@@ -664,6 +703,9 @@
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>Medium</BallastType>
       <BallastWidth>20.0</BallastWidth>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
   </TrackType>
 
@@ -682,6 +724,9 @@
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>Dark</BallastType>
       <BallastWidth>20.0</BallastWidth>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
   </TrackType>
 
@@ -700,6 +745,9 @@
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>Dark</BallastType>
       <BallastWidth>20.0</BallastWidth>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
   </TrackType>
 
@@ -717,6 +765,9 @@
       <SleeperType>WoodenSleepers</SleeperType>
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>Dark</BallastType>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
     <Radii>
       <Radius Name="R1" Value="600.00" />
@@ -770,6 +821,9 @@
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>Dark</BallastType>
       <BallastWidth>20.0</BallastWidth>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
     <Radii>
       <Radius Name="R1" Value="360.00" />
@@ -842,6 +896,9 @@
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>Dark</BallastType>
       <BallastWidth>20.0</BallastWidth>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
     <Radii>
       <Radius Name="R1" Value="360.00" />
@@ -908,6 +965,9 @@
       <SleeperType>ConcreteSleepers</SleeperType>
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>No</BallastType>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
     <Radii>
       <Radius Name="R1" Value="360.00" />
@@ -944,6 +1004,9 @@
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>Dark</BallastType>
       <BallastWidth>20.0</BallastWidth>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
   </TrackType>
   
@@ -962,6 +1025,9 @@
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>Dark</BallastType>
       <BallastWidth>20.0</BallastWidth>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
   </TrackType>
 
@@ -979,6 +1045,9 @@
       <SleeperType>WoodenSleepers</SleeperType>
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>No</BallastType>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
     <Radii>
       <Radius Name="R40" Value="704" />
@@ -999,6 +1068,9 @@
       <SleeperType>WoodenSleepers</SleeperType>
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>No</BallastType>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
     <Radii>
       <Radius Name="R24" Value="448" />
@@ -1025,6 +1097,9 @@
       <SleeperType>WoodenSleepers</SleeperType>
       <SleeperWidth>20.0</SleeperWidth>
       <BallastType>No</BallastType>
+      <WagonMaxLength>0</WagonMaxLength>
+      <WagonMaxWidth>0</WagonMaxWidth>
+      <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
     </Parameter>
   </TrackType>
 

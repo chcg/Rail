@@ -55,6 +55,8 @@ namespace Rail.TrackEditor.ViewModel
 
         public ObservableCollection<TrackNamedValueViewModel> Lengths { get; private set; }
 
+        public ObservableCollection<TrackNamedValueViewModel> LengthsWithNull { get; private set; }
+
         public ObservableCollection<TrackNamedValueViewModel> Radii { get; private set; }
 
         public ObservableCollection<TrackNamedValueViewModel> Angles { get; private set; }
@@ -63,6 +65,8 @@ namespace Rail.TrackEditor.ViewModel
         public List<string> LengthNames { get { return this.Lengths.Select(l => l.Name).ToList(); } }
         public List<string> RadiusNames { get { return this.Radii.Select(l => l.Name).ToList(); } }
         public List<string> AngleNames { get { return this.Angles.Select(l => l.Name).ToList(); } }
+
+        public List<string> LengthNamesAndNull { get { return new List<string> { "0" }.Concat(this.LengthNames).ToList(); } }
 
         public TrackDirection[] TurnoutDirections { get { return (TrackDirection[])Enum.GetValues(typeof(TrackDirection)); } }
         public TrackDrive[] TurnoutDrives { get { return (TrackDrive[])Enum.GetValues(typeof(TrackDrive)); } }
