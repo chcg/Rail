@@ -23,7 +23,7 @@ namespace Rail.TrackEditor.ViewModel
         public string Name
         {
             get { return this.namedValue.Name; }
-            set { this.namedValue.Name = value; NotifyPropertyChanged(nameof(Name)); }
+            set { this.namedValue.Name = value.Trim(); NotifyPropertyChanged(nameof(Name)); }
         }
 
         public double Value

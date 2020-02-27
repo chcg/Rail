@@ -20,7 +20,7 @@ namespace Rail.TrackEditor.ViewModel
         public string Article
         {
             get { return this.track.Article; }
-            set { this.track.Article = value; NotifyPropertyChanged(nameof(Article)); }
+            set { this.track.Article = value.Trim(); NotifyPropertyChanged(nameof(Article)); }
         }
 
         public string Length
@@ -32,7 +32,7 @@ namespace Rail.TrackEditor.ViewModel
         public string DockType
         {
             get { return this.track.DockType; }
-            set { this.track.DockType = value; NotifyPropertyChanged(nameof(DockType)); NotifyPropertyChanged(nameof(Track)); }
+            set { this.track.DockType = value.Trim(); NotifyPropertyChanged(nameof(DockType)); NotifyPropertyChanged(nameof(Track)); }
         }
     }
 }

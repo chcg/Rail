@@ -70,7 +70,7 @@ namespace Rail.TrackEditor.ViewModel
         public string Manufacturer
         {
             get { return this.trackType.Parameter.Manufacturer; }
-            set { this.trackType.Parameter.Manufacturer = value; NotifyPropertyChanged(nameof(Manufacturer)); }
+            set { this.trackType.Parameter.Manufacturer = value.Trim(); NotifyPropertyChanged(nameof(Manufacturer)); }
         }
 
         public TrackGauge[] Gauges { get { return Enum.GetValues(typeof(TrackGauge)).Cast<TrackGauge>().ToArray(); } }
@@ -84,7 +84,7 @@ namespace Rail.TrackEditor.ViewModel
         public string DockType
         {
             get { return this.trackType.Parameter.DockType; }
-            set { this.trackType.Parameter.DockType = value; NotifyPropertyChanged(nameof(DockType)); }
+            set { this.trackType.Parameter.DockType = value.Trim(); NotifyPropertyChanged(nameof(DockType)); }
         }
 
         public TrackRailType[] RailTypes { get { return Enum.GetValues(typeof(TrackRailType)).Cast<TrackRailType>().ToArray(); } }

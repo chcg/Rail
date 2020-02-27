@@ -22,13 +22,13 @@ namespace Rail.TrackEditor.ViewModel
         public string Language
         {
             get { return this.language; }
-            set { this.language = value; NotifyPropertyChanged(nameof(Language)); }
+            set { this.language = value.Trim(); NotifyPropertyChanged(nameof(Language)); }
         }
 
         public string Name
         {
             get { return this.name; }
-            set { this.name = value; NotifyPropertyChanged(nameof(Name)); }
+            set { this.name = value.Trim(); NotifyPropertyChanged(nameof(Name)); }
         }
     }
 }

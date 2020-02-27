@@ -20,7 +20,7 @@ namespace Rail.TrackEditor.ViewModel
         public string Article
         {
             get { return this.track.Article; }
-            set { this.track.Article = value; NotifyPropertyChanged(nameof(Article)); }
+            set { this.track.Article = value.Trim(); NotifyPropertyChanged(nameof(Article)); }
         }
 
         public string LeftTurnoutLength
