@@ -63,7 +63,7 @@ namespace Rail.Mvvm
 
         private delegate void NotifyPropertyChangedDeleagte(string propertyName);     
 
-        protected void NotifyPropertyChanged(string propertyName)
+        protected virtual void NotifyPropertyChanged(string propertyName)
         {
             if (string.IsNullOrEmpty(propertyName))
             {
@@ -84,7 +84,7 @@ namespace Rail.Mvvm
             }
         }
 
-        protected void NotifyAllPropertiesChanged()
+        protected virtual void NotifyAllPropertiesChanged()
         {
             if (Dispatcher.CurrentDispatcher.CheckAccess())
             {

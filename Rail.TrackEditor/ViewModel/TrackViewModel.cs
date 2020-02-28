@@ -23,6 +23,13 @@ namespace Rail.TrackEditor.ViewModel
 
         public ICommand RailInvalidateCommand { get; set; }
 
+
+        protected override void NotifyPropertyChanged(string propertyName)
+        {
+            UpdateTrack();
+            base.NotifyPropertyChanged(propertyName);
+        }
+
         public static TrackViewModel Create(TrackBase track, TrackType trackType)
         {
             string typeName = track.GetType().Name;
