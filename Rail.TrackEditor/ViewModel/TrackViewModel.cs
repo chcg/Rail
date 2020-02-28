@@ -22,8 +22,7 @@ namespace Rail.TrackEditor.ViewModel
         public TrackBase Track { get { return this.trackBase; } }
 
         public ICommand RailInvalidateCommand { get; set; }
-
-
+        
         protected override void NotifyPropertyChanged(string propertyName)
         {
             UpdateTrack();

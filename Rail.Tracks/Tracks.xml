@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TrackList Version="0.1.0">
+<TrackList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="0.1.0">
   <TrackType>
     <Name>
       <LanguageString>Märklin H0 C-Tracks</LanguageString>
@@ -32,14 +32,17 @@
       <Length Name="G236" Value="236.1"/>
       <Length Name="G229" Value="229.3"/>
       <Length Name="G188" Value="188.3"/>
+      <Length Name="G180" Value="180"/>
       <Length Name="G172" Value="171.7"/>
       <Length Name="G103" Value="103.3"/>
       <Length Name="G94" Value="94.2"/>
+      <Length Name="G83" Value="82.5"/>
       <Length Name="G77" Value="77.5"/>
       <Length Name="G71" Value="70.8"/>
       <Length Name="G64" Value="64.3"/>
     </Lengths>
     <Angles>
+      <Angle Name="A49" Value="48.6" />
       <Angle Name="A30" Value="30" />
       <Angle Name="A24" Value="24.3"/>
       <Angle Name="A15" Value="15" />
@@ -49,66 +52,47 @@
       <Angle Name="A6" Value="5.7"/>
     </Angles>
     <Tracks>
-      <!-- strait tracks -->
-      <Straight Article="24064" Length="G64" />
-      <Straight Article="24071" Length="G71" />
-      <Straight Article="24077" Length="G77" />
-      <Straight Article="24094" Length="G94" />
-      <Straight Article="24172" Length="G172" />
-      <Straight Article="24188" Length="G188" />
-      <Straight Article="24229" Length="G229" />
-      <Straight Article="24236" Length="G236" />
-      <Straight Article="24360" Length="G360" />
-      <!-- curved tracks -->
-      <Curved Article="24107" Radius="R1" Angle="7.5" />
-      <Curved Article="24115" Radius="R1" Angle="15.0" />
-      <Curved Article="24130" Radius="R1" Angle="30.0" />
-      <Curved Article="24206" Radius="R2" Angle="5.7" />
-      <Curved Article="24207" Radius="R2" Angle="7.5" />
-      <Curved Article="24215" Radius="R2" Angle="15.0" />
-      <Curved Article="24224" Radius="R3" Angle="24.3" />
-      <Curved Article="24230" Radius="R3" Angle="30.0" />
-      <Curved Article="24315" Radius="R3" Angle="15.0" />
-      <Curved Article="24330" Radius="R3" Angle="30.0" />
-      <Curved Article="24430" Radius="R4" Angle="30.0" />
-      <Curved Article="24530" Radius="R5" Angle="30.0" />
-      <Curved Article="24912" Radius="R6" Angle="12.1" />
-      <!-- turnout tracks -->
-      <Turnout Article="24611" StraightLength="G188" TurnoutLength="G188" TurnoutRadius="R2" TurnoutAngle="24.3" TurnoutDirection="Left" />
-      <Turnout Article="24612" StraightLength="G188" TurnoutLength="G188" TurnoutRadius="R2" TurnoutAngle="24.3" TurnoutDirection="Right" />
-      <Turnout Article="24711" StraightLength="G236" TurnoutLength="G236" TurnoutRadius="R6" TurnoutAngle="12.1" TurnoutDirection="Left" />
-      <Turnout Article="24712" StraightLength="G236" TurnoutLength="G236" TurnoutRadius="R6" TurnoutAngle="12.1" TurnoutDirection="Right" />
-      <!-- curved turnout tracks -->
-      <CurvedTurnout Article="24671" InnerLength="0" InnerRadius="R1" InnerAngle="30" OuterLength="G77" OuterRadius="R1" OuterAngle="30" TurnoutDirection="Left" />
-      <CurvedTurnout Article="24672" InnerLength="0" InnerRadius="R1" InnerAngle="30" OuterLength="G77" OuterRadius="R1" OuterAngle="30" TurnoutDirection="Right" />
-      <CurvedTurnout Article="24771" InnerLength="0" InnerRadius="R3" InnerAngle="30" OuterLength="G64" OuterRadius="R3" OuterAngle="30" TurnoutDirection="Left" />
-      <CurvedTurnout Article="24772" InnerLength="0" InnerRadius="R3" InnerAngle="30" OuterLength="G64" OuterRadius="R3" OuterAngle="30" TurnoutDirection="Right" />
-
-      <!-- double slip switch -->
-      <DoubleSlipSwitch Article="24624" Length="G188" CrossingAngle="24.3" SlipRadius="R1"  />
-
-      <!-- double turnout -->
-      <DoubleTurnout Article="24630" StraightLength="G188" LeftTurnoutLength="0" LeftTurnoutRadius="437.5" LeftTurnoutAngle="24.3" RightTurnoutLength="0" RightTurnoutRadius="437.5" RightTurnoutAngle="24.3" />
-
-      <!-- crossing -->
-      <Crossing Article="24640" LengthA="G188" LengthB="G188" CrossingAngle="24.3" />
-      <Crossing Article="24649" LengthA="G103" LengthB="G103" CrossingAngle="48.6" />
-      <Crossing Article="24740" LengthA="G236" LengthB="G236" CrossingAngle="12.1" />
-
-      <!-- bumper -->
-      <Bumper Article="24977" Length="82.5"/>
-      <Bumper Article="24978" Length="82.5" Lantern="true"/>
-
-      <!-- end piece -->
+      <Straight Article="24064" Length="G64" Extra="No" />
+      <Straight Article="24071" Length="G71" Extra="No" />
+      <Straight Article="24077" Length="G77" Extra="No" />
+      <Straight Article="24094" Length="G94" Extra="No" />
+      <Straight Article="24172" Length="G172" Extra="No" />
+      <Straight Article="24188" Length="G188" Extra="No" />
+      <Straight Article="24229" Length="G229" Extra="No" />
+      <Straight Article="24236" Length="G236" Extra="No" />
+      <Straight Article="24360" Length="G360" Extra="No" />
+      <Curved Article="24107" Radius="R1" Angle="A8" Extra="No" />
+      <Curved Article="24115" Radius="R1" Angle="A15" Extra="No" />
+      <Curved Article="24130" Radius="R1" Angle="A30" Extra="No" />
+      <Curved Article="24206" Radius="R2" Angle="A6" Extra="No" />
+      <Curved Article="24207" Radius="R2" Angle="A8" Extra="No" />
+      <Curved Article="24215" Radius="R2" Angle="A15" Extra="No" />
+      <Curved Article="24224" Radius="R3" Angle="A24" Extra="No" />
+      <Curved Article="24230" Radius="R3" Angle="A30" Extra="No" />
+      <Curved Article="24315" Radius="R3" Angle="A15" Extra="No" />
+      <Curved Article="24330" Radius="R3" Angle="A30" Extra="No" />
+      <Curved Article="24430" Radius="R4" Angle="A30" Extra="No" />
+      <Curved Article="24530" Radius="R5" Angle="A30" Extra="No" />
+      <Curved Article="24912" Radius="R6" Angle="A12" Extra="No" />
+      <Turnout Article="24611" StraightLength="G188" TurnoutLength="0" TurnoutRadius="R2" TurnoutAngle="A24" TurnoutDirection="Left" TurnoutDrive="Unknown" />
+      <Turnout Article="24612" StraightLength="G188" TurnoutLength="0" TurnoutRadius="R2" TurnoutAngle="A24" TurnoutDirection="Right" TurnoutDrive="Unknown" />
+      <Turnout Article="24711" StraightLength="G236" TurnoutLength="0" TurnoutRadius="R6" TurnoutAngle="A12" TurnoutDirection="Left" TurnoutDrive="Unknown" />
+      <Turnout Article="24712" StraightLength="G236" TurnoutLength="0" TurnoutRadius="R6" TurnoutAngle="A12" TurnoutDirection="Right" TurnoutDrive="Unknown" />
+      <CurvedTurnout Article="24671" InnerLength="0" InnerRadius="R1" InnerAngle="A30" OuterLength="G77" OuterRadius="R1" OuterAngle="A30" TurnoutDirection="Left" TurnoutDrive="Unknown" />
+      <CurvedTurnout Article="24672" InnerLength="0" InnerRadius="R1" InnerAngle="A30" OuterLength="G77" OuterRadius="R1" OuterAngle="A30" TurnoutDirection="Right" TurnoutDrive="Unknown" />
+      <CurvedTurnout Article="24771" InnerLength="0" InnerRadius="R3" InnerAngle="A30" OuterLength="G64" OuterRadius="R3" OuterAngle="A30" TurnoutDirection="Left" TurnoutDrive="Unknown" />
+      <CurvedTurnout Article="24772" InnerLength="0" InnerRadius="R3" InnerAngle="A30" OuterLength="G64" OuterRadius="R3" OuterAngle="A30" TurnoutDirection="Right" TurnoutDrive="Unknown" />
+      <DoubleSlipSwitch Article="24624" Length="G188" CrossingAngle="A24" SlipRadius="R1" TurnoutDrive="Unknown" />
+      <DoubleTurnout Article="24630" StraightLength="G188" LeftTurnoutLength="0" LeftTurnoutRadius="R2" LeftTurnoutAngle="A24" RightTurnoutLength="0" RightTurnoutRadius="R2" RightTurnoutAngle="A24" TurnoutDrive="Unknown" />
+      <Crossing Article="24640" LengthA="G188" LengthB="G188" CrossingAngle="A24" />
+      <Crossing Article="24649" LengthA="G103" LengthB="G103" CrossingAngle="A49" />
+      <Crossing Article="24740" LengthA="G236" LengthB="G236" CrossingAngle="A12" />
+      <Bumper Article="24977" Length="G83"/>
+      <Bumper Article="24978" Length="G83" Lantern="true"/>
       <EndPiece Article="24001" />
-
-      <!-- adapter -->
-      <Adapter Article="24922" Length="180.0" DockType="M22"/>
-      <Adapter Article="24951" Length="180.0" DockType="M20"/>
-
-      <!-- Turntable -->
-      <Turntable Article="74861" OuterRadius="189" InnerRadius="131.5" Angle="15" RailNum="30" />
-
+      <Adapter Article="24922" Length="G180" DockType="M22"/>
+      <Adapter Article="24951" Length="G180" DockType="M20"/>
+      <Turntable Article="74861" OuterRadius="189" InnerRadius="131.5" Angle="A15" RailNum="30" />
     </Tracks>
     <Groups>
       <Group Id="G00001" Name="Parallel Group">

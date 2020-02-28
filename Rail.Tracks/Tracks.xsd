@@ -111,10 +111,10 @@
                           <xs:attribute name="Article" type="xs:string" use="required" />
                           <xs:attribute name="InnerLength" type="xs:string" use="required" />
                           <xs:attribute name="InnerRadius" type="xs:string" use="required" />
-                          <xs:attribute name="InnerAngle" type="xs:decimal" use="required" />
+                          <xs:attribute name="InnerAngle" type="xs:string" use="required" />
                           <xs:attribute name="OuterLength" type="xs:string" use="required" />
                           <xs:attribute name="OuterRadius" type="xs:string" use="required" />
-                          <xs:attribute name="OuterAngle" type="xs:decimal" use="required" />
+                          <xs:attribute name="OuterAngle" type="xs:string" use="required" />
                           <xs:attribute name="TurnoutDirection" type="Direction" use="required" />
                           <xs:attribute name="TurnoutDrive" type="Drive" use="optional" />
                           <xs:attribute name="AddArticles" type="xs:string" use="optional" />
@@ -197,10 +197,10 @@
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="Turntable">
                         <xs:complexType>
-                          <xs:attribute name="Article" type="xs:unsignedInt" use="required" />
+                          <xs:attribute name="Article" type="xs:string" use="required" />
                           <xs:attribute name="OuterRadius" type="xs:unsignedByte" use="required" />
                           <xs:attribute name="InnerRadius" type="xs:decimal" use="required" />
-                          <xs:attribute name="Angle" type="xs:decimal" use="required" />
+                          <xs:attribute name="Angle" type="xs:string" use="required" />
                           <xs:attribute name="RailNum" type="xs:unsignedByte" use="required" />
                         </xs:complexType>
                       </xs:element>

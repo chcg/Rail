@@ -15,7 +15,11 @@ namespace Rail.Tracks
     {
         public TrackList()
         {
+            this.Version = "0.1.0";
         }
+
+        [XmlAttribute("Version")]
+        public string Version { get; set; }
 
         [XmlElement("TrackType")]
         public List<TrackType> TrackTypes { get; set; }
@@ -36,7 +40,7 @@ namespace Rail.Tracks
             settings.Schemas.Add(schema);
             
 
-            string file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Rail\\Tracks.xml");
+            string file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Rail\\Tracks.xmlxxxxx");
             
             using Stream xmlStream = File.Exists(file) ? File.OpenRead(file) : trackAssembly.GetManifestResourceStream("Rail.Tracks.Tracks.xml");
 
