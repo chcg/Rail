@@ -9,10 +9,13 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackFlex track;
 
-        public TrackFlexViewModel() : this(new TrackFlex())
+        public TrackFlexViewModel() : this(new TrackFlex(), MainViewModel.SelectedTrackTypeViewModel.TrackType)
         { }
 
-        public TrackFlexViewModel(TrackFlex track) : base(track)
+        public TrackFlexViewModel(TrackType trackType) : this(new TrackFlex(), trackType)
+        { }
+
+        public TrackFlexViewModel(TrackFlex track, TrackType trackType) : base(track, trackType)
         {
             this.track = track;
         }

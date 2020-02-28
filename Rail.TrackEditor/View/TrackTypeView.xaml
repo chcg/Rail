@@ -204,7 +204,7 @@
                             <MenuItem Header="New Turntable Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Turntable}" />
                             <MenuItem Header="New Transfer Table Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.TransferTable}" />
                             <MenuItem Header="New End Piece Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.EndPiece}" />
-                            <MenuItem Header="New Straight Adjustment Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.StraightAdjustme}" />
+                            <MenuItem Header="New Straight Adjustment Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.StraightAdjustment}" />
                             <MenuItem Header="New Double Crossover Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.DoubleCrossover}" />
                             <MenuItem Header="New Flex Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Flex}" />
                             <MenuItem Header="New Group Track" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Group}" />
@@ -228,7 +228,7 @@
                                         <MenuItem Header="New Turntable Track" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Turntable}" />
                                         <MenuItem Header="New Transfer Table Track" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.TransferTable}" />
                                         <MenuItem Header="New End Piece Track" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.EndPiece}" />
-                                        <MenuItem Header="New Straight Adjustment Track" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.StraightAdjustme}" />
+                                        <MenuItem Header="New Straight Adjustment Track" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.StraightAdjustment}" />
                                         <MenuItem Header="New Double Crossover Track" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.DoubleCrossover}" />
                                         <MenuItem Header="New Flex Track" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Flex}" />
                                         <MenuItem Header="New Group Track" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Group}" />

@@ -9,10 +9,13 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackCurvedTurnout track;
 
-        public TrackCurvedTurnoutViewModel() : this(new TrackCurvedTurnout())
+        public TrackCurvedTurnoutViewModel() : this(new TrackCurvedTurnout(), MainViewModel.SelectedTrackTypeViewModel.TrackType)
         { }
 
-        public TrackCurvedTurnoutViewModel(TrackCurvedTurnout track) : base(track)
+        public TrackCurvedTurnoutViewModel(TrackType trackType) : this(new TrackCurvedTurnout(), trackType)
+        { }
+
+        public TrackCurvedTurnoutViewModel(TrackCurvedTurnout track, TrackType trackType) : base(track, trackType)
         {
             this.track = track;
         }

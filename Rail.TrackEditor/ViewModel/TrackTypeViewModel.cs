@@ -14,8 +14,6 @@ namespace Rail.TrackEditor.ViewModel
     public class TrackTypeViewModel : BaseViewModel
     {
         private readonly TrackType trackType;
-        
-
 
         public DelegateCommand<TrackTypes> NewTrackCommand { get; private set; }
         public DelegateCommand<TrackViewModel> DeleteTrackCommand { get; private set; }
@@ -29,7 +27,7 @@ namespace Rail.TrackEditor.ViewModel
             this.DeleteTrackCommand = new DelegateCommand<TrackViewModel>(OnDeleteNewTrack);
 
             this.trackType = trackType;
-            this.Tracks = new ObservableCollection<TrackViewModel>(trackType.Tracks.Select(t => TrackViewModel.Create(t)));
+            this.Tracks = new ObservableCollection<TrackViewModel>(trackType.Tracks.Select(t => TrackViewModel.Create(t, trackType)));
             this.Names = new ObservableCollection<TrackTypeNameViewModel>(this.trackType.Name.LanguageDictionary.Select(n => new TrackTypeNameViewModel(n)));
             this.Lengths = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Lengths.Select(v => new TrackNamedValueViewModel(v)));
             this.Radii = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Radii.Select(v => new TrackNamedValueViewModel(v)));
@@ -40,6 +38,7 @@ namespace Rail.TrackEditor.ViewModel
             this.Angles.CollectionChanged += (o, i) => NotifyPropertyChanged(nameof(AngleNames));
         }
 
+        public TrackType TrackType { get { return this.trackType; } }
 
         public TrackType GetTrackType()
         {
@@ -159,38 +158,29 @@ namespace Rail.TrackEditor.ViewModel
 
         private void UpdateAllTracks()
         {
-            this.Tracks.ToList().ForEach(t => t.UpdateTrack(trackType));
-            Application.Current.MainWindow.UpdateLayout();
-
-            //VisualTreeHelper.GetChild
+            this.Tracks.ToList().ForEach(t => t.UpdateTrack());
         }
         private void OnNewTrack(TrackTypes type)
         {
             this.Tracks.Add(type switch
             {
-                TrackTypes.Straight => new TrackStraightViewModel(),
-                TrackTypes.Curved => new TrackCurvedViewModel(),
-                TrackTypes.Turnout => new TrackTurnoutViewModel(),
-                //TrackTypes.CurvedTurnout,
-                //TrackTypes.DoubleSlipSwitch,
-                //TrackTypes.DoubleTurnout,
-                //TrackTypes.YTurnout,
-                //TrackTypes.Crossing,
-                //TrackTypes.Bumper,
-                //TrackTypes.Adapter,
-                //TrackTypes.Turntable,
-                //TrackTypes.TransferTable,
-                //TrackTypes.EndPiece,
-                //TrackTypes.CurvedCircuit,
-                //TrackTypes.StraightCircuit,
-                //TrackTypes.StraightContact,
-                //TrackTypes.StraightUncouple,
-                //TrackTypes.StraightIsolatin,
-                //TrackTypes.StraightFeeder,
-                //TrackTypes.StraightAdjustme,
-                //TrackTypes.DoubleCrossover,
-                //TrackTypes.Flex,
-                //TrackTypes.Group,
+                TrackTypes.Straight => new TrackStraightViewModel(this.trackType),
+                TrackTypes.Curved => new TrackCurvedViewModel(this.trackType),
+                TrackTypes.Turnout => new TrackTurnoutViewModel(this.trackType),
+                TrackTypes.CurvedTurnout => new TrackCurvedTurnoutViewModel(this.trackType),
+                TrackTypes.DoubleSlipSwitch => new TrackDoubleSlipSwitchViewModel(this.trackType),
+                TrackTypes.DoubleTurnout => new TrackDoubleTurnoutViewModel(this.trackType),
+                TrackTypes.YTurnout => new TrackYTurnoutViewModel(this.trackType),
+                TrackTypes.Crossing => new TrackCrossingViewModel(this.trackType),
+                TrackTypes.Bumper => new TrackBumperViewModel(this.trackType),
+                TrackTypes.Adapter => new TrackAdapterViewModel(this.trackType),
+                TrackTypes.Turntable => new TrackTurntableViewModel(this.trackType),
+                TrackTypes.TransferTable => new TrackTransferTableViewModel(this.trackType),
+                TrackTypes.EndPiece => new TrackEndPieceViewModel(this.trackType),                
+                TrackTypes.StraightAdjustment => new TrackStraightAdjustmentViewModel(this.trackType),
+                TrackTypes.DoubleCrossover => new TrackDoubleCrossoverViewModel(this.trackType),
+                TrackTypes.Flex => new TrackFlexViewModel(this.trackType),
+                TrackTypes.Group => new TrackGroupViewModel(this.trackType),
                 _ => null
             });   
         }

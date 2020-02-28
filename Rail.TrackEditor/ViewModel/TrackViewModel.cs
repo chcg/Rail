@@ -9,10 +9,12 @@ namespace Rail.TrackEditor.ViewModel
     public abstract class TrackViewModel : BaseViewModel
     {
         private readonly TrackBase trackBase;
+        protected readonly TrackType trackType;
 
-        public TrackViewModel(TrackBase trackBase)
+        public TrackViewModel(TrackBase trackBase, TrackType trackType)
         {
             this.trackBase = trackBase;
+            this.trackType = trackType;
         }
 
         public string Name { get { return this.trackBase.Name; } }
@@ -21,39 +23,36 @@ namespace Rail.TrackEditor.ViewModel
 
         public ICommand RailInvalidateCommand { get; set; }
 
-        public static TrackViewModel Create(TrackBase track)
+        public static TrackViewModel Create(TrackBase track, TrackType trackType)
         {
             string typeName = track.GetType().Name;
             return typeName switch
             {
-                nameof(TrackStraight) => new TrackStraightViewModel((TrackStraight)track),
-                nameof(TrackCurved) => new TrackCurvedViewModel((TrackCurved)track),
-                nameof(TrackTurnout) => new TrackTurnoutViewModel((TrackTurnout)track),
-                nameof(TrackCurvedTurnout) => new TrackCurvedTurnoutViewModel((TrackCurvedTurnout)track),
-                nameof(TrackDoubleSlipSwitch) => new TrackDoubleSlipSwitchViewModel((TrackDoubleSlipSwitch)track),
-                nameof(TrackDoubleTurnout) => new TrackDoubleTurnoutViewModel((TrackDoubleTurnout)track),
-                nameof(TrackYTurnout) => new TrackYTurnoutViewModel((TrackYTurnout)track),
-                nameof(TrackCrossing) => new TrackCrossingViewModel((TrackCrossing)track),
-                nameof(TrackBumper) => new TrackBumperViewModel((TrackBumper)track),
-                nameof(TrackAdapter) => new TrackAdapterViewModel((TrackAdapter)track),
-                nameof(TrackTurntable) => new TrackTurntableViewModel((TrackTurntable)track),
-                nameof(TrackTransferTable) => new TrackTransferTableViewModel((TrackTransferTable)track),
-                nameof(TrackEndPiece) => new TrackEndPieceViewModel((TrackEndPiece)track),
-                nameof(TrackStraightAdjustment) => new TrackStraightAdjustmentViewModel((TrackStraightAdjustment)track),
-                nameof(TrackDoubleCrossover) => new TrackDoubleCrossoverViewModel((TrackDoubleCrossover)track),
-                nameof(TrackFlex) => new TrackFlexViewModel((TrackFlex)track),
-                nameof(TrackGroup) => new TrackGroupViewModel((TrackGroup)track),
+                nameof(TrackStraight) => new TrackStraightViewModel((TrackStraight)track, trackType),
+                nameof(TrackCurved) => new TrackCurvedViewModel((TrackCurved)track, trackType),
+                nameof(TrackTurnout) => new TrackTurnoutViewModel((TrackTurnout)track, trackType),
+                nameof(TrackCurvedTurnout) => new TrackCurvedTurnoutViewModel((TrackCurvedTurnout)track, trackType),
+                nameof(TrackDoubleSlipSwitch) => new TrackDoubleSlipSwitchViewModel((TrackDoubleSlipSwitch)track, trackType),
+                nameof(TrackDoubleTurnout) => new TrackDoubleTurnoutViewModel((TrackDoubleTurnout)track, trackType),
+                nameof(TrackYTurnout) => new TrackYTurnoutViewModel((TrackYTurnout)track, trackType),
+                nameof(TrackCrossing) => new TrackCrossingViewModel((TrackCrossing)track, trackType),
+                nameof(TrackBumper) => new TrackBumperViewModel((TrackBumper)track, trackType),
+                nameof(TrackAdapter) => new TrackAdapterViewModel((TrackAdapter)track, trackType),
+                nameof(TrackTurntable) => new TrackTurntableViewModel((TrackTurntable)track, trackType),
+                nameof(TrackTransferTable) => new TrackTransferTableViewModel((TrackTransferTable)track, trackType),
+                nameof(TrackEndPiece) => new TrackEndPieceViewModel((TrackEndPiece)track, trackType),
+                nameof(TrackStraightAdjustment) => new TrackStraightAdjustmentViewModel((TrackStraightAdjustment)track, trackType),
+                nameof(TrackDoubleCrossover) => new TrackDoubleCrossoverViewModel((TrackDoubleCrossover)track, trackType),
+                nameof(TrackFlex) => new TrackFlexViewModel((TrackFlex)track, trackType),
+                nameof(TrackGroup) => new TrackGroupViewModel((TrackGroup)track, trackType),
                 _ => null
             };
         }
 
-        public void UpdateTrack(TrackType trackType)
+        public void UpdateTrack()
         {
-            this.trackBase.Update(trackType);
-            NotifyPropertyChanged(nameof(Track));
-
+            this.trackBase.Update(this.trackType);
             VisualHelper.InvalidateAll(typeof(TrackControl));
         }
-
     }
 }

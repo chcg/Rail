@@ -9,10 +9,13 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackAdapter track;
 
-        public TrackAdapterViewModel() : this(new TrackAdapter())
+        public TrackAdapterViewModel() : this(new TrackAdapter(), MainViewModel.SelectedTrackTypeViewModel.TrackType)
         { }
 
-        public TrackAdapterViewModel(TrackAdapter track) : base(track)
+        public TrackAdapterViewModel(TrackType trackType) : this(new TrackAdapter(), trackType)
+        { }
+
+        public TrackAdapterViewModel(TrackAdapter track, TrackType trackType) : base(track, trackType)
         {
             this.track = track;
         }

@@ -19,7 +19,7 @@ namespace Rail.Tracks
         Turntable,
         TransferTable,
         EndPiece,
-        StraightAdjustme,
+        StraightAdjustment,
         DoubleCrossover,
         Flex,
         Group,

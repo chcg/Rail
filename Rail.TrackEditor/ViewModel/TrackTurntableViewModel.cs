@@ -9,10 +9,13 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackTurntable track;
 
-        public TrackTurntableViewModel() : this(new TrackTurntable())
+        public TrackTurntableViewModel() : this(new TrackTurntable(), MainViewModel.SelectedTrackTypeViewModel.TrackType)
         { }
 
-        public TrackTurntableViewModel(TrackTurntable track) : base(track)
+        public TrackTurntableViewModel(TrackType trackType) : this(new TrackTurntable(), trackType)
+        { }
+
+        public TrackTurntableViewModel(TrackTurntable track, TrackType trackType) : base(track, trackType)
         {
             this.track = track;
         }

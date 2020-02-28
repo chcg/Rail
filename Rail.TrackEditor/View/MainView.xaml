@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="trackTypes" Grid.Column="0" ItemsSource="{Binding TrackTypes}" SelectedIndex="0" Margin="3" >
+            <ListBox x:Name="trackTypes" Grid.Column="0" ItemsSource="{Binding TrackTypes}" SelectedItem="{Binding SelectedTrackTypeViewModel}" SelectedIndex="0" Margin="3" >
                 <ListBox.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="New Track Type" Command="{Binding NewTrackTypeCommand}" />
