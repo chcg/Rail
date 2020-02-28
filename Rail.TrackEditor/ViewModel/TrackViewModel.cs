@@ -1,5 +1,8 @@
 ﻿using Rail.Mvvm;
+using Rail.TrackEditor.Controls;
 using Rail.Tracks;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Rail.TrackEditor.ViewModel
 {
@@ -15,6 +18,8 @@ namespace Rail.TrackEditor.ViewModel
         public string Name { get { return this.trackBase.Name; } }
 
         public TrackBase Track { get { return this.trackBase; } }
+
+        public ICommand RailInvalidateCommand { get; set; }
 
         public static TrackViewModel Create(TrackBase track)
         {
@@ -46,6 +51,8 @@ namespace Rail.TrackEditor.ViewModel
         {
             this.trackBase.Update(trackType);
             NotifyPropertyChanged(nameof(Track));
+
+            VisualHelper.InvalidateAll(typeof(TrackControl));
         }
 
     }

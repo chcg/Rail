@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace Rail.TrackEditor.ViewModel
 {
@@ -153,9 +155,14 @@ namespace Rail.TrackEditor.ViewModel
 
         public ObservableCollection<TrackViewModel> Tracks { get; private set; }
 
+        public double LabelWidth { get; set; }
+
         private void UpdateAllTracks()
         {
             this.Tracks.ToList().ForEach(t => t.UpdateTrack(trackType));
+            Application.Current.MainWindow.UpdateLayout();
+
+            //VisualTreeHelper.GetChild
         }
         private void OnNewTrack(TrackTypes type)
         {

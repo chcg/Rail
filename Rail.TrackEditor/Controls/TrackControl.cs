@@ -51,6 +51,22 @@ namespace Rail.TrackEditor.Controls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TrackControl), new FrameworkPropertyMetadata(typeof(TrackControl)));
         }
 
+        public static readonly DependencyProperty ShowRailProperty =
+            DependencyProperty.Register("ShowRail", typeof(bool), typeof(TrackControl),
+                new FrameworkPropertyMetadata(false));
+
+        public bool ShowRail
+        {
+            get
+            {
+                return (bool)GetValue(ShowRailProperty);
+            }
+            set
+            {
+                SetValue(ShowRailProperty, value);
+            }
+        }
+
         public static readonly DependencyProperty TrackProperty =
             DependencyProperty.Register("Track", typeof(TrackBase), typeof(TrackControl),
                 new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnTrackChanged)));
@@ -79,6 +95,8 @@ namespace Rail.TrackEditor.Controls
         {
             base.OnRender(drawingContext);
 
+            drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.ActualWidth, this.ActualHeight));
+
             if (this.Track == null)
             {
                 return;
@@ -89,14 +107,33 @@ namespace Rail.TrackEditor.Controls
             double zoom = Math.Min(20.0 / this.Track.RailWidth, Math.Min((this.ActualHeight - 10) / size.Height, (this.ActualWidth - 10) / size.Width));
             double my = (geometry.Bounds.Bottom + geometry.Bounds.Top) / 2;
 
-            // set zero point to center
-            drawingContext.PushTransform(new TranslateTransform(this.ActualWidth / 2, this.ActualHeight / 2 - my));
+            if (ShowRail)
+            {
+                // set zero point to center
+                drawingContext.PushTransform(new TransformGroup()
+                {
+                    Children = new TransformCollection
+                    {
+                        new ScaleTransform(zoom, zoom),
+                        new TranslateTransform(this.ActualWidth / 2, this.ActualHeight / 2 - my)
+                    }
+                });
+
+                this.Track.RenderRail(drawingContext);
+
+                drawingContext.Pop();
+            }
+            else
+            {
+                // set zero point to center
+                drawingContext.PushTransform(new TranslateTransform(this.ActualWidth / 2, this.ActualHeight / 2 - my));
 
 
-            geometry.Transform = new ScaleTransform(zoom, zoom);
-            drawingContext.DrawGeometry(null, blackPen, geometry);
+                geometry.Transform = new ScaleTransform(zoom, zoom);
+                drawingContext.DrawGeometry(null, blackPen, geometry);
 
-            drawingContext.Pop();
+                drawingContext.Pop();
+            }
         }
     }
 }

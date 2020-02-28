@@ -10,7 +10,7 @@
         xmlns:ctrl="clr-namespace:Rail.TrackEditor.Controls"
         xmlns:local="clr-namespace:Rail.TrackEditor"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="880" Width="1200">
+        Title="{Binding Title}" Height="880" Width="1200" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
     <mvvm:AppView.Resources>
         <mvvm:BindingProxy x:Key="MainBindingProxy" Data="{Binding}" />
     </mvvm:AppView.Resources>
