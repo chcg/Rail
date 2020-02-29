@@ -6,7 +6,6 @@ namespace Rail.Tracks
 {
     public enum TrackBallastType
     {
-        Unknown,
         /// <summary>
         /// No ballast
         /// </summary>

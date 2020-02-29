@@ -83,8 +83,6 @@ namespace Rail.Tracks
 
         protected override Drawing CreateRailDrawing()
         {
-            Brush ballastBrush = GetBallastBrush();
-
             DrawingGroup drawingRail = new DrawingGroup();
             // background
             drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.DarkGray), linePen, new EllipseGeometry(new Point(0, 0), this.OuterRadius, this.OuterRadius)));
@@ -93,7 +91,7 @@ namespace Rail.Tracks
             {
                 for (int i = 0; i < this.RailNum; i++)
                 {
-                    drawingRail.Children.Add(new GeometryDrawing(ballastBrush, null,
+                    drawingRail.Children.Add(new GeometryDrawing(this.ballastBrush, null,
                         new PathGeometry(new PathFigureCollection
                         {
                         new PathFigure(new Point(-this.OuterRadius, -this.RailWidth).Rotate(this.Angle * i), new PathSegmentCollection
@@ -105,7 +103,7 @@ namespace Rail.Tracks
                         }, true)
                         })));
                 }
-                drawingRail.Children.Add(new GeometryDrawing(ballastBrush, null, new RectangleGeometry(new Rect(-this.InnerRadius, -this.RailWidth, this.InnerRadius * 2, this.RailWidth * 2))));
+                drawingRail.Children.Add(new GeometryDrawing(this.ballastBrush, null, new RectangleGeometry(new Rect(-this.InnerRadius, -this.RailWidth, this.InnerRadius * 2, this.RailWidth * 2))));
             }
             
             drawingRail.Children.Add(StraitRail(this.InnerRadius * 2));
@@ -113,8 +111,8 @@ namespace Rail.Tracks
             for (int i = 0; i < RailNum; i++)
             {
 
-                drawingRail.Children.Add(new GeometryDrawing(null, silverRailPen, new LineGeometry(new Point(-this.OuterRadius, -this.RailWidth / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, -this.RailWidth / 2).Rotate(this.Angle * i)))); ;
-                drawingRail.Children.Add(new GeometryDrawing(null, silverRailPen, new LineGeometry(new Point(-this.OuterRadius, +this.RailWidth / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, +this.RailWidth / 2).Rotate(this.Angle * i))));
+                drawingRail.Children.Add(new GeometryDrawing(null, this.railPen, new LineGeometry(new Point(-this.OuterRadius, -this.RailWidth / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, -this.RailWidth / 2).Rotate(this.Angle * i)))); ;
+                drawingRail.Children.Add(new GeometryDrawing(null, this.railPen, new LineGeometry(new Point(-this.OuterRadius, +this.RailWidth / 2).Rotate(this.Angle * i), new Point(-this.InnerRadius, +this.RailWidth / 2).Rotate(this.Angle * i))));
 
                 double length1 = this.OuterRadius - this.InnerRadius;
                 int num1 = (int)Math.Round(length1 / (this.RailWidth / 2));
@@ -122,7 +120,7 @@ namespace Rail.Tracks
 
                 for (int j = 0; j < num1; j++)
                 {
-                    drawingRail.Children.Add(new GeometryDrawing(null, woodenSleepersPen, new LineGeometry(
+                    drawingRail.Children.Add(new GeometryDrawing(null, this.sleeperPen, new LineGeometry(
                         new Point(-this.OuterRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, -this.sleeperWidth / 2).Rotate(this.Angle * i),
                         new Point(-this.OuterRadius + sleepersDistance1 / 2 + sleepersDistance1 * j, +this.sleeperWidth / 2).Rotate(this.Angle * i))));
                 }

@@ -18,14 +18,20 @@ namespace Rail.Tracks
         protected readonly Pen linePen = new Pen(TrackBrushes.TrackFrame, 2);
         protected readonly Pen dotPen = new Pen(Brushes.White, 2) { DashStyle = DashStyles.Dot };
         protected readonly Pen textPen = new Pen(TrackBrushes.Text, 0.5);
-        
-        protected Pen woodenSleepersPen;
-        protected Pen concreteSleepersPen;
 
-        protected Pen silverRailPen;
-        protected Pen copperRailPen;
-        protected Pen blackRailPen;
-        
+        protected Pen sleeperPen;
+
+        //protected Pen woodenSleepersPen;
+        //protected Pen concreteSleepersPen;
+
+        protected Pen railPen;
+
+        //protected Pen silverRailPen;
+        //protected Pen copperRailPen;
+        //protected Pen blackRailPen;
+
+        protected Brush ballastBrush;
+
         protected FormattedText text;
         protected Drawing textDrawing;
         protected string dockType;
@@ -49,13 +55,7 @@ namespace Rail.Tracks
         /// <remarks>komma separated article list</remarks>
         [XmlAttribute("AddArticles")]
         public string AddArticles { get; set; }        
-
-        [XmlIgnore, JsonIgnore]
-        public TrackSleeperType SleeperType { get; set; }
-
-        //[XmlAttribute("Bedding")]
-        //public bool HasBedding { get; set; }
-
+                
         [XmlIgnore, JsonIgnore]
         public string Manufacturer { get; protected set; }
 
@@ -92,26 +92,40 @@ namespace Rail.Tracks
             this.Manufacturer = parameter.Manufacturer;
             this.dockType = parameter.DockType;
 
+            // rail
             this.railType = parameter.RailType;
             this.railWidth = this.RailWidth = parameter.RailWidth;
-            this.sleeperType = this.SleeperType = this.SleeperType == TrackSleeperType.Unknown ? parameter.SleeperType : this.SleeperType;
+            this.railPen = new Pen(this.railType switch
+            {
+                TrackRailType.Silver => TrackBrushes.SilverRail,
+                TrackRailType.Copper => TrackBrushes.CopperRail,
+                TrackRailType.Black => TrackBrushes.BlackRail,
+                _ => null
+            }, this.RailWidth * railThicknessFactor);
+
+            // sleeper
+            this.sleeperType = parameter.SleeperType;
             this.sleeperWidth = parameter.SleeperWidth;
+            this.sleeperPen = new Pen(this.sleeperType switch
+            {
+                TrackSleeperType.WoodenSleepers => TrackBrushes.WoodenSleepers,
+                TrackSleeperType.ConcreteSleepers => TrackBrushes.ConcreteSleepers,
+                _ => null
+            }, this.RailWidth * sleepersThicknessFactor);
+
+            // ballast
             this.ballastType = parameter.BallastType;
             this.ballastWidth = parameter.BallastWidth;
-
+            this.ballastBrush = this.ballastType switch
+            {
+                TrackBallastType.Light => TrackBrushes.LightBallast,
+                TrackBallastType.Medium => TrackBrushes.MediumBallast,
+                TrackBallastType.Dark => TrackBrushes.DarkBallast,
+                _ => null
+            };
+            
             this.TrackWidth = Math.Max(parameter.BallastWidth, parameter.SleeperWidth);
 
-            // override if not set
-            this.SleeperType = this.SleeperType == TrackSleeperType.Unknown ? parameter.SleeperType : this.SleeperType;
-            //this.HasBedding = parameter.BallastWidth > 0;
-
-            this.silverRailPen = new Pen(TrackBrushes.SilverRail, this.RailWidth * railThicknessFactor);
-            this.copperRailPen = new Pen(TrackBrushes.CopperRail, this.RailWidth * railThicknessFactor);
-            this.blackRailPen = new Pen(TrackBrushes.BlackRail, this.RailWidth * railThicknessFactor);
-            
-            this.woodenSleepersPen = new Pen(TrackBrushes.WoodenSleepers, this.RailWidth * sleepersThicknessFactor);
-            this.concreteSleepersPen = new Pen(TrackBrushes.ConcreteSleepers, this.RailWidth * sleepersThicknessFactor);
-            
             this.text = new FormattedText(this.Article, CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, new Typeface("Verdana"), this.RailWidth * textFactor, TrackBrushes.Text, 1.25);
             this.textDrawing = new GeometryDrawing(TrackBrushes.Text, textPen, text.BuildGeometry(new Point(0, 0) - new Vector(text.Width / 2, text.Height / 2)));
             Create();
@@ -169,37 +183,37 @@ namespace Rail.Tracks
             Counterclockwise = 0x10
         }
 
-        protected Pen GetRailPen()
-        {
-            return this.railType switch
-            {
-                TrackRailType.Silver => this.silverRailPen,
-                TrackRailType.Copper => this.copperRailPen,
-                TrackRailType.Black => this.blackRailPen,
-                _ => null
-            };
-        }
+        //protected Pen GetRailPen()
+        //{
+        //    return this.railType switch
+        //    {
+        //        TrackRailType.Silver => this.silverRailPen,
+        //        TrackRailType.Copper => this.copperRailPen,
+        //        TrackRailType.Black => this.blackRailPen,
+        //        _ => null
+        //    };
+        //}
 
-        protected Pen GetSleepersPen()
-        {
-            return this.SleeperType switch
-            {
-                TrackSleeperType.WoodenSleepers => this.woodenSleepersPen,
-                TrackSleeperType.ConcreteSleepers => this.concreteSleepersPen,
-                _ => null
-            };
-        }
+        //protected Pen GetSleepersPen()
+        //{
+        //    return this.SleeperType switch
+        //    {
+        //        TrackSleeperType.WoodenSleepers => this.woodenSleepersPen,
+        //        TrackSleeperType.ConcreteSleepers => this.concreteSleepersPen,
+        //        _ => null
+        //    };
+        //}
 
-        protected Brush GetBallastBrush()
-        {
-            return this.ballastType switch
-            {
-                TrackBallastType.Light => TrackBrushes.LightBallast,
-                TrackBallastType.Medium => TrackBrushes.MediumBallast,
-                TrackBallastType.Dark => TrackBrushes.DarkBallast,
-                _ => null
-            };
-        }
+        //protected Brush GetBallastBrush()
+        //{
+        //    return this.ballastType switch
+        //    {
+        //        TrackBallastType.Light => TrackBrushes.LightBallast,
+        //        TrackBallastType.Medium => TrackBrushes.MediumBallast,
+        //        TrackBallastType.Dark => TrackBrushes.DarkBallast,
+        //        _ => null
+        //    };
+        //}
         
 
         protected Geometry StraitGeometry(double length, StraitOrientation orientation, double direction = 0, Point? pos = null)
@@ -219,10 +233,8 @@ namespace Rail.Tracks
 
         protected Drawing StraitBallast(double length, StraitOrientation orientation = StraitOrientation.Center, double direction = 0, Point? pos = null)
         {
-            Brush ballastBrush = GetBallastBrush();
-
             Rectangle rec = new Rectangle(orientation, length, this.ballastWidth).Rotate(direction).Move(pos);
-            return new GeometryDrawing(ballastBrush, null, new PathGeometry(new PathFigureCollection
+            return new GeometryDrawing(this.ballastBrush, null, new PathGeometry(new PathFigureCollection
             {
                 new PathFigure(rec.LeftTop, new PathSegmentCollection
                 {
@@ -236,8 +248,6 @@ namespace Rail.Tracks
 
         protected Drawing StraitSleepers(double length, StraitOrientation orientation = StraitOrientation.Center, double direction = 0, Point? pos = null)
         {
-            Pen sleepersPen = GetSleepersPen();
-            
             double x = 0;
             switch (orientation)
             {
@@ -256,7 +266,7 @@ namespace Rail.Tracks
             {
                 double sx = x + sleepersDistance / 2 + sleepersDistance * i;
                 double sy = this.sleeperWidth / 2;
-                railDrawing.Children.Add(new GeometryDrawing(null, sleepersPen, new LineGeometry(
+                railDrawing.Children.Add(new GeometryDrawing(null, this.sleeperPen, new LineGeometry(
                     new Point(sx, -sy).Rotate(direction).Move(pos),
                     new Point(sx, +sy).Rotate(direction).Move(pos))));
             }
@@ -266,7 +276,6 @@ namespace Rail.Tracks
         
         protected Drawing StraitRail(double length, StraitOrientation orientation = StraitOrientation.Center, double direction = 0, Point? pos = null)
         {
-            Pen railPen = GetRailPen();
             double x = 0;
             switch (orientation)
             {
@@ -277,8 +286,8 @@ namespace Rail.Tracks
 
             var railDrawing = new DrawingGroup();            
 
-            railDrawing.Children.Add(new GeometryDrawing(null, railPen, new LineGeometry(new Point(x, -this.railWidth / 2).Rotate(direction).Move(pos), new Point(x + length, -this.railWidth / 2).Rotate(direction).Move(pos))));
-            railDrawing.Children.Add(new GeometryDrawing(null, railPen, new LineGeometry(new Point(x, +this.railWidth / 2).Rotate(direction).Move(pos), new Point(x + length, +this.railWidth / 2).Rotate(direction).Move(pos))));
+            railDrawing.Children.Add(new GeometryDrawing(null, this.railPen, new LineGeometry(new Point(x, -this.railWidth / 2).Rotate(direction).Move(pos), new Point(x + length, -this.railWidth / 2).Rotate(direction).Move(pos))));
+            railDrawing.Children.Add(new GeometryDrawing(null, this.railPen, new LineGeometry(new Point(x, +this.railWidth / 2).Rotate(direction).Move(pos), new Point(x + length, +this.railWidth / 2).Rotate(direction).Move(pos))));
             
             return railDrawing;
         }
@@ -328,8 +337,6 @@ namespace Rail.Tracks
 
         protected Drawing CurvedBallast(double angle, double radius, CurvedOrientation orientation, Point pos)
         {
-            Brush ballastBrush = GetBallastBrush();
-
             double outerSleepersRadius = radius + this.ballastWidth / 2;
             double innerSleepersRadius = radius - this.ballastWidth / 2;
 
@@ -358,7 +365,7 @@ namespace Rail.Tracks
             //    }, true)
             //}));
  
-            return new GeometryDrawing(ballastBrush, null, new PathGeometry(new PathFigureCollection
+            return new GeometryDrawing(this.ballastBrush, null, new PathGeometry(new PathFigureCollection
             {
                 new PathFigure(circleCenter.CircleCenter(startAngle, innerSleepersRadius), new PathSegmentCollection
                 {
@@ -373,8 +380,6 @@ namespace Rail.Tracks
 
         protected Drawing CurvedSleepers(double angle, double radius, CurvedOrientation orientation, Point pos)
         {
-            Pen sleepersPen = GetSleepersPen();
-
             double outerSleepersRadius = radius + this.sleeperWidth / 2;
             double innerSleepersRadius = radius - this.sleeperWidth / 2;
 
@@ -400,7 +405,7 @@ namespace Rail.Tracks
                 //railDrawing.Children.Add(new GeometryDrawing(null, sleepersPen, new LineGeometry(
                 //    circleCenter - PointExtentions.Circle(ang, innerSleepersRadius),
                 //    circleCenter - PointExtentions.Circle(ang, outerSleepersRadius))));
-                railDrawing.Children.Add(new GeometryDrawing(null, sleepersPen, new LineGeometry(
+                railDrawing.Children.Add(new GeometryDrawing(null, this.sleeperPen, new LineGeometry(
                     circleCenter.CircleCenter(ang, innerSleepersRadius),
                     circleCenter.CircleCenter(ang, outerSleepersRadius))));
             }
@@ -410,8 +415,6 @@ namespace Rail.Tracks
 
         protected Drawing CurvedRail(double angle, double radius, CurvedOrientation orientation, Point pos)
         {
-            Pen railPen = GetRailPen();
-
             double outerTrackRadius = radius + this.railWidth / 2;
             double innerTrackRadius = radius - this.railWidth / 2;
             
@@ -444,14 +447,14 @@ namespace Rail.Tracks
             //    }, false)
             //})));
 
-            railDrawing.Children.Add(new GeometryDrawing(null, railPen, new PathGeometry(new PathFigureCollection
+            railDrawing.Children.Add(new GeometryDrawing(null, this.railPen, new PathGeometry(new PathFigureCollection
             {
                 new PathFigure(circleCenter.CircleCenter(startAngle, innerTrackRadius), new PathSegmentCollection
                 {
                     new ArcSegment (circleCenter.CircleCenter(startAngle + angle, innerTrackRadius), innerTrackSize, angle, false, SweepDirection.Counterclockwise, true)
                 }, false)
             })));
-            railDrawing.Children.Add(new GeometryDrawing(null, railPen, new PathGeometry(new PathFigureCollection
+            railDrawing.Children.Add(new GeometryDrawing(null, this.railPen, new PathGeometry(new PathFigureCollection
             {
                 new PathFigure(circleCenter.CircleCenter(startAngle, outerTrackRadius), new PathSegmentCollection
                 {
