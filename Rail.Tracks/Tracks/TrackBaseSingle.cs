@@ -18,33 +18,27 @@ namespace Rail.Tracks
         protected readonly Pen linePen = new Pen(TrackBrushes.TrackFrame, 2);
         protected readonly Pen dotPen = new Pen(Brushes.White, 2) { DashStyle = DashStyles.Dot };
         protected readonly Pen textPen = new Pen(TrackBrushes.Text, 0.5);
-
-        protected Pen sleeperPen;
-
-        //protected Pen woodenSleepersPen;
-        //protected Pen concreteSleepersPen;
-
-        protected Pen railPen;
-
-        //protected Pen silverRailPen;
-        //protected Pen copperRailPen;
-        //protected Pen blackRailPen;
-
-        protected Brush ballastBrush;
-
+        
         protected FormattedText text;
         protected Drawing textDrawing;
         protected string dockType;
-
         protected Drawing drawingRail;
 
-
+        // rail
         protected TrackRailType railType;
         protected double railWidth;
+        protected Pen railPen;
+
+        // sleeper
         protected TrackSleeperType sleeperType;
         protected double sleeperWidth;
+        protected Pen sleeperPen;
+
+        // ballast
         protected TrackBallastType ballastType;
         protected double ballastWidth;
+        protected Brush ballastBrush;
+
 
         [XmlAttribute("Article")]
         public string Article { get; set; }
@@ -98,7 +92,7 @@ namespace Rail.Tracks
             this.railPen = new Pen(this.railType switch
             {
                 TrackRailType.Silver => TrackBrushes.SilverRail,
-                TrackRailType.Copper => TrackBrushes.CopperRail,
+                TrackRailType.Brass => TrackBrushes.BrassRail,
                 TrackRailType.Black => TrackBrushes.BlackRail,
                 _ => null
             }, this.RailWidth * railThicknessFactor);
@@ -182,39 +176,6 @@ namespace Rail.Tracks
             Clockwise = 0x00,
             Counterclockwise = 0x10
         }
-
-        //protected Pen GetRailPen()
-        //{
-        //    return this.railType switch
-        //    {
-        //        TrackRailType.Silver => this.silverRailPen,
-        //        TrackRailType.Copper => this.copperRailPen,
-        //        TrackRailType.Black => this.blackRailPen,
-        //        _ => null
-        //    };
-        //}
-
-        //protected Pen GetSleepersPen()
-        //{
-        //    return this.SleeperType switch
-        //    {
-        //        TrackSleeperType.WoodenSleepers => this.woodenSleepersPen,
-        //        TrackSleeperType.ConcreteSleepers => this.concreteSleepersPen,
-        //        _ => null
-        //    };
-        //}
-
-        //protected Brush GetBallastBrush()
-        //{
-        //    return this.ballastType switch
-        //    {
-        //        TrackBallastType.Light => TrackBrushes.LightBallast,
-        //        TrackBallastType.Medium => TrackBrushes.MediumBallast,
-        //        TrackBallastType.Dark => TrackBrushes.DarkBallast,
-        //        _ => null
-        //    };
-        //}
-        
 
         protected Geometry StraitGeometry(double length, StraitOrientation orientation, double direction = 0, Point? pos = null)
         {

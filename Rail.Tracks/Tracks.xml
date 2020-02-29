@@ -347,7 +347,7 @@
       <Manufacturer>Märklin</Manufacturer>
       <Gauge>1</Gauge>
       <DockType>m59</DockType>
-      <RailType>Copper</RailType>
+      <RailType>Brass</RailType>
       <RailWidth>45.0</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
       <SleeperWidth>55.0</SleeperWidth>
@@ -499,7 +499,7 @@
       <Manufacturer>LGB</Manufacturer>
       <Gauge>G</Gauge>
       <DockType>m10</DockType>
-      <RailType>Copper</RailType>
+      <RailType>Brass</RailType>
       <RailWidth>45.5</RailWidth>
       <SleeperType>WoodenSleepers</SleeperType>
       <SleeperWidth>52.0</SleeperWidth>

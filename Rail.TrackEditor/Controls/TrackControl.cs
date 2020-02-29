@@ -1,4 +1,5 @@
 ﻿using Rail.Tracks;
+using Rail.Tracks.Trigonometry;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -117,6 +118,14 @@ namespace Rail.TrackEditor.Controls
                         new ScaleTransform(zoom, zoom),
                         new TranslateTransform(this.ActualWidth / 2, this.ActualHeight / 2 - my)
                     }
+                });
+
+                
+
+                this.Track.DockPoints.ForEach(d =>
+                {
+                    drawingContext.DrawEllipse(Brushes.Yellow, blackPen, d.Position, this.Track.TrackWidth / 2, this.Track.TrackWidth / 2);
+                    drawingContext.DrawLine(blackPen, d.Position, d.Position.Circle(d.Angle, this.Track.TrackWidth / 2));
                 });
 
                 this.Track.RenderRail(drawingContext);

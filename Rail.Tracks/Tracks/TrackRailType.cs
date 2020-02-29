@@ -12,9 +12,9 @@ namespace Rail.Tracks
         Silver,
         
         /// <summary>
-        /// Rail color copper
+        /// Rail color brass
         /// </summary>
-        Copper,
+        Brass,
 
         /// <summary>
         /// Rail color black

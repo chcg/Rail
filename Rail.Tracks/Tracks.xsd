@@ -316,7 +316,7 @@
   <xs:simpleType name="RailType" >
     <xs:restriction base="xs:string">
       <xs:enumeration value="Silver" />
-      <xs:enumeration value="Copper" />
+      <xs:enumeration value="Brass" />
       <xs:enumeration value="Black" />
     </xs:restriction>
   </xs:simpleType>
