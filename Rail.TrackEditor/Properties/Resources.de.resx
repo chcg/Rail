@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbruch</value>
+  </data>
+  <data name="MainAngle" xml:space="preserve">
+    <value>Winkel</value>
+  </data>
+  <data name="MainAngledeg" xml:space="preserve">
+    <value>Winkel (°)</value>
+  </data>
+  <data name="MainArticle" xml:space="preserve">
+    <value>Artikel</value>
+  </data>
+  <data name="MainBallastType" xml:space="preserve">
+    <value>Schotter Typ</value>
+  </data>
+  <data name="MainBallastWidth" xml:space="preserve">
+    <value>Schotter Breite</value>
+  </data>
+  <data name="MainCrossingAngle" xml:space="preserve">
+    <value>Kreuzungs Winkel</value>
+  </data>
+  <data name="MainDeleteTrack" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="MainDeleteTrackType" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="MainDockType" xml:space="preserve">
+    <value>Andock Typ</value>
+  </data>
+  <data name="MainExtras" xml:space="preserve">
+    <value>Extras</value>
+  </data>
+  <data name="MainGauge" xml:space="preserve">
+    <value>Spurbreite</value>
+  </data>
+  <data name="MainInnerAngle" xml:space="preserve">
+    <value>Innerer Winkel</value>
+  </data>
+  <data name="MainInnerLength" xml:space="preserve">
+    <value>Innere Länge</value>
+  </data>
+  <data name="MainInnerRadius" xml:space="preserve">
+    <value>Innerer Radius</value>
+  </data>
+  <data name="MainLanguage" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="MainLantern" xml:space="preserve">
+    <value>Laterne</value>
+  </data>
+  <data name="MainLeftTurnoutAngle" xml:space="preserve">
+    <value>Linke Ausfahrt Winkel</value>
+  </data>
+  <data name="MainLeftTurnoutLength" xml:space="preserve">
+    <value>Linke Ausfahrt Länge</value>
+  </data>
+  <data name="MainLeftTurnoutRadius" xml:space="preserve">
+    <value>Linke Ausfahrt Radius</value>
+  </data>
+  <data name="MainLength" xml:space="preserve">
+    <value>Länge</value>
+  </data>
+  <data name="MainLengthA" xml:space="preserve">
+    <value>Länge A</value>
+  </data>
+  <data name="MainLengthB" xml:space="preserve">
+    <value>Länge B</value>
+  </data>
+  <data name="MainLengthmm" xml:space="preserve">
+    <value>Länge (mm)</value>
+  </data>
+  <data name="MainManufacturer" xml:space="preserve">
+    <value>Hersteller</value>
+  </data>
+  <data name="MainName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="MainNewAdapterTrack" xml:space="preserve">
+    <value>New Adapter Track</value>
+  </data>
+  <data name="MainNewBumperTrack" xml:space="preserve">
+    <value>New Bumper Track</value>
+  </data>
+  <data name="MainNewCrossingTrack" xml:space="preserve">
+    <value>New Crossing Track</value>
+  </data>
+  <data name="MainNewCurvedTrack" xml:space="preserve">
+    <value>New Curved Track</value>
+  </data>
+  <data name="MainNewCurvedTurnoutTrack" xml:space="preserve">
+    <value>New Curved Turnout Track</value>
+  </data>
+  <data name="MainNewDoubleCrossoverTrack" xml:space="preserve">
+    <value>New Double Crossover Track</value>
+  </data>
+  <data name="MainNewDoubleSlipSwitchTrack" xml:space="preserve">
+    <value>New Double Slip Switch Track</value>
+  </data>
+  <data name="MainNewEndPieceTrack" xml:space="preserve">
+    <value>New End Piece Track</value>
+  </data>
+  <data name="MainNewFlexTrack" xml:space="preserve">
+    <value>New Flex Track</value>
+  </data>
+  <data name="MainNewGroupTrack" xml:space="preserve">
+    <value>New Group Track</value>
+  </data>
+  <data name="MainNewStraightAdjustmentTrack" xml:space="preserve">
+    <value>New Straight Adjustment Track</value>
+  </data>
+  <data name="MainNewStraightTrack" xml:space="preserve">
+    <value>New Straight Track</value>
+  </data>
+  <data name="MainNewThreeWayTurnoutTrack" xml:space="preserve">
+    <value>New Three Way Turnout Track</value>
+  </data>
+  <data name="MainNewTrackType" xml:space="preserve">
+    <value>New Track Type</value>
+  </data>
+  <data name="MainNewTransferTableTrack" xml:space="preserve">
+    <value>New Transfer Table Track</value>
+  </data>
+  <data name="MainNewTurnoutTrack" xml:space="preserve">
+    <value>New Turnout Track</value>
+  </data>
+  <data name="MainNewTurntableTrack" xml:space="preserve">
+    <value>New Turntable Track</value>
+  </data>
+  <data name="MainNewYTurnoutTrack" xml:space="preserve">
+    <value>New Y-Turnout Track</value>
+  </data>
+  <data name="MainOuterAngle" xml:space="preserve">
+    <value>Äußerer Winkel</value>
+  </data>
+  <data name="MainOuterLength" xml:space="preserve">
+    <value>Äußere Länge</value>
+  </data>
+  <data name="MainOuterRadius" xml:space="preserve">
+    <value>Äußerer Radius</value>
+  </data>
+  <data name="MainRadius" xml:space="preserve">
+    <value>Radius</value>
+  </data>
+  <data name="MainRadiusmm" xml:space="preserve">
+    <value>Radius (mm)</value>
+  </data>
+  <data name="MainRailNum" xml:space="preserve">
+    <value>Anzahl Gleianschlüsse</value>
+  </data>
+  <data name="MainRailType" xml:space="preserve">
+    <value>Gleis Typ</value>
+  </data>
+  <data name="MainRailWidth" xml:space="preserve">
+    <value>Gleis Breite</value>
+  </data>
+  <data name="MainRightTurnoutAngle" xml:space="preserve">
+    <value>Rechte Ausfahrt Winkel</value>
+  </data>
+  <data name="MainRightTurnoutLength" xml:space="preserve">
+    <value>Rechte Ausfahrt Länge</value>
+  </data>
+  <data name="MainRightTurnoutRadius" xml:space="preserve">
+    <value>Rechte Ausfahrt Radius</value>
+  </data>
+  <data name="MainSleeperType" xml:space="preserve">
+    <value>Schwellen typ</value>
+  </data>
+  <data name="MainSleeperWidth" xml:space="preserve">
+    <value>Schwellen Breite</value>
+  </data>
+  <data name="MainSlipRadius" xml:space="preserve">
+    <value>Slip Radius</value>
+  </data>
+  <data name="MainStraightLength" xml:space="preserve">
+    <value>Gerade Länge</value>
+  </data>
+  <data name="MainTrackTypeName" xml:space="preserve">
+    <value>Gleis Typ Name</value>
+  </data>
+  <data name="MainTurnoutAngle" xml:space="preserve">
+    <value>Ausfahrt Winkel</value>
+  </data>
+  <data name="MainTurnoutDirection" xml:space="preserve">
+    <value>Ausfahrt Richtung</value>
+  </data>
+  <data name="MainTurnoutDrive" xml:space="preserve">
+    <value>Weichen Antrieb</value>
+  </data>
+  <data name="MainTurnoutLength" xml:space="preserve">
+    <value>Ausfahrt Länge</value>
+  </data>
+  <data name="MainTurnoutRadius" xml:space="preserve">
+    <value>Ausfahrt Radius</value>
+  </data>
+  <data name="MainWagonMaxBogieDistance" xml:space="preserve">
+    <value>Max. Distanz zwischen den Drehgestellen</value>
+  </data>
+  <data name="MainWagonMaxBogieFrontDistance" xml:space="preserve">
+    <value>Max. Distanz zwischen Drehgestell und Kupplung</value>
+  </data>
+  <data name="MainWagonMaxWidth" xml:space="preserve">
+    <value>Max. Wagen Breite</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OptionsLanguage" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="OptionsTitle" xml:space="preserve">
+    <value>Optionen</value>
+  </data>
+</root>

@@ -107,11 +107,11 @@
         <GroupBox Header="Parameter" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="1">
             <Grid Margin="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="{Binding LabelWidth}" SharedSizeGroup="Label"/>
+                    <ColumnDefinition Width="Auto" MinWidth="100"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition SharedSizeGroup="Label"/>
+                    <ColumnDefinition Width="Auto" MinWidth="100"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition  SharedSizeGroup="Label"/>
+                    <ColumnDefinition Width="Auto" MinWidth="100"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -128,11 +128,11 @@
         <GroupBox Header="Drawing" Grid.Column="0"  Grid.ColumnSpan="4" Grid.Row="2">
             <Grid Margin="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition SharedSizeGroup="Label"/>
+                    <ColumnDefinition Width="Auto" MinWidth="100"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition SharedSizeGroup="Label"/>
+                    <ColumnDefinition Width="Auto" MinWidth="100"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition SharedSizeGroup="Label"/>
+                    <ColumnDefinition Width="Auto" MinWidth="100"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -159,11 +159,11 @@
         <GroupBox Header="Clear Room" Grid.Column="0"  Grid.ColumnSpan="4" Grid.Row="3">
             <Grid Margin="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition SharedSizeGroup="Label"/>
+                    <ColumnDefinition Width="Auto" MinWidth="200"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition SharedSizeGroup="Label"/>
+                    <ColumnDefinition Width="Auto" MinWidth="200"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition  SharedSizeGroup="Label"/>
+                    <ColumnDefinition Width="Auto" MinWidth="200"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
