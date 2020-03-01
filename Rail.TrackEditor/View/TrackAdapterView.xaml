@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Rail.TrackEditor.View"
+             xmlns:lang="clr-namespace:Rail.TrackEditor.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -20,13 +21,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" Content="Article"/>
+        <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.MainArticle}"/>
         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Article}" Margin="3"/>
 
-        <Label Grid.Column="0" Grid.Row="1" Content="Length"/>
+        <Label Grid.Column="0" Grid.Row="1" Content="{x:Static lang:Resources.MainLength}"/>
         <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding DataContext.LengthNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding LengthName}" IsReadOnly="True" Margin="3"/>
 
-        <Label Grid.Column="0" Grid.Row="2" Content="Dock Type"/>
+        <Label Grid.Column="0" Grid.Row="2" Content="{x:Static lang:Resources.MainDockType}"/>
         <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding DockType}" Margin="3"/>
 
     </Grid>

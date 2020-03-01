@@ -138,13 +138,7 @@ namespace Rail.TrackEditor.ViewModel
             get { return this.trackType.Parameter.BallastWidth; }
             set { this.trackType.Parameter.BallastWidth = value; NotifyPropertyChanged(nameof(BallastWidth)); UpdateAllTracks(); }
         }
-
-        public double WagonMaxLength
-        {
-            get { return this.trackType.Parameter.WagonMaxLength; }
-            set { this.trackType.Parameter.WagonMaxLength = value; NotifyPropertyChanged(nameof(WagonMaxLength)); }
-        }
-
+        
         public double WagonMaxWidth
         {
             get { return this.trackType.Parameter.WagonMaxWidth; }
@@ -155,6 +149,12 @@ namespace Rail.TrackEditor.ViewModel
         {
             get { return this.trackType.Parameter.WagonMaxBogieDistance; }
             set { this.trackType.Parameter.WagonMaxBogieDistance = value; NotifyPropertyChanged(nameof(WagonMaxBogieDistance)); }
+        }
+        
+        public double WagonMaxBogieFrontDistance
+        {
+            get { return this.trackType.Parameter.WagonMaxBogieFrontDistance; }
+            set { this.trackType.Parameter.WagonMaxBogieFrontDistance = value; NotifyPropertyChanged(nameof(WagonMaxBogieFrontDistance)); }
         }
 
         public ObservableCollection<TrackViewModel> Tracks { get; private set; }
@@ -174,7 +174,7 @@ namespace Rail.TrackEditor.ViewModel
                 TrackTypes.Turnout => new TrackTurnoutViewModel(this.trackType),
                 TrackTypes.CurvedTurnout => new TrackCurvedTurnoutViewModel(this.trackType),
                 TrackTypes.DoubleSlipSwitch => new TrackDoubleSlipSwitchViewModel(this.trackType),
-                TrackTypes.DoubleTurnout => new TrackThreeWayTurnoutViewModel(this.trackType),
+                TrackTypes.ThreeWayTurnout => new TrackThreeWayTurnoutViewModel(this.trackType),
                 TrackTypes.YTurnout => new TrackYTurnoutViewModel(this.trackType),
                 TrackTypes.Crossing => new TrackCrossingViewModel(this.trackType),
                 TrackTypes.Bumper => new TrackBumperViewModel(this.trackType),

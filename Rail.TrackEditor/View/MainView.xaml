@@ -9,6 +9,7 @@
         xmlns:tr="clr-namespace:Rail.Tracks;assembly=Rail.Tracks"
         xmlns:ctrl="clr-namespace:Rail.TrackEditor.Controls"
         xmlns:local="clr-namespace:Rail.TrackEditor"
+        xmlns:lang="clr-namespace:Rail.TrackEditor.Properties"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="880" Width="1200" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
     <mvvm:AppView.Resources>
@@ -36,7 +37,7 @@
             <ListBox x:Name="trackTypes" Grid.Column="0" ItemsSource="{Binding TrackTypes}" SelectedItem="{Binding SelectedTrackTypeViewModel}" SelectedIndex="0" Margin="3" >
                 <ListBox.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="New Track Type" Command="{Binding NewTrackTypeCommand}" />
+                        <MenuItem Header="{x:Static lang:Resources.MainNewTrackType}" Command="{Binding NewTrackTypeCommand}" />
                     </ContextMenu>
                 </ListBox.ContextMenu>
                 <ListBox.ItemTemplate>
@@ -44,8 +45,8 @@
                         <TextBlock Text="{Binding Name}" >
                             <TextBlock.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="New Track Type" Command="{Binding Data.NewTrackTypeCommand, Source={StaticResource MainBindingProxy}}" />
-                                    <MenuItem Header="Delete" Command="{Binding Data.DeleteTrackTypeCommand, Source={StaticResource MainBindingProxy}}" CommandParameter="{Binding .}" />
+                                    <MenuItem Header="{x:Static lang:Resources.MainNewTrackType}" Command="{Binding Data.NewTrackTypeCommand, Source={StaticResource MainBindingProxy}}" />
+                                    <MenuItem Header="{x:Static lang:Resources.MainDeleteTrackType}" Command="{Binding Data.DeleteTrackTypeCommand, Source={StaticResource MainBindingProxy}}" CommandParameter="{Binding .}" />
                                 </ContextMenu>
                             </TextBlock.ContextMenu>
                         </TextBlock>

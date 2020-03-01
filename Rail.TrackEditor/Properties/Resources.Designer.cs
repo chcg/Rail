@@ -70,6 +70,609 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Angle.
+        /// </summary>
+        public static string MainAngle {
+            get {
+                return ResourceManager.GetString("MainAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Angle (°).
+        /// </summary>
+        public static string MainAngledeg {
+            get {
+                return ResourceManager.GetString("MainAngledeg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Article.
+        /// </summary>
+        public static string MainArticle {
+            get {
+                return ResourceManager.GetString("MainArticle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ballast Type.
+        /// </summary>
+        public static string MainBallastType {
+            get {
+                return ResourceManager.GetString("MainBallastType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ballast Width.
+        /// </summary>
+        public static string MainBallastWidth {
+            get {
+                return ResourceManager.GetString("MainBallastWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crossing Angle.
+        /// </summary>
+        public static string MainCrossingAngle {
+            get {
+                return ResourceManager.GetString("MainCrossingAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string MainDeleteTrack {
+            get {
+                return ResourceManager.GetString("MainDeleteTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string MainDeleteTrackType {
+            get {
+                return ResourceManager.GetString("MainDeleteTrackType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dock Type.
+        /// </summary>
+        public static string MainDockType {
+            get {
+                return ResourceManager.GetString("MainDockType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extras.
+        /// </summary>
+        public static string MainExtras {
+            get {
+                return ResourceManager.GetString("MainExtras", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gauge.
+        /// </summary>
+        public static string MainGauge {
+            get {
+                return ResourceManager.GetString("MainGauge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inner Angle.
+        /// </summary>
+        public static string MainInnerAngle {
+            get {
+                return ResourceManager.GetString("MainInnerAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inner Length.
+        /// </summary>
+        public static string MainInnerLength {
+            get {
+                return ResourceManager.GetString("MainInnerLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inner Radius.
+        /// </summary>
+        public static string MainInnerRadius {
+            get {
+                return ResourceManager.GetString("MainInnerRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string MainLanguage {
+            get {
+                return ResourceManager.GetString("MainLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lantern.
+        /// </summary>
+        public static string MainLantern {
+            get {
+                return ResourceManager.GetString("MainLantern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left Turnout Angle.
+        /// </summary>
+        public static string MainLeftTurnoutAngle {
+            get {
+                return ResourceManager.GetString("MainLeftTurnoutAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left Turnout Length.
+        /// </summary>
+        public static string MainLeftTurnoutLength {
+            get {
+                return ResourceManager.GetString("MainLeftTurnoutLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left Turnout Radius.
+        /// </summary>
+        public static string MainLeftTurnoutRadius {
+            get {
+                return ResourceManager.GetString("MainLeftTurnoutRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length.
+        /// </summary>
+        public static string MainLength {
+            get {
+                return ResourceManager.GetString("MainLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length A.
+        /// </summary>
+        public static string MainLengthA {
+            get {
+                return ResourceManager.GetString("MainLengthA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length B.
+        /// </summary>
+        public static string MainLengthB {
+            get {
+                return ResourceManager.GetString("MainLengthB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length (mm).
+        /// </summary>
+        public static string MainLengthmm {
+            get {
+                return ResourceManager.GetString("MainLengthmm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manufacturer.
+        /// </summary>
+        public static string MainManufacturer {
+            get {
+                return ResourceManager.GetString("MainManufacturer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string MainName {
+            get {
+                return ResourceManager.GetString("MainName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Adapter Track.
+        /// </summary>
+        public static string MainNewAdapterTrack {
+            get {
+                return ResourceManager.GetString("MainNewAdapterTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Bumper Track.
+        /// </summary>
+        public static string MainNewBumperTrack {
+            get {
+                return ResourceManager.GetString("MainNewBumperTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Crossing Track.
+        /// </summary>
+        public static string MainNewCrossingTrack {
+            get {
+                return ResourceManager.GetString("MainNewCrossingTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Curved Track.
+        /// </summary>
+        public static string MainNewCurvedTrack {
+            get {
+                return ResourceManager.GetString("MainNewCurvedTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Curved Turnout Track.
+        /// </summary>
+        public static string MainNewCurvedTurnoutTrack {
+            get {
+                return ResourceManager.GetString("MainNewCurvedTurnoutTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Double Crossover Track.
+        /// </summary>
+        public static string MainNewDoubleCrossoverTrack {
+            get {
+                return ResourceManager.GetString("MainNewDoubleCrossoverTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Double Slip Switch Track.
+        /// </summary>
+        public static string MainNewDoubleSlipSwitchTrack {
+            get {
+                return ResourceManager.GetString("MainNewDoubleSlipSwitchTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New End Piece Track.
+        /// </summary>
+        public static string MainNewEndPieceTrack {
+            get {
+                return ResourceManager.GetString("MainNewEndPieceTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Flex Track.
+        /// </summary>
+        public static string MainNewFlexTrack {
+            get {
+                return ResourceManager.GetString("MainNewFlexTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Group Track.
+        /// </summary>
+        public static string MainNewGroupTrack {
+            get {
+                return ResourceManager.GetString("MainNewGroupTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Straight Adjustment Track.
+        /// </summary>
+        public static string MainNewStraightAdjustmentTrack {
+            get {
+                return ResourceManager.GetString("MainNewStraightAdjustmentTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Straight Track.
+        /// </summary>
+        public static string MainNewStraightTrack {
+            get {
+                return ResourceManager.GetString("MainNewStraightTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Three Way Turnout Track.
+        /// </summary>
+        public static string MainNewThreeWayTurnoutTrack {
+            get {
+                return ResourceManager.GetString("MainNewThreeWayTurnoutTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Track Type.
+        /// </summary>
+        public static string MainNewTrackType {
+            get {
+                return ResourceManager.GetString("MainNewTrackType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Transfer Table Track.
+        /// </summary>
+        public static string MainNewTransferTableTrack {
+            get {
+                return ResourceManager.GetString("MainNewTransferTableTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Turnout Track.
+        /// </summary>
+        public static string MainNewTurnoutTrack {
+            get {
+                return ResourceManager.GetString("MainNewTurnoutTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Turntable Track.
+        /// </summary>
+        public static string MainNewTurntableTrack {
+            get {
+                return ResourceManager.GetString("MainNewTurntableTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Y-Turnout Track.
+        /// </summary>
+        public static string MainNewYTurnoutTrack {
+            get {
+                return ResourceManager.GetString("MainNewYTurnoutTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outer Angle.
+        /// </summary>
+        public static string MainOuterAngle {
+            get {
+                return ResourceManager.GetString("MainOuterAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outer Length.
+        /// </summary>
+        public static string MainOuterLength {
+            get {
+                return ResourceManager.GetString("MainOuterLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outer Radius.
+        /// </summary>
+        public static string MainOuterRadius {
+            get {
+                return ResourceManager.GetString("MainOuterRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Radius.
+        /// </summary>
+        public static string MainRadius {
+            get {
+                return ResourceManager.GetString("MainRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Radius (mm).
+        /// </summary>
+        public static string MainRadiusmm {
+            get {
+                return ResourceManager.GetString("MainRadiusmm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rail Numbers.
+        /// </summary>
+        public static string MainRailNum {
+            get {
+                return ResourceManager.GetString("MainRailNum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rail Type.
+        /// </summary>
+        public static string MainRailType {
+            get {
+                return ResourceManager.GetString("MainRailType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rail Width.
+        /// </summary>
+        public static string MainRailWidth {
+            get {
+                return ResourceManager.GetString("MainRailWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right Turnout Angle.
+        /// </summary>
+        public static string MainRightTurnoutAngle {
+            get {
+                return ResourceManager.GetString("MainRightTurnoutAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right Turnout Length.
+        /// </summary>
+        public static string MainRightTurnoutLength {
+            get {
+                return ResourceManager.GetString("MainRightTurnoutLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right Turnout Radius.
+        /// </summary>
+        public static string MainRightTurnoutRadius {
+            get {
+                return ResourceManager.GetString("MainRightTurnoutRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sleeper Type.
+        /// </summary>
+        public static string MainSleeperType {
+            get {
+                return ResourceManager.GetString("MainSleeperType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sleeper Width.
+        /// </summary>
+        public static string MainSleeperWidth {
+            get {
+                return ResourceManager.GetString("MainSleeperWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slip Radius.
+        /// </summary>
+        public static string MainSlipRadius {
+            get {
+                return ResourceManager.GetString("MainSlipRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Straight Length.
+        /// </summary>
+        public static string MainStraightLength {
+            get {
+                return ResourceManager.GetString("MainStraightLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Track Type Name.
+        /// </summary>
+        public static string MainTrackTypeName {
+            get {
+                return ResourceManager.GetString("MainTrackTypeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turnout Angle.
+        /// </summary>
+        public static string MainTurnoutAngle {
+            get {
+                return ResourceManager.GetString("MainTurnoutAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turnout Direction.
+        /// </summary>
+        public static string MainTurnoutDirection {
+            get {
+                return ResourceManager.GetString("MainTurnoutDirection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turnout Drive.
+        /// </summary>
+        public static string MainTurnoutDrive {
+            get {
+                return ResourceManager.GetString("MainTurnoutDrive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turnout Length.
+        /// </summary>
+        public static string MainTurnoutLength {
+            get {
+                return ResourceManager.GetString("MainTurnoutLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turnout Radius.
+        /// </summary>
+        public static string MainTurnoutRadius {
+            get {
+                return ResourceManager.GetString("MainTurnoutRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wagon Max Bogie Distance.
+        /// </summary>
+        public static string MainWagonMaxBogieDistance {
+            get {
+                return ResourceManager.GetString("MainWagonMaxBogieDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wagon Max Bogie Front Distance.
+        /// </summary>
+        public static string MainWagonMaxBogieFrontDistance {
+            get {
+                return ResourceManager.GetString("MainWagonMaxBogieFrontDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wagon Max Width.
+        /// </summary>
+        public static string MainWagonMaxWidth {
+            get {
+                return ResourceManager.GetString("MainWagonMaxWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         public static string OK {

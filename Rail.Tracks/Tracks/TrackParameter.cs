@@ -41,14 +41,14 @@ namespace Rail.Tracks
         [XmlElement("BallastWidth"), JsonPropertyName("BallastWidth")]
         public double BallastWidth { get; set; }
 
-        [XmlElement("WagonMaxLength"), JsonPropertyName("WagonMaxLength")]
-        public double WagonMaxLength { get; set; }
-
         [XmlElement("WagonMaxWidth"), JsonPropertyName("WagonMaxWidth")]
         public double WagonMaxWidth { get; set; }
 
         [XmlElement("WagonMaxBogieDistance"), JsonPropertyName("WagonMaxBogieDistance")]
         public double WagonMaxBogieDistance { get; set; }
+
+        [XmlElement("WagonMaxBogieFrontDistance"), JsonPropertyName("WagonMaxBogieFrontDistance")]
+        public double WagonMaxBogieFrontDistance { get; set; }
 
     }
 }

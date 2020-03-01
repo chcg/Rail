@@ -11,7 +11,7 @@ namespace Rail.Tracks
         Turnout,
         CurvedTurnout,
         DoubleSlipSwitch,
-        DoubleTurnout,
+        ThreeWayTurnout,
         YTurnout,
         Crossing,
         Bumper,
