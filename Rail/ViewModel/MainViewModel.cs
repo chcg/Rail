@@ -25,7 +25,7 @@ namespace Rail.ViewModel
     public partial class MainViewModel : FileViewModel
     {
         private TrackList trackList;
-        private Dictionary<string, TrackBase> trackDict;
+        private Dictionary<Guid, TrackBase> trackDict;
         private RailPlan railPlan;
 
         public DelegateCommand RailPlanCommand { get; private set; }

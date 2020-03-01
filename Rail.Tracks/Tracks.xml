@@ -52,50 +52,50 @@
       <Angle Name="A6" Value="5.7"/>
     </Angles>
     <Tracks>
-      <Straight Article="24064" Length="G64" Extra="No" />
-      <Straight Article="24071" Length="G71" Extra="No" />
-      <Straight Article="24077" Length="G77" Extra="No" />
-      <Straight Article="24094" Length="G94" Extra="No" />
-      <Straight Article="24172" Length="G172" Extra="No" />
-      <Straight Article="24188" Length="G188" Extra="No" />
-      <Straight Article="24229" Length="G229" Extra="No" />
-      <Straight Article="24236" Length="G236" Extra="No" />
-      <Straight Article="24360" Length="G360" Extra="No" />
-      <Curved Article="24107" Radius="R1" Angle="A8" Extra="No" />
-      <Curved Article="24115" Radius="R1" Angle="A15" Extra="No" />
-      <Curved Article="24130" Radius="R1" Angle="A30" Extra="No" />
-      <Curved Article="24206" Radius="R2" Angle="A6" Extra="No" />
-      <Curved Article="24207" Radius="R2" Angle="A8" Extra="No" />
-      <Curved Article="24215" Radius="R2" Angle="A15" Extra="No" />
-      <Curved Article="24224" Radius="R3" Angle="A24" Extra="No" />
-      <Curved Article="24230" Radius="R3" Angle="A30" Extra="No" />
-      <Curved Article="24315" Radius="R3" Angle="A15" Extra="No" />
-      <Curved Article="24330" Radius="R3" Angle="A30" Extra="No" />
-      <Curved Article="24430" Radius="R4" Angle="A30" Extra="No" />
-      <Curved Article="24530" Radius="R5" Angle="A30" Extra="No" />
-      <Curved Article="24912" Radius="R6" Angle="A12" Extra="No" />
-      <Turnout Article="24611" StraightLength="G188" TurnoutLength="0" TurnoutRadius="R2" TurnoutAngle="A24" TurnoutDirection="Left" TurnoutDrive="Unknown" />
-      <Turnout Article="24612" StraightLength="G188" TurnoutLength="0" TurnoutRadius="R2" TurnoutAngle="A24" TurnoutDirection="Right" TurnoutDrive="Unknown" />
-      <Turnout Article="24711" StraightLength="G236" TurnoutLength="0" TurnoutRadius="R6" TurnoutAngle="A12" TurnoutDirection="Left" TurnoutDrive="Unknown" />
-      <Turnout Article="24712" StraightLength="G236" TurnoutLength="0" TurnoutRadius="R6" TurnoutAngle="A12" TurnoutDirection="Right" TurnoutDrive="Unknown" />
-      <CurvedTurnout Article="24671" InnerLength="0" InnerRadius="R1" InnerAngle="A30" OuterLength="G77" OuterRadius="R1" OuterAngle="A30" TurnoutDirection="Left" TurnoutDrive="Unknown" />
-      <CurvedTurnout Article="24672" InnerLength="0" InnerRadius="R1" InnerAngle="A30" OuterLength="G77" OuterRadius="R1" OuterAngle="A30" TurnoutDirection="Right" TurnoutDrive="Unknown" />
-      <CurvedTurnout Article="24771" InnerLength="0" InnerRadius="R3" InnerAngle="A30" OuterLength="G64" OuterRadius="R3" OuterAngle="A30" TurnoutDirection="Left" TurnoutDrive="Unknown" />
-      <CurvedTurnout Article="24772" InnerLength="0" InnerRadius="R3" InnerAngle="A30" OuterLength="G64" OuterRadius="R3" OuterAngle="A30" TurnoutDirection="Right" TurnoutDrive="Unknown" />
-      <DoubleSlipSwitch Article="24624" Length="G188" CrossingAngle="A24" SlipRadius="R1" TurnoutDrive="Unknown" />
-      <ThreeWayTurnout Article="24630" StraightLength="G188" LeftTurnoutLength="0" LeftTurnoutRadius="R2" LeftTurnoutAngle="A24" RightTurnoutLength="0" RightTurnoutRadius="R2" RightTurnoutAngle="A24" TurnoutDrive="Unknown" />
-      <Crossing Article="24640" LengthA="G188" LengthB="G188" CrossingAngle="A24" />
-      <Crossing Article="24649" LengthA="G103" LengthB="G103" CrossingAngle="A49" />
-      <Crossing Article="24740" LengthA="G236" LengthB="G236" CrossingAngle="A12" />
-      <Bumper Article="24977" Length="G83"/>
-      <Bumper Article="24978" Length="G83" Lantern="true"/>
-      <EndPiece Article="24001" />
-      <Adapter Article="24922" Length="G180" DockType="M22"/>
-      <Adapter Article="24951" Length="G180" DockType="M20"/>
-      <Turntable Article="74861" OuterRadius="189" InnerRadius="131.5" Angle="A15" RailNum="30" />
+      <Straight Id="{2F199248-2F2B-438D-AB44-3F86B31D1836}" Article="24064" Length="G64" Extra="No" />
+      <Straight Id="{EAC92314-C793-4A11-9028-931D7ACBC5DE}" Article="24071" Length="G71" Extra="No" />
+      <Straight Id="{0567B9BA-4D27-4878-AFE5-8CD613DDD9EA}" Article="24077" Length="G77" Extra="No" />
+      <Straight Id="{0A2BFAA9-6044-4B08-9A0F-CB8D130A9BFB}" Article="24094" Length="G94" Extra="No" />
+      <Straight Id="{34D8A65C-170A-43DB-92B2-05F92FA22B4E}" Article="24172" Length="G172" Extra="No" />
+      <Straight Id="{5E6E613D-763A-45B7-8211-0255995DF994}" Article="24188" Length="G188" Extra="No" />
+      <Straight Id="{91630A20-E79F-4CCE-9B1A-50BAC35D9F06}" Article="24229" Length="G229" Extra="No" />
+      <Straight Id="{1782395F-AB5C-4C87-A54B-C6D9520044A6}" Article="24236" Length="G236" Extra="No" />
+      <Straight Id="{0F14931E-3832-4BF0-8CAF-5EB001A95C12}" Article="24360" Length="G360" Extra="No" />
+      <Curved Id="{586CE171-9A19-4BC7-949B-C3B2C935AAE8}" Article="24107" Radius="R1" Angle="A8" Extra="No" />
+      <Curved Id="{E9AAA661-02BD-4E26-AD24-835918C16955}" Article="24115" Radius="R1" Angle="A15" Extra="No" />
+      <Curved Id="{6FC94341-0023-46CA-998F-9A3107E196DE}" Article="24130" Radius="R1" Angle="A30" Extra="No" />
+      <Curved Id="{5C7A1CAD-CCA8-4E65-ABCA-11EA74D0CCD1}" Article="24206" Radius="R2" Angle="A6" Extra="No" />
+      <Curved Id="{11637B28-7108-49C9-B74C-F155FD914619}" Article="24207" Radius="R2" Angle="A8" Extra="No" />
+      <Curved Id="{FBB78AFF-E5B8-473B-B203-F1AB1A699FCD}" Article="24215" Radius="R2" Angle="A15" Extra="No" />
+      <Curved Id="{7D852E52-D241-4F75-AD63-18725354099A}" Article="24224" Radius="R3" Angle="A24" Extra="No" />
+      <Curved Id="{B75327AD-E4D8-43CF-A565-32B1ACE0E3AD}" Article="24230" Radius="R3" Angle="A30" Extra="No" />
+      <Curved Id="{CFD2E9D8-8635-4B0C-8D76-6B0A8C154B84}" Article="24315" Radius="R3" Angle="A15" Extra="No" />
+      <Curved Id="{6E6DDD11-BF26-43EB-843D-F84B4F493806}" Article="24330" Radius="R3" Angle="A30" Extra="No" />
+      <Curved Id="{6E6DDD11-BF26-43EB-843D-F84B4F493806}" Article="24430" Radius="R4" Angle="A30" Extra="No" />
+      <Curved Id="{D933ECF2-6D01-4E13-B348-093C1CC4FC03}" Article="24530" Radius="R5" Angle="A30" Extra="No" />
+      <Curved Id="{A5B4D214-D781-4D08-9746-584DC047FC5F}" Article="24912" Radius="R6" Angle="A12" Extra="No" />
+      <Turnout Id="{580D531A-8052-4B8F-9E05-0E1DEDAF03FA}" Article="24611" StraightLength="G188" TurnoutLength="0" TurnoutRadius="R2" TurnoutAngle="A24" TurnoutDirection="Left" TurnoutDrive="Unknown" />
+      <Turnout Id="{D217DAD4-AE71-47DC-9D52-47D4A59C72DF}" Article="24612" StraightLength="G188" TurnoutLength="0" TurnoutRadius="R2" TurnoutAngle="A24" TurnoutDirection="Right" TurnoutDrive="Unknown" />
+      <Turnout Id="{EC014B6F-B469-45A3-88A1-A8DAC76DA8E8}" Article="24711" StraightLength="G236" TurnoutLength="0" TurnoutRadius="R6" TurnoutAngle="A12" TurnoutDirection="Left" TurnoutDrive="Unknown" />
+      <Turnout Id="{BE1049C0-5A8F-4E02-B998-868E3B406783}" Article="24712" StraightLength="G236" TurnoutLength="0" TurnoutRadius="R6" TurnoutAngle="A12" TurnoutDirection="Right" TurnoutDrive="Unknown" />
+      <CurvedTurnout Id="{5460F69A-76E1-427F-A250-608B7F69D7B4}" Article="24671" InnerLength="0" InnerRadius="R1" InnerAngle="A30" OuterLength="G77" OuterRadius="R1" OuterAngle="A30" TurnoutDirection="Left" TurnoutDrive="Unknown" />
+      <CurvedTurnout Id="{52EA3500-F3AD-425F-BB57-72833D6409EB}" Article="24672" InnerLength="0" InnerRadius="R1" InnerAngle="A30" OuterLength="G77" OuterRadius="R1" OuterAngle="A30" TurnoutDirection="Right" TurnoutDrive="Unknown" />
+      <CurvedTurnout Id="{87728ADF-72A8-4B1F-9367-5959F4A5FDC4}" Article="24771" InnerLength="0" InnerRadius="R3" InnerAngle="A30" OuterLength="G64" OuterRadius="R3" OuterAngle="A30" TurnoutDirection="Left" TurnoutDrive="Unknown" />
+      <CurvedTurnout Id="{5FE6E96F-1771-48CA-B044-82041348C41D}" Article="24772" InnerLength="0" InnerRadius="R3" InnerAngle="A30" OuterLength="G64" OuterRadius="R3" OuterAngle="A30" TurnoutDirection="Right" TurnoutDrive="Unknown" />
+      <DoubleSlipSwitch Id="{DA4E9E0B-FF74-4D77-BFA3-DEAC1C23CFA7}" Article="24624" Length="G188" CrossingAngle="A24" SlipRadius="R1" TurnoutDrive="Unknown" />
+      <ThreeWayTurnout Id="{BE16B0D0-190D-4474-8400-70946EF0CE87}" Article="24630" StraightLength="G188" LeftTurnoutLength="0" LeftTurnoutRadius="R2" LeftTurnoutAngle="A24" RightTurnoutLength="0" RightTurnoutRadius="R2" RightTurnoutAngle="A24" TurnoutDrive="Unknown" />
+      <Crossing Id="{18D7891E-031E-4B82-A3D1-161BA39FD425}" Article="24640" LengthA="G188" LengthB="G188" CrossingAngle="A24" />
+      <Crossing Id="{4310A736-4DEA-499F-8E0F-2B602CF2E671}" Article="24649" LengthA="G103" LengthB="G103" CrossingAngle="A49" />
+      <Crossing Id="{EF115BE7-C290-40C4-94CD-770BD89FE0B9}" Article="24740" LengthA="G236" LengthB="G236" CrossingAngle="A12" />
+      <Bumper Id="{993B09B3-E0A4-452D-BCD4-91D197C03AE3}" Article="24977" Length="G83"/>
+      <Bumper Id="{0CB41CB3-F05A-41F4-937A-CF9BC4DC8017}" Article="24978" Length="G83" Lantern="true"/>
+      <EndPiece Id="{3500E39C-1347-430B-B9A2-63DA0BF33740}" Article="24001" />
+      <Adapter Id="{9414C28E-5017-4EC6-89FF-4C517215DBF7}" Article="24922" Length="G180" DockType="M22"/>
+      <Adapter Id="{4F86D5B2-5B6F-4B8C-B972-3D880C359450}" Article="24951" Length="G180" DockType="M20"/>
+      <Turntable Id="{17E135C1-CF27-4091-968E-EB1D37EFC03D}" Article="74861" OuterRadius="189" InnerRadius="131.5" Angle="A15" RailNum="30" />
     </Tracks>
     <Groups>
-      <Group Id="G00001" Name="Parallel Group">
+      <Group Id="{6FC94341-0023-46CA-998F-9A3107E196DE}" Name="Parallel Group">
         <Item Id="M24172" X="0" Y="0" Angle="0"/>
         <Item Id="M24172" X="172" Y="0" Angle="0"/>
         <Item Id="M24172" X="344" Y="0" Angle="0"/>
@@ -103,7 +103,7 @@
         <Item Id="M24172" X="172" Y="77.5" Angle="0"/>
         <Item Id="M24172" X="344" Y="77.0" Angle="0"/>
       </Group>
-      <Group Id="xx">
+      <Group Id="{0BF09E8E-AC32-4C4A-8CE4-C28D9613FEE8}">
         <Name>
           <LanguageString>xyz</LanguageString>
           <LanguageString Lang="de-DE">xyz</LanguageString>
@@ -168,18 +168,18 @@
     </Radii>
     <Tracks>
       <!-- strait tracks -->
-      <Straight Article="23172" Length="171.7" />
-      <Straight Article="23188" Length="188.3" />
+      <Straight Id="{2489F1A7-3AE1-47EC-8757-6EF4CE5D6F25}" Article="23172" Length="171.7" />
+      <Straight Id="{0F733A38-C0CE-44FE-BB2F-DA9379F51DE7}" Article="23188" Length="188.3" />
       <!-- curved tracks -->
-      <Curved Article="23130" Radius="360.0" Angle="30.0" />
-      <Curved Article="23224" Radius="437.5" Angle="24.3" />
+      <Curved Id="{1925409D-F726-4A45-8829-08356502D272}" Article="23130" Radius="360.0" Angle="30.0" />
+      <Curved Id="{C4803722-26E1-41EE-89DB-4574BE75DA08}" Article="23224" Radius="437.5" Angle="24.3" />
       <!-- turnout tracks -->
-      <Turnout Article ="23611" StraightLength="188.3" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Left" />
-      <Turnout Article ="23612" StraightLength="188.3" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Right" />
+      <Turnout Id="{5C95486B-56AD-467D-BB37-7A519C7A9E98}" Article ="23611" StraightLength="188.3" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Left" />
+      <Turnout Id="{D8CCE393-C52A-41B9-AEB6-50CB2E3FA253}" Article ="23612" StraightLength="188.3" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Right" />
       <!-- crossing -->
-      <Crossing Article="23640" LengthA="188.3" LengthB="188.3" CrossingAngle="24.3" />
+      <Crossing Id="{1744B277-AEAE-48D9-8769-56900D273F8B}" Article="23640" LengthA="188.3" LengthB="188.3" CrossingAngle="24.3" />
       <!-- bumper -->
-      <Bumper Article="23977" Length="82.5" />
+      <Bumper Id="{DA046F7F-A29A-49F3-822A-724FABCC0A77}" Article="23977" Length="82.5" />
     </Tracks>
   </TrackType>
   <TrackType>
@@ -210,56 +210,54 @@
     </Radii>
     <Tracks>
       <!-- strait tracks -->
-      <Straight Article="2204" Length="22.5" />
-      <Straight Article="2203" Length="30.0" />
-      <Straight Article="2208" Length="35.1" />
-      <Straight Article="2293" Length="41.3" />
-      <Straight Article="2202" Length="45.0" />
-      <Straight Article="2201" Length="90.0" />
-      <Straight Article="2207" Length="156.0"/>
-      <Straight Article="2206" Length="168.9"/>
-      <Straight Article="2200" Length="180.0"/>
-      <Straight Article="2209" Length="217.9"/>
+      <Straight Id="{9447CEB2-13FE-4FEC-9048-1FA7E00905C7}" Article="2204" Length="22.5" />
+      <Straight Id="{D13F48CD-F894-48C1-BE4C-459EBB7A88B1}" Article="2203" Length="30.0" />
+      <Straight Id="{C85077ED-71DA-4641-B1C7-B0BA2DB9835E}" Article="2208" Length="35.1" />
+      <Straight Id="{9CAF9E17-7A90-489C-B53E-76C896684077}" Article="2293" Length="41.3" />
+      <Straight Id="{45D5E5FD-C2D2-4DBB-B017-C1BBDD21CCF7}" Article="2202" Length="45.0" />
+      <Straight Id="{1BCAD306-F05B-402D-944F-DE2D87DB7FA6}" Article="2201" Length="90.0" />
+      <Straight Id="{4FC5215C-2625-4052-85C0-9731911C5627}" Article="2207" Length="156.0"/>
+      <Straight Id="{0D07B4DC-0953-4088-8295-D70C96D60DA6}" Article="2206" Length="168.9"/>
+      <Straight Id="{27CD2E52-60A2-4421-A0C8-2BD097AB24B1}" Article="2200" Length="180.0"/>
+      <Straight Id="{9E01832C-55B1-4D54-860A-BBFC0FDB3817}" Article="2209" Length="217.9"/>
       <!-- curved tracks -->
-      <Curved Article="2210" Radius="295.4" Angle="45" />
-      <Curved Article="2221" Radius="360.0" Angle="30" />
-      <Curved Article="2223" Radius="360.0" Angle="15" />
-      <Curved Article="2224" Radius="360.0" Angle="7.5" />
-      <Curved Article="2231" Radius="424.6" Angle="30" />
-      <Curved Article="2232" Radius="424.6" Angle="22.5" />
-      <Curved Article="2233" Radius="424.6" Angle="15" />
-      <Curved Article="2234" Radius="424.6" Angle="7.5" />
-      <Curved Article="2235" Radius="424.6" Angle="3.75" />
-      <Curved Article="2241" Radius="553.9" Angle="30" />
-      <Curved Article="2251" Radius="618.5" Angle="30" />
-
-      <!--<Curved Id="2274" Radius="0" Angle="14.26" Decription="Curved mm 14.26°" />-->
-
+      <Curved Id="{4BB3408B-1DDF-4727-B922-8E0C33E295FD}" Article="2210" Radius="295.4" Angle="45" />
+      <Curved Id="{6EE7B823-9E3B-4689-BFF1-3A6C972E26FC}" Article="2221" Radius="360.0" Angle="30" />
+      <Curved Id="{5FD89445-D67A-48BF-91FF-AB3BA3263A65}" Article="2223" Radius="360.0" Angle="15" />
+      <Curved Id="{853201E6-D1EE-40AF-B419-F5E2BF900DA6}" Article="2224" Radius="360.0" Angle="7.5" />
+      <Curved Id="{690271AF-20BD-4812-9233-47701CB85994}" Article="2231" Radius="424.6" Angle="30" />
+      <Curved Id="{79DFF054-3EEC-4D7A-A305-99C42F0C9078}" Article="2232" Radius="424.6" Angle="22.5" />
+      <Curved Id="{2B3690F2-BD0C-422D-BE11-D0441E98C1D8}" Article="2233" Radius="424.6" Angle="15" />
+      <Curved Id="{6DAB7E74-B4C0-4CCC-85FB-B7C2BC06D105}" Article="2234" Radius="424.6" Angle="7.5" />
+      <Curved Id="{E590FA85-8034-45D3-A800-09A1394A1C30}" Article="2235" Radius="424.6" Angle="3.75" />
+      <Curved Id="{B3D902AC-DE69-496E-B1F3-6286B0DD28D2}" Article="2241" Radius="553.9" Angle="30" />
+      <Curved Id="{6B15EA4B-9814-4CA1-AD3E-A7B76B1262F8}" Article="2251" Radius="618.5" Angle="30" />
+      
       <!-- turnout tracks -->
-      <Turnout Article="2262" StraightLength="168.9" TurnoutLength="0" TurnoutRadius="424.6" TurnoutAngle="22.5" TurnoutDirection="Left" />
-      <Turnout Article="2263" StraightLength="168.9" TurnoutLength="0" TurnoutRadius="424.6" TurnoutAngle="22.5" TurnoutDirection="Right" />
-      <Turnout Article="22715" StraightLength="225.0" TurnoutLength="0" TurnoutRadius="902.4" TurnoutAngle="14.26" TurnoutDirection="Left" />
-      <Turnout Article="22716" StraightLength="225.0" TurnoutLength="0" TurnoutRadius="902.4" TurnoutAngle="14.26" TurnoutDirection="Right" />
+      <Turnout Id="{32C791EC-8F04-4FFB-A699-DA2E7C3A48BA}" Article="2262" StraightLength="168.9" TurnoutLength="0" TurnoutRadius="424.6" TurnoutAngle="22.5" TurnoutDirection="Left" />
+      <Turnout Id="{830FCBFB-AE13-48F3-A49E-367FC5438274}" Article="2263" StraightLength="168.9" TurnoutLength="0" TurnoutRadius="424.6" TurnoutAngle="22.5" TurnoutDirection="Right" />
+      <Turnout Id="{96BAA875-AA1E-43A3-AB01-316118C49C0D}" Article="22715" StraightLength="225.0" TurnoutLength="0" TurnoutRadius="902.4" TurnoutAngle="14.26" TurnoutDirection="Left" />
+      <Turnout Id="{82F342A1-F6E6-48FE-8926-D823CD58BD32}" Article="22716" StraightLength="225.0" TurnoutLength="0" TurnoutRadius="902.4" TurnoutAngle="14.26" TurnoutDirection="Right" />
 
       <!-- curved turnout tracks -->
-      <CurvedTurnout Article="2268" InnerLength="0" InnerRadius="360.0" InnerAngle="30.0" OuterLength="0" OuterRadius="360.0" OuterAngle="30.0" TurnoutDirection="Left" />
-      <CurvedTurnout Article="2269" InnerLength="0" InnerRadius="360.0" InnerAngle="30.0" OuterLength="0" OuterRadius="360.0" OuterAngle="30.0" TurnoutDirection="Right" />
+      <CurvedTurnout Id="{E76B5526-C11A-4B00-854F-9FF55DB2B8B4}" Article="2268" InnerLength="0" InnerRadius="360.0" InnerAngle="30.0" OuterLength="0" OuterRadius="360.0" OuterAngle="30.0" TurnoutDirection="Left" />
+      <CurvedTurnout Id="{02C7EA60-2580-477F-93EF-695C61EA51AB}" Article="2269" InnerLength="0" InnerRadius="360.0" InnerAngle="30.0" OuterLength="0" OuterRadius="360.0" OuterAngle="30.0" TurnoutDirection="Right" />
 
       <!-- double slip switch -->
-      <DoubleSlipSwitch Article="2260" Length="168.9" CrossingAngle="22.50" SlipRadius="360.0" />
-      <DoubleSlipSwitch Article="2275" Length="225.0" CrossingAngle="14.26" SlipRadius="360.0" />
+      <DoubleSlipSwitch Id="{D9A3F08E-9A2F-4D45-8D0B-3B4CCAE1D840}" Article="2260" Length="168.9" CrossingAngle="22.50" SlipRadius="360.0" />
+      <DoubleSlipSwitch Id="{9313B129-6AC0-42CD-80A7-BC17EACDCB38}" Article="2275" Length="225.0" CrossingAngle="14.26" SlipRadius="360.0" />
 
       <!-- double turnout -->
       <!--<DoubleTurnout Article="2270" StraightLength="G169" LeftTurnoutLength="0" LeftTurnoutRadius="424.6" LeftTurnoutAngle="24.3" RightTurnoutLength="0" RightTurnoutRadius="424.6" RightTurnoutAngle="24.3" />-->
 
 
       <!-- crossing -->
-      <Crossing Article="2257" LengthA="225.0" LengthB="225.0" CrossingAngle="14.26" />
-      <Crossing Article="2258" LengthA="90.0" LengthB="90.0" CrossingAngle="45.0" />
-      <Crossing Article="2259" LengthA="168.9" LengthB="168.9" CrossingAngle="22.30" />
-
+      <Crossing Id="{4043D211-F2C3-405F-920F-146C5F40AC90}" Article="2257" LengthA="225.0" LengthB="225.0" CrossingAngle="14.26" />
+      <Crossing Id="{4893EB21-77E7-454A-8554-69119C0A8CAD}" Article="2258" LengthA="90.0" LengthB="90.0" CrossingAngle="45.0" />
+      <Crossing Id="{12DCCD9D-23BE-4EB8-9C43-15AFD66C7426}" Article="2259" LengthA="168.9" LengthB="168.9" CrossingAngle="22.30" />
+      
       <!-- flex -->
-      <Flex Article="2205" Length="900" />
+      <Flex Id="{65168CA3-84E6-4C2B-8507-0DF5ACEAAD4C}" Article="2205" Length="900" />
     </Tracks>
   </TrackType>
   <TrackType>
@@ -288,54 +286,54 @@
     </Radii>
     <Tracks>
       <!-- strait tracks -->
-      <Straight Article="5106" Length="180.0" />
-      <Straight Article="5107" Length="90.0" />
-      <Straight Article="5108" Length="45.0" />
-      <Straight Article="5109" Length="33.5" />
-      <Straight Article="5110" Length="22.5" />
-      <Straight Article="5129" Length="70.0" />
-      <Straight Article="5298" Length="8.0" />
-      <Straight Article="5210" Length="16.0" />
+      <Straight Id="{1D92EDA9-3740-42F1-8D6F-93BB00626E27}" Article="5106" Length="180.0" />
+      <Straight Id="{1E488D9E-ECCC-460A-882C-5D10056EC060}" Article="5107" Length="90.0" />
+      <Straight Id="{70AB5B95-A9E7-439A-8624-CED42219A3D5}" Article="5108" Length="45.0" />
+      <Straight Id="{E25BE89F-F855-4CDF-9552-51524801C4E9}" Article="5109" Length="33.5" />
+      <Straight Id="{9FB0DA8C-8A08-41E0-9EA5-BC989F3C5441}" Article="5110" Length="22.5" />
+      <Straight Id="{B68CFFFC-10EA-4707-A070-8B2A716253A2}" Article="5129" Length="70.0" />
+      <Straight Id="{DAC44BDD-292E-491F-A3B2-F5BB336C373B}" Article="5298" Length="8.0" />
+      <Straight Id="{4AC63CD3-2D5A-4124-84C8-87B10B885543}" Article="5210" Length="16.0" />
       <!-- curved tracks -->
-      <Curved Article="5100" Radius="R1" Angle="30.0" />
-      <Curved Article="5101" Radius="R1" Angle="15.0" />
-      <Curved Article="5102" Radius="R1" Angle="7.5" />
-      <Curved Article="5120" Radius="I" Angle="45.0" />
-      <Curved Article="5200" Radius="R2" Angle="30.0" />
-      <Curved Article="5201" Radius="R2" Angle="15.0" />
-      <Curved Article="5205" Radius="R2" Angle="5.7" />
-      <Curved Article="5206" Radius="R2" Angle="24.3" />
+      <Curved Id="{423E7327-6BC7-453A-93FF-43CA090B8698}" Article="5100" Radius="R1" Angle="30.0" />
+      <Curved Id="{DC6812BF-72E6-4D74-A837-8000EC9D00EE}" Article="5101" Radius="R1" Angle="15.0" />
+      <Curved Id="{8541C82A-1391-4E8A-A8B4-9EDF2DAC715A}" Article="5102" Radius="R1" Angle="7.5" />
+      <Curved Id="{34B3CFA9-DA69-446C-9D89-4B4F27BC95BF}" Article="5120" Radius="I" Angle="45.0" />
+      <Curved Id="{C2F57FE1-CCCB-4A22-803E-81894C9EDBB7}" Article="5200" Radius="R2" Angle="30.0" />
+      <Curved Id="{D64FCB7E-9424-4CD4-97C6-3D680B699445}" Article="5201" Radius="R2" Angle="15.0" />
+      <Curved Id="{237EEEC7-4A51-4211-9694-46AA4F331D9E}" Article="5205" Radius="R2" Angle="5.7" />
+      <Curved Id="{237EEEC7-4A51-4211-9694-46AA4F331D9E}" Article="5206" Radius="R2" Angle="24.3" />
       <!-- turnout tracks -->
-      <Turnout Article="5118" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="30.0" TurnoutDirection="Left" TurnoutDrive="Electrical" />
-      <Turnout Article="5119" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="30.0" TurnoutDirection="Right" TurnoutDrive="Electrical" />
-      <Turnout Article="5122" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="30.0" TurnoutDirection="Left" TurnoutDrive="Mechanical" />
-      <Turnout Article="5123" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="30.0" TurnoutDirection="Right" TurnoutDrive="Mechanical" />
-      <Turnout Article="5138" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="22.5" TurnoutDirection="Left" TurnoutDrive="Electrical" />
-      <Turnout Article="5139" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="22.5" TurnoutDirection="Right" TurnoutDrive="Electrical" />
-      <Turnout Article="5203" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Left" TurnoutDrive="Electrical" />
-      <Turnout Article="5204" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Right" TurnoutDrive="Electrical" />
-      <Turnout Article="5222" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Left" TurnoutDrive="Mechanical" />
-      <Turnout Article="5223" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Right" TurnoutDrive="Mechanical" />
+      <Turnout Id="{15B925EC-8FD9-4064-840C-BD14E5DE8BB1}" Article="5118" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="30.0" TurnoutDirection="Left" TurnoutDrive="Electrical" />
+      <Turnout Id="{ADF7B98E-3104-4CC0-8C34-A181251956CB}" Article="5119" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="30.0" TurnoutDirection="Right" TurnoutDrive="Electrical" />
+      <Turnout Id="{3B492C7D-41C2-497E-A7E2-C976B4EC775C}" Article="5122" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="30.0" TurnoutDirection="Left" TurnoutDrive="Mechanical" />
+      <Turnout Id="{6510D035-17FB-49FB-A065-09A11F0FD832}" Article="5123" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="30.0" TurnoutDirection="Right" TurnoutDrive="Mechanical" />
+      <Turnout Id="{97B9214D-BD75-44FF-9786-C6CA5FD88CFB}" Article="5138" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="22.5" TurnoutDirection="Left" TurnoutDrive="Electrical" />
+      <Turnout Id="{934D0D16-2D3A-40B6-AF53-162337FF0806}" Article="5139" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="360.0" TurnoutAngle="22.5" TurnoutDirection="Right" TurnoutDrive="Electrical" />
+      <Turnout Id="{AA19A5F2-D381-45FE-9D0E-9DE50B301727}" Article="5203" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Left" TurnoutDrive="Electrical" />
+      <Turnout Id="{20E79B8F-3E98-4C78-B830-3F1F0445A52D}" Article="5204" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Right" TurnoutDrive="Electrical" />
+      <Turnout Id="{FEBF5FC2-053A-46AF-B426-723B8370B164}" Article="5222" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Left" TurnoutDrive="Mechanical" />
+      <Turnout Id="{39B8A7E2-9973-4665-9074-42F94969000D}" Article="5223" StraightLength="180.0" TurnoutLength="0" TurnoutRadius="437.5" TurnoutAngle="24.3" TurnoutDirection="Right" TurnoutDrive="Mechanical" />
       <!-- curved turnout tracks -->
-      <CurvedTurnout Article="5141" InnerLength="0.0" InnerRadius="360.0" InnerAngle="30.0" OuterLength="0.0" OuterRadius="437.5" OuterAngle="30.0" TurnoutDirection="Left" TurnoutDrive="Electrical" />
-      <CurvedTurnout Article="5142" InnerLength="0.0" InnerRadius="360.0" InnerAngle="30.0" OuterLength="0.0" OuterRadius="437.5" OuterAngle="30.0" TurnoutDirection="Right" TurnoutDrive="Electrical" />
+      <CurvedTurnout Id="{236C4B32-5B39-4F5F-9FC6-178B289C72BA}" Article="5141" InnerLength="0.0" InnerRadius="360.0" InnerAngle="30.0" OuterLength="0.0" OuterRadius="437.5" OuterAngle="30.0" TurnoutDirection="Left" TurnoutDrive="Electrical" />
+      <CurvedTurnout Id="{8034161B-B353-4EE2-899E-7123FE317F95}" Article="5142" InnerLength="0.0" InnerRadius="360.0" InnerAngle="30.0" OuterLength="0.0" OuterRadius="437.5" OuterAngle="30.0" TurnoutDirection="Right" TurnoutDrive="Electrical" />
       <!-- double slip switch -->
-      <DoubleSlipSwitch Article="5128" Length="193.0" CrossingAngle="30.0" SlipRadius="360.0" TurnoutDrive="Electrical" />
-      <DoubleSlipSwitch Article="5207" Length="193.0" CrossingAngle="24.3" SlipRadius="437.5" TurnoutDrive="Electrical" />
+      <DoubleSlipSwitch Id="{8D0C0A54-F195-4298-BBBC-F2BE10BB1F52}" Article="5128" Length="193.0" CrossingAngle="30.0" SlipRadius="360.0" TurnoutDrive="Electrical" />
+      <DoubleSlipSwitch Id="{8E6FF55F-1FD7-4791-AA82-161A668B555C}" Article="5207" Length="193.0" CrossingAngle="24.3" SlipRadius="437.5" TurnoutDrive="Electrical" />
       <!-- double turnout -->
       <!--<DoubleTurnout Article="5214" Length="193.0" Radius="437.5" Angle="24.3" Drive="Electrical" />-->
       <!-- crossing -->
-      <Crossing Article="5114" LengthA="193.0" LengthB="193.0" CrossingAngle="30.0" />
-      <Crossing Article="5211" LengthA="98.0" LengthB="98.0" CrossingAngle="48.5" />
-      <Crossing Article="5215" LengthA="180.0" LengthB="180.0" CrossingAngle="24.3" />
+      <Crossing Id="{7EB9A84C-01E6-4C54-BF90-EC7F5D6955EC}" Article="5114" LengthA="193.0" LengthB="193.0" CrossingAngle="30.0" />
+      <Crossing Id="{E169DD86-2C79-4191-A184-AEB635C07C8D}" Article="5211" LengthA="98.0" LengthB="98.0" CrossingAngle="48.5" />
+      <Crossing Id="{C5424729-3374-4197-96C8-A9E9376B5369}" Article="5215" LengthA="180.0" LengthB="180.0" CrossingAngle="24.3" />
       <!-- bumper -->
-      <Bumper Article="7190" Length="70.0" Lantern="false" />
-      <Bumper Article="7191" Length="70.0" Lantern="true" />
+      <Bumper Id="{6E568C8B-AE61-46D1-A573-6ED5FEBD38A8}" Article="7190" Length="70.0" Lantern="false" />
+      <Bumper Id="{23200AFC-F68B-448F-AF9B-D3DE34D64E49}" Article="7191" Length="70.0" Lantern="true" />
 
       <!-- turntable -->
-      <Turntable Article="7286" OuterRadius="193" InnerRadius="155" Angle="7.5" RailNum="48"/>
+      <Turntable Id="{16B03C81-B2F7-49E1-8F0E-88B59FC56BC3}" Article="7286" OuterRadius="193" InnerRadius="155" Angle="7.5" RailNum="48"/>
       <!-- transfert table -->
-      <TransferTable Id="M72941" Article="72941" RailsA="5" RailsB="5" Width="381" Height="422" Length="288" />
+      <TransferTable Id="{DA133B6C-90BE-4242-AD01-F2F8D5C1EA96}" Article="72941" RailsA="5" RailsB="5" Width="381" Height="422" Length="288" />
     </Tracks>
   </TrackType>
   <TrackType>
@@ -365,16 +363,16 @@
     <!-- R7 = 2461 mm -->
     <Tracks>
       <!-- strait tracks -->
-      <Straight Article="59051" Length="59.5" />
-      <Straight Article="59052" Length="79.0" />
-      <Straight Article="59053" Length="100.0" />
-      <Straight Article="59054" Length="116.0" />
-      <Straight Article="59055" Length="150.0" />
-      <Straight Article="59056" Length="152.2" />
-      <Straight Article="59057" Length="200.0" />
-      <Straight Article="59058" Length="300.0" />
-      <Straight Article="59059" Length="600.0" />
-      <Straight Article="59061" Length="900.0" />
+      <Straight Id="{307A6273-458D-40C8-A925-762E3A8B2567}" Article="59051" Length="59.5" />
+      <Straight Id="{7B2539A9-EC72-46D7-A508-D51C6FEA0483}" Article="59052" Length="79.0" />
+      <Straight Id="{F32FF579-6F4F-40F2-8D0E-4E9BE392CEF1}" Article="59053" Length="100.0" />
+      <Straight Id="{02220383-CBE8-490C-A2AB-5CD7E61E8946}" Article="59054" Length="116.0" />
+      <Straight Id="{EA2828A2-33B8-4CB7-B30D-CEB652760358}" Article="59055" Length="150.0" />
+      <Straight Id="{7E656591-61E7-49E7-9C4B-05904632B4D3}" Article="59056" Length="152.2" />
+      <Straight Id="{33BE970A-14C7-4B2B-8CD2-CF6FB2B8D430}" Article="59057" Length="200.0" />
+      <Straight Id="{E19CCD42-2B2A-4C1D-9312-26ADC97E0E83}" Article="59058" Length="300.0" />
+      <Straight Id="{00308551-305E-4894-9203-EEB16D0BD7E9}" Article="59059" Length="600.0" />
+      <Straight Id="{2ACCF902-6ECC-48C4-8E91-693E5AFC2025}" Article="59061" Length="900.0" />
       <!-- curved tracks -->
       <!--<Curved Article="59035" Radius="R1" Angle="22.5" />
       <Curved Article="59071" Radius="R7" Angle="10.0" />
@@ -422,13 +420,13 @@
     <!-- R4 = 490 mm -->
     <Tracks>
       <!-- strait tracks -->
-      <Straight Article="8500" Length="110.0" />
-      <Straight Article="8503" Length="55.0" />
-      <Straight Article="8504" Length="25.0" />
-      <Straight Article="8505" Length="220.0" />
-      <Straight Article="85051" Length="220.0"/>
-      <Straight Article="8506" Length="108.6" />
-      <Straight Article="8507" Length="112.8" />
+      <Straight Id="{4F58F1D5-950E-4B54-B90F-A86D13AD6F9B}" Article="8500" Length="110.0" />
+      <Straight Id="{0ACA100E-183A-4B82-8811-1FDECE046834}" Article="8503" Length="55.0" />
+      <Straight Id="{444CFC84-8A7F-47C2-B64C-5380848CBF26}" Article="8504" Length="25.0" />
+      <Straight Id="{B4A8F642-7342-4E37-A252-EFFF99029220}" Article="8505" Length="220.0" />
+      <Straight Id="{8CFED80F-317D-4966-8C9E-2640C4EDEC0C}" Article="85051" Length="220.0"/>
+      <Straight Id="{DF2E2025-3DBF-458A-BDFF-D4766B325BC1}" Article="8506" Length="108.6" />
+      <Straight Id="{57A79229-D6FC-4B2A-8734-EF3482165679}" Article="8507" Length="112.8" />
       <!-- curved tracks -->
       <!--<Curved Article="8510"  Radius="R1" Angle="45.0" />
       <Curved Article="8520"  Radius="R2" Angle="45.0" />
@@ -516,21 +514,21 @@
     </Radii>
     <Tracks>
       <!-- strait tracks -->
-      <Straight Article="10040" Length="41" />
-      <Straight Article="10050" Length="52" />
-      <Straight Article="10070" Length="75" />
-      <Straight Article="10080" Length="82" />
-      <Straight Article="10150" Length="150" />
-      <Straight Article="10000" Length="300" />
-      <Straight Article="10600" Length="600" />
-      <Straight Article="10610" Length="1200" />
+      <Straight Id="{FACBFFD4-2C4D-47BA-943B-B84319B9D8FC}" Article="10040" Length="41" />
+      <Straight Id="{35B39CD1-8B81-4FED-B93F-7A05DE7FD72E}" Article="10050" Length="52" />
+      <Straight Id="{9ED9CA14-E409-471A-882A-E0A746EBFD75}" Article="10070" Length="75" />
+      <Straight Id="{806C7BCF-730D-4223-B3C0-6DE7D10C02CE}" Article="10080" Length="82" />
+      <Straight Id="{9939C8DE-051C-4D28-8224-6EDD4D5EDF88}" Article="10150" Length="150" />
+      <Straight Id="{4C430DA4-30A5-4863-A1D0-E231B4DB5FD9}" Article="10000" Length="300" />
+      <Straight Id="{6E0B0550-7899-4ADA-9770-A0C3AC437D31}" Article="10600" Length="600" />
+      <Straight Id="{D52BC482-8DDD-4915-841E-CA8F4CAD2A52}" Article="10610" Length="1200" />
       <!-- curved tracks -->
-      <Curved Article="11040" Radius="600" Angle="7.5" />
-      <Curved Article="11020" Radius="600" Angle="15" />
-      <Curved Article="11000" Radius="600" Angle="30" />
-      <Curved Article="15000" Radius="780" Angle="30" />
-      <Curved Article="16000" Radius="1195" Angle="22.5" />
-      <Curved Article="18020" Radius="2320" Angle="7.5" />
+      <Curved Id="{87E51B73-76E1-44F5-B39E-9AE526CEED82}" Article="11040" Radius="600" Angle="7.5" />
+      <Curved Id="{E94A7DC1-612F-4DEC-A9A4-4315BBBBADAF}" Article="11020" Radius="600" Angle="15" />
+      <Curved Id="{C7E54504-70FE-4D3E-9129-364AADA3ACDD}" Article="11000" Radius="600" Angle="30" />
+      <Curved Id="{7CB3B1F4-AE07-4598-8D21-49670DC52DF6}" Article="15000" Radius="780" Angle="30" />
+      <Curved Id="{728D8495-6F44-4675-AA42-BF7DA09D86EA}" Article="16000" Radius="1195" Angle="22.5" />
+      <Curved Id="{42A03454-7CE4-4F87-A7AC-61662A500731}" Article="18020" Radius="2320" Angle="7.5" />
       <!-- turnout tracks -->
       <!--<Turnout Article="12100" Length="300" Radius="600" Angle="30"    Direction="Left" />
       <Turnout Article="12000" Length="300" Radius="600" Angle="30"    Direction="Right" />
@@ -547,7 +545,7 @@
       <Crossing Article="13100" Length1="150" Length2="185" Angle="90"  />
       <Crossing Article="13200" Length1="375" Length2="375" Angle="22.5" />
       --><!-- bumper -->
-      <Bumper Article="10320" Length="300" />
+      <Bumper Id="{E37C9AD6-43C9-4885-B1A4-85D33A390B52}" Article="10320" Length="300" />
     </Tracks>
   </TrackType>
 
@@ -761,21 +759,21 @@
     </Radii>
     <Tracks>
       <!-- strait tracks -->
-      <Straight Article="35209" Length="1200" />
-      <Straight Article="35208" Length="600" />
-      <Straight Article="35200" Length="320" />
-      <Straight Article="35201" Length="280" />
-      <Straight Article="35202" Length="160" />
-      <Straight Article="35203" Length="140" />
-      <Straight Article="35204" Length="95" />
+      <Straight Id="{992A6C2D-1BB6-415B-A686-C565AAD33C86}" Article="35209" Length="1200" />
+      <Straight Id="{1B53808A-933C-454A-9677-7D98AAC91973}" Article="35208" Length="600" />
+      <Straight Id="{4669A7B8-39FC-421C-9692-1607E481CE1A}" Article="35200" Length="320" />
+      <Straight Id="{4F8BF993-A64E-49F6-B6CD-924553EB133A}" Article="35201" Length="280" />
+      <Straight Id="{EF12680C-2C2B-4337-B006-595488EC4891}" Article="35202" Length="160" />
+      <Straight Id="{DAB3C84F-DBAC-4847-A30A-57315CD9A58C}" Article="35203" Length="140" />
+      <Straight Id="{BBAD2FAE-DB18-47FF-BDA5-7CAC608ED735}" Article="35204" Length="95" />
       <!-- curved tracks -->
-      <Curved Article="35211" Radius="600.00" Angle="30.0" />
-      <Curved Article="35213" Radius="921.54" Angle="30.0" />
-      <Curved Article="35214" Radius="921.54" Angle="7.5" />
-      <Curved Article="35215" Radius="1243.08" Angle="15.0" />
-      <Curved Article="35216" Radius="1243.08" Angle="7.5" />
-      <Curved Article="35217" Radius="1564.62" Angle="15.0" />
-      <Curved Article="35218" Radius="1564.62" Angle="7.5" />
+      <Curved Id="{0DA407D8-C181-42F5-812D-97EAC2A3EE3B}" Article="35211" Radius="600.00" Angle="30.0" />
+      <Curved Id="{4D3DB153-59C9-4FEC-ADC7-C56F9FD4229E}" Article="35213" Radius="921.54" Angle="30.0" />
+      <Curved Id="{8D0D5804-9ED5-41DA-BCE0-2990846E6FA9}" Article="35214" Radius="921.54" Angle="7.5" />
+      <Curved Id="{1CB50FD7-D9AB-4937-B068-EF97623826F9}" Article="35215" Radius="1243.08" Angle="15.0" />
+      <Curved Id="{02CBC60C-C000-440C-BCD5-14B3690B2F51}" Article="35216" Radius="1243.08" Angle="7.5" />
+      <Curved Id="{F43D35DC-8E5A-442B-B232-E78896CE78A8}" Article="35217" Radius="1564.62" Angle="15.0" />
+      <Curved Id="{A787EB4C-9E60-4A94-AECC-D677EF20D932}" Article="35218" Radius="1564.62" Angle="7.5" />
       <!-- turnout tracks -->
       <!--<Turnout Article="35220" Length="320" Radius="600.00" Angle="30.0" Direction="Left" />
       <Turnout Article="35221" Length="320" Radius="600.00" Angle="30.0" Direction="Right" />
@@ -827,23 +825,23 @@
     </Lengths>
     <Tracks>
       <!-- strait tracks -->
-      <Straight Article="55400" Length="G239" />
-      <Straight Article="55401" Length="G231" />
-      <Straight Article="55402" Length="G119" />
-      <Straight Article="55403" Length="G115" />
-      <Straight Article="55404" Length="G107" />
-      <Straight Article="55405" Length="G62" />
+      <Straight Id="{50DF11C9-785A-4E35-8FA5-D8039D86CA70}" Article="55400" Length="G239" />
+      <Straight Id="{04203DAA-4F47-4327-8A42-1E0DE0AE3558}" Article="55401" Length="G231" />
+      <Straight Id="{A6E518CD-B264-484B-9268-C79EBE1035A6}" Article="55402" Length="G119" />
+      <Straight Id="{A9BE00F0-9469-4ED5-B4DA-2E2B67722196}" Article="55403" Length="G115" />
+      <Straight Id="{A9BE00F0-9469-4ED5-B4DA-2E2B67722196}" Article="55404" Length="G107" />
+      <Straight Id="{B88D9F82-8177-4D03-8548-B053F57564C2}" Article="55405" Length="G62" />
       <!-- curved tracks -->
-      <Curved Article="55411" Radius="R1" Angle="30" />
-      <Curved Article="55412" Radius="R2" Angle="30" />
-      <Curved Article="55413" Radius="R3" Angle="30" />
-      <Curved Article="55414" Radius="R4" Angle="30" />
-      <Curved Article="55417" Radius="R1" Angle="7.5" />
-      <Curved Article="55418" Radius="R2" Angle="7.5" />
-      <Curved Article="55419" Radius="R9" Angle="15" />
+      <Curved Id="{CF20E99C-4E11-48AE-BB8F-2EE11A73CFA2}" Article="55411" Radius="R1" Angle="30" />
+      <Curved Id="{1959980D-713B-4B31-B562-FD2AABA14C1B}" Article="55412" Radius="R2" Angle="30" />
+      <Curved Id="{47C7BA54-819D-4269-B2AB-5B9251131A8C}" Article="55413" Radius="R3" Angle="30" />
+      <Curved Id="{DF0430D1-5584-465A-BF7F-1EEFE65318E1}" Article="55414" Radius="R4" Angle="30" />
+      <Curved Id="{FF18E12B-4523-42BB-8B21-51EFE2A3F2CF}" Article="55417" Radius="R1" Angle="7.5" />
+      <Curved Id="{97186070-9466-40D6-B1F7-B09C47303BE2}" Article="55418" Radius="R2" Angle="7.5" />
+      <Curved Id="{3213A193-E74C-4376-A143-E0FAC30C8C39}" Article="55419" Radius="R9" Angle="15" />
       
-      <Curved Article="55451" Radius="R1" Angle="7.5" />
-      <Curved Article="55452" Radius="R2" Angle="7.5" />
+      <Curved Id="{E2473338-5F77-4A34-A964-44F5BFF6C57B}" Article="55451" Radius="R1" Angle="7.5" />
+      <Curved Id="{7A3DC6E7-0643-4674-8CB9-8A0944273C9D}" Article="55452" Radius="R2" Angle="7.5" />
       <!-- turnout tracks -->
       <!--<Turnout Article="55420" Length="G239" Radius="R9" Angle="15" Direction="Left" />
       <Turnout Article="55421" Length="G239" Radius="R9" Angle="15" Direction="Right" />
@@ -902,20 +900,20 @@
     </Lengths>
     <Tracks>
       <!-- strait tracks -->
-      <Straight Article="55200" Length="G239" />
-      <Straight Article="55201" Length="G231" />
-      <Straight Article="55202" Length="G119" />
-      <Straight Article="55203" Length="G115" />
-      <Straight Article="55204" Length="G107" />
-      <Straight Article="55205" Length="G62" />
+      <Straight Id="{CE26CFC9-AF65-45F3-AED1-5664AC094C47}" Article="55200" Length="G239" />
+      <Straight Id="{19927150-2532-4177-B583-98603AB554F4}" Article="55201" Length="G231" />
+      <Straight Id="{8805959F-0D56-4818-8232-3365E14F60F4}" Article="55202" Length="G119" />
+      <Straight Id="{99F6551F-CF69-4224-A006-7BBD35B10049}" Article="55203" Length="G115" />
+      <Straight Id="{7F12FC1B-B2E7-40BA-BCFF-6F87C858DF85}" Article="55204" Length="G107" />
+      <Straight Id="{4E4515E5-953C-4BBF-A386-322501B05465}" Article="55205" Length="G62" />
       <!-- curved tracks -->
-      <Curved Article="55211" Radius="R1" Angle="30" />
-      <Curved Article="55212" Radius="R2" Angle="30" />
-      <Curved Article="55213" Radius="R3" Angle="30" />
-      <Curved Article="55214" Radius="R4" Angle="30" />
-      <Curved Article="55219" Radius="R9" Angle="15" />
-      <Curved Article="55251" Radius="R1" Angle="7.5" />
-      <Curved Article="55252" Radius="R2" Angle="7.5" />
+      <Curved Id="{7126405C-771E-4C86-ABDC-B5E5A897C361}" Article="55211" Radius="R1" Angle="30" />
+      <Curved Id="{5B1D3E08-EB98-462B-A7E5-9038DAEC6B3D}" Article="55212" Radius="R2" Angle="30" />
+      <Curved Id="{55D142A6-0295-456C-B749-17B56ED39265}" Article="55213" Radius="R3" Angle="30" />
+      <Curved Id="{DBB92F8F-6485-4C13-B451-CA5DBD87FB7A}" Article="55214" Radius="R4" Angle="30" />
+      <Curved Id="{830328BA-B667-4351-9FE8-AFD3B88CB053}" Article="55219" Radius="R9" Angle="15" />
+      <Curved Id="{79E132F4-A8FE-41D9-A338-049136A82DF7}" Article="55251" Radius="R1" Angle="7.5" />
+      <Curved Id="{8227AAAD-EB03-4B84-8385-D23BB005E0FE}" Article="55252" Radius="R2" Angle="7.5" />
       <!-- turnout tracks -->
       <!--<Turnout Article="55220" Length="G239" Radius="R9" Angle="15" Direction="Left" />
       <Turnout Article="55221" Length="G239" Radius="R9" Angle="15" Direction="Right" />

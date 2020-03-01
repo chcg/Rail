@@ -9,8 +9,13 @@ namespace Rail.Tracks
 {
     public abstract class TrackBase
     {
-        [XmlIgnore, JsonIgnore]
-        public string Id { get; set; }
+        public TrackBase()
+        {
+            this.Id = Guid.NewGuid();
+        }
+
+        [XmlAttribute("Id")]
+        public Guid Id { get; set; }
 
         [XmlIgnore, JsonIgnore]
         public abstract double RampLength { get; }

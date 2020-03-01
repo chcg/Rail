@@ -81,8 +81,6 @@ namespace Rail.Tracks
         {
             TrackParameter parameter = trackType.Parameter;
 
-            this.Id = parameter.Manufacturer.Replace(" ","") + this.Article;
-            
             this.Manufacturer = parameter.Manufacturer;
             this.dockType = parameter.DockType;
 

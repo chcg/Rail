@@ -6,7 +6,7 @@ namespace Rail.Tracks
 {
     public class TrackMaterial
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public int Number { get; set; }
         public string Manufacturer { get; set; }
         public string Article { get; set; }

@@ -54,7 +54,7 @@ namespace Rail.Model
         //public Guid Id { get; set; }
 
         [XmlElement("TrackId")]
-        public string TrackId { get; set; }
+        public Guid TrackId { get; set; }
 
         [XmlIgnore, JsonIgnore]
         public TrackBase Track { get; set; }

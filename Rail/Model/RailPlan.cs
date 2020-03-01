@@ -44,7 +44,7 @@ namespace Rail.Model
             };
         }
 
-        public static RailPlan Load(string path, Dictionary<string, TrackBase> trackDict)
+        public static RailPlan Load(string path, Dictionary<Guid, TrackBase> trackDict)
         {
             RailPlan railPlan = BaseProject.Load<RailPlan>(path);
 
