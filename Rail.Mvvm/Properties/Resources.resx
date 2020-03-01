@@ -123,10 +123,4 @@
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="OptionsLanguage" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="OptionsTitle" xml:space="preserve">
-    <value>Options</value>
-  </data>
 </root>

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Rail.View
+namespace Rail.Mvvm
 {
     /// <summary>
     /// Interaction logic for DialogButtonsView.xaml

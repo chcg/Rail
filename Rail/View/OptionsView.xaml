@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="{x:Static lang:Resources.OptionsTitle}" Height="300" Width="500">
     <DockPanel>
-        <local:DialogButtonsView DockPanel.Dock="Bottom"/>
+        <mvvm:DialogButtonsView DockPanel.Dock="Bottom"/>
         <TabControl Margin="8" TabStripPlacement="Left">
             <TabItem Header="{x:Static lang:Resources.OptionsLanguage}">
                 <Grid Margin="8">

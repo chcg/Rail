@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         Title="{x:Static lang:Resources.RailPlanView}" Height="450" Width="600">
     <DockPanel>
-        <local:DialogButtonsView DockPanel.Dock="Bottom"/>
+        <mvvm:DialogButtonsView DockPanel.Dock="Bottom"/>
         <TabControl TabStripPlacement="Left" Margin="8">
             <TabItem Header="Plate">
                 <Grid Margin="5">

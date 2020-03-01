@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="TransferTableView" Height="450" Width="800">
     <DockPanel>
-        <local:DialogButtonsView DockPanel.Dock="Bottom"/>
+        <mvvm:DialogButtonsView DockPanel.Dock="Bottom"/>
         <Grid>
 
         </Grid>

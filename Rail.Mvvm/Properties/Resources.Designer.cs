@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Rail.TrackEditor.Properties {
+namespace Rail.Mvvm.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Rail.TrackEditor.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Rail.TrackEditor.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Rail.Mvvm.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -75,24 +75,6 @@ namespace Rail.TrackEditor.Properties {
         public static string OK {
             get {
                 return ResourceManager.GetString("OK", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Language.
-        /// </summary>
-        public static string OptionsLanguage {
-            get {
-                return ResourceManager.GetString("OptionsLanguage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Options.
-        /// </summary>
-        public static string OptionsTitle {
-            get {
-                return ResourceManager.GetString("OptionsTitle", resourceCulture);
             }
         }
     }

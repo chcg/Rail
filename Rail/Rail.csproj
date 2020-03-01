@@ -97,9 +97,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Update="View\DialogButtonsView.xaml.cs">
-      <DependentUpon>DialogButtonsView.xaml</DependentUpon>
-    </Compile>
     <Compile Update="View\MainView.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -124,12 +121,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="View\DialogButtonsView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\DialogButtonView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="View\MainView.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="{x:Static lang:Resources.MeasureTitle}" ResizeMode="NoResize" ShowInTaskbar="False" SizeToContent="WidthAndHeight" Topmost="True" WindowStartupLocation="CenterOwner">
     <DockPanel>
-        <local:DialogButtonView DockPanel.Dock="Bottom"/>
+        <mvvm:DialogButtonView DockPanel.Dock="Bottom"/>
         <Grid Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

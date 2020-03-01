@@ -20,6 +20,9 @@
                 <Button Command="{Binding SaveCommand}">
                     <Image Source="/Rail.TrackEditor;component/Images/Save.png" Width="16" Height="16" />
                 </Button>
+                <Button Command="{Binding OptionsCommand}">
+                    <Image Source="/Rail.TrackEditor;component/Images/Settings.png" Width="16" Height="16" />
+                </Button>
             </ToolBar>
         </ToolBarTray>
         <StatusBar DockPanel.Dock="Bottom">

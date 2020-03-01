@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         Title="Ramp" Height="Auto" Width="1200">
     <DockPanel Height="Auto">
-        <local:DialogButtonsView DockPanel.Dock="Bottom"/>
+        <mvvm:DialogButtonsView DockPanel.Dock="Bottom"/>
         <Grid Margin="8" Height="Auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="100"/>

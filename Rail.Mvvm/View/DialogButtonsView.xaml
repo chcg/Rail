@@ -1,10 +1,10 @@
-﻿<UserControl x:Class="Rail.View.DialogButtonsView"
+﻿<UserControl x:Class="Rail.Mvvm.DialogButtonsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:lang="clr-namespace:Rail.Properties"
-             xmlns:local="clr-namespace:Rail.View"
+             xmlns:lang="clr-namespace:Rail.Mvvm.Properties"
+             xmlns:local="clr-namespace:Rail.Mvvm"
              mc:Ignorable="d" 
              d:DesignHeight="32" d:DesignWidth="300">
     <Grid>

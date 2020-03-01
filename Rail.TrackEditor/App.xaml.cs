@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using Rail.TrackEditor.Properties;
 using Rail.TrackEditor.View;
 using Rail.TrackEditor.ViewModel;
+using System;
+using System.Diagnostics;
+using System.Globalization;
+using System.Windows;
 
 namespace Rail.TrackEditor
 {
@@ -21,11 +17,11 @@ namespace Rail.TrackEditor
         {
             Trace.TraceInformation("Startup {0} {1}", DateTime.Now.ToLocalTime().ToShortTimeString(), DateTime.Now.ToLocalTime().ToShortDateString());
 
-            //string language = Settings.Default.Language;
-            //if (!string.IsNullOrEmpty(language))
-            //{
-            //    CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture = new CultureInfo(language);
-            //}
+            string language = Settings.Default.Language;
+            if (!string.IsNullOrEmpty(language))
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture = new CultureInfo(language);
+            }
 
             //CultureInfo.CurrentUICulture = new CultureInfo("de-DE");
             //CultureInfo.CurrentCulture = new CultureInfo("de-DE");

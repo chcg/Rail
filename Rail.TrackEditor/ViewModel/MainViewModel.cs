@@ -1,8 +1,12 @@
 ﻿using Rail.Mvvm;
+using Rail.TrackEditor.Properties;
+using Rail.TrackEditor.View;
 using Rail.Tracks;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Windows;
 
 namespace Rail.TrackEditor.ViewModel
 {
@@ -27,10 +31,35 @@ namespace Rail.TrackEditor.ViewModel
             this.TrackTypes = new ObservableCollection<TrackTypeViewModel>(this.trackList.TrackTypes.Select(t => new TrackTypeViewModel(t)));
         }
 
-        public void OnSave()
+        protected void OnSave()
         {
             this.trackList.TrackTypes = this.TrackTypes.Select(t => t.GetTrackType()).ToList();
             this.trackList.Save();
+        }
+
+        protected override void OnOptions()
+        {
+            if (new OptionsView { DataContext = new OptionsViewModel() }.ShowDialog().Value)
+            {
+                CultureInfo newCultureInfo = string.IsNullOrEmpty(Settings.Default.Language) ? CultureInfo.InstalledUICulture : new CultureInfo(Settings.Default.Language);
+                if (newCultureInfo.Name != CultureInfo.CurrentUICulture.Name)
+                {
+                    CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture = newCultureInfo;
+
+                    Window oldWindow = Application.Current.MainWindow;
+                    Application.Current.MainWindow = new MainView
+                    {
+                        WindowState = oldWindow.WindowState,
+                        Left = oldWindow.Left,
+                        Top = oldWindow.Top,
+                        Width = oldWindow.Width,
+                        Height = oldWindow.Height,
+                        DataContext = this
+                    };
+                    Application.Current.MainWindow.Show();
+                    oldWindow.Close();
+                }
+            }
         }
 
 
