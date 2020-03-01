@@ -39,7 +39,7 @@ namespace Rail.TrackEditor.ViewModel
                 nameof(TrackTurnout) => new TrackTurnoutViewModel((TrackTurnout)track, trackType),
                 nameof(TrackCurvedTurnout) => new TrackCurvedTurnoutViewModel((TrackCurvedTurnout)track, trackType),
                 nameof(TrackDoubleSlipSwitch) => new TrackDoubleSlipSwitchViewModel((TrackDoubleSlipSwitch)track, trackType),
-                nameof(TrackDoubleTurnout) => new TrackDoubleTurnoutViewModel((TrackDoubleTurnout)track, trackType),
+                nameof(TrackThreeWayTurnout) => new TrackThreeWayTurnoutViewModel((TrackThreeWayTurnout)track, trackType),
                 nameof(TrackYTurnout) => new TrackYTurnoutViewModel((TrackYTurnout)track, trackType),
                 nameof(TrackCrossing) => new TrackCrossingViewModel((TrackCrossing)track, trackType),
                 nameof(TrackBumper) => new TrackBumperViewModel((TrackBumper)track, trackType),

@@ -5,17 +5,17 @@ using System.Text;
 
 namespace Rail.TrackEditor.ViewModel
 {
-    public class TrackDoubleTurnoutViewModel : TrackViewModel
+    public class TrackThreeWayTurnoutViewModel : TrackViewModel
     {
-        private readonly TrackDoubleTurnout track;
+        private readonly TrackThreeWayTurnout track;
 
-        public TrackDoubleTurnoutViewModel() : this(new TrackDoubleTurnout(), MainViewModel.SelectedTrackTypeViewModel.TrackType)
+        public TrackThreeWayTurnoutViewModel() : this(new TrackThreeWayTurnout(), MainViewModel.SelectedTrackTypeViewModel.TrackType)
         { }
 
-        public TrackDoubleTurnoutViewModel(TrackType trackType) : this(new TrackDoubleTurnout(), trackType)
+        public TrackThreeWayTurnoutViewModel(TrackType trackType) : this(new TrackThreeWayTurnout(), trackType)
         { }
 
-        public TrackDoubleTurnoutViewModel(TrackDoubleTurnout track, TrackType trackType) : base(track, trackType)
+        public TrackThreeWayTurnoutViewModel(TrackThreeWayTurnout track, TrackType trackType) : base(track, trackType)
         {
             this.track = track;
         }

@@ -156,9 +156,6 @@
   <data name="TrackDoubleSlipSwitch" xml:space="preserve">
     <value>Double Slip Switch</value>
   </data>
-  <data name="TrackDoubleTurnout" xml:space="preserve">
-    <value>Three-Way Turnout</value>
-  </data>
   <data name="TrackDriveElectrical" xml:space="preserve">
     <value>electrical</value>
   </data>
@@ -191,6 +188,9 @@
   </data>
   <data name="TrackStraightUncoupler" xml:space="preserve">
     <value>Straight Uncoupler</value>
+  </data>
+  <data name="TrackThreeWayTurnout" xml:space="preserve">
+    <value>Three-Way Turnout</value>
   </data>
   <data name="TrackTransferTable" xml:space="preserve">
     <value>Transfer Table</value>

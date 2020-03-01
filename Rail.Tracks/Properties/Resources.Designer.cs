@@ -178,15 +178,6 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Three-Way Turnout.
-        /// </summary>
-        public static string TrackDoubleTurnout {
-            get {
-                return ResourceManager.GetString("TrackDoubleTurnout", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to electrical.
         /// </summary>
         public static string TrackDriveElectrical {
@@ -282,6 +273,15 @@ namespace Rail.Tracks.Properties {
         public static string TrackStraightUncoupler {
             get {
                 return ResourceManager.GetString("TrackStraightUncoupler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Three-Way Turnout.
+        /// </summary>
+        public static string TrackThreeWayTurnout {
+            get {
+                return ResourceManager.GetString("TrackThreeWayTurnout", resourceCulture);
             }
         }
         

@@ -129,7 +129,7 @@
                           <xs:attribute name="TurnoutDrive" type="Drive" use="optional" />
                         </xs:complexType>
                       </xs:element>
-                      <xs:element maxOccurs="unbounded" name="DoubleTurnout">
+                      <xs:element maxOccurs="unbounded" name="ThreeWayTurnout">
                         <xs:complexType>
                           <xs:attribute name="Article" type="xs:unsignedShort" use="required" />
                           <xs:attribute name="StraightLength" type="xs:string" use="required" />

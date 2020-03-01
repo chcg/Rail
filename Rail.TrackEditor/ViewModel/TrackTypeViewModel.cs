@@ -174,7 +174,7 @@ namespace Rail.TrackEditor.ViewModel
                 TrackTypes.Turnout => new TrackTurnoutViewModel(this.trackType),
                 TrackTypes.CurvedTurnout => new TrackCurvedTurnoutViewModel(this.trackType),
                 TrackTypes.DoubleSlipSwitch => new TrackDoubleSlipSwitchViewModel(this.trackType),
-                TrackTypes.DoubleTurnout => new TrackDoubleTurnoutViewModel(this.trackType),
+                TrackTypes.DoubleTurnout => new TrackThreeWayTurnoutViewModel(this.trackType),
                 TrackTypes.YTurnout => new TrackYTurnoutViewModel(this.trackType),
                 TrackTypes.Crossing => new TrackCrossingViewModel(this.trackType),
                 TrackTypes.Bumper => new TrackBumperViewModel(this.trackType),

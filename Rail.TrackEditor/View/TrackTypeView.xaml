@@ -258,8 +258,8 @@
                         <DataTemplate DataType="{x:Type vm:TrackDoubleSlipSwitchViewModel}" >
                             <v:TrackDoubleSlipSwitchView/>
                         </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:TrackDoubleTurnoutViewModel}" >
-                            <v:TrackDoubleTurnoutView/>
+                        <DataTemplate DataType="{x:Type vm:TrackThreeWayTurnoutViewModel}" >
+                            <v:TrackThreeWayTurnout/>
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type vm:TrackYTurnoutViewModel}" >
                             <v:TrackYTurnoutView/>

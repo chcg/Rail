@@ -38,7 +38,7 @@ namespace Rail.Tracks
          XmlArrayItem(typeof(TrackTurnout), ElementName = "Turnout"),
          XmlArrayItem(typeof(TrackCurvedTurnout), ElementName = "CurvedTurnout"),
          XmlArrayItem(typeof(TrackDoubleSlipSwitch), ElementName = "DoubleSlipSwitch"),
-         XmlArrayItem(typeof(TrackDoubleTurnout), ElementName = "DoubleTurnout"),
+         XmlArrayItem(typeof(TrackThreeWayTurnout), ElementName = "ThreeWayTurnout"),
          XmlArrayItem(typeof(TrackYTurnout), ElementName = "YTurnout"),
          XmlArrayItem(typeof(TrackCrossing), ElementName = "Crossing"),
          XmlArrayItem(typeof(TrackBumper), ElementName = "Bumper"),

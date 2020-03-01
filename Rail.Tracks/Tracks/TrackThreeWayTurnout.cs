@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace Rail.Tracks
 {
-    public class TrackDoubleTurnout : TrackBaseSingle
+    public class TrackThreeWayTurnout : TrackBaseSingle
     {
         #region store 
 
@@ -75,7 +75,7 @@ namespace Rail.Tracks
             {
                 string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
                               (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
-                return $"{Resources.TrackDoubleTurnout} {drive}";
+                return $"{Resources.TrackThreeWayTurnout} {drive}";
             }
         }
 
@@ -86,7 +86,7 @@ namespace Rail.Tracks
             {
                 string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
                               (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
-                return $"{this.Article} {Resources.TrackDoubleTurnout} {drive}";
+                return $"{this.Article} {Resources.TrackThreeWayTurnout} {drive}";
             }
         }
 

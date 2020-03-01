@@ -83,7 +83,7 @@
       <CurvedTurnout Article="24771" InnerLength="0" InnerRadius="R3" InnerAngle="A30" OuterLength="G64" OuterRadius="R3" OuterAngle="A30" TurnoutDirection="Left" TurnoutDrive="Unknown" />
       <CurvedTurnout Article="24772" InnerLength="0" InnerRadius="R3" InnerAngle="A30" OuterLength="G64" OuterRadius="R3" OuterAngle="A30" TurnoutDirection="Right" TurnoutDrive="Unknown" />
       <DoubleSlipSwitch Article="24624" Length="G188" CrossingAngle="A24" SlipRadius="R1" TurnoutDrive="Unknown" />
-      <DoubleTurnout Article="24630" StraightLength="G188" LeftTurnoutLength="0" LeftTurnoutRadius="R2" LeftTurnoutAngle="A24" RightTurnoutLength="0" RightTurnoutRadius="R2" RightTurnoutAngle="A24" TurnoutDrive="Unknown" />
+      <ThreeWayTurnout Article="24630" StraightLength="G188" LeftTurnoutLength="0" LeftTurnoutRadius="R2" LeftTurnoutAngle="A24" RightTurnoutLength="0" RightTurnoutRadius="R2" RightTurnoutAngle="A24" TurnoutDrive="Unknown" />
       <Crossing Article="24640" LengthA="G188" LengthB="G188" CrossingAngle="A24" />
       <Crossing Article="24649" LengthA="G103" LengthB="G103" CrossingAngle="A49" />
       <Crossing Article="24740" LengthA="G236" LengthB="G236" CrossingAngle="A12" />
