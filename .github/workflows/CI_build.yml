@@ -1,11 +1,14 @@
 name: CI_build
 
-on: [push, pull_request]
+on: 
+  push:
+    branches:
+      - master
 
 jobs:
   build:
 
-    runs-on: windows-2019
+    runs-on: windows-latest
     strategy:
       max-parallel: 1
       matrix:
@@ -13,8 +16,8 @@ jobs:
         build_platform: [x86,x64]
         
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v1
+    - name: "Checkout"
+      uses: actions/checkout@master
 
     - name: Setup to add MSBuild.exe to path
       uses: warrenbuckley/Setup-MSBuild@v1
