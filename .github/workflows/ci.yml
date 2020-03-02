@@ -12,6 +12,7 @@ jobs:
   build:
 
     runs-on: windows-latest
+    
     strategy:
       max-parallel: 1
       matrix:
@@ -25,6 +26,8 @@ jobs:
         with:
           dotnet-version: 3.1.101
       - name:  "Build with dotnet"
-        run: dotnet --configuration Release
+        run: dotnet build --configuration Release
         working-directory: .\Rail
-     
+      - name: "Test"     
+        run: dotnet test
+        working-directory: .\Rail
