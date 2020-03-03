@@ -443,7 +443,8 @@ namespace Rail.Tracks
         {
             if (String.IsNullOrEmpty(value))
             {
-                throw new ArgumentNullException("value", $"Error in article {this.Article}");
+                return 0;
+                //throw new ArgumentNullException("value", $"Error in article {this.Article}");
             }
             if (list == null || Char.IsDigit(value[0]))
             {
