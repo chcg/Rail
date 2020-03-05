@@ -42,43 +42,28 @@
               <xs:element minOccurs="0" name="Radii">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element maxOccurs="unbounded" name="Radius">
-                      <xs:complexType>
-                        <xs:attribute name="Name" type="xs:string" use="required" />
-                        <xs:attribute name="Value" type="xs:decimal" use="required" />
-                      </xs:complexType>
-                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Radius" type="NamedValue"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
               <xs:element minOccurs="0" name="Lengths">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element maxOccurs="unbounded" name="Length">
-                      <xs:complexType>
-                        <xs:attribute name="Name" type="xs:string" use="required" />
-                        <xs:attribute name="Value" type="xs:decimal" use="required" />
-                      </xs:complexType>
-                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Length" type="NamedValue"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
               <xs:element minOccurs="0" name="Angles">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element maxOccurs="unbounded" name="Angle">
-                      <xs:complexType>
-                        <xs:attribute name="Name" type="xs:string" use="required" />
-                        <xs:attribute name="Value" type="xs:decimal" use="required" />
-                      </xs:complexType>
-                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Angle" type="NamedValue"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
               <xs:element minOccurs="0" name="Tracks">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:choice maxOccurs="unbounded">
+                    <xs:choice minOccurs="0" maxOccurs="unbounded">
                       <xs:element maxOccurs="unbounded" name="Straight">
                         <xs:complexType>
                           <xs:attribute name="Id" type="Guid" use="required" />
@@ -236,7 +221,7 @@
               <xs:element minOccurs="0" name="Groups">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element maxOccurs="unbounded" name="Group">
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Group">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element minOccurs="0" name="Name">
@@ -308,7 +293,13 @@
       <xs:attribute name="Version" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-
+  
+  <xs:complexType name="NamedValue">
+    <xs:attribute name="Id" type="Guid" use="optional" />
+    <xs:attribute name="Name" type="xs:string" use="required" />
+    <xs:attribute name="Value" type="xs:decimal" use="required" />
+  </xs:complexType>
+  
   <xs:simpleType name="Gauge" >
     <xs:restriction base="xs:string">
       <xs:enumeration value="T" />
