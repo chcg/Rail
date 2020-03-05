@@ -1,33 +1,40 @@
-name: CI_build
+name: Delivery Build
 
-on: [push, pull_request]
+on: 
+  push:
+    branches:
+      - master
+
+  pull_request:
+    branches: 
+      - master
 
 jobs:
   build:
 
-    runs-on: windows-2019
+    runs-on: windows-latest
     strategy:
       max-parallel: 1
       matrix:
         build_configuration: [Release]
         build_platform: [x86,x64]
-        
+      
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v1
+    - name: "Checkout"
+      uses: actions/checkout@master
 
-    - name: Setup to add MSBuild.exe to path
+    - name: "Setup to add MSBuild.exe to path"
       uses: warrenbuckley/Setup-MSBuild@v1
 
-    - name: restore
-      working-directory: 
+    - name: "restore"
+      working-directory: .\Rail
       run: msbuild Rail.sln /m /verbosity:minimal /t:restore /p:configuration="${{ matrix.build_configuration }}" /p:platform="${{ matrix.build_platform }}"
 
-    - name: MSBuild of solution
-      working-directory: 
+    - name: "MSBuild of solution"
+      working-directory: .\Rail
       run: msbuild Rail.sln /m /verbosity:minimal /p:configuration="${{ matrix.build_configuration }}" /p:platform="${{ matrix.build_platform }}"
 
-    - name: Archive artifacts
+    - name: "Archive artifacts"
       uses: actions/upload-artifact@v1
       with:
           name: Rail (${{ matrix.build_platform }})
