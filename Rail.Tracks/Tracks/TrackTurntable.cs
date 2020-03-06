@@ -49,32 +49,17 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return 0; } }
 
-        [XmlIgnore, JsonIgnore]
-        public override string Name
-        {
-            get
-            {
-                return $"{Resources.TrackTurntable}";
-            }
-        }
-
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                return $"{this.Article} {Resources.TrackTurntable}";
-            }
-        }
-
         public override void Update(TrackType trackType)
         {
             this.OuterRadius = GetValue(trackType.Radii, this.OuterRadiusName);
             this.InnerRadius = GetValue(trackType.Radii, this.InnerRadiusName);
             this.Angle = GetValue(trackType.Angles, this.AngleName);
+
+            this.Name = $"{Resources.TrackTurntable}";
+            this.Description = $"{this.Article} {Resources.TrackTurntable}";
+
             base.Update(trackType);
         }
-
 
         protected override Geometry CreateGeometry()
         {

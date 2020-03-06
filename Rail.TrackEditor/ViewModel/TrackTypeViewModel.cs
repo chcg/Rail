@@ -15,6 +15,10 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackType trackType;
 
+        private CollectionViewSource lengths;
+        private CollectionViewSource radii;
+        private CollectionViewSource angles;
+
         public DelegateCommand<TrackTypes> NewTrackCommand { get; private set; }
         public DelegateCommand<TrackViewModel> DeleteTrackCommand { get; private set; }
 
@@ -32,6 +36,10 @@ namespace Rail.TrackEditor.ViewModel
             this.Lengths = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Lengths.Select(v => new TrackNamedValueViewModel(v)));
             this.Radii = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Radii.Select(v => new TrackNamedValueViewModel(v)));
             this.Angles = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Angles.Select(v => new TrackNamedValueViewModel(v)));
+
+            this.lengths = new CollectionViewSource() { Source = this.Lengths }; 
+            this.radii = new CollectionViewSource() { Source = this.Radii };
+            this.angles = new CollectionViewSource() { Source = this.Angles }; 
 
             this.Lengths.CollectionChanged += (o, i) => NotifyPropertyChanged(nameof(LengthNames));
             this.Radii.CollectionChanged += (o, i) => NotifyPropertyChanged(nameof(RadiusNames));
@@ -62,6 +70,10 @@ namespace Rail.TrackEditor.ViewModel
 
         public ObservableCollection<TrackNamedValueViewModel> Angles { get; private set; }
 
+        public ICollectionView LengthsView { get { return this.lengths.View; } }
+        public ICollectionView RadiiView { get { return this.radii.View; } }
+        public ICollectionView AnglesView { get { return this.angles.View; } }
+        
 
         public List<string> LengthNames { get { return this.Lengths.Select(l => l.Name).ToList(); } }
         public List<string> RadiusNames { get { return this.Radii.Select(l => l.Name).ToList(); } }

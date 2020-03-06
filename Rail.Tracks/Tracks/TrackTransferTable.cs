@@ -22,22 +22,12 @@ namespace Rail.Tracks
         [XmlAttribute("Height")]
         public double Height { get; set; }
 
-        [XmlIgnore, JsonIgnore]
-        public override string Name
+        public override void Update(TrackType trackType)
         {
-            get
-            {
-                return $"{Resources.TrackTransferTable}";
-            }
-        }
+            base.Update(trackType);
 
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                return $"{this.Article} {Resources.TrackTransferTable}";
-            }
+            this.Name = $"{Resources.TrackTransferTable}";
+            this.Description = $"{this.Article} {Resources.TrackTransferTable}";
         }
 
         protected override Geometry CreateGeometry()

@@ -6,22 +6,16 @@ namespace Rail.Tracks
 {
     public class TrackDoubleCrossover : TrackCrossing
     {
-        [XmlIgnore, JsonIgnore]
-        public override string Name
+        public override void Update(TrackType trackType)
         {
-            get
-            {
-                return $"{Resources.TrackDoubleCrossover} ";
-            }
-        }
+            this.LengthA = GetValue(trackType.Lengths, this.LengthAName);
+            this.LengthB = GetValue(trackType.Lengths, this.LengthBName);
+            this.CrossingAngle = GetValue(trackType.Angles, this.CrossingAngleName);
 
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                return $"{this.Article} {Resources.TrackDoubleCrossover}";
-            }
+            this.Name = $"{Resources.TrackDoubleCrossover}";
+            this.Description = $"{this.Article} {Resources.TrackDoubleCrossover}";
+
+            base.Update(trackType);
         }
 
     }

@@ -66,40 +66,6 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.OuterLength; } }
         
-        [XmlIgnore, JsonIgnore]
-        public override string Name
-        {
-            get
-            {
-                string drive = this.TurnoutDrive switch
-                {
-                    TrackDrive.Electrical => Resources.TrackDriveElectrical,
-                    TrackDrive.Mechanical => Resources.TrackDriveMechanical,
-                    _ => string.Empty
-                };
-                return TurnoutDirection == TrackDirection.Left ?
-                    $"{Resources.TrackCurvedTurnoutLeft} {drive}" :
-                    $"{Resources.TrackCurvedTurnoutRight} {drive}";
-            }
-        }
-
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                string drive = this.TurnoutDrive switch
-                {
-                    TrackDrive.Electrical => Resources.TrackDriveElectrical,
-                    TrackDrive.Mechanical => Resources.TrackDriveMechanical,
-                    _ => string.Empty
-                };
-                return TurnoutDirection == TrackDirection.Left ?
-                    $"{this.Article} {Resources.TrackCurvedTurnoutLeft} {drive}" :
-                    $"{this.Article} {Resources.TrackCurvedTurnoutRight} {drive}";
-            }
-        }
-        
         public override void Update(TrackType trackType)
         {
             this.InnerLength = GetValue(trackType.Lengths, this.InnerLengthName);
@@ -108,6 +74,19 @@ namespace Rail.Tracks
             this.OuterLength = GetValue(trackType.Lengths, this.OuterLengthName);
             this.OuterRadius = GetValue(trackType.Radii, this.OuterRadiusName);
             this.OuterAngle = GetValue(trackType.Angles, this.OuterAngleName);
+
+            string drive = this.TurnoutDrive switch
+            {
+                TrackDrive.Electrical => Resources.TrackDriveElectrical,
+                TrackDrive.Mechanical => Resources.TrackDriveMechanical,
+                _ => string.Empty
+            };
+            this.Name = TurnoutDirection == TrackDirection.Left ?
+                    $"{Resources.TrackCurvedTurnoutLeft} {drive}" :
+                    $"{Resources.TrackCurvedTurnoutRight} {drive}";
+            this. Description = TurnoutDirection == TrackDirection.Left ?
+                    $"{this.Article} {Resources.TrackCurvedTurnoutLeft} {drive}" :
+                    $"{this.Article} {Resources.TrackCurvedTurnoutRight} {drive}";
 
             base.Update(trackType);
         }

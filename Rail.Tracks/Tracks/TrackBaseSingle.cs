@@ -441,6 +441,10 @@ namespace Rail.Tracks
 
         protected double GetValue(List<TrackNamedValue> list, string value)
         {
+            if (Guid.TryParse(value, out Guid guid))
+            {
+                return list.FirstOrDefault(i => i.Id == guid)?.Value ??  0;
+            }
             if (String.IsNullOrEmpty(value))
             {
                 return 0;

@@ -45,34 +45,17 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.Length; } }
 
-
-        [XmlIgnore, JsonIgnore]
-        public override string Name
-        {
-            get
-            {
-                string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
-                              (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
-                return $"{Resources.TrackDoubleSlipSwitch} {drive}";
-            }
-        }
-
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
-                              (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
-                return $"{this.Article} {Resources.TrackDoubleSlipSwitch} {drive}";
-            }
-        }
-
         public override void Update(TrackType trackType)
         {
             this.Length = GetValue(trackType.Lengths, this.LengthName);
             this.CrossingAngle = GetValue(trackType.Angles, this.CrossingAngleName);
             this.SlipRadius = GetValue(trackType.Radii, this.SlipRadiusName);
+
+            string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
+            this.Name = $"{Resources.TrackDoubleSlipSwitch} {drive}";
+            this.Description = $"{this.Article} {Resources.TrackDoubleSlipSwitch} {drive}";
+            
             base.Update(trackType);
         }
 

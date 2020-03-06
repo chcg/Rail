@@ -2,6 +2,7 @@
 using Rail.Tracks;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Rail.TrackEditor.ViewModel
@@ -32,7 +33,32 @@ namespace Rail.TrackEditor.ViewModel
             get { return this.track.LengthName; }
             set { this.track.LengthName = value;  NotifyPropertyChanged(nameof(LengthName)); }
         }
+               
 
+        public TrackNamedValueViewModel Length
+        {
+            get 
+            {
+                if (Guid.TryParse(this.track.LengthName, out Guid guid))
+                {
+                    TrackTypeViewModel ttvm = MainViewModel.SelectedTrackTypeViewModel;
+                    return ttvm.Lengths.FirstOrDefault(i => i.Id == guid);
+                }
+                else
+                {
+                    TrackTypeViewModel ttvm = MainViewModel.SelectedTrackTypeViewModel;
+                    return ttvm.Lengths.FirstOrDefault(i => i.Name == this.track.LengthName);
+                }
+            }
+            set 
+            {
+                if (value != null)
+                {
+                    this.track.LengthName = value.Id.ToString();
+                    NotifyPropertyChanged(nameof(LengthName));
+                }
+            }
+        }
         public TrackExtras[] Extras {  get { return (TrackExtras[])Enum.GetValues(typeof(TrackExtras));  } }
         
         public TrackExtras Extra

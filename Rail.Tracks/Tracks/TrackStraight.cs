@@ -32,46 +32,32 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.Length; } }
 
-        [XmlIgnore, JsonIgnore]
-        public override string Name 
-        { 
-            get 
-            {
-                return this.Extra switch
-                {
-                    TrackExtras.No => $"{Resources.TrackStraight} {LengthName} {Length} mm",
-                    TrackExtras.Circuit => $"{Resources.TrackStraightCircuit}",
-                    TrackExtras.Contact => $"{Resources.TrackStraightContact}",
-                    TrackExtras.Uncoupler => $"{Resources.TrackStraightUncoupler} {Length} mm",
-                    TrackExtras.Isolating => $"{Resources.TrackStraightIsolating} {Length} mm",
-                    TrackExtras.Feeder => $"{Resources.TrackStraightFeeder} {Length} mm",
-                    _ => null
-                    
-                };
-            } 
-        }
-
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                return this.Extra switch
-                {
-                    TrackExtras.No => $"{this.Article} {Resources.TrackStraight} {LengthName} {Length} mm",
-                    TrackExtras.Circuit => $"{this.Article} {Resources.TrackStraightCircuit}",
-                    TrackExtras.Contact => $"{this.Article} {Resources.TrackStraightContact}",
-                    TrackExtras.Uncoupler => $"{this.Article} {Resources.TrackStraightUncoupler} {Length} mm",
-                    TrackExtras.Isolating => $"{this.Article} {Resources.TrackStraightIsolating} {Length} mm",
-                    TrackExtras.Feeder => $"{this.Article} {Resources.TrackStraightFeeder} {Length} mm",
-                    _ => null
-                };
-            }
-        }
-
         public override void Update(TrackType trackType)
         {
             this.Length = GetValue(trackType.Lengths, this.LengthName);
+
+            this.Name = this.Extra switch
+            {
+                TrackExtras.No => $"{Resources.TrackStraight} {LengthName} {Length} mm",
+                TrackExtras.Circuit => $"{Resources.TrackStraightCircuit}",
+                TrackExtras.Contact => $"{Resources.TrackStraightContact}",
+                TrackExtras.Uncoupler => $"{Resources.TrackStraightUncoupler} {Length} mm",
+                TrackExtras.Isolating => $"{Resources.TrackStraightIsolating} {Length} mm",
+                TrackExtras.Feeder => $"{Resources.TrackStraightFeeder} {Length} mm",
+                _ => null
+            };
+
+            this.Description = this.Extra switch
+            {
+                TrackExtras.No => $"{this.Article} {Resources.TrackStraight} {LengthName} {Length} mm",
+                TrackExtras.Circuit => $"{this.Article} {Resources.TrackStraightCircuit}",
+                TrackExtras.Contact => $"{this.Article} {Resources.TrackStraightContact}",
+                TrackExtras.Uncoupler => $"{this.Article} {Resources.TrackStraightUncoupler} {Length} mm",
+                TrackExtras.Isolating => $"{this.Article} {Resources.TrackStraightIsolating} {Length} mm",
+                TrackExtras.Feeder => $"{this.Article} {Resources.TrackStraightFeeder} {Length} mm",
+                _ => null
+            };
+            
             base.Update(trackType);
         }
 

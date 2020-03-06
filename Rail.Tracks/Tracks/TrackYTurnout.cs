@@ -62,28 +62,6 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return 0; /* TODO clac length */ } }
         
-        [XmlIgnore, JsonIgnore]
-        public override string Name
-        {
-            get
-            {
-                string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
-                              (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
-                return $"{Resources.TrackYTurnout} {drive}";
-            }
-        }
-
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
-                              (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
-                return $"{this.Article} {Resources.TrackYTurnout} {drive}";
-            }
-        }
-
         public override void Update(TrackType trackType)
         {
             this.LeftTurnoutLength = GetValue(trackType.Lengths, this.LeftTurnoutLengthName);
@@ -93,6 +71,11 @@ namespace Rail.Tracks
             this.RightTurnoutRadius = GetValue(trackType.Radii, this.RightTurnoutRadiusName);
             this.RightTurnoutAngle = GetValue(trackType.Angles, this.RightTurnoutAngleName);
 
+            string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
+            this.Name= $"{Resources.TrackYTurnout} {drive}";
+            this.Description = $"{this.Article} {Resources.TrackYTurnout} {drive}";
+            
             base.Update(trackType);
         }
 

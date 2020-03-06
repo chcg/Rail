@@ -41,31 +41,16 @@ namespace Rail.Tracks
 
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return Math.Max(this.LengthA, this.LengthB); } }
-               
-
-        [XmlIgnore, JsonIgnore]
-        public override string Name
-        {
-            get
-            {
-                return $"{Resources.TrackCrossing}";
-            }
-        }
-
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                return $"{this.Article} {Resources.TrackCrossing}";
-            }
-        }
-
+        
         public override void Update(TrackType trackType)
         {
             this.LengthA = GetValue(trackType.Lengths, this.LengthAName);
             this.LengthB = GetValue(trackType.Lengths, this.LengthBName);
             this.CrossingAngle = GetValue(trackType.Angles, this.CrossingAngleName);
+
+            this.Name = $"{Resources.TrackCrossing}";
+            this.Description = $"{this.Article} {Resources.TrackCrossing}";
+            
             base.Update(trackType);
         }
 

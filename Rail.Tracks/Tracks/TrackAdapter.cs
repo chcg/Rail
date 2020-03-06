@@ -28,29 +28,14 @@ namespace Rail.Tracks
 
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.Length; } }
-
-
-        [XmlIgnore, JsonIgnore]
-        public override string Name
-        {
-            get
-            {
-                return $"{Resources.TrackAdapter}";
-            }
-        }
-
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                return $"{this.Article} {Resources.TrackAdapter}";
-            }
-        }
-
+        
         public override void Update(TrackType trackType)
         {
             this.Length = GetValue(trackType.Lengths, this.LengthName);
+
+            this.Name = $"{Resources.TrackAdapter}";
+            this.Description = $"{this.Article} {Resources.TrackAdapter}";
+
             base.Update(trackType);
         }
 

@@ -21,10 +21,10 @@ namespace Rail.Tracks
         public abstract double RampLength { get; }
 
         [XmlIgnore, JsonIgnore]
-        public abstract string Name { get; }
+        public string Name { get; protected set; }
 
         [XmlIgnore, JsonIgnore]
-        public abstract string Description { get; }
+        public string Description { get; protected set; }
 
         [XmlIgnore, JsonIgnore]
         public double RailWidth { get; protected set; }

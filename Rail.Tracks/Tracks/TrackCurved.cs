@@ -38,12 +38,12 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return 0; /* TODO calc length */  } }
 
-        [XmlIgnore, JsonIgnore]
-        public override string Name
+        public override void Update(TrackType trackType)
         {
-            get
-            {
-                return this.Extra switch
+            this.Radius = GetValue(trackType.Radii, this.RadiusName);
+            this.Angle = GetValue(trackType.Angles, this.AngleName);
+
+            this.Name = this.Extra switch
                 {
                     TrackExtras.No => $"{Resources.TrackCurved} {RadiusName} {Radius} mm {Angle}°",
                     TrackExtras.Circuit => $"{Resources.TrackCurvedCircuit} {RadiusName} {Radius} mm {Angle}°",
@@ -52,17 +52,9 @@ namespace Rail.Tracks
                     TrackExtras.Isolating => $"{Resources.TrackCurvedIsolating} {RadiusName} {Radius} mm {Angle}°",
                     TrackExtras.Feeder => $"{Resources.TrackCurvedFeeder} {RadiusName} {Radius} mm {Angle}°",
                     _ => null
-
                 };
-            }
-        }
 
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                return this.Extra switch
+            this.Description = this.Extra switch
                 {
                     TrackExtras.No => $"{this.Article} {Resources.TrackCurved} {Radius} {Radius} mm {Angle}°",
                     TrackExtras.Circuit => $"{this.Article} {Resources.TrackCurvedCircuit} {RadiusName} {Radius} mm {Angle}°",
@@ -72,13 +64,7 @@ namespace Rail.Tracks
                     TrackExtras.Feeder => $"{this.Article} {Resources.TrackCurvedFeeder} {RadiusName} {Radius} mm {Angle}°",
                     _ => null
                 };
-            }
-        }
 
-        public override void Update(TrackType trackType)
-        {
-            this.Radius = GetValue(trackType.Radii, this.RadiusName);
-            this.Angle = GetValue(trackType.Angles, this.AngleName);
             base.Update(trackType);
         }
 
