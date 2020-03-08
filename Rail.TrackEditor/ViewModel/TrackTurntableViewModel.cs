@@ -26,22 +26,22 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.Article = value.Trim(); NotifyPropertyChanged(nameof(Article)); }
         }
 
-        public string OuterRadius
+        public double OuterRadius
         {
-            get { return this.track.OuterRadiusName; }
-            set { this.track.OuterRadiusName = value; NotifyPropertyChanged(nameof(OuterRadius)); }
+            get { return this.track.OuterRadius; }
+            set { this.track.OuterRadius = value; NotifyPropertyChanged(nameof(OuterRadius)); }
         }
 
-        public string InnerRadius
+        public double InnerRadius
         {
-            get { return this.track.InnerRadiusName; }
-            set { this.track.InnerRadiusName = value; NotifyPropertyChanged(nameof(InnerRadius)); }
+            get { return this.track.InnerRadius; }
+            set { this.track.InnerRadius = value; NotifyPropertyChanged(nameof(InnerRadius)); }
         }
 
-        public string Angle
+        public TrackNamedValueViewModel Angle
         {
-            get { return this.track.AngleName; }
-            set { this.track.AngleName = value; NotifyPropertyChanged(nameof(Angle)); }
+            get { return GetAngle( this.track.AngleId); }
+            set { this.track.AngleId = value.Id; NotifyPropertyChanged(nameof(Angle)); }
         }
 
         public int RailNum

@@ -26,10 +26,10 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.Article = value.Trim(); NotifyPropertyChanged(nameof(Article)); }
         }
 
-        public string Length
+        public TrackNamedValueViewModel Length
         {
-            get { return this.track.LengthName; }
-            set { this.track.LengthName = value; NotifyPropertyChanged(nameof(Length)); }
+            get { return GetLength(this.track.LengthId); }
+            set { this.track.LengthId = value.Id; NotifyPropertyChanged(nameof(Length)); }
         }
 
         public bool Lantern

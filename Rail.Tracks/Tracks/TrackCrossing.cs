@@ -13,14 +13,14 @@ namespace Rail.Tracks
     {
         #region store 
 
-        [XmlAttribute("LengthA")]
-        public string LengthAName { get; set; }
+        [XmlElement("LengthA")]
+        public Guid LengthAId { get; set; }
 
-        [XmlAttribute("LengthB")]
-        public string LengthBName { get; set; }
+        [XmlElement("LengthB")]
+        public Guid LengthBId { get; set; }
 
-        [XmlAttribute("CrossingAngle")]
-        public string CrossingAngleName { get; set; }
+        [XmlElement("CrossingAngle")]
+        public Guid CrossingAngleId { get; set; }
 
         #endregion
 
@@ -44,9 +44,9 @@ namespace Rail.Tracks
         
         public override void Update(TrackType trackType)
         {
-            this.LengthA = GetValue(trackType.Lengths, this.LengthAName);
-            this.LengthB = GetValue(trackType.Lengths, this.LengthBName);
-            this.CrossingAngle = GetValue(trackType.Angles, this.CrossingAngleName);
+            this.LengthA = GetValue(trackType.Lengths, this.LengthAId);
+            this.LengthB = GetValue(trackType.Lengths, this.LengthBId);
+            this.CrossingAngle = GetValue(trackType.Angles, this.CrossingAngleId);
 
             this.Name = $"{Resources.TrackCrossing}";
             this.Description = $"{this.Article} {Resources.TrackCrossing}";

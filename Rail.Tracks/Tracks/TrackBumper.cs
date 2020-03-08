@@ -12,10 +12,10 @@ namespace Rail.Tracks
     {
         #region store
 
-        [XmlAttribute("Length")]
-        public string LengthName { get; set; }
+        [XmlElement("Length")]
+        public Guid LengthId { get; set; }
 
-        [XmlAttribute("Lantern")]
+        [XmlElement("Lantern")]
         public bool Lantern { get; set; }
 
         #endregion
@@ -34,7 +34,7 @@ namespace Rail.Tracks
 
         public override void Update(TrackType trackType)
         {
-            this.Length = GetValue(trackType.Lengths, this.LengthName);
+            this.Length = GetValue(trackType.Lengths, this.LengthId);
 
             string lantern = this.Lantern ? Resources.TrackWithLantern : String.Empty;
             this.Name = $"{Resources.TrackBumper} {lantern}";

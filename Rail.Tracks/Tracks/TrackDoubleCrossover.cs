@@ -8,9 +8,9 @@ namespace Rail.Tracks
     {
         public override void Update(TrackType trackType)
         {
-            this.LengthA = GetValue(trackType.Lengths, this.LengthAName);
-            this.LengthB = GetValue(trackType.Lengths, this.LengthBName);
-            this.CrossingAngle = GetValue(trackType.Angles, this.CrossingAngleName);
+            this.LengthA = GetValue(trackType.Lengths, this.LengthAId);
+            this.LengthB = GetValue(trackType.Lengths, this.LengthBId);
+            this.CrossingAngle = GetValue(trackType.Angles, this.CrossingAngleId);
 
             this.Name = $"{Resources.TrackDoubleCrossover}";
             this.Description = $"{this.Article} {Resources.TrackDoubleCrossover}";

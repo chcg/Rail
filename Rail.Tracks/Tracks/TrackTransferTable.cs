@@ -10,16 +10,16 @@ namespace Rail.Tracks
     public class TrackTransferTable : TrackStraight
     {
 
-        [XmlAttribute("RailsA")]
+        [XmlElement("RailsA")]
         public int RailsA { get; set; }
 
-        [XmlAttribute("RailsB")]
+        [XmlElement("RailsB")]
         public int RailsB { get; set; }
 
-        [XmlAttribute("Width")]
+        [XmlElement("Width")]
         public double Width { get; set; }
 
-        [XmlAttribute("Height")]
+        [XmlElement("Height")]
         public double Height { get; set; }
 
         public override void Update(TrackType trackType)

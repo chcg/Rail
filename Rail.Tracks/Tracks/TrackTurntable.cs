@@ -13,27 +13,27 @@ namespace Rail.Tracks
     {
         #region store
 
-        [XmlAttribute("OuterRadius")]
-        public string OuterRadiusName { get; set; }
+        [XmlElement("OuterRadius")]
+        public double OuterRadius { get; set; }
 
-        [XmlAttribute("InnerRadius")]
-        public string InnerRadiusName { get; set; }
+        [XmlElement("InnerRadius")]
+        public double InnerRadius { get; set; }
 
-        [XmlAttribute("Angle")]
-        public string AngleName { get; set; }
+        [XmlElement("Angle")]
+        public Guid AngleId { get; set; }
 
-        [XmlAttribute("RailNum")]
+        [XmlElement("RailNum")]
         public int RailNum { get; set; }
 
         #endregion
 
         #region intern
 
-        [XmlIgnore, JsonIgnore]
-        public double OuterRadius { get; set; }
+        //[XmlIgnore, JsonIgnore]
+        //public double OuterRadius { get; set; }
 
-        [XmlIgnore, JsonIgnore]
-        public double InnerRadius { get; set; }
+        //[XmlIgnore, JsonIgnore]
+        //public double InnerRadius { get; set; }
 
         [XmlIgnore, JsonIgnore]
         public double Angle { get; set; }
@@ -51,9 +51,9 @@ namespace Rail.Tracks
 
         public override void Update(TrackType trackType)
         {
-            this.OuterRadius = GetValue(trackType.Radii, this.OuterRadiusName);
-            this.InnerRadius = GetValue(trackType.Radii, this.InnerRadiusName);
-            this.Angle = GetValue(trackType.Angles, this.AngleName);
+            //this.OuterRadius = GetValue(trackType.Radii, this.OuterRadiusId);
+            //this.InnerRadius = GetValue(trackType.Radii, this.InnerRadiusId);
+            this.Angle = GetValue(trackType.Angles, this.AngleId);
 
             this.Name = $"{Resources.TrackTurntable}";
             this.Description = $"{this.Article} {Resources.TrackTurntable}";

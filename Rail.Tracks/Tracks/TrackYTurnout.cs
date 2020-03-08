@@ -12,25 +12,25 @@ namespace Rail.Tracks
     {
         #region store
 
-        [XmlAttribute("LeftTurnoutLength")]
-        public string LeftTurnoutLengthName { get; set; }
+        [XmlElement("LeftTurnoutLength")]
+        public Guid LeftTurnoutLengthId { get; set; }
 
-        [XmlAttribute("LeftTurnoutRadius")]
-        public string LeftTurnoutRadiusName { get; set; }
+        [XmlElement("LeftTurnoutRadius")]
+        public Guid LeftTurnoutRadiusId { get; set; }
 
-        [XmlAttribute("LeftTurnoutAngle")]
-        public string LeftTurnoutAngleName { get; set; }
+        [XmlElement("LeftTurnoutAngle")]
+        public Guid LeftTurnoutAngleId { get; set; }
 
-        [XmlAttribute("RightTurnoutLength")]
-        public string RightTurnoutLengthName { get; set; }
+        [XmlElement("RightTurnoutLength")]
+        public Guid RightTurnoutLengthId { get; set; }
 
-        [XmlAttribute("RightTurnoutRadius")]
-        public string RightTurnoutRadiusName { get; set; }
+        [XmlElement("RightTurnoutRadius")]
+        public Guid RightTurnoutRadiusId { get; set; }
 
-        [XmlAttribute("RightTurnoutAngle")]
-        public string RightTurnoutAngleName { get; set; }
+        [XmlElement("RightTurnoutAngle")]
+        public Guid RightTurnoutAngleId { get; set; }
 
-        [XmlAttribute("TurnoutDrive")]
+        [XmlElement("TurnoutDrive")]
         public TrackDrive TurnoutDrive { get; set; }
 
         #endregion
@@ -64,12 +64,12 @@ namespace Rail.Tracks
         
         public override void Update(TrackType trackType)
         {
-            this.LeftTurnoutLength = GetValue(trackType.Lengths, this.LeftTurnoutLengthName);
-            this.LeftTurnoutRadius = GetValue(trackType.Radii, this.LeftTurnoutRadiusName);
-            this.LeftTurnoutAngle = GetValue(trackType.Angles, this.LeftTurnoutAngleName);
-            this.RightTurnoutLength = GetValue(trackType.Lengths, this.RightTurnoutLengthName);
-            this.RightTurnoutRadius = GetValue(trackType.Radii, this.RightTurnoutRadiusName);
-            this.RightTurnoutAngle = GetValue(trackType.Angles, this.RightTurnoutAngleName);
+            this.LeftTurnoutLength = GetValue(trackType.Lengths, this.LeftTurnoutLengthId);
+            this.LeftTurnoutRadius = GetValue(trackType.Radii, this.LeftTurnoutRadiusId);
+            this.LeftTurnoutAngle = GetValue(trackType.Angles, this.LeftTurnoutAngleId);
+            this.RightTurnoutLength = GetValue(trackType.Lengths, this.RightTurnoutLengthId);
+            this.RightTurnoutRadius = GetValue(trackType.Radii, this.RightTurnoutRadiusId);
+            this.RightTurnoutAngle = GetValue(trackType.Angles, this.RightTurnoutAngleId);
 
             string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
                               (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);

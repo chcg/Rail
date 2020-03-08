@@ -13,28 +13,28 @@ namespace Rail.Tracks
     {
         #region store
 
-        [XmlAttribute("InnerLength")]
-        public string InnerLengthName { get; set; }
+        [XmlElement("InnerLength")]
+        public Guid InnerLengthId { get; set; }
 
-        [XmlAttribute("InnerRadius")]
-        public string InnerRadiusName { get; set; }
+        [XmlElement("InnerRadius")]
+        public Guid InnerRadiusId { get; set; }
 
-        [XmlAttribute("InnerAngle")]
-        public string InnerAngleName { get; set; }
+        [XmlElement("InnerAngle")]
+        public Guid InnerAngleId { get; set; }
 
-        [XmlAttribute("OuterLength")]
-        public string OuterLengthName { get; set; }
+        [XmlElement("OuterLength")]
+        public Guid OuterLengthId { get; set; }
 
-        [XmlAttribute("OuterRadius")]
-        public string OuterRadiusName { get; set; }
+        [XmlElement("OuterRadius")]
+        public Guid OuterRadiusId { get; set; }
 
-        [XmlAttribute("OuterAngle")]
-        public string OuterAngleName { get; set; }
+        [XmlElement("OuterAngle")]
+        public Guid OuterAngleId { get; set; }
 
-        [XmlAttribute("TurnoutDirection")]
+        [XmlElement("TurnoutDirection")]
         public TrackDirection TurnoutDirection { get; set; }
 
-        [XmlAttribute("TurnoutDrive")]
+        [XmlElement("TurnoutDrive")]
         public TrackDrive TurnoutDrive { get; set; }
 
         #endregion
@@ -68,12 +68,12 @@ namespace Rail.Tracks
         
         public override void Update(TrackType trackType)
         {
-            this.InnerLength = GetValue(trackType.Lengths, this.InnerLengthName);
-            this.InnerRadius = GetValue(trackType.Radii, this.InnerRadiusName);
-            this.InnerAngle = GetValue(trackType.Angles, this.InnerAngleName);
-            this.OuterLength = GetValue(trackType.Lengths, this.OuterLengthName);
-            this.OuterRadius = GetValue(trackType.Radii, this.OuterRadiusName);
-            this.OuterAngle = GetValue(trackType.Angles, this.OuterAngleName);
+            this.InnerLength = GetValueOrNull(trackType.Lengths, this.InnerLengthId);
+            this.InnerRadius = GetValue(trackType.Radii, this.InnerRadiusId);
+            this.InnerAngle = GetValue(trackType.Angles, this.InnerAngleId);
+            this.OuterLength = GetValueOrNull(trackType.Lengths, this.OuterLengthId);
+            this.OuterRadius = GetValue(trackType.Radii, this.OuterRadiusId);
+            this.OuterAngle = GetValue(trackType.Angles, this.OuterAngleId);
 
             string drive = this.TurnoutDrive switch
             {

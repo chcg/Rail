@@ -28,37 +28,12 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.Article = value.Trim(); NotifyPropertyChanged(nameof(Article)); }
         }
 
-        public string LengthName
-        {
-            get { return this.track.LengthName; }
-            set { this.track.LengthName = value;  NotifyPropertyChanged(nameof(LengthName)); }
-        }
-               
-
         public TrackNamedValueViewModel Length
         {
-            get 
-            {
-                if (Guid.TryParse(this.track.LengthName, out Guid guid))
-                {
-                    TrackTypeViewModel ttvm = MainViewModel.SelectedTrackTypeViewModel;
-                    return ttvm.Lengths.FirstOrDefault(i => i.Id == guid);
-                }
-                else
-                {
-                    TrackTypeViewModel ttvm = MainViewModel.SelectedTrackTypeViewModel;
-                    return ttvm.Lengths.FirstOrDefault(i => i.Name == this.track.LengthName);
-                }
-            }
-            set 
-            {
-                if (value != null)
-                {
-                    this.track.LengthName = value.Id.ToString();
-                    NotifyPropertyChanged(nameof(LengthName));
-                }
-            }
+            get { return GetLength(this.track.LengthId); }
+            set { this.track.LengthId = value.Id; NotifyPropertyChanged(nameof(Length)); }
         }
+
         public TrackExtras[] Extras {  get { return (TrackExtras[])Enum.GetValues(typeof(TrackExtras));  } }
         
         public TrackExtras Extra

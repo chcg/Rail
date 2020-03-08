@@ -6,7 +6,7 @@ namespace Rail.Tracks
 {
     public class TrackStraightAdjustment : TrackStraight
     {
-        [XmlAttribute("LengthTo")]
+        [XmlElement("LengthTo")]
         public double LengthTo { get; set; }
 
         

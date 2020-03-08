@@ -1,5 +1,6 @@
 ﻿using Rail.Tracks.Properties;
 using Rail.Tracks.Trigonometry;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Windows;
@@ -12,16 +13,16 @@ namespace Rail.Tracks
     {
         #region store
 
-        [XmlAttribute("Length")]
-        public string LengthName { get; set; }
+        [XmlElement("Length")]
+        public Guid LengthId { get; set; }
 
-        [XmlAttribute("CrossingAngle")]
-        public string CrossingAngleName { get; set; }
+        [XmlElement("CrossingAngle")]
+        public Guid CrossingAngleId { get; set; }
 
-        [XmlAttribute("SlipRadius")]
-        public string SlipRadiusName { get; set; }
+        [XmlElement("SlipRadius")]
+        public Guid SlipRadiusId { get; set; }
 
-        [XmlAttribute("TurnoutDrive")]
+        [XmlElement("TurnoutDrive")]
         public TrackDrive TurnoutDrive { get; set; }
 
         #endregion
@@ -47,9 +48,9 @@ namespace Rail.Tracks
 
         public override void Update(TrackType trackType)
         {
-            this.Length = GetValue(trackType.Lengths, this.LengthName);
-            this.CrossingAngle = GetValue(trackType.Angles, this.CrossingAngleName);
-            this.SlipRadius = GetValue(trackType.Radii, this.SlipRadiusName);
+            this.Length = GetValue(trackType.Lengths, this.LengthId);
+            this.CrossingAngle = GetValue(trackType.Angles, this.CrossingAngleId);
+            this.SlipRadius = GetValue(trackType.Radii, this.SlipRadiusId);
 
             string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
                               (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
