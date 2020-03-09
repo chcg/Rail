@@ -52,7 +52,7 @@
       <Angle Name="A6" Value="5.7"/>
     </Angles>
     <Tracks>
-      <Straight Id="{2F199248-2F2B-438D-AB44-3F86B31D1836}" Article="24064" Length="G64" Extra="No" />
+      <Straight Id="2F199248-2F2B-438D-AB44-3F86B31D1836" Article="24064" Length="G64" Extra="No" />
       <Straight Id="{EAC92314-C793-4A11-9028-931D7ACBC5DE}" Article="24071" Length="G71" Extra="No" />
       <Straight Id="{0567B9BA-4D27-4878-AFE5-8CD613DDD9EA}" Article="24077" Length="G77" Extra="No" />
       <Straight Id="{0A2BFAA9-6044-4B08-9A0F-CB8D130A9BFB}" Article="24094" Length="G94" Extra="No" />
