@@ -1,5 +1,6 @@
 ﻿using Rail.Tracks.Properties;
 using Rail.Tracks.Trigonometry;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Windows;
@@ -12,22 +13,22 @@ namespace Rail.Tracks
     {
         #region store 
 
-        [XmlAttribute("StraightLength")]
-        public string StraightLengthName { get; set; }
+        [XmlElement("StraightLength")]
+        public Guid StraightLengthId { get; set; }
 
-        [XmlAttribute("TurnoutLength")]
-        public string TurnoutLengthName { get; set; }
+        [XmlElement("TurnoutLength")]
+        public Guid TurnoutLengthId { get; set; }
 
-        [XmlAttribute("TurnoutRadius")]
-        public string TurnoutRadiusName { get; set; }
+        [XmlElement("TurnoutRadius")]
+        public Guid TurnoutRadiusId { get; set; }
 
-        [XmlAttribute("TurnoutAngle")]
-        public string TurnoutAngleName { get; set; }
+        [XmlElement("TurnoutAngle")]
+        public Guid TurnoutAngleId { get; set; }
 
-        [XmlAttribute("TurnoutDirection")]
+        [XmlElement("TurnoutDirection")]
         public TrackDirection TurnoutDirection { get; set; }
 
-        [XmlAttribute("TurnoutDrive")]
+        [XmlElement("TurnoutDrive")]
         public TrackDrive TurnoutDrive { get; set; }
 
         #endregion
@@ -53,46 +54,26 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.StraightLength; } }
 
-        [XmlIgnore, JsonIgnore]
-        public override string Name
-        {
-            get
-            {
-                string drive = this.TurnoutDrive switch
-                {
-                    TrackDrive.Electrical => Resources.TrackDriveElectrical,
-                    TrackDrive.Mechanical => Resources.TrackDriveMechanical,
-                    _ => string.Empty
-                };
-                return TurnoutDirection == TrackDirection.Left ? 
-                    $"{Resources.TrackTurnoutLeft} {drive}" :
-                    $"{Resources.TrackTurnoutRight} {drive}";
-            }
-        }
-
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                string drive = this.TurnoutDrive switch
-                {
-                    TrackDrive.Electrical => Resources.TrackDriveElectrical,
-                    TrackDrive.Mechanical => Resources.TrackDriveMechanical,
-                    _ => string.Empty
-                };
-                return TurnoutDirection == TrackDirection.Left ?
-                    $"{this.Article} {Resources.TrackTurnoutLeft} {drive}" :
-                    $"{this.Article} {Resources.TrackTurnoutRight} {drive}";
-            }
-        }
-
         public override void Update(TrackType trackType)
         {
-            this.StraightLength = GetValue(trackType.Lengths, this.StraightLengthName);
-            this.TurnoutLength = GetValue(trackType.Lengths, this.TurnoutLengthName);
-            this.TurnoutRadius = GetValue(trackType.Radii, this.TurnoutRadiusName);
-            this.TurnoutAngle = GetValue(trackType.Angles, this.TurnoutAngleName);
+            this.StraightLength = GetValue(trackType.Lengths, this.StraightLengthId);
+            this.TurnoutLength = GetValueOrNull(trackType.Lengths, this.TurnoutLengthId);
+            this.TurnoutRadius = GetValue(trackType.Radii, this.TurnoutRadiusId);
+            this.TurnoutAngle = GetValue(trackType.Angles, this.TurnoutAngleId);
+
+            string drive = this.TurnoutDrive switch
+            {
+                TrackDrive.Electrical => Resources.TrackDriveElectrical,
+                TrackDrive.Mechanical => Resources.TrackDriveMechanical,
+                _ => string.Empty
+            };
+            this.Name = TurnoutDirection == TrackDirection.Left ?
+                    $"{Resources.TrackTurnoutLeft} {drive}" :
+                    $"{Resources.TrackTurnoutRight} {drive}";
+            this.Description = TurnoutDirection == TrackDirection.Left ?
+                    $"{this.Article} {Resources.TrackTurnoutLeft} {drive}" :
+                    $"{this.Article} {Resources.TrackTurnoutRight} {drive}";
+            
             base.Update(trackType);
         }
 

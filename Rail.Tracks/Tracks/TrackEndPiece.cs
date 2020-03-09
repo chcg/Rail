@@ -12,22 +12,14 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return 0; } }
 
-        [XmlIgnore, JsonIgnore]
-        public override string Name
-        {
-            get
-            {
-                return $"{Resources.TrackEndPiece}";
-            }
-        }
+        
 
-        [XmlIgnore, JsonIgnore]
-        public override string Description
+        public override void Update(TrackType trackType)
         {
-            get
-            {
-                return $"{this.Article} {Resources.TrackEndPiece}";
-            }
+            this.Name = $"{Resources.TrackEndPiece}";
+            this.Description = $"{this.Article} {Resources.TrackEndPiece}";
+        
+            base.Update(trackType);
         }
 
         protected override Geometry CreateGeometry()

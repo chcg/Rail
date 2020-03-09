@@ -9,24 +9,16 @@ namespace Rail.Tracks
 {
     public class TrackFlex : TrackStraight
     {
-        [XmlIgnore, JsonIgnore]
-        public override string Name
-        {
-            get
-            {
-                return $"{Resources.TrackFlex}";
-            }
-        }
+        
 
-        [XmlIgnore, JsonIgnore]
-        public override string Description
+        public override void Update(TrackType trackType)
         {
-            get
-            {
-                return $"{this.Article} {Resources.TrackFlex}";
-            }
-        }
+            base.Update(trackType);
 
+            this.Name = $"{Resources.TrackFlex}";
+            this.Description = $"{this.Article} {Resources.TrackFlex}";
+        }
+   
         protected override Geometry CreateGeometry()
         {
             return CurvedGeometry(20, 360, CurvedOrientation.Center, new Point());

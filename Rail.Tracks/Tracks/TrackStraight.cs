@@ -1,4 +1,5 @@
 ﻿using Rail.Tracks.Properties;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Windows;
@@ -12,10 +13,10 @@ namespace Rail.Tracks
     {
         #region store 
 
-        [XmlAttribute("Length")]
-        public string LengthName { get; set; }
+        [XmlElement("Length")]
+        public Guid LengthId { get; set; }
 
-        [XmlAttribute("Extra")]
+        [XmlElement("Extra")]
         public TrackExtras Extra { get; set; }
 
         #endregion
@@ -32,46 +33,33 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.Length; } }
 
-        [XmlIgnore, JsonIgnore]
-        public override string Name 
-        { 
-            get 
-            {
-                return this.Extra switch
-                {
-                    TrackExtras.No => $"{Resources.TrackStraight} {LengthName} {Length} mm",
-                    TrackExtras.Circuit => $"{Resources.TrackStraightCircuit}",
-                    TrackExtras.Contact => $"{Resources.TrackStraightContact}",
-                    TrackExtras.Uncoupler => $"{Resources.TrackStraightUncoupler} {Length} mm",
-                    TrackExtras.Isolating => $"{Resources.TrackStraightIsolating} {Length} mm",
-                    TrackExtras.Feeder => $"{Resources.TrackStraightFeeder} {Length} mm",
-                    _ => null
-                    
-                };
-            } 
-        }
-
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                return this.Extra switch
-                {
-                    TrackExtras.No => $"{this.Article} {Resources.TrackStraight} {LengthName} {Length} mm",
-                    TrackExtras.Circuit => $"{this.Article} {Resources.TrackStraightCircuit}",
-                    TrackExtras.Contact => $"{this.Article} {Resources.TrackStraightContact}",
-                    TrackExtras.Uncoupler => $"{this.Article} {Resources.TrackStraightUncoupler} {Length} mm",
-                    TrackExtras.Isolating => $"{this.Article} {Resources.TrackStraightIsolating} {Length} mm",
-                    TrackExtras.Feeder => $"{this.Article} {Resources.TrackStraightFeeder} {Length} mm",
-                    _ => null
-                };
-            }
-        }
-
         public override void Update(TrackType trackType)
         {
-            this.Length = GetValue(trackType.Lengths, this.LengthName);
+            this.Length = GetValue(trackType.Lengths, this.LengthId);
+
+            string lengthName = GetName(trackType.Lengths, this.LengthId);
+            this.Name = this.Extra switch
+            {
+                TrackExtras.No => $"{Resources.TrackStraight} {lengthName} {Length} mm",
+                TrackExtras.Circuit => $"{Resources.TrackStraightCircuit}",
+                TrackExtras.Contact => $"{Resources.TrackStraightContact}",
+                TrackExtras.Uncoupler => $"{Resources.TrackStraightUncoupler} {Length} mm",
+                TrackExtras.Isolating => $"{Resources.TrackStraightIsolating} {Length} mm",
+                TrackExtras.Feeder => $"{Resources.TrackStraightFeeder} {Length} mm",
+                _ => null
+            };
+
+            this.Description = this.Extra switch
+            {
+                TrackExtras.No => $"{this.Article} {Resources.TrackStraight} {lengthName} {Length} mm",
+                TrackExtras.Circuit => $"{this.Article} {Resources.TrackStraightCircuit}",
+                TrackExtras.Contact => $"{this.Article} {Resources.TrackStraightContact}",
+                TrackExtras.Uncoupler => $"{this.Article} {Resources.TrackStraightUncoupler} {Length} mm",
+                TrackExtras.Isolating => $"{this.Article} {Resources.TrackStraightIsolating} {Length} mm",
+                TrackExtras.Feeder => $"{this.Article} {Resources.TrackStraightFeeder} {Length} mm",
+                _ => null
+            };
+            
             base.Update(trackType);
         }
 

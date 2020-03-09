@@ -1,6 +1,8 @@
 ﻿using Rail.Mvvm;
 using Rail.TrackEditor.Controls;
 using Rail.Tracks;
+using System;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -25,8 +27,8 @@ namespace Rail.TrackEditor.ViewModel
         
         protected override void NotifyPropertyChanged(string propertyName)
         {
-            UpdateTrack();
             base.NotifyPropertyChanged(propertyName);
+            UpdateTrack();
         }
 
         public static TrackViewModel Create(TrackBase track, TrackType trackType)
@@ -59,6 +61,51 @@ namespace Rail.TrackEditor.ViewModel
         {
             this.trackBase.Update(this.trackType);
             VisualHelper.InvalidateAll(typeof(TrackControl));
+        }
+
+        protected TrackNamedValueViewModel GetLength(Guid lengthId)
+        {
+            TrackTypeViewModel ttvm = MainViewModel.SelectedTrackTypeViewModel;
+            return ttvm.Lengths.FirstOrDefault(i => i.Id == lengthId);
+        }
+
+        public Guid SetLength(TrackNamedValueViewModel value)
+        {
+            if (value != null)
+            {
+                return value.Id;
+            }
+            return Guid.Empty;
+        }
+
+        protected TrackNamedValueViewModel GetAngle(Guid angleId)
+        {
+            TrackTypeViewModel ttvm = MainViewModel.SelectedTrackTypeViewModel;
+            return ttvm.Angles.FirstOrDefault(i => i.Id == angleId);
+        }
+
+        public Guid SetAngle(TrackNamedValueViewModel value)
+        {
+            if (value != null)
+            {
+                return value.Id;
+            }
+            return Guid.Empty;
+        }
+
+        protected TrackNamedValueViewModel GetRadius(Guid radiusId)
+        {
+            TrackTypeViewModel ttvm = MainViewModel.SelectedTrackTypeViewModel;
+            return ttvm.Radii.FirstOrDefault(i => i.Id == radiusId);
+        }
+
+        public Guid SetRadius(TrackNamedValueViewModel value)
+        {
+            if (value != null)
+            {
+                return value.Id;
+            }
+            return Guid.Empty;
         }
     }
 }

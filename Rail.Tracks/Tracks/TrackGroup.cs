@@ -15,12 +15,6 @@ namespace Rail.Tracks
         public List<TrackGroupItem> GroupItems { get; set; }
 
         [XmlIgnore, JsonIgnore]
-        public override string Name { get { return this.GroupName; } }
-
-        [XmlIgnore, JsonIgnore]
-        public override string Description { get { return this.GroupName; } }
-
-        [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return 0; /* TODO sum length */ } }
 
         [XmlIgnore, JsonIgnore]
@@ -31,7 +25,10 @@ namespace Rail.Tracks
 
         public override void Update(TrackType trackType)
         {
-            this.RailWidth = trackType.Parameter.RailWidth; 
+            this.RailWidth = trackType.Parameter.RailWidth;
+
+            this.Name = this.GroupName;
+            this.Description = this.GroupName;
         }
 
         public override void RenderTrack(DrawingContext drawingContext, Brush trackBrush)

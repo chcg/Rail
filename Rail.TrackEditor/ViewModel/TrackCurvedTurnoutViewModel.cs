@@ -26,40 +26,40 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.Article = value.Trim(); NotifyPropertyChanged(nameof(Article)); }
         }
 
-        public string InnerLength
+        public TrackNamedValueViewModel InnerLength
         {
-            get { return this.track.InnerLengthName; }
-            set { this.track.InnerLengthName = value; NotifyPropertyChanged(nameof(InnerLength)); }
+            get { return GetLength(this.track.InnerLengthId); }
+            set { this.track.InnerLengthId = value.Id; NotifyPropertyChanged(nameof(InnerLength)); }
         }
 
-        public string InnerRadius
+        public TrackNamedValueViewModel InnerRadius
         {
-            get { return this.track.InnerRadiusName; }
-            set { this.track.InnerRadiusName = value; NotifyPropertyChanged(nameof(InnerRadius)); }
+            get { return GetRadius(this.track.InnerRadiusId); }
+            set { this.track.InnerRadiusId = value.Id; NotifyPropertyChanged(nameof(InnerRadius)); }
         }
 
-        public string InnerAngle
+        public TrackNamedValueViewModel InnerAngle
         {
-            get { return this.track.InnerAngleName; }
-            set { this.track.InnerAngleName = value; NotifyPropertyChanged(nameof(InnerAngle)); }
+            get { return GetAngle(this.track.InnerAngleId); }
+            set { this.track.InnerAngleId = value.Id; NotifyPropertyChanged(nameof(InnerAngle)); }
         }
 
-        public string OuterLength
+        public TrackNamedValueViewModel OuterLength
         {
-            get { return this.track.OuterLengthName; }
-            set { this.track.OuterLengthName = value; NotifyPropertyChanged(nameof(OuterLength)); }
+            get { return GetLength(this.track.OuterLengthId); }
+            set { this.track.OuterLengthId = value.Id; NotifyPropertyChanged(nameof(OuterLength)); }
         }
 
-        public string OuterRadius
+        public TrackNamedValueViewModel OuterRadius
         {
-            get { return this.track.OuterRadiusName; }
-            set { this.track.OuterRadiusName = value; NotifyPropertyChanged(nameof(OuterRadius)); }
+            get { return GetRadius(this.track.OuterRadiusId); }
+            set { this.track.OuterRadiusId = value.Id; NotifyPropertyChanged(nameof(OuterRadius)); }
         }
 
-        public string OuterAngle
+        public TrackNamedValueViewModel OuterAngle
         {
-            get { return this.track.OuterAngleName; }
-            set { this.track.OuterAngleName = value; NotifyPropertyChanged(nameof(OuterAngle)); }
+            get { return GetAngle(this.track.OuterAngleId); }
+            set { this.track.OuterAngleId = value.Id; NotifyPropertyChanged(nameof(OuterAngle)); }
         }
 
         public TrackDirection TurnoutDirection

@@ -1,4 +1,5 @@
 ﻿using Rail.Tracks.Properties;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Windows;
@@ -11,10 +12,10 @@ namespace Rail.Tracks
     {
         #region store
 
-        [XmlAttribute("Length")]
-        public string LengthName { get; set; }
+        [XmlElement("Length")]
+        public Guid LengthId { get; set; }
 
-        [XmlAttribute("DockType")]
+        [XmlElement("DockType")]
         public string DockType { get; set; }
 
         #endregion
@@ -28,29 +29,14 @@ namespace Rail.Tracks
 
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.Length; } }
-
-
-        [XmlIgnore, JsonIgnore]
-        public override string Name
-        {
-            get
-            {
-                return $"{Resources.TrackAdapter}";
-            }
-        }
-
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                return $"{this.Article} {Resources.TrackAdapter}";
-            }
-        }
-
+        
         public override void Update(TrackType trackType)
         {
-            this.Length = GetValue(trackType.Lengths, this.LengthName);
+            this.Length = GetValue(trackType.Lengths, this.LengthId);
+
+            this.Name = $"{Resources.TrackAdapter}";
+            this.Description = $"{this.Article} {Resources.TrackAdapter}";
+
             base.Update(trackType);
         }
 

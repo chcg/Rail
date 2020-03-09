@@ -26,24 +26,22 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.Article = value.Trim(); NotifyPropertyChanged(nameof(Article)); }
         }
 
-        public string LengthA
+        public TrackNamedValueViewModel LengthA
         {
-            get { return this.track.LengthAName; }
-            set { this.track.LengthAName = value; NotifyPropertyChanged(nameof(LengthA)); }
+            get { return GetLength(this.track.LengthAId); }
+            set { this.track.LengthAId = value.Id; NotifyPropertyChanged(nameof(LengthA)); }
         }
         
-        public string LengthB
+        public TrackNamedValueViewModel LengthB
         {
-            get { return this.track.LengthBName; }
-            set { this.track.LengthBName = value; NotifyPropertyChanged(nameof(LengthB)); }
+            get { return GetLength(this.track.LengthBId); }
+            set { this.track.LengthBId = value.Id; NotifyPropertyChanged(nameof(LengthB)); }
         }
         
-        public string CrossingAngle
+        public TrackNamedValueViewModel CrossingAngle
         {
-            get { return this.track.CrossingAngleName; }
-            set { this.track.CrossingAngleName = value; NotifyPropertyChanged(nameof(CrossingAngle)); }
+            get { return GetAngle(this.track.CrossingAngleId); }
+            set { this.track.CrossingAngleId = value.Id; NotifyPropertyChanged(nameof(CrossingAngle)); }
         }
-
-
     }
 }

@@ -26,46 +26,46 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.Article = value.Trim(); NotifyPropertyChanged(nameof(Article)); }
         }
 
-        public string StraightLength
+        public TrackNamedValueViewModel StraightLength
         {
-            get { return this.track.StraightLengthName; }
-            set { this.track.StraightLengthName = value; NotifyPropertyChanged(nameof(StraightLength)); }
+            get { return GetLength(this.track.StraightLengthId); }
+            set { this.track.StraightLengthId = value.Id; NotifyPropertyChanged(nameof(StraightLength)); }
         }
 
-        public string LeftTurnoutLength
+        public TrackNamedValueViewModel LeftTurnoutLength
         {
-            get { return this.track.LeftTurnoutLengthName; }
-            set { this.track.LeftTurnoutLengthName = value; NotifyPropertyChanged(nameof(LeftTurnoutLength)); }
+            get { return GetLength(this.track.LeftTurnoutLengthId); }
+            set { this.track.LeftTurnoutLengthId = value.Id; NotifyPropertyChanged(nameof(LeftTurnoutLength)); }
         }
 
-        public string LeftTurnoutRadius
+        public TrackNamedValueViewModel LeftTurnoutRadius
         {
-            get { return this.track.LeftTurnoutRadiusName; }
-            set { this.track.LeftTurnoutRadiusName = value; NotifyPropertyChanged(nameof(LeftTurnoutRadius)); }
+            get { return GetRadius(this.track.LeftTurnoutRadiusId); }
+            set { this.track.LeftTurnoutRadiusId = value.Id; NotifyPropertyChanged(nameof(LeftTurnoutRadius)); }
         }
 
-        public string LeftTurnoutAngle
+        public TrackNamedValueViewModel LeftTurnoutAngle
         {
-            get { return this.track.LeftTurnoutAngleName; }
-            set { this.track.LeftTurnoutAngleName = value; NotifyPropertyChanged(nameof(LeftTurnoutAngle)); }
+            get { return GetAngle(this.track.LeftTurnoutAngleId); }
+            set { this.track.LeftTurnoutAngleId = value.Id; NotifyPropertyChanged(nameof(LeftTurnoutAngle)); }
         }
 
-        public string RightTurnoutLength
+        public TrackNamedValueViewModel RightTurnoutLength
         {
-            get { return this.track.RightTurnoutLengthName; }
-            set { this.track.RightTurnoutLengthName = value; NotifyPropertyChanged(nameof(RightTurnoutLength)); }
+            get { return GetLength(this.track.RightTurnoutLengthId); }
+            set { this.track.RightTurnoutLengthId = value.Id; NotifyPropertyChanged(nameof(RightTurnoutLength)); }
         }
 
-        public string RightTurnoutRadius
+        public TrackNamedValueViewModel RightTurnoutRadius
         {
-            get { return this.track.RightTurnoutRadiusName; }
-            set { this.track.RightTurnoutRadiusName = value; NotifyPropertyChanged(nameof(RightTurnoutRadius)); }
+            get { return GetRadius(this.track.RightTurnoutRadiusId); }
+            set { this.track.RightTurnoutRadiusId = value.Id; NotifyPropertyChanged(nameof(RightTurnoutRadius)); }
         }
 
-        public string RightTurnoutAngle
+        public TrackNamedValueViewModel RightTurnoutAngle
         {
-            get { return this.track.RightTurnoutAngleName; }
-            set { this.track.RightTurnoutAngleName = value; NotifyPropertyChanged(nameof(RightTurnoutAngle)); }
+            get { return GetAngle(this.track.RightTurnoutAngleId); }
+            set { this.track.RightTurnoutAngleId = value.Id; NotifyPropertyChanged(nameof(RightTurnoutAngle)); }
         }
 
         public TrackDrive TurnoutDrive

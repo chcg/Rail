@@ -20,6 +20,11 @@ namespace Rail.TrackEditor.ViewModel
 
         public TrackNamedValue NamedValue { get { return this.namedValue; } }
 
+        public Guid Id
+        {
+            get { return this.namedValue.Id; }
+        }
+
         public string Name
         {
             get { return this.namedValue.Name; }

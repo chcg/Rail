@@ -6,25 +6,18 @@ namespace Rail.Tracks
 {
     public class TrackStraightAdjustment : TrackStraight
     {
-        [XmlAttribute("LengthTo")]
+        [XmlElement("LengthTo")]
         public double LengthTo { get; set; }
 
-        [XmlIgnore, JsonIgnore]
-        public override string Name
-        {
-            get
-            {
-                return $"{Resources.TrackStraightAdjustment} {Length} - {LengthTo} mm";
-            }
-        }
+        
 
-        [XmlIgnore, JsonIgnore]
-        public override string Description
+        public override void Update(TrackType trackType)
         {
-            get
-            {
-                return $"{this.Article} {Resources.TrackStraightAdjustment} {Length} - {LengthTo} mm";
-            }
+            base.Update(trackType);
+
+            this.Name = $"{Resources.TrackStraightAdjustment} {Length} - {LengthTo} mm";
+            this.Description = $"{this.Article} {Resources.TrackStraightAdjustment} {Length} - {LengthTo} mm";
+            
         }
     }
 }

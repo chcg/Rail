@@ -40,14 +40,14 @@ namespace Rail.Tracks
         protected Brush ballastBrush;
 
 
-        [XmlAttribute("Article")]
+        [XmlElement("Article")]
         public string Article { get; set; }
 
         /// <summary>
         /// additional articles in package
         /// </summary>
         /// <remarks>komma separated article list</remarks>
-        [XmlAttribute("AddArticles")]
+        [XmlElement("AddArticles")]
         public string AddArticles { get; set; }        
                 
         [XmlIgnore, JsonIgnore]
@@ -439,36 +439,64 @@ namespace Rail.Tracks
         //    return (Point)((a - b) / -2);
         //}
 
-        protected double GetValue(List<TrackNamedValue> list, string value)
+        protected double GetValue(List<TrackNamedValue> list, string id)
         {
-            if (String.IsNullOrEmpty(value))
+            if (Guid.TryParse(id, out Guid guid))
             {
-                throw new ArgumentNullException("value", $"Error in article {this.Article}");
+                return list.FirstOrDefault(i => i.Id == guid)?.Value ??  0;
             }
-            if (list == null || Char.IsDigit(value[0]))
+            if (String.IsNullOrEmpty(id))
             {
-                return double.Parse(value, new CultureInfo("en-US"));
+                return 0;
+                //throw new ArgumentNullException("value", $"Error in article {this.Article}");
+            }
+            if (list == null || Char.IsDigit(id[0]))
+            {
+                return double.Parse(id, new CultureInfo("en-US"));
             }
             else
             {
-                return list.First(i => i.Name == value).Value;
+                return list.First(i => i.Name == id).Value;
             }
         }
 
-        protected string GetName(string value)
+        protected double GetValue(List<TrackNamedValue> list, Guid id)
         {
-            if (String.IsNullOrEmpty(value))
+            return list.First(i => i.Id == id).Value;
+        }
+
+        protected double GetValueOrNull(List<TrackNamedValue> list, Guid id)
+        {
+            if (id == Guid.Empty)
             {
-                throw new ArgumentNullException("value", $"Error in article {this.Article}");
+                return 0;
             }
-            if (Char.IsDigit(value[0]))
+            return GetValue(list, id);
+        }
+
+        protected string GetName(List<TrackNamedValue> list, string id)
+        {
+            if (Guid.TryParse(id, out Guid guid))
+            {
+                return list.FirstOrDefault(i => i.Id == guid)?.Name ?? string.Empty;
+            }
+            if (String.IsNullOrEmpty(id))
+            {
+                return string.Empty;
+            }
+            if (Char.IsDigit(id[0]))
             {
                 return string.Empty;
             }
             else
             {
-                return value;
+                return id;
             }
+        }
+
+        protected string GetName(List<TrackNamedValue> list, Guid id)
+        {
+            return list.FirstOrDefault(i => i.Id == id)?.Name ?? "unknown";
         }
     }
 }

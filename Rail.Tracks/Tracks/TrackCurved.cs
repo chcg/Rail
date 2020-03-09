@@ -1,5 +1,6 @@
 ﻿using Rail.Tracks.Properties;
 using Rail.Tracks.Trigonometry;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Windows;
@@ -12,13 +13,13 @@ namespace Rail.Tracks
     {
         #region store 
         
-        [XmlAttribute("Radius")]
-        public string RadiusName { get; set; }
+        [XmlElement("Radius")]
+        public Guid RadiusId { get; set; }
 
-        [XmlAttribute("Angle")]
-        public string AngleName { get; set; }
+        [XmlElement("Angle")]
+        public Guid AngleId { get; set; }
 
-        [XmlAttribute("Extra")]
+        [XmlElement("Extra")]
         public TrackExtras Extra { get; set; }
 
         #endregion
@@ -38,47 +39,33 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return 0; /* TODO calc length */  } }
 
-        [XmlIgnore, JsonIgnore]
-        public override string Name
-        {
-            get
-            {
-                return this.Extra switch
-                {
-                    TrackExtras.No => $"{Resources.TrackCurved} {RadiusName} {Radius} mm {Angle}°",
-                    TrackExtras.Circuit => $"{Resources.TrackCurvedCircuit} {RadiusName} {Radius} mm {Angle}°",
-                    TrackExtras.Contact => $"{Resources.TrackCurvedContact} {RadiusName} {Radius} mm {Angle}°",
-                    TrackExtras.Uncoupler => $"{Resources.TrackCurvedUncoupler} {RadiusName} {Radius} mm {Angle}°",
-                    TrackExtras.Isolating => $"{Resources.TrackCurvedIsolating} {RadiusName} {Radius} mm {Angle}°",
-                    TrackExtras.Feeder => $"{Resources.TrackCurvedFeeder} {RadiusName} {Radius} mm {Angle}°",
-                    _ => null
-
-                };
-            }
-        }
-
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                return this.Extra switch
-                {
-                    TrackExtras.No => $"{this.Article} {Resources.TrackCurved} {Radius} {Radius} mm {Angle}°",
-                    TrackExtras.Circuit => $"{this.Article} {Resources.TrackCurvedCircuit} {RadiusName} {Radius} mm {Angle}°",
-                    TrackExtras.Contact => $"{this.Article} {Resources.TrackCurvedContact} {RadiusName} {Radius} mm {Angle}°",
-                    TrackExtras.Uncoupler => $"{this.Article} {Resources.TrackCurvedUncoupler} {RadiusName} {Radius} mm {Angle}°",
-                    TrackExtras.Isolating => $"{this.Article} {Resources.TrackCurvedIsolating} {RadiusName} {Radius} mm {Angle}°",
-                    TrackExtras.Feeder => $"{this.Article} {Resources.TrackCurvedFeeder} {RadiusName} {Radius} mm {Angle}°",
-                    _ => null
-                };
-            }
-        }
-
         public override void Update(TrackType trackType)
         {
-            this.Radius = GetValue(trackType.Radii, this.RadiusName);
-            this.Angle = GetValue(trackType.Angles, this.AngleName);
+            this.Radius = GetValue(trackType.Radii, this.RadiusId);
+            this.Angle = GetValue(trackType.Angles, this.AngleId);
+
+            this.Name = this.Extra switch
+                {
+                    TrackExtras.No => $"{Resources.TrackCurved} {RadiusId} {Radius} mm {Angle}°",
+                    TrackExtras.Circuit => $"{Resources.TrackCurvedCircuit} {RadiusId} {Radius} mm {Angle}°",
+                    TrackExtras.Contact => $"{Resources.TrackCurvedContact} {RadiusId} {Radius} mm {Angle}°",
+                    TrackExtras.Uncoupler => $"{Resources.TrackCurvedUncoupler} {RadiusId} {Radius} mm {Angle}°",
+                    TrackExtras.Isolating => $"{Resources.TrackCurvedIsolating} {RadiusId} {Radius} mm {Angle}°",
+                    TrackExtras.Feeder => $"{Resources.TrackCurvedFeeder} {RadiusId} {Radius} mm {Angle}°",
+                    _ => null
+                };
+
+            this.Description = this.Extra switch
+                {
+                    TrackExtras.No => $"{this.Article} {Resources.TrackCurved} {Radius} {Radius} mm {Angle}°",
+                    TrackExtras.Circuit => $"{this.Article} {Resources.TrackCurvedCircuit} {RadiusId} {Radius} mm {Angle}°",
+                    TrackExtras.Contact => $"{this.Article} {Resources.TrackCurvedContact} {RadiusId} {Radius} mm {Angle}°",
+                    TrackExtras.Uncoupler => $"{this.Article} {Resources.TrackCurvedUncoupler} {RadiusId} {Radius} mm {Angle}°",
+                    TrackExtras.Isolating => $"{this.Article} {Resources.TrackCurvedIsolating} {RadiusId} {Radius} mm {Angle}°",
+                    TrackExtras.Feeder => $"{this.Article} {Resources.TrackCurvedFeeder} {RadiusId} {Radius} mm {Angle}°",
+                    _ => null
+                };
+
             base.Update(trackType);
         }
 

@@ -1,5 +1,6 @@
 ﻿using Rail.Tracks.Properties;
 using Rail.Tracks.Trigonometry;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Windows;
@@ -12,16 +13,16 @@ namespace Rail.Tracks
     {
         #region store
 
-        [XmlAttribute("Length")]
-        public string LengthName { get; set; }
+        [XmlElement("Length")]
+        public Guid LengthId { get; set; }
 
-        [XmlAttribute("CrossingAngle")]
-        public string CrossingAngleName { get; set; }
+        [XmlElement("CrossingAngle")]
+        public Guid CrossingAngleId { get; set; }
 
-        [XmlAttribute("SlipRadius")]
-        public string SlipRadiusName { get; set; }
+        [XmlElement("SlipRadius")]
+        public Guid SlipRadiusId { get; set; }
 
-        [XmlAttribute("TurnoutDrive")]
+        [XmlElement("TurnoutDrive")]
         public TrackDrive TurnoutDrive { get; set; }
 
         #endregion
@@ -45,34 +46,17 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.Length; } }
 
-
-        [XmlIgnore, JsonIgnore]
-        public override string Name
-        {
-            get
-            {
-                string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
-                              (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
-                return $"{Resources.TrackDoubleSlipSwitch} {drive}";
-            }
-        }
-
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
-                              (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
-                return $"{this.Article} {Resources.TrackDoubleSlipSwitch} {drive}";
-            }
-        }
-
         public override void Update(TrackType trackType)
         {
-            this.Length = GetValue(trackType.Lengths, this.LengthName);
-            this.CrossingAngle = GetValue(trackType.Angles, this.CrossingAngleName);
-            this.SlipRadius = GetValue(trackType.Radii, this.SlipRadiusName);
+            this.Length = GetValue(trackType.Lengths, this.LengthId);
+            this.CrossingAngle = GetValue(trackType.Angles, this.CrossingAngleId);
+            this.SlipRadius = GetValue(trackType.Radii, this.SlipRadiusId);
+
+            string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
+                              (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
+            this.Name = $"{Resources.TrackDoubleSlipSwitch} {drive}";
+            this.Description = $"{this.Article} {Resources.TrackDoubleSlipSwitch} {drive}";
+            
             base.Update(trackType);
         }
 

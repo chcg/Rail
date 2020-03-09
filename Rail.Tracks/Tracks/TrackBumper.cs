@@ -12,10 +12,10 @@ namespace Rail.Tracks
     {
         #region store
 
-        [XmlAttribute("Length")]
-        public string LengthName { get; set; }
+        [XmlElement("Length")]
+        public Guid LengthId { get; set; }
 
-        [XmlAttribute("Lantern")]
+        [XmlElement("Lantern")]
         public bool Lantern { get; set; }
 
         #endregion
@@ -32,29 +32,14 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.Length; } }
 
-        [XmlIgnore, JsonIgnore]
-        public override string Name
-        {
-            get
-            {
-                string lantern = this.Lantern ? Resources.TrackWithLantern : String.Empty;
-                return $"{Resources.TrackBumper} {lantern}";
-            }
-        }
-
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                string lantern = this.Lantern ? Resources.TrackWithLantern : String.Empty;
-                return $"{this.Article} {Resources.TrackBumper} {lantern}";
-            }
-        }
-
         public override void Update(TrackType trackType)
         {
-            this.Length = GetValue(trackType.Lengths, this.LengthName);
+            this.Length = GetValue(trackType.Lengths, this.LengthId);
+
+            string lantern = this.Lantern ? Resources.TrackWithLantern : String.Empty;
+            this.Name = $"{Resources.TrackBumper} {lantern}";
+            this.Description = $"{this.Article} {Resources.TrackBumper} {lantern}";
+
             base.Update(trackType);
         }
 

@@ -10,34 +10,24 @@ namespace Rail.Tracks
     public class TrackTransferTable : TrackStraight
     {
 
-        [XmlAttribute("RailsA")]
+        [XmlElement("RailsA")]
         public int RailsA { get; set; }
 
-        [XmlAttribute("RailsB")]
+        [XmlElement("RailsB")]
         public int RailsB { get; set; }
 
-        [XmlAttribute("Width")]
+        [XmlElement("Width")]
         public double Width { get; set; }
 
-        [XmlAttribute("Height")]
+        [XmlElement("Height")]
         public double Height { get; set; }
 
-        [XmlIgnore, JsonIgnore]
-        public override string Name
+        public override void Update(TrackType trackType)
         {
-            get
-            {
-                return $"{Resources.TrackTransferTable}";
-            }
-        }
+            base.Update(trackType);
 
-        [XmlIgnore, JsonIgnore]
-        public override string Description
-        {
-            get
-            {
-                return $"{this.Article} {Resources.TrackTransferTable}";
-            }
+            this.Name = $"{Resources.TrackTransferTable}";
+            this.Description = $"{this.Article} {Resources.TrackTransferTable}";
         }
 
         protected override Geometry CreateGeometry()

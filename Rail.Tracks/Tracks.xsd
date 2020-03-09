@@ -33,200 +33,214 @@
                     <xs:element name="SleeperWidth" type="xs:decimal" />
                     <xs:element name="BallastType" type="BallastType" />
                     <xs:element name="BallastWidth" type="xs:decimal" minOccurs="0" />
-                    <xs:element name="WagonMaxLength" type="xs:decimal" />
                     <xs:element name="WagonMaxWidth" type="xs:decimal" />
                     <xs:element name="WagonMaxBogieDistance" type="xs:decimal" />
+                    <xs:element name="WagonMaxBogieFrontDistance" type="xs:decimal" />
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
               <xs:element minOccurs="0" name="Radii">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element maxOccurs="unbounded" name="Radius">
-                      <xs:complexType>
-                        <xs:attribute name="Name" type="xs:string" use="required" />
-                        <xs:attribute name="Value" type="xs:decimal" use="required" />
-                      </xs:complexType>
-                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Radius" type="NamedValue"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
               <xs:element minOccurs="0" name="Lengths">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element maxOccurs="unbounded" name="Length">
-                      <xs:complexType>
-                        <xs:attribute name="Name" type="xs:string" use="required" />
-                        <xs:attribute name="Value" type="xs:decimal" use="required" />
-                      </xs:complexType>
-                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Length" type="NamedValue"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
               <xs:element minOccurs="0" name="Angles">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element maxOccurs="unbounded" name="Angle">
-                      <xs:complexType>
-                        <xs:attribute name="Name" type="xs:string" use="required" />
-                        <xs:attribute name="Value" type="xs:decimal" use="required" />
-                      </xs:complexType>
-                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Angle" type="NamedValue"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
               <xs:element minOccurs="0" name="Tracks">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:choice maxOccurs="unbounded">
+                    <xs:choice minOccurs="0" maxOccurs="unbounded">
                       <xs:element maxOccurs="unbounded" name="Straight">
-                        <xs:complexType>
+                        <xs:complexType>                          
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:string" />
+                            <xs:element name="Length" type="Guid" />
+                            <xs:element name="Extra" type="Extras" minOccurs="0" />
+                          </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />
-                          <xs:attribute name="Article" type="xs:string" use="required" />
-                          <xs:attribute name="Length" type="xs:string" use="required" />
-                          <xs:attribute name="Extra" type="Extras" use="optional" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="Curved">
                         <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:string" />
+                            <xs:element name="Radius" type="Guid" />
+                            <xs:element name="Angle" type="Guid" />
+                            <xs:element name="Extra" type="Extras" minOccurs="0" />
+                          </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />
-                          <xs:attribute name="Article" type="xs:string" use="required" />
-                          <xs:attribute name="Radius" type="xs:string" use="required" />
-                          <xs:attribute name="Angle" type="xs:string" use="required" />
-                          <xs:attribute name="Extra" type="Extras" use="optional" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="Turnout">
                         <xs:complexType>
-                          <xs:attribute name="Id" type="Guid" use="required" />
-                          <xs:attribute name="Article" type="xs:string" use="required" />
-                          <xs:attribute name="StraightLength" type="xs:string" use="required" />
-                          <xs:attribute name="TurnoutLength" type="xs:string" use="required" />
-                          <xs:attribute name="TurnoutRadius" type="xs:string" use="required" />
-                          <xs:attribute name="TurnoutAngle" type="xs:string" use="required" />
-                          <xs:attribute name="TurnoutDirection" type="Direction" use="required" />
-                          <xs:attribute name="TurnoutDrive" type="Drive" use="optional" />
-                          <xs:attribute name="AddArticles" type="xs:string" use="optional" />
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:string" />
+                            <xs:element name="StraightLength" type="Guid" />
+                            <xs:element name="TurnoutLength" type="Guid" />
+                            <xs:element name="TurnoutRadius" type="Guid" />
+                            <xs:element name="TurnoutAngle" type="Guid" />
+                            <xs:element name="TurnoutDirection" type="Direction" />
+                            <xs:element name="TurnoutDrive" type="Drive" minOccurs="0" />
+                            <xs:element name="AddArticles" type="xs:string" minOccurs="0" />
+                          </xs:sequence>
+                          <xs:attribute name="Id" type="Guid" use="required" />                          
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="CurvedTurnout">
                         <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:string" />
+                            <xs:element name="InnerLength" type="Guid" />
+                            <xs:element name="InnerRadius" type="Guid" />
+                            <xs:element name="InnerAngle" type="Guid" />
+                            <xs:element name="OuterLength" type="Guid" />
+                            <xs:element name="OuterRadius" type="Guid" />
+                            <xs:element name="OuterAngle" type="Guid" />
+                            <xs:element name="TurnoutDirection" type="Direction" />
+                            <xs:element name="TurnoutDrive" type="Drive" minOccurs="0" />
+                            <xs:element name="AddArticles" type="xs:string" minOccurs="0" />
+                          </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />
-                          <xs:attribute name="Article" type="xs:string" use="required" />
-                          <xs:attribute name="InnerLength" type="xs:string" use="required" />
-                          <xs:attribute name="InnerRadius" type="xs:string" use="required" />
-                          <xs:attribute name="InnerAngle" type="xs:string" use="required" />
-                          <xs:attribute name="OuterLength" type="xs:string" use="required" />
-                          <xs:attribute name="OuterRadius" type="xs:string" use="required" />
-                          <xs:attribute name="OuterAngle" type="xs:string" use="required" />
-                          <xs:attribute name="TurnoutDirection" type="Direction" use="required" />
-                          <xs:attribute name="TurnoutDrive" type="Drive" use="optional" />
-                          <xs:attribute name="AddArticles" type="xs:string" use="optional" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="DoubleSlipSwitch">
                         <xs:complexType>
-                          <xs:attribute name="Id" type="Guid" use="required" />
-                          <xs:attribute name="Article" type="xs:string" use="required" />
-                          <xs:attribute name="Length" type="xs:string" use="required" />
-                          <xs:attribute name="CrossingAngle" type="xs:string" use="required" />
-                          <xs:attribute name="SlipRadius" type="xs:string" use="required" />
-                          <xs:attribute name="TurnoutDrive" type="Drive" use="optional" />
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:string" />
+                            <xs:element name="Length" type="Guid" />
+                            <xs:element name="CrossingAngle" type="Guid" />
+                            <xs:element name="SlipRadius" type="Guid" />
+                            <xs:element name="TurnoutDrive" type="Drive" minOccurs="0" />
+                          </xs:sequence>
+                          <xs:attribute name="Id" type="Guid" use="required" />                          
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="ThreeWayTurnout">
                         <xs:complexType>
-                          <xs:attribute name="Id" type="Guid" use="required" />
-                          <xs:attribute name="Article" type="xs:unsignedShort" use="required" />
-                          <xs:attribute name="StraightLength" type="xs:string" use="required" />
-                          <xs:attribute name="LeftTurnoutLength" type="xs:string" use="required" />
-                          <xs:attribute name="LeftTurnoutRadius" type="xs:string" use="required" />
-                          <xs:attribute name="LeftTurnoutAngle" type="xs:string" use="required" />
-                          <xs:attribute name="RightTurnoutLength" type="xs:string" use="required" />
-                          <xs:attribute name="RightTurnoutRadius" type="xs:string" use="required" />
-                          <xs:attribute name="RightTurnoutAngle" type="xs:string" use="required" />
-                          <xs:attribute name="TurnoutDrive" type="Drive" use="optional" />
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:unsignedShort" />
+                            <xs:element name="StraightLength" type="Guid" />
+                            <xs:element name="LeftTurnoutLength" type="Guid" />
+                            <xs:element name="LeftTurnoutRadius" type="Guid" />
+                            <xs:element name="LeftTurnoutAngle" type="Guid" />
+                            <xs:element name="RightTurnoutLength" type="Guid" />
+                            <xs:element name="RightTurnoutRadius" type="Guid" />
+                            <xs:element name="RightTurnoutAngle" type="Guid" />
+                            <xs:element name="TurnoutDrive" type="Drive" minOccurs="0" />
+                          </xs:sequence>
+                          <xs:attribute name="Id" type="Guid" use="required" />                          
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="YTurnout">
                         <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:string" />
+                            <xs:element name="LeftTurnoutLength" type="Guid" />
+                            <xs:element name="LeftTurnoutRadius" type="Guid"  />
+                            <xs:element name="LeftTurnoutAngle" type="Guid" />
+                            <xs:element name="RightTurnoutLength" type="Guid" />
+                            <xs:element name="RightTurnoutRadius" type="Guid" />
+                            <xs:element name="RightTurnoutAngle" type="Guid" />
+                            <xs:element name="TurnoutDrive" type="Drive" minOccurs="0" />
+                          </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />
-                          <xs:attribute name="Article" type="xs:string" use="required" />
-                          <xs:attribute name="LeftTurnoutLength" type="xs:string" use="required" />
-                          <xs:attribute name="LeftTurnoutRadius" type="xs:string" use="required" />
-                          <xs:attribute name="LeftTurnoutAngle" type="xs:string" use="required" />
-                          <xs:attribute name="RightTurnoutLength" type="xs:string" use="required" />
-                          <xs:attribute name="RightTurnoutRadius" type="xs:string" use="required" />
-                          <xs:attribute name="RightTurnoutAngle" type="xs:string" use="required" />
-                          <xs:attribute name="TurnoutDrive" type="Drive" use="optional" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="Crossing">
                         <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:string" />
+                            <xs:element name="LengthA" type="Guid" />
+                            <xs:element name="LengthB" type="Guid" />
+                            <xs:element name="CrossingAngle" type="Guid" />
+                          </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />
-                          <xs:attribute name="Article" type="xs:string" use="required" />
-                          <xs:attribute name="LengthA" type="xs:string" use="required" />
-                          <xs:attribute name="LengthB" type="xs:string" use="required" />
-                          <xs:attribute name="CrossingAngle" type="xs:string" use="required" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="StraightAdjustment">
                         <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:string" />
+                            <xs:element name="Length" type="Guid" />
+                            <xs:element name="LengthTo" type="Guid" />
+                          </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />
-                          <xs:attribute name="Article" type="xs:string" use="required" />
-                          <xs:attribute name="Length" type="xs:decimal" use="required" />
-                          <xs:attribute name="LengthTo" type="xs:decimal" use="required" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="Flex">
                         <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:string" />
+                            <xs:element name="Length" type="Guid" />
+                          </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />
-                          <xs:attribute name="Article" type="xs:string" use="required" />
-                          <xs:attribute name="Length" type="xs:string" use="required" />
-                          <xs:attribute name="ViewType" type="xs:string" use="optional" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="Bumper">
                         <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:string" />
+                            <xs:element name="Length" type="Guid" />
+                            <xs:element name="Lantern" type="xs:boolean" minOccurs="0" default="false" />
+                          </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />
-                          <xs:attribute name="Article" type="xs:string" use="required" />
-                          <xs:attribute name="Length" type="xs:string" use="required" />
-                          <xs:attribute name="Lantern" type="xs:boolean" use="optional" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="EndPiece">
                         <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:string" />
+                          </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />
-                          <xs:attribute name="Article" type="xs:string" use="required" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="Adapter">
                         <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:string" />
+                            <xs:element name="Length" type="Guid" />
+                            <xs:element name="DockType" type="xs:string" />
+                          </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />
-                          <xs:attribute name="Article" type="xs:string" use="required" />
-                          <xs:attribute name="Length" type="xs:string" use="required" />
-                          <xs:attribute name="DockType" type="xs:string" use="required" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="Turntable">
                         <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:string" />
+                            <xs:element name="OuterRadius" type="xs:decimal" />
+                            <xs:element name="InnerRadius" type="xs:decimal" />
+                            <xs:element name="Angle" type="Guid" />
+                            <xs:element name="RailNum" type="xs:unsignedByte" />
+                          </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />
-                          <xs:attribute name="Article" type="xs:string" use="required" />
-                          <xs:attribute name="OuterRadius" type="xs:unsignedByte" use="required" />
-                          <xs:attribute name="InnerRadius" type="xs:decimal" use="required" />
-                          <xs:attribute name="Angle" type="xs:string" use="required" />
-                          <xs:attribute name="RailNum" type="xs:unsignedByte" use="required" />
                         </xs:complexType>
                       </xs:element>
                       <xs:element maxOccurs="unbounded" name="TransferTable">
                         <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:unsignedInt" />
+                            <xs:element name="RailsA" type="Guid" />
+                            <xs:element name="RailsB" type="Guid" />
+                            <xs:element name="Width" type="Guid" />
+                            <xs:element name="Height" type="Guid" />
+                            <xs:element name="Length" type="Guid" />
+                          </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />
-                          <xs:attribute name="Article" type="xs:unsignedInt" use="required" />
-                          <xs:attribute name="RailsA" type="xs:unsignedByte" use="required" />
-                          <xs:attribute name="RailsB" type="xs:unsignedByte" use="required" />
-                          <xs:attribute name="Width" type="xs:unsignedShort" use="required" />
-                          <xs:attribute name="Height" type="xs:unsignedShort" use="required" />
-                          <xs:attribute name="Length" type="xs:unsignedShort" use="required" />
                         </xs:complexType>
                       </xs:element>
                     </xs:choice>
@@ -236,7 +250,7 @@
               <xs:element minOccurs="0" name="Groups">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element maxOccurs="unbounded" name="Group">
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Group">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element minOccurs="0" name="Name">
@@ -308,7 +322,13 @@
       <xs:attribute name="Version" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-
+  
+  <xs:complexType name="NamedValue">
+    <xs:attribute name="Id" type="Guid" use="optional" />
+    <xs:attribute name="Name" type="xs:string" use="required" />
+    <xs:attribute name="Value" type="xs:decimal" use="required" />
+  </xs:complexType>
+  
   <xs:simpleType name="Gauge" >
     <xs:restriction base="xs:string">
       <xs:enumeration value="T" />
@@ -379,7 +399,7 @@
 
   <xs:simpleType name="Guid">
     <xs:restriction base="xs:string">
-      <xs:pattern value="\{?[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}\}?"/>
+      <xs:pattern value="[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"/>
     </xs:restriction>
   </xs:simpleType>
   
