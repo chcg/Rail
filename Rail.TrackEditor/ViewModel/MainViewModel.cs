@@ -67,10 +67,22 @@ namespace Rail.TrackEditor.ViewModel
         public ObservableCollection<TrackTypeViewModel> TrackTypes
         {
             get { return this.trackTypes; }
-            set { this.trackTypes = value; NotifyPropertyChanged(nameof(TrackTypes)); } 
+            set 
+            { 
+                this.trackTypes = value; 
+                NotifyPropertyChanged(nameof(TrackTypes));
+                this.SelectedTrackType = this.trackTypes.FirstOrDefault();
+            }
         }
 
-        public static TrackTypeViewModel SelectedTrackTypeViewModel { get; set; }
+        private TrackTypeViewModel selectedTtrackType;
+        public TrackTypeViewModel SelectedTrackType
+        {
+            get { return this.selectedTtrackType; }
+            set { this.selectedTtrackType = value; SelectedTrackTypeViewModel = value; NotifyPropertyChanged(nameof(SelectedTrackType)); }
+        }
+
+        public static TrackTypeViewModel SelectedTrackTypeViewModel { get; private set; }
 
         private void OnNewTrackType()
         {

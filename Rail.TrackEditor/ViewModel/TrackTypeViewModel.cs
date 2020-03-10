@@ -169,7 +169,26 @@ namespace Rail.TrackEditor.ViewModel
             set { this.trackType.Parameter.WagonMaxBogieFrontDistance = value; NotifyPropertyChanged(nameof(WagonMaxBogieFrontDistance)); }
         }
 
-        public ObservableCollection<TrackViewModel> Tracks { get; private set; }
+        private ObservableCollection<TrackViewModel> tracks;
+        public ObservableCollection<TrackViewModel> Tracks
+        {
+            get { return tracks; }
+            private set
+            {
+                this.tracks = value;
+                NotifyPropertyChanged(nameof(Tracks));
+                this.SelectedTrack = this.Tracks.FirstOrDefault();
+            }
+        }
+
+
+        private TrackViewModel selectedTrack;
+
+        public TrackViewModel SelectedTrack
+        {
+            get { return this.selectedTrack; }
+            set { this.selectedTrack = value; NotifyPropertyChanged(nameof(SelectedTrack)); }
+        }
 
         public double LabelWidth { get; set; }
 

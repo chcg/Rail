@@ -28,7 +28,7 @@ namespace Rail.TrackEditor.ViewModel
         protected override void NotifyPropertyChanged(string propertyName)
         {
             base.NotifyPropertyChanged(propertyName);
-            UpdateTrack();
+            //UpdateTrack();
         }
 
         public static TrackViewModel Create(TrackBase track, TrackType trackType)

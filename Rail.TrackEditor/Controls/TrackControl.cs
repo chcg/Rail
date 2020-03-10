@@ -98,7 +98,7 @@ namespace Rail.TrackEditor.Controls
 
             drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.ActualWidth, this.ActualHeight));
 
-            if (this.Track == null)
+            if (this.Track == null || this.Track.TrackGeometry == null)
             {
                 return;
             }

@@ -178,7 +178,6 @@
             </Grid>
         </GroupBox>
         <GroupBox Header="Track" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="4">
-
             <Grid Margin="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200"/>
@@ -189,7 +188,7 @@
                     <RowDefinition Height="200"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <ListBox x:Name="trackList" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding Tracks}" SelectedIndex="0" Margin="3" >
+                <ListBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" Margin="3" >
                     <ListBox.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="{x:Static lang:Resources.MainNewStraightTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Straight}" />
@@ -240,9 +239,9 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <ctrl:TrackControl Grid.Column="1" Grid.Row="0" Track="{Binding Track}" DataContext="{Binding ElementName=trackList, Path=SelectedItem}" ShowRail="False" BorderBrush="LightGray" Margin="3" BorderThickness="1" Background="White" />
-                <ctrl:TrackControl Grid.Column="2" Grid.Row="0" Track="{Binding Track}" DataContext="{Binding ElementName=trackList, Path=SelectedItem}" ShowRail="True"  BorderBrush="LightGray" Margin="3" BorderThickness="1" Background="White"/>
-                <ContentControl Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding ElementName=trackList, Path=SelectedItem}" Margin="3" >
+                <ctrl:TrackControl Grid.Column="1" Grid.Row="0" Track="{Binding Track}" DataContext="{Binding SelectedTrack}" ShowRail="False" BorderBrush="LightGray" Margin="3" BorderThickness="1" Background="White" />
+                <ctrl:TrackControl Grid.Column="2" Grid.Row="0" Track="{Binding Track}" DataContext="{Binding SelectedTrack}" ShowRail="True"  BorderBrush="LightGray" Margin="3" BorderThickness="1" Background="White"/>
+                <ContentControl Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding SelectedTrack}" Margin="3" >
                     <ContentControl.Resources>
                         <DataTemplate DataType="{x:Type vm:TrackStraightViewModel}" >
                             <v:TrackStraightView/>
