@@ -44,25 +44,27 @@ namespace Rail.Tracks
             this.Radius = GetValue(trackType.Radii, this.RadiusId);
             this.Angle = GetValue(trackType.Angles, this.AngleId);
 
+            string radiusName = GetName(trackType.Radii, this.RadiusId);
+            
             this.Name = this.Extra switch
                 {
-                    TrackExtras.No => $"{Resources.TrackCurved} {RadiusId} {Radius} mm {Angle}°",
-                    TrackExtras.Circuit => $"{Resources.TrackCurvedCircuit} {RadiusId} {Radius} mm {Angle}°",
-                    TrackExtras.Contact => $"{Resources.TrackCurvedContact} {RadiusId} {Radius} mm {Angle}°",
-                    TrackExtras.Uncoupler => $"{Resources.TrackCurvedUncoupler} {RadiusId} {Radius} mm {Angle}°",
-                    TrackExtras.Isolating => $"{Resources.TrackCurvedIsolating} {RadiusId} {Radius} mm {Angle}°",
-                    TrackExtras.Feeder => $"{Resources.TrackCurvedFeeder} {RadiusId} {Radius} mm {Angle}°",
+                    TrackExtras.No => $"{Resources.TrackCurved} {radiusName} {Radius} mm {Angle}°",
+                    TrackExtras.Circuit => $"{Resources.TrackCurvedCircuit} {radiusName} {Radius} mm {Angle}°",
+                    TrackExtras.Contact => $"{Resources.TrackCurvedContact} {radiusName} {Radius} mm {Angle}°",
+                    TrackExtras.Uncoupler => $"{Resources.TrackCurvedUncoupler} {radiusName} {Radius} mm {Angle}°",
+                    TrackExtras.Isolating => $"{Resources.TrackCurvedIsolating} {radiusName} {Radius} mm {Angle}°",
+                    TrackExtras.Feeder => $"{Resources.TrackCurvedFeeder} {radiusName} {Radius} mm {Angle}°",
                     _ => null
                 };
 
             this.Description = this.Extra switch
                 {
-                    TrackExtras.No => $"{this.Article} {Resources.TrackCurved} {Radius} {Radius} mm {Angle}°",
-                    TrackExtras.Circuit => $"{this.Article} {Resources.TrackCurvedCircuit} {RadiusId} {Radius} mm {Angle}°",
-                    TrackExtras.Contact => $"{this.Article} {Resources.TrackCurvedContact} {RadiusId} {Radius} mm {Angle}°",
-                    TrackExtras.Uncoupler => $"{this.Article} {Resources.TrackCurvedUncoupler} {RadiusId} {Radius} mm {Angle}°",
-                    TrackExtras.Isolating => $"{this.Article} {Resources.TrackCurvedIsolating} {RadiusId} {Radius} mm {Angle}°",
-                    TrackExtras.Feeder => $"{this.Article} {Resources.TrackCurvedFeeder} {RadiusId} {Radius} mm {Angle}°",
+                    TrackExtras.No => $"{this.Article} {Resources.TrackCurved} {radiusName} {Radius} mm {Angle}°",
+                    TrackExtras.Circuit => $"{this.Article} {Resources.TrackCurvedCircuit} {radiusName} {Radius} mm {Angle}°",
+                    TrackExtras.Contact => $"{this.Article} {Resources.TrackCurvedContact} {radiusName} {Radius} mm {Angle}°",
+                    TrackExtras.Uncoupler => $"{this.Article} {Resources.TrackCurvedUncoupler} {radiusName} {Radius} mm {Angle}°",
+                    TrackExtras.Isolating => $"{this.Article} {Resources.TrackCurvedIsolating} {radiusName} {Radius} mm {Angle}°",
+                    TrackExtras.Feeder => $"{this.Article} {Resources.TrackCurvedFeeder} {radiusName} {Radius} mm {Angle}°",
                     _ => null
                 };
 

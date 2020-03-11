@@ -25,6 +25,12 @@ namespace Rail.Tracks
         [XmlElement("LeftTurnoutAngle")]
         public Guid LeftTurnoutAngleId { get; set; }
 
+        [XmlElement("LeftCounterCurveRadius")]
+        public Guid LeftCounterCurveRadiusId { get; set; }
+
+        [XmlElement("LeftCounterCurveAngle")]
+        public Guid LeftCounterCurveAngleId { get; set; }
+
         [XmlElement("RightTurnoutLength")]
         public Guid RightTurnoutLengthId { get; set; }
 
@@ -33,6 +39,12 @@ namespace Rail.Tracks
 
         [XmlElement("RightTurnoutAngle")]
         public Guid RightTurnoutAngleId { get; set; }
+
+        [XmlElement("RightCounterCurveRadius")]
+        public Guid RightCounterCurveRadiusId { get; set; }
+
+        [XmlElement("RightCounterCurveAngle")]
+        public Guid RightCounterCurveAngleId { get; set; }
 
         [XmlElement("TurnoutDrive")]
         public TrackDrive TurnoutDrive { get; set; }
@@ -54,6 +66,12 @@ namespace Rail.Tracks
         public double LeftTurnoutAngle { get; set; }
 
         [XmlIgnore, JsonIgnore]
+        public double LeftCounterCurveRadius { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public double LeftCounterCurveAngle { get; set; }
+
+        [XmlIgnore, JsonIgnore]
         public double RightTurnoutLength { get; set; }
 
         [XmlIgnore, JsonIgnore]
@@ -61,6 +79,12 @@ namespace Rail.Tracks
 
         [XmlIgnore, JsonIgnore]
         public double RightTurnoutAngle { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public double RightCounterCurveRadius { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public double RightCounterCurveAngle { get; set; }
 
         #endregion
 
@@ -75,12 +99,20 @@ namespace Rail.Tracks
             this.LeftTurnoutLength = GetValueOrNull(trackType.Lengths, this.LeftTurnoutLengthId);
             this.LeftTurnoutRadius = GetValue(trackType.Radii, this.LeftTurnoutRadiusId);
             this.LeftTurnoutAngle = GetValue(trackType.Angles, this.LeftTurnoutAngleId);
+            this.LeftCounterCurveRadius = GetValueOrNull(trackType.Radii, this.LeftCounterCurveRadiusId);
+            this.LeftCounterCurveAngle = GetValueOrNull(trackType.Angles, this.LeftCounterCurveAngleId);
             this.RightTurnoutLength = GetValueOrNull(trackType.Lengths, this.RightTurnoutLengthId);
             this.RightTurnoutRadius = GetValue(trackType.Radii, this.RightTurnoutRadiusId);
             this.RightTurnoutAngle = GetValue(trackType.Angles, this.RightTurnoutAngleId);
+            this.RightCounterCurveRadius = GetValueOrNull(trackType.Radii, this.RightCounterCurveRadiusId);
+            this.RightCounterCurveAngle = GetValueOrNull(trackType.Angles, this.RightCounterCurveAngleId);
 
-            string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
-                              (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
+            string drive = this.TurnoutDrive switch
+            {
+                TrackDrive.Electrical => Resources.TrackDriveElectrical,
+                TrackDrive.Mechanical => Resources.TrackDriveMechanical,
+                _ => string.Empty
+            }; 
             this.Name = $"{Resources.TrackThreeWayTurnout} {drive}";
             this.Description = $"{this.Article} {Resources.TrackThreeWayTurnout} {drive}";
 

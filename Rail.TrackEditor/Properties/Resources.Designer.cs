@@ -115,6 +115,24 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Counter Curve Angle.
+        /// </summary>
+        public static string MainCounterCurveAngle {
+            get {
+                return ResourceManager.GetString("MainCounterCurveAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Counter Curve Radius.
+        /// </summary>
+        public static string MainCounterCurveRadius {
+            get {
+                return ResourceManager.GetString("MainCounterCurveRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Crossing Angle.
         /// </summary>
         public static string MainCrossingAngle {
@@ -210,6 +228,24 @@ namespace Rail.TrackEditor.Properties {
         public static string MainLantern {
             get {
                 return ResourceManager.GetString("MainLantern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left Counter Curve Angle.
+        /// </summary>
+        public static string MainLeftCounterCurveAngle {
+            get {
+                return ResourceManager.GetString("MainLeftCounterCurveAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left Counter Curve Radius.
+        /// </summary>
+        public static string MainLeftCounterCurveRadius {
+            get {
+                return ResourceManager.GetString("MainLeftCounterCurveRadius", resourceCulture);
             }
         }
         
@@ -529,6 +565,24 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Right Counter Curve Angle.
+        /// </summary>
+        public static string MainRightCounterCurveAngle {
+            get {
+                return ResourceManager.GetString("MainRightCounterCurveAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right Counter Curve Radius.
+        /// </summary>
+        public static string MainRightCounterCurveRadius {
+            get {
+                return ResourceManager.GetString("MainRightCounterCurveRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Right Turnout Angle.
         /// </summary>
         public static string MainRightTurnoutAngle {
@@ -646,7 +700,7 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wagon Max Bogie Distance.
+        ///   Looks up a localized string similar to Max Bogie Distance.
         /// </summary>
         public static string MainWagonMaxBogieDistance {
             get {
@@ -655,7 +709,7 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wagon Max Bogie Front Distance.
+        ///   Looks up a localized string similar to Max Bogie Front Distance.
         /// </summary>
         public static string MainWagonMaxBogieFrontDistance {
             get {

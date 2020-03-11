@@ -50,6 +50,18 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.TurnoutAngleId = value.Id; NotifyPropertyChanged(nameof(TurnoutAngle)); }
         }
 
+        public TrackNamedValueViewModel CounterCurveRadius
+        {
+            get { return GetRadius(this.track.CounterCurveRadiusId); }
+            set { this.track.CounterCurveRadiusId = value.Id; NotifyPropertyChanged(nameof(CounterCurveRadius)); }
+        }
+
+        public TrackNamedValueViewModel CounterCurveAngle
+        {
+            get { return GetAngle(this.track.CounterCurveAngleId); }
+            set { this.track.CounterCurveAngleId = value.Id; NotifyPropertyChanged(nameof(CounterCurveAngle)); }
+        }
+
         public TrackDirection TurnoutDirection
         {
             get { return this.track.TurnoutDirection; }

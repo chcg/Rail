@@ -57,6 +57,11 @@ namespace Rail.TrackEditor.ViewModel
             };
         }
 
+        public TrackExtras[] Extras { get { return (TrackExtras[])Enum.GetValues(typeof(TrackExtras)); } }
+        public TrackDirection[] TurnoutDirections { get { return (TrackDirection[])Enum.GetValues(typeof(TrackDirection)); } }
+        public TrackDrive[] TurnoutDrives { get { return (TrackDrive[])Enum.GetValues(typeof(TrackDrive)); } }
+
+
         public void UpdateTrack()
         {
             this.trackBase.Update(this.trackType);

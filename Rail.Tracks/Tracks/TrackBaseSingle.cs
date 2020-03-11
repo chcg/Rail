@@ -100,8 +100,8 @@ namespace Rail.Tracks
             this.sleeperWidth = parameter.SleeperWidth;
             this.sleeperPen = new Pen(this.sleeperType switch
             {
-                TrackSleeperType.WoodenSleepers => TrackBrushes.WoodenSleepers,
-                TrackSleeperType.ConcreteSleepers => TrackBrushes.ConcreteSleepers,
+                TrackSleeperType.Wooden => TrackBrushes.WoodenSleepers,
+                TrackSleeperType.Concrete => TrackBrushes.ConcreteSleepers,
                 _ => null
             }, this.RailWidth * sleepersThicknessFactor);
 

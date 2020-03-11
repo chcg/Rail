@@ -135,6 +135,12 @@
   <data name="MainBallastWidth" xml:space="preserve">
     <value>Ballast Width</value>
   </data>
+  <data name="MainCounterCurveAngle" xml:space="preserve">
+    <value>Counter Curve Angle</value>
+  </data>
+  <data name="MainCounterCurveRadius" xml:space="preserve">
+    <value>Counter Curve Radius</value>
+  </data>
   <data name="MainCrossingAngle" xml:space="preserve">
     <value>Crossing Angle</value>
   </data>
@@ -167,6 +173,12 @@
   </data>
   <data name="MainLantern" xml:space="preserve">
     <value>Lantern</value>
+  </data>
+  <data name="MainLeftCounterCurveAngle" xml:space="preserve">
+    <value>Left Counter Curve Angle</value>
+  </data>
+  <data name="MainLeftCounterCurveRadius" xml:space="preserve">
+    <value>Left Counter Curve Radius</value>
   </data>
   <data name="MainLeftTurnoutAngle" xml:space="preserve">
     <value>Left Turnout Angle</value>
@@ -273,6 +285,12 @@
   <data name="MainRailWidth" xml:space="preserve">
     <value>Rail Width</value>
   </data>
+  <data name="MainRightCounterCurveAngle" xml:space="preserve">
+    <value>Right Counter Curve Angle</value>
+  </data>
+  <data name="MainRightCounterCurveRadius" xml:space="preserve">
+    <value>Right Counter Curve Radius</value>
+  </data>
   <data name="MainRightTurnoutAngle" xml:space="preserve">
     <value>Right Turnout Angle</value>
   </data>
@@ -313,10 +331,10 @@
     <value>Turnout Radius</value>
   </data>
   <data name="MainWagonMaxBogieDistance" xml:space="preserve">
-    <value>Wagon Max Bogie Distance</value>
+    <value>Max Bogie Distance</value>
   </data>
   <data name="MainWagonMaxBogieFrontDistance" xml:space="preserve">
-    <value>Wagon Max Bogie Front Distance</value>
+    <value>Max Bogie Front Distance</value>
   </data>
   <data name="MainWagonMaxWidth" xml:space="preserve">
     <value>Wagon Max Width</value>

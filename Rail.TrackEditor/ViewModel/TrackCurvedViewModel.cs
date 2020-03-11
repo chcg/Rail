@@ -39,8 +39,6 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.AngleId = value.Id; NotifyPropertyChanged(nameof(Angle)); }
         }
 
-        public TrackExtras[] Extras { get { return (TrackExtras[])Enum.GetValues(typeof(TrackExtras)); } }
-
         public TrackExtras Extra
         {
             get { return this.track.Extra; }

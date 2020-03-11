@@ -214,6 +214,15 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Star Crossing.
+        /// </summary>
+        public static string TrackStar {
+            get {
+                return ResourceManager.GetString("TrackStar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Straight Track.
         /// </summary>
         public static string TrackStraight {

@@ -2,10 +2,12 @@
 using Rail.Tracks;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Rail.TrackEditor.ViewModel
 {
+    [DebuggerDisplay("{Id} {Name} {Value}")]
     public class TrackNamedValueViewModel : BaseViewModel
     {
         private readonly TrackNamedValue namedValue;

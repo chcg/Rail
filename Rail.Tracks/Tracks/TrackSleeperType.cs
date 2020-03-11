@@ -8,8 +8,8 @@ namespace Rail.Tracks
     public enum TrackSleeperType
     {
         [XmlEnum("WoodenSleepers")]
-        WoodenSleepers,
+        Wooden,
         [XmlEnum("ConcreteSleepers")]
-        ConcreteSleepers
+        Concrete
     }
 }

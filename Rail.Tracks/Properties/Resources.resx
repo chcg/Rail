@@ -168,6 +168,9 @@
   <data name="TrackFlex" xml:space="preserve">
     <value>Flex Track</value>
   </data>
+  <data name="TrackStar" xml:space="preserve">
+    <value>Star Crossing</value>
+  </data>
   <data name="TrackStraight" xml:space="preserve">
     <value>Straight Track</value>
   </data>

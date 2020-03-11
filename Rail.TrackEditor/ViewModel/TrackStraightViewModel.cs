@@ -33,8 +33,6 @@ namespace Rail.TrackEditor.ViewModel
             get { return GetLength(this.track.LengthId); }
             set { this.track.LengthId = value.Id; NotifyPropertyChanged(nameof(Length)); }
         }
-
-        public TrackExtras[] Extras {  get { return (TrackExtras[])Enum.GetValues(typeof(TrackExtras));  } }
         
         public TrackExtras Extra
         {

@@ -25,6 +25,12 @@ namespace Rail.Tracks
         [XmlElement("TurnoutAngle")]
         public Guid TurnoutAngleId { get; set; }
 
+        [XmlElement("CounterCurveRadius")]
+        public Guid CounterCurveRadiusId { get; set; }
+
+        [XmlElement("CounterCurveAngle")]
+        public Guid CounterCurveAngleId { get; set; }
+
         [XmlElement("TurnoutDirection")]
         public TrackDirection TurnoutDirection { get; set; }
 
@@ -47,6 +53,12 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public double TurnoutAngle { get; set; }
 
+        [XmlIgnore, JsonIgnore]
+        public double CounterCurveRadius { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public double CounterCurveAngle { get; set; }
+
         #endregion
 
         #region override
@@ -60,6 +72,10 @@ namespace Rail.Tracks
             this.TurnoutLength = GetValueOrNull(trackType.Lengths, this.TurnoutLengthId);
             this.TurnoutRadius = GetValue(trackType.Radii, this.TurnoutRadiusId);
             this.TurnoutAngle = GetValue(trackType.Angles, this.TurnoutAngleId);
+            this.CounterCurveRadius = GetValueOrNull(trackType.Radii, this.CounterCurveRadiusId);
+            this.CounterCurveAngle = GetValueOrNull(trackType.Angles, this.CounterCurveAngleId);
+
+            string turnoutRadiusName = GetName(trackType.Radii, this.TurnoutRadiusId);
 
             string drive = this.TurnoutDrive switch
             {
@@ -68,11 +84,11 @@ namespace Rail.Tracks
                 _ => string.Empty
             };
             this.Name = TurnoutDirection == TrackDirection.Left ?
-                    $"{Resources.TrackTurnoutLeft} {drive}" :
-                    $"{Resources.TrackTurnoutRight} {drive}";
+                    $"{Resources.TrackTurnoutLeft} {turnoutRadiusName} {drive}" :
+                    $"{Resources.TrackTurnoutRight} {turnoutRadiusName} {drive}";
             this.Description = TurnoutDirection == TrackDirection.Left ?
-                    $"{this.Article} {Resources.TrackTurnoutLeft} {drive}" :
-                    $"{this.Article} {Resources.TrackTurnoutRight} {drive}";
+                    $"{this.Article} {Resources.TrackTurnoutLeft} {turnoutRadiusName} {drive}" :
+                    $"{this.Article} {Resources.TrackTurnoutRight} {turnoutRadiusName} {drive}";
             
             base.Update(trackType);
         }

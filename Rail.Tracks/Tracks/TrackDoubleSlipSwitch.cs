@@ -52,8 +52,12 @@ namespace Rail.Tracks
             this.CrossingAngle = GetValue(trackType.Angles, this.CrossingAngleId);
             this.SlipRadius = GetValue(trackType.Radii, this.SlipRadiusId);
 
-            string drive = this.TurnoutDrive == TrackDrive.Electrical ? Resources.TrackDriveElectrical :
-                              (this.TurnoutDrive == TrackDrive.Mechanical ? Resources.TrackDriveMechanical : string.Empty);
+            string drive = this.TurnoutDrive switch
+            {
+                TrackDrive.Electrical => Resources.TrackDriveElectrical,
+                TrackDrive.Mechanical => Resources.TrackDriveMechanical,
+                _ => string.Empty
+            };
             this.Name = $"{Resources.TrackDoubleSlipSwitch} {drive}";
             this.Description = $"{this.Article} {Resources.TrackDoubleSlipSwitch} {drive}";
             

@@ -44,6 +44,18 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.LeftTurnoutAngleId = value.Id; NotifyPropertyChanged(nameof(LeftTurnoutAngle)); }
         }
 
+        public TrackNamedValueViewModel LeftCounterCurveRadius
+        {
+            get { return GetRadius(this.track.LeftCounterCurveRadiusId); }
+            set { this.track.LeftCounterCurveRadiusId = value.Id; NotifyPropertyChanged(nameof(LeftCounterCurveRadius)); }
+        }
+
+        public TrackNamedValueViewModel LeftCounterCurveAngle
+        {
+            get { return GetAngle(this.track.LeftCounterCurveAngleId); }
+            set { this.track.LeftCounterCurveAngleId = value.Id; NotifyPropertyChanged(nameof(LeftCounterCurveAngle)); }
+        }
+
         public TrackNamedValueViewModel RightTurnoutLength
         {
             get { return GetLength(this.track.RightTurnoutLengthId); }
@@ -60,6 +72,18 @@ namespace Rail.TrackEditor.ViewModel
         {
             get { return GetAngle(this.track.RightTurnoutAngleId); }
             set { this.track.RightTurnoutAngleId = value.Id; NotifyPropertyChanged(nameof(RightTurnoutAngle)); }
+        }
+
+        public TrackNamedValueViewModel RightCounterCurveRadius
+        {
+            get { return GetRadius(this.track.RightCounterCurveRadiusId); }
+            set { this.track.RightCounterCurveRadiusId = value.Id; NotifyPropertyChanged(nameof(RightCounterCurveRadius)); }
+        }
+
+        public TrackNamedValueViewModel RightCounterCurveAngle
+        {
+            get { return GetAngle(this.track.RightCounterCurveAngleId); }
+            set { this.track.RightCounterCurveAngleId = value.Id; NotifyPropertyChanged(nameof(RightCounterCurveAngle)); }
         }
 
         public TrackDrive TurnoutDrive

@@ -93,6 +93,8 @@
                             <xs:element name="TurnoutLength" type="Guid" />
                             <xs:element name="TurnoutRadius" type="Guid" />
                             <xs:element name="TurnoutAngle" type="Guid" />
+                            <xs:element name="CounterCurveRadius" type="Guid" minOccurs="0" />
+                            <xs:element name="CounterCurveAngle" type="Guid" minOccurs="0" />
                             <xs:element name="TurnoutDirection" type="Direction" />
                             <xs:element name="TurnoutDrive" type="Drive" minOccurs="0" />
                             <xs:element name="AddArticles" type="xs:string" minOccurs="0" />
@@ -137,9 +139,13 @@
                             <xs:element name="LeftTurnoutLength" type="Guid" />
                             <xs:element name="LeftTurnoutRadius" type="Guid" />
                             <xs:element name="LeftTurnoutAngle" type="Guid" />
+                            <xs:element name="LeftCounterCurveRadius" type="Guid" minOccurs="0" />
+                            <xs:element name="LeftCounterCurveAngle" type="Guid" minOccurs="0" />
                             <xs:element name="RightTurnoutLength" type="Guid" />
                             <xs:element name="RightTurnoutRadius" type="Guid" />
                             <xs:element name="RightTurnoutAngle" type="Guid" />
+                            <xs:element name="RightCounterCurveRadius" type="Guid" minOccurs="0" />
+                            <xs:element name="RightCounterCurveAngle" type="Guid" minOccurs="0" />
                             <xs:element name="TurnoutDrive" type="Drive" minOccurs="0" />
                           </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />                          
@@ -167,6 +173,16 @@
                             <xs:element name="LengthA" type="Guid" />
                             <xs:element name="LengthB" type="Guid" />
                             <xs:element name="CrossingAngle" type="Guid" />
+                          </xs:sequence>
+                          <xs:attribute name="Id" type="Guid" use="required" />
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element maxOccurs="unbounded" name="Star">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:string" />
+                            <xs:element name="Length" type="Guid" />
+                            <xs:element name="Number" type="StarNumber" />
                           </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />
                         </xs:complexType>
@@ -396,6 +412,15 @@
       <xs:enumeration value="Mechanical" />
     </xs:restriction>
   </xs:simpleType>
+
+  <xs:simpleType name="StarNumber" >
+    <xs:restriction base="xs:unsignedShort">
+      <xs:enumeration value="2" />
+      <xs:enumeration value="3" />
+      <xs:enumeration value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  
 
   <xs:simpleType name="Guid">
     <xs:restriction base="xs:string">
