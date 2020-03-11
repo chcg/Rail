@@ -27,8 +27,9 @@ jobs:
       uses: warrenbuckley/Setup-MSBuild@v1
 
     - name: "restore"
-      working-directory: .\Rail
-      run: msbuild Rail.sln /m /verbosity:minimal /t:restore /p:configuration="${{ matrix.build_configuration }}" /p:platform="${{ matrix.build_platform }}"
+      working-directory: .
+      run: dotnet restore Rail.sln
+#      run: msbuild Rail.sln /m /verbosity:minimal /t:restore /p:configuration="${{ matrix.build_configuration }}" /p:platform="${{ matrix.build_platform }}"
 
 #    - name: "MSBuild of solution"
 #      working-directory: .\Rail
