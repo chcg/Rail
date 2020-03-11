@@ -30,9 +30,13 @@ jobs:
       working-directory: .\Rail
       run: msbuild Rail.sln /m /verbosity:minimal /t:restore /p:configuration="${{ matrix.build_configuration }}" /p:platform="${{ matrix.build_platform }}"
 
-    - name: "MSBuild of solution"
+#    - name: "MSBuild of solution"
+#      working-directory: .\Rail
+#      run: msbuild Rail.sln /m /verbosity:minimal /p:configuration="${{ matrix.build_configuration }}" /p:platform="${{ matrix.build_platform }}"
+
+    - name: "Build WIX"
       working-directory: .\Rail
-      run: msbuild Rail.sln /m /verbosity:minimal /p:configuration="${{ matrix.build_configuration }}" /p:platform="${{ matrix.build_platform }}"
+      run: msbuild Rail.Installer\Rail.Installer.wixproj /m /verbosity:minimal /p:configuration="${{ matrix.build_configuration }}" /p:platform="${{ matrix.build_platform }}"
 
     - name: "Archive artifacts"
       uses: actions/upload-artifact@v1
