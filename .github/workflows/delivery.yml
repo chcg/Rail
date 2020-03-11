@@ -16,8 +16,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        build_configuration: [Release]
-        build_platform: [x86,x64]
+        build_platform: [x86, x64]
       
     steps:
     - name: "Checkout"
@@ -37,7 +36,7 @@ jobs:
 
     - name: "Build WIX"
       working-directory: .\Rail.Installer
-      run: dotnet build Rail.Installer.wixproj -c "${{ matrix.build_configuration }}" -p "${{ matrix.build_platform }}"
+      run: dotnet build Rail.Installer.wixproj -c "Release" -p "${{ matrix.build_platform }}"
 
     - name: "Archive artifacts"
       uses: actions/upload-artifact@v1
