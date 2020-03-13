@@ -8,14 +8,11 @@ namespace Rail.TrackEditor.ViewModel
     public class TrackStraightAdjustmentViewModel : TrackViewModel
     {
         private readonly TrackStraightAdjustment track;
-
-        public TrackStraightAdjustmentViewModel() : this(new TrackStraightAdjustment(), MainViewModel.SelectedTrackTypeViewModel.TrackType)
+        
+        public TrackStraightAdjustmentViewModel(TrackTypeViewModel trackTypeViewModel) : this(trackTypeViewModel, new TrackStraightAdjustment())
         { }
 
-        public TrackStraightAdjustmentViewModel(TrackType trackType) : this(new TrackStraightAdjustment(), trackType)
-        { }
-
-        public TrackStraightAdjustmentViewModel(TrackStraightAdjustment track, TrackType trackType) : base(track, trackType)
+        public TrackStraightAdjustmentViewModel(TrackTypeViewModel trackTypeViewModel, TrackStraightAdjustment track) : base(trackTypeViewModel, track)
         {
             this.track = track;
         }

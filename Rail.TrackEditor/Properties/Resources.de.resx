@@ -249,6 +249,9 @@
   <data name="MainNewYTurnoutTrack" xml:space="preserve">
     <value>New Y-Turnout Track</value>
   </data>
+  <data name="MainNumber" xml:space="preserve">
+    <value>Anzahl</value>
+  </data>
   <data name="MainOuterAngle" xml:space="preserve">
     <value>Äußerer Winkel</value>
   </data>

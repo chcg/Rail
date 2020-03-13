@@ -34,7 +34,7 @@ namespace Rail.TrackEditor.ViewModel
             this.DeleteTrackCommand = new DelegateCommand<TrackViewModel>(OnDeleteNewTrack);
 
             this.trackType = trackType;
-            this.Tracks = new ObservableCollection<TrackViewModel>(trackType.Tracks.Select(t => TrackViewModel.Create(t, trackType)));
+            this.Tracks = new ObservableCollection<TrackViewModel>(trackType.Tracks.Select(t => TrackViewModel.Create(this, t)));
             this.Names = new ObservableCollection<TrackTypeNameViewModel>(this.trackType.Name.LanguageDictionary.Select(n => new TrackTypeNameViewModel(n)));
             this.Lengths = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Lengths.Select(v => new TrackNamedValueViewModel(v)));
             this.Radii = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Radii.Select(v => new TrackNamedValueViewModel(v)));
@@ -204,23 +204,24 @@ namespace Rail.TrackEditor.ViewModel
         {
             this.Tracks.Add(type switch
             {
-                TrackTypes.Straight => new TrackStraightViewModel(this.trackType),
-                TrackTypes.Curved => new TrackCurvedViewModel(this.trackType),
-                TrackTypes.Turnout => new TrackTurnoutViewModel(this.trackType),
-                TrackTypes.CurvedTurnout => new TrackCurvedTurnoutViewModel(this.trackType),
-                TrackTypes.DoubleSlipSwitch => new TrackDoubleSlipSwitchViewModel(this.trackType),
-                TrackTypes.ThreeWayTurnout => new TrackThreeWayTurnoutViewModel(this.trackType),
-                TrackTypes.YTurnout => new TrackYTurnoutViewModel(this.trackType),
-                TrackTypes.Crossing => new TrackCrossingViewModel(this.trackType),
-                TrackTypes.Bumper => new TrackBumperViewModel(this.trackType),
-                TrackTypes.Adapter => new TrackAdapterViewModel(this.trackType),
-                TrackTypes.Turntable => new TrackTurntableViewModel(this.trackType),
-                TrackTypes.TransferTable => new TrackTransferTableViewModel(this.trackType),
-                TrackTypes.EndPiece => new TrackEndPieceViewModel(this.trackType),                
-                TrackTypes.StraightAdjustment => new TrackStraightAdjustmentViewModel(this.trackType),
-                TrackTypes.DoubleCrossover => new TrackDoubleCrossoverViewModel(this.trackType),
-                TrackTypes.Flex => new TrackFlexViewModel(this.trackType),
-                TrackTypes.Group => new TrackGroupViewModel(this.trackType),
+                TrackTypes.Straight => new TrackStraightViewModel(this),
+                TrackTypes.Curved => new TrackCurvedViewModel(this),
+                TrackTypes.Turnout => new TrackTurnoutViewModel(this),
+                TrackTypes.CurvedTurnout => new TrackCurvedTurnoutViewModel(this),
+                TrackTypes.DoubleSlipSwitch => new TrackDoubleSlipSwitchViewModel(this),
+                TrackTypes.ThreeWayTurnout => new TrackThreeWayTurnoutViewModel(this),
+                TrackTypes.YTurnout => new TrackYTurnoutViewModel(this),
+                TrackTypes.Crossing => new TrackCrossingViewModel(this),
+                TrackTypes.Star => new TrackStarViewModel(this),
+                TrackTypes.Bumper => new TrackBumperViewModel(this),
+                TrackTypes.Adapter => new TrackAdapterViewModel(this),
+                TrackTypes.Turntable => new TrackTurntableViewModel(this),
+                TrackTypes.TransferTable => new TrackTransferTableViewModel(this),
+                TrackTypes.EndPiece => new TrackEndPieceViewModel(this),                
+                TrackTypes.StraightAdjustment => new TrackStraightAdjustmentViewModel(this),
+                TrackTypes.DoubleCrossover => new TrackDoubleCrossoverViewModel(this),
+                TrackTypes.Flex => new TrackFlexViewModel(this),
+                TrackTypes.Group => new TrackGroupViewModel(this),
                 _ => null
             });   
         }

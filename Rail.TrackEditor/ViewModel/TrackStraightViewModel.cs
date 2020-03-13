@@ -11,13 +11,10 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackStraight track;
 
-        public TrackStraightViewModel() : this(new TrackStraight(), MainViewModel.SelectedTrackTypeViewModel.TrackType)
+        public TrackStraightViewModel(TrackTypeViewModel trackTypeViewModel) : this(trackTypeViewModel, new TrackStraight())
         { }
 
-        public TrackStraightViewModel(TrackType trackType) : this(new TrackStraight(), trackType)
-        { }
-
-        public TrackStraightViewModel(TrackStraight track, TrackType trackType) : base(track, trackType)
+        public TrackStraightViewModel(TrackTypeViewModel trackTypeViewModel, TrackStraight track) : base(trackTypeViewModel, track)
         {
             this.track = track;
         }
@@ -31,7 +28,17 @@ namespace Rail.TrackEditor.ViewModel
         public TrackNamedValueViewModel Length
         {
             get { return GetLength(this.track.LengthId); }
-            set { this.track.LengthId = value.Id; NotifyPropertyChanged(nameof(Length)); }
+            set {
+
+                if (value != null)
+                {
+                    this.track.LengthId = value.Id; NotifyPropertyChanged(nameof(Length));
+                }
+                else
+                {
+
+                }
+            }
         }
         
         public TrackExtras Extra

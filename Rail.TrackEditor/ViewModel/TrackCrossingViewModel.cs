@@ -9,13 +9,10 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackCrossing track;
 
-        public TrackCrossingViewModel() : this(new TrackCrossing(), MainViewModel.SelectedTrackTypeViewModel.TrackType)
+        public TrackCrossingViewModel(TrackTypeViewModel trackTypeViewModel) : this(trackTypeViewModel, new TrackCrossing())
         { }
 
-        public TrackCrossingViewModel(TrackType trackType) : this(new TrackCrossing(), trackType)
-        { }
-
-        public TrackCrossingViewModel(TrackCrossing track, TrackType trackType) : base(track, trackType)
+        public TrackCrossingViewModel(TrackTypeViewModel trackTypeViewModel, TrackCrossing track) : base(trackTypeViewModel, track)
         {
             this.track = track;
         }

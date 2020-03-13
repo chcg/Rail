@@ -8,14 +8,11 @@ namespace Rail.TrackEditor.ViewModel
     public class TrackAdapterViewModel : TrackViewModel
     {
         private readonly TrackAdapter track;
-
-        public TrackAdapterViewModel() : this(new TrackAdapter(), MainViewModel.SelectedTrackTypeViewModel.TrackType)
+        
+        public TrackAdapterViewModel(TrackTypeViewModel trackTypeViewModel) : this(trackTypeViewModel, new TrackAdapter())
         { }
 
-        public TrackAdapterViewModel(TrackType trackType) : this(new TrackAdapter(), trackType)
-        { }
-
-        public TrackAdapterViewModel(TrackAdapter track, TrackType trackType) : base(track, trackType)
+        public TrackAdapterViewModel(TrackTypeViewModel trackTypeViewModel, TrackAdapter track) : base(trackTypeViewModel, track)
         {
             this.track = track;
         }
@@ -29,13 +26,13 @@ namespace Rail.TrackEditor.ViewModel
         public TrackNamedValueViewModel Length
         {
             get { return GetLength(this.track.LengthId); }
-            set { this.track.LengthId = value.Id; NotifyPropertyChanged(nameof(Length)); NotifyPropertyChanged(nameof(Track)); }
+            set { this.track.LengthId = value.Id; NotifyPropertyChanged(nameof(Length)); }
         }
 
         public string DockType
         {
             get { return this.track.DockType; }
-            set { this.track.DockType = value.Trim(); NotifyPropertyChanged(nameof(DockType)); NotifyPropertyChanged(nameof(Track)); }
+            set { this.track.DockType = value.Trim(); NotifyPropertyChanged(nameof(DockType)); }
         }
     }
 }

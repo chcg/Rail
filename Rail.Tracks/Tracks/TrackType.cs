@@ -12,6 +12,9 @@ namespace Rail.Tracks
             this.Tracks = new List<TrackBase>();
             this.Name = new XmlMultilanguageString("New Track Type");
             this.Parameter = new TrackParameter();
+            this.Radii = new List<TrackNamedValue>();
+            this.Lengths = new List<TrackNamedValue>();
+            this.Angles = new List<TrackNamedValue>();
         }
 
         [XmlElement("Name")]

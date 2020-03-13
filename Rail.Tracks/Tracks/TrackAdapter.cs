@@ -34,8 +34,8 @@ namespace Rail.Tracks
         {
             this.Length = GetValue(trackType.Lengths, this.LengthId);
 
-            this.Name = $"{Resources.TrackAdapter}";
-            this.Description = $"{this.Article} {Resources.TrackAdapter}";
+            this.Name = $"{Resources.TrackAdapter} {this.DockType}";
+            this.Description = $"{this.Article} {Resources.TrackAdapter} {this.DockType}";
 
             base.Update(trackType);
         }

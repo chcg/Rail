@@ -6,22 +6,32 @@ namespace Rail.Tracks
 {
     public enum TrackTypes
     {
+        // single
         Straight,
         Curved,
+        Bumper,
+        EndPiece,
+        Adapter,
+        StraightAdjustment,
+        Flex,
+
+        // turnout 
         Turnout,
         CurvedTurnout,
         DoubleSlipSwitch,
         ThreeWayTurnout,
         YTurnout,
+        DoubleCrossover,
+
+        // crossing
         Crossing,
-        Bumper,
-        Adapter,
+        Star,
+
+        // special        
         Turntable,
         TransferTable,
-        EndPiece,
-        StraightAdjustment,
-        DoubleCrossover,
-        Flex,
+        
+        // group
         Group,
     }
 }

@@ -421,6 +421,15 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Star Track.
+        /// </summary>
+        public static string MainNewStarTrack {
+            get {
+                return ResourceManager.GetString("MainNewStarTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Straight Adjustment Track.
         /// </summary>
         public static string MainNewStraightAdjustmentTrack {
@@ -489,6 +498,15 @@ namespace Rail.TrackEditor.Properties {
         public static string MainNewYTurnoutTrack {
             get {
                 return ResourceManager.GetString("MainNewYTurnoutTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number.
+        /// </summary>
+        public static string MainNumber {
+            get {
+                return ResourceManager.GetString("MainNumber", resourceCulture);
             }
         }
         

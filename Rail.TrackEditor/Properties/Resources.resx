@@ -237,6 +237,9 @@
   <data name="MainNewGroupTrack" xml:space="preserve">
     <value>New Group Track</value>
   </data>
+  <data name="MainNewStarTrack" xml:space="preserve">
+    <value>New Star Track</value>
+  </data>
   <data name="MainNewStraightAdjustmentTrack" xml:space="preserve">
     <value>New Straight Adjustment Track</value>
   </data>
@@ -260,6 +263,9 @@
   </data>
   <data name="MainNewYTurnoutTrack" xml:space="preserve">
     <value>New Y-Turnout Track</value>
+  </data>
+  <data name="MainNumber" xml:space="preserve">
+    <value>Number</value>
   </data>
   <data name="MainOuterAngle" xml:space="preserve">
     <value>Outer Angle</value>

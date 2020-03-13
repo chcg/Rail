@@ -79,11 +79,9 @@ namespace Rail.TrackEditor.ViewModel
         public TrackTypeViewModel SelectedTrackType
         {
             get { return this.selectedTtrackType; }
-            set { this.selectedTtrackType = value; SelectedTrackTypeViewModel = value; NotifyPropertyChanged(nameof(SelectedTrackType)); }
+            set { this.selectedTtrackType = value; NotifyPropertyChanged(nameof(SelectedTrackType)); }
         }
-
-        public static TrackTypeViewModel SelectedTrackTypeViewModel { get; private set; }
-
+        
         private void OnNewTrackType()
         {
             this.TrackTypes.Add(new TrackTypeViewModel());

@@ -10,20 +10,19 @@ namespace Rail.TrackEditor.ViewModel
 {
     public abstract class TrackViewModel : BaseViewModel
     {
-        private readonly TrackBase trackBase;
-        protected readonly TrackType trackType;
+        protected readonly TrackTypeViewModel trackTypeViewModel;
 
-        public TrackViewModel(TrackBase trackBase, TrackType trackType)
+        public TrackViewModel(TrackTypeViewModel trackTypeViewModel, TrackBase trackBase)
         {
-            this.trackBase = trackBase;
-            this.trackType = trackType;
+            this.Track = trackBase;
+            this.trackTypeViewModel = trackTypeViewModel;
         }
 
-        public string Name { get { return this.trackBase.Name; } }
+        public string Name { get { return this.Track.Name; } }
 
-        public TrackBase Track { get { return this.trackBase; } }
+        public TrackBase Track { get; } // { get { return this.trackBase; } }
 
-        public ICommand RailInvalidateCommand { get; set; }
+        //public ICommand RailInvalidateCommand { get; set; }
         
         protected override void NotifyPropertyChanged(string propertyName)
         {
@@ -31,28 +30,29 @@ namespace Rail.TrackEditor.ViewModel
             //UpdateTrack();
         }
 
-        public static TrackViewModel Create(TrackBase track, TrackType trackType)
+        public static TrackViewModel Create(TrackTypeViewModel trackTypeViewModel, TrackBase track)
         {
             string typeName = track.GetType().Name;
             return typeName switch
             {
-                nameof(TrackStraight) => new TrackStraightViewModel((TrackStraight)track, trackType),
-                nameof(TrackCurved) => new TrackCurvedViewModel((TrackCurved)track, trackType),
-                nameof(TrackTurnout) => new TrackTurnoutViewModel((TrackTurnout)track, trackType),
-                nameof(TrackCurvedTurnout) => new TrackCurvedTurnoutViewModel((TrackCurvedTurnout)track, trackType),
-                nameof(TrackDoubleSlipSwitch) => new TrackDoubleSlipSwitchViewModel((TrackDoubleSlipSwitch)track, trackType),
-                nameof(TrackThreeWayTurnout) => new TrackThreeWayTurnoutViewModel((TrackThreeWayTurnout)track, trackType),
-                nameof(TrackYTurnout) => new TrackYTurnoutViewModel((TrackYTurnout)track, trackType),
-                nameof(TrackCrossing) => new TrackCrossingViewModel((TrackCrossing)track, trackType),
-                nameof(TrackBumper) => new TrackBumperViewModel((TrackBumper)track, trackType),
-                nameof(TrackAdapter) => new TrackAdapterViewModel((TrackAdapter)track, trackType),
-                nameof(TrackTurntable) => new TrackTurntableViewModel((TrackTurntable)track, trackType),
-                nameof(TrackTransferTable) => new TrackTransferTableViewModel((TrackTransferTable)track, trackType),
-                nameof(TrackEndPiece) => new TrackEndPieceViewModel((TrackEndPiece)track, trackType),
-                nameof(TrackStraightAdjustment) => new TrackStraightAdjustmentViewModel((TrackStraightAdjustment)track, trackType),
-                nameof(TrackDoubleCrossover) => new TrackDoubleCrossoverViewModel((TrackDoubleCrossover)track, trackType),
-                nameof(TrackFlex) => new TrackFlexViewModel((TrackFlex)track, trackType),
-                nameof(TrackGroup) => new TrackGroupViewModel((TrackGroup)track, trackType),
+                nameof(TrackStraight) => new TrackStraightViewModel(trackTypeViewModel, (TrackStraight)track),
+                nameof(TrackCurved) => new TrackCurvedViewModel(trackTypeViewModel, (TrackCurved)track),
+                nameof(TrackTurnout) => new TrackTurnoutViewModel(trackTypeViewModel, (TrackTurnout)track),
+                nameof(TrackCurvedTurnout) => new TrackCurvedTurnoutViewModel(trackTypeViewModel, (TrackCurvedTurnout)track),
+                nameof(TrackDoubleSlipSwitch) => new TrackDoubleSlipSwitchViewModel(trackTypeViewModel, (TrackDoubleSlipSwitch)track),
+                nameof(TrackThreeWayTurnout) => new TrackThreeWayTurnoutViewModel(trackTypeViewModel, (TrackThreeWayTurnout)track),
+                nameof(TrackYTurnout) => new TrackYTurnoutViewModel(trackTypeViewModel, (TrackYTurnout)track),
+                nameof(TrackCrossing) => new TrackCrossingViewModel(trackTypeViewModel, (TrackCrossing)track),
+                nameof(TrackStar) => new TrackStarViewModel(trackTypeViewModel, (TrackStar)track),
+                nameof(TrackBumper) => new TrackBumperViewModel(trackTypeViewModel, (TrackBumper)track),
+                nameof(TrackAdapter) => new TrackAdapterViewModel(trackTypeViewModel, (TrackAdapter)track),
+                nameof(TrackTurntable) => new TrackTurntableViewModel(trackTypeViewModel, (TrackTurntable)track),
+                nameof(TrackTransferTable) => new TrackTransferTableViewModel(trackTypeViewModel, (TrackTransferTable)track),
+                nameof(TrackEndPiece) => new TrackEndPieceViewModel(trackTypeViewModel, (TrackEndPiece)track),
+                nameof(TrackStraightAdjustment) => new TrackStraightAdjustmentViewModel(trackTypeViewModel, (TrackStraightAdjustment)track),
+                nameof(TrackDoubleCrossover) => new TrackDoubleCrossoverViewModel(trackTypeViewModel, (TrackDoubleCrossover)track),
+                nameof(TrackFlex) => new TrackFlexViewModel(trackTypeViewModel, (TrackFlex)track),
+                nameof(TrackGroup) => new TrackGroupViewModel(trackTypeViewModel, (TrackGroup)track),
                 _ => null
             };
         }
@@ -60,18 +60,19 @@ namespace Rail.TrackEditor.ViewModel
         public TrackExtras[] Extras { get { return (TrackExtras[])Enum.GetValues(typeof(TrackExtras)); } }
         public TrackDirection[] TurnoutDirections { get { return (TrackDirection[])Enum.GetValues(typeof(TrackDirection)); } }
         public TrackDrive[] TurnoutDrives { get { return (TrackDrive[])Enum.GetValues(typeof(TrackDrive)); } }
+        public int[] StarNumbers { get { return new int[] { 2, 3, 4 }; } }
 
 
         public void UpdateTrack()
         {
-            this.trackBase.Update(this.trackType);
+            this.Track.Update(this.trackTypeViewModel.TrackType);
             VisualHelper.InvalidateAll(typeof(TrackControl));
         }
 
         protected TrackNamedValueViewModel GetLength(Guid lengthId)
         {
-            TrackTypeViewModel ttvm = MainViewModel.SelectedTrackTypeViewModel;
-            return ttvm.Lengths.FirstOrDefault(i => i.Id == lengthId);
+            var l = this.trackTypeViewModel.Lengths.FirstOrDefault(i => i.Id == lengthId);
+            return l;
         }
 
         public Guid SetLength(TrackNamedValueViewModel value)
@@ -85,8 +86,7 @@ namespace Rail.TrackEditor.ViewModel
 
         protected TrackNamedValueViewModel GetAngle(Guid angleId)
         {
-            TrackTypeViewModel ttvm = MainViewModel.SelectedTrackTypeViewModel;
-            return ttvm.Angles.FirstOrDefault(i => i.Id == angleId);
+            return this.trackTypeViewModel.Angles.FirstOrDefault(i => i.Id == angleId);
         }
 
         public Guid SetAngle(TrackNamedValueViewModel value)
@@ -100,8 +100,7 @@ namespace Rail.TrackEditor.ViewModel
 
         protected TrackNamedValueViewModel GetRadius(Guid radiusId)
         {
-            TrackTypeViewModel ttvm = MainViewModel.SelectedTrackTypeViewModel;
-            return ttvm.Radii.FirstOrDefault(i => i.Id == radiusId);
+            return this.trackTypeViewModel.Radii.FirstOrDefault(i => i.Id == radiusId);
         }
 
         public Guid SetRadius(TrackNamedValueViewModel value)

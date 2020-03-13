@@ -9,13 +9,10 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackDoubleSlipSwitch track;
 
-        public TrackDoubleSlipSwitchViewModel() : this(new TrackDoubleSlipSwitch(), MainViewModel.SelectedTrackTypeViewModel.TrackType)
+        public TrackDoubleSlipSwitchViewModel(TrackTypeViewModel trackTypeViewModel) : this(trackTypeViewModel, new TrackDoubleSlipSwitch())
         { }
 
-        public TrackDoubleSlipSwitchViewModel(TrackType trackType) : this(new TrackDoubleSlipSwitch(), trackType)
-        { }
-
-        public TrackDoubleSlipSwitchViewModel(TrackDoubleSlipSwitch track, TrackType trackType) : base(track, trackType)
+        public TrackDoubleSlipSwitchViewModel(TrackTypeViewModel trackTypeViewModel, TrackDoubleSlipSwitch track) : base(trackTypeViewModel, track)
         {
             this.track = track;
         }
