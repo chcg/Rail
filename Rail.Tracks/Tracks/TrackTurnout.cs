@@ -16,23 +16,38 @@ namespace Rail.Tracks
         [XmlElement("StraightLength")]
         public Guid StraightLengthId { get; set; }
 
-        [XmlElement("TurnoutLength")]
-        public Guid TurnoutLengthId { get; set; }
+        [XmlElement("LeftTurnoutLength")]
+        public Guid LeftTurnoutLengthId { get; set; }
 
-        [XmlElement("TurnoutRadius")]
-        public Guid TurnoutRadiusId { get; set; }
+        [XmlElement("LeftTurnoutRadius")]
+        public Guid LeftTurnoutRadiusId { get; set; }
 
-        [XmlElement("TurnoutAngle")]
-        public Guid TurnoutAngleId { get; set; }
+        [XmlElement("LeftTurnoutAngle")]
+        public Guid LeftTurnoutAngleId { get; set; }
 
-        [XmlElement("CounterCurveRadius")]
-        public Guid CounterCurveRadiusId { get; set; }
+        [XmlElement("LeftCounterCurveRadius")]
+        public Guid LeftCounterCurveRadiusId { get; set; }
 
-        [XmlElement("CounterCurveAngle")]
-        public Guid CounterCurveAngleId { get; set; }
+        [XmlElement("LeftCounterCurveAngle")]
+        public Guid LeftCounterCurveAngleId { get; set; }
+
+        [XmlElement("RightTurnoutLength")]
+        public Guid RightTurnoutLengthId { get; set; }
+
+        [XmlElement("RightTurnoutRadius")]
+        public Guid RightTurnoutRadiusId { get; set; }
+
+        [XmlElement("RightTurnoutAngle")]
+        public Guid RightTurnoutAngleId { get; set; }
+
+        [XmlElement("RightCounterCurveRadius")]
+        public Guid RightCounterCurveRadiusId { get; set; }
+
+        [XmlElement("RightCounterCurveAngle")]
+        public Guid RightCounterCurveAngleId { get; set; }
 
         [XmlElement("TurnoutDirection")]
-        public TrackDirection TurnoutDirection { get; set; }
+        public TrackTurnoutDirection TurnoutDirection { get; set; }
 
         [XmlElement("TurnoutDrive")]
         public TrackDrive TurnoutDrive { get; set; }
@@ -45,19 +60,34 @@ namespace Rail.Tracks
         public double StraightLength { get; set; }
 
         [XmlIgnore, JsonIgnore]
-        public double TurnoutLength { get; set; }        
+        public double LeftTurnoutLength { get; set; }
 
         [XmlIgnore, JsonIgnore]
-        public double TurnoutRadius { get; set; }
+        public double LeftTurnoutRadius { get; set; }
 
         [XmlIgnore, JsonIgnore]
-        public double TurnoutAngle { get; set; }
+        public double LeftTurnoutAngle { get; set; }
 
         [XmlIgnore, JsonIgnore]
-        public double CounterCurveRadius { get; set; }
+        public double LeftCounterCurveRadius { get; set; }
 
         [XmlIgnore, JsonIgnore]
-        public double CounterCurveAngle { get; set; }
+        public double LeftCounterCurveAngle { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public double RightTurnoutLength { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public double RightTurnoutRadius { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public double RightTurnoutAngle { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public double RightCounterCurveRadius { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public double RightCounterCurveAngle { get; set; }
 
         #endregion
 
@@ -69,13 +99,16 @@ namespace Rail.Tracks
         public override void Update(TrackType trackType)
         {
             this.StraightLength = GetValue(trackType.Lengths, this.StraightLengthId);
-            this.TurnoutLength = GetValueOrNull(trackType.Lengths, this.TurnoutLengthId);
-            this.TurnoutRadius = GetValue(trackType.Radii, this.TurnoutRadiusId);
-            this.TurnoutAngle = GetValue(trackType.Angles, this.TurnoutAngleId);
-            this.CounterCurveRadius = GetValueOrNull(trackType.Radii, this.CounterCurveRadiusId);
-            this.CounterCurveAngle = GetValueOrNull(trackType.Angles, this.CounterCurveAngleId);
-
-            string turnoutRadiusName = GetName(trackType.Radii, this.TurnoutRadiusId);
+            this.LeftTurnoutLength = GetValueOrNull(trackType.Lengths, this.LeftTurnoutLengthId);
+            this.LeftTurnoutRadius = GetValue(trackType.Radii, this.LeftTurnoutRadiusId);
+            this.LeftTurnoutAngle = GetValue(trackType.Angles, this.LeftTurnoutAngleId);
+            this.LeftCounterCurveRadius = GetValueOrNull(trackType.Radii, this.LeftCounterCurveRadiusId);
+            this.LeftCounterCurveAngle = GetValueOrNull(trackType.Angles, this.LeftCounterCurveAngleId);
+            this.RightTurnoutLength = GetValueOrNull(trackType.Lengths, this.RightTurnoutLengthId);
+            this.RightTurnoutRadius = GetValue(trackType.Radii, this.RightTurnoutRadiusId);
+            this.RightTurnoutAngle = GetValue(trackType.Angles, this.RightTurnoutAngleId);
+            this.RightCounterCurveRadius = GetValueOrNull(trackType.Radii, this.RightCounterCurveRadiusId);
+            this.RightCounterCurveAngle = GetValueOrNull(trackType.Angles, this.RightCounterCurveAngleId);
 
             string drive = this.TurnoutDrive switch
             {
@@ -83,12 +116,20 @@ namespace Rail.Tracks
                 TrackDrive.Mechanical => Resources.TrackDriveMechanical,
                 _ => string.Empty
             };
-            this.Name = TurnoutDirection == TrackDirection.Left ?
-                    $"{Resources.TrackTurnoutLeft} {turnoutRadiusName} {drive}" :
-                    $"{Resources.TrackTurnoutRight} {turnoutRadiusName} {drive}";
-            this.Description = TurnoutDirection == TrackDirection.Left ?
-                    $"{this.Article} {Resources.TrackTurnoutLeft} {turnoutRadiusName} {drive}" :
-                    $"{this.Article} {Resources.TrackTurnoutRight} {turnoutRadiusName} {drive}";
+
+            string leftRadiusName = GetName(trackType.Radii, this.LeftTurnoutRadiusId);
+            string rightRadiusName = GetName(trackType.Radii, this.RightTurnoutRadiusId);
+
+            this.Name = this.TurnoutDirection switch
+            {
+                TrackTurnoutDirection.Left => $"{Resources.TrackTurnoutLeft} {leftRadiusName} {drive}",
+                TrackTurnoutDirection.Right => $"{Resources.TrackTurnoutRight} {rightRadiusName} {drive}",
+                TrackTurnoutDirection.Y => $"{Resources.TrackYTurnout} {drive}",
+                TrackTurnoutDirection.Three => $"{Resources.TrackThreeWayTurnout} {drive}",
+                _ => string.Empty
+            };
+                       
+            this.Description = $"{this.Article} {this.Name}";
             
             base.Update(trackType);
         }

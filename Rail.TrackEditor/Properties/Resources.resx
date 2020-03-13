@@ -153,6 +153,9 @@
   <data name="MainDockType" xml:space="preserve">
     <value>Dock Type</value>
   </data>
+  <data name="MainEndPieceType" xml:space="preserve">
+    <value>End Piece Type</value>
+  </data>
   <data name="MainExtras" xml:space="preserve">
     <value>Extras</value>
   </data>

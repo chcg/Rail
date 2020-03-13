@@ -27,7 +27,7 @@ namespace Rail.TrackEditor.ViewModel
         protected override void NotifyPropertyChanged(string propertyName)
         {
             base.NotifyPropertyChanged(propertyName);
-            //UpdateTrack();
+            UpdateTrack();
         }
 
         public static TrackViewModel Create(TrackTypeViewModel trackTypeViewModel, TrackBase track)
@@ -44,7 +44,6 @@ namespace Rail.TrackEditor.ViewModel
                 nameof(TrackYTurnout) => new TrackYTurnoutViewModel(trackTypeViewModel, (TrackYTurnout)track),
                 nameof(TrackCrossing) => new TrackCrossingViewModel(trackTypeViewModel, (TrackCrossing)track),
                 nameof(TrackStar) => new TrackStarViewModel(trackTypeViewModel, (TrackStar)track),
-                nameof(TrackBumper) => new TrackBumperViewModel(trackTypeViewModel, (TrackBumper)track),
                 nameof(TrackAdapter) => new TrackAdapterViewModel(trackTypeViewModel, (TrackAdapter)track),
                 nameof(TrackTurntable) => new TrackTurntableViewModel(trackTypeViewModel, (TrackTurntable)track),
                 nameof(TrackTransferTable) => new TrackTransferTableViewModel(trackTypeViewModel, (TrackTransferTable)track),

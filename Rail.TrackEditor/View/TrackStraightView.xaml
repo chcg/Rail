@@ -8,9 +8,6 @@
              xmlns:lang="clr-namespace:Rail.TrackEditor.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <mvvmconv:DebugConverter x:Key="DebugConverter"/>
-    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -28,7 +25,7 @@
         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Article}" Margin="3"/>
 
         <Label Grid.Column="0" Grid.Row="1" Content="{x:Static lang:Resources.MainLength}"/>
-        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding DataContext.LengthsView, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding Length}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
+        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding DataContext.LengthsSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding Length}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
 
         <Label Grid.Column="0" Grid.Row="2" Content="{x:Static lang:Resources.MainExtras}"/>
         <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Extras}" SelectedItem="{Binding Extra}" IsEditable="False" Margin="3"/>
