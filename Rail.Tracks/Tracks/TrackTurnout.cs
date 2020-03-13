@@ -13,6 +13,9 @@ namespace Rail.Tracks
     {
         #region store 
 
+        [XmlElement("TurnoutDirection")]
+        public TrackTurnoutDirection TurnoutDirection { get; set; }
+
         [XmlElement("StraightLength")]
         public Guid StraightLengthId { get; set; }
 
@@ -45,9 +48,6 @@ namespace Rail.Tracks
 
         [XmlElement("RightCounterCurveAngle")]
         public Guid RightCounterCurveAngleId { get; set; }
-
-        [XmlElement("TurnoutDirection")]
-        public TrackTurnoutDirection TurnoutDirection { get; set; }
 
         [XmlElement("TurnoutDrive")]
         public TrackDrive TurnoutDrive { get; set; }
@@ -136,52 +136,146 @@ namespace Rail.Tracks
 
         protected override Geometry CreateGeometry()
         {
-            return new CombinedGeometry(
-                StraitGeometry(this.StraightLength, StraitOrientation.Center),
-                this.TurnoutDirection == TrackDirection.Left ?
-                    CurvedGeometry(this.TurnoutAngle, this.TurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.StraightLength / 2 + this.TurnoutLength, 0)) :
-                    CurvedGeometry(this.TurnoutAngle, this.TurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, new Point(this.StraightLength / 2 - this.TurnoutLength, 0)));
+            double leftLength = this.LeftTurnoutRadius * 2 * Math.PI * this.LeftTurnoutAngle / 360.0;
+            double rightLength = this.RightTurnoutRadius * 2 * Math.PI * this.RightTurnoutAngle / 360.0;
+
+            return this.TurnoutDirection switch
+            {
+                TrackTurnoutDirection.Left =>
+                    new CombinedGeometry(
+                        StraitGeometry(this.StraightLength, StraitOrientation.Center),
+                        CurvedGeometry(this.LeftTurnoutAngle, this.LeftTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.StraightLength / 2 + this.LeftTurnoutLength, 0))), 
+
+                TrackTurnoutDirection.Right =>
+                    new CombinedGeometry(
+                        StraitGeometry(this.StraightLength, StraitOrientation.Center),
+                        CurvedGeometry(this.RightTurnoutAngle, this.RightTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, new Point(this.StraightLength / 2 - this.RightTurnoutLength, 0))),
+
+                TrackTurnoutDirection.Y =>
+                    new CombinedGeometry(
+                        CurvedGeometry(this.LeftTurnoutAngle, this.LeftTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-leftLength / 2, 0)),
+                        CurvedGeometry(this.RightTurnoutAngle, this.RightTurnoutRadius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-rightLength / 2, 0))),
+
+                TrackTurnoutDirection.Three =>
+                    new CombinedGeometry(
+                        StraitGeometry(this.StraightLength, StraitOrientation.Center),
+                        new CombinedGeometry(
+                            CurvedGeometry(this.LeftTurnoutAngle, this.LeftTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.StraightLength / 2, 0)),
+                            CurvedGeometry(this.RightTurnoutAngle, this.RightTurnoutRadius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-this.StraightLength / 2, 0)))),
+
+                _ => null
+            };
         }
 
         protected override Drawing CreateRailDrawing()
         {
+            double leftLength = this.LeftTurnoutRadius * 2 * Math.PI * this.LeftTurnoutAngle / 360.0;
+            double rightLength = this.RightTurnoutRadius * 2 * Math.PI * this.RightTurnoutAngle / 360.0;
+
             DrawingGroup drawingRail = new DrawingGroup();
-            if (this.HasBallast)
+            switch (this.TurnoutDirection)
             {
-                drawingRail.Children.Add(StraitBallast(this.StraightLength));
-                drawingRail.Children.Add(this.TurnoutDirection == TrackDirection.Left ?
-                    CurvedBallast(this.TurnoutAngle, this.TurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.StraightLength / 2 + this.TurnoutLength, 0)) :
-                    CurvedBallast(this.TurnoutAngle, this.TurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, new Point(this.StraightLength / 2 - this.TurnoutLength, 0)));
+            case TrackTurnoutDirection.Left:
+                if (this.HasBallast)
+                {
+                    drawingRail.Children.Add(StraitBallast(this.StraightLength));
+                    drawingRail.Children.Add(CurvedBallast(this.LeftTurnoutAngle, this.LeftTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.StraightLength / 2 + this.LeftTurnoutLength, 0)));
+                }
+                drawingRail.Children.Add(StraitSleepers(this.StraightLength));
+                drawingRail.Children.Add(CurvedSleepers(this.LeftTurnoutAngle, this.LeftTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.StraightLength / 2 + this.LeftTurnoutLength, 0)));
+                        
+                drawingRail.Children.Add(StraitRail(this.StraightLength));
+                drawingRail.Children.Add(CurvedRail(this.LeftTurnoutAngle, this.LeftTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.StraightLength / 2 + this.LeftTurnoutLength, 0)));
+                break;
+
+            case TrackTurnoutDirection.Right:
+                if (this.HasBallast)
+                {
+                    drawingRail.Children.Add(StraitBallast(this.StraightLength));
+                    drawingRail.Children.Add(CurvedBallast(this.RightTurnoutAngle, this.RightTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, new Point(this.StraightLength / 2 - this.RightTurnoutLength, 0)));
+                }
+                drawingRail.Children.Add(StraitSleepers(this.StraightLength));
+                drawingRail.Children.Add(CurvedSleepers(this.RightTurnoutAngle, this.RightTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, new Point(this.StraightLength / 2 - this.RightTurnoutLength, 0)));
+
+                drawingRail.Children.Add(StraitRail(this.StraightLength));
+                drawingRail.Children.Add(CurvedRail(this.RightTurnoutAngle, this.RightTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, new Point(this.StraightLength / 2 - this.RightTurnoutLength, 0)));
+                break;
+
+            case TrackTurnoutDirection.Y:
+                if (this.HasBallast)
+                {
+                    drawingRail.Children.Add(CurvedBallast(this.LeftTurnoutAngle, this.LeftTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-leftLength / 2, 0)));
+                    drawingRail.Children.Add(CurvedBallast(this.RightTurnoutAngle, this.RightTurnoutRadius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-rightLength / 2, 0)));
+                }
+                drawingRail.Children.Add(CurvedSleepers(this.LeftTurnoutAngle, this.LeftTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-leftLength / 2, 0)));
+                drawingRail.Children.Add(CurvedSleepers(this.RightTurnoutAngle, this.RightTurnoutRadius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-rightLength / 2, 0)));
+                
+                drawingRail.Children.Add(CurvedRail(this.LeftTurnoutAngle, this.LeftTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-leftLength / 2, 0)));
+                drawingRail.Children.Add(CurvedRail(this.RightTurnoutAngle, this.RightTurnoutRadius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-rightLength / 2, 0)));
+                break;
+
+            case TrackTurnoutDirection.Three:
+                if (this.HasBallast)
+                {
+                    drawingRail.Children.Add(StraitBallast(this.StraightLength));
+                    drawingRail.Children.Add(CurvedBallast(this.LeftTurnoutAngle, this.LeftTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.StraightLength / 2, 0)));
+                    drawingRail.Children.Add(CurvedBallast(this.RightTurnoutAngle, this.RightTurnoutRadius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-this.StraightLength / 2, 0)));
+                }
+                drawingRail.Children.Add(StraitSleepers(this.StraightLength));
+                drawingRail.Children.Add(CurvedSleepers(this.LeftTurnoutAngle, this.LeftTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.StraightLength / 2, 0)));
+                drawingRail.Children.Add(CurvedSleepers(this.RightTurnoutAngle, this.RightTurnoutRadius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-this.StraightLength / 2, 0)));
+                
+                drawingRail.Children.Add(StraitRail(this.StraightLength));
+                drawingRail.Children.Add(CurvedRail(this.LeftTurnoutAngle, this.LeftTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.StraightLength / 2, 0)));
+                drawingRail.Children.Add(CurvedRail(this.RightTurnoutAngle, this.RightTurnoutRadius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-this.StraightLength / 2, 0)));
+                break;
             }
-            drawingRail.Children.Add(StraitSleepers(this.StraightLength));
-            drawingRail.Children.Add(this.TurnoutDirection == TrackDirection.Left ?
-                    CurvedSleepers(this.TurnoutAngle, this.TurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.StraightLength / 2 + this.TurnoutLength, 0)) :
-                    CurvedSleepers(this.TurnoutAngle, this.TurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, new Point(this.StraightLength / 2 - this.TurnoutLength, 0)));
-            drawingRail.Children.Add(StraitRail(this.StraightLength));
-            drawingRail.Children.Add(this.TurnoutDirection == TrackDirection.Left ?
-                    CurvedRail(this.TurnoutAngle, this.TurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.StraightLength / 2 + this.TurnoutLength, 0)) :
-                    CurvedRail(this.TurnoutAngle, this.TurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, new Point(this.StraightLength / 2 - this.TurnoutLength, 0)));
             return drawingRail;
         }
 
         protected override List<TrackDockPoint> CreateDockPoints()
         {
-            Point circleCenterLeft = new Point(-this.StraightLength / 2, -this.TurnoutRadius);
-            Point circleCenterRight = new Point(this.StraightLength / 2, -this.TurnoutRadius);
+            Point circleCenterLeft = new Point(-this.StraightLength / 2, -this.LeftTurnoutRadius);
+            Point circleCenterRight = new Point(this.StraightLength / 2, -this.RightTurnoutRadius);
 
-            return this.TurnoutDirection == TrackDirection.Left ?
-                new List<TrackDockPoint>
-                {
-                    new TrackDockPoint(0, new Point(-this.StraightLength / 2.0, 0.0), 90 + 45, this.dockType),
-                    new TrackDockPoint(1, new Point( this.StraightLength / 2.0, 0.0), 180 + 90 + 45, this.dockType),
-                    new TrackDockPoint(2, new Point(-this.StraightLength / 2.0, 0.0).Rotate(-this.TurnoutAngle, circleCenterLeft).Move(this.TurnoutLength, 0), -this.TurnoutAngle - 45, this.dockType),
-                } :
-                new List<TrackDockPoint>
-                {
-                    new TrackDockPoint(0, new Point(-this.StraightLength / 2.0, 0.0), 90 + 45, this.dockType),
-                    new TrackDockPoint(1, new Point( this.StraightLength / 2.0, 0.0), 180 + 90 + 45, this.dockType),
-                    new TrackDockPoint(3, new Point( this.StraightLength / 2.0, 0.0).Rotate(+this.TurnoutAngle, circleCenterRight).Move(-this.TurnoutLength, 0), this.TurnoutAngle + 135, this.dockType)
-                };
+            return this.TurnoutDirection switch
+            {
+                TrackTurnoutDirection.Left =>
+                    new List<TrackDockPoint>
+                    {
+                        new TrackDockPoint(0, new Point(-this.StraightLength / 2.0, 0.0), 90 + 45, this.dockType),
+                        new TrackDockPoint(1, new Point(this.StraightLength / 2.0, 0.0), 180 + 90 + 45, this.dockType),
+                        new TrackDockPoint(2, new Point(-this.StraightLength / 2.0, 0.0).Rotate(-this.LeftTurnoutAngle, circleCenterLeft).Move(this.LeftTurnoutLength, 0), -this.LeftTurnoutAngle - 45, this.dockType),
+                    },
+
+                TrackTurnoutDirection.Right =>
+                    new List<TrackDockPoint>
+                    {
+                        new TrackDockPoint(0, new Point(-this.StraightLength / 2.0, 0.0), 90 + 45, this.dockType),
+                        new TrackDockPoint(1, new Point(this.StraightLength / 2.0, 0.0), 180 + 90 + 45, this.dockType),
+                        new TrackDockPoint(3, new Point(this.StraightLength / 2.0, 0.0).Rotate(+this.RightTurnoutAngle, circleCenterRight).Move(-this.RightTurnoutLength, 0), this.RightTurnoutAngle + 135, this.dockType)
+                    },
+
+                TrackTurnoutDirection.Y =>
+                    new List<TrackDockPoint>
+                    {
+                        //new TrackDockPoint(-this.Length / 2.0, 0.0, 135),
+                        //new TrackDockPoint( this.Length / 2.0, 0.0, 315),
+                        //new TrackDockPoint(new Point(-this.Length / 2.0, 0).Rotate(-this.Angle, circleCenterLeft), -this.Angle - 45),
+                        //new TrackDockPoint(new Point(-this.Length / 2.0, 0).Rotate( this.Angle, circleCenterRight), this.Angle - 45)
+                    },
+
+                TrackTurnoutDirection.Three =>
+                    new List<TrackDockPoint>
+                    {
+                        new TrackDockPoint(0, new Point(-this.StraightLength / 2.0, 0.0), 135, this.dockType),
+                        new TrackDockPoint(1, new Point(this.StraightLength / 2.0, 0.0), 315, this.dockType),
+                        new TrackDockPoint(2, new Point(-this.StraightLength / 2.0, 0.0).Rotate(-this.LeftTurnoutAngle, circleCenterLeft), -this.LeftTurnoutAngle - 45, this.dockType),
+                        new TrackDockPoint(3, new Point(-this.StraightLength / 2.0, 0.0).Rotate(this.RightTurnoutAngle, circleCenterRight), this.RightTurnoutAngle - 45, this.dockType)
+                    },
+
+                _ => null
+            };
         }
 
         #endregion

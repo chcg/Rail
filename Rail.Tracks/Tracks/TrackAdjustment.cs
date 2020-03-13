@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace Rail.Tracks
 {
-    public class TrackStraightAdjustment : TrackStraight
+    public class TrackAdjustment : TrackStraight
     {
         [XmlElement("LengthTo")]
         public double LengthTo { get; set; }

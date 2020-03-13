@@ -185,20 +185,22 @@ namespace Rail.TrackEditor.ViewModel
             {
                 TrackTypes.Straight => new TrackStraightViewModel(this),
                 TrackTypes.Curved => new TrackCurvedViewModel(this),
+                TrackTypes.EndPiece => new TrackEndPieceViewModel(this),
+                TrackTypes.Adapter => new TrackAdapterViewModel(this),
+                TrackTypes.Adjustment => new TrackAdjustmentViewModel(this),
+                TrackTypes.Flex => new TrackFlexViewModel(this),
+
                 TrackTypes.Turnout => new TrackTurnoutViewModel(this),
                 TrackTypes.CurvedTurnout => new TrackCurvedTurnoutViewModel(this),
                 TrackTypes.DoubleSlipSwitch => new TrackDoubleSlipSwitchViewModel(this),
-                TrackTypes.ThreeWayTurnout => new TrackThreeWayTurnoutViewModel(this),
-                TrackTypes.YTurnout => new TrackYTurnoutViewModel(this),
+                TrackTypes.DoubleCrossover => new TrackDoubleCrossoverViewModel(this),
+
                 TrackTypes.Crossing => new TrackCrossingViewModel(this),
                 TrackTypes.Star => new TrackStarViewModel(this),
-                TrackTypes.Adapter => new TrackAdapterViewModel(this),
+                
                 TrackTypes.Turntable => new TrackTurntableViewModel(this),
                 TrackTypes.TransferTable => new TrackTransferTableViewModel(this),
-                TrackTypes.EndPiece => new TrackEndPieceViewModel(this),                
-                TrackTypes.StraightAdjustment => new TrackStraightAdjustmentViewModel(this),
-                TrackTypes.DoubleCrossover => new TrackDoubleCrossoverViewModel(this),
-                TrackTypes.Flex => new TrackFlexViewModel(this),
+                
                 TrackTypes.Group => new TrackGroupViewModel(this),
                 _ => null
             };

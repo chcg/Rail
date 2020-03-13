@@ -11,15 +11,13 @@ namespace Rail.Tracks
         Curved,
         EndPiece,
         Adapter,
-        StraightAdjustment,
+        Adjustment,
         Flex,
 
         // turnout 
         Turnout,
         CurvedTurnout,
         DoubleSlipSwitch,
-        ThreeWayTurnout,
-        YTurnout,
         DoubleCrossover,
 
         // crossing

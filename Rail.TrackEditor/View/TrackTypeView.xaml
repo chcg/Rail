@@ -227,14 +227,12 @@
                                 <MenuItem Header="{x:Static lang:Resources.MainNewCurvedTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Curved}" />
                                 <MenuItem Header="{x:Static lang:Resources.MainNewEndPieceTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.EndPiece}" />
                                 <MenuItem Header="{x:Static lang:Resources.MainNewAdapterTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Adapter}" />
-                                <MenuItem Header="{x:Static lang:Resources.MainNewStraightAdjustmentTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.StraightAdjustment}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainNewStraightAdjustmentTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Adjustment}" />
                                 <MenuItem Header="{x:Static lang:Resources.MainNewFlexTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Flex}" />
                                 <Separator/>
                                 <MenuItem Header="{x:Static lang:Resources.MainNewTurnoutTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Turnout}" />
                                 <MenuItem Header="{x:Static lang:Resources.MainNewCurvedTurnoutTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.CurvedTurnout}" />
                                 <MenuItem Header="{x:Static lang:Resources.MainNewDoubleSlipSwitchTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.DoubleSlipSwitch}" />
-                                <MenuItem Header="{x:Static lang:Resources.MainNewThreeWayTurnoutTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.ThreeWayTurnout}" />
-                                <MenuItem Header="{x:Static lang:Resources.MainNewYTurnoutTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.YTurnout}" />
                                 <MenuItem Header="{x:Static lang:Resources.MainNewDoubleCrossoverTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.DoubleCrossover}" />
                                 <Separator/>
                                 <MenuItem Header="{x:Static lang:Resources.MainNewCrossingTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Crossing}" />
@@ -255,14 +253,12 @@
                                             <MenuItem Header="{x:Static lang:Resources.MainNewCurvedTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Curved}" />
                                             <MenuItem Header="{x:Static lang:Resources.MainNewEndPieceTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.EndPiece}" />
                                             <MenuItem Header="{x:Static lang:Resources.MainNewAdapterTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Adapter}" />
-                                            <MenuItem Header="{x:Static lang:Resources.MainNewStraightAdjustmentTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.StraightAdjustment}" />
+                                            <MenuItem Header="{x:Static lang:Resources.MainNewStraightAdjustmentTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Adjustment}" />
                                             <MenuItem Header="{x:Static lang:Resources.MainNewFlexTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Flex}" />
                                             <Separator/>
                                             <MenuItem Header="{x:Static lang:Resources.MainNewTurnoutTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Turnout}" />
                                             <MenuItem Header="{x:Static lang:Resources.MainNewCurvedTurnoutTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.CurvedTurnout}" />
                                             <MenuItem Header="{x:Static lang:Resources.MainNewDoubleSlipSwitchTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.DoubleSlipSwitch}" />
-                                            <MenuItem Header="{x:Static lang:Resources.MainNewThreeWayTurnoutTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.ThreeWayTurnout}" />
-                                            <MenuItem Header="{x:Static lang:Resources.MainNewYTurnoutTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.YTurnout}" />
                                             <MenuItem Header="{x:Static lang:Resources.MainNewDoubleCrossoverTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.DoubleCrossover}" />
                                             <Separator/>
                                             <MenuItem Header="{x:Static lang:Resources.MainNewCrossingTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Crossing}" />
@@ -290,6 +286,19 @@
                             <DataTemplate DataType="{x:Type vm:TrackCurvedViewModel}" >
                                 <v:TrackCurvedView/>
                             </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:TrackEndPieceViewModel}" >
+                                <v:TrackEndPieceView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:TrackAdapterViewModel}" >
+                                <v:TrackAdapterView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:TrackAdjustmentViewModel}" >
+                                <v:TrackAdjustmentView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:TrackFlexViewModel}" >
+                                <v:TrackFlexView/>
+                            </DataTemplate>
+                            
                             <DataTemplate DataType="{x:Type vm:TrackTurnoutViewModel}" >
                                 <v:TrackTurnoutView/>
                             </DataTemplate>
@@ -299,39 +308,24 @@
                             <DataTemplate DataType="{x:Type vm:TrackDoubleSlipSwitchViewModel}" >
                                 <v:TrackDoubleSlipSwitchView/>
                             </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:TrackThreeWayTurnoutViewModel}" >
-                                <v:TrackThreeWayTurnout/>
+                            <DataTemplate DataType="{x:Type vm:TrackDoubleCrossoverViewModel}" >
+                                <v:TrackDoubleCrossoverView/>
                             </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:TrackYTurnoutViewModel}" >
-                                <v:TrackYTurnoutView/>
-                            </DataTemplate>
+                            
                             <DataTemplate DataType="{x:Type vm:TrackCrossingViewModel}" >
                                 <v:TrackCrossingView/>
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type vm:TrackStarViewModel}" >
                                 <v:TrackStarView/>
                             </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:TrackAdapterViewModel}" >
-                                <v:TrackAdapterView/>
-                            </DataTemplate>
+                            
                             <DataTemplate DataType="{x:Type vm:TrackTurntableViewModel}" >
                                 <v:TrackTurntableView/>
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type vm:TrackTransferTableViewModel}" >
                                 <v:TrackTransferTableView/>
                             </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:TrackEndPieceViewModel}" >
-                                <v:TrackEndPieceView/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:TrackStraightAdjustmentViewModel}" >
-                                <v:TrackStraightAdjustmentView/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:TrackDoubleCrossoverViewModel}" >
-                                <v:TrackDoubleCrossoverView/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:TrackFlexViewModel}" >
-                                <v:TrackFlexView/>
-                            </DataTemplate>
+                            
                             <DataTemplate DataType="{x:Type vm:TrackGroupViewModel}" >
                                 <v:TrackGroupView/>
                             </DataTemplate>

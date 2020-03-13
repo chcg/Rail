@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace Rail.TrackEditor.View
 {
     /// <summary>
-    /// Interaction logic for TrackYTurnoutView.xaml
+    /// Interaction logic for TrackStraightAdjustmentView.xaml
     /// </summary>
-    public partial class TrackYTurnoutView : UserControl
+    public partial class TrackAdjustmentView : UserControl
     {
-        public TrackYTurnoutView()
+        public TrackAdjustmentView()
         {
             InitializeComponent();
         }

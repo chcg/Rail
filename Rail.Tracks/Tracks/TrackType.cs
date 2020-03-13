@@ -38,20 +38,22 @@ namespace Rail.Tracks
         [XmlArray("Tracks")]
         [XmlArrayItem(typeof(TrackStraight), ElementName = "Straight"),
          XmlArrayItem(typeof(TrackCurved), ElementName = "Curved"),
+         XmlArrayItem(typeof(TrackEndPiece), ElementName = "EndPiece"),
+         XmlArrayItem(typeof(TrackAdapter), ElementName = "Adapter"),
+         XmlArrayItem(typeof(TrackAdjustment), ElementName = "StraightAdjustment"),
+         XmlArrayItem(typeof(TrackFlex), ElementName = "Flex"),
+
          XmlArrayItem(typeof(TrackTurnout), ElementName = "Turnout"),
          XmlArrayItem(typeof(TrackCurvedTurnout), ElementName = "CurvedTurnout"),
          XmlArrayItem(typeof(TrackDoubleSlipSwitch), ElementName = "DoubleSlipSwitch"),
-         XmlArrayItem(typeof(TrackThreeWayTurnout), ElementName = "ThreeWayTurnout"),
-         XmlArrayItem(typeof(TrackYTurnout), ElementName = "YTurnout"),
+         XmlArrayItem(typeof(TrackDoubleCrossover), ElementName = "DoubleCrossover"),
+
          XmlArrayItem(typeof(TrackCrossing), ElementName = "Crossing"),
          XmlArrayItem(typeof(TrackStar), ElementName = "Star"),
-         XmlArrayItem(typeof(TrackAdapter), ElementName = "Adapter"),
+
          XmlArrayItem(typeof(TrackTurntable), ElementName = "Turntable"),
          XmlArrayItem(typeof(TrackTransferTable), ElementName = "TransferTable"),
-         XmlArrayItem(typeof(TrackEndPiece), ElementName = "EndPiece"),
-         XmlArrayItem(typeof(TrackStraightAdjustment), ElementName = "StraightAdjustment"),
-         XmlArrayItem(typeof(TrackDoubleCrossover), ElementName = "Suspender"),
-         XmlArrayItem(typeof(TrackFlex), ElementName = "Flex"),
+
          XmlArrayItem(typeof(TrackGroup), ElementName = "Group")]
         public List<TrackBase> Tracks { get; set; }
 
