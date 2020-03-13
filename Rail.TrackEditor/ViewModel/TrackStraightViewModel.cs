@@ -2,6 +2,7 @@
 using Rail.Tracks;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -36,7 +37,7 @@ namespace Rail.TrackEditor.ViewModel
                 }
                 else
                 {
-
+                    Debugger.Break();
                 }
             }
         }

@@ -169,6 +169,15 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to End Piece Type.
+        /// </summary>
+        public static string MainEndPieceType {
+            get {
+                return ResourceManager.GetString("MainEndPieceType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extras.
         /// </summary>
         public static string MainExtras {

@@ -14,16 +14,12 @@ namespace Rail.TrackEditor.ViewModel
     public class TrackTypeViewModel : BaseViewModel
     {
         private readonly TrackType trackType;
+        private readonly List<TrackNamedValueViewModel> nullList = new List<TrackNamedValueViewModel> { TrackNamedValueViewModel.Null };
 
-        //private CollectionViewSource lengths;
-        //private CollectionViewSource lengthsWithNull;
-        //private CollectionViewSource radii;
-        //private CollectionViewSource radiiWithNull;
-        //private CollectionViewSource angles;
-        //private CollectionViewSource anglesWithNull;
+       
 
-        public DelegateCommand<TrackTypes> NewTrackCommand { get; private set; }
-        public DelegateCommand<TrackViewModel> DeleteTrackCommand { get; private set; }
+        public DelegateCommand<TrackTypes> NewTrackCommand { get; }
+        public DelegateCommand<TrackViewModel> DeleteTrackCommand { get; }
 
         public TrackTypeViewModel() : this(new TrackType())
         { }
@@ -36,17 +32,13 @@ namespace Rail.TrackEditor.ViewModel
             this.trackType = trackType;
             this.Tracks = new ObservableCollection<TrackViewModel>(trackType.Tracks.Select(t => TrackViewModel.Create(this, t)));
             this.Names = new ObservableCollection<TrackTypeNameViewModel>(this.trackType.Name.LanguageDictionary.Select(n => new TrackTypeNameViewModel(n)));
+
             this.Lengths = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Lengths.Select(v => new TrackNamedValueViewModel(v)));
             this.Radii = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Radii.Select(v => new TrackNamedValueViewModel(v)));
             this.Angles = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Angles.Select(v => new TrackNamedValueViewModel(v)));
-
-            //this.lengths = new CollectionViewSource() { Source = this.Lengths }; 
-            //this.radii = new CollectionViewSource() { Source = this.Radii };
-            //this.angles = new CollectionViewSource() { Source = this.Angles }; 
-
-            this.Lengths.CollectionChanged += (o, i) => { NotifyPropertyChanged(nameof(LengthsView)); NotifyPropertyChanged(nameof(LengthsAndNullView)); };
-            this.Radii.CollectionChanged += (o, i) => { NotifyPropertyChanged(nameof(RadiiView)); NotifyPropertyChanged(nameof(RadiiAndNullView)); };
-            this.Angles.CollectionChanged += (o, i) => { NotifyPropertyChanged(nameof(AnglesView)); NotifyPropertyChanged(nameof(AnglesAndNullView)); };
+            this.Lengths.CollectionChanged += (o, i) => { NotifyPropertyChanged(nameof(LengthsSource)); NotifyPropertyChanged(nameof(LengthsAndNullSource)); };
+            this.Radii.CollectionChanged += (o, i) => { NotifyPropertyChanged(nameof(RadiiSource)); NotifyPropertyChanged(nameof(RadiiAndNullSource)); };
+            this.Angles.CollectionChanged += (o, i) => { NotifyPropertyChanged(nameof(AnglesSource)); NotifyPropertyChanged(nameof(AnglesAndNullSource)); };
         }
 
         public TrackType TrackType { get { return this.trackType; } }
@@ -63,36 +55,23 @@ namespace Rail.TrackEditor.ViewModel
 
         public string Name { get { return this.trackType.Name; } }
 
-        public ObservableCollection<TrackTypeNameViewModel> Names { get; private set; }
+        public ObservableCollection<TrackTypeNameViewModel> Names { get; }
 
-        public ObservableCollection<TrackNamedValueViewModel> Lengths { get; private set; }
+        public ObservableCollection<TrackNamedValueViewModel> Lengths { get; }
 
-        public ObservableCollection<TrackNamedValueViewModel> Radii { get; private set; }
+        public ObservableCollection<TrackNamedValueViewModel> Radii { get; }
 
-        public ObservableCollection<TrackNamedValueViewModel> Angles { get; private set; }
+        public ObservableCollection<TrackNamedValueViewModel> Angles { get; }
 
-        public List<TrackNamedValueViewModel> LengthsView { get { return this.Lengths.ToList(); } }
-        public List<TrackNamedValueViewModel> LengthsAndNullView { get { return this.Lengths.ToList(); } }
-        public List<TrackNamedValueViewModel> RadiiView { get { return this.Radii.ToList(); } }
-        public List<TrackNamedValueViewModel> RadiiAndNullView { get { return this.Radii.ToList(); } }
-        public List<TrackNamedValueViewModel> AnglesView { get { return this.Angles.ToList(); } }
-        public List<TrackNamedValueViewModel> AnglesAndNullView { get { return this.Angles.ToList(); } }
+        public IEnumerable<TrackNamedValueViewModel> LengthsSource { get { return this.Lengths.ToList(); } }
+        public IEnumerable<TrackNamedValueViewModel> LengthsAndNullSource { get { return this.Lengths.Concat(nullList).ToList(); } }
+        public IEnumerable<TrackNamedValueViewModel> RadiiSource { get { return this.Radii.ToList(); } }
+        public IEnumerable<TrackNamedValueViewModel> RadiiAndNullSource { get { return this.Radii.Concat(nullList).ToList(); } }
+        public IEnumerable<TrackNamedValueViewModel> AnglesSource { get { return this.Angles.ToList(); } }
+        public IEnumerable<TrackNamedValueViewModel> AnglesAndNullSource { get { return this.Angles.Concat(nullList).ToList(); } }
 
 
-        //public List<string> LengthNames { get { return this.Lengths.Select(l => l.Name).ToList(); } }
-        //public List<string> RadiusNames { get { return this.Radii.Select(l => l.Name).ToList(); } }
-        //public List<string> AngleNames { get { return this.Angles.Select(l => l.Name).ToList(); } }
-
-        //public List<string> LengthNamesAndNull { get { 
-                
-        //    var x= new List<string> { "0" }.Concat(this.LengthNames).ToList();
-        //        return x;
-            
-        //    } }
-
-        //public TrackDirection[] TurnoutDirections { get { return (TrackDirection[])Enum.GetValues(typeof(TrackDirection)); } }
-        //public TrackDrive[] TurnoutDrives { get { return (TrackDrive[])Enum.GetValues(typeof(TrackDrive)); } }
-
+       
         public string Manufacturer
         {
             get { return this.trackType.Parameter.Manufacturer; }
@@ -202,7 +181,7 @@ namespace Rail.TrackEditor.ViewModel
         }
         private void OnNewTrack(TrackTypes type)
         {
-            this.Tracks.Add(type switch
+            TrackViewModel track = type switch
             {
                 TrackTypes.Straight => new TrackStraightViewModel(this),
                 TrackTypes.Curved => new TrackCurvedViewModel(this),
@@ -213,7 +192,6 @@ namespace Rail.TrackEditor.ViewModel
                 TrackTypes.YTurnout => new TrackYTurnoutViewModel(this),
                 TrackTypes.Crossing => new TrackCrossingViewModel(this),
                 TrackTypes.Star => new TrackStarViewModel(this),
-                TrackTypes.Bumper => new TrackBumperViewModel(this),
                 TrackTypes.Adapter => new TrackAdapterViewModel(this),
                 TrackTypes.Turntable => new TrackTurntableViewModel(this),
                 TrackTypes.TransferTable => new TrackTransferTableViewModel(this),
@@ -223,7 +201,9 @@ namespace Rail.TrackEditor.ViewModel
                 TrackTypes.Flex => new TrackFlexViewModel(this),
                 TrackTypes.Group => new TrackGroupViewModel(this),
                 _ => null
-            });   
+            };
+            track.UpdateTrack();
+            this.Tracks.Add(track);
         }
 
         private void OnDeleteNewTrack(TrackViewModel track)

@@ -9,7 +9,6 @@ namespace Rail.Tracks
         // single
         Straight,
         Curved,
-        Bumper,
         EndPiece,
         Adapter,
         StraightAdjustment,

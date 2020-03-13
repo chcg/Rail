@@ -123,6 +123,9 @@
   <data name="TrackBumper" xml:space="preserve">
     <value>Track End with a Bumper</value>
   </data>
+  <data name="TrackBumperWithLantern" xml:space="preserve">
+    <value>Bumper with a lantern</value>
+  </data>
   <data name="TrackCrossing" xml:space="preserve">
     <value>Crossing</value>
   </data>
@@ -206,9 +209,6 @@
   </data>
   <data name="TrackTurntable" xml:space="preserve">
     <value>Turntable</value>
-  </data>
-  <data name="TrackWithLantern" xml:space="preserve">
-    <value>with a lantern</value>
   </data>
   <data name="TrackYTurnout" xml:space="preserve">
     <value>Y-Turnout</value>

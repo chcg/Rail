@@ -79,6 +79,15 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bumper with a lantern.
+        /// </summary>
+        public static string TrackBumperWithLantern {
+            get {
+                return ResourceManager.GetString("TrackBumperWithLantern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Crossing.
         /// </summary>
         public static string TrackCrossing {
@@ -327,15 +336,6 @@ namespace Rail.Tracks.Properties {
         public static string TrackTurntable {
             get {
                 return ResourceManager.GetString("TrackTurntable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to with a lantern.
-        /// </summary>
-        public static string TrackWithLantern {
-            get {
-                return ResourceManager.GetString("TrackWithLantern", resourceCulture);
             }
         }
         

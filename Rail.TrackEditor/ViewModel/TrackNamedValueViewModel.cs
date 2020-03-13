@@ -1,9 +1,7 @@
 ﻿using Rail.Mvvm;
 using Rail.Tracks;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace Rail.TrackEditor.ViewModel
 {
@@ -38,5 +36,11 @@ namespace Rail.TrackEditor.ViewModel
             get { return this.namedValue.Value; }
             set { this.namedValue.Value = value; NotifyPropertyChanged(nameof(Value)); }
         }
+
+        public static TrackNamedValueViewModel Null
+        {
+            get { return new TrackNamedValueViewModel(new TrackNamedValue() { Id = Guid.Empty, Name = "0", Value = 0 }); }
+        }
+
     }
 }

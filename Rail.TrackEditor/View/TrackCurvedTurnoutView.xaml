@@ -31,28 +31,28 @@
         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Article}" Margin="3"/>
 
         <Label Grid.Column="0" Grid.Row="1" Content="{x:Static lang:Resources.MainInnerLength}"/>
-        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding DataContext.LengthNamesAndNull, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding InnerLength}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
+        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding DataContext.LengthsAndNullSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding InnerLength}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
 
         <Label Grid.Column="0" Grid.Row="2" Content="{x:Static lang:Resources.MainInnerRadius}"/>
-        <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding DataContext.RadiusNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding InnerRadius}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding DataContext.RadiiSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding InnerRadius}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
 
         <Label Grid.Column="0" Grid.Row="3" Content="{x:Static lang:Resources.MainInnerAngle}"/>
-        <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding DataContext.AngleNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding InnerAngle}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
+        <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding DataContext.AnglesSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding InnerAngle}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
 
         <Label Grid.Column="0" Grid.Row="4" Content="{x:Static lang:Resources.MainOuterLength}"/>
-        <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding DataContext.LengthNamesAndNull, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding OuterLength}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
+        <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding DataContext.LengthsAndNullSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding OuterLength}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
 
         <Label Grid.Column="0" Grid.Row="5" Content="{x:Static lang:Resources.MainOuterRadius}"/>
-        <ComboBox Grid.Column="1" Grid.Row="5" ItemsSource="{Binding DataContext.RadiusNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding OuterRadius}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
+        <ComboBox Grid.Column="1" Grid.Row="5" ItemsSource="{Binding DataContext.RadiiSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding OuterRadius}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
 
         <Label Grid.Column="0" Grid.Row="6" Content="{x:Static lang:Resources.MainOuterAngle}"/>
-        <ComboBox Grid.Column="1" Grid.Row="6" ItemsSource="{Binding DataContext.AngleNames, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding OuterAngle}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
+        <ComboBox Grid.Column="1" Grid.Row="6" ItemsSource="{Binding DataContext.AnglesSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding OuterAngle}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
 
         <Label Grid.Column="0" Grid.Row="7" Content="{x:Static lang:Resources.MainTurnoutDirection}"/>
-        <ComboBox Grid.Column="1" Grid.Row="7" ItemsSource="{Binding DataContext.TurnoutDirections, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding TurnoutDirection}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
+        <ComboBox Grid.Column="1" Grid.Row="7" ItemsSource="{Binding TurnoutDirections}" SelectedValue="{Binding TurnoutDirection}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
 
         <Label Grid.Column="0" Grid.Row="8" Content="{x:Static lang:Resources.MainTurnoutDrive}"/>
-        <ComboBox Grid.Column="1" Grid.Row="8" ItemsSource="{Binding DataContext.TurnoutDrives, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedValue="{Binding TurnoutDrive}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
+        <ComboBox Grid.Column="1" Grid.Row="8" ItemsSource="{Binding TurnoutDrives}" SelectedValue="{Binding TurnoutDrive}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
 
     </Grid>
 </UserControl>

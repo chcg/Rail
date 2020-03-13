@@ -26,13 +26,13 @@
         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Article}" Margin="3"/>
 
         <Label Grid.Column="0" Grid.Row="1" Content="{x:Static lang:Resources.MainLengthA}"/>
-        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding DataContext.LengthsView, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding LengthA}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
+        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding DataContext.LengthsSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding LengthA}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
 
         <Label Grid.Column="0" Grid.Row="2" Content="{x:Static lang:Resources.MainLengthB}"/>
-        <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding DataContext.LengthsView, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding LengthB}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding DataContext.LengthsSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding LengthB}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
 
         <Label Grid.Column="0" Grid.Row="3" Content="{x:Static lang:Resources.MainCrossingAngle}"/>
-        <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding DataContext.AnglesView, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding CrossingAngle}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
+        <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding DataContext.AnglesSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding CrossingAngle}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
 
     </Grid>
 </UserControl>
