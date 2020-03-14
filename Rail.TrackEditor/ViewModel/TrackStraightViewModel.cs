@@ -41,7 +41,13 @@ namespace Rail.TrackEditor.ViewModel
                 }
             }
         }
-        
+
+        public string DockType
+        {
+            get { return this.track.DockType; }
+            set { this.track.DockType = value.Trim(); NotifyPropertyChanged(nameof(DockType)); }
+        }
+
         public TrackExtras Extra
         {
             get { return this.track.Extra; }

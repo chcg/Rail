@@ -11,6 +11,7 @@ namespace Rail.Tracks
         Contact,
         Uncoupler,
         Isolating,
-        Feeder
+        Feeder,
+        Adapter
     }
 }

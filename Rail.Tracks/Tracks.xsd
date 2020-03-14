@@ -73,6 +73,7 @@
                             <xs:element name="Article" type="xs:string" />
                             <xs:element name="Length" type="Guid" />
                             <xs:element name="Extra" type="Extras" minOccurs="0" />
+                            <xs:element name="DockType" type="xs:string" minOccurs="0"/>
                           </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />
                         </xs:complexType>
@@ -88,6 +89,18 @@
                           <xs:attribute name="Id" type="Guid" use="required" />
                         </xs:complexType>
                       </xs:element>
+                      <xs:element maxOccurs="unbounded" name="Crossing">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Article" type="xs:string" />
+                            <xs:element name="Number" type="StarNumber" />
+                            <xs:element name="Length" type="Guid" />
+                            <xs:element name="LengthB" type="Guid" />
+                            <xs:element name="CrossingAngle" type="Guid" />
+                          </xs:sequence>
+                          <xs:attribute name="Id" type="Guid" use="required" />
+                        </xs:complexType>
+                      </xs:element>
                       <xs:element maxOccurs="unbounded" name="EndPiece">
                         <xs:complexType>
                           <xs:sequence>
@@ -96,30 +109,11 @@
                           <xs:attribute name="Id" type="Guid" use="required" />
                         </xs:complexType>
                       </xs:element>
-                      <xs:element maxOccurs="unbounded" name="Adapter">
-                        <xs:complexType>
-                          <xs:sequence>
-                            <xs:element name="Article" type="xs:string" />
-                            <xs:element name="Length" type="Guid" />
-                            <xs:element name="DockType" type="xs:string" />
-                          </xs:sequence>
-                          <xs:attribute name="Id" type="Guid" use="required" />
-                        </xs:complexType>
-                      </xs:element>
-                      <xs:element maxOccurs="unbounded" name="StraightAdjustment">
-                        <xs:complexType>
-                          <xs:sequence>
-                            <xs:element name="Article" type="xs:string" />
-                            <xs:element name="Length" type="Guid" />
-                            <xs:element name="LengthTo" type="Guid" />
-                          </xs:sequence>
-                          <xs:attribute name="Id" type="Guid" use="required" />
-                        </xs:complexType>
-                      </xs:element>
                       <xs:element maxOccurs="unbounded" name="Flex">
                         <xs:complexType>
                           <xs:sequence>
                             <xs:element name="Article" type="xs:string" />
+                            <xs:element name="FlexType" type="FlexType" />
                             <xs:element name="Length" type="Guid" />
                           </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />
@@ -187,30 +181,6 @@
                             <xs:element name="CrossingAngle" type="Guid" />
                             <xs:element name="SlipRadius" type="Guid" />
                             <xs:element name="TurnoutDrive" type="Drive" minOccurs="0" />
-                          </xs:sequence>
-                          <xs:attribute name="Id" type="Guid" use="required" />
-                        </xs:complexType>
-                      </xs:element>
-                      
-                      <!-- crossing -->
-                      
-                      <xs:element maxOccurs="unbounded" name="Crossing">
-                        <xs:complexType>
-                          <xs:sequence>
-                            <xs:element name="Article" type="xs:string" />
-                            <xs:element name="LengthA" type="Guid" />
-                            <xs:element name="LengthB" type="Guid" />
-                            <xs:element name="CrossingAngle" type="Guid" />
-                          </xs:sequence>
-                          <xs:attribute name="Id" type="Guid" use="required" />
-                        </xs:complexType>
-                      </xs:element>
-                      <xs:element maxOccurs="unbounded" name="Star">
-                        <xs:complexType>
-                          <xs:sequence>
-                            <xs:element name="Article" type="xs:string" />
-                            <xs:element name="Length" type="Guid" />
-                            <xs:element name="Number" type="StarNumber" />
                           </xs:sequence>
                           <xs:attribute name="Id" type="Guid" use="required" />
                         </xs:complexType>
@@ -416,7 +386,13 @@
       <xs:enumeration value="4" />
     </xs:restriction>
   </xs:simpleType>
-  
+
+  <xs:simpleType name="FlexType" >
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Flex" />
+      <xs:enumeration value="Adjustment" />
+    </xs:restriction>
+  </xs:simpleType>
 
   <xs:simpleType name="Guid">
     <xs:restriction base="xs:string">

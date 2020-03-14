@@ -9,7 +9,17 @@ namespace Rail.Tracks
 {
     public class TrackFlex : TrackStraight
     {
-        
+        [XmlElement("FlexType")]
+        public TrackFlexType FlexType { get; set; }
+
+        [XmlElement("MinLength")]
+        public double MinLength { get; set; }
+
+        [XmlElement("MaxLength")]
+        public double MaxLength { get; set; }
+
+        [XmlElement("MinRadius")]
+        public double MinRadius { get; set; }
 
         public override void Update(TrackType trackType)
         {

@@ -287,19 +287,22 @@
       </ThreeWayTurnout>-->
       <Crossing Id="18d7891e-031e-4b82-a3d1-161ba39fd425">
         <Article>24640</Article>
-        <LengthA>d79e3a36-805d-4159-baa8-d762bdcec2c3</LengthA>
+        <Number>2</Number>
+        <Length>d79e3a36-805d-4159-baa8-d762bdcec2c3</Length>
         <LengthB>d79e3a36-805d-4159-baa8-d762bdcec2c3</LengthB>
         <CrossingAngle>7ed17d51-a65c-461f-8ba7-19f35623ba22</CrossingAngle>
       </Crossing> 
       <Crossing Id="4310a736-4dea-499f-8e0f-2b602cf2e671">
         <Article>24649</Article>
-        <LengthA>c60162a1-c52c-461d-a69b-ecaaf52fe246</LengthA>
+        <Number>2</Number>
+        <Length>c60162a1-c52c-461d-a69b-ecaaf52fe246</Length>
         <LengthB>c60162a1-c52c-461d-a69b-ecaaf52fe246</LengthB>
         <CrossingAngle>567ee2fb-50f9-46d9-b3ee-7684295db0d7</CrossingAngle>
       </Crossing>
       <Crossing Id="ef115be7-c290-40c4-94cd-770bd89fe0b9">
         <Article>24740</Article>
-        <LengthA>e42c56e7-141d-4bcd-8f6b-940df00da917</LengthA>
+        <Number>2</Number>
+        <Length>e42c56e7-141d-4bcd-8f6b-940df00da917</Length>
         <LengthB>e42c56e7-141d-4bcd-8f6b-940df00da917</LengthB>
         <CrossingAngle>747d4c6c-0c21-4f55-a200-8ee9728ee2a0</CrossingAngle>
       </Crossing>
@@ -316,7 +319,7 @@
       <EndPiece Id="3500e39c-1347-430b-b9a2-63da0bf33740">
         <Article>24001</Article>
       </EndPiece>
-      <Adapter Id="9414c28e-5017-4ec6-89ff-4c517215dbf7">
+      <!--<Adapter Id="9414c28e-5017-4ec6-89ff-4c517215dbf7">
         <Article>24922</Article>
         <Length>9931f1be-5977-4154-91a1-768f4236ccbb</Length>
         <DockType>M22</DockType>
@@ -325,7 +328,7 @@
         <Article>24951</Article>
         <Length>9931f1be-5977-4154-91a1-768f4236ccbb</Length>
         <DockType>M20</DockType>
-      </Adapter>
+      </Adapter>-->
       <Turntable Id="17e135c1-cf27-4091-968e-eb1d37efc03d">
         <Article>74861</Article>
         <OuterRadius>189</OuterRadius>
@@ -333,11 +336,6 @@
         <Angle>dcaa87a3-61d0-435e-aa75-70bda4e282f3</Angle>
         <RailNum>30</RailNum>
       </Turntable>
-      <Star Id="e8a80fbf-507a-48a5-97a7-14b7852b1f94">
-        <Article>0000000</Article>
-        <Length>e42c56e7-141d-4bcd-8f6b-940df00da917</Length>
-        <Number>3</Number>
-      </Star>
     </Tracks>
     <Groups>
       <Group Id="6fc94341-0023-46ca-998f-9a3107e196de">

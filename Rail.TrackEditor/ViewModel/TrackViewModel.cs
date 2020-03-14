@@ -37,19 +37,19 @@ namespace Rail.TrackEditor.ViewModel
             {
                 nameof(TrackStraight) => new TrackStraightViewModel(trackTypeViewModel, (TrackStraight)track),
                 nameof(TrackCurved) => new TrackCurvedViewModel(trackTypeViewModel, (TrackCurved)track),
+                nameof(TrackCrossing) => new TrackCrossingViewModel(trackTypeViewModel, (TrackCrossing)track),
                 nameof(TrackEndPiece) => new TrackEndPieceViewModel(trackTypeViewModel, (TrackEndPiece)track),
-                nameof(TrackAdjustment) => new TrackAdjustmentViewModel(trackTypeViewModel, (TrackAdjustment)track),
+                nameof(TrackFlex) => new TrackFlexViewModel(trackTypeViewModel, (TrackFlex)track),
 
                 nameof(TrackTurnout) => new TrackTurnoutViewModel(trackTypeViewModel, (TrackTurnout)track),
                 nameof(TrackCurvedTurnout) => new TrackCurvedTurnoutViewModel(trackTypeViewModel, (TrackCurvedTurnout)track),
                 nameof(TrackDoubleSlipSwitch) => new TrackDoubleSlipSwitchViewModel(trackTypeViewModel, (TrackDoubleSlipSwitch)track),
-                nameof(TrackCrossing) => new TrackCrossingViewModel(trackTypeViewModel, (TrackCrossing)track),
-                nameof(TrackStar) => new TrackStarViewModel(trackTypeViewModel, (TrackStar)track),
-                nameof(TrackAdapter) => new TrackAdapterViewModel(trackTypeViewModel, (TrackAdapter)track),
+                nameof(TrackDoubleCrossover) => new TrackDoubleCrossoverViewModel(trackTypeViewModel, (TrackDoubleCrossover)track),
+
+                
                 nameof(TrackTurntable) => new TrackTurntableViewModel(trackTypeViewModel, (TrackTurntable)track),
                 nameof(TrackTransferTable) => new TrackTransferTableViewModel(trackTypeViewModel, (TrackTransferTable)track),
-                nameof(TrackDoubleCrossover) => new TrackDoubleCrossoverViewModel(trackTypeViewModel, (TrackDoubleCrossover)track),
-                nameof(TrackFlex) => new TrackFlexViewModel(trackTypeViewModel, (TrackFlex)track),
+
                 nameof(TrackGroup) => new TrackGroupViewModel(trackTypeViewModel, (TrackGroup)track),
                 _ => null
             };
