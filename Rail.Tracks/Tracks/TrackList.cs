@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -54,7 +55,7 @@ namespace Rail.Tracks
             }
             catch (Exception ex)
             {
-
+                Debugger.Break();
             }
             return null;
         }

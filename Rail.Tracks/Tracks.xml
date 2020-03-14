@@ -175,7 +175,7 @@
         <Angle>747d4c6c-0c21-4f55-a200-8ee9728ee2a0</Angle>
         <Extra>No</Extra>
       </Curved>
-      <Turnout Id="580d531a-8052-4b8f-9e05-0e1dedaf03fa">
+      <!--<Turnout Id="580d531a-8052-4b8f-9e05-0e1dedaf03fa">
         <Article>24611</Article>
         <StraightLength>d79e3a36-805d-4159-baa8-d762bdcec2c3</StraightLength>
         <TurnoutLength>00000000-0000-0000-0000-000000000000</TurnoutLength>
@@ -218,7 +218,7 @@
         <CounterCurveAngle>00000000-0000-0000-0000-000000000000</CounterCurveAngle>
         <TurnoutDirection>Right</TurnoutDirection>
         <TurnoutDrive>Unknown</TurnoutDrive>
-      </Turnout>
+      </Turnout>-->
       <CurvedTurnout Id="5460f69a-76e1-427f-a250-608b7f69d7b4">
         <Article>24671</Article>
         <InnerLength>00000000-0000-0000-0000-000000000000</InnerLength>
@@ -270,7 +270,7 @@
         <SlipRadius>e2ea1c8c-619e-435c-aa24-8bd4adadcf4c</SlipRadius>
         <TurnoutDrive>Unknown</TurnoutDrive>
       </DoubleSlipSwitch>
-      <ThreeWayTurnout Id="be16b0d0-190d-4474-8400-70946ef0ce87">
+      <!--<ThreeWayTurnout Id="be16b0d0-190d-4474-8400-70946ef0ce87">
         <Article>24630</Article>
         <StraightLength>d79e3a36-805d-4159-baa8-d762bdcec2c3</StraightLength>
         <LeftTurnoutLength>00000000-0000-0000-0000-000000000000</LeftTurnoutLength>
@@ -284,7 +284,7 @@
         <RightCounterCurveRadius>00000000-0000-0000-0000-000000000000</RightCounterCurveRadius>
         <RightCounterCurveAngle>00000000-0000-0000-0000-000000000000</RightCounterCurveAngle>
         <TurnoutDrive>Unknown</TurnoutDrive>
-      </ThreeWayTurnout>
+      </ThreeWayTurnout>-->
       <Crossing Id="18d7891e-031e-4b82-a3d1-161ba39fd425">
         <Article>24640</Article>
         <LengthA>d79e3a36-805d-4159-baa8-d762bdcec2c3</LengthA>
@@ -303,7 +303,7 @@
         <LengthB>e42c56e7-141d-4bcd-8f6b-940df00da917</LengthB>
         <CrossingAngle>747d4c6c-0c21-4f55-a200-8ee9728ee2a0</CrossingAngle>
       </Crossing>
-      <Bumper Id="993b09b3-e0a4-452d-bcd4-91d197c03ae3">
+      <!--<Bumper Id="993b09b3-e0a4-452d-bcd4-91d197c03ae3">
         <Article>24977</Article>
         <Length>57f92f8f-8516-47e3-9c2b-580c4776b4c3</Length>
         <Lantern>false</Lantern>
@@ -312,7 +312,7 @@
         <Article>24978</Article>
         <Length>57f92f8f-8516-47e3-9c2b-580c4776b4c3</Length>
         <Lantern>true</Lantern>
-      </Bumper>
+      </Bumper>-->
       <EndPiece Id="3500e39c-1347-430b-b9a2-63da0bf33740">
         <Article>24001</Article>
       </EndPiece>
@@ -754,10 +754,10 @@
         <Radius>113c28e9-7bdc-4a22-8d38-e1300ab93996</Radius>
         <Angle>30fde0ec-729d-4324-9b88-31d8377ec483</Angle>
       </Curved>
-      <Bumper Id="e37c9ad6-43c9-4885-b1a4-85d33a390b52">
+      <!--<Bumper Id="e37c9ad6-43c9-4885-b1a4-85d33a390b52">
         <Article>10320</Article>
         <Length>143867c5-63e1-4275-a794-4194f995f034</Length>
-      </Bumper>
+      </Bumper>-->
     </Tracks>
     <Groups />
   </TrackType>
