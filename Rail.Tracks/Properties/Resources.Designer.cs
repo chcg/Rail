@@ -223,6 +223,24 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Left.
+        /// </summary>
+        public static string TrackLeft {
+            get {
+                return ResourceManager.GetString("TrackLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right.
+        /// </summary>
+        public static string TrackRight {
+            get {
+                return ResourceManager.GetString("TrackRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Star Crossing.
         /// </summary>
         public static string TrackStar {
@@ -295,6 +313,15 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Three.
+        /// </summary>
+        public static string TrackThree {
+            get {
+                return ResourceManager.GetString("TrackThree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Three-Way Turnout.
         /// </summary>
         public static string TrackThreeWayTurnout {
@@ -336,6 +363,15 @@ namespace Rail.Tracks.Properties {
         public static string TrackTurntable {
             get {
                 return ResourceManager.GetString("TrackTurntable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y.
+        /// </summary>
+        public static string TrackY {
+            get {
+                return ResourceManager.GetString("TrackY", resourceCulture);
             }
         }
         

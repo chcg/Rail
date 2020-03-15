@@ -171,6 +171,12 @@
   <data name="TrackFlex" xml:space="preserve">
     <value>Flex Track</value>
   </data>
+  <data name="TrackLeft" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="TrackRight" xml:space="preserve">
+    <value>Right</value>
+  </data>
   <data name="TrackStar" xml:space="preserve">
     <value>Star Crossing</value>
   </data>
@@ -195,6 +201,9 @@
   <data name="TrackStraightUncoupler" xml:space="preserve">
     <value>Straight Uncoupler</value>
   </data>
+  <data name="TrackThree" xml:space="preserve">
+    <value>Three</value>
+  </data>
   <data name="TrackThreeWayTurnout" xml:space="preserve">
     <value>Three-Way Turnout</value>
   </data>
@@ -209,6 +218,9 @@
   </data>
   <data name="TrackTurntable" xml:space="preserve">
     <value>Turntable</value>
+  </data>
+  <data name="TrackY" xml:space="preserve">
+    <value>Y</value>
   </data>
   <data name="TrackYTurnout" xml:space="preserve">
     <value>Y-Turnout</value>
