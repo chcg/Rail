@@ -1,6 +1,7 @@
 ﻿using Rail.Tracks.Misc;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace Rail.Tracks
@@ -51,6 +52,7 @@ namespace Rail.Tracks
          XmlArrayItem(typeof(TrackTransferTable), ElementName = "TransferTable"),
 
          XmlArrayItem(typeof(TrackGroup), ElementName = "Group")]
+      
         public List<TrackBase> Tracks { get; set; }
 
         [XmlArray("Groups")]

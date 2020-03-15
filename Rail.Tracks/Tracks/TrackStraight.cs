@@ -8,9 +8,13 @@ using System.Xml.Serialization;
 
 namespace Rail.Tracks
 {
-
     public class TrackStraight : TrackBaseSingle
     {
+        public TrackStraight()
+        {
+            this.Dummy = Guid.Empty;
+        }
+
         #region store 
 
         [XmlElement("Length")]
@@ -21,6 +25,11 @@ namespace Rail.Tracks
 
         [XmlElement("DockType")]
         public string DockType { get; set; }
+
+        [XmlElement("Dummy")]
+        public Guid Dummy { get; set; }
+
+        public bool ShouldSerializeDummy() { return this.Dummy != Guid.Empty; }
 
         #endregion
 
