@@ -31,29 +31,53 @@
         </StatusBar>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="250" MinWidth="100" MaxWidth="500"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ListBox Grid.Column="0" ItemsSource="{Binding TrackTypes}" SelectedItem="{Binding SelectedTrackType}" SelectedIndex="0" Margin="3" >
-                <ListBox.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="{x:Static lang:Resources.MainNewTrackType}" Command="{Binding NewTrackTypeCommand}" />
-                    </ContextMenu>
-                </ListBox.ContextMenu>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}" >
-                            <TextBlock.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="{x:Static lang:Resources.MainNewTrackType}" Command="{Binding Data.NewTrackTypeCommand, Source={StaticResource MainBindingProxy}}" />
-                                    <MenuItem Header="{x:Static lang:Resources.MainDeleteTrackType}" Command="{Binding Data.DeleteTrackTypeCommand, Source={StaticResource MainBindingProxy}}" CommandParameter="{Binding .}" />
-                                </ContextMenu>
-                            </TextBlock.ContextMenu>
-                        </TextBlock>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            <v:TrackTypeView  Grid.Column="1" DataContext="{Binding SelectedTrackType}" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" MinHeight="100"/>
+                <RowDefinition Height="200" MinHeight="100"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="{x:Static lang:Resources.MainTrackTypes}" >
+                <ListBox ItemsSource="{Binding TrackTypes}" SelectedItem="{Binding SelectedTrackType}" >
+                    <ListBox.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{x:Static lang:Resources.MainNewTrackType}" Command="{Binding NewTrackTypeCommand}" />
+                        </ContextMenu>
+                    </ListBox.ContextMenu>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" >
+                                <TextBlock.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="{x:Static lang:Resources.MainNewTrackType}" Command="{Binding Data.NewTrackTypeCommand, Source={StaticResource MainBindingProxy}}" />
+                                        <MenuItem Header="{x:Static lang:Resources.MainDeleteTrackType}" Command="{Binding Data.DeleteTrackTypeCommand, Source={StaticResource MainBindingProxy}}" CommandParameter="{Binding .}" />
+                                    </ContextMenu>
+                                </TextBlock.ContextMenu>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </GroupBox>
+            <GridSplitter Background="Blue" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />
+            <GroupBox Header="{x:Static lang:Resources.MainDockTypes}" Grid.Row="1" >
+                <DataGrid 
+                    ItemsSource="{Binding DockTypes}" 
+                    AutoGenerateColumns="False" 
+                    SelectionMode="Single" 
+                    GridLinesVisibility="None"
+                    HeadersVisibility="Column" 
+                    CanUserResizeColumns="True"
+                    CanUserAddRows="True"
+                    CanUserDeleteRows="False"
+                    Background="White">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Name}" Header="{x:Static lang:Resources.MainName}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+            <GridSplitter Grid.RowSpan="2" Background="Blue" Width="5"  HorizontalAlignment="Right" VerticalAlignment="Stretch" />
+            <v:TrackTypeView  Grid.Column="1" Grid.RowSpan="2" DataContext="{Binding SelectedTrackType}" />
         </Grid>
     </DockPanel>
 </mvvm:AppView>

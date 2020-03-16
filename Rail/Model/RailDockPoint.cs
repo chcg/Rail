@@ -149,7 +149,7 @@ namespace Rail.Model
         public Angle Angle { get { return this.RailItemIntern.Angle + this.angle; } }
 
         [XmlIgnore, JsonIgnore]
-        public string DockType { get; private set; }
+        public Guid DockType { get; private set; }
 
         [XmlIgnore, JsonIgnore]
         public Guid Layer { get { return this.RailItem.Layer; } }

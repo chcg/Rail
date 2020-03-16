@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace Rail.TrackEditor.ViewModel
 {
@@ -42,10 +43,14 @@ namespace Rail.TrackEditor.ViewModel
             }
         }
 
-        public string DockType
+        public TrackNameViewModel DockType
         {
-            get { return this.track.DockType; }
-            set { this.track.DockType = value.Trim(); NotifyPropertyChanged(nameof(DockType)); }
+            get 
+            {
+                MainViewModel mainViewModel = (MainViewModel)Application.Current.MainWindow.DataContext;    
+                return mainViewModel.DockTypes.FirstOrDefault(d => d.Id == this.track.DockType); 
+            }
+            set { this.track.DockType = value.Id; NotifyPropertyChanged(nameof(DockType)); }
         }
 
         public TrackExtras Extra

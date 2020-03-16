@@ -21,7 +21,7 @@ namespace Rail.Tracks
         
         protected FormattedText text;
         protected Drawing textDrawing;
-        protected string dockType;
+        protected Guid dockType;
         protected Drawing drawingRail;
 
         // rail

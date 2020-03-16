@@ -153,6 +153,9 @@
   <data name="MainDockType" xml:space="preserve">
     <value>Dock Type</value>
   </data>
+  <data name="MainDockTypes" xml:space="preserve">
+    <value>Dock Types</value>
+  </data>
   <data name="MainEndPieceType" xml:space="preserve">
     <value>End Piece Type</value>
   </data>
@@ -323,6 +326,9 @@
   </data>
   <data name="MainTrackTypeName" xml:space="preserve">
     <value>Track Type Name</value>
+  </data>
+  <data name="MainTrackTypes" xml:space="preserve">
+    <value>Track Types</value>
   </data>
   <data name="MainTurnoutAngle" xml:space="preserve">
     <value>Turnout Angle</value>

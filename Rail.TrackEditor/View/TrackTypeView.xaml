@@ -15,11 +15,11 @@
     <UserControl.Resources>
         <mvvm:BindingProxy x:Key="TrackTypeBindingProxy" Data="{Binding}" />
     </UserControl.Resources>
-    <Grid Margin="3">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
+            <RowDefinition Height="200" MinHeight="100"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" MinHeight="100"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -104,6 +104,7 @@
                 </DataGrid>
             </GroupBox>
         </Grid>
+        <GridSplitter  Background="Blue" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />
         <Grid Grid.Row="1" Grid.IsSharedSizeScope="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -126,7 +127,8 @@
                     <Label Grid.Column="0" Grid.Row="1" Content="{x:Static lang:Resources.MainGauge}"/>
                     <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Gauges}" SelectedValue="{Binding Gauge}" Margin="3"/>
                     <Label Grid.Column="0" Grid.Row="2" Content="{x:Static lang:Resources.MainDockType}"/>
-                    <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding DockType}" Margin="3"/>
+                    <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding DataContext.DockTypesSource, RelativeSource={RelativeSource AncestorType={x:Type local:MainView}}}" DisplayMemberPath="Name" SelectedItem="{Binding DockType}" Margin="3"/>
+
                 </Grid>
             </GroupBox>
             <GroupBox Header="Drawing" Grid.Column="1" >
@@ -212,12 +214,12 @@
                 </GroupBox.Resources>-->
                 <Grid Margin="3">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="260"/>
+                        <ColumnDefinition Width="260" MinWidth="100" MaxWidth="400"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="200" MinHeight="100" MaxHeight="500"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <ListBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" Margin="3" >
@@ -268,6 +270,7 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+                    <GridSplitter Grid.RowSpan="2" Background="Blue" Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch" />
                     <ctrl:TrackControl Grid.Column="1" Grid.Row="0" Track="{Binding Track}" DataContext="{Binding SelectedTrack}" ShowRail="False" BorderBrush="LightGray" Margin="3" BorderThickness="1" Background="White" />
                     <ctrl:TrackControl Grid.Column="2" Grid.Row="0" Track="{Binding Track}" DataContext="{Binding SelectedTrack}" ShowRail="True"  BorderBrush="LightGray" Margin="3" BorderThickness="1" Background="White"/>
                     <ContentControl Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding SelectedTrack}" Margin="3" >

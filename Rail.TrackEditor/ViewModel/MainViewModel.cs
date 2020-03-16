@@ -2,17 +2,24 @@
 using Rail.TrackEditor.Properties;
 using Rail.TrackEditor.View;
 using Rail.Tracks;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Data;
 
 namespace Rail.TrackEditor.ViewModel
 {
     public class MainViewModel : AppViewModel
     {
         private TrackList trackList;
+
+        private CollectionViewSource dockTypeSource;
+
+        private readonly List<TrackNameViewModel> nullList = new List<TrackNameViewModel> { TrackNameViewModel.Null };
 
         public DelegateCommand SaveCommand { get; private set; }
         public DelegateCommand NewTrackTypeCommand { get; private set; }
@@ -23,16 +30,22 @@ namespace Rail.TrackEditor.ViewModel
             this.SaveCommand = new DelegateCommand(OnSave);
             this.NewTrackTypeCommand = new DelegateCommand(OnNewTrackType);
             this.DeleteTrackTypeCommand = new DelegateCommand<TrackTypeViewModel>(OnDeleteTrackType);
+            this.dockTypeSource = new CollectionViewSource();
         }
 
         public override void OnStartup()
         {
             this.trackList = TrackList.Load();
+            this.DockTypes = new ObservableCollection<TrackNameViewModel>(this.trackList.DockTypes.Select(t => new TrackNameViewModel(t)));
             this.TrackTypes = new ObservableCollection<TrackTypeViewModel>(this.trackList.TrackTypes.Select(t => new TrackTypeViewModel(t)));
+
+            this.DockTypes.CollectionChanged += (o, i) => { NotifyPropertyChanged(nameof(DockTypesSource)); NotifyPropertyChanged(nameof(DockTypesAndNullSource)); };
+            NotifyPropertyChanged(nameof(DockTypesSource));
         }
 
         protected void OnSave()
         {
+            this.trackList.DockTypes = this.DockTypes.Select(t => t.TrackName).ToList();
             this.trackList.TrackTypes = this.TrackTypes.Select(t => t.GetTrackType()).ToList();
             this.trackList.Save();
         }
@@ -62,6 +75,17 @@ namespace Rail.TrackEditor.ViewModel
             }
         }
 
+        private ObservableCollection<TrackNameViewModel> dockTypes;
+        public ObservableCollection<TrackNameViewModel> DockTypes
+        {
+            get { return this.dockTypes; }
+            set { this.dockTypes = value; NotifyPropertyChanged(nameof(DockTypes)); }
+        }
+
+        //public ICollectionView DockTypesView { get { return this.dockTypeSource.View; } }
+
+        public IEnumerable<TrackNameViewModel> DockTypesSource { get { return this.DockTypes?.ToList(); } }
+        public IEnumerable<TrackNameViewModel> DockTypesAndNullSource { get { return this.DockTypes.Concat(nullList).ToList(); } }
 
         private ObservableCollection<TrackTypeViewModel> trackTypes;
         public ObservableCollection<TrackTypeViewModel> TrackTypes

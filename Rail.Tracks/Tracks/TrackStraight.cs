@@ -24,7 +24,7 @@ namespace Rail.Tracks
         public TrackExtras Extra { get; set; }
 
         [XmlElement("DockType")]
-        public string DockType { get; set; }
+        public Guid DockType { get; set; }
 
         [XmlElement("Dummy")]
         public Guid Dummy { get; set; }

@@ -86,10 +86,18 @@ namespace Rail.TrackEditor.ViewModel
             set { this.trackType.Parameter.Gauge = value; NotifyPropertyChanged(nameof(Gauge));  }
         }
 
-        public string DockType
+        public TrackNameViewModel DockType
         {
-            get { return this.trackType.Parameter.DockType; }
-            set { this.trackType.Parameter.DockType = value.Trim(); NotifyPropertyChanged(nameof(DockType)); }
+            get
+            {
+                MainViewModel mainViewModel = (MainViewModel)Application.Current.MainWindow.DataContext;
+                return mainViewModel.DockTypes.FirstOrDefault(d => d.Id == this.trackType.Parameter.DockType);
+            }
+            set 
+            { 
+                this.trackType.Parameter.DockType = value == null ? Guid.Empty : value.Id; 
+                NotifyPropertyChanged(nameof(DockType)); 
+            }
         }
 
         public TrackRailType[] RailTypes { get { return Enum.GetValues(typeof(TrackRailType)).Cast<TrackRailType>().ToArray(); } }

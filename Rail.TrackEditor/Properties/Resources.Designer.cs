@@ -169,6 +169,15 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dock Types.
+        /// </summary>
+        public static string MainDockTypes {
+            get {
+                return ResourceManager.GetString("MainDockTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to End Piece Type.
         /// </summary>
         public static string MainEndPieceType {
@@ -678,6 +687,15 @@ namespace Rail.TrackEditor.Properties {
         public static string MainTrackTypeName {
             get {
                 return ResourceManager.GetString("MainTrackTypeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Track Types.
+        /// </summary>
+        public static string MainTrackTypes {
+            get {
+                return ResourceManager.GetString("MainTrackTypes", resourceCulture);
             }
         }
         

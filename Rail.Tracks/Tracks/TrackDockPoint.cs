@@ -1,10 +1,11 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace Rail.Tracks
 {
     public class TrackDockPoint
     {
-        public TrackDockPoint(int debugIndex, Point position, double angle, string dockType)
+        public TrackDockPoint(int debugIndex, Point position, double angle, Guid dockType)
         {
             this.DebugIndex = debugIndex;
             this.Position = position;
@@ -12,12 +13,12 @@ namespace Rail.Tracks
             this.DockType = dockType;
         }
 
-        public int DebugIndex { get; private set;}
+        public int DebugIndex { get; }
 
         public Point Position { get; set; }
         
         public double Angle { get; set; }        
 
-        public string DockType { get; private set; }
+        public Guid DockType { get; }
     } 
 }

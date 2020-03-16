@@ -21,7 +21,7 @@ namespace Rail.Tracks
         public TrackGauge Gauge { get; set; }
 
         [XmlElement("DockType"), JsonPropertyName("DockType")]
-        public string DockType { get; set; }
+        public Guid DockType { get; set; }
 
         [XmlElement("RailType"), JsonPropertyName("RailType")]
         public TrackRailType RailType { get; set; }

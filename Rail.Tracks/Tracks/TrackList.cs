@@ -26,7 +26,12 @@ namespace Rail.Tracks
         [XmlAttribute("Version")]
         public string Version { get; set; }
 
-        [XmlElement("TrackType")]
+        [XmlArray("DockTypes")]
+        [XmlArrayItem("DockType")]
+        public List<TrackName> DockTypes { get; set; }
+
+        [XmlArray("TrackTypes")]
+        [XmlArrayItem("TrackType")]
         public List<TrackType> TrackTypes { get; set; }
 
         public static TrackList Load()
