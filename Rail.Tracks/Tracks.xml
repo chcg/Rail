@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TrackList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="0.1.0">
   <DockTypes>
-    <DockType Id="6F75E646-B7E1-45CF-A0E4-8D338D43DF66" Name="Maerlin H0 C" />
-    <DockType Id="09E27F04-3771-4406-90F6-DDBC2FDF9D73" Name="Maerlin H0 K" />
-    <DockType Id="F62DE104-7C5E-4B3C-AF1C-250244A24578" Name="Maerlin H0 M" />
-    <DockType Id="ACCD5684-D49B-44FB-BFC9-00D3F7A8DD82" Name="Maerlin Z" />
-    <DockType Id="EEFD776D-C20A-4B13-BEE0-9FB245E9A686" Name="Maerlin 1" />
+    <DockType Id="6F75E646-B7E1-45CF-A0E4-8D338D43DF66" Name="Maerklin H0 C" />
+    <DockType Id="09E27F04-3771-4406-90F6-DDBC2FDF9D73" Name="Maerklin H0 K" />
+    <DockType Id="F62DE104-7C5E-4B3C-AF1C-250244A24578" Name="Maerklin H0 M" />
+    <DockType Id="ACCD5684-D49B-44FB-BFC9-00D3F7A8DD82" Name="Maerklin Z" />
+    <DockType Id="EEFD776D-C20A-4B13-BEE0-9FB245E9A686" Name="Maerklin 1" />
     <DockType Id="E2F7C8AD-3206-4FF9-874F-923B04DFC7B8" Name="G" />
     <DockType Id="5DC5D1DC-6370-4FED-98F2-816F1BC572D0" Name="Trix H0" />
     <DockType Id="D20F30E9-0189-4589-BE60-42B04247F9AF" Name="Fleischmann H0" />
@@ -17,6 +17,7 @@
     <DockType Id="2C28E2BE-B0D4-4F65-B11E-03AE14DE5CD7" Name="Rokuhan Z" />
     <DockType Id="50DBC816-31C9-4647-9CCB-D21A9D7566DD" Name="Kato H0" />
     <DockType Id="4C720BE3-76C0-4AC4-8B62-C81F311A308F" Name="Lego" />
+    <DockType Id="375244CB-E8A5-446F-90A6-5D45418065F8" Name="Wood" />
   </DockTypes>
   <TrackTypes>
     <TrackType>
@@ -1509,5 +1510,108 @@
       <Tracks />
       <Groups />
     </TrackType>
+    <!--
+    <TrackType>
+      <Name>
+        <LanguageString>Brio Wood</LanguageString>
+        <LanguageString Lang="de-DE">Brio Holzeisenbahn</LanguageString>
+      </Name>
+      <Parameter>
+        <Manufacturer>Brio</Manufacturer>
+        <Gauge>Wood</Gauge>
+        <DockType>375244CB-E8A5-446F-90A6-5D45418065F8</DockType>
+        <RailType>Wood</RailType>
+        <RailWidth>16.5</RailWidth>
+        <SleeperType>No</SleeperType>
+        <SleeperWidth>20</SleeperWidth>
+        <BallastType>No</BallastType>
+        <BallastWidth>0</BallastWidth>
+        <WagonMaxWidth>0</WagonMaxWidth>
+        <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
+        <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
+      </Parameter>
+      <Radii>
+        <Radius Id="13AD0D7C-16F9-4DDF-835C-137B320C7C67" Name="R" Value="192" />
+      </Radii>
+      <Lengths>
+        <Length Id="3B171BBE-7522-450D-871E-068303D13019" Name="P1/1" Value="216" />
+        <Length Id="4D2175FD-1372-4AD5-BD47-A775C63B1ECF" Name="P2/3" Value="144" />
+        <Length Id="4D2175FD-1372-4AD5-BD47-A775C63B1ECF" Name="P1/2" Value="108" />
+        <Length Id="5468770B-FA30-4F86-86E6-DFC5284AA727" Name="P1/4" Value="54" />
+      </Lengths>
+      <Angles>
+        <Angle Id="333490F6-7912-4AB7-9DD6-8538F703870F" Name="A45" Value="45" />
+        <Angle Id="C59CA86D-7B48-404B-8DE8-8C9630314C9A" Name="A23" Value="22.5" />
+      </Angles>
+      <Tracks />
+      <Groups />
+    </TrackType>
+    <TrackType>
+      <Name>
+        <LanguageString>Eichhorn Wood</LanguageString>
+        <LanguageString Lang="de-DE">Eichhorn Holzeisenbahn</LanguageString>
+      </Name>
+      <Parameter>
+        <Manufacturer>Eichhorn</Manufacturer>
+        <Gauge>Wood</Gauge>
+        <DockType>375244CB-E8A5-446F-90A6-5D45418065F8</DockType>
+        <RailType>Wood</RailType>
+        <RailWidth>16.5</RailWidth>
+        <SleeperType>No</SleeperType>
+        <SleeperWidth>20</SleeperWidth>
+        <BallastType>No</BallastType>
+        <BallastWidth>0</BallastWidth>
+        <WagonMaxWidth>0</WagonMaxWidth>
+        <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
+        <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
+      </Parameter>
+      <Radii>
+        <Radius Id="13AD0D7C-16F9-4DDF-835C-137B320C7C67" Name="R" Value="192" />
+      </Radii>
+      <Lengths>
+        <Length Id="3B171BBE-7522-450D-871E-068303D13019" Name="P1" Value="205" />
+        <Length Id="4D2175FD-1372-4AD5-BD47-A775C63B1ECF" Name="P2" Value="145" />
+      </Lengths>
+      <Angles>
+        <Angle Id="333490F6-7912-4AB7-9DD6-8538F703870F" Name="A45" Value="45" />
+        <Angle Id="C59CA86D-7B48-404B-8DE8-8C9630314C9A" Name="A23" Value="22.5" />
+      </Angles>
+      <Tracks />
+      <Groups />
+    </TrackType>
+    <TrackType>
+      <Name>
+        <LanguageString>Bigjigs Rail Wood</LanguageString>
+        <LanguageString Lang="de-DE">Bigjigs Rail Holzeisenbahn</LanguageString>
+      </Name>
+      <Parameter>
+        <Manufacturer>Bigjigs Rail</Manufacturer>
+        <Gauge>Wood</Gauge>
+        <DockType>375244CB-E8A5-446F-90A6-5D45418065F8</DockType>
+        <RailType>Wood</RailType>
+        <RailWidth>16.5</RailWidth>
+        <SleeperType>No</SleeperType>
+        <SleeperWidth>20</SleeperWidth>
+        <BallastType>No</BallastType>
+        <BallastWidth>0</BallastWidth>
+        <WagonMaxWidth>0</WagonMaxWidth>
+        <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
+        <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
+      </Parameter>
+      <Radii>
+        <Radius Id="13AD0D7C-16F9-4DDF-835C-137B320C7C67" Name="R" Value="192" />
+      </Radii>
+      <Lengths>
+        <Length Id="3B171BBE-7522-450D-871E-068303D13019" Name="P1" Value="205" />
+        <Length Id="4D2175FD-1372-4AD5-BD47-A775C63B1ECF" Name="P2" Value="145" />
+      </Lengths>
+      <Angles>
+        <Angle Id="333490F6-7912-4AB7-9DD6-8538F703870F" Name="A45" Value="45" />
+        <Angle Id="C59CA86D-7B48-404B-8DE8-8C9630314C9A" Name="A23" Value="22.5" />
+      </Angles>
+      <Tracks />
+      <Groups />
+    </TrackType>
+    -->
   </TrackTypes>
 </TrackList>
