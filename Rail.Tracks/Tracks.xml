@@ -780,6 +780,80 @@
     </TrackType>
     <TrackType>
       <Name>
+        <LanguageString>ML-Train G Brass</LanguageString>
+        <LanguageString Lang="de-DE">ML-Train G Messing</LanguageString>
+      </Name>
+      <Parameter>
+        <Manufacturer>ML-Train</Manufacturer>
+        <Gauge>G</Gauge>
+        <DockType>E2F7C8AD-3206-4FF9-874F-923B04DFC7B8</DockType>
+        <RailType>Brass</RailType>
+        <RailWidth>45.5</RailWidth>
+        <SleeperType>WoodenSleepers</SleeperType>
+        <SleeperWidth>52</SleeperWidth>
+        <BallastType>No</BallastType>
+        <BallastWidth>0</BallastWidth>
+        <WagonMaxWidth>0</WagonMaxWidth>
+        <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
+        <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
+      </Parameter>
+      <Radii>
+        <Radius Id="BCA0B368-1BB9-4C11-B1EE-59A2C52BB038" Name="R1" Value="600" />
+        <Radius Id="7E6103A3-165B-4607-A1CD-CEFBF6D43992" Name="R2" Value="900" />
+        <Radius Id="E9E8CED3-D610-4B05-A07F-D6E4A4327655" Name="R3" Value="1200" />
+        <Radius Id="E9AA9DDB-1CEB-473C-A889-9EEC7D436DB9" Name="R5" Value="2100" />
+      </Radii>
+      <Lengths>
+        <Length Id="E8A4CB2C-F564-4144-873A-FEC9BFC65DBE" Name="G30" Value="300" />
+        <Length Id="12E6E141-0A3C-4797-9068-4B678648A385" Name="G60" Value="600" />
+        <Length Id="12D24F36-F840-4A7E-A574-50AA45A2CFE8" Name="G90" Value="900" />
+        <Length Id="11633EE7-E224-4CE2-BED2-E00828D58308" Name="G150" Value="1500" />
+      </Lengths>
+      <Angles>
+        <Angle Id="6A767074-29A2-41AA-94B4-B7823AA053C3" Name="A23" Value="22.5" />
+      </Angles>
+      <Tracks>
+      </Tracks>
+    </TrackType>
+    <TrackType>
+      <Name>
+        <LanguageString>ML-Train G Nickel</LanguageString>
+        <LanguageString Lang="de-DE">ML-Train G Nickel</LanguageString>
+      </Name>
+      <Parameter>
+        <Manufacturer>ML-Train</Manufacturer>
+        <Gauge>G</Gauge>
+        <DockType>E2F7C8AD-3206-4FF9-874F-923B04DFC7B8</DockType>
+        <RailType>Silver</RailType>
+        <RailWidth>45.5</RailWidth>
+        <SleeperType>WoodenSleepers</SleeperType>
+        <SleeperWidth>52</SleeperWidth>
+        <BallastType>No</BallastType>
+        <BallastWidth>0</BallastWidth>
+        <WagonMaxWidth>0</WagonMaxWidth>
+        <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
+        <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
+      </Parameter>
+      <Radii>
+        <Radius Id="A03DD5D5-1F78-4CF0-BB2C-1E303C604607" Name="R1" Value="600" />
+        <Radius Id="4A1A5106-3072-4704-8A90-C65FDC6CD78D" Name="R2" Value="900" />
+        <Radius Id="3CFC4ACF-D995-4540-8E1F-E47CA7D721F7" Name="R3" Value="1200" />
+        <Radius Id="914FC332-D970-4208-B5E2-B4235B75A1A1" Name="R5" Value="2100" />
+      </Radii>
+      <Lengths>
+        <Length Id="E044F2E7-578B-4767-B32D-453C0ECCA3AF" Name="G30" Value="300" />
+        <Length Id="29C138B9-2434-474F-8E43-0D2B2182FA1E" Name="G60" Value="600" />
+        <Length Id="39D9A11C-D718-4140-AE63-767F40EC27F3" Name="G90" Value="900" />
+        <Length Id="8331F4D3-D940-4284-AFCF-7F3860C02B8C" Name="G150" Value="1500" />
+      </Lengths>
+      <Angles>
+        <Angle Id="EAD18FDE-AFE8-4447-ACC0-2D14B43790EF" Name="A23" Value="22.5" />
+      </Angles>
+      <Tracks>
+      </Tracks>
+    </TrackType>
+    <TrackType>
+      <Name>
         <LanguageString>Fleischmann H0 Tracks</LanguageString>
         <LanguageString Lang="de-DE">Fleischmann H0 Gleise</LanguageString>
       </Name>
