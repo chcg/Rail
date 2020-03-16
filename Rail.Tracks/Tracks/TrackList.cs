@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.Unicode;
 using System.Windows;
 using System.Xml;
 using System.Xml.Schema;
@@ -54,7 +59,7 @@ namespace Rail.Tracks
             }
             catch (Exception ex)
             {
-
+                Debugger.Break();
             }
             return null;
         }
@@ -62,32 +67,86 @@ namespace Rail.Tracks
         
         public void Save()
         {
-            string file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Rail\\Tracks.xml");
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // XML
 
-            if (File.Exists(file))
             {
-                int i = 0;
-                while (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), $"Rail\\Tracks{++i}.xml")));
-                File.Move(file, Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), $"Rail\\Tracks{i}.xml"));    
+                string file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Rail\\Tracks.xml");
+
+                if (File.Exists(file))
+                {
+                    int i = 0;
+                    while (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), $"Rail\\Tracks{++i}.xml"))) ;
+                    File.Move(file, Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), $"Rail\\Tracks{i}.xml"));
+                }
+
+                Directory.CreateDirectory(Path.GetDirectoryName(file));
+
+                // set current file version
+                using XmlTextWriter writer = new XmlTextWriter(file, Encoding.UTF8)
+                {
+                    Formatting = Formatting.Indented,
+                    Indentation = 2
+                };
+                XmlSerializer serializer = new XmlSerializer(this.GetType());
+                serializer.Serialize(writer, this);
             }
 
-            Directory.CreateDirectory(Path.GetDirectoryName(file));
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // JSON
 
-            // set current file version
-            using XmlTextWriter writer = new XmlTextWriter(file, Encoding.UTF8)
             {
-                Formatting = Formatting.Indented,
-                Indentation = 2
-            };
-            XmlSerializer serializer = new XmlSerializer(this.GetType());
-            serializer.Serialize(writer, this);
+                string file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Rail\\Tracks.json");
 
-            //JsonWriterOptions options = default;
-            //options.Indented = true;
-            //using (Utf8JsonWriter writer = new Utf8JsonWriter(File.Create(Path.ChangeExtension(path, "jrail")), options))
-            //{
-            //    JsonSerializer.Serialize(writer, this, this.GetType());
-            //}
+                if (File.Exists(file))
+                {
+                    int i = 0;
+                    while (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), $"Rail\\Tracks{++i}.json"))) ;
+                    File.Move(file, Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), $"Rail\\Tracks{i}.json"));
+                }
+
+                Directory.CreateDirectory(Path.GetDirectoryName(file));
+
+                Dictionary<string, Type> dict = new Dictionary<string, Type>
+                {
+                    { "Straight", typeof(TrackStraight) },
+                    { "Curved", typeof(TrackCurved) },
+                    { "Crossing", typeof(TrackCrossing) },
+                    { "EndPiece", typeof(TrackEndPiece) },
+                    { "Flex", typeof(TrackFlex) },
+
+                    { "Turnout", typeof(TrackTurnout) },
+                    { "CurvedTurnout", typeof(TrackCurvedTurnout) },
+                    { "DoubleSlipSwitch", typeof(TrackDoubleSlipSwitch) },
+                    { "DoubleCrossover", typeof(TrackDoubleCrossover) },
+
+                    { "Turntable", typeof(TrackTurntable) },
+                    { "TransferTable", typeof(TrackTransferTable) },
+
+                    { "Group", typeof(TrackGroup) }
+                };
+
+                JsonSerializerOptions options = new JsonSerializerOptions { IgnoreNullValues = true, IgnoreReadOnlyProperties = true, WriteIndented = true, Encoder = JavaScriptEncoder.Create(UnicodeRanges.All) };
+                options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+                options.Converters.Add(new JsonTrackConverter(dict));
+
+                JsonWriterOptions woptions = new JsonWriterOptions { Indented = true, Encoder = JavaScriptEncoder.Create(UnicodeRanges.All) };
+                using (FileStream stream = File.Create(file))
+                {
+                    //using (Utf8JsonWriter writer = new Utf8JsonWriter(stream, woptions))
+                    //{
+                    //    JsonSerializer.Serialize(writer, this, options);
+                    //}
+
+                    JsonSerializer.SerializeAsync(stream, this, options).Wait();
+                };
+                //JsonWriterOptions woptions = new JsonWriterOptions { Indented = true };
+                //options.Indented = true;
+                //using (Utf8JsonWriter writer = new Utf8JsonWriter(File.Create(Path.ChangeExtension(path, "jrail")), options))
+                //{
+                //    JsonSerializer.Serialize(writer, this, this.GetType());
+                //}
+            }
         }
 
         private static void Validation(object sender, ValidationEventArgs e)

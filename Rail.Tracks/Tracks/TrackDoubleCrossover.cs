@@ -8,7 +8,7 @@ namespace Rail.Tracks
     {
         public override void Update(TrackType trackType)
         {
-            this.LengthA = GetValue(trackType.Lengths, this.LengthAId);
+            this.Length = GetValue(trackType.Lengths, this.LengthId);
             this.LengthB = GetValue(trackType.Lengths, this.LengthBId);
             this.CrossingAngle = GetValue(trackType.Angles, this.CrossingAngleId);
 

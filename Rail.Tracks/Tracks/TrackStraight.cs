@@ -8,9 +8,13 @@ using System.Xml.Serialization;
 
 namespace Rail.Tracks
 {
-
     public class TrackStraight : TrackBaseSingle
     {
+        public TrackStraight()
+        {
+            this.Dummy = Guid.Empty;
+        }
+
         #region store 
 
         [XmlElement("Length")]
@@ -18,6 +22,14 @@ namespace Rail.Tracks
 
         [XmlElement("Extra")]
         public TrackExtras Extra { get; set; }
+
+        [XmlElement("DockType")]
+        public string DockType { get; set; }
+
+        [XmlElement("Dummy")]
+        public Guid Dummy { get; set; }
+
+        public bool ShouldSerializeDummy() { return this.Dummy != Guid.Empty; }
 
         #endregion
 
@@ -46,19 +58,11 @@ namespace Rail.Tracks
                 TrackExtras.Uncoupler => $"{Resources.TrackStraightUncoupler} {Length} mm",
                 TrackExtras.Isolating => $"{Resources.TrackStraightIsolating} {Length} mm",
                 TrackExtras.Feeder => $"{Resources.TrackStraightFeeder} {Length} mm",
+                TrackExtras.Adapter => $"{Resources.TrackAdapter} {this.DockType}",
                 _ => null
             };
 
-            this.Description = this.Extra switch
-            {
-                TrackExtras.No => $"{this.Article} {Resources.TrackStraight} {lengthName} {Length} mm",
-                TrackExtras.Circuit => $"{this.Article} {Resources.TrackStraightCircuit}",
-                TrackExtras.Contact => $"{this.Article} {Resources.TrackStraightContact}",
-                TrackExtras.Uncoupler => $"{this.Article} {Resources.TrackStraightUncoupler} {Length} mm",
-                TrackExtras.Isolating => $"{this.Article} {Resources.TrackStraightIsolating} {Length} mm",
-                TrackExtras.Feeder => $"{this.Article} {Resources.TrackStraightFeeder} {Length} mm",
-                _ => null
-            };
+            this.Description = $"{this.Article} {this.Name}";
             
             base.Update(trackType);
         }
@@ -85,7 +89,8 @@ namespace Rail.Tracks
             return new List<TrackDockPoint>
             {
                 new TrackDockPoint(0, new Point(-this.Length / 2.0, 0.0), 135, this.dockType),
-                new TrackDockPoint(1, new Point(+this.Length / 2.0, 0.0), 315, this.dockType)
+                new TrackDockPoint(1, new Point(+this.Length / 2.0, 0.0), 315,
+                this.Extra == TrackExtras.Adapter ? this.DockType : this.dockType)
             };
         }
 
