@@ -14,7 +14,7 @@ jobs:
 
     runs-on: windows-latest
     strategy:
-      max-parallel: 1
+      max-parallel: 2
       matrix:
         build_platform: [x86, x64]
       
@@ -24,6 +24,16 @@ jobs:
 
     - name: "Setup to add MSBuild.exe to path"
       uses: warrenbuckley/Setup-MSBuild@v1
+
+    # - name: "Download sandcastle"
+      # run: |
+           # $url = "https://github.com/EWSoftware/SHFB/releases/download/v2020.3.6.0/SHFBInstaller_v2020.3.6.0.zip"
+           # $output = "$pwd\Rail\SHFBInstaller_v2020.3.6.0.zip"
+           # $start_time = Get-Date
+           # (New-Object System.Net.WebClient).DownloadFile($url, $output)
+           # Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
+      # shell: pwsh
+      # working-directory: .\Rail
 
     - name: "restore"
       working-directory: .
@@ -36,7 +46,7 @@ jobs:
 
     - name: "Build WIX"
       working-directory: .\Rail.Installer
-      run: dotnet build Rail.Installer.wixproj -c "Release" -p "${{ matrix.build_platform }}"
+      run: dotnet build Rail.Installer.wixproj -c "Release" -p:platform="${{ matrix.build_platform }}"
 
     - name: "Archive artifacts"
       uses: actions/upload-artifact@v1
