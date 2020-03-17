@@ -1,4 +1,4 @@
-version: 1.0.{build}
+version: 0.1.0.0.{build}
 image: Visual Studio 2019
 
 
@@ -13,6 +13,20 @@ configuration:
 
 install:
     - ps: >-
+        Start-FileDownload 'https://github.com/EWSoftware/SHFB/releases/download/v2020.3.6.0/SHFBInstaller_v2020.3.6.0.zip'
+
+        7z x -y SHFBInstaller_v2020.3.6.0.zip | Out-Null
+
+        Write-Host "Installing MSI..."
+
+        cmd /c start /wait msiexec /i InstallResources\SandcastleHelpFileBuilder.msi /quiet
+
+        Write-Host "Installing VSIX..."
+
+        . "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\VSIXInstaller.exe" /q /a InstallResources\SHFBVisualStudioPackage_VS2017AndLater.vsix
+
+        Write-Host "Sandcastle installed" -ForegroundColor Green
+
         Start-FileDownload 'https://wixtoolset.gallerycdn.vsassets.io/extensions/wixtoolset/wixtoolsetvisualstudio2019extension/1.0.0.4/1563296438961/Votive2019.vsix'
 
         Write-Host "Installing VSIX..."
@@ -21,23 +35,20 @@ install:
         Write-Host "InstallerProjects installed" -ForegroundColor Green
 
 build_script:
+    - set SHFBROOT=C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\
     - cd "%APPVEYOR_BUILD_FOLDER%"
     - msbuild Rail.sln /m /verbosity:minimal /t:restore /p:configuration="%configuration%" /p:platform="%platform%" /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
     - msbuild Rail.sln /m /verbosity:minimal /p:configuration="%configuration%" /p:platform="%platform%" /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
 after_build:
     - cd "%APPVEYOR_BUILD_FOLDER%"\Rail.Installer\Installs
-    - dir
     - ps: >-
-        Push-AppveyorArtifact "Rail-*.msi" -FileName Rail-*.msi
-
         if ($($env:APPVEYOR_REPO_TAG) -eq "true" -and $env:CONFIGURATION -eq "Release") {
-            $ZipFileName = "Rail_$($env:APPVEYOR_REPO_TAG_NAME).zip"
-            7z a $ZipFileName "%APPVEYOR_BUILD_FOLDER%\Rail\bin\$env:CONFIGURATION\netcoreapp3.1\Rail.dll"
+            Push-AppveyorArtifact "Rail-*.msi" -FileName Rail-*.msi
         }
 
 artifacts:
-  - path: Rail_*.zip
+  - path: Rail_*.msi
     name: releases
 
 deploy:
@@ -50,5 +61,4 @@ deploy:
     force_update: true
     on:
         appveyor_repo_tag: true
-        PlatformToolset: VS17
         configuration: Release
