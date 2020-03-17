@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mvvm="clr-namespace:Rail.Mvvm;assembly=Rail.Mvvm"
+             xmlns:mvvmconv="clr-namespace:Rail.Mvvm.Converter;assembly=Rail.Mvvm"
              xmlns:vm="clr-namespace:Rail.TrackEditor.ViewModel"
              xmlns:v="clr-namespace:Rail.TrackEditor.View"
              xmlns:tr="clr-namespace:Rail.Tracks;assembly=Rail.Tracks"
@@ -14,6 +15,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <mvvm:BindingProxy x:Key="TrackTypeBindingProxy" Data="{Binding}" />
+        <mvvmconv:DescriptionConverter x:Key="DescriptionConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -125,7 +127,15 @@
                     <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.MainManufacturer}"/>
                     <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Manufacturer}" Margin="3"/>
                     <Label Grid.Column="0" Grid.Row="1" Content="{x:Static lang:Resources.MainGauge}"/>
-                    <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Gauges}" SelectedValue="{Binding Gauge}" Margin="3"/>
+                    <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Gauges}" SelectedValue="{Binding Gauge}" Margin="3">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding ., Converter={StaticResource DescriptionConverter}}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                     <Label Grid.Column="0" Grid.Row="2" Content="{x:Static lang:Resources.MainDockType}"/>
                     <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding DataContext.DockTypesSource, RelativeSource={RelativeSource AncestorType={x:Type local:MainView}}}" DisplayMemberPath="Name" SelectedItem="{Binding DockType}" Margin="3"/>
 

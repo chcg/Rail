@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -8,31 +9,31 @@ namespace Rail.Tracks
 {
     public enum TrackGauge
     {
-        [XmlEnum("T")]
+        [XmlEnum("T"), Description("T")]
         Gauge_T,
-        [XmlEnum("Z")]
+        [XmlEnum("Z"), Description("Z")]
         Gauge_Z,
-        [XmlEnum("N")]
+        [XmlEnum("N"), Description("N")]
         Gauge_N,
-        [XmlEnum("TT")]
+        [XmlEnum("TT"), Description("TT")]
         Gauge_TT,
-        [XmlEnum("H0")]
+        [XmlEnum("H0"), Description("H0")]
         Gauge_H0,
-        [XmlEnum("H0e")]
+        [XmlEnum("H0e"), Description("H0e")]
         Gauge_H0e,
-        [XmlEnum("00")]
+        [XmlEnum("00"), Description("00")]
         Gauge_00,
-        [XmlEnum("S")]
+        [XmlEnum("S"), Description("S")]
         Gauge_S,
-        [XmlEnum("0")]
+        [XmlEnum("0"), Description("0")]
         Gauge_0,
-        [XmlEnum("1")]
+        [XmlEnum("1"), Description("1")]
         Gauge_1,
-        [XmlEnum("2")]
+        [XmlEnum("2"), Description("2")]
         Gauge_2,
-        [XmlEnum("G")]
+        [XmlEnum("G"), Description("G / IIm")]
         Gauge_G,
-        [XmlEnum("Lego")]
+        [XmlEnum("Lego"), Description("Lego")]
         Gauge_Lego,
     }
 }
