@@ -61,6 +61,222 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adapter.
+        /// </summary>
+        public static string EnumAdapter {
+            get {
+                return ResourceManager.GetString("EnumAdapter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adjustment.
+        /// </summary>
+        public static string EnumAdjustment {
+            get {
+                return ResourceManager.GetString("EnumAdjustment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Black.
+        /// </summary>
+        public static string EnumBlack {
+            get {
+                return ResourceManager.GetString("EnumBlack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brass.
+        /// </summary>
+        public static string EnumBrass {
+            get {
+                return ResourceManager.GetString("EnumBrass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bumper.
+        /// </summary>
+        public static string EnumBumper {
+            get {
+                return ResourceManager.GetString("EnumBumper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bumper with Lantern.
+        /// </summary>
+        public static string EnumBumperWithLantern {
+            get {
+                return ResourceManager.GetString("EnumBumperWithLantern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Circuit.
+        /// </summary>
+        public static string EnumCircuit {
+            get {
+                return ResourceManager.GetString("EnumCircuit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Concrete.
+        /// </summary>
+        public static string EnumConcrete {
+            get {
+                return ResourceManager.GetString("EnumConcrete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact.
+        /// </summary>
+        public static string EnumContact {
+            get {
+                return ResourceManager.GetString("EnumContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Electrical.
+        /// </summary>
+        public static string EnumElectricali {
+            get {
+                return ResourceManager.GetString("EnumElectricali", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EnumEnd.
+        /// </summary>
+        public static string EnumEnd {
+            get {
+                return ResourceManager.GetString("EnumEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feeder.
+        /// </summary>
+        public static string EnumFeeder {
+            get {
+                return ResourceManager.GetString("EnumFeeder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flex.
+        /// </summary>
+        public static string EnumFlex {
+            get {
+                return ResourceManager.GetString("EnumFlex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Isolating.
+        /// </summary>
+        public static string EnumIsolating {
+            get {
+                return ResourceManager.GetString("EnumIsolating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left.
+        /// </summary>
+        public static string EnumLeft {
+            get {
+                return ResourceManager.GetString("EnumLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mechanical.
+        /// </summary>
+        public static string EnumMechanical {
+            get {
+                return ResourceManager.GetString("EnumMechanical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string EnumNo {
+            get {
+                return ResourceManager.GetString("EnumNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right.
+        /// </summary>
+        public static string EnumRight {
+            get {
+                return ResourceManager.GetString("EnumRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Silver.
+        /// </summary>
+        public static string EnumSilver {
+            get {
+                return ResourceManager.GetString("EnumSilver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uncoupler.
+        /// </summary>
+        public static string EnumUncoupler {
+            get {
+                return ResourceManager.GetString("EnumUncoupler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        public static string EnumUnknown {
+            get {
+                return ResourceManager.GetString("EnumUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wooden.
+        /// </summary>
+        public static string EnumWooden {
+            get {
+                return ResourceManager.GetString("EnumWooden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y.
+        /// </summary>
+        public static string EnumY {
+            get {
+                return ResourceManager.GetString("EnumY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Three.
+        /// </summary>
+        public static string Three {
+            get {
+                return ResourceManager.GetString("Three", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adapter Track.
         /// </summary>
         public static string TrackAdapter {

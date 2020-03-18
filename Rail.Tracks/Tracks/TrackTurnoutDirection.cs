@@ -8,13 +8,9 @@ namespace Rail.Tracks
 {
     public enum TrackTurnoutDirection
     {
-        [Description(nameof(Resources.TrackLeft))]
         Left,
-        [Description(nameof(Resources.TrackRight))]
         Right,
-        [Description(nameof(Resources.TrackY))]
         Y,
-        [Description(nameof(Resources.TrackThree))]
         Three
     }
 }

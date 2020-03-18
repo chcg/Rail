@@ -64,6 +64,12 @@ namespace Rail.Tracks
             }
             catch (Exception ex)
             {
+                Exception e = ex;
+                while (e.InnerException != null )
+                {
+                    e = e.InnerException;
+                }
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 Debugger.Break();
             }
             return null;

@@ -21,9 +21,9 @@ namespace Rail.TrackEditor.ViewModel
 
         private readonly List<TrackNameViewModel> nullList = new List<TrackNameViewModel> { TrackNameViewModel.Null };
 
-        public DelegateCommand SaveCommand { get; private set; }
-        public DelegateCommand NewTrackTypeCommand { get; private set; }
-        public DelegateCommand<TrackTypeViewModel> DeleteTrackTypeCommand { get; private set; }
+        public DelegateCommand SaveCommand { get; }
+        public DelegateCommand NewTrackTypeCommand { get; }
+        public DelegateCommand<TrackTypeViewModel> DeleteTrackTypeCommand { get; }
 
         public MainViewModel()
         {
@@ -108,7 +108,7 @@ namespace Rail.TrackEditor.ViewModel
         
         private void OnNewTrackType()
         {
-            this.TrackTypes.Add(new TrackTypeViewModel());
+            this.TrackTypes.Add(new TrackTypeViewModel(TrackType.New()));
         }
 
         private void OnDeleteTrackType(TrackTypeViewModel trackType)

@@ -117,6 +117,78 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EnumAdapter" xml:space="preserve">
+    <value>Adapter</value>
+  </data>
+  <data name="EnumAdjustment" xml:space="preserve">
+    <value>Adjustment</value>
+  </data>
+  <data name="EnumBlack" xml:space="preserve">
+    <value>Black</value>
+  </data>
+  <data name="EnumBrass" xml:space="preserve">
+    <value>Brass</value>
+  </data>
+  <data name="EnumBumper" xml:space="preserve">
+    <value>Bumper</value>
+  </data>
+  <data name="EnumBumperWithLantern" xml:space="preserve">
+    <value>Bumper with Lantern</value>
+  </data>
+  <data name="EnumCircuit" xml:space="preserve">
+    <value>Circuit</value>
+  </data>
+  <data name="EnumConcrete" xml:space="preserve">
+    <value>Concrete</value>
+  </data>
+  <data name="EnumContact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="EnumElectricali" xml:space="preserve">
+    <value>Electrical</value>
+  </data>
+  <data name="EnumEnd" xml:space="preserve">
+    <value>EnumEnd</value>
+  </data>
+  <data name="EnumFeeder" xml:space="preserve">
+    <value>Feeder</value>
+  </data>
+  <data name="EnumFlex" xml:space="preserve">
+    <value>Flex</value>
+  </data>
+  <data name="EnumIsolating" xml:space="preserve">
+    <value>Isolating</value>
+  </data>
+  <data name="EnumLeft" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="EnumMechanical" xml:space="preserve">
+    <value>Mechanical</value>
+  </data>
+  <data name="EnumNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="EnumRight" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="EnumSilver" xml:space="preserve">
+    <value>Silver</value>
+  </data>
+  <data name="EnumUncoupler" xml:space="preserve">
+    <value>Uncoupler</value>
+  </data>
+  <data name="EnumUnknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="EnumWooden" xml:space="preserve">
+    <value>Wooden</value>
+  </data>
+  <data name="EnumY" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="Three" xml:space="preserve">
+    <value>Three</value>
+  </data>
   <data name="TrackAdapter" xml:space="preserve">
     <value>Adapter Track</value>
   </data>

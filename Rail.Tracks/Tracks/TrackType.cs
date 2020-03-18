@@ -18,6 +18,25 @@ namespace Rail.Tracks
             this.Angles = new List<TrackNamedValue>();
         }
 
+        public static TrackType New()
+        {
+            TrackType trackType = new TrackType();
+            trackType.Parameter.Manufacturer = "Manufacturer";
+            trackType.Parameter.Gauge = TrackGauge.Gauge_H0;
+            //trackType.Parameter.DockType =
+            trackType.Parameter.RailType = TrackRailType.Silver;
+            trackType.Parameter.SleeperType = TrackSleeperType.Wooden;
+            trackType.Parameter.BallastType = TrackBallastType.No;
+            trackType.Parameter.RailWidth = 16;
+            trackType.Parameter.SleeperWidth = 24;
+            trackType.Parameter.BallastWidth = 28;
+            trackType.Radii.Add(new TrackNamedValue { Id = Guid.NewGuid(), Name = "R1", Value = 360 });
+            trackType.Lengths.Add(new TrackNamedValue { Id = Guid.NewGuid(), Name = "L180", Value = 180 });
+            trackType.Angles.Add(new TrackNamedValue { Id = Guid.NewGuid(), Name = "A30", Value = 30 });
+
+            return trackType;
+        }
+
         [XmlElement("Name")]
         public XmlMultilanguageString Name { get; set; }
 
