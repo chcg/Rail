@@ -11,7 +11,12 @@
         xmlns:local="clr-namespace:Rail.TrackEditor"
         xmlns:lang="clr-namespace:Rail.TrackEditor.Properties"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="880" Width="1200" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+        Title="{Binding Title}" 
+        Width="1400"
+        Height="880"  
+        MinWidth="740"
+        MinHeight="600"
+        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
     <mvvm:AppView.Resources>
         <mvvm:BindingProxy x:Key="MainBindingProxy" Data="{Binding}" />
     </mvvm:AppView.Resources>
@@ -29,14 +34,15 @@
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem Content="."/>
         </StatusBar>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250" MinWidth="100" MaxWidth="500"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="3*" MinHeight="100"/>
                 <RowDefinition Height="*" MinHeight="100"/>
-                <RowDefinition Height="200" MinHeight="100"/>
             </Grid.RowDefinitions>
             <GroupBox Header="{x:Static lang:Resources.MainTrackTypes}" >
                 <ListBox ItemsSource="{Binding TrackTypes}" SelectedItem="{Binding SelectedTrackType}" >
@@ -79,5 +85,6 @@
             <GridSplitter Grid.RowSpan="2" Background="Blue" Width="5"  HorizontalAlignment="Right" VerticalAlignment="Stretch" />
             <v:TrackTypeView  Grid.Column="1" Grid.RowSpan="2" DataContext="{Binding SelectedTrackType}" />
         </Grid>
+        </ScrollViewer>
     </DockPanel>
 </mvvm:AppView>

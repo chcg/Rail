@@ -107,17 +107,18 @@
             </GroupBox>
         </Grid>
         <GridSplitter  Background="Blue" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />
-        <Grid Grid.Row="1" Grid.IsSharedSizeScope="True">
+        <!--<Grid Grid.Row="1" Grid.IsSharedSizeScope="True">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>-->
+        <WrapPanel Grid.Row="1" Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Disabled">
             <GroupBox Header="Parameter" Grid.Column="0" >
                 <Grid Margin="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*" MinWidth="80" MaxWidth="140"/>
+                        <ColumnDefinition Width="120"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -145,9 +146,9 @@
                 <Grid Margin="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" MinWidth="80" MaxWidth="140"/>
+                        <ColumnDefinition Width="120"/>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" MinWidth="80"  MaxWidth="140"/>
+                        <ColumnDefinition Width="60"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -182,7 +183,7 @@
                 <Grid Margin="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*" MinWidth="80" MaxWidth="140"/>
+                        <ColumnDefinition Width="60"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -197,42 +198,19 @@
                     <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding WagonMaxBogieFrontDistance}" Margin="3"/>
                 </Grid>
             </GroupBox>
-        </Grid>
+        </WrapPanel>
+        <!--</Grid>-->
         <Grid Grid.Row="2">
             <GroupBox Header="Track" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="4">
-                <!--<GroupBox.Resources>
-                    <ContextMenu x:Key="contextMenu">
-                        <MenuItem Header="{x:Static lang:Resources.MainNewStraightTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Straight}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewCurvedTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Curved}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewTurnoutTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Turnout}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewCurvedTurnoutTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.CurvedTurnout}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewDoubleSlipSwitchTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.DoubleSlipSwitch}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewThreeWayTurnoutTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.ThreeWayTurnout}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewYTurnoutTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.YTurnout}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewCrossingTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Crossing}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewStarTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Star}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewBumperTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Bumper}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewAdapterTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Adapter}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewTurntableTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Turntable}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewTransferTableTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.TransferTable}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewEndPieceTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.EndPiece}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewStraightAdjustmentTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.StraightAdjustment}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewDoubleCrossoverTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.DoubleCrossover}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewFlexTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Flex}" />
-                        <MenuItem Header="{x:Static lang:Resources.MainNewGroupTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Group}" />
-                    </ContextMenu>
-                </GroupBox.Resources>-->
-                <Grid Margin="3">
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="260" MinWidth="100" MaxWidth="400"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="200" MinHeight="100" MaxHeight="500"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <ListBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" Margin="3" >
+                    <ListBox Grid.Column="0" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" >
                         <ListBox.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="{x:Static lang:Resources.MainNewStraightTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Straight}" />
@@ -280,53 +258,63 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    <GridSplitter Grid.RowSpan="2" Background="Blue" Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch" />
-                    <ctrl:TrackControl Grid.Column="1" Grid.Row="0" Track="{Binding Track}" DataContext="{Binding SelectedTrack}" ShowRail="False" BorderBrush="LightGray" Margin="3" BorderThickness="1" Background="White" />
-                    <ctrl:TrackControl Grid.Column="2" Grid.Row="0" Track="{Binding Track}" DataContext="{Binding SelectedTrack}" ShowRail="True"  BorderBrush="LightGray" Margin="3" BorderThickness="1" Background="White"/>
-                    <ContentControl Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding SelectedTrack}" Margin="3" >
-                        <ContentControl.Resources>
-                            <DataTemplate DataType="{x:Type vm:TrackStraightViewModel}" >
-                                <v:TrackStraightView/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:TrackCurvedViewModel}" >
-                                <v:TrackCurvedView/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:TrackCrossingViewModel}" >
-                                <v:TrackCrossingView/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:TrackEndPieceViewModel}" >
-                                <v:TrackEndPieceView/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:TrackFlexViewModel}" >
-                                <v:TrackFlexView/>
-                            </DataTemplate>
-                            
-                            <DataTemplate DataType="{x:Type vm:TrackTurnoutViewModel}" >
-                                <v:TrackTurnoutView/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:TrackCurvedTurnoutViewModel}" >
-                                <v:TrackCurvedTurnoutView/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:TrackDoubleSlipSwitchViewModel}" >
-                                <v:TrackDoubleSlipSwitchView/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:TrackDoubleCrossoverViewModel}" >
-                                <v:TrackDoubleCrossoverView/>
-                            </DataTemplate>
-                            
-                            
-                            <DataTemplate DataType="{x:Type vm:TrackTurntableViewModel}" >
-                                <v:TrackTurntableView/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:TrackTransferTableViewModel}" >
-                                <v:TrackTransferTableView/>
-                            </DataTemplate>
-                            
-                            <DataTemplate DataType="{x:Type vm:TrackGroupViewModel}" >
-                                <v:TrackGroupView/>
-                            </DataTemplate>
-                        </ContentControl.Resources>
-                    </ContentControl>
+                    <GridSplitter Background="Blue" Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch" />
+                    <Grid Grid.Column="1" DataContext="{Binding SelectedTrack}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200" />
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <ctrl:TrackControl Grid.Column="0" Grid.Row="0" Track="{Binding Track}" ShowRail="False" BorderBrush="LightGray" Margin="3" BorderThickness="1" Background="White" Height="200" />
+                        <ctrl:TrackControl Grid.Column="1" Grid.Row="0" Track="{Binding Track}" ShowRail="True"  BorderBrush="LightGray" Margin="3" BorderThickness="1" Background="White"  Height="200"/>
+                        <ContentControl Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Content="{Binding .}" >
+                            <ContentControl.Resources>
+                                <DataTemplate DataType="{x:Type vm:TrackStraightViewModel}" >
+                                    <v:TrackStraightView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackCurvedViewModel}" >
+                                    <v:TrackCurvedView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackCrossingViewModel}" >
+                                    <v:TrackCrossingView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackEndPieceViewModel}" >
+                                    <v:TrackEndPieceView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackFlexViewModel}" >
+                                    <v:TrackFlexView/>
+                                </DataTemplate>
+
+                                <DataTemplate DataType="{x:Type vm:TrackTurnoutViewModel}" >
+                                    <v:TrackTurnoutView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackCurvedTurnoutViewModel}" >
+                                    <v:TrackCurvedTurnoutView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackDoubleSlipSwitchViewModel}" >
+                                    <v:TrackDoubleSlipSwitchView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackDoubleCrossoverViewModel}" >
+                                    <v:TrackDoubleCrossoverView/>
+                                </DataTemplate>
+
+
+                                <DataTemplate DataType="{x:Type vm:TrackTurntableViewModel}" >
+                                    <v:TrackTurntableView/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vm:TrackTransferTableViewModel}" >
+                                    <v:TrackTransferTableView/>
+                                </DataTemplate>
+
+                                <DataTemplate DataType="{x:Type vm:TrackGroupViewModel}" >
+                                    <v:TrackGroupView/>
+                                </DataTemplate>
+                            </ContentControl.Resources>
+                        </ContentControl>
+                    </Grid>
                 </Grid>
             </GroupBox>
         </Grid>

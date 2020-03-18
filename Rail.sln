@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rail.Mvvm", "Rail.Mvvm\Rail
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rail.Tracks", "Rail.Tracks\Rail.Tracks.csproj", "{3E6B6E3D-63DA-4EA7-BFC5-4D9815A2234A}"
 EndProject
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Rail.Documentation", "Rail.Documentation\Rail.Documentation.shfbproj", "{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Rail.Installer", "Rail.Installer\Rail.Installer.wixproj", "{7001A624-65AB-49C2-829B-9CD39FD49AE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,6 +120,40 @@ Global
 		{3E6B6E3D-63DA-4EA7-BFC5-4D9815A2234A}.Release|x64.Build.0 = Release|Any CPU
 		{3E6B6E3D-63DA-4EA7-BFC5-4D9815A2234A}.Release|x86.ActiveCfg = Release|Any CPU
 		{3E6B6E3D-63DA-4EA7-BFC5-4D9815A2234A}.Release|x86.Build.0 = Release|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.Debug|x64.Build.0 = Debug|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.Debug|x86.Build.0 = Debug|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.DebugInfo|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.DebugInfo|Any CPU.Build.0 = Debug|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.DebugInfo|x64.ActiveCfg = Debug|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.DebugInfo|x64.Build.0 = Debug|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.DebugInfo|x86.ActiveCfg = Debug|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.DebugInfo|x86.Build.0 = Debug|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.Release|x64.ActiveCfg = Release|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.Release|x64.Build.0 = Release|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.Release|x86.ActiveCfg = Release|Any CPU
+		{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}.Release|x86.Build.0 = Release|Any CPU
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Debug|x64.ActiveCfg = Debug|x64
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Debug|x64.Build.0 = Debug|x64
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Debug|x86.ActiveCfg = Debug|x86
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Debug|x86.Build.0 = Debug|x86
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.DebugInfo|Any CPU.ActiveCfg = Release|x64
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.DebugInfo|Any CPU.Build.0 = Release|x64
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.DebugInfo|x64.ActiveCfg = Debug|x64
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.DebugInfo|x64.Build.0 = Debug|x64
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.DebugInfo|x86.ActiveCfg = Debug|x86
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.DebugInfo|x86.Build.0 = Debug|x86
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Release|Any CPU.ActiveCfg = Release|x86
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Release|Any CPU.Build.0 = Release|x86
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Release|x64.ActiveCfg = Release|x64
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Release|x64.Build.0 = Release|x64
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Release|x86.ActiveCfg = Release|x86
+		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
