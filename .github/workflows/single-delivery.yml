@@ -34,4 +34,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
             name: Rail.TrackEditor.exe
-            path: ./Delivery/WinX64Rail/Rail.TrackEditor.exe
+            path: ./Delivery/WinX64/Rail.TrackEditor.exe
