@@ -35,3 +35,5 @@ jobs:
         with:
             name: Rail.TrackEditor.exe
             path: ./Delivery/WinX64/Rail.TrackEditor.exe
+            name: Rail.exe
+            path: ./Delivery/WinX64/Rail.exe
