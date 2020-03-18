@@ -108,7 +108,9 @@ namespace Rail.TrackEditor.ViewModel
         
         private void OnNewTrackType()
         {
-            this.TrackTypes.Add(new TrackTypeViewModel(TrackType.New()));
+            TrackTypeViewModel track = new TrackTypeViewModel(TrackType.New());
+            this.TrackTypes.Add(track);
+            this.SelectedTrackType = track;
         }
 
         private void OnDeleteTrackType(TrackTypeViewModel trackType)
