@@ -186,9 +186,6 @@
   <data name="EnumY" xml:space="preserve">
     <value>Y</value>
   </data>
-  <data name="Three" xml:space="preserve">
-    <value>Three</value>
-  </data>
   <data name="TrackAdapter" xml:space="preserve">
     <value>Adapter Track</value>
   </data>
@@ -242,12 +239,6 @@
   </data>
   <data name="TrackFlex" xml:space="preserve">
     <value>Flex Track</value>
-  </data>
-  <data name="TrackLeft_del" xml:space="preserve">
-    <value>Left</value>
-  </data>
-  <data name="TrackRight_del" xml:space="preserve">
-    <value>Right</value>
   </data>
   <data name="TrackStraight" xml:space="preserve">
     <value>Straight Track</value>

@@ -61,15 +61,6 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        public static string Cancel {
-            get {
-                return ResourceManager.GetString("Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Angle.
         /// </summary>
         public static string MainAngle {
@@ -223,15 +214,6 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lantern.
-        /// </summary>
-        public static string MainLantern {
-            get {
-                return ResourceManager.GetString("MainLantern", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Left Counter Curve Angle.
         /// </summary>
         public static string MainLeftCounterCurveAngle {
@@ -318,15 +300,6 @@ namespace Rail.TrackEditor.Properties {
         public static string MainName {
             get {
                 return ResourceManager.GetString("MainName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New Adapter Track.
-        /// </summary>
-        public static string MainNewAdapterTrack {
-            get {
-                return ResourceManager.GetString("MainNewAdapterTrack", resourceCulture);
             }
         }
         
@@ -628,15 +601,6 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Turnout Angle.
-        /// </summary>
-        public static string MainTurnoutAngle {
-            get {
-                return ResourceManager.GetString("MainTurnoutAngle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Turnout Direction.
         /// </summary>
         public static string MainTurnoutDirection {
@@ -651,24 +615,6 @@ namespace Rail.TrackEditor.Properties {
         public static string MainTurnoutDrive {
             get {
                 return ResourceManager.GetString("MainTurnoutDrive", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Turnout Length.
-        /// </summary>
-        public static string MainTurnoutLength {
-            get {
-                return ResourceManager.GetString("MainTurnoutLength", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Turnout Radius.
-        /// </summary>
-        public static string MainTurnoutRadius {
-            get {
-                return ResourceManager.GetString("MainTurnoutRadius", resourceCulture);
             }
         }
         
@@ -696,15 +642,6 @@ namespace Rail.TrackEditor.Properties {
         public static string MainWagonMaxWidth {
             get {
                 return ResourceManager.GetString("MainWagonMaxWidth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        public static string OK {
-            get {
-                return ResourceManager.GetString("OK", resourceCulture);
             }
         }
         

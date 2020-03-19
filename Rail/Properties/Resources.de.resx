@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Cancel" xml:space="preserve">
-    <value>Abbruch</value>
-  </data>
   <data name="MainAll" xml:space="preserve">
     <value>Alle</value>
   </data>
@@ -132,11 +129,23 @@
   <data name="MainArticle" xml:space="preserve">
     <value>Artikel</value>
   </data>
+  <data name="MainClipboard" xml:space="preserve">
+    <value>Clipboard</value>
+  </data>
+  <data name="MainCopy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
   <data name="MainCustomer" xml:space="preserve">
     <value>Eigenen Gruppen</value>
   </data>
-  <data name="MainDistance" xml:space="preserve">
-    <value>Entfernung</value>
+  <data name="MainCut" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="MainDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="MainDuplicate" xml:space="preserve">
+    <value>Duplicate</value>
   </data>
   <data name="MainFileAbout" xml:space="preserve">
     <value>Info ...</value>
@@ -171,32 +180,72 @@
   <data name="MainGauge" xml:space="preserve">
     <value>Spurbreite</value>
   </data>
-  <data name="MainGradientPerc" xml:space="preserve">
-    <value>Steigung (%)</value>
-  </data>
-  <data name="MainGridLines" xml:space="preserve">
-    <value>Gitterlinien</value>
-  </data>
   <data name="MainGroup" xml:space="preserve">
     <value>Gruppen</value>
   </data>
-  <data name="MainGroups" xml:space="preserve">
-    <value>Gruppen</value>
+  <data name="MainGroupCreate" xml:space="preserve">
+    <value>Group</value>
+    <comment>group ribbon button create group</comment>
   </data>
-  <data name="MainHeightmm" xml:space="preserve">
-    <value>Höhe (mm)</value>
+  <data name="MainGroupResolve" xml:space="preserve">
+    <value>Ungroup</value>
+    <comment>group ribbon button resolve group</comment>
   </data>
+  <data name="MainGroupSaveAs" xml:space="preserve">
+    <value>Save Group As...</value>
+    <comment>group ribbon button save as group</comment>
+  </data>
+  <data name="MainGroupTitle" xml:space="preserve">
+    <value>Groups</value>
+    <comment>group ribbon group title</comment>
+  </data>
+  <data name="MainHelixCreate" xml:space="preserve">
+    <value>Create Helix</value>
+  </data>
+  <data name="MainHelixDelete" xml:space="preserve">
+    <value>Resolve Helix</value>
+  </data>
+  <data name="MainHelixEdit" xml:space="preserve">
+    <value>Edit Helix</value>
+  </data>
+  <data name="MainHelixTitle" xml:space="preserve">
+    <value>Helixes</value>
+  </data>
+  <data name="MainHistory" xml:space="preserve">
+    <value>History</value>
+  </data> 
   <data name="MainLayer" xml:space="preserve">
     <value>Stufe</value>
   </data>
+  <data name="MainLayerName" xml:space="preserve">
+    <value>Layer Name</value>
+  </data>
+  <data name="MainLayers" xml:space="preserve">
+    <value>Layers</value>
+  </data>
+  <data name="MainLockLock" xml:space="preserve">
+    <value>Lock Rail</value>
+  </data>
+  <data name="MainLockTitle" xml:space="preserve">
+    <value>Lock</value>
+  </data>
+  <data name="MainLockUnlock" xml:space="preserve">
+    <value>Unlock Rail</value>
+  </data>
   <data name="MainManufacturer" xml:space="preserve">
     <value>Hersteller</value>
+  </data>
+  <data name="MainMaterialList" xml:space="preserve">
+    <value>Material List</value>
   </data>
   <data name="MainName" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="MainOptions" xml:space="preserve">
     <value>Optionen...</value>
+  </data>
+  <data name="MainPaste" xml:space="preserve">
+    <value>Paste</value>
   </data>
   <data name="MainPlan" xml:space="preserve">
     <value>Plan</value>
@@ -210,17 +259,35 @@
   <data name="MainRailPlan" xml:space="preserve">
     <value>Schienenplan</value>
   </data>
-  <data name="MainRamp" xml:space="preserve">
-    <value>Rampe</value>
-  </data>
   <data name="MainRampCreate" xml:space="preserve">
     <value>Rampe anlegen</value>
+    <comment>ramp ribbon button create ramp</comment>
   </data>
   <data name="MainRampDelete" xml:space="preserve">
     <value>Rampe löschen</value>
+    <comment>ramp ribbon button resolve ramp</comment>
+  </data>
+  <data name="MainRampEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="MainRampTitle" xml:space="preserve">
+    <value>Ramps</value>
+    <comment>ramp ribbon group title</comment>
+  </data>
+  <data name="MainRedo" xml:space="preserve">
+    <value>Redo</value>
   </data>
   <data name="MainRotation" xml:space="preserve">
     <value>Rotation</value>
+  </data>
+  <data name="MainSelectAll" xml:space="preserve">
+    <value>SelectAll</value>
+  </data>
+  <data name="MainShow" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="MainShowClearSpace" xml:space="preserve">
+    <value>Show Clear Space</value>
   </data>
   <data name="MainShowDockingPoints" xml:space="preserve">
     <value>Andockpunkte anzeigen</value>
@@ -230,9 +297,6 @@
   </data>
   <data name="MainSingle" xml:space="preserve">
     <value>Gleise</value>
-  </data>
-  <data name="MainSnapIn" xml:space="preserve">
-    <value>Einrasten</value>
   </data>
   <data name="MainSwitches" xml:space="preserve">
     <value>Schalter</value>
@@ -249,8 +313,23 @@
   <data name="MainTracks" xml:space="preserve">
     <value>Gleise</value>
   </data>
+  <data name="MainUndo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="MainViewGridDistance" xml:space="preserve">
+    <value>Grid Distance</value>
+  </data>
   <data name="MainViewModes" xml:space="preserve">
     <value>Ansichtsmodi</value>
+  </data>
+  <data name="MainViewSnapInAngle" xml:space="preserve">
+    <value>Snap In Angle</value>
+  </data>
+  <data name="MainViewSnapInDistance" xml:space="preserve">
+    <value>Snap In Distance</value>
+  </data>
+  <data name="MainViewTitle" xml:space="preserve">
+    <value>View</value>
   </data>
   <data name="MainXmm" xml:space="preserve">
     <value>X (mm)</value>
@@ -261,6 +340,21 @@
   <data name="MainZoom" xml:space="preserve">
     <value>Zoomen</value>
   </data>
+  <data name="MeasureDeltaX" xml:space="preserve">
+    <value>Delta X</value>
+  </data>
+  <data name="MeasureDeltaY" xml:space="preserve">
+    <value>Delta Y</value>
+  </data>
+  <data name="MeasureDistance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="MeasureMM" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="MeasureTitle" xml:space="preserve">
+    <value>Distance Measurement</value>
+  </data>
   <data name="MenuDelete" xml:space="preserve">
     <value>Löschen</value>
   </data>
@@ -270,11 +364,19 @@
   <data name="MenuRotate" xml:space="preserve">
     <value>Drehen</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>OK</value>
+  <data name="OptionsKinkAngle" xml:space="preserve">
+    <value>Kink Angle (%)</value>
+    <comment>Options dialog ramp kink angle in percent</comment>
   </data>
   <data name="OptionsLanguage" xml:space="preserve">
     <value>Sprache</value>
+  </data>
+  <data name="OptionsMaximumPitch" xml:space="preserve">
+    <value>Max Pitch (%)</value>
+    <comment>Options dialog ramp maximum pitch in percent</comment>
+  </data>
+  <data name="OptionsRamp" xml:space="preserve">
+    <value>Ramp</value>
   </data>
   <data name="OptionsTitle" xml:space="preserve">
     <value>Optionen</value>
@@ -285,85 +387,13 @@
   <data name="RailPlanView" xml:space="preserve">
     <value>Schienenplanansicht</value>
   </data>
-  <data name="TrackAdapter" xml:space="preserve">
-    <value>Übergangsgleis</value>
+  <data name="RampKinkAngle" xml:space="preserve">
+    <value>Kink Angle</value>
   </data>
-  <data name="TrackBumper" xml:space="preserve">
-    <value>Gleisende mit Prellbock</value>
+  <data name="RampLayerHeight" xml:space="preserve">
+    <value>Layer Height</value>
   </data>
-  <data name="TrackCrossing" xml:space="preserve">
-    <value>Kreuzung</value>
-  </data>
-  <data name="TrackCurved" xml:space="preserve">
-    <value>Gebogenes Gleis</value>
-  </data>
-  <data name="TrackCurvedCircuit" xml:space="preserve">
-    <value>Schaltgleis gebogen</value>
-  </data>
-  <data name="TrackCurvedTurnoutLeft" xml:space="preserve">
-    <value>Bogenweiche links</value>
-  </data>
-  <data name="TrackCurvedTurnoutRight" xml:space="preserve">
-    <value>Bogenweiche rechts</value>
-  </data>
-  <data name="TrackDoubleCrossover" xml:space="preserve">
-    <value>Hosenträger</value>
-  </data>
-  <data name="TrackDoubleSlipSwitch" xml:space="preserve">
-    <value>Doppelkreuzungsweiche</value>
-  </data>
-  <data name="TrackDoubleTurnout" xml:space="preserve">
-    <value>Dreiwegweiche</value>
-  </data>
-  <data name="TrackDriveElectrical" xml:space="preserve">
-    <value>elektrisch</value>
-  </data>
-  <data name="TrackDriveMechanical" xml:space="preserve">
-    <value>mechanisch</value>
-  </data>
-  <data name="TrackEndPiece" xml:space="preserve">
-    <value>Endstück zur Gleisböschung</value>
-  </data>
-  <data name="TrackFlex" xml:space="preserve">
-    <value>Flexibles Gleis</value>
-  </data>
-  <data name="TrackStraight" xml:space="preserve">
-    <value>Gerades Gleis</value>
-  </data>
-  <data name="TrackStraightAdjustment" xml:space="preserve">
-    <value>Ausgleichsgleis gerade</value>
-  </data>
-  <data name="TrackStraightCircuit" xml:space="preserve">
-    <value>Schaltgleis gerade</value>
-  </data>
-  <data name="TrackStraightContact" xml:space="preserve">
-    <value>Kontaktgleis</value>
-  </data>
-  <data name="TrackStraightFeeder" xml:space="preserve">
-    <value>Anschlussgleis gerade</value>
-  </data>
-  <data name="TrackStraightIsolating" xml:space="preserve">
-    <value>Trenngleis gerade</value>
-  </data>
-  <data name="TrackStraightUncoupler" xml:space="preserve">
-    <value>Entkupplungsgleis gerade</value>
-  </data>
-  <data name="TrackTransferTable" xml:space="preserve">
-    <value>Schiebebühne</value>
-  </data>
-  <data name="TrackTurnoutLeft" xml:space="preserve">
-    <value>Weiche links</value>
-  </data>
-  <data name="TrackTurnoutRight" xml:space="preserve">
-    <value>Weiche rechts</value>
-  </data>
-  <data name="TrackTurntable" xml:space="preserve">
-    <value>Drehscheibe</value>
-  </data>
-  <data name="TrackWithLantern" xml:space="preserve">
-    <value>mit Beleuchtung</value>
-  </data>
-  <data name="TrackYTurnout" xml:space="preserve">
-    <value>Y-Weiche</value>
+  <data name="RampMaximumPitch" xml:space="preserve">
+    <value>Maximum Pitch</value>
   </data>
 </root>

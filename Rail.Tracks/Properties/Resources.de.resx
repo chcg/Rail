@@ -186,9 +186,6 @@
   <data name="EnumY" xml:space="preserve">
     <value>Y</value>
   </data>
-  <data name="Three" xml:space="preserve">
-    <value>Drei</value>
-  </data>
   <data name="TrackAdapter" xml:space="preserve">
     <value>Adapter Gleis</value>
   </data>
@@ -242,12 +239,6 @@
   </data>
   <data name="TrackFlex" xml:space="preserve">
     <value>Flexibles Gleis</value>
-  </data>
-  <data name="TrackLeft" xml:space="preserve">
-    <value>links</value>
-  </data>
-  <data name="TrackRight" xml:space="preserve">
-    <value>rechts</value>
   </data>
   <data name="TrackStraight" xml:space="preserve">
     <value>Gerades Gleis</value>

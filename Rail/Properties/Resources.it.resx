@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Cancel" xml:space="preserve">
-    <value>Annulla</value>
-  </data>
   <data name="MainAll" xml:space="preserve">
     <value>All</value>
   </data>
@@ -146,9 +143,6 @@
   </data>
   <data name="MainDelete" xml:space="preserve">
     <value>Delete</value>
-  </data>
-  <data name="MainDistance" xml:space="preserve">
-    <value>Distance</value>
   </data>
   <data name="MainDuplicate" xml:space="preserve">
     <value>Duplicate</value>
@@ -186,12 +180,6 @@
   <data name="MainGauge" xml:space="preserve">
     <value>Gauge</value>
   </data>
-  <data name="MainGradientPerc" xml:space="preserve">
-    <value>Gradient (%)</value>
-  </data>
-  <data name="MainGridLines" xml:space="preserve">
-    <value>Grid Lines</value>
-  </data>
   <data name="MainGroup" xml:space="preserve">
     <value>Groups</value>
   </data>
@@ -201,14 +189,8 @@
   <data name="MainGroupResolve" xml:space="preserve">
     <value>Ungroup</value>
   </data>
-  <data name="MainGroups" xml:space="preserve">
-    <value>Groups</value>
-  </data>
   <data name="MainGroupSaveAs" xml:space="preserve">
     <value>Save Group As...</value>
-  </data>
-  <data name="MainHeightmm" xml:space="preserve">
-    <value>Height (mm)</value>
   </data>
   <data name="MainHistory" xml:space="preserve">
     <value>History</value>
@@ -267,9 +249,6 @@
   <data name="MainSingle" xml:space="preserve">
     <value>Tracks</value>
   </data>
-  <data name="MainSnapIn" xml:space="preserve">
-    <value>Snap In</value>
-  </data>
   <data name="MainSwitches" xml:space="preserve">
     <value>Switches</value>
   </data>
@@ -309,9 +288,6 @@
   <data name="MenuRotate" xml:space="preserve">
     <value>Rotate</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>OK</value>
-  </data>
   <data name="OptionsLanguage" xml:space="preserve">
     <value>Language</value>
   </data>
@@ -323,86 +299,5 @@
   </data>
   <data name="RailPlanView" xml:space="preserve">
     <value>Rail Plan View</value>
-  </data>
-  <data name="TrackAdapter" xml:space="preserve">
-    <value>Adapter Track</value>
-  </data>
-  <data name="TrackBumper" xml:space="preserve">
-    <value>Track End with a Bumper</value>
-  </data>
-  <data name="TrackCrossing" xml:space="preserve">
-    <value>Crossing</value>
-  </data>
-  <data name="TrackCurved" xml:space="preserve">
-    <value>Curved Track</value>
-  </data>
-  <data name="TrackCurvedCircuit" xml:space="preserve">
-    <value>Curved Circuit Track</value>
-  </data>
-  <data name="TrackCurvedTurnoutLeft" xml:space="preserve">
-    <value>Left Curved Turnout</value>
-  </data>
-  <data name="TrackCurvedTurnoutRight" xml:space="preserve">
-    <value>Right Curved Turnout</value>
-  </data>
-  <data name="TrackDoubleCrossover" xml:space="preserve">
-    <value>Double Crossover</value>
-  </data>
-  <data name="TrackDoubleSlipSwitch" xml:space="preserve">
-    <value>Double Slip Switch</value>
-  </data>
-  <data name="TrackDoubleTurnout" xml:space="preserve">
-    <value>Three-Way Turnout</value>
-  </data>
-  <data name="TrackDriveElectrical" xml:space="preserve">
-    <value>electrical</value>
-  </data>
-  <data name="TrackDriveMechanical" xml:space="preserve">
-    <value>mechanical</value>
-  </data>
-  <data name="TrackEndPiece" xml:space="preserve">
-    <value>End Piece with Track Roadbed</value>
-  </data>
-  <data name="TrackFlex" xml:space="preserve">
-    <value>Flex Track</value>
-  </data>
-  <data name="TrackStraight" xml:space="preserve">
-    <value>Straight Track</value>
-  </data>
-  <data name="TrackStraightAdjustment" xml:space="preserve">
-    <value>Straight Adjustment</value>
-  </data>
-  <data name="TrackStraightCircuit" xml:space="preserve">
-    <value>Straight Circuit Track</value>
-  </data>
-  <data name="TrackStraightContact" xml:space="preserve">
-    <value>Contact Track</value>
-  </data>
-  <data name="TrackStraightFeeder" xml:space="preserve">
-    <value>Straight Feeder</value>
-  </data>
-  <data name="TrackStraightIsolating" xml:space="preserve">
-    <value>Straight Isolating</value>
-  </data>
-  <data name="TrackStraightUncoupler" xml:space="preserve">
-    <value>Straight Uncoupler</value>
-  </data>
-  <data name="TrackTransferTable" xml:space="preserve">
-    <value>Transfer Table</value>
-  </data>
-  <data name="TrackTurnoutLeft" xml:space="preserve">
-    <value>Left Turnout</value>
-  </data>
-  <data name="TrackTurnoutRight" xml:space="preserve">
-    <value>Right Turnout</value>
-  </data>
-  <data name="TrackTurntable" xml:space="preserve">
-    <value>Turntable</value>
-  </data>
-  <data name="TrackWithLantern" xml:space="preserve">
-    <value>with a lantern</value>
-  </data>
-  <data name="TrackYTurnout" xml:space="preserve">
-    <value>Y-Turnout</value>
   </data>
 </root>

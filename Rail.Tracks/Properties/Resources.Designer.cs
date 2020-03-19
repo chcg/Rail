@@ -268,15 +268,6 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Three.
-        /// </summary>
-        public static string Three {
-            get {
-                return ResourceManager.GetString("Three", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Adapter Track.
         /// </summary>
         public static string TrackAdapter {
@@ -435,24 +426,6 @@ namespace Rail.Tracks.Properties {
         public static string TrackFlex {
             get {
                 return ResourceManager.GetString("TrackFlex", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Left.
-        /// </summary>
-        public static string TrackLeft_del {
-            get {
-                return ResourceManager.GetString("TrackLeft_del", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Right.
-        /// </summary>
-        public static string TrackRight_del {
-            get {
-                return ResourceManager.GetString("TrackRight_del", resourceCulture);
             }
         }
         

@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Cancel" xml:space="preserve">
-    <value>Abbruch</value>
-  </data>
   <data name="MainAngle" xml:space="preserve">
     <value>Winkel</value>
   </data>
@@ -171,9 +168,6 @@
   <data name="MainLanguage" xml:space="preserve">
     <value>Sprache</value>
   </data>
-  <data name="MainLantern" xml:space="preserve">
-    <value>Laterne</value>
-  </data>
   <data name="MainLeftCounterCurveAngle" xml:space="preserve">
     <value>Winkel der Gegenkurve links</value>
   </data>
@@ -203,9 +197,6 @@
   </data>
   <data name="MainName" xml:space="preserve">
     <value>Name</value>
-  </data>
-  <data name="MainNewAdapterTrack" xml:space="preserve">
-    <value>Adapter Gleis hinzufügen</value>
   </data>
   <data name="MainNewCrossingTrack" xml:space="preserve">
     <value>Kreuzungs Gleis hinzufügen</value>
@@ -306,20 +297,11 @@
   <data name="MainTrackTypes" xml:space="preserve">
     <value>Gleis Typen</value>
   </data>
-  <data name="MainTurnoutAngle" xml:space="preserve">
-    <value>Ausfahrt Winkel</value>
-  </data>
   <data name="MainTurnoutDirection" xml:space="preserve">
     <value>Ausfahrt Richtung</value>
   </data>
   <data name="MainTurnoutDrive" xml:space="preserve">
     <value>Weichen Antrieb</value>
-  </data>
-  <data name="MainTurnoutLength" xml:space="preserve">
-    <value>Ausfahrt Länge</value>
-  </data>
-  <data name="MainTurnoutRadius" xml:space="preserve">
-    <value>Ausfahrt Radius</value>
   </data>
   <data name="MainWagonMaxBogieDistance" xml:space="preserve">
     <value>Max. Distanz zwischen den Drehgestellen</value>
@@ -329,9 +311,6 @@
   </data>
   <data name="MainWagonMaxWidth" xml:space="preserve">
     <value>Max. Wagen Breite</value>
-  </data>
-  <data name="OK" xml:space="preserve">
-    <value>OK</value>
   </data>
   <data name="OptionsLanguage" xml:space="preserve">
     <value>Sprache</value>
