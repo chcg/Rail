@@ -121,174 +121,174 @@
     <value>Adapter</value>
   </data>
   <data name="EnumAdjustment" xml:space="preserve">
-    <value>Adjustment</value>
+    <value>Verlängerung</value>
   </data>
   <data name="EnumBlack" xml:space="preserve">
-    <value>Black</value>
+    <value>Schwarz</value>
   </data>
   <data name="EnumBrass" xml:space="preserve">
-    <value>Brass</value>
+    <value>Messing</value>
   </data>
   <data name="EnumBumper" xml:space="preserve">
-    <value>Bumper</value>
+    <value>Prellbock</value>
   </data>
   <data name="EnumBumperWithLantern" xml:space="preserve">
-    <value>Bumper with Lantern</value>
+    <value>Prellbock mit Laterne</value>
   </data>
   <data name="EnumCircuit" xml:space="preserve">
-    <value>Circuit</value>
+    <value>Schaltgleis</value>
   </data>
   <data name="EnumConcrete" xml:space="preserve">
-    <value>Concrete</value>
+    <value>Beton</value>
   </data>
   <data name="EnumContact" xml:space="preserve">
-    <value>Contact</value>
+    <value>Kontaktgleis</value>
   </data>
   <data name="EnumElectricali" xml:space="preserve">
-    <value>Electrical</value>
+    <value>Elektrisch</value>
   </data>
   <data name="EnumEnd" xml:space="preserve">
-    <value>EnumEnd</value>
+    <value>Endstück</value>
   </data>
   <data name="EnumFeeder" xml:space="preserve">
-    <value>Feeder</value>
+    <value>Anschlussgleis</value>
   </data>
   <data name="EnumFlex" xml:space="preserve">
-    <value>Flex</value>
+    <value>Flexibles Gleis</value>
   </data>
   <data name="EnumIsolating" xml:space="preserve">
-    <value>Isolating</value>
+    <value>Isolationsgleis</value>
   </data>
   <data name="EnumLeft" xml:space="preserve">
-    <value>Left</value>
+    <value>Links</value>
   </data>
   <data name="EnumMechanical" xml:space="preserve">
-    <value>Mechanical</value>
+    <value>Mechanisch</value>
   </data>
   <data name="EnumNo" xml:space="preserve">
-    <value>No</value>
+    <value>Keins</value>
   </data>
   <data name="EnumRight" xml:space="preserve">
-    <value>Right</value>
+    <value>Rights</value>
   </data>
   <data name="EnumSilver" xml:space="preserve">
-    <value>Silver</value>
+    <value>Silbern</value>
   </data>
   <data name="EnumUncoupler" xml:space="preserve">
-    <value>Uncoupler</value>
+    <value>Endkuppelgleis</value>
   </data>
   <data name="EnumUnknown" xml:space="preserve">
-    <value>Unknown</value>
+    <value>Unbekannt</value>
   </data>
   <data name="EnumWooden" xml:space="preserve">
-    <value>Wooden</value>
+    <value>Holz</value>
   </data>
   <data name="EnumY" xml:space="preserve">
     <value>Y</value>
   </data>
   <data name="Three" xml:space="preserve">
-    <value>Three</value>
+    <value>Drei</value>
   </data>
   <data name="TrackAdapter" xml:space="preserve">
-    <value>Adapter Track</value>
+    <value>Adapter Gleis</value>
   </data>
   <data name="TrackBumper" xml:space="preserve">
-    <value>Track End with a Bumper</value>
+    <value>Gleisende mit Prellbock</value>
   </data>
   <data name="TrackBumperWithLantern" xml:space="preserve">
-    <value>Bumper with a lantern</value>
+    <value>Gleisende mit Prellbock und Laterne</value>
   </data>
   <data name="TrackCrossing" xml:space="preserve">
-    <value>Crossing</value>
+    <value>Kreuzung</value>
   </data>
   <data name="TrackCurved" xml:space="preserve">
-    <value>Curved Track</value>
+    <value>Gebonenes Gleis</value>
   </data>
   <data name="TrackCurvedCircuit" xml:space="preserve">
-    <value>Curved Circuit Track</value>
+    <value>Gebogenes Schaltgleis</value>
   </data>
   <data name="TrackCurvedContact" xml:space="preserve">
-    <value>Curved Contact Track</value>
+    <value>Gebogenes Kontaktgleis</value>
   </data>
   <data name="TrackCurvedFeeder" xml:space="preserve">
-    <value>Curved Feeder</value>
+    <value>Gebogenes Anschlussgleis</value>
   </data>
   <data name="TrackCurvedIsolating" xml:space="preserve">
-    <value>Curved Isolating</value>
+    <value>Gebogenes Isolationsgleis</value>
   </data>
   <data name="TrackCurvedTurnoutLeft" xml:space="preserve">
-    <value>Left Curved Turnout</value>
+    <value>Bogenweiche links</value>
   </data>
   <data name="TrackCurvedTurnoutRight" xml:space="preserve">
-    <value>Right Curved Turnout</value>
+    <value>Bogenweiche rechts</value>
   </data>
   <data name="TrackCurvedUncoupler" xml:space="preserve">
-    <value>Curved Uncoupler</value>
+    <value>Gebogenes Endkuppelgleis</value>
   </data>
   <data name="TrackDoubleCrossover" xml:space="preserve">
-    <value>Double Crossover</value>
+    <value>Doppelte Kreuzungsweiche</value>
   </data>
   <data name="TrackDoubleSlipSwitch" xml:space="preserve">
-    <value>Double Slip Switch</value>
+    <value>Doppelte Kreuzungsweiche</value>
   </data>
   <data name="TrackDriveElectrical" xml:space="preserve">
-    <value>electrical</value>
+    <value>elektrisch</value>
   </data>
   <data name="TrackDriveMechanical" xml:space="preserve">
-    <value>mechanical</value>
+    <value>mechanisch</value>
   </data>
   <data name="TrackEndPiece" xml:space="preserve">
-    <value>End Piece with Track Roadbed</value>
+    <value>Gleisende</value>
   </data>
   <data name="TrackFlex" xml:space="preserve">
-    <value>Flex Track</value>
+    <value>Flexibles Gleis</value>
   </data>
-  <data name="TrackLeft_del" xml:space="preserve">
-    <value>Left</value>
+  <data name="TrackLeft" xml:space="preserve">
+    <value>links</value>
   </data>
-  <data name="TrackRight_del" xml:space="preserve">
-    <value>Right</value>
+  <data name="TrackRight" xml:space="preserve">
+    <value>rechts</value>
   </data>
   <data name="TrackStraight" xml:space="preserve">
-    <value>Straight Track</value>
+    <value>Gerades Gleis</value>
   </data>
   <data name="TrackStraightCircuit" xml:space="preserve">
-    <value>Straight Circuit Track</value>
+    <value>Gerades Schaltgleis</value>
   </data>
   <data name="TrackStraightContact" xml:space="preserve">
-    <value>Straight Contact Track</value>
+    <value>Gerades Kontaktgleis</value>
   </data>
   <data name="TrackStraightFeeder" xml:space="preserve">
-    <value>Straight Feeder</value>
+    <value>Gerades Anschlussgleis</value>
   </data>
   <data name="TrackStraightIsolating" xml:space="preserve">
-    <value>Straight Isolating</value>
+    <value>Gerades Isolationsgleis</value>
   </data>
   <data name="TrackStraightUncoupler" xml:space="preserve">
-    <value>Straight Uncoupler</value>
+    <value>Gerades Endkuppelgleis</value>
   </data>
   <data name="TrackThree" xml:space="preserve">
-    <value>Three</value>
+    <value>Drei</value>
   </data>
   <data name="TrackThreeWayTurnout" xml:space="preserve">
-    <value>Three-Way Turnout</value>
+    <value>Drei Wege Weiche</value>
   </data>
   <data name="TrackTransferTable" xml:space="preserve">
-    <value>Transfer Table</value>
+    <value>Schiebebühne</value>
   </data>
   <data name="TrackTurnoutLeft" xml:space="preserve">
-    <value>Left Turnout</value>
+    <value>Weiche links</value>
   </data>
   <data name="TrackTurnoutRight" xml:space="preserve">
-    <value>Right Turnout</value>
+    <value>Weiche rechts</value>
   </data>
   <data name="TrackTurntable" xml:space="preserve">
-    <value>Turntable</value>
+    <value>Drehscheibe</value>
   </data>
   <data name="TrackY" xml:space="preserve">
     <value>Y</value>
   </data>
   <data name="TrackYTurnout" xml:space="preserve">
-    <value>Y-Turnout</value>
+    <value>Y-Weiche</value>
   </data>
 </root>

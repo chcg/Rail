@@ -147,6 +147,12 @@
   <data name="MainDockType" xml:space="preserve">
     <value>Andock Typ</value>
   </data>
+  <data name="MainDockTypes" xml:space="preserve">
+    <value>Dock Types</value>
+  </data>
+  <data name="MainEndPieceType" xml:space="preserve">
+    <value>End Piece Type</value>
+  </data>
   <data name="MainExtras" xml:space="preserve">
     <value>Extras</value>
   </data>
@@ -168,6 +174,12 @@
   <data name="MainLantern" xml:space="preserve">
     <value>Laterne</value>
   </data>
+  <data name="MainLeftCounterCurveAngle" xml:space="preserve">
+    <value>Winkel der Gegenkurve links</value>
+  </data>
+  <data name="MainLeftCounterCurveRadius" xml:space="preserve">
+    <value>Radius der Gegenkurve links</value>
+  </data>
   <data name="MainLeftTurnoutAngle" xml:space="preserve">
     <value>Linke Ausfahrt Winkel</value>
   </data>
@@ -179,9 +191,6 @@
   </data>
   <data name="MainLength" xml:space="preserve">
     <value>Länge</value>
-  </data>
-  <data name="MainLengthA" xml:space="preserve">
-    <value>Länge A</value>
   </data>
   <data name="MainLengthB" xml:space="preserve">
     <value>Länge B</value>
@@ -196,58 +205,46 @@
     <value>Name</value>
   </data>
   <data name="MainNewAdapterTrack" xml:space="preserve">
-    <value>New Adapter Track</value>
-  </data>
-  <data name="MainNewBumperTrack" xml:space="preserve">
-    <value>New Bumper Track</value>
+    <value>Adapter Gleis hinzufügen</value>
   </data>
   <data name="MainNewCrossingTrack" xml:space="preserve">
-    <value>New Crossing Track</value>
+    <value>Kreuzungs Gleis hinzufügen</value>
   </data>
   <data name="MainNewCurvedTrack" xml:space="preserve">
-    <value>New Curved Track</value>
+    <value>Gebogenes Gleis hinzufügen</value>
   </data>
   <data name="MainNewCurvedTurnoutTrack" xml:space="preserve">
-    <value>New Curved Turnout Track</value>
+    <value>Bogenweiche hinzufügen</value>
   </data>
   <data name="MainNewDoubleCrossoverTrack" xml:space="preserve">
-    <value>New Double Crossover Track</value>
+    <value>Doppelweiche hinzufügen</value>
   </data>
   <data name="MainNewDoubleSlipSwitchTrack" xml:space="preserve">
-    <value>New Double Slip Switch Track</value>
+    <value>Doppelte Kreuzungsweiche hinzufügen</value>
   </data>
   <data name="MainNewEndPieceTrack" xml:space="preserve">
-    <value>New End Piece Track</value>
+    <value>Gleisende hinzufügen</value>
   </data>
   <data name="MainNewFlexTrack" xml:space="preserve">
-    <value>New Flex Track</value>
+    <value>Flexibles Gleis hinzufügen</value>
   </data>
   <data name="MainNewGroupTrack" xml:space="preserve">
-    <value>New Group Track</value>
-  </data>
-  <data name="MainNewStraightAdjustmentTrack" xml:space="preserve">
-    <value>New Straight Adjustment Track</value>
+    <value>Gleis Gruppe hinzufügen</value>
   </data>
   <data name="MainNewStraightTrack" xml:space="preserve">
-    <value>New Straight Track</value>
-  </data>
-  <data name="MainNewThreeWayTurnoutTrack" xml:space="preserve">
-    <value>New Three Way Turnout Track</value>
+    <value>Gerades Gleis hinzufügen</value>
   </data>
   <data name="MainNewTrackType" xml:space="preserve">
-    <value>New Track Type</value>
+    <value>Track Typ hinzufügen</value>
   </data>
   <data name="MainNewTransferTableTrack" xml:space="preserve">
-    <value>New Transfer Table Track</value>
+    <value>Schiebebühne hinzufügen</value>
   </data>
   <data name="MainNewTurnoutTrack" xml:space="preserve">
-    <value>New Turnout Track</value>
+    <value>Weiche hinzufügen</value>
   </data>
   <data name="MainNewTurntableTrack" xml:space="preserve">
-    <value>New Turntable Track</value>
-  </data>
-  <data name="MainNewYTurnoutTrack" xml:space="preserve">
-    <value>New Y-Turnout Track</value>
+    <value>Drehscheibe hinzufügen</value>
   </data>
   <data name="MainNumber" xml:space="preserve">
     <value>Anzahl</value>
@@ -276,6 +273,12 @@
   <data name="MainRailWidth" xml:space="preserve">
     <value>Gleis Breite</value>
   </data>
+  <data name="MainRightCounterCurveAngle" xml:space="preserve">
+    <value>Winkel der Gegenkurve rechts</value>
+  </data>
+  <data name="MainRightCounterCurveRadius" xml:space="preserve">
+    <value>Radius der Gegenkurve links</value>
+  </data>
   <data name="MainRightTurnoutAngle" xml:space="preserve">
     <value>Rechte Ausfahrt Winkel</value>
   </data>
@@ -299,6 +302,9 @@
   </data>
   <data name="MainTrackTypeName" xml:space="preserve">
     <value>Gleis Typ Name</value>
+  </data>
+  <data name="MainTrackTypes" xml:space="preserve">
+    <value>Gleis Typen</value>
   </data>
   <data name="MainTurnoutAngle" xml:space="preserve">
     <value>Ausfahrt Winkel</value>

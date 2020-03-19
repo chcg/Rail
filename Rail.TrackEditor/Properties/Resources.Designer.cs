@@ -115,24 +115,6 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Counter Curve Angle.
-        /// </summary>
-        public static string MainCounterCurveAngle {
-            get {
-                return ResourceManager.GetString("MainCounterCurveAngle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Counter Curve Radius.
-        /// </summary>
-        public static string MainCounterCurveRadius {
-            get {
-                return ResourceManager.GetString("MainCounterCurveRadius", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Crossing Angle.
         /// </summary>
         public static string MainCrossingAngle {
@@ -304,15 +286,6 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Length A.
-        /// </summary>
-        public static string MainLengthA {
-            get {
-                return ResourceManager.GetString("MainLengthA", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Length B.
         /// </summary>
         public static string MainLengthB {
@@ -354,15 +327,6 @@ namespace Rail.TrackEditor.Properties {
         public static string MainNewAdapterTrack {
             get {
                 return ResourceManager.GetString("MainNewAdapterTrack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New Bumper Track.
-        /// </summary>
-        public static string MainNewBumperTrack {
-            get {
-                return ResourceManager.GetString("MainNewBumperTrack", resourceCulture);
             }
         }
         
@@ -439,38 +403,11 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Star Track.
-        /// </summary>
-        public static string MainNewStarTrack {
-            get {
-                return ResourceManager.GetString("MainNewStarTrack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New Straight Adjustment Track.
-        /// </summary>
-        public static string MainNewStraightAdjustmentTrack {
-            get {
-                return ResourceManager.GetString("MainNewStraightAdjustmentTrack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to New Straight Track.
         /// </summary>
         public static string MainNewStraightTrack {
             get {
                 return ResourceManager.GetString("MainNewStraightTrack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New Three Way Turnout Track.
-        /// </summary>
-        public static string MainNewThreeWayTurnoutTrack {
-            get {
-                return ResourceManager.GetString("MainNewThreeWayTurnoutTrack", resourceCulture);
             }
         }
         
@@ -507,15 +444,6 @@ namespace Rail.TrackEditor.Properties {
         public static string MainNewTurntableTrack {
             get {
                 return ResourceManager.GetString("MainNewTurntableTrack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New Y-Turnout Track.
-        /// </summary>
-        public static string MainNewYTurnoutTrack {
-            get {
-                return ResourceManager.GetString("MainNewYTurnoutTrack", resourceCulture);
             }
         }
         

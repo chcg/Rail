@@ -441,27 +441,18 @@ namespace Rail.Tracks.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Left.
         /// </summary>
-        public static string TrackLeft {
+        public static string TrackLeft_del {
             get {
-                return ResourceManager.GetString("TrackLeft", resourceCulture);
+                return ResourceManager.GetString("TrackLeft_del", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Right.
         /// </summary>
-        public static string TrackRight {
+        public static string TrackRight_del {
             get {
-                return ResourceManager.GetString("TrackRight", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Star Crossing.
-        /// </summary>
-        public static string TrackStar {
-            get {
-                return ResourceManager.GetString("TrackStar", resourceCulture);
+                return ResourceManager.GetString("TrackRight_del", resourceCulture);
             }
         }
         
@@ -471,15 +462,6 @@ namespace Rail.Tracks.Properties {
         public static string TrackStraight {
             get {
                 return ResourceManager.GetString("TrackStraight", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Straight Adjustment.
-        /// </summary>
-        public static string TrackStraightAdjustment {
-            get {
-                return ResourceManager.GetString("TrackStraightAdjustment", resourceCulture);
             }
         }
         
