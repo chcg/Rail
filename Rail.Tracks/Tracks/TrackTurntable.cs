@@ -68,6 +68,8 @@ namespace Rail.Tracks
 
         protected override Drawing CreateRailDrawing()
         {
+            double angle = 360 / this.RailNum;
+
             DrawingGroup drawingRail = new DrawingGroup();
             // background
             drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.DarkGray), linePen, new EllipseGeometry(new Point(0, 0), this.OuterRadius, this.OuterRadius)));
@@ -115,11 +117,13 @@ namespace Rail.Tracks
 
         protected override List<TrackDockPoint> CreateDockPoints()
         {
+            double angle = 360 / this.RailNum;
+
             var dockPoints = new List<TrackDockPoint>();
             for (int i = 0; i < this.RailNum; i++)
             {
-                Point point = new Point(0, this.OuterRadius).Rotate(this.Angle * i);
-                dockPoints.Add(new TrackDockPoint(i, point, this.Angle * i + 45, this.dockType));
+                Point point = new Point(0, this.OuterRadius).Rotate(angle * i);
+                dockPoints.Add(new TrackDockPoint(i, point, angle * i + 45, this.dockType));
             }
             return dockPoints;
         }
