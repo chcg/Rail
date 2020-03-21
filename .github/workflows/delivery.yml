@@ -25,15 +25,19 @@ jobs:
     - name: "Setup to add MSBuild.exe to path"
       uses: warrenbuckley/Setup-MSBuild@v1
 
-    # - name: "Download sandcastle"
-      # run: |
-           # $url = "https://github.com/EWSoftware/SHFB/releases/download/v2020.3.6.0/SHFBInstaller_v2020.3.6.0.zip"
-           # $output = "$pwd\Rail\SHFBInstaller_v2020.3.6.0.zip"
-           # $start_time = Get-Date
-           # (New-Object System.Net.WebClient).DownloadFile($url, $output)
-           # Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
-      # shell: pwsh
-      # working-directory: .\Rail
+    - name: "Download sandcastle"
+      run: |
+           $url = "https://github.com/EWSoftware/SHFB/releases/download/v2020.3.6.0/SHFBInstaller_v2020.3.6.0.zip"
+           $output = "$env:GITHUB_WORKSPACE\Rail\SHFBInstaller_v2020.3.6.0.zip"
+           (New-Object System.Net.WebClient).DownloadFile($url, $output)
+           7z x -y SHFBInstaller_v2020.3.6.0.zip | Out-Null
+           Write-Host "Installing MSI..."
+           cmd /c start /wait msiexec /i InstallResources\SandcastleHelpFileBuilder.msi /quiet
+           Write-Host "Installing VSIX..."
+           . "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\VSIXInstaller.exe" /q /a InstallResources\SHFBVisualStudioPackage_VS2017AndLater.vsix
+           Write-Host "Sandcastle installed" -ForegroundColor Green
+      shell: pwsh
+      working-directory: .\Rail
 
     - name: "restore"
       working-directory: .
