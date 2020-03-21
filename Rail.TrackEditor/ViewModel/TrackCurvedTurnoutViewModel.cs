@@ -1,6 +1,7 @@
 ﻿using Rail.Tracks;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Rail.TrackEditor.ViewModel
@@ -16,7 +17,20 @@ namespace Rail.TrackEditor.ViewModel
         {
             this.track = track;
         }
-        
+
+        public static TrackViewModel CreateNew(TrackTypeViewModel trackTypeViewModel)
+        {
+            TrackCurvedTurnout trackCurvedTurnout = new TrackCurvedTurnout
+            {
+                Article = string.Empty,
+                InnerRadiusId = trackTypeViewModel.Radii.First().Id,
+                InnerAngleId = trackTypeViewModel.Angles.First().Id,
+                OuterRadiusId = trackTypeViewModel.Radii.First().Id,
+                OuterAngleId = trackTypeViewModel.Angles.First().Id
+            };
+            return new TrackCurvedTurnoutViewModel(trackTypeViewModel, trackCurvedTurnout);
+        }
+
         public string Article
         {
             get { return this.track.Article; }

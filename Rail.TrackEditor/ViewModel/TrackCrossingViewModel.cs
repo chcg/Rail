@@ -1,6 +1,7 @@
 ﻿using Rail.Tracks;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Rail.TrackEditor.ViewModel
@@ -15,6 +16,19 @@ namespace Rail.TrackEditor.ViewModel
         public TrackCrossingViewModel(TrackTypeViewModel trackTypeViewModel, TrackCrossing track) : base(trackTypeViewModel, track)
         {
             this.track = track;
+        }
+
+        public static TrackViewModel CreateNew(TrackTypeViewModel trackTypeViewModel)
+        {
+            TrackCrossing trackCrossing = new TrackCrossing
+            {
+                Article = string.Empty,
+                Number = 2,
+                LengthId = trackTypeViewModel.Lengths.First().Id,
+                LengthBId = trackTypeViewModel.Lengths.First().Id,
+                CrossingAngleId = trackTypeViewModel.Angles.First().Id
+            };
+            return new TrackCrossingViewModel(trackTypeViewModel, trackCrossing);
         }
 
         public string Article

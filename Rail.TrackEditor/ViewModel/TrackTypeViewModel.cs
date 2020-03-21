@@ -41,6 +41,11 @@ namespace Rail.TrackEditor.ViewModel
             this.Angles.CollectionChanged += (o, i) => { NotifyPropertyChanged(nameof(AnglesSource)); NotifyPropertyChanged(nameof(AnglesAndNullSource)); };
         }
 
+        //internal object First()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
         public TrackType TrackType { get { return this.trackType; } }
 
         public TrackType GetTrackType()
@@ -191,25 +196,26 @@ namespace Rail.TrackEditor.ViewModel
         {
             TrackViewModel track = type switch
             {
-                TrackTypes.Straight => new TrackStraightViewModel(this),
-                TrackTypes.Curved => new TrackCurvedViewModel(this),
-                TrackTypes.Crossing => new TrackCrossingViewModel(this),
-                TrackTypes.EndPiece => new TrackEndPieceViewModel(this),
-                TrackTypes.Flex => new TrackFlexViewModel(this),
+                TrackTypes.Straight => TrackStraightViewModel.CreateNew(this),
+                TrackTypes.Curved => TrackCurvedViewModel.CreateNew(this),
+                TrackTypes.Crossing => TrackCrossingViewModel.CreateNew(this),
+                TrackTypes.EndPiece => TrackEndPieceViewModel.CreateNew(this),
+                TrackTypes.Flex => TrackFlexViewModel.CreateNew(this),
 
-                TrackTypes.Turnout => new TrackTurnoutViewModel(this),
-                TrackTypes.CurvedTurnout => new TrackCurvedTurnoutViewModel(this),
-                TrackTypes.DoubleSlipSwitch => new TrackDoubleSlipSwitchViewModel(this),
-                TrackTypes.DoubleCrossover => new TrackDoubleCrossoverViewModel(this),
+                TrackTypes.Turnout => TrackTurnoutViewModel.CreateNew(this),
+                TrackTypes.CurvedTurnout => TrackCurvedTurnoutViewModel.CreateNew(this),
+                TrackTypes.DoubleSlipSwitch => TrackDoubleSlipSwitchViewModel.CreateNew(this),
+                TrackTypes.DoubleCrossover => TrackDoubleCrossoverViewModel.CreateNew(this),
                 
-                TrackTypes.Turntable => new TrackTurntableViewModel(this),
-                TrackTypes.TransferTable => new TrackTransferTableViewModel(this),
+                TrackTypes.Turntable => TrackTurntableViewModel.CreateNew(this),
+                TrackTypes.TransferTable => TrackTransferTableViewModel.CreateNew(this),
                 
-                TrackTypes.Group => new TrackGroupViewModel(this),
+                TrackTypes.Group => TrackGroupViewModel.CreateNew(this),
                 _ => null
             };
             track.UpdateTrack();
             this.Tracks.Add(track);
+            this.SelectedTrack = track;
         }
 
         private void OnDeleteNewTrack(TrackViewModel track)

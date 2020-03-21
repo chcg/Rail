@@ -144,7 +144,7 @@
   <data name="EnumContact" xml:space="preserve">
     <value>Contact</value>
   </data>
-  <data name="EnumElectricali" xml:space="preserve">
+  <data name="EnumElectrical" xml:space="preserve">
     <value>Electrical</value>
   </data>
   <data name="EnumEnd" xml:space="preserve">

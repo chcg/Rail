@@ -144,9 +144,9 @@ namespace Rail.Tracks.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Electrical.
         /// </summary>
-        public static string EnumElectricali {
+        public static string EnumElectrical {
             get {
-                return ResourceManager.GetString("EnumElectricali", resourceCulture);
+                return ResourceManager.GetString("EnumElectrical", resourceCulture);
             }
         }
         

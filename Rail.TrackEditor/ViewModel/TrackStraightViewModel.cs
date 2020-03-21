@@ -20,7 +20,17 @@ namespace Rail.TrackEditor.ViewModel
         {
             this.track = track;
         }
-                
+
+        public static TrackViewModel CreateNew(TrackTypeViewModel trackTypeViewModel)
+        {
+            TrackStraight trackStraight = new TrackStraight 
+            { 
+                Article = string.Empty, 
+                LengthId = trackTypeViewModel.Lengths.First().Id 
+            };
+            return new TrackStraightViewModel(trackTypeViewModel, trackStraight);
+        }
+
         public string Article
         {
             get { return this.track.Article; }

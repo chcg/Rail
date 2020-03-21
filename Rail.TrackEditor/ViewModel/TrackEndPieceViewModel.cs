@@ -1,6 +1,7 @@
 ﻿using Rail.Tracks;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Rail.TrackEditor.ViewModel
@@ -15,6 +16,16 @@ namespace Rail.TrackEditor.ViewModel
         public TrackEndPieceViewModel(TrackTypeViewModel trackTypeViewModel, TrackEndPiece track) : base(trackTypeViewModel, track)
         {
             this.track = track;
+        }
+
+        public static TrackViewModel CreateNew(TrackTypeViewModel trackTypeViewModel)
+        {
+            TrackEndPiece trackEndPiece = new TrackEndPiece
+            {
+                Article = string.Empty,
+                LengthId = trackTypeViewModel.Lengths.First().Id
+            };
+            return new TrackEndPieceViewModel(trackTypeViewModel, trackEndPiece);
         }
 
         public string Article

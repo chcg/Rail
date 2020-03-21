@@ -1,6 +1,7 @@
 ﻿using Rail.Tracks;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Rail.TrackEditor.ViewModel
@@ -16,6 +17,15 @@ namespace Rail.TrackEditor.ViewModel
         {
             this.track = track;
         }
-                
+
+        public static TrackViewModel CreateNew(TrackTypeViewModel trackTypeViewModel)
+        {
+            TrackGroup trackGroup = new TrackGroup
+            {
+               
+            };
+            return new TrackGroupViewModel(trackTypeViewModel, trackGroup);
+        }
+
     }
 }

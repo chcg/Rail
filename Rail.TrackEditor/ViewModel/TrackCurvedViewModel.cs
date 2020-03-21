@@ -2,6 +2,7 @@
 using Rail.Tracks;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Rail.TrackEditor.ViewModel
@@ -16,6 +17,17 @@ namespace Rail.TrackEditor.ViewModel
         public TrackCurvedViewModel(TrackTypeViewModel trackTypeViewModel, TrackCurved track) : base(trackTypeViewModel, track)
         {
             this.track = track;
+        }
+
+        public static TrackViewModel CreateNew(TrackTypeViewModel trackTypeViewModel)
+        {
+            TrackCurved trackCurved = new TrackCurved
+            {
+                Article = string.Empty,
+                RadiusId = trackTypeViewModel.Radii.First().Id,
+                AngleId = trackTypeViewModel.Angles.First().Id
+            };
+            return new TrackCurvedViewModel(trackTypeViewModel, trackCurved);
         }
 
         public string Article

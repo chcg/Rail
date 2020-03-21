@@ -1,6 +1,7 @@
 ﻿using Rail.Tracks;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Rail.TrackEditor.ViewModel
@@ -15,6 +16,16 @@ namespace Rail.TrackEditor.ViewModel
         public TrackDoubleSlipSwitchViewModel(TrackTypeViewModel trackTypeViewModel, TrackDoubleSlipSwitch track) : base(trackTypeViewModel, track)
         {
             this.track = track;
+        }
+
+        public static TrackViewModel CreateNew(TrackTypeViewModel trackTypeViewModel)
+        {
+            TrackDoubleSlipSwitch trackDoubleSlipSwitch = new TrackDoubleSlipSwitch
+            {
+                Article = string.Empty,
+                LengthId = trackTypeViewModel.Lengths.First().Id
+            };
+            return new TrackDoubleSlipSwitchViewModel(trackTypeViewModel, trackDoubleSlipSwitch);
         }
 
         public string Article
