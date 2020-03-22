@@ -664,6 +664,15 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Turnout Type.
+        /// </summary>
+        public static string MainTurnoutType {
+            get {
+                return ResourceManager.GetString("MainTurnoutType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max Bogie Distance.
         /// </summary>
         public static string MainWagonMaxBogieDistance {

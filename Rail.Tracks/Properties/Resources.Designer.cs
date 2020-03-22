@@ -232,6 +232,15 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Three.
+        /// </summary>
+        public static string EnumThree {
+            get {
+                return ResourceManager.GetString("EnumThree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uncoupler.
         /// </summary>
         public static string EnumUncoupler {

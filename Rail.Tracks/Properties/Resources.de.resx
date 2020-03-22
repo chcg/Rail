@@ -174,6 +174,9 @@
   <data name="EnumSilver" xml:space="preserve">
     <value>Silbern</value>
   </data>
+  <data name="EnumThree" xml:space="preserve">
+    <value>3-Wege Weiche</value>
+  </data>
   <data name="EnumUncoupler" xml:space="preserve">
     <value>Endkuppelgleis</value>
   </data>
@@ -184,7 +187,7 @@
     <value>Holz</value>
   </data>
   <data name="EnumY" xml:space="preserve">
-    <value>Y</value>
+    <value>Y-Weiche</value>
   </data>
   <data name="TrackAdapter" xml:space="preserve">
     <value>Adapter Gleis</value>

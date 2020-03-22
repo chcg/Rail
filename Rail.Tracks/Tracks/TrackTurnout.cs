@@ -13,8 +13,11 @@ namespace Rail.Tracks
     {
         #region store 
 
-        [XmlElement("TurnoutDirection")]
-        public TrackTurnoutDirection TurnoutDirection { get; set; }
+        [XmlElement("TurnoutType")]
+        public TrackTurnoutType TurnoutType { get; set; }
+
+        [XmlElement("TurnoutDrive")]
+        public TrackDrive TurnoutDrive { get; set; }
 
         [XmlElement("StraightLength")]
         public Guid StraightLengthId { get; set; }
@@ -48,9 +51,6 @@ namespace Rail.Tracks
 
         [XmlElement("RightCounterCurveAngle")]
         public Guid RightCounterCurveAngleId { get; set; }
-
-        [XmlElement("TurnoutDrive")]
-        public TrackDrive TurnoutDrive { get; set; }
 
         #endregion
 
@@ -120,12 +120,12 @@ namespace Rail.Tracks
             string leftRadiusName = GetName(trackType.Radii, this.LeftTurnoutRadiusId);
             string rightRadiusName = GetName(trackType.Radii, this.RightTurnoutRadiusId);
 
-            this.Name = this.TurnoutDirection switch
+            this.Name = this.TurnoutType switch
             {
-                TrackTurnoutDirection.Left => $"{Resources.TrackTurnoutLeft} {leftRadiusName} {drive}",
-                TrackTurnoutDirection.Right => $"{Resources.TrackTurnoutRight} {rightRadiusName} {drive}",
-                TrackTurnoutDirection.Y => $"{Resources.TrackYTurnout} {drive}",
-                TrackTurnoutDirection.Three => $"{Resources.TrackThreeWayTurnout} {drive}",
+                TrackTurnoutType.Left => $"{Resources.TrackTurnoutLeft} {leftRadiusName} {drive}",
+                TrackTurnoutType.Right => $"{Resources.TrackTurnoutRight} {rightRadiusName} {drive}",
+                TrackTurnoutType.Y => $"{Resources.TrackYTurnout} {drive}",
+                TrackTurnoutType.Three => $"{Resources.TrackThreeWayTurnout} {drive}",
                 _ => string.Empty
             };
                        
@@ -139,24 +139,24 @@ namespace Rail.Tracks
             double leftLength = this.LeftTurnoutRadius * 2 * Math.PI * this.LeftTurnoutAngle / 360.0;
             double rightLength = this.RightTurnoutRadius * 2 * Math.PI * this.RightTurnoutAngle / 360.0;
 
-            return this.TurnoutDirection switch
+            return this.TurnoutType switch
             {
-                TrackTurnoutDirection.Left =>
+                TrackTurnoutType.Left =>
                     new CombinedGeometry(
                         StraitGeometry(this.StraightLength, StraitOrientation.Center),
                         CurvedGeometry(this.LeftTurnoutAngle, this.LeftTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.StraightLength / 2 + this.LeftTurnoutLength, 0))), 
 
-                TrackTurnoutDirection.Right =>
+                TrackTurnoutType.Right =>
                     new CombinedGeometry(
                         StraitGeometry(this.StraightLength, StraitOrientation.Center),
                         CurvedGeometry(this.RightTurnoutAngle, this.RightTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, new Point(this.StraightLength / 2 - this.RightTurnoutLength, 0))),
 
-                TrackTurnoutDirection.Y =>
+                TrackTurnoutType.Y =>
                     new CombinedGeometry(
                         CurvedGeometry(this.LeftTurnoutAngle, this.LeftTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-leftLength / 2, 0)),
                         CurvedGeometry(this.RightTurnoutAngle, this.RightTurnoutRadius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-rightLength / 2, 0))),
 
-                TrackTurnoutDirection.Three =>
+                TrackTurnoutType.Three =>
                     new CombinedGeometry(
                         StraitGeometry(this.StraightLength, StraitOrientation.Center),
                         new CombinedGeometry(
@@ -173,9 +173,9 @@ namespace Rail.Tracks
             double rightLength = this.RightTurnoutRadius * 2 * Math.PI * this.RightTurnoutAngle / 360.0;
 
             DrawingGroup drawingRail = new DrawingGroup();
-            switch (this.TurnoutDirection)
+            switch (this.TurnoutType)
             {
-            case TrackTurnoutDirection.Left:
+            case TrackTurnoutType.Left:
                 if (this.HasBallast)
                 {
                     drawingRail.Children.Add(StraitBallast(this.StraightLength));
@@ -188,7 +188,7 @@ namespace Rail.Tracks
                 drawingRail.Children.Add(CurvedRail(this.LeftTurnoutAngle, this.LeftTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-this.StraightLength / 2 + this.LeftTurnoutLength, 0)));
                 break;
 
-            case TrackTurnoutDirection.Right:
+            case TrackTurnoutType.Right:
                 if (this.HasBallast)
                 {
                     drawingRail.Children.Add(StraitBallast(this.StraightLength));
@@ -201,7 +201,7 @@ namespace Rail.Tracks
                 drawingRail.Children.Add(CurvedRail(this.RightTurnoutAngle, this.RightTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, new Point(this.StraightLength / 2 - this.RightTurnoutLength, 0)));
                 break;
 
-            case TrackTurnoutDirection.Y:
+            case TrackTurnoutType.Y:
                 if (this.HasBallast)
                 {
                     drawingRail.Children.Add(CurvedBallast(this.LeftTurnoutAngle, this.LeftTurnoutRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, new Point(-leftLength / 2, 0)));
@@ -214,7 +214,7 @@ namespace Rail.Tracks
                 drawingRail.Children.Add(CurvedRail(this.RightTurnoutAngle, this.RightTurnoutRadius, CurvedOrientation.Clockwise | CurvedOrientation.Right, new Point(-rightLength / 2, 0)));
                 break;
 
-            case TrackTurnoutDirection.Three:
+            case TrackTurnoutType.Three:
                 if (this.HasBallast)
                 {
                     drawingRail.Children.Add(StraitBallast(this.StraightLength));
@@ -238,9 +238,9 @@ namespace Rail.Tracks
             Point circleCenterLeft = new Point(-this.StraightLength / 2, -this.LeftTurnoutRadius);
             Point circleCenterRight = new Point(this.StraightLength / 2, -this.RightTurnoutRadius);
 
-            return this.TurnoutDirection switch
+            return this.TurnoutType switch
             {
-                TrackTurnoutDirection.Left =>
+                TrackTurnoutType.Left =>
                     new List<TrackDockPoint>
                     {
                         new TrackDockPoint(0, new Point(-this.StraightLength / 2.0, 0.0), 90 + 45, this.dockType),
@@ -248,7 +248,7 @@ namespace Rail.Tracks
                         new TrackDockPoint(2, new Point(-this.StraightLength / 2.0, 0.0).Rotate(-this.LeftTurnoutAngle, circleCenterLeft).Move(this.LeftTurnoutLength, 0), -this.LeftTurnoutAngle - 45, this.dockType),
                     },
 
-                TrackTurnoutDirection.Right =>
+                TrackTurnoutType.Right =>
                     new List<TrackDockPoint>
                     {
                         new TrackDockPoint(0, new Point(-this.StraightLength / 2.0, 0.0), 90 + 45, this.dockType),
@@ -256,7 +256,7 @@ namespace Rail.Tracks
                         new TrackDockPoint(3, new Point(this.StraightLength / 2.0, 0.0).Rotate(+this.RightTurnoutAngle, circleCenterRight).Move(-this.RightTurnoutLength, 0), this.RightTurnoutAngle + 135, this.dockType)
                     },
 
-                TrackTurnoutDirection.Y =>
+                TrackTurnoutType.Y =>
                     new List<TrackDockPoint>
                     {
                         //new TrackDockPoint(-this.Length / 2.0, 0.0, 135),
@@ -265,7 +265,7 @@ namespace Rail.Tracks
                         //new TrackDockPoint(new Point(-this.Length / 2.0, 0).Rotate( this.Angle, circleCenterRight), this.Angle - 45)
                     },
 
-                TrackTurnoutDirection.Three =>
+                TrackTurnoutType.Three =>
                     new List<TrackDockPoint>
                     {
                         new TrackDockPoint(0, new Point(-this.StraightLength / 2.0, 0.0), 135, this.dockType),

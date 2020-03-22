@@ -32,7 +32,7 @@ namespace Rail.Tracks
         public Guid OuterAngleId { get; set; }
 
         [XmlElement("TurnoutDirection")]
-        public TrackDirection TurnoutDirection { get; set; }
+        public TrackTurnoutDirection TurnoutDirection { get; set; }
 
         [XmlElement("TurnoutDrive")]
         public TrackDrive TurnoutDrive { get; set; }
@@ -81,10 +81,10 @@ namespace Rail.Tracks
                 TrackDrive.Mechanical => Resources.TrackDriveMechanical,
                 _ => string.Empty
             };
-            this.Name = TurnoutDirection == TrackDirection.Left ?
+            this.Name = TurnoutDirection == TrackTurnoutDirection.Left ?
                     $"{Resources.TrackCurvedTurnoutLeft} {drive}" :
                     $"{Resources.TrackCurvedTurnoutRight} {drive}";
-            this. Description = TurnoutDirection == TrackDirection.Left ?
+            this. Description = TurnoutDirection == TrackTurnoutDirection.Left ?
                     $"{this.Article} {Resources.TrackCurvedTurnoutLeft} {drive}" :
                     $"{this.Article} {Resources.TrackCurvedTurnoutRight} {drive}";
 
@@ -103,7 +103,7 @@ namespace Rail.Tracks
             Point centerLeft = new Point(-width, 0);
             Point centerRight = new Point(width, 0);
 
-            return this.TurnoutDirection == TrackDirection.Left ?
+            return this.TurnoutDirection == TrackTurnoutDirection.Left ?
                 new CombinedGeometry(
                     StraitGeometry(maxLength, StraitOrientation.Left, 0, centerLeft),
                     new CombinedGeometry(
@@ -133,7 +133,7 @@ namespace Rail.Tracks
             DrawingGroup drawingRail = new DrawingGroup();
             if (this.HasBallast)
             {
-                if (this.TurnoutDirection == TrackDirection.Left)
+                if (this.TurnoutDirection == TrackTurnoutDirection.Left)
                 {
                     drawingRail.Children.Add(StraitBallast(maxLength, StraitOrientation.Left, 0, centerLeft));
                     drawingRail.Children.Add(CurvedBallast(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft + new Vector(this.InnerLength, 0)));
@@ -146,7 +146,7 @@ namespace Rail.Tracks
                     drawingRail.Children.Add(CurvedBallast(this.OuterAngle, this.OuterRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Right, centerRight - new Vector(this.OuterLength, 0)));
                 }
             }
-            if (this.TurnoutDirection == TrackDirection.Left)
+            if (this.TurnoutDirection == TrackTurnoutDirection.Left)
             {
                 drawingRail.Children.Add(StraitSleepers(maxLength, StraitOrientation.Left, 0, centerLeft));
                 drawingRail.Children.Add(CurvedSleepers(this.InnerAngle, this.InnerRadius, CurvedOrientation.Counterclockwise | CurvedOrientation.Left, centerLeft + new Vector(this.InnerLength, 0)));
@@ -184,7 +184,7 @@ namespace Rail.Tracks
             Point innerCircleCenterRight = new Point(innerWidth - InnerLength, -this.InnerRadius);
             Point outerCircleCenterRight = new Point(outerWidth - OuterLength, -this.OuterRadius);
 
-            return this.TurnoutDirection == TrackDirection.Left ? 
+            return this.TurnoutDirection == TrackTurnoutDirection.Left ? 
                 new List<TrackDockPoint>
                 {
                     new TrackDockPoint(0, new Point(-outerWidth, 0.0), 90 + 45, this.dockType),

@@ -318,6 +318,9 @@
   <data name="MainTurnoutDrive" xml:space="preserve">
     <value>Weichen Antrieb</value>
   </data>
+  <data name="MainTurnoutType" xml:space="preserve">
+    <value>Weichen Typ</value>
+  </data>
   <data name="MainWagonMaxBogieDistance" xml:space="preserve">
     <value>Max. Distanz zwischen den Drehgestellen</value>
   </data>

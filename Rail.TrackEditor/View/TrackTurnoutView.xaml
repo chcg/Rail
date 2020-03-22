@@ -9,25 +9,25 @@
              xmlns:trk="clr-namespace:Rail.Tracks;assembly=Rail.Tracks"
              xmlns:trkconv="clr-namespace:Rail.Tracks.Converter;assembly=Rail.Tracks"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="200" d:DesignWidth="800">
     <UserControl.Resources>
         <trkconv:EnumToLocalizedStringConverter x:Key="EnumToLocalizedStringConverter"/>
         <mvvmconv:RadioButtonConverter x:Key="RadioButtonConverter"/>
         <mvvmconv:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter"/>
-        <x:Array Type="trk:TrackTurnoutDirection" x:Key="Left">
-            <trk:TrackTurnoutDirection>Left</trk:TrackTurnoutDirection>
-            <trk:TrackTurnoutDirection>Y</trk:TrackTurnoutDirection>
-            <trk:TrackTurnoutDirection>Three</trk:TrackTurnoutDirection>
+        <x:Array Type="trk:TrackTurnoutType" x:Key="Left">
+            <trk:TrackTurnoutType>Left</trk:TrackTurnoutType>
+            <trk:TrackTurnoutType>Y</trk:TrackTurnoutType>
+            <trk:TrackTurnoutType>Three</trk:TrackTurnoutType>
         </x:Array>
-        <x:Array Type="trk:TrackTurnoutDirection" x:Key="Straight">
-            <trk:TrackTurnoutDirection>Left</trk:TrackTurnoutDirection>
-            <trk:TrackTurnoutDirection>Right</trk:TrackTurnoutDirection>
-            <trk:TrackTurnoutDirection>Three</trk:TrackTurnoutDirection>
+        <x:Array Type="trk:TrackTurnoutType" x:Key="Straight">
+            <trk:TrackTurnoutType>Left</trk:TrackTurnoutType>
+            <trk:TrackTurnoutType>Right</trk:TrackTurnoutType>
+            <trk:TrackTurnoutType>Three</trk:TrackTurnoutType>
         </x:Array>
-        <x:Array Type="trk:TrackTurnoutDirection" x:Key="Right">
-            <trk:TrackTurnoutDirection>Right</trk:TrackTurnoutDirection>
-            <trk:TrackTurnoutDirection>Y</trk:TrackTurnoutDirection>
-            <trk:TrackTurnoutDirection>Three</trk:TrackTurnoutDirection>
+        <x:Array Type="trk:TrackTurnoutType" x:Key="Right">
+            <trk:TrackTurnoutType>Right</trk:TrackTurnoutType>
+            <trk:TrackTurnoutType>Y</trk:TrackTurnoutType>
+            <trk:TrackTurnoutType>Three</trk:TrackTurnoutType>
         </x:Array>
     </UserControl.Resources>
     <Grid Grid.IsSharedSizeScope="True">
@@ -52,8 +52,8 @@
         <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.MainArticle}"/>
         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Article}" Margin="3"/>
 
-        <Label Grid.Column="2" Grid.Row="0" Content="{x:Static lang:Resources.MainTurnoutDirection}"/>
-        <ComboBox Grid.Column="3" Grid.Row="0" ItemsSource="{Binding TurnoutDirections}" SelectedItem="{Binding TurnoutDirection}" IsEditable="False" Margin="3">
+        <Label Grid.Column="2" Grid.Row="0" Content="{x:Static lang:Resources.MainTurnoutType}"/>
+        <ComboBox Grid.Column="3" Grid.Row="0" ItemsSource="{Binding TurnoutTypes}" SelectedItem="{Binding TurnoutType}" IsEditable="False" Margin="3">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding ., Converter={StaticResource EnumToLocalizedStringConverter}}"/>
@@ -71,61 +71,61 @@
         </ComboBox>
 
         <Label Grid.Column="0" Grid.Row="1" Content="{x:Static lang:Resources.MainLeftTurnoutLength}"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
         <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding DataContext.LengthsAndNullSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding LeftTurnoutLength}" DisplayMemberPath="Name" IsEditable="False" Margin="3"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
 
         <Label Grid.Column="0" Grid.Row="2" Content="{x:Static lang:Resources.MainLeftTurnoutRadius}"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
         <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding DataContext.RadiiSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding LeftTurnoutRadius}" DisplayMemberPath="Name" IsEditable="False" Margin="3"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
 
         <Label Grid.Column="0" Grid.Row="3" Content="{x:Static lang:Resources.MainLeftTurnoutAngle}"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
         <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding DataContext.AnglesSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding LeftTurnoutAngle}" DisplayMemberPath="Name" IsEditable="False" Margin="3"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
 
         <Label Grid.Column="0" Grid.Row="4" Content="{x:Static lang:Resources.MainLeftCounterCurveRadius}"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
-        <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding DataContext.RadiiAndNullSources, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding LeftCounterCurveRadius}" DisplayMemberPath="Name" IsEditable="False" Margin="3"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
+        <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding DataContext.RadiiAndNullSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding LeftCounterCurveRadius}" DisplayMemberPath="Name" IsEditable="False" Margin="3"
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
 
         <Label Grid.Column="0" Grid.Row="5" Content="{x:Static lang:Resources.MainLeftCounterCurveAngle}"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
         <ComboBox Grid.Column="1" Grid.Row="5" ItemsSource="{Binding DataContext.AnglesAndNullSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding LeftCounterCurveAngle}" DisplayMemberPath="Name" IsEditable="False" Margin="3"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Left}}"/>
 
         
         <Label Grid.Column="2" Grid.Row="1" Content="{x:Static lang:Resources.MainStraightLength}"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Straight}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Straight}}"/>
         <ComboBox Grid.Column="3" Grid.Row="1" ItemsSource="{Binding DataContext.LengthsSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding StraightLength}" DisplayMemberPath="Name" IsEditable="False" Margin="3"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Straight}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Straight}}"/>
 
 
         <Label Grid.Column="4" Grid.Row="1" Content="{x:Static lang:Resources.MainRightTurnoutLength}"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
         <ComboBox Grid.Column="5" Grid.Row="1" ItemsSource="{Binding DataContext.LengthsAndNullSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding RightTurnoutLength}" DisplayMemberPath="Name" IsEditable="False" Margin="3"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
 
         <Label Grid.Column="4" Grid.Row="2" Content="{x:Static lang:Resources.MainRightTurnoutRadius}"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
         <ComboBox Grid.Column="5" Grid.Row="2" ItemsSource="{Binding DataContext.RadiiSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding RightTurnoutRadius}" DisplayMemberPath="Name" IsEditable="False" Margin="3"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
 
         <Label Grid.Column="4" Grid.Row="3" Content="{x:Static lang:Resources.MainRightTurnoutAngle}"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
         <ComboBox Grid.Column="5" Grid.Row="3" ItemsSource="{Binding DataContext.AnglesSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding RightTurnoutAngle}" DisplayMemberPath="Name" IsEditable="False" Margin="3"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
 
         <Label Grid.Column="4" Grid.Row="4" Content="{x:Static lang:Resources.MainRightCounterCurveRadius}"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
         <ComboBox Grid.Column="5" Grid.Row="4" ItemsSource="{Binding DataContext.RadiiAndNullSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding RightCounterCurveRadius}" DisplayMemberPath="Name" IsEditable="False" Margin="3"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
 
         <Label Grid.Column="4" Grid.Row="5" Content="{x:Static lang:Resources.MainRightCounterCurveAngle}"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
         <ComboBox Grid.Column="5" Grid.Row="5" ItemsSource="{Binding DataContext.AnglesAndNullSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding RightCounterCurveAngle}" DisplayMemberPath="Name" IsEditable="False" Margin="3"
-            Visibility="{Binding Extra, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
+            Visibility="{Binding TurnoutType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource Right}}"/>
 
     </Grid>
 </UserControl>

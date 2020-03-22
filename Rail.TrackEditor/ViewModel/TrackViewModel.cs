@@ -56,7 +56,8 @@ namespace Rail.TrackEditor.ViewModel
         }
 
         public TrackExtras[] Extras { get { return (TrackExtras[])Enum.GetValues(typeof(TrackExtras)); } }
-        public TrackDirection[] TurnoutDirections { get { return (TrackDirection[])Enum.GetValues(typeof(TrackDirection)); } }
+        public TrackTurnoutDirection[] TurnoutDirections { get { return (TrackTurnoutDirection[])Enum.GetValues(typeof(TrackTurnoutDirection)); } }
+        public TrackTurnoutType[] TurnoutTypes { get { return (TrackTurnoutType[])Enum.GetValues(typeof(TrackTurnoutType)); } }
         public TrackDrive[] TurnoutDrives { get { return (TrackDrive[])Enum.GetValues(typeof(TrackDrive)); } }
         public TrackEndType[] EndTypes { get { return (TrackEndType[])Enum.GetValues(typeof(TrackEndType)); } }
         public TrackTurntableRailNum[] TurntableNum { get { return (TrackTurntableRailNum[])Enum.GetValues(typeof(TrackTurntableRailNum)); } }
@@ -71,7 +72,8 @@ namespace Rail.TrackEditor.ViewModel
 
         protected TrackNamedValueViewModel GetLength(Guid lengthId)
         {
-            var l = this.trackTypeViewModel.Lengths.FirstOrDefault(i => i.Id == lengthId);
+
+            var l = this.trackTypeViewModel.LengthsAndNullSource.FirstOrDefault(i => i.Id == lengthId);
             return l;
         }
 
@@ -86,7 +88,7 @@ namespace Rail.TrackEditor.ViewModel
 
         protected TrackNamedValueViewModel GetAngle(Guid angleId)
         {
-            return this.trackTypeViewModel.Angles.FirstOrDefault(i => i.Id == angleId);
+            return this.trackTypeViewModel.AnglesAndNullSource.FirstOrDefault(i => i.Id == angleId);
         }
 
         public Guid SetAngle(TrackNamedValueViewModel value)
@@ -100,7 +102,7 @@ namespace Rail.TrackEditor.ViewModel
 
         protected TrackNamedValueViewModel GetRadius(Guid radiusId)
         {
-            return this.trackTypeViewModel.Radii.FirstOrDefault(i => i.Id == radiusId);
+            return this.trackTypeViewModel.RadiiAndNullSource.FirstOrDefault(i => i.Id == radiusId);
         }
 
         public Guid SetRadius(TrackNamedValueViewModel value)

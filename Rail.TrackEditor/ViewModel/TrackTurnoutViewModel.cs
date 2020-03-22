@@ -40,10 +40,16 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.Article = value.Trim(); NotifyPropertyChanged(nameof(Article)); }
         }
 
-        public TrackTurnoutDirection TurnoutDirection
+        public TrackTurnoutType TurnoutType
         {
-            get { return this.track.TurnoutDirection; }
-            set { this.track.TurnoutDirection = value; NotifyPropertyChanged(nameof(TurnoutDirection)); }
+            get { return this.track.TurnoutType; }
+            set { this.track.TurnoutType = value; NotifyPropertyChanged(nameof(TurnoutType)); }
+        }
+
+        public TrackDrive TurnoutDrive
+        {
+            get { return this.track.TurnoutDrive; }
+            set { this.track.TurnoutDrive = value; NotifyPropertyChanged(nameof(TurnoutDrive)); }
         }
 
         public TrackNamedValueViewModel StraightLength
@@ -110,12 +116,6 @@ namespace Rail.TrackEditor.ViewModel
         {
             get { return GetAngle(this.track.RightCounterCurveAngleId); }
             set { this.track.RightCounterCurveAngleId = value.Id; NotifyPropertyChanged(nameof(RightCounterCurveAngle)); }
-        }
-
-        public TrackDrive TurnoutDrive
-        {
-            get { return this.track.TurnoutDrive; }
-            set { this.track.TurnoutDrive = value; NotifyPropertyChanged(nameof(TurnoutDrive)); }
         }
     }
 }

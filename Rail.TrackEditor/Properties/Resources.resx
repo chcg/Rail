@@ -318,6 +318,9 @@
   <data name="MainTurnoutDrive" xml:space="preserve">
     <value>Turnout Drive</value>
   </data>
+  <data name="MainTurnoutType" xml:space="preserve">
+    <value>Turnout Type</value>
+  </data>
   <data name="MainWagonMaxBogieDistance" xml:space="preserve">
     <value>Max Bogie Distance</value>
   </data>

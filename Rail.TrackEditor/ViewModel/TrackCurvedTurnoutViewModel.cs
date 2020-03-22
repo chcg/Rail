@@ -73,7 +73,7 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.OuterAngleId = value.Id; NotifyPropertyChanged(nameof(OuterAngle)); }
         }
 
-        public TrackDirection TurnoutDirection
+        public TrackTurnoutDirection TurnoutDirection
         {
             get { return this.track.TurnoutDirection; }
             set { this.track.TurnoutDirection = value; NotifyPropertyChanged(nameof(TurnoutDirection)); }
