@@ -1,12 +1,12 @@
 name: Delivery Build
 
-on: 
+on:
   push:
     branches:
       - master
 
   pull_request:
-    branches: 
+    branches:
       - master
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
       max-parallel: 2
       matrix:
         build_platform: [x86, x64]
-      
+
     steps:
     - name: "Checkout"
       uses: actions/checkout@master
@@ -41,16 +41,13 @@ jobs:
 
     - name: "restore"
       working-directory: .
-      run: dotnet restore Rail.sln
-#      run: msbuild Rail.sln /m /verbosity:minimal /t:restore /p:configuration="${{ matrix.build_configuration }}" /p:platform="${{ matrix.build_platform }}"
+      run: msbuild Rail.sln /m /verbosity:minimal /t:restore /p:configuration="Release" /p:platform="${{ matrix.build_platform }}"
 
-#    - name: "MSBuild of solution"
-#      working-directory: .\Rail
-#      run: msbuild Rail.sln /m /verbosity:minimal /p:configuration="${{ matrix.build_configuration }}" /p:platform="${{ matrix.build_platform }}"
-
-    - name: "Build WIX"
-      working-directory: .\Rail.Installer
-      run: dotnet build Rail.Installer.wixproj -c "Release" -p:platform="${{ matrix.build_platform }}"
+    - name: "MSBuild of solution"
+      working-directory: .
+      run: |
+           $env:SHFBROOT = "C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\"
+           msbuild Rail.sln /m /verbosity:minimal /p:configuration="Release" /p:platform="${{ matrix.build_platform }}"
 
     - name: "Archive artifacts"
       uses: actions/upload-artifact@v1
