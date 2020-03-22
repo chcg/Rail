@@ -135,11 +135,17 @@
   <data name="MainCrossingAngle" xml:space="preserve">
     <value>Kreuzungs Winkel</value>
   </data>
+  <data name="MainDeckLength" xml:space="preserve">
+    <value>Drehbühnen Länge</value>
+  </data>
   <data name="MainDeleteTrack" xml:space="preserve">
     <value>Löschen</value>
   </data>
   <data name="MainDeleteTrackType" xml:space="preserve">
     <value>Löschen</value>
+  </data>
+  <data name="MainDiameter" xml:space="preserve">
+    <value>Durchmesser</value>
   </data>
   <data name="MainDockType" xml:space="preserve">
     <value>Andock Typ</value>

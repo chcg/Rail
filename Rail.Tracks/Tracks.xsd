@@ -207,10 +207,9 @@
                               <xs:complexType>
                                 <xs:sequence>
                                   <xs:element name="Article" type="xs:string" />
-                                  <xs:element name="OuterRadius" type="xs:decimal" />
-                                  <xs:element name="InnerRadius" type="xs:decimal" />
-                                  <xs:element name="Angle" type="Guid" />
-                                  <xs:element name="RailNum" type="xs:unsignedByte" />
+                                  <xs:element name="RailNum" type="RailNum" />
+                                  <xs:element name="Diameter" type="Guid" />
+                                  <xs:element name="DeckLength" type="Guid" />
                                 </xs:sequence>
                                 <xs:attribute name="Id" type="Guid" use="required" />
                               </xs:complexType>
@@ -412,6 +411,16 @@
     </xs:restriction>
   </xs:simpleType>
 
+  
+  <xs:simpleType name="RailNum" >
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TurntableNum_24" />
+      <xs:enumeration value="TurntableNum_30" />
+      <xs:enumeration value="TurntableNum_40" />
+      <xs:enumeration value="TurntableNum_48" />
+    </xs:restriction>
+  </xs:simpleType>
+  
   <xs:simpleType name="Guid">
     <xs:restriction base="xs:string">
       <xs:pattern value="[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"/>

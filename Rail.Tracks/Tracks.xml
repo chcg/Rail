@@ -351,10 +351,9 @@
       </Adapter>-->
         <Turntable Id="17e135c1-cf27-4091-968e-eb1d37efc03d">
           <Article>74861</Article>
-          <OuterRadius>189</OuterRadius>
-          <InnerRadius>131.5</InnerRadius>
-          <Angle>dcaa87a3-61d0-435e-aa75-70bda4e282f3</Angle>
-          <RailNum>30</RailNum>
+          <RailNum>TurntableNum_30</RailNum>
+          <Diameter>d79e3a36-805d-4159-baa8-d762bdcec2c3</Diameter>
+          <DeckLength>a53c4780-fff6-4674-976b-2aac0c7706dd</DeckLength>
         </Turntable>
       </Tracks>
       <Groups>

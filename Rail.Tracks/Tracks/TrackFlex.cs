@@ -41,7 +41,7 @@ namespace Rail.Tracks
 
         protected override List<TrackDockPoint> CreateDockPoints()
         {
-            return null;
+            return new List<TrackDockPoint>();
         }
     }
 }

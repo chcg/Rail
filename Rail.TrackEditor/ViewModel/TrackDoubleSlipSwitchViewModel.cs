@@ -23,7 +23,9 @@ namespace Rail.TrackEditor.ViewModel
             TrackDoubleSlipSwitch trackDoubleSlipSwitch = new TrackDoubleSlipSwitch
             {
                 Article = string.Empty,
-                LengthId = trackTypeViewModel.Lengths.First().Id
+                LengthId = trackTypeViewModel.Lengths.First().Id,
+                CrossingAngleId = trackTypeViewModel.Angles.First().Id,
+                SlipRadiusId = trackTypeViewModel.Radii.First().Id
             };
             return new TrackDoubleSlipSwitchViewModel(trackTypeViewModel, trackDoubleSlipSwitch);
         }

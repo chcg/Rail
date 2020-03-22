@@ -135,11 +135,17 @@
   <data name="MainCrossingAngle" xml:space="preserve">
     <value>Crossing Angle</value>
   </data>
+  <data name="MainDeckLength" xml:space="preserve">
+    <value>Deck Length</value>
+  </data>
   <data name="MainDeleteTrack" xml:space="preserve">
     <value>Delete</value>
   </data>
   <data name="MainDeleteTrackType" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="MainDiameter" xml:space="preserve">
+    <value>Diameter</value>
   </data>
   <data name="MainDockType" xml:space="preserve">
     <value>Dock Type</value>

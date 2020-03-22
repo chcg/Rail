@@ -23,7 +23,9 @@ namespace Rail.TrackEditor.ViewModel
             TrackDoubleCrossover trackDoubleCrossover = new TrackDoubleCrossover
             {
                 Article = string.Empty,
-                LengthId = trackTypeViewModel.Lengths.First().Id
+                LengthId = trackTypeViewModel.Lengths.First().Id,
+                LengthBId = trackTypeViewModel.Lengths.First().Id,
+                CrossingAngleId = trackTypeViewModel.Angles.First().Id,
             };
             return new TrackDoubleCrossoverViewModel(trackTypeViewModel, trackDoubleCrossover);
         }

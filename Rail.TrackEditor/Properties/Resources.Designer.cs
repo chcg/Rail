@@ -115,6 +115,15 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deck Length.
+        /// </summary>
+        public static string MainDeckLength {
+            get {
+                return ResourceManager.GetString("MainDeckLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string MainDeleteTrack {
@@ -129,6 +138,15 @@ namespace Rail.TrackEditor.Properties {
         public static string MainDeleteTrackType {
             get {
                 return ResourceManager.GetString("MainDeleteTrackType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diameter.
+        /// </summary>
+        public static string MainDiameter {
+            get {
+                return ResourceManager.GetString("MainDiameter", resourceCulture);
             }
         }
         

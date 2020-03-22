@@ -23,7 +23,10 @@ namespace Rail.TrackEditor.ViewModel
             TrackTransferTable trackTransferTable = new TrackTransferTable
             {
                 Article = string.Empty,
-                LengthId = trackTypeViewModel.Lengths.First().Id
+                LengthId = trackTypeViewModel.Lengths.First().Id,
+                Width = 100,
+                Height = 100
+
             };
             return new TrackTransferTableViewModel(trackTypeViewModel, trackTransferTable);
         }
