@@ -151,6 +151,15 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Distance.
+        /// </summary>
+        public static string MainDistance {
+            get {
+                return ResourceManager.GetString("MainDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dock Type.
         /// </summary>
         public static string MainDockType {
@@ -336,6 +345,24 @@ namespace Rail.TrackEditor.Properties {
         public static string MainManufacturer {
             get {
                 return ResourceManager.GetString("MainManufacturer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max. Length.
+        /// </summary>
+        public static string MainMaxLength {
+            get {
+                return ResourceManager.GetString("MainMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min. Length.
+        /// </summary>
+        public static string MainMinLength {
+            get {
+                return ResourceManager.GetString("MainMinLength", resourceCulture);
             }
         }
         

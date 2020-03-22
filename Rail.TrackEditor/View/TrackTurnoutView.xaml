@@ -32,12 +32,12 @@
     </UserControl.Resources>
     <Grid Grid.IsSharedSizeScope="True">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" SharedSizeGroup="T"/>
-            <ColumnDefinition Width="*" MaxWidth="140"/>
-            <ColumnDefinition Width="Auto" SharedSizeGroup="T"/>
-            <ColumnDefinition Width="*" MaxWidth="140"/>
-            <ColumnDefinition Width="Auto" SharedSizeGroup="T"/>
-            <ColumnDefinition Width="*" MaxWidth="140"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="140"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

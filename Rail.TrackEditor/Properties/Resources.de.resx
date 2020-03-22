@@ -147,6 +147,9 @@
   <data name="MainDiameter" xml:space="preserve">
     <value>Durchmesser</value>
   </data>
+  <data name="MainDistance" xml:space="preserve">
+    <value>Abstand</value>
+  </data>
   <data name="MainDockType" xml:space="preserve">
     <value>Andock Typ</value>
   </data>
@@ -209,6 +212,12 @@
   </data>
   <data name="MainManufacturer" xml:space="preserve">
     <value>Hersteller</value>
+  </data>
+  <data name="MainMaxLength" xml:space="preserve">
+    <value>Max. Länge</value>
+  </data>
+  <data name="MainMinLength" xml:space="preserve">
+    <value>Min. Länge</value>
   </data>
   <data name="MainName" xml:space="preserve">
     <value>Name</value>

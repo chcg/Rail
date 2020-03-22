@@ -60,6 +60,7 @@ namespace Rail.TrackEditor.ViewModel
         public TrackTurnoutType[] TurnoutTypes { get { return (TrackTurnoutType[])Enum.GetValues(typeof(TrackTurnoutType)); } }
         public TrackDrive[] TurnoutDrives { get { return (TrackDrive[])Enum.GetValues(typeof(TrackDrive)); } }
         public TrackEndType[] EndTypes { get { return (TrackEndType[])Enum.GetValues(typeof(TrackEndType)); } }
+        public TrackFlexType[] FlexTypes { get { return (TrackFlexType[])Enum.GetValues(typeof(TrackFlexType)); } }
         public TrackTurntableRailNum[] TurntableNum { get { return (TrackTurntableRailNum[])Enum.GetValues(typeof(TrackTurntableRailNum)); } }
         public int[] StarNumbers { get { return new int[] { 2, 3, 4 }; } }
 

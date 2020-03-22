@@ -12,7 +12,7 @@ namespace Rail.Mvvm.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
+            if (value == null || (value is string str && string.IsNullOrEmpty(str)))
             {
                 return string.Empty;
             }

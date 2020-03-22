@@ -48,7 +48,7 @@ namespace Rail.TrackEditor.ViewModel
                 }
                 else
                 {
-                    Debugger.Break();
+                    //Debugger.Break();
                 }
             }
         }
