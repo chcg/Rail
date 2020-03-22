@@ -13,16 +13,22 @@ jobs:
     runs-on: windows-latest
     
     steps:
+      - name: "Checkout"
+        uses: actions/checkout@master
+
       - name: "Download sandcastle"
         run: |
              $url = "https://github.com/EWSoftware/SHFB/releases/download/v2020.3.6.0/SHFBInstaller_v2020.3.6.0.zip"
-             $output = "$pwd\Rail\SHFBInstaller_v2020.3.6.0.zip"
-             $start_time = Get-Date
+             $output = "$env:GITHUB_WORKSPACE\Rail\SHFBInstaller_v2020.3.6.0.zip"
              (New-Object System.Net.WebClient).DownloadFile($url, $output)
-             Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
+             7z x -y SHFBInstaller_v2020.3.6.0.zip | Out-Null
+             Write-Host "Installing MSI..."
+             Write-Host "Installing VSIX..."
+             . "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\VSIXInstaller.exe" /q /a InstallResources\SHFBVisualStudioPackage_VS2017AndLater.vsix
+             cmd /c start /wait msiexec /i InstallResources\SandcastleHelpFileBuilder.msi /quiet
+             Write-Host "Sandcastle installed" -ForegroundColor Green
         shell: pwsh
         working-directory: .\Rail
-      - uses: actions/checkout@master
       - name: "Setup .NET Core"
         uses: actions/setup-dotnet@v1
         with:
