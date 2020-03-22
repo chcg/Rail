@@ -240,6 +240,9 @@
   <data name="TrackFlex" xml:space="preserve">
     <value>Flex Track</value>
   </data>
+  <data name="TrackNewGroup" xml:space="preserve">
+    <value>New Group</value>
+  </data>
   <data name="TrackStraight" xml:space="preserve">
     <value>Straight Track</value>
   </data>

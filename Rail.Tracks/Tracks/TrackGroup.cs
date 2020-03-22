@@ -1,4 +1,5 @@
 ﻿using Rail.Tracks.Misc;
+using Rail.Tracks.Properties;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Windows.Media;
@@ -8,6 +9,11 @@ namespace Rail.Tracks
 {
     public class TrackGroup : TrackBase
     {
+        public TrackGroup()
+        {
+            this.GroupName = new XmlMultilanguageString(Resources.TrackNewGroup);
+        }
+
         [XmlElement("Name")]
         public XmlMultilanguageString GroupName { get; set; }
 

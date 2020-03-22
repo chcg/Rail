@@ -162,6 +162,12 @@
   <data name="MainGauge" xml:space="preserve">
     <value>Gauge</value>
   </data>
+  <data name="MainGroupName" xml:space="preserve">
+    <value>Group Name</value>
+  </data>
+  <data name="MainGroupTracks" xml:space="preserve">
+    <value>Group Tracks</value>
+  </data>
   <data name="MainInnerAngle" xml:space="preserve">
     <value>Inner Angle</value>
   </data>
@@ -197,6 +203,9 @@
   </data>
   <data name="MainLengthmm" xml:space="preserve">
     <value>Length (mm)</value>
+  </data>
+  <data name="MainLoadGroup" xml:space="preserve">
+    <value>Load Group</value>
   </data>
   <data name="MainManufacturer" xml:space="preserve">
     <value>Manufacturer</value>

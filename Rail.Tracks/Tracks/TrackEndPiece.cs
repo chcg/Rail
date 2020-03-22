@@ -38,9 +38,9 @@ namespace Rail.Tracks
 
             this.Name = this.EndType switch
             {
-                TrackEndType.End => $"{Resources.TrackEndPiece}",
-                TrackEndType.Bumper => $"{Resources.TrackBumper}",
-                TrackEndType.BumperWithLantern => $"{Resources.TrackBumperWithLantern}",
+                TrackEndType.End => Resources.TrackEndPiece,
+                TrackEndType.Bumper => Resources.TrackBumper,
+                TrackEndType.BumperWithLantern => Resources.TrackBumperWithLantern,
                 _ => string.Empty
             };
             this.Description = $"{this.Article} {this.Name}";

@@ -162,6 +162,12 @@
   <data name="MainGauge" xml:space="preserve">
     <value>Spurbreite</value>
   </data>
+  <data name="MainGroupName" xml:space="preserve">
+    <value>Gruppen Name</value>
+  </data>
+  <data name="MainGroupTracks" xml:space="preserve">
+    <value>Gruppen Gleise</value>
+  </data>
   <data name="MainInnerAngle" xml:space="preserve">
     <value>Innerer Winkel</value>
   </data>
@@ -197,6 +203,9 @@
   </data>
   <data name="MainLengthmm" xml:space="preserve">
     <value>Länge (mm)</value>
+  </data>
+  <data name="MainLoadGroup" xml:space="preserve">
+    <value>Lade Gruppe</value>
   </data>
   <data name="MainManufacturer" xml:space="preserve">
     <value>Hersteller</value>

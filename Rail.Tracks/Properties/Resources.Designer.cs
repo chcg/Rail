@@ -430,6 +430,15 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Group.
+        /// </summary>
+        public static string TrackNewGroup {
+            get {
+                return ResourceManager.GetString("TrackNewGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Straight Track.
         /// </summary>
         public static string TrackStraight {

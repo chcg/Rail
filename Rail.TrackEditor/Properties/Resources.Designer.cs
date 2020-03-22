@@ -196,6 +196,24 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Group Name.
+        /// </summary>
+        public static string MainGroupName {
+            get {
+                return ResourceManager.GetString("MainGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Tracks.
+        /// </summary>
+        public static string MainGroupTracks {
+            get {
+                return ResourceManager.GetString("MainGroupTracks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inner Angle.
         /// </summary>
         public static string MainInnerAngle {
@@ -300,6 +318,15 @@ namespace Rail.TrackEditor.Properties {
         public static string MainLengthmm {
             get {
                 return ResourceManager.GetString("MainLengthmm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load Group.
+        /// </summary>
+        public static string MainLoadGroup {
+            get {
+                return ResourceManager.GetString("MainLoadGroup", resourceCulture);
             }
         }
         

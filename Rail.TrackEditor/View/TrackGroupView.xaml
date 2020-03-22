@@ -3,10 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:lang="clr-namespace:Rail.TrackEditor.Properties"
              xmlns:local="clr-namespace:Rail.TrackEditor.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Content="{x:Static lang:Resources.MainGroupName}"/>
+        <DataGrid 
+            Grid.Column="1" 
+            Grid.ColumnSpan="2"
+            Grid.Row="0"
+            ItemsSource="{Binding Names}" 
+            AutoGenerateColumns="False" 
+            SelectionMode="Single" 
+            GridLinesVisibility="None"
+            HeadersVisibility="Column" 
+            CanUserResizeColumns="True"
+            CanUserAddRows="True"
+            CanUserDeleteRows="True"
+            Background="White"
+            Margin="3" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Language}" Header="{x:Static lang:Resources.MainLanguage}" Width="Auto"/>
+                <DataGridTextColumn Binding="{Binding Name}" Header="{x:Static lang:Resources.MainGroupName}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Grid.Column="0" Grid.Row="1" Content="{x:Static lang:Resources.MainGroupTracks}"/>
+        <Button Grid.Column="1" Grid.Row="1" Command="{Binding LoadGroupCommand}" Margin="3">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Images/Open.png" Width="12" Height="12"/>
+                <TextBlock Text="{x:Static lang:Resources.MainLoadGroup}"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </UserControl>

@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\Open.png" />
     <None Remove="Images\Save.png" />
     <None Remove="Images\Settings.png" />
   </ItemGroup>
@@ -26,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\Open.png" />
     <Resource Include="Images\Save.png" />
     <Resource Include="Images\Settings.png" />
   </ItemGroup>
