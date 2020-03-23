@@ -132,6 +132,12 @@
   <data name="MainBallastWidth" xml:space="preserve">
     <value>Schotter Breite</value>
   </data>
+  <data name="MainConnectionDistance" xml:space="preserve">
+    <value>Abstand Gleisverbinder</value>
+  </data>
+  <data name="MainConnectionLength" xml:space="preserve">
+    <value>Länge Gleisverbinder </value>
+  </data>
   <data name="MainCrossingAngle" xml:space="preserve">
     <value>Kreuzungs Winkel</value>
   </data>
@@ -320,6 +326,9 @@
   </data>
   <data name="MainTrackTypes" xml:space="preserve">
     <value>Gleis Typen</value>
+  </data>
+  <data name="MainTransferTableType" xml:space="preserve">
+    <value>Schiebebühne Typ</value>
   </data>
   <data name="MainTurnoutDirection" xml:space="preserve">
     <value>Ausfahrt Richtung</value>

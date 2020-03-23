@@ -12,7 +12,7 @@
              xmlns:local="clr-namespace:Rail.TrackEditor.View"
              xmlns:lang="clr-namespace:Rail.TrackEditor.Properties"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="650" d:DesignWidth="800">
     <UserControl.Resources>
         <mvvm:BindingProxy x:Key="TrackTypeBindingProxy" Data="{Binding}" />
         <mvvmconv:DescriptionConverter x:Key="DescriptionConverter"/>
@@ -21,7 +21,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="200" MinHeight="100"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*" MinHeight="100"/>
+            <RowDefinition Height="Auto" MinHeight="100"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -208,7 +208,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto" MinHeight="100"/>
                     </Grid.RowDefinitions>
                     <ListBox Grid.Column="0" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" >
                         <ListBox.ContextMenu>
@@ -265,11 +265,11 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="200" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <ctrl:TrackControl Grid.Column="0" Grid.Row="0" Track="{Binding Track}" ShowRail="False" BorderBrush="LightGray" Margin="3" BorderThickness="1" Background="White" Height="200" />
-                        <ctrl:TrackControl Grid.Column="1" Grid.Row="0" Track="{Binding Track}" ShowRail="True"  BorderBrush="LightGray" Margin="3" BorderThickness="1" Background="White"  Height="200"/>
+                        <ctrl:TrackControl x:Name="trackCtrl" Grid.Column="0" Grid.Row="0" Track="{Binding Track}" ShowRail="False" BorderBrush="LightGray" Margin="3" BorderThickness="1" Background="White"/>
+                        <ctrl:TrackControl x:Name="railCtrl"  Grid.Column="1" Grid.Row="0" Track="{Binding Track}" ShowRail="True"  BorderBrush="LightGray" Margin="3" BorderThickness="1" Background="White"/>
                         <ContentControl Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Content="{Binding .}" >
                             <ContentControl.Resources>
                                 <DataTemplate DataType="{x:Type vm:TrackStraightViewModel}" >

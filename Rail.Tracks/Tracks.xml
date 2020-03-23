@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TrackList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="0.1.0">
   <DockTypes>
-    <DockType Id="6F75E646-B7E1-45CF-A0E4-8D338D43DF66" Name="Maerklin H0 C" />
-    <DockType Id="09E27F04-3771-4406-90F6-DDBC2FDF9D73" Name="Maerklin H0 K" />
-    <DockType Id="F62DE104-7C5E-4B3C-AF1C-250244A24578" Name="Maerklin H0 M" />
-    <DockType Id="ACCD5684-D49B-44FB-BFC9-00D3F7A8DD82" Name="Maerklin Z" />
-    <DockType Id="EEFD776D-C20A-4B13-BEE0-9FB245E9A686" Name="Maerklin 1" />
-    <DockType Id="E2F7C8AD-3206-4FF9-874F-923B04DFC7B8" Name="G" />
-    <DockType Id="5DC5D1DC-6370-4FED-98F2-816F1BC572D0" Name="Trix H0" />
-    <DockType Id="D20F30E9-0189-4589-BE60-42B04247F9AF" Name="Fleischmann H0" />
-    <DockType Id="6B388A53-EE08-4FF8-9519-42A6E0863BA3" Name="Fleischmann N" />
-    <DockType Id="91AE49E7-5AE8-437F-9F79-F33BB405BE37" Name="Roco H0 geoLine" />
-    <DockType Id="A7453A47-39F4-4FE6-8175-858539F0E118" Name="Roco H0 Roco-Line" />
-    <DockType Id="C4E3D9FD-41C3-49C8-8974-1A79CCFD626B" Name="Roco H0e" />
-    <DockType Id="245FABB7-A2EA-4535-87E6-403DF4F6AD1F" Name="Pico H0" />
-    <DockType Id="2C28E2BE-B0D4-4F65-B11E-03AE14DE5CD7" Name="Rokuhan Z" />
-    <DockType Id="50DBC816-31C9-4647-9CCB-D21A9D7566DD" Name="Kato H0" />
-    <DockType Id="4C720BE3-76C0-4AC4-8B62-C81F311A308F" Name="Lego" />
-    <DockType Id="375244CB-E8A5-446F-90A6-5D45418065F8" Name="Wood" />
+    <DockType Id="6f75e646-b7e1-45cf-a0e4-8d338d43df66" Name="Maerklin H0 C" />
+    <DockType Id="09e27f04-3771-4406-90f6-ddbc2fdf9d73" Name="Maerklin H0 K" />
+    <DockType Id="f62de104-7c5e-4b3c-af1c-250244a24578" Name="Maerklin H0 M" />
+    <DockType Id="accd5684-d49b-44fb-bfc9-00d3f7a8dd82" Name="Maerklin Z" />
+    <DockType Id="eefd776d-c20a-4b13-bee0-9fb245e9a686" Name="Maerklin 1" />
+    <DockType Id="e2f7c8ad-3206-4ff9-874f-923b04dfc7b8" Name="G" />
+    <DockType Id="5dc5d1dc-6370-4fed-98f2-816f1bc572d0" Name="Trix H0" />
+    <DockType Id="d20f30e9-0189-4589-be60-42b04247f9af" Name="Fleischmann H0" />
+    <DockType Id="6b388a53-ee08-4ff8-9519-42a6e0863ba3" Name="Fleischmann N" />
+    <DockType Id="91ae49e7-5ae8-437f-9f79-f33bb405be37" Name="Roco H0 geoLine" />
+    <DockType Id="a7453a47-39f4-4fe6-8175-858539f0e118" Name="Roco H0 Roco-Line" />
+    <DockType Id="c4e3d9fd-41c3-49c8-8974-1a79ccfd626b" Name="Roco H0e" />
+    <DockType Id="245fabb7-a2ea-4535-87e6-403df4f6ad1f" Name="Pico H0" />
+    <DockType Id="2c28e2be-b0d4-4f65-b11e-03ae14de5cd7" Name="Rokuhan Z" />
+    <DockType Id="50dbc816-31c9-4647-9ccb-d21a9d7566dd" Name="Kato H0" />
+    <DockType Id="4c720be3-76c0-4ac4-8b62-c81f311a308f" Name="Lego" />
+    <DockType Id="375244cb-e8a5-446f-90a6-5d45418065f8" Name="Wood" />
   </DockTypes>
   <TrackTypes>
     <TrackType>
@@ -28,7 +28,7 @@
       <Parameter>
         <Manufacturer>Märklin</Manufacturer>
         <Gauge>H0</Gauge>
-        <DockType>6F75E646-B7E1-45CF-A0E4-8D338D43DF66</DockType>
+        <DockType>6f75e646-b7e1-45cf-a0e4-8d338d43df66</DockType>
         <RailType>Silver</RailType>
         <RailWidth>18</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
@@ -60,6 +60,8 @@
         <Length Id="bcffa68f-4be4-48a6-ba1c-a9d456608382" Name="G77" Value="77.5" />
         <Length Id="05785a26-0d6b-4a6c-a461-5d0d57c176d3" Name="G71" Value="70.8" />
         <Length Id="af51f9fb-e4ad-40a6-8588-3bcbaa07a2ea" Name="G64" Value="64.3" />
+        <Length Id="4e765e56-a949-432d-81a4-c3d6229e189a" Name="G378" Value="378" />
+        <Length Id="32ddf28c-a3d4-4469-86f8-ee4f14a85df2" Name="G263" Value="263" />
       </Lengths>
       <Angles>
         <Angle Id="567ee2fb-50f9-46d9-b3ee-7684295db0d7" Name="A49" Value="48.6" />
@@ -352,8 +354,8 @@
         <Turntable Id="17e135c1-cf27-4091-968e-eb1d37efc03d">
           <Article>74861</Article>
           <RailNum>TurntableNum_30</RailNum>
-          <Diameter>d79e3a36-805d-4159-baa8-d762bdcec2c3</Diameter>
-          <DeckLength>a53c4780-fff6-4674-976b-2aac0c7706dd</DeckLength>
+          <DeckLength>32ddf28c-a3d4-4469-86f8-ee4f14a85df2</DeckLength>
+          <ConnectionLength>4e765e56-a949-432d-81a4-c3d6229e189a</ConnectionLength>
         </Turntable>
       </Tracks>
       <Groups>

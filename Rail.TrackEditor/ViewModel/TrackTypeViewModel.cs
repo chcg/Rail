@@ -33,12 +33,27 @@ namespace Rail.TrackEditor.ViewModel
             this.Tracks = new ObservableCollection<TrackViewModel>(trackType.Tracks.Select(t => TrackViewModel.Create(this, t)));
             this.Names = new ObservableCollection<TrackTypeNameViewModel>(this.trackType.Name.LanguageDictionary.Select(n => new TrackTypeNameViewModel(n)));
 
-            this.Lengths = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Lengths.Select(v => new TrackNamedValueViewModel(v)));
-            this.Radii = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Radii.Select(v => new TrackNamedValueViewModel(v)));
-            this.Angles = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Angles.Select(v => new TrackNamedValueViewModel(v)));
-            this.Lengths.CollectionChanged += (o, i) => { NotifyPropertyChanged(nameof(LengthsSource)); NotifyPropertyChanged(nameof(LengthsAndNullSource)); };
-            this.Radii.CollectionChanged += (o, i) => { NotifyPropertyChanged(nameof(RadiiSource)); NotifyPropertyChanged(nameof(RadiiAndNullSource)); };
-            this.Angles.CollectionChanged += (o, i) => { NotifyPropertyChanged(nameof(AnglesSource)); NotifyPropertyChanged(nameof(AnglesAndNullSource)); };
+            this.Lengths = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Lengths.Select(v => new TrackNamedValueViewModel(v)).OrderBy(l => l.Value));
+            this.Radii = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Radii.Select(v => new TrackNamedValueViewModel(v)).OrderBy(l => l.Value));
+            this.Angles = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Angles.Select(v => new TrackNamedValueViewModel(v)).OrderBy(l => l.Value));
+            this.Lengths.CollectionChanged += (o, i) =>
+            {
+                this.trackType.Lengths = this.Lengths.OrderBy(l => l.Value).Select(l => l.NamedValue).ToList();
+                NotifyPropertyChanged(nameof(LengthsSource)); 
+                NotifyPropertyChanged(nameof(LengthsAndNullSource)); 
+            };
+            this.Radii.CollectionChanged += (o, i) => 
+            {
+                this.trackType.Radii = this.Radii.OrderBy(l => l.Value).Select(l => l.NamedValue).ToList();
+                NotifyPropertyChanged(nameof(RadiiSource)); 
+                NotifyPropertyChanged(nameof(RadiiAndNullSource)); 
+            };
+            this.Angles.CollectionChanged += (o, i) =>
+            {
+                this.trackType.Angles = this.Angles.OrderBy(l => l.Value).Select(l => l.NamedValue).ToList();
+                NotifyPropertyChanged(nameof(AnglesSource)); 
+                NotifyPropertyChanged(nameof(AnglesAndNullSource)); 
+            };
         }
 
         //internal object First()
@@ -52,9 +67,9 @@ namespace Rail.TrackEditor.ViewModel
         {
             this.trackType.Tracks = this.Tracks.Select(t => t.Track).ToList();
             this.trackType.Name.LanguageDictionary = this.Names.ToDictionary(n => n.Language, n => n.Name);
-            this.trackType.Lengths = this.Lengths.Select(l => l.NamedValue).ToList();
-            this.trackType.Radii = this.Radii.Select(l => l.NamedValue).ToList();
-            this.trackType.Angles = this.Angles.Select(l => l.NamedValue).ToList();
+            this.trackType.Lengths = this.Lengths.OrderBy(l => l.Value).Select(l => l.NamedValue).ToList();
+            this.trackType.Radii = this.Radii.OrderBy(l => l.Value).Select(l => l.NamedValue).ToList();
+            this.trackType.Angles = this.Angles.OrderBy(l => l.Value).Select(l => l.NamedValue).ToList();
             return this.trackType;
         }
 

@@ -1,4 +1,5 @@
 ﻿using Rail.Tracks.Properties;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Windows;
@@ -7,43 +8,78 @@ using System.Xml.Serialization;
 
 namespace Rail.Tracks
 {
-    public class TrackTransferTable : TrackStraight
+    public class TrackTransferTable : TrackBaseSingle
     {
+        #region store
 
-        [XmlElement("RailsA")]
-        public int RailsA { get; set; }
+        [XmlElement("TransferTableType")]
+        public TrackTransferTableType TransferTableType { get; set; }
 
-        [XmlElement("RailsB")]
-        public int RailsB { get; set; }
+        [XmlElement("DeckLength")]
+        public Guid DeckLengthId { get; set; }
 
-        [XmlElement("Width")]
-        public double Width { get; set; }
+        [XmlElement("ConnectionLength")]
+        public Guid ConnectionLengthId { get; set; }
 
-        [XmlElement("Height")]
-        public double Height { get; set; }
+        [XmlElement("ConnectionDistance")]
+        public Guid ConnectionDistanceId { get; set; }
+
+        #endregion
+
+        #region intern
+
+        [XmlIgnore, JsonIgnore]
+        public double DeckLength { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public double ConnectionLength { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public double ConnectionDistance { get; set; }
+
+        #endregion
+
+        #region override
+
+        /// <summary>
+        /// Ramp length
+        /// </summary>
+        /// <remarks>Turntable can not be used in ramps</remarks>
+        [XmlIgnore, JsonIgnore]
+        public override double RampLength { get { return 0; } }
+
 
         public override void Update(TrackType trackType)
         {
-            base.Update(trackType);
+            this.DeckLength = GetValue(trackType.Lengths, this.DeckLengthId);
+            this.ConnectionLength = GetValue(trackType.Lengths, this.ConnectionLengthId);
+            this.ConnectionDistance = GetValue(trackType.Lengths, this.ConnectionDistanceId);
 
             this.Name = $"{Resources.TrackTransferTable}";
             this.Description = $"{this.Article} {Resources.TrackTransferTable}";
+
+            base.Update(trackType);
         }
 
         protected override Geometry CreateGeometry()
         {
-            return new RectangleGeometry(new Rect(-this.Width / 2, -this.Height / 2, this.Width, this.Height));
+            double width = this.DeckLength + this.ConnectionLength * 2;
+            double height = 7 * this.ConnectionDistance;
+            return new RectangleGeometry(new Rect(-width / 2, -height / 2, width, height));
         }
 
         protected override Drawing CreateRailDrawing()
         {
-            double rim = (this.Width - this.Length) / 2;
+            double width = this.DeckLength + this.ConnectionLength * 2;
+            double height = 7 * this.ConnectionDistance;
+
+            double rim = this.ConnectionLength;
 
             DrawingGroup drawingRail = new DrawingGroup();
             // background
-            drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.DarkGray), linePen, new RectangleGeometry(new Rect(-Width / 2, -Height / 2, Width, Height))));
-            drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new RectangleGeometry(new Rect(-Width / 2, -Height / 2, rim, Height))));
-            drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new RectangleGeometry(new Rect(Width / 2 - rim, -Height / 2, rim, Height))));
+            drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.DarkGray), linePen, new RectangleGeometry(new Rect(-width / 2, -height / 2, width, height))));
+            drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new RectangleGeometry(new Rect(-width / 2, -height / 2, rim, height))));
+            drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new RectangleGeometry(new Rect(width / 2 - rim, -height / 2, rim, height))));
             if (this.HasBallast)
             {
                 //drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, 0, null));
@@ -54,11 +90,16 @@ namespace Rail.Tracks
 
         protected override List<TrackDockPoint> CreateDockPoints()
         {
+            double width = this.DeckLength + this.ConnectionLength * 2;
+            double height = 7 * this.ConnectionDistance;
+
             return new List<TrackDockPoint>
             {
-                new TrackDockPoint(0, new Point(-this.Length / 2.0, 0.0), 135, this.dockType),
-                new TrackDockPoint(1, new Point(+this.Length / 2.0, 0.0), 315, this.dockType)
+                new TrackDockPoint(0, new Point(-width / 2.0, 0.0), 135, this.dockType),
+                new TrackDockPoint(1, new Point(+width / 2.0, 0.0), 315, this.dockType)
             };
         }
+
+        #endregion
     }
 }

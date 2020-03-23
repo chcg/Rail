@@ -15,22 +15,22 @@ namespace Rail.Tracks
 
         [XmlElement("RailNum")]
         public TrackTurntableRailNum RailNum { get; set; }
-
-        [XmlElement("Diameter")]
-        public Guid DiameterId { get; set; }
-
+        
         [XmlElement("DeckLength")]
         public Guid DeckLengthId { get; set; }
+        
+        [XmlElement("ConnectionLength")]
+        public Guid ConnectionLengthId { get; set; }
 
         #endregion
 
         #region intern
-
-        [XmlIgnore, JsonIgnore]
-        public double Diameter { get; set; }
-
+        
         [XmlIgnore, JsonIgnore]
         public double DeckLength { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public double ConnectionLength { get; set; }
 
         #endregion
 
@@ -45,8 +45,8 @@ namespace Rail.Tracks
 
         public override void Update(TrackType trackType)
         {
-            this.Diameter = GetValue(trackType.Lengths, this.DiameterId);
             this.DeckLength = GetValue(trackType.Lengths, this.DeckLengthId);
+            this.ConnectionLength = GetValue(trackType.Lengths, this.ConnectionLengthId);
 
             this.Name = $"{Resources.TrackTurntable}";
             this.Description = $"{this.Article} {Resources.TrackTurntable}";
@@ -56,7 +56,8 @@ namespace Rail.Tracks
 
         protected override Geometry CreateGeometry()
         {
-            return new EllipseGeometry(new Point(0, 0), this.Diameter / 2, this.Diameter / 2);
+            double diameter = this.DeckLength + this.ConnectionLength * 2;
+            return new EllipseGeometry(new Point(0, 0), diameter / 2, diameter / 2);
         }
 
         protected override Drawing CreateRailDrawing()
@@ -69,11 +70,12 @@ namespace Rail.Tracks
                 TrackTurntableRailNum.TurntableNum_48 => 48,
                 _ => 0
             };
+            double diameter = this.DeckLength + this.ConnectionLength * 2;
             double angle = 360 / railNum;
 
             DrawingGroup drawingRail = new DrawingGroup();
             // background
-            drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.DarkGray), linePen, new EllipseGeometry(new Point(0, 0), this.Diameter / 2 , this.Diameter / 2)));
+            drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.DarkGray), linePen, new EllipseGeometry(new Point(0, 0), diameter / 2 , diameter / 2)));
             drawingRail.Children.Add(new GeometryDrawing(new SolidColorBrush(Colors.Gray), linePen, new EllipseGeometry(new Point(0, 0), this.DeckLength / 2, this.DeckLength / 2)));
             if (this.HasBallast)
             {
@@ -82,12 +84,12 @@ namespace Rail.Tracks
                     drawingRail.Children.Add(new GeometryDrawing(this.ballastBrush, null,
                         new PathGeometry(new PathFigureCollection
                         {
-                        new PathFigure(new Point(-this.Diameter / 2, -this.RailWidth).Rotate(angle * i), new PathSegmentCollection
+                        new PathFigure(new Point(-diameter / 2, -this.RailWidth).Rotate(angle * i), new PathSegmentCollection
                         {
                             new LineSegment(new Point(-this.DeckLength / 2, -this.RailWidth).Rotate(angle * i), true),
                             new LineSegment(new Point(-this.DeckLength / 2,  this.RailWidth).Rotate(angle * i), true),
-                            new LineSegment(new Point(-this.Diameter / 2,  this.RailWidth).Rotate(angle * i), true),
-                            new LineSegment(new Point(-this.Diameter / 2, -this.RailWidth).Rotate(angle * i), true)
+                            new LineSegment(new Point(-diameter / 2,  this.RailWidth).Rotate(angle * i), true),
+                            new LineSegment(new Point(-diameter / 2, -this.RailWidth).Rotate(angle * i), true)
                         }, true)
                         })));
                 }
@@ -99,18 +101,18 @@ namespace Rail.Tracks
             for (int i = 0; i < railNum; i++)
             {
 
-                drawingRail.Children.Add(new GeometryDrawing(null, this.railPen, new LineGeometry(new Point(-this.Diameter / 2, -this.RailWidth / 2).Rotate(angle * i), new Point(-this.DeckLength / 2, -this.RailWidth / 2).Rotate(angle * i)))); 
-                drawingRail.Children.Add(new GeometryDrawing(null, this.railPen, new LineGeometry(new Point(-this.Diameter / 2, +this.RailWidth / 2).Rotate(angle * i), new Point(-this.DeckLength / 2, +this.RailWidth / 2).Rotate(angle * i))));
+                drawingRail.Children.Add(new GeometryDrawing(null, this.railPen, new LineGeometry(new Point(-diameter / 2, -this.RailWidth / 2).Rotate(angle * i), new Point(-this.DeckLength / 2, -this.RailWidth / 2).Rotate(angle * i)))); 
+                drawingRail.Children.Add(new GeometryDrawing(null, this.railPen, new LineGeometry(new Point(-diameter / 2, +this.RailWidth / 2).Rotate(angle * i), new Point(-this.DeckLength / 2, +this.RailWidth / 2).Rotate(angle * i))));
 
-                double length1 = this.Diameter / 2 - this.DeckLength / 2;
+                double length1 = diameter / 2 - this.DeckLength / 2;
                 int num1 = (int)Math.Round(length1 / (this.RailWidth / 2));
                 double sleepersDistance1 = length1 / num1;
 
                 for (int j = 0; j < num1; j++)
                 {
                     drawingRail.Children.Add(new GeometryDrawing(null, this.sleeperPen, new LineGeometry(
-                        new Point(-this.Diameter / 2 + sleepersDistance1 / 2 + sleepersDistance1 * j, -this.sleeperWidth / 2).Rotate(angle * i),
-                        new Point(-this.Diameter / 2 + sleepersDistance1 / 2 + sleepersDistance1 * j, +this.sleeperWidth / 2).Rotate(angle * i))));
+                        new Point(-diameter / 2 + sleepersDistance1 / 2 + sleepersDistance1 * j, -this.sleeperWidth / 2).Rotate(angle * i),
+                        new Point(-diameter / 2 + sleepersDistance1 / 2 + sleepersDistance1 * j, +this.sleeperWidth / 2).Rotate(angle * i))));
                 }
             }
             return drawingRail;
@@ -128,11 +130,12 @@ namespace Rail.Tracks
             };
 
             double angle = 360 / railNum;
+            double diameter = this.DeckLength + this.ConnectionLength * 2;
 
             var dockPoints = new List<TrackDockPoint>();
             for (int i = 0; i < railNum; i++)
             {
-                Point point = new Point(0, this.Diameter / 2).Rotate(angle * i);
+                Point point = new Point(0, diameter / 2).Rotate(angle * i);
                 dockPoints.Add(new TrackDockPoint(i, point, angle * i + 45, this.dockType));
             }
             return dockPoints;

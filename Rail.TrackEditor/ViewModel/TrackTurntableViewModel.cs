@@ -23,8 +23,8 @@ namespace Rail.TrackEditor.ViewModel
             TrackTurntable trackTurntable = new TrackTurntable
             {
                 Article = string.Empty,
-                DiameterId = trackTypeViewModel.Lengths.First().Id,
-                DeckLengthId = trackTypeViewModel.Lengths.First().Id
+                DeckLengthId = trackTypeViewModel.Lengths.First().Id,
+                ConnectionLengthId = trackTypeViewModel.Lengths.First().Id
             };
             return new TrackTurntableViewModel(trackTypeViewModel, trackTurntable);
         }
@@ -41,17 +41,16 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.RailNum = value; NotifyPropertyChanged(nameof(RailNum)); }
         }
 
-        public TrackNamedValueViewModel Diameter
-        {
-            get { return GetLength(this.track.DiameterId); }
-            set { this.track.DiameterId = value.Id; NotifyPropertyChanged(nameof(Diameter)); }
-        }
-
         public TrackNamedValueViewModel DeckLength
         {
             get { return GetLength(this.track.DeckLengthId); }
             set { this.track.DeckLengthId = value.Id; NotifyPropertyChanged(nameof(DeckLength)); }
         }
-       
+
+        public TrackNamedValueViewModel ConnectionLength
+        {
+            get { return GetLength(this.track.ConnectionLengthId); }
+            set { this.track.ConnectionLengthId = value.Id; NotifyPropertyChanged(nameof(ConnectionLength)); }
+        }
     }
 }

@@ -106,6 +106,24 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connection Distance.
+        /// </summary>
+        public static string MainConnectionDistance {
+            get {
+                return ResourceManager.GetString("MainConnectionDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Track Connection Length.
+        /// </summary>
+        public static string MainConnectionLength {
+            get {
+                return ResourceManager.GetString("MainConnectionLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Crossing Angle.
         /// </summary>
         public static string MainCrossingAngle {
@@ -669,6 +687,15 @@ namespace Rail.TrackEditor.Properties {
         public static string MainTrackTypes {
             get {
                 return ResourceManager.GetString("MainTrackTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer Table Type.
+        /// </summary>
+        public static string MainTransferTableType {
+            get {
+                return ResourceManager.GetString("MainTransferTableType", resourceCulture);
             }
         }
         

@@ -208,8 +208,8 @@
                                 <xs:sequence>
                                   <xs:element name="Article" type="xs:string" />
                                   <xs:element name="RailNum" type="RailNum" />
-                                  <xs:element name="Diameter" type="Guid" />
                                   <xs:element name="DeckLength" type="Guid" />
+                                  <xs:element name="ConnectionLength" type="Guid" />
                                 </xs:sequence>
                                 <xs:attribute name="Id" type="Guid" use="required" />
                               </xs:complexType>
@@ -218,11 +218,10 @@
                               <xs:complexType>
                                 <xs:sequence>
                                   <xs:element name="Article" type="xs:unsignedInt" />
-                                  <xs:element name="RailsA" type="Guid" />
-                                  <xs:element name="RailsB" type="Guid" />
-                                  <xs:element name="Width" type="Guid" />
-                                  <xs:element name="Height" type="Guid" />
-                                  <xs:element name="Length" type="Guid" />
+                                  <xs:element name="ConnectionNum" type="xs:int" />
+                                  <xs:element name="DeckLength" type="Guid" />
+                                  <xs:element name="ConnectionLength" type="Guid" />
+                                  <xs:element name="ConnectionDistance" type="Guid" />
                                 </xs:sequence>
                                 <xs:attribute name="Id" type="Guid" use="required" />
                               </xs:complexType>

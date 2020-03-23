@@ -47,6 +47,8 @@ namespace Rail.TrackEditor.Controls
     /// </summary>
     public class TrackControl : Control
     {
+        private readonly Pen blackPen = new Pen(Brushes.Black, 1);
+
         static TrackControl()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TrackControl), new FrameworkPropertyMetadata(typeof(TrackControl)));
@@ -90,7 +92,10 @@ namespace Rail.TrackEditor.Controls
             trackControl.InvalidateVisual();
         }
 
-        private readonly Pen blackPen = new Pen(Brushes.Black, 1);
+        protected override Size MeasureOverride(Size constraint)
+        {
+            return new Size(constraint.Width, constraint.Width / 2); // base.MeasureOverride(constraint);
+        }
 
         protected override void OnRender(DrawingContext drawingContext)
         {

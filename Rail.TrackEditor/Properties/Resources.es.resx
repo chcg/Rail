@@ -132,6 +132,12 @@
   <data name="MainBallastWidth" xml:space="preserve">
     <value>Ballast Width</value>
   </data>
+  <data name="MainConnectionDistance" xml:space="preserve">
+    <value>Connection Distance</value>
+  </data>
+  <data name="MainConnectionLength" xml:space="preserve">
+    <value>Track Connection Length</value>
+  </data>
   <data name="MainCrossingAngle" xml:space="preserve">
     <value>Crossing Angle</value>
   </data>
@@ -320,6 +326,9 @@
   </data>
   <data name="MainTrackTypes" xml:space="preserve">
     <value>Track Types</value>
+  </data>
+  <data name="MainTransferTableType" xml:space="preserve">
+    <value>Transfer Table Type</value>
   </data>
   <data name="MainTurnoutDirection" xml:space="preserve">
     <value>Turnout Direction</value>
