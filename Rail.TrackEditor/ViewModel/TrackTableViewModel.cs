@@ -6,28 +6,28 @@ using System.Text;
 
 namespace Rail.TrackEditor.ViewModel
 {
-    public class TrackTransferTableViewModel : TrackViewModel
+    public class TrackTableViewModel : TrackViewModel
     {
-        private readonly TrackTransferTable track;
+        private readonly TrackTable track;
 
-        public TrackTransferTableViewModel(TrackTypeViewModel trackTypeViewModel) : this(trackTypeViewModel, new TrackTransferTable())
+        public TrackTableViewModel(TrackTypeViewModel trackTypeViewModel) : this(trackTypeViewModel, new TrackTable())
         { }
 
-        public TrackTransferTableViewModel(TrackTypeViewModel trackTypeViewModel, TrackTransferTable track) : base(trackTypeViewModel, track)
+        public TrackTableViewModel(TrackTypeViewModel trackTypeViewModel, TrackTable track) : base(trackTypeViewModel, track)
         {
             this.track = track;
         }
 
         public static TrackViewModel CreateNew(TrackTypeViewModel trackTypeViewModel)
         {
-            TrackTransferTable trackTransferTable = new TrackTransferTable
+            TrackTable trackTable = new TrackTable
             {
                 Article = string.Empty,
                 DeckLengthId = trackTypeViewModel.Lengths.First().Id,
                 ConnectionLengthId = trackTypeViewModel.Lengths.First().Id,
                 ConnectionDistanceId = trackTypeViewModel.Lengths.First().Id
             };
-            return new TrackTransferTableViewModel(trackTypeViewModel, trackTransferTable);
+            return new TrackTableViewModel(trackTypeViewModel, trackTable);
         }
 
         public string Article
@@ -36,10 +36,10 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.Article = value.Trim(); NotifyPropertyChanged(nameof(Article)); }
         }
 
-        public TrackTransferTableType TransferTableType
+        public TrackTableType TableType
         {
-            get { return this.track.TransferTableType; }
-            set { this.track.TransferTableType = value; NotifyPropertyChanged(nameof(TransferTableType)); }
+            get { return this.track.TableType; }
+            set { this.track.TableType = value; NotifyPropertyChanged(nameof(TableType)); }
         }
 
         public TrackNamedValueViewModel DeckLength
@@ -59,6 +59,5 @@ namespace Rail.TrackEditor.ViewModel
             get { return GetLength(this.track.ConnectionDistanceId); }
             set { this.track.ConnectionDistanceId = value.Id; NotifyPropertyChanged(nameof(ConnectionDistance)); }
         }
-
     }
 }

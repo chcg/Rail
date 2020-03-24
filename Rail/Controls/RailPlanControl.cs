@@ -1073,17 +1073,9 @@ namespace Rail.Controls
                 }
                 else if (railItem is RailItem item)
                 {
-                    if (item.Track is TrackTurntable)
+                    if (item.Track is TrackTable)
                     {
-                        TurntableView view = new TurntableView { DataContext = new TurntableViewModel(item) };
-                        if (view.ShowDialog().Value)
-                        {
-                            Invalidate();
-                        }
-                    }
-                    else if (item.Track is TrackTransferTable)
-                    {
-                        TransferTableView view = new TransferTableView { DataContext = new TransferTableViewModel(item) };
+                        TableView view = new TableView { DataContext = new TableViewModel(item) };
                         if (view.ShowDialog().Value)
                         {
                             Invalidate();

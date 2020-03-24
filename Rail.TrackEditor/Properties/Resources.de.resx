@@ -255,11 +255,11 @@
   <data name="MainNewStraightTrack" xml:space="preserve">
     <value>Gerades Gleis hinzufügen</value>
   </data>
+  <data name="MainNewTableTrack" xml:space="preserve">
+    <value>Scheibe hinzufügen</value>
+  </data>
   <data name="MainNewTrackType" xml:space="preserve">
     <value>Track Typ hinzufügen</value>
-  </data>
-  <data name="MainNewTransferTableTrack" xml:space="preserve">
-    <value>Schiebebühne hinzufügen</value>
   </data>
   <data name="MainNewTurnoutTrack" xml:space="preserve">
     <value>Weiche hinzufügen</value>
@@ -320,6 +320,9 @@
   </data>
   <data name="MainStraightLength" xml:space="preserve">
     <value>Gerade Länge</value>
+  </data>
+  <data name="MainTableType" xml:space="preserve">
+    <value>Scheiben Typ</value>
   </data>
   <data name="MainTrackTypeName" xml:space="preserve">
     <value>Gleis Typ Name</value>

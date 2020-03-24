@@ -255,11 +255,11 @@
   <data name="MainNewStraightTrack" xml:space="preserve">
     <value>New Straight Track</value>
   </data>
+  <data name="MainNewTableTrack" xml:space="preserve">
+    <value>New Table Track</value>
+  </data>
   <data name="MainNewTrackType" xml:space="preserve">
     <value>New Track Type</value>
-  </data>
-  <data name="MainNewTransferTableTrack" xml:space="preserve">
-    <value>New Transfer Table Track</value>
   </data>
   <data name="MainNewTurnoutTrack" xml:space="preserve">
     <value>New Turnout Track</value>
@@ -320,6 +320,9 @@
   </data>
   <data name="MainStraightLength" xml:space="preserve">
     <value>Straight Length</value>
+  </data>
+  <data name="MainTableType" xml:space="preserve">
+    <value>Table Type</value>
   </data>
   <data name="MainTrackTypeName" xml:space="preserve">
     <value>Track Type Name</value>

@@ -246,6 +246,9 @@
   <data name="TrackNewGroup" xml:space="preserve">
     <value>Neue Gruppe</value>
   </data>
+  <data name="TrackSegmentTurntable" xml:space="preserve">
+    <value>Segment Drehscheibe</value>
+  </data>
   <data name="TrackStraight" xml:space="preserve">
     <value>Gerades Gleis</value>
   </data>

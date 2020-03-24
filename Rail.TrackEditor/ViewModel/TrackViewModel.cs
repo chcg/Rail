@@ -45,10 +45,8 @@ namespace Rail.TrackEditor.ViewModel
                 nameof(TrackCurvedTurnout) => new TrackCurvedTurnoutViewModel(trackTypeViewModel, (TrackCurvedTurnout)track),
                 nameof(TrackDoubleSlipSwitch) => new TrackDoubleSlipSwitchViewModel(trackTypeViewModel, (TrackDoubleSlipSwitch)track),
                 nameof(TrackDoubleCrossover) => new TrackDoubleCrossoverViewModel(trackTypeViewModel, (TrackDoubleCrossover)track),
-
                 
-                nameof(TrackTurntable) => new TrackTurntableViewModel(trackTypeViewModel, (TrackTurntable)track),
-                nameof(TrackTransferTable) => new TrackTransferTableViewModel(trackTypeViewModel, (TrackTransferTable)track),
+                nameof(TrackTable) => new TrackTableViewModel(trackTypeViewModel, (TrackTable)track),
 
                 nameof(TrackGroup) => new TrackGroupViewModel(trackTypeViewModel, (TrackGroup)track),
                 _ => null
@@ -61,8 +59,7 @@ namespace Rail.TrackEditor.ViewModel
         public TrackDrive[] TurnoutDrives { get { return (TrackDrive[])Enum.GetValues(typeof(TrackDrive)); } }
         public TrackEndType[] EndTypes { get { return (TrackEndType[])Enum.GetValues(typeof(TrackEndType)); } }
         public TrackFlexType[] FlexTypes { get { return (TrackFlexType[])Enum.GetValues(typeof(TrackFlexType)); } }
-        public TrackTurntableRailNum[] TurntableNum { get { return (TrackTurntableRailNum[])Enum.GetValues(typeof(TrackTurntableRailNum)); } }
-        public TrackTransferTableType[] TransferTableTypes { get { return (TrackTransferTableType[])Enum.GetValues(typeof(TrackTransferTableType)); } }
+        public TrackTableType[] TableTypes { get { return (TrackTableType[])Enum.GetValues(typeof(TrackTableType)); } }
         public int[] StarNumbers { get { return new int[] { 2, 3, 4 }; } }
 
 

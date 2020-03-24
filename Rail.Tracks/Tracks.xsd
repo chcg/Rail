@@ -202,26 +202,15 @@
                             </xs:element>
 
                             <!-- special -->
-
-                            <xs:element maxOccurs="unbounded" name="Turntable">
-                              <xs:complexType>
-                                <xs:sequence>
-                                  <xs:element name="Article" type="xs:string" />
-                                  <xs:element name="RailNum" type="RailNum" />
-                                  <xs:element name="DeckLength" type="Guid" />
-                                  <xs:element name="ConnectionLength" type="Guid" />
-                                </xs:sequence>
-                                <xs:attribute name="Id" type="Guid" use="required" />
-                              </xs:complexType>
-                            </xs:element>
-                            <xs:element maxOccurs="unbounded" name="TransferTable">
+                            
+                            <xs:element maxOccurs="unbounded" name="Table">
                               <xs:complexType>
                                 <xs:sequence>
                                   <xs:element name="Article" type="xs:unsignedInt" />
-                                  <xs:element name="ConnectionNum" type="xs:int" />
+                                  <xs:element name="TableType" type="TableType" />
                                   <xs:element name="DeckLength" type="Guid" />
                                   <xs:element name="ConnectionLength" type="Guid" />
-                                  <xs:element name="ConnectionDistance" type="Guid" />
+                                  <xs:element name="ConnectionDistance" type="Guid" minOccurs="0" />
                                 </xs:sequence>
                                 <xs:attribute name="Id" type="Guid" use="required" />
                               </xs:complexType>
@@ -411,12 +400,15 @@
   </xs:simpleType>
 
   
-  <xs:simpleType name="RailNum" >
+  <xs:simpleType name="TableType" >
     <xs:restriction base="xs:string">
-      <xs:enumeration value="TurntableNum_24" />
-      <xs:enumeration value="TurntableNum_30" />
-      <xs:enumeration value="TurntableNum_40" />
-      <xs:enumeration value="TurntableNum_48" />
+      <xs:enumeration value="Turntable24" />
+      <xs:enumeration value="Turntable30" />
+      <xs:enumeration value="Turntable40" />
+      <xs:enumeration value="Turntable48" />
+      <xs:enumeration value="Transfer55" />
+      <xs:enumeration value="Transfer57" />
+      <xs:enumeration value="Segment320" />
     </xs:restriction>
   </xs:simpleType>
   

@@ -133,8 +133,7 @@ namespace Rail.Tracks
                     { "DoubleSlipSwitch", typeof(TrackDoubleSlipSwitch) },
                     { "DoubleCrossover", typeof(TrackDoubleCrossover) },
 
-                    { "Turntable", typeof(TrackTurntable) },
-                    { "TransferTable", typeof(TrackTransferTable) },
+                    { "Table", typeof(TrackTable) },
 
                     { "Group", typeof(TrackGroup) }
                 };

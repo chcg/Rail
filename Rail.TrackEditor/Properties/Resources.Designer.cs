@@ -475,20 +475,20 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Table Track.
+        /// </summary>
+        public static string MainNewTableTrack {
+            get {
+                return ResourceManager.GetString("MainNewTableTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Track Type.
         /// </summary>
         public static string MainNewTrackType {
             get {
                 return ResourceManager.GetString("MainNewTrackType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New Transfer Table Track.
-        /// </summary>
-        public static string MainNewTransferTableTrack {
-            get {
-                return ResourceManager.GetString("MainNewTransferTableTrack", resourceCulture);
             }
         }
         
@@ -669,6 +669,15 @@ namespace Rail.TrackEditor.Properties {
         public static string MainStraightLength {
             get {
                 return ResourceManager.GetString("MainStraightLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table Type.
+        /// </summary>
+        public static string MainTableType {
+            get {
+                return ResourceManager.GetString("MainTableType", resourceCulture);
             }
         }
         

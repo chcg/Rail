@@ -224,8 +224,7 @@
                                 <MenuItem Header="{x:Static lang:Resources.MainNewDoubleSlipSwitchTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.DoubleSlipSwitch}" />
                                 <MenuItem Header="{x:Static lang:Resources.MainNewDoubleCrossoverTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.DoubleCrossover}" />
                                 <Separator/>
-                                <MenuItem Header="{x:Static lang:Resources.MainNewTurntableTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Turntable}" />
-                                <MenuItem Header="{x:Static lang:Resources.MainNewTransferTableTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.TransferTable}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainNewTableTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Table}" />
                                 <Separator/>
                                 <MenuItem Header="{x:Static lang:Resources.MainNewGroupTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Group}" />
                             </ContextMenu>
@@ -246,8 +245,7 @@
                                             <MenuItem Header="{x:Static lang:Resources.MainNewDoubleSlipSwitchTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.DoubleSlipSwitch}" />
                                             <MenuItem Header="{x:Static lang:Resources.MainNewDoubleCrossoverTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.DoubleCrossover}" />
                                             <Separator/>
-                                            <MenuItem Header="{x:Static lang:Resources.MainNewTurntableTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Turntable}" />
-                                            <MenuItem Header="{x:Static lang:Resources.MainNewTransferTableTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.TransferTable}" />
+                                            <MenuItem Header="{x:Static lang:Resources.MainNewTableTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Table}" />
                                             <Separator/>
                                             <MenuItem Header="{x:Static lang:Resources.MainNewGroupTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Group}" />
                                             <Separator/>
@@ -302,11 +300,8 @@
                                 </DataTemplate>
 
 
-                                <DataTemplate DataType="{x:Type vm:TrackTurntableViewModel}" >
-                                    <v:TrackTurntableView/>
-                                </DataTemplate>
-                                <DataTemplate DataType="{x:Type vm:TrackTransferTableViewModel}" >
-                                    <v:TrackTransferTableView/>
+                                <DataTemplate DataType="{x:Type vm:TrackTableViewModel}" >
+                                    <v:TrackTableView/>
                                 </DataTemplate>
 
                                 <DataTemplate DataType="{x:Type vm:TrackGroupViewModel}" >

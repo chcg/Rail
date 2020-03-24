@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace Rail.TrackEditor.View
 {
     /// <summary>
-    /// Interaction logic for TrackTurntableView.xaml
+    /// Interaction logic for TrackTableView.xaml
     /// </summary>
-    public partial class TrackTurntableView : UserControl
+    public partial class TrackTableView : UserControl
     {
-        public TrackTurntableView()
+        public TrackTableView()
         {
             InitializeComponent();
         }

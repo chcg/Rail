@@ -222,8 +222,7 @@ namespace Rail.TrackEditor.ViewModel
                 TrackTypes.DoubleSlipSwitch => TrackDoubleSlipSwitchViewModel.CreateNew(this),
                 TrackTypes.DoubleCrossover => TrackDoubleCrossoverViewModel.CreateNew(this),
                 
-                TrackTypes.Turntable => TrackTurntableViewModel.CreateNew(this),
-                TrackTypes.TransferTable => TrackTransferTableViewModel.CreateNew(this),
+                TrackTypes.Table => TrackTableViewModel.CreateNew(this),
                 
                 TrackTypes.Group => TrackGroupViewModel.CreateNew(this),
                 _ => null

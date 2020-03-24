@@ -171,11 +171,32 @@
   <data name="EnumRight" xml:space="preserve">
     <value>Right</value>
   </data>
+  <data name="EnumSegment320" xml:space="preserve">
+    <value>Segment Turntable 3 of 20</value>
+  </data>
   <data name="EnumSilver" xml:space="preserve">
     <value>Silver</value>
   </data>
   <data name="EnumThree" xml:space="preserve">
     <value>Three</value>
+  </data>
+  <data name="EnumTransfer55" xml:space="preserve">
+    <value>Transfer Table 5 of 5</value>
+  </data>
+  <data name="EnumTransfer57" xml:space="preserve">
+    <value>Transfer Table 5 of 7</value>
+  </data>
+  <data name="EnumTurntable24" xml:space="preserve">
+    <value>Turntable 24 / 15°</value>
+  </data>
+  <data name="EnumTurntable30" xml:space="preserve">
+    <value>Turntable 30 / 12°</value>
+  </data>
+  <data name="EnumTurntable40" xml:space="preserve">
+    <value>Turntable 40 / 9°</value>
+  </data>
+  <data name="EnumTurntable48" xml:space="preserve">
+    <value>Turntable 48 / 7.5°</value>
   </data>
   <data name="EnumUncoupler" xml:space="preserve">
     <value>Uncoupler</value>
@@ -245,6 +266,9 @@
   </data>
   <data name="TrackNewGroup" xml:space="preserve">
     <value>New Group</value>
+  </data>
+  <data name="TrackSegmentTurntable" xml:space="preserve">
+    <value>Segment Turntable</value>
   </data>
   <data name="TrackStraight" xml:space="preserve">
     <value>Straight Track</value>

@@ -223,6 +223,15 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Segment Turntable 3 of 20.
+        /// </summary>
+        public static string EnumSegment320 {
+            get {
+                return ResourceManager.GetString("EnumSegment320", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Silver.
         /// </summary>
         public static string EnumSilver {
@@ -237,6 +246,60 @@ namespace Rail.Tracks.Properties {
         public static string EnumThree {
             get {
                 return ResourceManager.GetString("EnumThree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer Table 5 of 5.
+        /// </summary>
+        public static string EnumTransfer55 {
+            get {
+                return ResourceManager.GetString("EnumTransfer55", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer Table 5 of 7.
+        /// </summary>
+        public static string EnumTransfer57 {
+            get {
+                return ResourceManager.GetString("EnumTransfer57", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turntable 24 / 15°.
+        /// </summary>
+        public static string EnumTurntable24 {
+            get {
+                return ResourceManager.GetString("EnumTurntable24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turntable 30 / 12°.
+        /// </summary>
+        public static string EnumTurntable30 {
+            get {
+                return ResourceManager.GetString("EnumTurntable30", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turntable 40 / 9°.
+        /// </summary>
+        public static string EnumTurntable40 {
+            get {
+                return ResourceManager.GetString("EnumTurntable40", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turntable 48 / 7.5°.
+        /// </summary>
+        public static string EnumTurntable48 {
+            get {
+                return ResourceManager.GetString("EnumTurntable48", resourceCulture);
             }
         }
         
@@ -444,6 +507,15 @@ namespace Rail.Tracks.Properties {
         public static string TrackNewGroup {
             get {
                 return ResourceManager.GetString("TrackNewGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Segment Turntable.
+        /// </summary>
+        public static string TrackSegmentTurntable {
+            get {
+                return ResourceManager.GetString("TrackSegmentTurntable", resourceCulture);
             }
         }
         

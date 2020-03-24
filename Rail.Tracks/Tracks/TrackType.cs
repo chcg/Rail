@@ -68,8 +68,7 @@ namespace Rail.Tracks
          XmlArrayItem(typeof(TrackDoubleSlipSwitch), ElementName = "DoubleSlipSwitch"),
          XmlArrayItem(typeof(TrackDoubleCrossover), ElementName = "DoubleCrossover"),
 
-         XmlArrayItem(typeof(TrackTurntable), ElementName = "Turntable"),
-         XmlArrayItem(typeof(TrackTransferTable), ElementName = "TransferTable"),
+         XmlArrayItem(typeof(TrackTable), ElementName = "Table"),
 
          XmlArrayItem(typeof(TrackGroup), ElementName = "Group")]
       

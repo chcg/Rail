@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Rail.ViewModel
 {
-    public class TransferTableViewModel : DialogViewModel
+    public class TableViewModel : DialogViewModel
     {
-        public TransferTableViewModel(RailItem railItem)
+        public TableViewModel(RailItem railItem)
         {
 
         }

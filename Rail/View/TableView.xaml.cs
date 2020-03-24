@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rail.Mvvm;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -8,17 +9,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Rail.TrackEditor.View
+namespace Rail.View
 {
     /// <summary>
-    /// Interaction logic for TrackTransferTableView.xaml
+    /// Interaction logic for TableView.xaml
     /// </summary>
-    public partial class TrackTransferTableView : UserControl
+    public partial class TableView : DialogView
     {
-        public TrackTransferTableView()
+        public TableView()
         {
             InitializeComponent();
         }

@@ -351,12 +351,12 @@
         <Length>9931f1be-5977-4154-91a1-768f4236ccbb</Length>
         <DockType>M20</DockType>
       </Adapter>-->
-        <Turntable Id="17e135c1-cf27-4091-968e-eb1d37efc03d">
+        <Table Id="17e135c1-cf27-4091-968e-eb1d37efc03d">
           <Article>74861</Article>
-          <RailNum>TurntableNum_30</RailNum>
+          <TableType>Turntable30</TableType>
           <DeckLength>32ddf28c-a3d4-4469-86f8-ee4f14a85df2</DeckLength>
           <ConnectionLength>4e765e56-a949-432d-81a4-c3d6229e189a</ConnectionLength>
-        </Turntable>
+        </Table>
       </Tracks>
       <Groups>
         <Group Id="6fc94341-0023-46ca-998f-9a3107e196de">

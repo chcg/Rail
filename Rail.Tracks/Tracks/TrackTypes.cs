@@ -20,8 +20,7 @@ namespace Rail.Tracks
         DoubleCrossover,
 
         // special        
-        Turntable,
-        TransferTable,
+        Table,
         
         // group
         Group,
