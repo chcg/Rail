@@ -34,7 +34,6 @@
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem Content="."/>
         </StatusBar>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250" MinWidth="100" MaxWidth="500"/>
@@ -85,6 +84,5 @@
             <GridSplitter Grid.RowSpan="2" Background="Blue" Width="5"  HorizontalAlignment="Right" VerticalAlignment="Stretch" />
             <v:TrackTypeView  Grid.Column="1" Grid.RowSpan="2" DataContext="{Binding SelectedTrackType}" />
         </Grid>
-        </ScrollViewer>
     </DockPanel>
 </mvvm:AppView>
