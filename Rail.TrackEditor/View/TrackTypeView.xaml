@@ -47,12 +47,13 @@
                         <DataGridTemplateColumn Header="{x:Static lang:Resources.MainLanguage}" Width="Auto">                        
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Language}"/>
+                                    <TextBlock Text="{Binding Language.DisplayName}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                             <DataGridTemplateColumn.CellEditingTemplate>
                                 <DataTemplate>
-                                    <ComboBox ItemsSource="{Binding DataContext.Names.Languages, RelativeSource={RelativeSource AncestorType={x:Type v:TrackTypeView}}}" SelectedItem="{Binding Language}" />
+                                    <ComboBox ItemsSource="{Binding DataContext.Names.Languages, RelativeSource={RelativeSource AncestorType={x:Type v:TrackTypeView}}}" SelectedItem="{Binding Language}" DisplayMemberPath="DisplayName" />
+
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellEditingTemplate>
                         </DataGridTemplateColumn>

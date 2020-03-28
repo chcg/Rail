@@ -22,8 +22,10 @@
   <TrackTypes>
     <TrackType>
       <Name>
-        <LanguageString>Märklin H0 C-Tracks</LanguageString>
+        <LanguageString Lang="en">Märklin H0 C-Tracks</LanguageString>
         <LanguageString Lang="de">Märklin H0 C-Gleise</LanguageString>
+        <LanguageString Lang="es">Märklin H0 vía C</LanguageString>
+        <LanguageString Lang="nl">Märklin H0 C-rail</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Märklin</Manufacturer>
@@ -48,30 +50,30 @@
         <Radius Id="9177a5b8-5931-4af7-b0d1-52d8e92e1de4" Name="R6" Value="1114.6" />
       </Radii>
       <Lengths>
-        <Length Id="6562353b-dc8a-4bed-a594-c249f445b801" Name="G360" Value="360" />
-        <Length Id="e42c56e7-141d-4bcd-8f6b-940df00da917" Name="G236" Value="236.1" />
-        <Length Id="97f3c6b8-0d58-4564-9212-36025f873e4b" Name="G229" Value="229.3" />
-        <Length Id="d79e3a36-805d-4159-baa8-d762bdcec2c3" Name="G188" Value="188.3" />
-        <Length Id="9931f1be-5977-4154-91a1-768f4236ccbb" Name="G180" Value="180" />
-        <Length Id="ca469d43-a415-4590-abf8-3e6b47e18e12" Name="G172" Value="171.7" />
-        <Length Id="c60162a1-c52c-461d-a69b-ecaaf52fe246" Name="G103" Value="103.3" />
-        <Length Id="a53c4780-fff6-4674-976b-2aac0c7706dd" Name="G94" Value="94.2" />
-        <Length Id="57f92f8f-8516-47e3-9c2b-580c4776b4c3" Name="G83" Value="82.5" />
-        <Length Id="bcffa68f-4be4-48a6-ba1c-a9d456608382" Name="G77" Value="77.5" />
-        <Length Id="05785a26-0d6b-4a6c-a461-5d0d57c176d3" Name="G71" Value="70.8" />
         <Length Id="af51f9fb-e4ad-40a6-8588-3bcbaa07a2ea" Name="G64" Value="64.3" />
-        <Length Id="4e765e56-a949-432d-81a4-c3d6229e189a" Name="G378" Value="378" />
+        <Length Id="05785a26-0d6b-4a6c-a461-5d0d57c176d3" Name="G71" Value="70.8" />
+        <Length Id="bcffa68f-4be4-48a6-ba1c-a9d456608382" Name="G77" Value="77.5" />
+        <Length Id="57f92f8f-8516-47e3-9c2b-580c4776b4c3" Name="G83" Value="82.5" />
+        <Length Id="a53c4780-fff6-4674-976b-2aac0c7706dd" Name="G94" Value="94.2" />
+        <Length Id="c60162a1-c52c-461d-a69b-ecaaf52fe246" Name="G103" Value="103.3" />
+        <Length Id="ca469d43-a415-4590-abf8-3e6b47e18e12" Name="G172" Value="171.7" />
+        <Length Id="9931f1be-5977-4154-91a1-768f4236ccbb" Name="G180" Value="180" />
+        <Length Id="d79e3a36-805d-4159-baa8-d762bdcec2c3" Name="G188" Value="188.3" />
+        <Length Id="97f3c6b8-0d58-4564-9212-36025f873e4b" Name="G229" Value="229.3" />
+        <Length Id="e42c56e7-141d-4bcd-8f6b-940df00da917" Name="G236" Value="236.1" />
         <Length Id="32ddf28c-a3d4-4469-86f8-ee4f14a85df2" Name="G263" Value="263" />
+        <Length Id="6562353b-dc8a-4bed-a594-c249f445b801" Name="G360" Value="360" />
+        <Length Id="4e765e56-a949-432d-81a4-c3d6229e189a" Name="G378" Value="378" />
       </Lengths>
       <Angles>
-        <Angle Id="567ee2fb-50f9-46d9-b3ee-7684295db0d7" Name="A49" Value="48.6" />
-        <Angle Id="5d2a6685-057a-4c68-9897-fe24c4f702c8" Name="A30" Value="30" />
-        <Angle Id="7ed17d51-a65c-461f-8ba7-19f35623ba22" Name="A24" Value="24.3" />
-        <Angle Id="dcaa87a3-61d0-435e-aa75-70bda4e282f3" Name="A15" Value="15" />
-        <Angle Id="747d4c6c-0c21-4f55-a200-8ee9728ee2a0" Name="A12" Value="12.1" />
-        <Angle Id="7f3a4471-c501-47cb-b94d-2127c65109ad" Name="A10" Value="10" />
-        <Angle Id="99e9a3d9-ee33-4ea0-8ba9-7a32044a1267" Name="A8" Value="7.5" />
         <Angle Id="6cf74ec8-649c-4142-95be-0a586da937ac" Name="A6" Value="5.7" />
+        <Angle Id="99e9a3d9-ee33-4ea0-8ba9-7a32044a1267" Name="A8" Value="7.5" />
+        <Angle Id="7f3a4471-c501-47cb-b94d-2127c65109ad" Name="A10" Value="10" />
+        <Angle Id="747d4c6c-0c21-4f55-a200-8ee9728ee2a0" Name="A12" Value="12.1" />
+        <Angle Id="dcaa87a3-61d0-435e-aa75-70bda4e282f3" Name="A15" Value="15" />
+        <Angle Id="7ed17d51-a65c-461f-8ba7-19f35623ba22" Name="A24" Value="24.3" />
+        <Angle Id="5d2a6685-057a-4c68-9897-fe24c4f702c8" Name="A30" Value="30" />
+        <Angle Id="567ee2fb-50f9-46d9-b3ee-7684295db0d7" Name="A49" Value="48.6" />
       </Angles>
       <Tracks>
         <Straight Id="2f199248-2f2b-438d-ab44-3f86b31d1836">

@@ -12,37 +12,10 @@ using System.Text;
 
 namespace Rail.TrackEditor.ViewModel
 {
-    //public class TrackTypeNameViewModel : BaseViewModel
-    //{
-    //    private string language;
-    //    private string name;
-
-    //    public TrackTypeNameViewModel()
-    //    { }
-
-    //    public TrackTypeNameViewModel(KeyValuePair<string, string> keyValuePair)
-    //    {
-    //        this.Language = keyValuePair.Key;
-    //        this.Name = keyValuePair.Value;
-    //    }
-
-    //    public string Language
-    //    {
-    //        get { return this.language; }
-    //        set { this.language = value.Trim(); NotifyPropertyChanged(nameof(Language)); }
-    //    }
-
-    //    public string Name
-    //    {
-    //        get { return this.name; }
-    //        set { this.name = value.Trim(); NotifyPropertyChanged(nameof(Name)); }
-    //    }
-    //}
-
     public class MultilanguageStringViewModel : BaseViewModel
     {
         private const string defaultKey = "default";
-        private const string defaultLanguage = "en-US";
+        private readonly CultureInfo defaultLanguage = new CultureInfo("en-US");
 
         private XmlMultilanguageString multilanguageString;
 
@@ -53,6 +26,14 @@ namespace Rail.TrackEditor.ViewModel
             this.Items.ToList().ForEach(i => i.PropertyChanged += OnItemsPropertyChanged);
             this.Items.CollectionChanged += OnCollectionChanged;
             this.Value = this.Items.FirstOrDefault()?.Name;
+
+            //var x = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
+            //var k = x.First(c => c.DisplayName == "Kölsch");
+            //var d = x.First(c => c.DisplayName == "Deutsch");
+            //var i = CultureInfo.InvariantCulture;
+            //var y = x.Where(c => c.IsNeutralCulture).ToArray();
+            //var z = y.Where(c => !c.CultureTypes.HasFlag(CultureTypes.UserCustomCulture)).ToArray();
+            //var zz = z.Where(c => c.CultureTypes.HasFlag(CultureTypes.InstalledWin32Cultures)).ToArray();
         }
 
         private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -82,32 +63,16 @@ namespace Rail.TrackEditor.ViewModel
 
         public ObservableCollection<MultilanguageItemViewModel> Items { get; }
 
-        public string[] Languages { get { return CultureInfo.GetCultures(CultureTypes.AllCultures).Select(c => c.Name).ToArray(); } }
+        public CultureInfo[] Languages { get { return CultureInfo.GetCultures(CultureTypes.NeutralCultures).Where(c => c.IsNeutralCulture).OrderBy(c => c.DisplayName).ToArray(); } }
 
         private void SetValue()
         {
-            string lang = CultureInfo.CurrentUICulture?.Name ?? defaultKey;
-            //MultilanguageItemViewModel item;
-            //if ((item = this.Items.FirstOrDefault(i => i.Language == lang)) != null)
-            //{
-            //    this.Value = item.Name;
-            //}
-            //else if ((item = this.Items.FirstOrDefault(i => i.Language == defaultKey)) != null)
-            //{
-            //    this.Value = item.Name; 
-            //}
-            //else if ((item = this.Items.FirstOrDefault(i => i.Language == defaultLanguage)) != null)
-            //{
-            //    this.Value = item.Name;
-            //}
-            //else
-            //{
-            //    this.Value = String.Empty;
-            //}
+            this.multilanguageString.LanguageDictionary = this.Items.Where(i => i.Language != null && i.Name != null).ToDictionary(i => i.Language.Name, i=> i.Name);
 
+            string lang = CultureInfo.CurrentUICulture?.Name ?? defaultKey;
             MultilanguageItemViewModel item =
-                this.Items.FirstOrDefault(i => i.Language == lang && !string.IsNullOrEmpty(i.Name)) ??
-                this.Items.FirstOrDefault(i => i.Language == defaultKey && !string.IsNullOrEmpty(i.Name)) ??
+                this.Items.FirstOrDefault(i => i.Language == CultureInfo.CurrentUICulture && !string.IsNullOrEmpty(i.Name)) ??
+                //this.Items.FirstOrDefault(i => i.Language == defaultKey && !string.IsNullOrEmpty(i.Name)) ??
                 this.Items.FirstOrDefault(i => i.Language == defaultLanguage && !string.IsNullOrEmpty(i.Name));
             this.Value = item?.Name ?? String.Empty;
 
@@ -117,7 +82,7 @@ namespace Rail.TrackEditor.ViewModel
         [DebuggerDisplay("{Language} : {Name}")]
         public class MultilanguageItemViewModel : BaseViewModel
         {
-            private string language;
+            private CultureInfo language;
             private string name;
 
             public MultilanguageItemViewModel()
@@ -125,14 +90,14 @@ namespace Rail.TrackEditor.ViewModel
 
             public MultilanguageItemViewModel(KeyValuePair<string, string> keyValuePair)
             {
-                this.Language = keyValuePair.Key;
+                this.Language = keyValuePair.Key == defaultKey ? new CultureInfo("en") : new CultureInfo(keyValuePair.Key);
                 this.Name = keyValuePair.Value;
             }
 
-            public string Language
+            public CultureInfo Language
             {
                 get { return this.language; }
-                set { this.language = value.Trim(); NotifyPropertyChanged(nameof(Language)); }
+                set { this.language = value; NotifyPropertyChanged(nameof(Language)); }
             }
 
             public string Name
