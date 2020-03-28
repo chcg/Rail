@@ -16,6 +16,7 @@
     <UserControl.Resources>
         <mvvm:BindingProxy x:Key="TrackTypeBindingProxy" Data="{Binding}" />
         <mvvmconv:DescriptionConverter x:Key="DescriptionConverter"/>
+        <mvvmconv:DebugConverter x:Key="DebugConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -43,7 +44,18 @@
                 Background="White"
                 Margin="3" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Language}" Header="{x:Static lang:Resources.MainLanguage}" Width="Auto"/>
+                        <DataGridTemplateColumn Header="{x:Static lang:Resources.MainLanguage}" Width="Auto">                        
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Language}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <ComboBox ItemsSource="{Binding DataContext.Names.Languages, RelativeSource={RelativeSource AncestorType={x:Type v:TrackTypeView}}}" SelectedItem="{Binding Language}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn Binding="{Binding Name}" Header="{x:Static lang:Resources.MainTrackTypeName}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>

@@ -87,23 +87,30 @@ namespace Rail.TrackEditor.ViewModel
         private void SetValue()
         {
             string lang = CultureInfo.CurrentUICulture?.Name ?? defaultKey;
-            MultilanguageItemViewModel item;
-            if ((item = this.Items.FirstOrDefault(i => i.Language == lang)) != null)
-            {
-                this.Value = item.Name;
-            }
-            else if ((item = this.Items.FirstOrDefault(i => i.Language == defaultKey)) != null)
-            {
-                this.Value = item.Name; 
-            }
-            else if ((item = this.Items.FirstOrDefault(i => i.Language == defaultLanguage)) != null)
-            {
-                this.Value = item.Name;
-            }
-            else
-            {
-                this.Value = String.Empty;
-            }
+            //MultilanguageItemViewModel item;
+            //if ((item = this.Items.FirstOrDefault(i => i.Language == lang)) != null)
+            //{
+            //    this.Value = item.Name;
+            //}
+            //else if ((item = this.Items.FirstOrDefault(i => i.Language == defaultKey)) != null)
+            //{
+            //    this.Value = item.Name; 
+            //}
+            //else if ((item = this.Items.FirstOrDefault(i => i.Language == defaultLanguage)) != null)
+            //{
+            //    this.Value = item.Name;
+            //}
+            //else
+            //{
+            //    this.Value = String.Empty;
+            //}
+
+            MultilanguageItemViewModel item =
+                this.Items.FirstOrDefault(i => i.Language == lang && !string.IsNullOrEmpty(i.Name)) ??
+                this.Items.FirstOrDefault(i => i.Language == defaultKey && !string.IsNullOrEmpty(i.Name)) ??
+                this.Items.FirstOrDefault(i => i.Language == defaultLanguage && !string.IsNullOrEmpty(i.Name));
+            this.Value = item?.Name ?? String.Empty;
+
             NotifyPropertyChanged(nameof(Value));
         }
 
