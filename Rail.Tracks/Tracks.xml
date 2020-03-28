@@ -23,7 +23,7 @@
     <TrackType>
       <Name>
         <LanguageString>Märklin H0 C-Tracks</LanguageString>
-        <LanguageString Lang="de-DE">Märklin H0 C-Gleise</LanguageString>
+        <LanguageString Lang="de">Märklin H0 C-Gleise</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Märklin</Manufacturer>

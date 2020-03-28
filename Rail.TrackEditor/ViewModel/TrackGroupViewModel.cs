@@ -19,12 +19,12 @@ namespace Rail.TrackEditor.ViewModel
         {
             this.LoadGroupCommand = new DelegateCommand(OnLoadGroup);
             this.track = track;
-            this.Names = new ObservableCollection<TrackTypeNameViewModel>(this.track.GroupName.LanguageDictionary.Select(n => new TrackTypeNameViewModel(n)));
+            this.Names = new MultilanguageStringViewModel(this.track.GroupName);
         }
 
         public TrackGroup GetTrackGroup()
         {
-            this.track.GroupName.LanguageDictionary = this.Names.ToDictionary(n => n.Language, n => n.Name);
+            //this.track.GroupName.LanguageDictionary = this.Names.ToDictionary(n => n.Language, n => n.Name);
             return this.track;
         }
 
@@ -37,7 +37,7 @@ namespace Rail.TrackEditor.ViewModel
             return new TrackGroupViewModel(trackTypeViewModel, trackGroup);
         }
 
-        public ObservableCollection<TrackTypeNameViewModel> Names { get; }
+        public MultilanguageStringViewModel Names { get; }
 
         public DelegateCommand LoadGroupCommand { get; }
 

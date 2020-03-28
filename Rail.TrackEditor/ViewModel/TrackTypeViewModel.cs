@@ -31,7 +31,7 @@ namespace Rail.TrackEditor.ViewModel
 
             this.trackType = trackType;
             this.Tracks = new ObservableCollection<TrackViewModel>(trackType.Tracks.Select(t => TrackViewModel.Create(this, t)));
-            this.Names = new ObservableCollection<TrackTypeNameViewModel>(this.trackType.Name.LanguageDictionary.Select(n => new TrackTypeNameViewModel(n)));
+            this.Names = new MultilanguageStringViewModel(this.trackType.Name);
 
             this.Lengths = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Lengths.Select(v => new TrackNamedValueViewModel(v)).OrderBy(l => l.Value));
             this.Radii = new ObservableCollection<TrackNamedValueViewModel>(this.trackType.Radii.Select(v => new TrackNamedValueViewModel(v)).OrderBy(l => l.Value));
@@ -66,16 +66,16 @@ namespace Rail.TrackEditor.ViewModel
         public TrackType GetTrackType()
         {
             this.trackType.Tracks = this.Tracks.Select(t => t.Track).ToList();
-            this.trackType.Name.LanguageDictionary = this.Names.ToDictionary(n => n.Language, n => n.Name);
+            //this.trackType.Name.LanguageDictionary = this.Names.ToDictionary(n => n.Language, n => n.Name);
             this.trackType.Lengths = this.Lengths.OrderBy(l => l.Value).Select(l => l.NamedValue).ToList();
             this.trackType.Radii = this.Radii.OrderBy(l => l.Value).Select(l => l.NamedValue).ToList();
             this.trackType.Angles = this.Angles.OrderBy(l => l.Value).Select(l => l.NamedValue).ToList();
             return this.trackType;
         }
 
-        public string Name { get { return this.trackType.Name; } }
+        //public string Name { get { return this.trackType.Name; } }
 
-        public ObservableCollection<TrackTypeNameViewModel> Names { get; }
+        public MultilanguageStringViewModel Names { get; }
 
         public ObservableCollection<TrackNamedValueViewModel> Lengths { get; }
 

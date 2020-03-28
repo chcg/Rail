@@ -32,7 +32,7 @@
             </Grid.ColumnDefinitions>
             <GroupBox Header="Name" Grid.Column="0" >
                 <DataGrid 
-                ItemsSource="{Binding Names}" 
+                ItemsSource="{Binding Names.Items}" 
                 AutoGenerateColumns="False" 
                 SelectionMode="Single" 
                 GridLinesVisibility="None"

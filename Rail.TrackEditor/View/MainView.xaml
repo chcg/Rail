@@ -52,7 +52,7 @@
                     </ListBox.ContextMenu>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Name}" >
+                            <TextBlock Text="{Binding Names.Value}" >
                                 <TextBlock.ContextMenu>
                                     <ContextMenu>
                                         <MenuItem Header="{x:Static lang:Resources.MainNewTrackType}" Command="{Binding Data.NewTrackTypeCommand, Source={StaticResource MainBindingProxy}}" />
