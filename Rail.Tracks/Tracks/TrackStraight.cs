@@ -21,6 +21,8 @@ namespace Rail.Tracks
         [XmlElement("DockType")]
         public Guid DockType { get; set; }
 
+        public bool ShouldSerializeExtra() { return this.Extra != TrackExtras.No; }
+
         public bool ShouldSerializeDockType() { return this.DockType != Guid.Empty; }
 
         #endregion
@@ -33,6 +35,9 @@ namespace Rail.Tracks
         #endregion
 
         #region override
+
+        [XmlIgnore, JsonIgnore]
+        public override TrackTypes TrackType { get { return TrackTypes.Straight; } }
 
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.Length; } }

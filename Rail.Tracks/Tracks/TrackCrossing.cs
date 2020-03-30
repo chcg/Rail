@@ -43,6 +43,9 @@ namespace Rail.Tracks
         #region override
 
         [XmlIgnore, JsonIgnore]
+        public override TrackTypes TrackType { get { return TrackTypes.Crossing; } }
+
+        [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return Math.Max(this.Length, this.LengthB); } }
         
         public override void Update(TrackType trackType)

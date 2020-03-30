@@ -52,6 +52,22 @@ namespace Rail.Tracks
         [XmlElement("RightCounterCurveAngle")]
         public Guid RightCounterCurveAngleId { get; set; }
 
+        public bool ShouldSerializeTurnoutDrive() { return this.TurnoutDrive != TrackDrive.Unknown; }
+
+        public bool ShouldSerializeStraightLengthId() { return this.TurnoutType != TrackTurnoutType.Y; }
+
+        public bool ShouldSerializeLeftTurnoutLengthId() { return this.TurnoutType != TrackTurnoutType.Right; }
+        public bool ShouldSerializeLeftTurnoutRadiusId() { return this.TurnoutType != TrackTurnoutType.Right; }
+        public bool ShouldSerializeLeftTurnoutAngleId() { return this.TurnoutType != TrackTurnoutType.Right; }
+        public bool ShouldSerializeLeftCounterCurveRadiusId() { return this.TurnoutType != TrackTurnoutType.Right; }
+        public bool ShouldSerializeLeftCounterCurveAngleId() { return this.TurnoutType != TrackTurnoutType.Right; }
+
+        public bool ShouldSerializeRightTurnoutLengthId() { return this.TurnoutType != TrackTurnoutType.Left; }
+        public bool ShouldSerializeRightTurnoutRadiusId() { return this.TurnoutType != TrackTurnoutType.Left; }
+        public bool ShouldSerializeRightTurnoutAngleId() { return this.TurnoutType != TrackTurnoutType.Left; }
+        public bool ShouldSerializeRightCounterCurveRadiusId() { return this.TurnoutType != TrackTurnoutType.Left; }
+        public bool ShouldSerializeRightCounterCurveAngleId() { return this.TurnoutType != TrackTurnoutType.Left; }
+
         #endregion
 
         #region internal
@@ -94,19 +110,22 @@ namespace Rail.Tracks
         #region override
 
         [XmlIgnore, JsonIgnore]
+        public override TrackTypes TrackType { get { return TrackTypes.Turnout; } }
+
+        [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.StraightLength; } }
 
         public override void Update(TrackType trackType)
         {
-            this.StraightLength = GetValue(trackType.Lengths, this.StraightLengthId);
+            this.StraightLength = GetValueOrNull(trackType.Lengths, this.StraightLengthId);
             this.LeftTurnoutLength = GetValueOrNull(trackType.Lengths, this.LeftTurnoutLengthId);
-            this.LeftTurnoutRadius = GetValue(trackType.Radii, this.LeftTurnoutRadiusId);
-            this.LeftTurnoutAngle = GetValue(trackType.Angles, this.LeftTurnoutAngleId);
+            this.LeftTurnoutRadius = GetValueOrNull(trackType.Radii, this.LeftTurnoutRadiusId);
+            this.LeftTurnoutAngle = GetValueOrNull(trackType.Angles, this.LeftTurnoutAngleId);
             this.LeftCounterCurveRadius = GetValueOrNull(trackType.Radii, this.LeftCounterCurveRadiusId);
             this.LeftCounterCurveAngle = GetValueOrNull(trackType.Angles, this.LeftCounterCurveAngleId);
             this.RightTurnoutLength = GetValueOrNull(trackType.Lengths, this.RightTurnoutLengthId);
-            this.RightTurnoutRadius = GetValue(trackType.Radii, this.RightTurnoutRadiusId);
-            this.RightTurnoutAngle = GetValue(trackType.Angles, this.RightTurnoutAngleId);
+            this.RightTurnoutRadius = GetValueOrNull(trackType.Radii, this.RightTurnoutRadiusId);
+            this.RightTurnoutAngle = GetValueOrNull(trackType.Angles, this.RightTurnoutAngleId);
             this.RightCounterCurveRadius = GetValueOrNull(trackType.Radii, this.RightCounterCurveRadiusId);
             this.RightCounterCurveAngle = GetValueOrNull(trackType.Angles, this.RightCounterCurveAngleId);
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.Json.Serialization;
 using System.Windows.Media;
 using System.Xml.Serialization;
@@ -16,6 +15,9 @@ namespace Rail.Tracks
 
         [XmlAttribute("Id")]
         public Guid Id { get; set; }
+
+        [XmlIgnore, JsonIgnore]
+        public abstract TrackTypes TrackType { get; }
 
         [XmlIgnore, JsonIgnore]
         public abstract double RampLength { get; }

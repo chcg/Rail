@@ -120,6 +120,8 @@
                               <xs:complexType>
                                 <xs:sequence>
                                   <xs:element name="Article" type="xs:string" />
+                                  <xs:element name="Length" type="Guid" minOccurs="0" />
+                                  <xs:element name="Extra" type="EndType" minOccurs="0" />
                                 </xs:sequence>
                                 <xs:attribute name="Id" type="Guid" use="required" />
                               </xs:complexType>
@@ -143,15 +145,15 @@
                                   <xs:element name="Article" type="xs:string" />
                                   <xs:element name="TurnoutType" type="TurnoutType" />
                                   <xs:element name="TurnoutDrive" type="Drive" minOccurs="0" />
-                                  <xs:element name="StraightLength" type="Guid" />
-                                  <xs:element name="LeftTurnoutLength" type="Guid" />
-                                  <xs:element name="LeftTurnoutRadius" type="Guid" />
-                                  <xs:element name="LeftTurnoutAngle" type="Guid" />
+                                  <xs:element name="StraightLength" type="Guid" minOccurs="0" />
+                                  <xs:element name="LeftTurnoutLength" type="Guid" minOccurs="0" />
+                                  <xs:element name="LeftTurnoutRadius" type="Guid" minOccurs="0" />
+                                  <xs:element name="LeftTurnoutAngle" type="Guid" minOccurs="0" />
                                   <xs:element name="LeftCounterCurveRadius" type="Guid" minOccurs="0" />
                                   <xs:element name="LeftCounterCurveAngle" type="Guid" minOccurs="0" />
-                                  <xs:element name="RightTurnoutLength" type="Guid" />
-                                  <xs:element name="RightTurnoutRadius" type="Guid" />
-                                  <xs:element name="RightTurnoutAngle" type="Guid" />
+                                  <xs:element name="RightTurnoutLength" type="Guid" minOccurs="0" />
+                                  <xs:element name="RightTurnoutRadius" type="Guid" minOccurs="0" />
+                                  <xs:element name="RightTurnoutAngle" type="Guid" minOccurs="0" />
                                   <xs:element name="RightCounterCurveRadius" type="Guid" minOccurs="0" />
                                   <xs:element name="RightCounterCurveAngle" type="Guid" minOccurs="0" />
                                   <xs:element name="AddArticles" type="xs:string" minOccurs="0" />
@@ -165,10 +167,10 @@
                                   <xs:element name="Article" type="xs:string" />
                                   <xs:element name="TurnoutDirection" type="TurnoutDirection" />
                                   <xs:element name="TurnoutDrive" type="Drive" minOccurs="0" />
-                                  <xs:element name="InnerLength" type="Guid" />
+                                  <xs:element name="InnerLength" type="Guid"  minOccurs="0"/>
                                   <xs:element name="InnerRadius" type="Guid" />
                                   <xs:element name="InnerAngle" type="Guid" />
-                                  <xs:element name="OuterLength" type="Guid" />
+                                  <xs:element name="OuterLength" type="Guid"  minOccurs="0"/>
                                   <xs:element name="OuterRadius" type="Guid" />
                                   <xs:element name="OuterAngle" type="Guid" />
                                   <xs:element name="AddArticles" type="xs:string" minOccurs="0" />
@@ -180,10 +182,10 @@
                               <xs:complexType>
                                 <xs:sequence>
                                   <xs:element name="Article" type="xs:string" />
+                                  <xs:element name="TurnoutDrive" type="Drive" minOccurs="0" />
                                   <xs:element name="Length" type="Guid" />
                                   <xs:element name="CrossingAngle" type="Guid" />
                                   <xs:element name="SlipRadius" type="Guid" />
-                                  <xs:element name="TurnoutDrive" type="Drive" minOccurs="0" />
                                 </xs:sequence>
                                 <xs:attribute name="Id" type="Guid" use="required" />
                               </xs:complexType>
@@ -360,6 +362,14 @@
     </xs:restriction>
   </xs:simpleType>
 
+  <xs:simpleType name="EndType" >
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="End" />
+      <xs:enumeration value="Bumper" />
+      <xs:enumeration value="BumperWithLantern" />
+    </xs:restriction>
+  </xs:simpleType>
+  
   <xs:simpleType name="TurnoutType" >
     <xs:restriction base="xs:string">
       <xs:enumeration value="Left" />

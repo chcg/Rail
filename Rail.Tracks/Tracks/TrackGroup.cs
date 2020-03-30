@@ -21,6 +21,9 @@ namespace Rail.Tracks
         public List<TrackGroupItem> GroupItems { get; set; }
 
         [XmlIgnore, JsonIgnore]
+        public override TrackTypes TrackType { get { return TrackTypes.Group; } }
+
+        [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return 0; /* TODO sum length */ } }
 
         [XmlIgnore, JsonIgnore]

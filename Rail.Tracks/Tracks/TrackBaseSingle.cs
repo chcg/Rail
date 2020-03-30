@@ -39,7 +39,6 @@ namespace Rail.Tracks
         protected double ballastWidth;
         protected Brush ballastBrush;
 
-
         [XmlElement("Article")]
         public string Article { get; set; }
 

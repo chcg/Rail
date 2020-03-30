@@ -12,6 +12,12 @@ namespace Rail.Tracks
     public class TrackCurvedTurnout : TrackBaseSingle
     {
         #region store
+        
+        [XmlElement("TurnoutDirection")]
+        public TrackTurnoutDirection TurnoutDirection { get; set; }
+
+        [XmlElement("TurnoutDrive")]
+        public TrackDrive TurnoutDrive { get; set; }
 
         [XmlElement("InnerLength")]
         public Guid InnerLengthId { get; set; }
@@ -31,11 +37,10 @@ namespace Rail.Tracks
         [XmlElement("OuterAngle")]
         public Guid OuterAngleId { get; set; }
 
-        [XmlElement("TurnoutDirection")]
-        public TrackTurnoutDirection TurnoutDirection { get; set; }
+        public bool ShouldSerializeTurnoutDrive() { return this.TurnoutDrive != TrackDrive.Unknown; }
 
-        [XmlElement("TurnoutDrive")]
-        public TrackDrive TurnoutDrive { get; set; }
+        public bool ShouldSerializeInnerLengthId() { return this.InnerLengthId != Guid.Empty; }
+        public bool ShouldSerializeOuterLengthId() { return this.OuterLengthId != Guid.Empty; }
 
         #endregion
 
@@ -62,6 +67,9 @@ namespace Rail.Tracks
         #endregion
 
         #region override
+
+        [XmlIgnore, JsonIgnore]
+        public override TrackTypes TrackType { get { return TrackTypes.CurvedTurnout; } }
 
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.OuterLength; } }

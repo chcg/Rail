@@ -66,6 +66,7 @@ namespace Rail.TrackEditor.ViewModel
         public void UpdateTrack()
         {
             this.Track.Update(this.trackTypeViewModel.TrackType);
+            base.NotifyPropertyChanged(nameof(Name));
             VisualHelper.InvalidateAll(typeof(TrackControl));
         }
 

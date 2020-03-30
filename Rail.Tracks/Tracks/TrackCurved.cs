@@ -22,6 +22,9 @@ namespace Rail.Tracks
         [XmlElement("Extra")]
         public TrackExtras Extra { get; set; }
 
+        public bool ShouldSerializeExtra() { return this.Extra != TrackExtras.No; }
+
+
         #endregion
 
         #region internal
@@ -35,6 +38,9 @@ namespace Rail.Tracks
         #endregion
 
         #region override
+
+        [XmlIgnore, JsonIgnore]
+        public override TrackTypes TrackType { get { return TrackTypes.Curved; } }
 
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return 0; /* TODO calc length */  } }

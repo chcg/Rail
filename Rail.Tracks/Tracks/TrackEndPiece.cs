@@ -18,6 +18,11 @@ namespace Rail.Tracks
         [XmlElement("Extra")]
         public TrackEndType EndType { get; set; }
 
+        public bool ShouldSerializeLengthId() { return this.LengthId != Guid.Empty; }
+
+        public bool ShouldSerializeExtra() { return this.EndType != TrackEndType.End; }
+
+
         #endregion
 
         #region internal
@@ -28,6 +33,9 @@ namespace Rail.Tracks
         #endregion
 
         #region override
+
+        [XmlIgnore, JsonIgnore]
+        public override TrackTypes TrackType { get { return TrackTypes.EndPiece; } }
 
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return 0; } }

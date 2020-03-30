@@ -13,6 +13,9 @@ namespace Rail.Tracks
     {
         #region store
 
+        [XmlElement("TurnoutDrive")]
+        public TrackDrive TurnoutDrive { get; set; }
+
         [XmlElement("Length")]
         public Guid LengthId { get; set; }
 
@@ -22,8 +25,7 @@ namespace Rail.Tracks
         [XmlElement("SlipRadius")]
         public Guid SlipRadiusId { get; set; }
 
-        [XmlElement("TurnoutDrive")]
-        public TrackDrive TurnoutDrive { get; set; }
+        public bool ShouldSerializeTurnoutDrive() { return this.TurnoutDrive != TrackDrive.Unknown; }
 
         #endregion
 
@@ -42,6 +44,9 @@ namespace Rail.Tracks
         #endregion
 
         #region override
+
+        [XmlIgnore, JsonIgnore]
+        public override TrackTypes TrackType { get { return TrackTypes.DoubleSlipSwitch; } }
 
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.Length; } }

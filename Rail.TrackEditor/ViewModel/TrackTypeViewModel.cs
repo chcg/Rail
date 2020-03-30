@@ -65,7 +65,7 @@ namespace Rail.TrackEditor.ViewModel
 
         public TrackType GetTrackType()
         {
-            this.trackType.Tracks = this.Tracks.Select(t => t.Track).ToList();
+            this.trackType.Tracks = this.Tracks.Select(t => t.Track).OrderBy(t => t.TrackType).ToList();
             //this.trackType.Name.LanguageDictionary = this.Names.ToDictionary(n => n.Language, n => n.Name);
             this.trackType.Lengths = this.Lengths.OrderBy(l => l.Value).Select(l => l.NamedValue).ToList();
             this.trackType.Radii = this.Radii.OrderBy(l => l.Value).Select(l => l.NamedValue).ToList();

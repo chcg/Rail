@@ -30,6 +30,9 @@ namespace Rail.Tracks
         [XmlElement("ConnectionDistance")]
         public Guid ConnectionDistanceId { get; set; }
 
+
+        public bool ShouldSerializeLengthId() { return this.ConnectionDistanceId != Guid.Empty; }
+
         #endregion
 
         #region intern
@@ -46,6 +49,9 @@ namespace Rail.Tracks
         #endregion
 
         #region override
+
+        [XmlIgnore, JsonIgnore]
+        public override TrackTypes TrackType { get { return TrackTypes.Table; } }
 
         /// <summary>
         /// Ramp length
