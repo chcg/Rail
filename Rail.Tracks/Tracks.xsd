@@ -359,6 +359,7 @@
       <xs:enumeration value="Uncoupler" />
       <xs:enumeration value="Isolating" />
       <xs:enumeration value="Feeder" />
+      <xs:enumeration value="Adapter" />
     </xs:restriction>
   </xs:simpleType>
 

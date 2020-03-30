@@ -22,7 +22,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="200" MinHeight="100"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto" MinHeight="100"/>
+            <RowDefinition Height="*" MinHeight="100"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -221,7 +221,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" MinHeight="100"/>
+                        <RowDefinition Height="*" MinHeight="100"/>
                     </Grid.RowDefinitions>
                     <ListBox Grid.Column="0" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" >
                         <ListBox.ContextMenu>

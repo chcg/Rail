@@ -31,7 +31,7 @@ namespace Rail.Tracks
         public Guid ConnectionDistanceId { get; set; }
 
 
-        public bool ShouldSerializeLengthId() { return this.ConnectionDistanceId != Guid.Empty; }
+        public bool ShouldSerializeConnectionDistanceId() { return this.ConnectionDistanceId != Guid.Empty; }
 
         #endregion
 

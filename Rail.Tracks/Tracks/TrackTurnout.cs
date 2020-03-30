@@ -56,17 +56,17 @@ namespace Rail.Tracks
 
         public bool ShouldSerializeStraightLengthId() { return this.TurnoutType != TrackTurnoutType.Y; }
 
-        public bool ShouldSerializeLeftTurnoutLengthId() { return this.TurnoutType != TrackTurnoutType.Right; }
+        public bool ShouldSerializeLeftTurnoutLengthId() { return this.TurnoutType != TrackTurnoutType.Right && this.LeftTurnoutLengthId != Guid.Empty; }
         public bool ShouldSerializeLeftTurnoutRadiusId() { return this.TurnoutType != TrackTurnoutType.Right; }
         public bool ShouldSerializeLeftTurnoutAngleId() { return this.TurnoutType != TrackTurnoutType.Right; }
-        public bool ShouldSerializeLeftCounterCurveRadiusId() { return this.TurnoutType != TrackTurnoutType.Right; }
-        public bool ShouldSerializeLeftCounterCurveAngleId() { return this.TurnoutType != TrackTurnoutType.Right; }
+        public bool ShouldSerializeLeftCounterCurveRadiusId() { return this.TurnoutType != TrackTurnoutType.Right && this.LeftCounterCurveRadiusId != Guid.Empty; }
+        public bool ShouldSerializeLeftCounterCurveAngleId() { return this.TurnoutType != TrackTurnoutType.Right && this.LeftCounterCurveAngleId != Guid.Empty; }
 
-        public bool ShouldSerializeRightTurnoutLengthId() { return this.TurnoutType != TrackTurnoutType.Left; }
+        public bool ShouldSerializeRightTurnoutLengthId() { return this.TurnoutType != TrackTurnoutType.Left && this.RightTurnoutLengthId != Guid.Empty; }
         public bool ShouldSerializeRightTurnoutRadiusId() { return this.TurnoutType != TrackTurnoutType.Left; }
         public bool ShouldSerializeRightTurnoutAngleId() { return this.TurnoutType != TrackTurnoutType.Left; }
-        public bool ShouldSerializeRightCounterCurveRadiusId() { return this.TurnoutType != TrackTurnoutType.Left; }
-        public bool ShouldSerializeRightCounterCurveAngleId() { return this.TurnoutType != TrackTurnoutType.Left; }
+        public bool ShouldSerializeRightCounterCurveRadiusId() { return this.TurnoutType != TrackTurnoutType.Left && this.RightCounterCurveRadiusId != Guid.Empty; }
+        public bool ShouldSerializeRightCounterCurveAngleId() { return this.TurnoutType != TrackTurnoutType.Left && this.RightCounterCurveAngleId != Guid.Empty; }
 
         #endregion
 
