@@ -262,6 +262,7 @@
                                             <Separator/>
                                             <MenuItem Header="{x:Static lang:Resources.MainNewGroupTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Group}" />
                                             <Separator/>
+                                            <MenuItem Header="{x:Static lang:Resources.MainCloneTrack}" Command="{Binding Data.CloneTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{Binding .}" />
                                             <MenuItem Header="{x:Static lang:Resources.MainDeleteTrack}" Command="{Binding Data.DeleteTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{Binding .}" />
                                         </ContextMenu>
                                     </TextBlock.ContextMenu>

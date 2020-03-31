@@ -132,6 +132,9 @@
   <data name="MainBallastWidth" xml:space="preserve">
     <value>Ballast Width</value>
   </data>
+  <data name="MainCloneTrack" xml:space="preserve">
+    <value>Clone Track</value>
+  </data>
   <data name="MainConnectionDistance" xml:space="preserve">
     <value>Connection Distance</value>
   </data>

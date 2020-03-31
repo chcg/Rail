@@ -60,6 +60,19 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return 0; } }
 
+        public override TrackBase Clone()
+        {
+            TrackTable track = new TrackTable
+            {
+                Article = this.Article,
+                TableType = this.TableType,
+                DeckLengthId = this.DeckLengthId,
+                ConnectionLengthId = this.ConnectionLengthId,
+                ConnectionDistanceId = this.ConnectionDistanceId
+            };
+            track.Update(this.trackType);
+            return track;
+        }
 
         public override void Update(TrackType trackType)
         {

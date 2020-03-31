@@ -62,6 +62,7 @@ namespace Rail.TrackEditor.ViewModel
         public TrackTableType[] TableTypes { get { return (TrackTableType[])Enum.GetValues(typeof(TrackTableType)); } }
         public int[] StarNumbers { get { return new int[] { 2, 3, 4 }; } }
 
+        public abstract TrackViewModel Clone();
 
         public void UpdateTrack()
         {

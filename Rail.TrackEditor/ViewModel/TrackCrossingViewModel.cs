@@ -31,6 +31,11 @@ namespace Rail.TrackEditor.ViewModel
             return new TrackCrossingViewModel(trackTypeViewModel, trackCrossing);
         }
 
+        public override TrackViewModel Clone()
+        {
+            return new TrackCrossingViewModel(this.trackTypeViewModel, (TrackCrossing)this.track.Clone());
+        }
+
         public string Article
         {
             get { return this.track.Article; }

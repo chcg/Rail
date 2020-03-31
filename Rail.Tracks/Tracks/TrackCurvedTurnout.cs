@@ -73,7 +73,25 @@ namespace Rail.Tracks
 
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.OuterLength; } }
-        
+
+        public override TrackBase Clone()
+        {
+            TrackCurvedTurnout track = new TrackCurvedTurnout
+            {
+                Article = this.Article,
+                TurnoutDirection = this.TurnoutDirection,
+                TurnoutDrive = this.TurnoutDrive,
+                InnerLengthId = this.InnerLengthId,
+                InnerRadiusId = this.InnerRadiusId,
+                InnerAngleId = this.InnerAngleId,
+                OuterLengthId = this.OuterLengthId,
+                OuterRadiusId = this.OuterRadiusId,
+                OuterAngleId = this.OuterAngleId
+            };
+            track.Update(this.trackType);
+            return track;
+        }
+
         public override void Update(TrackType trackType)
         {
             this.InnerLength = GetValueOrNull(trackType.Lengths, this.InnerLengthId);

@@ -19,6 +19,7 @@ namespace Rail.TrackEditor.ViewModel
        
 
         public DelegateCommand<TrackTypes> NewTrackCommand { get; }
+        public DelegateCommand<TrackViewModel> CloneTrackCommand { get; }
         public DelegateCommand<TrackViewModel> DeleteTrackCommand { get; }
 
         public TrackTypeViewModel() : this(new TrackType())
@@ -27,7 +28,8 @@ namespace Rail.TrackEditor.ViewModel
         public TrackTypeViewModel(TrackType trackType)
         {
             this.NewTrackCommand = new DelegateCommand<TrackTypes>(OnNewTrack);
-            this.DeleteTrackCommand = new DelegateCommand<TrackViewModel>(OnDeleteNewTrack);
+            this.CloneTrackCommand = new DelegateCommand<TrackViewModel>(OnCloneTrack);
+            this.DeleteTrackCommand = new DelegateCommand<TrackViewModel>(OnDeleteTrack);
 
             this.trackType = trackType;
             this.Tracks = new ObservableCollection<TrackViewModel>(trackType.Tracks.Select(t => TrackViewModel.Create(this, t)));
@@ -232,7 +234,12 @@ namespace Rail.TrackEditor.ViewModel
             this.SelectedTrack = track;
         }
 
-        private void OnDeleteNewTrack(TrackViewModel track)
+        private void OnCloneTrack(TrackViewModel track)
+        {
+            this.Tracks.Add(track.Clone());
+        }
+
+        private void OnDeleteTrack(TrackViewModel track)
         {
             this.Tracks.Remove(track);
         }

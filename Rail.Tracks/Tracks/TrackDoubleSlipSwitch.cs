@@ -51,6 +51,20 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.Length; } }
 
+        public override TrackBase Clone()
+        {
+            TrackDoubleSlipSwitch track = new TrackDoubleSlipSwitch
+            {
+                Article = this.Article,
+                TurnoutDrive = this.TurnoutDrive,
+                LengthId = this.LengthId,
+                CrossingAngle = this.CrossingAngle,
+                SlipRadius = this.SlipRadius
+            };
+            track.Update(this.trackType);
+            return track;
+        }
+
         public override void Update(TrackType trackType)
         {
             this.Length = GetValue(trackType.Lengths, this.LengthId);

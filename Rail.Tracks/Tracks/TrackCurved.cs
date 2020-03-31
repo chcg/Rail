@@ -45,6 +45,19 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return 0; /* TODO calc length */  } }
 
+        public override TrackBase Clone()
+        {
+            TrackCurved track = new TrackCurved
+            {
+                Article = this.Article,
+                RadiusId = this.RadiusId,
+                AngleId = this.AngleId,
+                Extra = this.Extra
+            };
+            track.Update(this.trackType);
+            return track;
+        }
+
         public override void Update(TrackType trackType)
         {
             this.Radius = GetValue(trackType.Radii, this.RadiusId);

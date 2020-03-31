@@ -75,9 +75,12 @@ namespace Rail.Tracks
         private readonly double railThicknessFactor = 1.0 / 10.0;
         private readonly double sleepersThicknessFactor = 1.0 / 4.0;
         private readonly double textFactor = 0.9;
-        
+
+       
+
         public override void Update(TrackType trackType)
         {
+            this.trackType = trackType;
             TrackParameter parameter = trackType.Parameter;
 
             this.Manufacturer = parameter.Manufacturer;

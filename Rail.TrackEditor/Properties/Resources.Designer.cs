@@ -106,6 +106,15 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clone Track.
+        /// </summary>
+        public static string MainCloneTrack {
+            get {
+                return ResourceManager.GetString("MainCloneTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Connection Distance.
         /// </summary>
         public static string MainConnectionDistance {

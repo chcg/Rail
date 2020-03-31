@@ -28,6 +28,11 @@ namespace Rail.TrackEditor.ViewModel
             return new TrackEndPieceViewModel(trackTypeViewModel, trackEndPiece);
         }
 
+        public override TrackViewModel Clone()
+        {
+            return new TrackEndPieceViewModel(this.trackTypeViewModel, (TrackEndPiece)this.track.Clone());
+        }
+
         public string Article
         {
             get { return this.track.Article; }

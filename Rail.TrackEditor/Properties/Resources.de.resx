@@ -132,6 +132,9 @@
   <data name="MainBallastWidth" xml:space="preserve">
     <value>Schotter Breite</value>
   </data>
+  <data name="MainCloneTrack" xml:space="preserve">
+    <value>Gleis clonen</value>
+  </data>
   <data name="MainConnectionDistance" xml:space="preserve">
     <value>Abstand Gleisverbinder</value>
   </data>

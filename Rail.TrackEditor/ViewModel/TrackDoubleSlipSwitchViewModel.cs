@@ -30,6 +30,11 @@ namespace Rail.TrackEditor.ViewModel
             return new TrackDoubleSlipSwitchViewModel(trackTypeViewModel, trackDoubleSlipSwitch);
         }
 
+        public override TrackViewModel Clone()
+        {
+            return new TrackDoubleSlipSwitchViewModel(this.trackTypeViewModel, (TrackDoubleSlipSwitch)this.track.Clone());
+        }
+
         public string Article
         {
             get { return this.track.Article; }

@@ -115,6 +115,28 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public override double RampLength { get { return this.StraightLength; } }
 
+        public override TrackBase Clone()
+        {
+            TrackTurnout track = new TrackTurnout
+            {
+                Article = this.Article,
+                TurnoutType = this.TurnoutType,
+                TurnoutDrive = this.TurnoutDrive,
+                StraightLengthId = this.StraightLengthId,
+                LeftTurnoutLengthId = this.LeftTurnoutLengthId,
+                LeftTurnoutRadiusId = this.LeftTurnoutRadiusId,
+                LeftTurnoutAngleId = this.LeftTurnoutAngleId,
+                LeftCounterCurveRadiusId = this.LeftCounterCurveRadiusId,
+                LeftCounterCurveAngleId = this.LeftCounterCurveAngleId,
+                RightTurnoutLengthId = this.RightTurnoutLengthId,
+                RightTurnoutRadiusId = this.RightTurnoutRadiusId,
+                RightTurnoutAngleId = this.RightTurnoutAngleId,
+                RightCounterCurveRadiusId = this.RightCounterCurveRadiusId,
+                RightCounterCurveAngleId = this.RightCounterCurveAngleId
+            };
+            track.Update(this.trackType);
+            return track;
+        }
         public override void Update(TrackType trackType)
         {
             this.StraightLength = GetValueOrNull(trackType.Lengths, this.StraightLengthId);

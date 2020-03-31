@@ -30,6 +30,11 @@ namespace Rail.TrackEditor.ViewModel
             return new TrackDoubleCrossoverViewModel(trackTypeViewModel, trackDoubleCrossover);
         }
 
+        public override TrackViewModel Clone()
+        {
+            return new TrackDoubleCrossoverViewModel(this.trackTypeViewModel, (TrackDoubleCrossover)this.track.Clone());
+        }
+
         public string Article
         {
             get { return this.track.Article; }

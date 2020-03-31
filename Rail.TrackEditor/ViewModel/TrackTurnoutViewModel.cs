@@ -34,6 +34,11 @@ namespace Rail.TrackEditor.ViewModel
             return new TrackTurnoutViewModel(trackTypeViewModel, trackTurnout);
         }
 
+        public override TrackViewModel Clone()
+        {
+            return new TrackTurnoutViewModel(this.trackTypeViewModel, (TrackTurnout)this.track.Clone());
+        }
+
         public string Article
         {
             get { return this.track.Article; }

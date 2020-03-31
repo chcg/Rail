@@ -37,6 +37,11 @@ namespace Rail.TrackEditor.ViewModel
             return new TrackGroupViewModel(trackTypeViewModel, trackGroup);
         }
 
+        public override TrackViewModel Clone()
+        {
+            return new TrackGroupViewModel(this.trackTypeViewModel, (TrackGroup)this.track.Clone());
+        }
+
         public MultilanguageStringViewModel Names { get; }
 
         public DelegateCommand LoadGroupCommand { get; }

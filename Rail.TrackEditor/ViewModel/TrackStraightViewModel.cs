@@ -31,6 +31,11 @@ namespace Rail.TrackEditor.ViewModel
             return new TrackStraightViewModel(trackTypeViewModel, trackStraight);
         }
 
+        public override TrackViewModel Clone()
+        {
+            return new TrackStraightViewModel(this.trackTypeViewModel, (TrackStraight)this.track.Clone());
+        }
+
         public string Article
         {
             get { return this.track.Article; }

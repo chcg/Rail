@@ -8,6 +8,8 @@ namespace Rail.Tracks
 {
     public abstract class TrackBase
     {
+        protected TrackType trackType;
+
         public TrackBase()
         {
             this.Id = Guid.NewGuid();
@@ -43,6 +45,7 @@ namespace Rail.Tracks
         [XmlIgnore, JsonIgnore]
         public List<TrackDockPoint> DockPoints { get; protected set; }
 
+        public abstract TrackBase Clone();
         public abstract void Update(TrackType trackType);
 
         public abstract void RenderTrack(DrawingContext drawingContext, Brush trackBrush);

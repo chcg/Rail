@@ -32,6 +32,16 @@ namespace Rail.Tracks
             get { return null; /* this.GroupItems?.TODO;*/ } 
         }
 
+        public override TrackBase Clone()
+        {
+            TrackGroup track = new TrackGroup
+            {
+                
+            };
+            track.Update(this.trackType);
+            return track;
+        }
+
         public override void Update(TrackType trackType)
         {
             this.RailWidth = trackType.Parameter.RailWidth;

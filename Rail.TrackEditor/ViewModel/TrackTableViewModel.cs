@@ -30,6 +30,11 @@ namespace Rail.TrackEditor.ViewModel
             return new TrackTableViewModel(trackTypeViewModel, trackTable);
         }
 
+        public override TrackViewModel Clone()
+        {
+            return new TrackTableViewModel(this.trackTypeViewModel, (TrackTable)this.track.Clone());
+        }
+
         public string Article
         {
             get { return this.track.Article; }
