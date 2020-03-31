@@ -18,7 +18,7 @@ namespace Rail.TrackEditor.ViewModel
             this.trackTypeViewModel = trackTypeViewModel;
         }
 
-        public string Name { get { return this.Track.Name; } }
+        public string Name { get { return this.Track.Description; } }
 
         public TrackBase Track { get; } // { get { return this.trackBase; } }
 
