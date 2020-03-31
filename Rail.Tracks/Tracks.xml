@@ -332,8 +332,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Märklin H0 my world Plastic Tracks</LanguageString>
-        <LanguageString Lang="de-DE">Märklin H0 my world Kunststoffgleise</LanguageString>
+        <LanguageString Lang="en">Märklin H0 my world Plastic Tracks</LanguageString>
+        <LanguageString Lang="de">Märklin H0 my world Kunststoffgleise</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Märklin</Manufacturer>
@@ -407,8 +407,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Märklin H0 K-Tracks</LanguageString>
-        <LanguageString Lang="de-DE">Märklin H0 K-Gleise</LanguageString>
+        <LanguageString Lang="en">Märklin H0 K-Tracks</LanguageString>
+        <LanguageString Lang="de">Märklin H0 K-Gleise</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Märklin</Manufacturer>
@@ -633,8 +633,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Märklin H0 M-Tracks</LanguageString>
-        <LanguageString Lang="de-DE">Märklin H0 M-Gleise</LanguageString>
+        <LanguageString Lang="en">Märklin H0 M-Tracks</LanguageString>
+        <LanguageString Lang="de">Märklin H0 M-Gleise</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Märklin</Manufacturer>
@@ -906,8 +906,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Märklin 1 Tracks</LanguageString>
-        <LanguageString Lang="de-DE">Märklin 1 Gleise</LanguageString>
+        <LanguageString Lang="en">Märklin 1 Tracks</LanguageString>
+        <LanguageString Lang="de">Märklin 1 Gleise</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Märklin</Manufacturer>
@@ -987,8 +987,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Märklin Z Tracks</LanguageString>
-        <LanguageString Lang="de-DE">Märklin Z Gleise</LanguageString>
+        <LanguageString Lang="en">Märklin Z Tracks</LanguageString>
+        <LanguageString Lang="de">Märklin Z Gleise</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Märklin</Manufacturer>
@@ -1055,8 +1055,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Trix H0 C-Tracks</LanguageString>
-        <LanguageString Lang="de-DE">Trix H0 C-Gleise</LanguageString>
+        <LanguageString Lang="en">Trix H0 C-Tracks</LanguageString>
+        <LanguageString Lang="de">Trix H0 C-Gleise</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Trix</Manufacturer>
@@ -1080,8 +1080,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>LGB Tracks</LanguageString>
-        <LanguageString Lang="de-DE">LGB Gleise</LanguageString>
+        <LanguageString Lang="en">LGB Tracks</LanguageString>
+        <LanguageString Lang="de">LGB Gleise</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>LGB</Manufacturer>
@@ -1192,8 +1192,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>ML-Train G Brass</LanguageString>
-        <LanguageString Lang="de-DE">ML-Train G Messing</LanguageString>
+        <LanguageString Lang="en">ML-Train G Brass</LanguageString>
+        <LanguageString Lang="de">ML-Train G Messing</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>ML-Train</Manufacturer>
@@ -1229,8 +1229,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>ML-Train G Nickel</LanguageString>
-        <LanguageString Lang="de-DE">ML-Train G Nickel</LanguageString>
+        <LanguageString Lang="en">ML-Train G Nickel</LanguageString>
+        <LanguageString Lang="de">ML-Train G Nickel</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>ML-Train</Manufacturer>
@@ -1266,8 +1266,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Fleischmann H0 Tracks</LanguageString>
-        <LanguageString Lang="de-DE">Fleischmann H0 Gleise</LanguageString>
+        <LanguageString Lang="en">Fleischmann H0 Tracks</LanguageString>
+        <LanguageString Lang="de">Fleischmann H0 Gleise</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Fleischmann</Manufacturer>
@@ -1298,8 +1298,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Fleischmann N Tracks with Bedding</LanguageString>
-        <LanguageString Lang="de-DE">Fleischmann N Gleise mit Bettung</LanguageString>
+        <LanguageString Lang="en">Fleischmann N Tracks with Bedding</LanguageString>
+        <LanguageString Lang="de">Fleischmann N Gleise mit Bettung</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Fleischmann</Manufacturer>
@@ -1328,8 +1328,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Fleischmann N Tracks</LanguageString>
-        <LanguageString Lang="de-DE">Fleischmann N Gleise</LanguageString>
+        <LanguageString Lang="en">Fleischmann N Tracks</LanguageString>
+        <LanguageString Lang="de">Fleischmann N Gleise</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Fleischmann</Manufacturer>
@@ -1362,8 +1362,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Roco H0 geoLine</LanguageString>
-        <LanguageString Lang="de-DE">Roco H0 geoLine</LanguageString>
+        <LanguageString Lang="en">Roco H0 geoLine</LanguageString>
+        <LanguageString Lang="de">Roco H0 geoLine</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Roco</Manufacturer>
@@ -1387,8 +1387,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Roco H0 Roco-Line</LanguageString>
-        <LanguageString Lang="de-DE">Roco H0 Roco-Line</LanguageString>
+        <LanguageString Lang="en">Roco H0 Roco-Line</LanguageString>
+        <LanguageString Lang="de">Roco H0 Roco-Line</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Roco</Manufacturer>
@@ -1412,8 +1412,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Roco-Line with Bedding</LanguageString>
-        <LanguageString Lang="de-DE">Roco-Line with Bedding</LanguageString>
+        <LanguageString Lang="en">Roco-Line with Bedding</LanguageString>
+        <LanguageString Lang="de">Roco-Line with Bedding</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Roco</Manufacturer>
@@ -1437,8 +1437,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Roco H0e</LanguageString>
-        <LanguageString Lang="de-DE">Roco H0e</LanguageString>
+        <LanguageString Lang="en">Roco H0e</LanguageString>
+        <LanguageString Lang="de">Roco H0e</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Roco</Manufacturer>
@@ -1462,8 +1462,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Roco H0e Feldbahn</LanguageString>
-        <LanguageString Lang="de-DE">Roco H0e Feldbahn</LanguageString>
+        <LanguageString Lang="en">Roco H0e Feldbahn</LanguageString>
+        <LanguageString Lang="de">Roco H0e Feldbahn</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Roco</Manufacturer>
@@ -1487,11 +1487,11 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Pico G-Traks</LanguageString>
-        <LanguageString Lang="de-DE">Pico G-Gleise</LanguageString>
+        <LanguageString Lang="en">Piko G-Traks</LanguageString>
+        <LanguageString Lang="de">Piko G-Gleise</LanguageString>
       </Name>
       <Parameter>
-        <Manufacturer>Pico</Manufacturer>
+        <Manufacturer>Piko</Manufacturer>
         <Gauge>G</Gauge>
         <DockType>e2f7c8ad-3206-4ff9-874f-923b04dfc7b8</DockType>
         <RailType>Silver</RailType>
@@ -1593,11 +1593,11 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Pico H0 A-Track with roadbed</LanguageString>
-        <LanguageString Lang="de-DE">Pico H0 A-Gleis mit Bettung</LanguageString>
+        <LanguageString Lang="en">Piko H0 A-Track with roadbed</LanguageString>
+        <LanguageString Lang="de">Piko H0 A-Gleis mit Bettung</LanguageString>
       </Name>
       <Parameter>
-        <Manufacturer>Pico</Manufacturer>
+        <Manufacturer>Piko</Manufacturer>
         <Gauge>H0</Gauge>
         <DockType>245fabb7-a2ea-4535-87e6-403df4f6ad1f</DockType>
         <RailType>Silver</RailType>
@@ -1706,11 +1706,11 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Pico H0 A-Track with wooden sleepers</LanguageString>
-        <LanguageString Lang="de-DE">Pico H0 A-Gleis mit Holzschwellen</LanguageString>
+        <LanguageString Lang="en">Piko H0 A-Track with wooden sleepers</LanguageString>
+        <LanguageString Lang="de">Piko H0 A-Gleis mit Holzschwellen</LanguageString>
       </Name>
       <Parameter>
-        <Manufacturer>Pico</Manufacturer>
+        <Manufacturer>Piko</Manufacturer>
         <Gauge>H0</Gauge>
         <DockType>245fabb7-a2ea-4535-87e6-403df4f6ad1f</DockType>
         <RailType>Silver</RailType>
@@ -1809,11 +1809,11 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Pico H0 A-Track with concrete sleepers</LanguageString>
-        <LanguageString Lang="de-DE">Pico H0 A-Gleis mit Betonschwellen</LanguageString>
+        <LanguageString Lang="en">Piko H0 A-Track with concrete sleepers</LanguageString>
+        <LanguageString Lang="de">Piko H0 A-Gleis mit Betonschwellen</LanguageString>
       </Name>
       <Parameter>
-        <Manufacturer>Pico</Manufacturer>
+        <Manufacturer>Piko</Manufacturer>
         <Gauge>H0</Gauge>
         <DockType>245fabb7-a2ea-4535-87e6-403df4f6ad1f</DockType>
         <RailType>Silver</RailType>
@@ -1848,8 +1848,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Rokuhan Z</LanguageString>
-        <LanguageString Lang="de-DE">Rokuhan Z</LanguageString>
+        <LanguageString Lang="en">Rokuhan Z</LanguageString>
+        <LanguageString Lang="de">Rokuhan Z</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Rokuhan</Manufacturer>
@@ -1873,8 +1873,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Kato H0</LanguageString>
-        <LanguageString Lang="de-DE">Kato H0</LanguageString>
+        <LanguageString Lang="en">Kato H0</LanguageString>
+        <LanguageString Lang="de">Kato H0</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Kato</Manufacturer>
@@ -1898,8 +1898,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Lego City</LanguageString>
-        <LanguageString Lang="de-DE">Lego City</LanguageString>
+        <LanguageString Lang="en">Lego City</LanguageString>
+        <LanguageString Lang="de">Lego City</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Lego</Manufacturer>
@@ -1940,8 +1940,8 @@
     </TrackType>
     <TrackType>
       <Name>
-        <LanguageString>Trixbrix compatible to Lego City</LanguageString>
-        <LanguageString Lang="de-DE">Trixbrix kompatible zu Lego City</LanguageString>
+        <LanguageString Lang="en">Trixbrix compatible to Lego City</LanguageString>
+        <LanguageString Lang="de">Trixbrix kompatible zu Lego City</LanguageString>
       </Name>
       <Parameter>
         <Manufacturer>Trixbrix</Manufacturer>
