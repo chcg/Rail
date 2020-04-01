@@ -15,9 +15,7 @@ namespace Rail.TrackEditor.ViewModel
     {
         private readonly TrackType trackType;
         private readonly List<TrackNamedValueViewModel> nullList = new List<TrackNamedValueViewModel> { TrackNamedValueViewModel.Null };
-
-       
-
+        
         public DelegateCommand<TrackTypes> NewTrackCommand { get; }
         public DelegateCommand<TrackViewModel> CloneTrackCommand { get; }
         public DelegateCommand<TrackViewModel> DeleteTrackCommand { get; }
@@ -58,11 +56,6 @@ namespace Rail.TrackEditor.ViewModel
             };
         }
 
-        //internal object First()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public TrackType TrackType { get { return this.trackType; } }
 
         public TrackType GetTrackType()
@@ -74,8 +67,6 @@ namespace Rail.TrackEditor.ViewModel
             this.trackType.Angles = this.Angles.OrderBy(l => l.Value).Select(l => l.NamedValue).ToList();
             return this.trackType;
         }
-
-        //public string Name { get { return this.trackType.Name; } }
 
         public MultilanguageStringViewModel Names { get; }
 

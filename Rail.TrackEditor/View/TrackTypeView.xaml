@@ -33,16 +33,16 @@
             </Grid.ColumnDefinitions>
             <GroupBox Header="Name" Grid.Column="0" >
                 <DataGrid 
-                ItemsSource="{Binding Names.Items}" 
-                AutoGenerateColumns="False" 
-                SelectionMode="Single" 
-                GridLinesVisibility="None"
-                HeadersVisibility="Column" 
-                CanUserResizeColumns="True"
-                CanUserAddRows="True"
-                CanUserDeleteRows="True"
-                Background="White"
-                Margin="3" >
+                    ItemsSource="{Binding Names.Items}" 
+                    AutoGenerateColumns="False" 
+                    SelectionMode="Single" 
+                    GridLinesVisibility="None"
+                    HeadersVisibility="Column" 
+                    CanUserResizeColumns="True"
+                    CanUserAddRows="True"
+                    CanUserDeleteRows="True"
+                    Background="White"
+                    Margin="0" >
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Header="{x:Static lang:Resources.MainLanguage}" Width="Auto">                        
                             <DataGridTemplateColumn.CellTemplate>
@@ -63,17 +63,17 @@
             </GroupBox>
             <GroupBox Header="Lenths" Grid.Column="1" >
                 <DataGrid 
-                x:Name="lengths"
-                ItemsSource="{Binding Lengths}" 
-                AutoGenerateColumns="False" 
-                SelectionMode="Single" 
-                GridLinesVisibility="None"
-                HeadersVisibility="Column" 
-                CanUserResizeColumns="True"
-                CanUserAddRows="True"
-                CanUserDeleteRows="False"
-                Background="White"
-                Margin="3">
+                    x:Name="lengths"
+                    ItemsSource="{Binding Lengths}" 
+                    AutoGenerateColumns="False" 
+                    SelectionMode="Single" 
+                    GridLinesVisibility="None"
+                    HeadersVisibility="Column" 
+                    CanUserResizeColumns="True"
+                    CanUserAddRows="True"
+                    CanUserDeleteRows="False"
+                    Background="White"
+                    Margin="1">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Name}" Header="{x:Static lang:Resources.MainName}" Width="Auto"/>
                         <DataGridTextColumn Binding="{Binding Value}" Header="{x:Static lang:Resources.MainLengthmm}" Width="*"/>
@@ -82,17 +82,17 @@
             </GroupBox>
             <GroupBox Header="Radii" Grid.Column="2" >
                 <DataGrid 
-                x:Name="radii"
-                ItemsSource="{Binding Radii}" 
-                AutoGenerateColumns="False" 
-                SelectionMode="Single" 
-                GridLinesVisibility="None"
-                HeadersVisibility="Column" 
-                CanUserResizeColumns="True"
-                CanUserAddRows="True"
-                CanUserDeleteRows="False"
-                Background="White"
-                Margin="3">
+                    x:Name="radii"
+                    ItemsSource="{Binding Radii}" 
+                    AutoGenerateColumns="False" 
+                    SelectionMode="Single" 
+                    GridLinesVisibility="None"
+                    HeadersVisibility="Column" 
+                    CanUserResizeColumns="True"
+                    CanUserAddRows="True"
+                    CanUserDeleteRows="False"
+                    Background="White"
+                    Margin="3">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Name}" Header="{x:Static lang:Resources.MainName}" Width="Auto"/>
                         <DataGridTextColumn Binding="{Binding Value}" Header="{x:Static lang:Resources.MainRadiusmm}" Width="*"/>
@@ -101,17 +101,17 @@
             </GroupBox>
             <GroupBox Header="Angles" Grid.Column="3" >
                 <DataGrid 
-                x:Name="angles"
-                ItemsSource="{Binding Angles}" 
-                AutoGenerateColumns="False" 
-                SelectionMode="Single" 
-                GridLinesVisibility="None"
-                HeadersVisibility="Column" 
-                CanUserResizeColumns="True"
-                CanUserAddRows="True"
-                CanUserDeleteRows="False"
-                Background="White"
-                Margin="3">
+                    x:Name="angles"
+                    ItemsSource="{Binding Angles}" 
+                    AutoGenerateColumns="False" 
+                    SelectionMode="Single" 
+                    GridLinesVisibility="None"
+                    HeadersVisibility="Column" 
+                    CanUserResizeColumns="True"
+                    CanUserAddRows="True"
+                    CanUserDeleteRows="False"
+                    Background="White"
+                    Margin="3">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Name}" Header="{x:Static lang:Resources.MainName}" Width="Auto"/>
                         <DataGridTextColumn Binding="{Binding Value}" Header="{x:Static lang:Resources.MainAngledeg}" Width="*"/>
@@ -223,6 +223,68 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" MinHeight="100"/>
                     </Grid.RowDefinitions>
+                    <DataGrid 
+                        Grid.Column="0" 
+                        ItemsSource="{Binding Tracks}" 
+                        SelectedItem="{Binding SelectedTrack}"
+                        AutoGenerateColumns="False" 
+                        SelectionMode="Single" 
+                        GridLinesVisibility="None"
+                        HeadersVisibility="Column" 
+                        CanUserResizeColumns="True"
+                        CanUserAddRows="False"
+                        CanUserDeleteRows="False"
+                        Background="White">
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="{x:Static lang:Resources.MainNewStraightTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Straight}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainNewCurvedTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Curved}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainNewCrossingTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Crossing}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainNewEndPieceTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.EndPiece}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainNewFlexTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Flex}" />
+                                <Separator/>
+                                <MenuItem Header="{x:Static lang:Resources.MainNewTurnoutTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Turnout}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainNewCurvedTurnoutTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.CurvedTurnout}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainNewDoubleSlipSwitchTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.DoubleSlipSwitch}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainNewDoubleCrossoverTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.DoubleCrossover}" />
+                                <Separator/>
+                                <MenuItem Header="{x:Static lang:Resources.MainNewTableTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Table}" />
+                                <Separator/>
+                                <MenuItem Header="{x:Static lang:Resources.MainNewGroupTrack}" Command="{Binding NewTrackCommand}" CommandParameter="{x:Static tr:TrackTypes.Group}" />
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                        <DataGrid.Resources>
+                            <ContextMenu x:Key="RowMenu" DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+                                <MenuItem Header="{x:Static lang:Resources.MainNewStraightTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Straight}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainNewCurvedTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Curved}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainNewCrossingTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Crossing}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainNewEndPieceTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.EndPiece}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainNewFlexTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Flex}" />
+                                <Separator/>
+                                <MenuItem Header="{x:Static lang:Resources.MainNewTurnoutTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Turnout}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainNewCurvedTurnoutTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.CurvedTurnout}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainNewDoubleSlipSwitchTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.DoubleSlipSwitch}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainNewDoubleCrossoverTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.DoubleCrossover}" />
+                                <Separator/>
+                                <MenuItem Header="{x:Static lang:Resources.MainNewTableTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Table}" />
+                                <Separator/>
+                                <MenuItem Header="{x:Static lang:Resources.MainNewGroupTrack}" Command="{Binding Data.NewTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{x:Static tr:TrackTypes.Group}" />
+                                <Separator/>
+                                <MenuItem Header="{x:Static lang:Resources.MainCloneTrack}" Command="{Binding Data.CloneTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{Binding .}" />
+                                <MenuItem Header="{x:Static lang:Resources.MainDeleteTrack}" Command="{Binding Data.DeleteTrackCommand, Source={StaticResource TrackTypeBindingProxy}}" CommandParameter="{Binding .}" />
+                            </ContextMenu>
+                        </DataGrid.Resources>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow" >
+                                <Setter Property="ContextMenu" Value="{StaticResource RowMenu}" />
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Article}" Header="{x:Static lang:Resources.MainArticle}" IsReadOnly="True" Width="Auto"/>
+                            <DataGridTextColumn Binding="{Binding Name}" Header="{x:Static lang:Resources.MainName}" IsReadOnly="True" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <!--
                     <ListBox Grid.Column="0" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" >
                         <ListBox.ContextMenu>
                             <ContextMenu>
@@ -270,6 +332,7 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+                    -->
                     <GridSplitter Background="Blue" Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch" />
                     <Grid Grid.Column="1" DataContext="{Binding SelectedTrack}">
                         <Grid.ColumnDefinitions>

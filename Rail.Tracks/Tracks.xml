@@ -1072,9 +1072,15 @@
         <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
         <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
       </Parameter>
-      <Radii />
-      <Lengths />
-      <Angles />
+      <Radii>
+        <Radius Id="564da962-3c59-4484-b435-0932bbed4910" Name="R1" Value="360" />
+      </Radii>
+      <Lengths>
+        <Length Id="8310f98d-42f3-464a-890f-c0f19f6bf18c" Name="G64" Value="64.3" />
+      </Lengths>
+      <Angles>
+        <Angle Id="b9863019-838a-4d74-93ee-e47ff46d3392" Name="A30" Value="30" />
+      </Angles>
       <Tracks />
       <Groups />
     </TrackType>
@@ -1283,7 +1289,9 @@
         <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
         <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
       </Parameter>
-      <Radii />
+      <Radii>
+        <Radius Id="0d967d75-cb36-4bcb-80f0-01f427d30822" Name="R1" Value="356.5" />
+      </Radii>
       <Lengths>
         <Length Id="b808d4cd-d887-4ee9-af04-9b286e2a2cc1" Name="R1" Value="356.5" />
         <Length Id="d660f1fa-b1e4-4064-bc4f-37fece676de4" Name="R2" Value="420" />
@@ -1292,7 +1300,9 @@
         <Length Id="b4d2481f-321f-4662-ada2-cef648caa9fc" Name="R5" Value="647" />
         <Length Id="37dac9eb-72a6-4172-8643-3902a4e263d9" Name="R6" Value="788" />
       </Lengths>
-      <Angles />
+      <Angles>
+        <Angle Id="a77b16ce-ad9e-47b8-9b34-6f752ddaa13a" Name="A36" Value="36" />
+      </Angles>
       <Tracks />
       <Groups />
     </TrackType>
@@ -1315,14 +1325,18 @@
         <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
         <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
       </Parameter>
-      <Radii />
+      <Radii>
+        <Radius Id="9bf38e0a-446c-4dac-8a34-21b09fab6ec2" Name="R1" Value="192" />
+      </Radii>
       <Lengths>
         <Length Id="a1df687a-4818-427c-9597-82c50559efc0" Name="R1" Value="192" />
         <Length Id="51312374-22ab-4890-a538-0040ac1845f5" Name="R2" Value="225.6" />
         <Length Id="4b1e8be5-9b47-4fe4-80ca-c0f8ffeb7f1d" Name="R3" Value="396.4" />
         <Length Id="65d31315-a652-43d0-9a1c-7b067c100896" Name="R4" Value="430" />
       </Lengths>
-      <Angles />
+      <Angles>
+        <Angle Id="e749c757-0008-4f87-9768-e542a23773f9" Name="A45" Value="45" />
+      </Angles>
       <Tracks />
       <Groups />
     </TrackType>
@@ -1345,7 +1359,9 @@
         <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
         <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
       </Parameter>
-      <Radii />
+      <Radii>
+        <Radius Id="a152f9a1-703d-47ec-a7d8-7ec6c6a198af" Name="R1" Value="194.6" />
+      </Radii>
       <Lengths>
         <Length Id="209715dd-927b-43bc-9eea-65f9de1ba192" Name="R1" Value="194.6" />
         <Length Id="c3d42b19-2a04-4f9d-9e83-26bc8e6f2982" Name="R2" Value="228.2" />
@@ -1356,7 +1372,9 @@
         <Length Id="a86572a6-73d3-4fc1-b61b-35d1c30d1688" Name="R6" Value="480" />
         <Length Id="41e2b033-dd31-4624-963e-9ceb64e2fd9b" Name="R7" Value="765" />
       </Lengths>
-      <Angles />
+      <Angles>
+        <Angle Id="8e8018ee-4024-45c1-8747-2200b7a6fa80" Name="A30" Value="30" />
+      </Angles>
       <Tracks />
       <Groups />
     </TrackType>
@@ -1379,10 +1397,69 @@
         <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
         <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
       </Parameter>
-      <Radii />
-      <Lengths />
-      <Angles />
-      <Tracks />
+      <Radii>
+        <Radius Id="dc543d05-fccc-48dc-9a97-51a75f01cf77" Name="R2" Value="358" />
+        <Radius Id="054dcf1f-2c9f-4324-8326-4a7f06d8207b" Name="R3" Value="434.5" />
+        <Radius Id="ed5b940b-6a6a-46cc-a7e3-a82363bc355e" Name="R4" Value="511.1" />
+      </Radii>
+      <Lengths>
+        <Length Id="ddf854bd-7ae4-4087-8595-37bdbe3fb11a" Name="G77" Value="76.5" />
+        <Length Id="addc4a90-ebee-4fd8-8dce-9a2c63cb644b" Name="G100" Value="100" />
+        <Length Id="b9962209-9d02-4ede-bfe6-8c349b001ef8" Name="G185" Value="185" />
+        <Length Id="33342467-bad2-4c2e-95bb-25fc2be397e4" Name="G200" Value="200" />
+        <Length Id="6108d2ef-2313-4e73-9465-ceae963e08cb" Name="G800" Value="785" />
+      </Lengths>
+      <Angles>
+        <Angle Id="62734c5e-eb11-472d-9364-7c4de43a3029" Name="A8" Value="7.5" />
+        <Angle Id="4bdb894d-b2e8-4a12-a3e9-fcf89ad44ba6" Name="A30" Value="30" />
+      </Angles>
+      <Tracks>
+        <Straight Id="7c1aaaab-2fad-422e-853e-24b023b62d4c">
+          <Article>61106</Article>
+          <Length>6108d2ef-2313-4e73-9465-ceae963e08cb</Length>
+        </Straight>
+        <Straight Id="6850c249-4d1d-445c-8430-fd095e229e38">
+          <Article>61110</Article>
+          <Length>33342467-bad2-4c2e-95bb-25fc2be397e4</Length>
+        </Straight>
+        <Straight Id="30e83f3d-3fb9-47a8-a012-335baba3511c">
+          <Article>61111</Article>
+          <Length>b9962209-9d02-4ede-bfe6-8c349b001ef8</Length>
+        </Straight>
+        <Straight Id="e8371b20-75bb-41c4-9e08-321ef2041b91">
+          <Article>61112</Article>
+          <Length>ddf854bd-7ae4-4087-8595-37bdbe3fb11a</Length>
+        </Straight>
+        <Straight Id="3f35fec6-d10b-47c9-8c37-85a263caf58a">
+          <Article>61113</Article>
+          <Length>addc4a90-ebee-4fd8-8dce-9a2c63cb644b</Length>
+        </Straight>
+        <Curved Id="53497953-5d03-4478-9f2e-0cb964c17e5a">
+          <Article>61122</Article>
+          <Radius>dc543d05-fccc-48dc-9a97-51a75f01cf77</Radius>
+          <Angle>4bdb894d-b2e8-4a12-a3e9-fcf89ad44ba6</Angle>
+        </Curved>
+        <Curved Id="87ee2608-54ed-4946-8238-b65128c758fd">
+          <Article>61123</Article>
+          <Radius>054dcf1f-2c9f-4324-8326-4a7f06d8207b</Radius>
+          <Angle>4bdb894d-b2e8-4a12-a3e9-fcf89ad44ba6</Angle>
+        </Curved>
+        <Curved Id="cc96c850-1f00-434b-bd77-bbfab032b6c6">
+          <Article>61124</Article>
+          <Radius>ed5b940b-6a6a-46cc-a7e3-a82363bc355e</Radius>
+          <Angle>4bdb894d-b2e8-4a12-a3e9-fcf89ad44ba6</Angle>
+        </Curved>
+        <Curved Id="e7a92170-47e5-4f13-ba4c-d6480fed988e">
+          <Article>61129</Article>
+          <Radius>dc543d05-fccc-48dc-9a97-51a75f01cf77</Radius>
+          <Angle>62734c5e-eb11-472d-9364-7c4de43a3029</Angle>
+        </Curved>
+        <Curved Id="1011b8b3-04fb-46da-9aff-138ff33d5a80">
+          <Article>61130</Article>
+          <Radius>054dcf1f-2c9f-4324-8326-4a7f06d8207b</Radius>
+          <Angle>62734c5e-eb11-472d-9364-7c4de43a3029</Angle>
+        </Curved>
+      </Tracks>
       <Groups />
     </TrackType>
     <TrackType>
@@ -1404,9 +1481,16 @@
         <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
         <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
       </Parameter>
-      <Radii />
-      <Lengths />
-      <Angles />
+      <Radii>
+        <Radius Id="761b4d37-d25f-4784-a049-6274b22f8d23" Name="R2" Value="358" />
+      </Radii>
+      <Lengths>
+        <Length Id="4a740a6e-80b5-437d-8f40-daf8591dba0e" Name="G1" Value="230" />
+        <Length Id="da393426-c34b-4788-93d1-f9bf11b2543e" Name="G4" Value="920" />
+      </Lengths>
+      <Angles>
+        <Angle Id="2dad6fc5-d9fe-4ac5-b871-05abc2ea37ba" Name="A30" Value="30" />
+      </Angles>
       <Tracks />
       <Groups />
     </TrackType>
@@ -1429,10 +1513,21 @@
         <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
         <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
       </Parameter>
-      <Radii />
-      <Lengths />
-      <Angles />
-      <Tracks />
+      <Radii>
+        <Radius Id="221e1ff8-d0da-4e53-b215-d1e739cfe951" Name="R2" Value="358" />
+      </Radii>
+      <Lengths>
+        <Length Id="84eb306b-10ef-4d33-8ebd-0114ae070048" Name="G1" Value="230" />
+      </Lengths>
+      <Angles>
+        <Angle Id="b37ba300-2806-4b5a-afae-6ba8dc50684f" Name="A30" Value="30" />
+      </Angles>
+      <Tracks>
+        <Straight Id="7d162bae-105a-4f46-a8e4-bc55a1568972">
+          <Article>42510</Article>
+          <Length>84eb306b-10ef-4d33-8ebd-0114ae070048</Length>
+        </Straight>
+      </Tracks>
       <Groups />
     </TrackType>
     <TrackType>
@@ -1454,10 +1549,21 @@
         <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
         <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
       </Parameter>
-      <Radii />
-      <Lengths />
-      <Angles />
-      <Tracks />
+      <Radii>
+        <Radius Id="d579b99b-5089-42f9-bbbe-e07cb66f6e7c" Name="R" Value="261.8" />
+      </Radii>
+      <Lengths>
+        <Length Id="b84222af-6bf5-4058-8f7d-8dd4d812c0c2" Name="134" Value="134.4" />
+      </Lengths>
+      <Angles>
+        <Angle Id="6422e12e-9f14-4349-9caa-083133a2d50c" Name="A30" Value="30" />
+      </Angles>
+      <Tracks>
+        <Straight Id="fc0f92b4-800f-49ef-9abc-22566164f2f2">
+          <Article>32202</Article>
+          <Length>b84222af-6bf5-4058-8f7d-8dd4d812c0c2</Length>
+        </Straight>
+      </Tracks>
       <Groups />
     </TrackType>
     <TrackType>
@@ -1479,10 +1585,24 @@
         <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
         <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
       </Parameter>
-      <Radii />
-      <Lengths />
-      <Angles />
-      <Tracks />
+      <Radii>
+        <Radius Id="1112dd38-b408-4e7b-95cd-048b8d7e509e" Name="R" Value="194.6" />
+      </Radii>
+      <Lengths>
+        <Length Id="9c0376fc-44eb-4b59-86fd-0f824859e1c0" Name="G104" Value="104.2" />
+      </Lengths>
+      <Angles>
+        <Angle Id="c0592db5-cbec-4995-b79f-d3011f76d5bf" Name="A24" Value="24" />
+      </Angles>
+      <Tracks>
+        <Turnout Id="77b04e36-f7d6-487e-8670-6659734cc929">
+          <Article />
+          <TurnoutType>Left</TurnoutType>
+          <StraightLength>9c0376fc-44eb-4b59-86fd-0f824859e1c0</StraightLength>
+          <LeftTurnoutRadius>1112dd38-b408-4e7b-95cd-048b8d7e509e</LeftTurnoutRadius>
+          <LeftTurnoutAngle>c0592db5-cbec-4995-b79f-d3011f76d5bf</LeftTurnoutAngle>
+        </Turnout>
+      </Tracks>
       <Groups />
     </TrackType>
     <TrackType>
@@ -1842,7 +1962,9 @@
         <Length Id="6b5cf007-cb28-4d97-9698-dc98db3c873e" Name="G239" Value="239.07" />
         <Length Id="f4f8c4c3-9a16-4903-abc3-c28de8d9ebcf" Name="G940" Value="940" />
       </Lengths>
-      <Angles />
+      <Angles>
+        <Angle Id="abb07787-28e3-435e-b55e-5a43092bd30e" Name="A30" Value="30" />
+      </Angles>
       <Tracks />
       <Groups />
     </TrackType>
@@ -1865,9 +1987,15 @@
         <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
         <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
       </Parameter>
-      <Radii />
-      <Lengths />
-      <Angles />
+      <Radii>
+        <Radius Id="31187f2b-1ab0-496a-bb4b-fe293b35b20f" Name="R220" Value="220" />
+      </Radii>
+      <Lengths>
+        <Length Id="17bcf76e-15ec-44be-bc54-cfd3762cc38a" Name="G110" Value="110" />
+      </Lengths>
+      <Angles>
+        <Angle Id="2b9fa2b4-f3c8-49b9-a1bd-49d2f21b6d65" Name="A45" Value="45" />
+      </Angles>
       <Tracks />
       <Groups />
     </TrackType>
@@ -1890,10 +2018,21 @@
         <WagonMaxBogieDistance>0</WagonMaxBogieDistance>
         <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
       </Parameter>
-      <Radii />
-      <Lengths />
-      <Angles />
-      <Tracks />
+      <Radii>
+        <Radius Id="b623de25-409e-4dc3-9f72-8b6564b28371" Name="R315" Value="315" />
+      </Radii>
+      <Lengths>
+        <Length Id="88d3f8a7-d276-4baa-9015-c2cae5c624e8" Name="G94" Value="94" />
+      </Lengths>
+      <Angles>
+        <Angle Id="cf5d6e44-5549-4be6-aa29-d9bf33b81f88" Name="A15" Value="15" />
+      </Angles>
+      <Tracks>
+        <Straight Id="087804dc-7495-482e-b711-2040ba9ede21">
+          <Article />
+          <Length>88d3f8a7-d276-4baa-9015-c2cae5c624e8</Length>
+        </Straight>
+      </Tracks>
       <Groups />
     </TrackType>
     <TrackType>

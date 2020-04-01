@@ -18,12 +18,10 @@ namespace Rail.TrackEditor.ViewModel
             this.trackTypeViewModel = trackTypeViewModel;
         }
 
-        public string Name { get { return this.Track.Description; } }
+        public string Name { get { return this.Track.Name; } }
 
-        public TrackBase Track { get; } // { get { return this.trackBase; } }
-
-        //public ICommand RailInvalidateCommand { get; set; }
-        
+        public TrackBase Track { get; }
+       
         protected override void NotifyPropertyChanged(string propertyName)
         {
             base.NotifyPropertyChanged(propertyName);
