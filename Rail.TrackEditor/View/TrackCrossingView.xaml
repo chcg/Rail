@@ -50,11 +50,13 @@
         <Label Grid.Column="0" Grid.Row="2" Content="{x:Static lang:Resources.MainLength}"/>
         <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding DataContext.LengthsSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding Length}" DisplayMemberPath="Name" IsEditable="False" Margin="3"/>
 
-        <Label Grid.Column="0" Grid.Row="3" Content="{x:Static lang:Resources.MainLengthB}"/>
+        <Label Grid.Column="0" Grid.Row="3" Content="{x:Static lang:Resources.MainLengthB}"
+            Visibility="{Binding CrossingType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource lengthB}}" />
         <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding DataContext.LengthsSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding LengthB}" DisplayMemberPath="Name" IsEditable="False" Margin="3"
             Visibility="{Binding CrossingType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource lengthB}}" />
 
-        <Label Grid.Column="0" Grid.Row="4" Content="{x:Static lang:Resources.MainCrossingAngle}"/>
+        <Label Grid.Column="0" Grid.Row="4" Content="{x:Static lang:Resources.MainCrossingAngle}"
+            Visibility="{Binding CrossingType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource angle}}" />
         <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding DataContext.AnglesSource, RelativeSource={RelativeSource AncestorType={x:Type local:TrackTypeView}}}" SelectedItem="{Binding CrossingAngle}" DisplayMemberPath="Name" IsEditable="False" Margin="3"
             Visibility="{Binding CrossingType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource angle}}" />
 
