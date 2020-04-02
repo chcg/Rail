@@ -13,12 +13,12 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        framework: [win-x86, win-x64]
+        framework: [win-x86, win-x64, win-arm, osx-x64, linux-x64, linux-arm]
     
     steps:
       - uses: actions/checkout@master
 
-      - name: "Setup .NET Core"
+      - name: "Setup .NET 5.0"
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.100-preview.2.20176.6
