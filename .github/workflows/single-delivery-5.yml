@@ -21,7 +21,11 @@ jobs:
       - name: "Setup .NET Core"
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 5.0.0-preview.2
+          dotnet-version: 5.0.100-preview.2.20176.6
+          
+      - name: "Version check"
+        run: dotnet --version
+        working-directory: .
 
       - name: "Build Rail ${{ matrix.framework }}"
         run: dotnet publish -c Release -f netcoreapp5.0 -o ../Delivery/${{ matrix.framework }} -r ${{ matrix.framework }} --self-contained true /p:PublishSingleFile=true "Rail.csproj"
