@@ -1,4 +1,4 @@
-name: Single File Delivery
+name: Single File Delivery .NET Core 3.1
 
 on: 
   push:
