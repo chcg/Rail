@@ -11,6 +11,9 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        framework: [win-x86, win-x64]
     
     steps:
       - uses: actions/checkout@master
@@ -18,47 +21,29 @@ jobs:
       - name: "Setup .NET Core"
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 5.0.0-preview.2.20167.3
+          dotnet-version: 5.0.0-preview.2
 
-      - name: "Build Rail x86"
-        run: dotnet publish -c Release -f netcoreapp5.0 -o ../Delivery/Win-x86 -r win-x86 --self-contained true /p:PublishSingleFile=true "Rail.csproj"
+      - name: "Build Rail ${{ matrix.framework }}"
+        run: dotnet publish -c Release -f netcoreapp5.0 -o ../Delivery/${{ matrix.framework }} -r ${{ matrix.framework }} --self-contained true /p:PublishSingleFile=true "Rail.csproj"
         working-directory: ./Rail
 
-      - name: "Build Rail x64"     
-        run: dotnet publish -c Release -f netcoreapp5.0 -o ../Delivery/Win-x64 -r win-x64 --self-contained true /p:PublishSingleFile=true "Rail.csproj"
-        working-directory: ./Rail
-
-      - name:  "Build Rail.TrackEditor x86"
-        run: dotnet publish -c Release -f netcoreapp5.0 -o ../Delivery/Win-x86 -r win-x86 --self-contained true /p:PublishSingleFile=true "Rail.TrackEditor.csproj"
+      - name:  "Build Rail.TrackEditor ${{ matrix.framework }}"
+        run: dotnet publish -c Release -f netcoreapp5.0 -o ../Delivery/${{ matrix.framework }} -r ${{ matrix.framework }} --self-contained true /p:PublishSingleFile=true "Rail.TrackEditor.csproj"
         working-directory: ./Rail.TrackEditor
 
-      - name: "Build Rail.TrackEditor x64"     
-        run: dotnet publish -c Release -f netcoreapp5.0 -o ../Delivery/Win-x64 -r win-x64 --self-contained true /p:PublishSingleFile=true "Rail.TrackEditor.csproj"
-        working-directory: ./Rail.TrackEditor
 
-      - name: "Archive Rail x86"
+      - name: "Archive Rail ${{ matrix.framework }}"
         uses: actions/upload-artifact@v1
         with:
-            name: Rail.x86.exe
-            path: ./Delivery/Win-x86/Rail.exe
+            name: Rail.${{ matrix.framework }}.exe
+            path: ./Delivery/${{ matrix.framework }}/Rail.exe
 
-      - name: "Archive Rail x64"
+      - name: "Archive Rail.TrackEditor ${{ matrix.framework }}"
         uses: actions/upload-artifact@v1
         with:
-            name: Rail.x64.exe
-            path: ./Delivery/Win-x64/Rail.exe
-
-      - name: "Archive Rail.TrackEditor x86"
-        uses: actions/upload-artifact@v1
-        with:
-            name: Rail.TrackEditor.x86.exe
-            path: ./Delivery/Win-x86/Rail.TrackEditor.exe
+            name: Rail.TrackEditor.${{ matrix.framework }}.exe
+            path: ./Delivery/${{ matrix.framework }}/Rail.TrackEditor.exe
             
-      - name: "Archive Rail.TrackEditor x64"
-        uses: actions/upload-artifact@v1
-        with:
-            name: Rail.TrackEditor.x64.exe
-            path: ./Delivery/Win-x64/Rail.TrackEditor.exe
  
  
 
