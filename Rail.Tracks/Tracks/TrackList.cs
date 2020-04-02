@@ -48,10 +48,13 @@ namespace Rail.Tracks
                 ValidationType = ValidationType.Schema
             };
             settings.Schemas.Add(schema);
-            
 
+#if DEBUG
             string file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Rail\\Tracks.xmlxxxxx");
-            
+#else
+            string file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Rail\\Tracks.xml");
+#endif
+
             using Stream xmlStream = File.Exists(file) ? File.OpenRead(file) : trackAssembly.GetManifestResourceStream("Rail.Tracks.Tracks.xml");
 
             // read from file

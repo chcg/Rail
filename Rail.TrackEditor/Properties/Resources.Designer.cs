@@ -142,6 +142,15 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Crossing Type.
+        /// </summary>
+        public static string MainCrossingType {
+            get {
+                return ResourceManager.GetString("MainCrossingType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deck Length.
         /// </summary>
         public static string MainDeckLength {

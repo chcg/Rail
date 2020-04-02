@@ -47,7 +47,7 @@
                         <DataGridTemplateColumn Header="{x:Static lang:Resources.MainLanguage}" Width="Auto">                        
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Language.DisplayName}"/>
+                                    <TextBlock Text="{Binding Language.NativeName}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                             <DataGridTemplateColumn.CellEditingTemplate>

@@ -23,7 +23,7 @@ namespace Rail.TrackEditor.ViewModel
             TrackCrossing trackCrossing = new TrackCrossing
             {
                 Article = string.Empty,
-                Number = 2,
+                CrossingType = TrackCrossingType.Simple,
                 LengthId = trackTypeViewModel.Lengths.First().Id,
                 LengthBId = trackTypeViewModel.Lengths.First().Id,
                 CrossingAngleId = trackTypeViewModel.Angles.First().Id
@@ -42,10 +42,10 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.Article = value.Trim(); NotifyPropertyChanged(nameof(Article)); }
         }
 
-        public int Number
+        public TrackCrossingType CrossingType
         {
-            get { return this.track.Number; }
-            set { this.track.Number = value; NotifyPropertyChanged(nameof(Number)); }
+            get { return this.track.CrossingType; }
+            set { this.track.CrossingType = value; NotifyPropertyChanged(nameof(CrossingType)); }
         }
 
         public TrackNamedValueViewModel Length

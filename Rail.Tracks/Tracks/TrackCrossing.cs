@@ -13,8 +13,8 @@ namespace Rail.Tracks
     {
         #region store 
 
-        [XmlElement("Number")]
-        public int Number { get; set; }
+        [XmlElement("CrossingType")]
+        public TrackCrossingType CrossingType { get; set; }
 
         [XmlElement("Length")]
         public Guid LengthId { get; set; }
@@ -53,7 +53,7 @@ namespace Rail.Tracks
             TrackCrossing track = new TrackCrossing
             {
                 Article = this.Article,
-                Number = this.Number,
+                CrossingType = this.CrossingType,
                 LengthId = this.LengthId,
                 LengthBId = this.LengthBId,
                 CrossingAngleId = this.CrossingAngleId
@@ -76,21 +76,26 @@ namespace Rail.Tracks
 
         protected override Geometry CreateGeometry()
         {
-            return this.Number switch
+            return this.CrossingType switch
             {
-                2 =>
+                TrackCrossingType.Simple =>
+                    new CombinedGeometry(
+                        StraitGeometry(this.Length, StraitOrientation.Center, -this.CrossingAngle / 2),
+                        StraitGeometry(this.Length, StraitOrientation.Center, +this.CrossingAngle / 2)),
+
+                TrackCrossingType.Asymmetrical =>
                     new CombinedGeometry(
                         StraitGeometry(this.Length, StraitOrientation.Center, -this.CrossingAngle / 2),
                         StraitGeometry(this.LengthB, StraitOrientation.Center, +this.CrossingAngle / 2)),
 
-                3 =>
+                TrackCrossingType.Trible =>
                     new CombinedGeometry(
                         StraitGeometry(this.Length, StraitOrientation.Center, 0),
                         new CombinedGeometry(
                             StraitGeometry(this.Length, StraitOrientation.Center, 60),
                             StraitGeometry(this.Length, StraitOrientation.Center, 120))),
 
-                4 =>
+                TrackCrossingType.Quatro =>
                     new CombinedGeometry(
                         new CombinedGeometry(
                             StraitGeometry(this.Length, StraitOrientation.Center, 0),
@@ -107,9 +112,20 @@ namespace Rail.Tracks
         {
             DrawingGroup drawingRail = new DrawingGroup();
             
-            switch (this.Number)
+            switch (this.CrossingType)
             {
-            case 2:
+            case TrackCrossingType.Simple:
+                if (this.HasBallast)
+                {
+                    drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, -this.CrossingAngle / 2));
+                    drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, +this.CrossingAngle / 2));
+                }
+                drawingRail.Children.Add(StraitSleepers(this.Length, StraitOrientation.Center, -this.CrossingAngle / 2));
+                drawingRail.Children.Add(StraitSleepers(this.Length, StraitOrientation.Center, +this.CrossingAngle / 2));
+                drawingRail.Children.Add(StraitRail(this.Length, StraitOrientation.Center, -this.CrossingAngle / 2));
+                drawingRail.Children.Add(StraitRail(this.Length, StraitOrientation.Center, +this.CrossingAngle / 2));
+                break;
+            case TrackCrossingType.Asymmetrical:
                 if (this.HasBallast)
                 {
                     drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, -this.CrossingAngle / 2));
@@ -120,7 +136,7 @@ namespace Rail.Tracks
                 drawingRail.Children.Add(StraitRail(this.Length, StraitOrientation.Center, -this.CrossingAngle / 2));
                 drawingRail.Children.Add(StraitRail(this.LengthB, StraitOrientation.Center, +this.CrossingAngle / 2));
                 break;
-            case 3:
+            case TrackCrossingType.Trible:
                 if (this.HasBallast)
                 {
                     drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, 0));
@@ -134,7 +150,7 @@ namespace Rail.Tracks
                 drawingRail.Children.Add(StraitRail(this.Length, StraitOrientation.Center, 60));
                 drawingRail.Children.Add(StraitRail(this.Length, StraitOrientation.Center, 120));
                 break;
-            case 4:
+            case TrackCrossingType.Quatro:
                 if (this.HasBallast)
                 {
                     drawingRail.Children.Add(StraitBallast(this.Length, StraitOrientation.Center, 0));
@@ -157,17 +173,25 @@ namespace Rail.Tracks
 
         protected override List<TrackDockPoint> CreateDockPoints()
         {
-            return this.Number switch
+            return this.CrossingType switch
             {
-                2 =>
+                TrackCrossingType.Simple =>
                     new List<TrackDockPoint>
                     {
                         new TrackDockPoint(0, new Point(-this.Length / 2.0, 0.0).Rotate( this.CrossingAngle /2),  this.CrossingAngle /2 + 135, this.dockType),
-                        new TrackDockPoint(1, new Point(-this.LengthB / 2.0, 0.0).Rotate(-this.CrossingAngle /2), -this.CrossingAngle /2 + 135, this.dockType),
+                        new TrackDockPoint(1, new Point(-this.Length / 2.0, 0.0).Rotate(-this.CrossingAngle /2), -this.CrossingAngle /2 + 135, this.dockType),
                         new TrackDockPoint(2, new Point( this.Length / 2.0, 0.0).Rotate( this.CrossingAngle /2),  this.CrossingAngle /2 + 45-90, this.dockType),
-                        new TrackDockPoint(3, new Point( this.LengthB / 2.0, 0.0).Rotate(-this.CrossingAngle /2), -this.CrossingAngle /2 + 45-90, this.dockType),
+                        new TrackDockPoint(3, new Point( this.Length / 2.0, 0.0).Rotate(-this.CrossingAngle /2), -this.CrossingAngle /2 + 45-90, this.dockType),
                     },
-                3 =>
+                TrackCrossingType.Asymmetrical =>
+                    new List<TrackDockPoint>
+                    {
+                            new TrackDockPoint(0, new Point(-this.Length / 2.0, 0.0).Rotate( this.CrossingAngle /2),  this.CrossingAngle /2 + 135, this.dockType),
+                            new TrackDockPoint(1, new Point(-this.LengthB / 2.0, 0.0).Rotate(-this.CrossingAngle /2), -this.CrossingAngle /2 + 135, this.dockType),
+                            new TrackDockPoint(2, new Point( this.Length / 2.0, 0.0).Rotate( this.CrossingAngle /2),  this.CrossingAngle /2 + 45-90, this.dockType),
+                            new TrackDockPoint(3, new Point( this.LengthB / 2.0, 0.0).Rotate(-this.CrossingAngle /2), -this.CrossingAngle /2 + 45-90, this.dockType),
+                    },
+                TrackCrossingType.Trible =>
                     new List<TrackDockPoint>
                     {
                         new TrackDockPoint(0, new Point(this.Length / 2.0, 0.0).Rotate(0), 0 + 135, this.dockType),
@@ -177,7 +201,7 @@ namespace Rail.Tracks
                         new TrackDockPoint(2, new Point(this.Length / 2.0, 0.0).Rotate(240), 240 + 135, this.dockType),
                         new TrackDockPoint(3, new Point(this.Length / 2.0, 0.0).Rotate(300), 300 + 135, this.dockType),
                     },
-                4 =>
+                TrackCrossingType.Quatro =>
                     new List<TrackDockPoint>
                     {
                         new TrackDockPoint(0, new Point(this.Length / 2.0, 0.0).Rotate(0), 0 + 135, this.dockType),

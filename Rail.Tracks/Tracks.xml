@@ -191,21 +191,21 @@
         </Curved>
         <Crossing Id="18d7891e-031e-4b82-a3d1-161ba39fd425">
           <Article>24640</Article>
-          <Number>2</Number>
+          <CrossingType>Simple</CrossingType>
           <Length>d79e3a36-805d-4159-baa8-d762bdcec2c3</Length>
           <LengthB>d79e3a36-805d-4159-baa8-d762bdcec2c3</LengthB>
           <CrossingAngle>7ed17d51-a65c-461f-8ba7-19f35623ba22</CrossingAngle>
         </Crossing>
         <Crossing Id="4310a736-4dea-499f-8e0f-2b602cf2e671">
           <Article>24649</Article>
-          <Number>2</Number>
+          <CrossingType>Simple</CrossingType>
           <Length>c60162a1-c52c-461d-a69b-ecaaf52fe246</Length>
           <LengthB>c60162a1-c52c-461d-a69b-ecaaf52fe246</LengthB>
           <CrossingAngle>567ee2fb-50f9-46d9-b3ee-7684295db0d7</CrossingAngle>
         </Crossing>
         <Crossing Id="ef115be7-c290-40c4-94cd-770bd89fe0b9">
           <Article>24740</Article>
-          <Number>2</Number>
+          <CrossingType>Simple</CrossingType>
           <Length>e42c56e7-141d-4bcd-8f6b-940df00da917</Length>
           <LengthB>e42c56e7-141d-4bcd-8f6b-940df00da917</LengthB>
           <CrossingAngle>747d4c6c-0c21-4f55-a200-8ee9728ee2a0</CrossingAngle>
@@ -383,7 +383,7 @@
         </Curved>
         <Crossing Id="ec0b320a-208c-4b52-86be-554b37f31508">
           <Article>23303</Article>
-          <Number>2</Number>
+          <CrossingType>Simple</CrossingType>
           <Length>972a7f05-d739-4690-a2b5-de70ad987736</Length>
           <LengthB>972a7f05-d739-4690-a2b5-de70ad987736</LengthB>
           <CrossingAngle>9f450da2-621b-4fa1-a52f-56feaef6bc78</CrossingAngle>
@@ -553,21 +553,21 @@
         </Curved>
         <Crossing Id="44768f87-40e1-4ef0-9f51-018072ecbd21">
           <Article>2257</Article>
-          <Number>2</Number>
+          <CrossingType>Simple</CrossingType>
           <Length>f2917ade-e29b-4827-a35d-06576a57389e</Length>
           <LengthB>f2917ade-e29b-4827-a35d-06576a57389e</LengthB>
           <CrossingAngle>0321e686-aa10-4aca-9c52-14404e29c481</CrossingAngle>
         </Crossing>
         <Crossing Id="01a4b9b0-4987-48ab-a1d6-4dbf0ccac2c7">
           <Article>2258</Article>
-          <Number>2</Number>
+          <CrossingType>Simple</CrossingType>
           <Length>9f3e12ad-e2b2-4593-93e8-8468c50c3439</Length>
           <LengthB>9f3e12ad-e2b2-4593-93e8-8468c50c3439</LengthB>
           <CrossingAngle>7b901bcd-a17c-454e-837d-97eec9a5ed69</CrossingAngle>
         </Crossing>
         <Crossing Id="039e8ccf-7c17-46d5-867d-c95133c44176">
           <Article>2259</Article>
-          <Number>2</Number>
+          <CrossingType>Simple</CrossingType>
           <Length>6a9afdf9-f8ac-459a-89ba-958e3f71827e</Length>
           <LengthB>6a9afdf9-f8ac-459a-89ba-958e3f71827e</LengthB>
           <CrossingAngle>79ead1e7-2e0d-400a-9cee-f6799a43a799</CrossingAngle>
@@ -753,21 +753,21 @@
         </Curved>
         <Crossing Id="ccce4091-0228-4661-9056-742316a8e728">
           <Article>5114</Article>
-          <Number>2</Number>
+          <CrossingType>Simple</CrossingType>
           <Length>e67870db-db11-4dca-9335-ce94f52c8422</Length>
           <LengthB>e67870db-db11-4dca-9335-ce94f52c8422</LengthB>
           <CrossingAngle>947b805a-3d48-4b81-93b5-25a2db7493a5</CrossingAngle>
         </Crossing>
         <Crossing Id="0d7095a8-0819-48c2-bacc-d5212ce01f5c">
           <Article>5211</Article>
-          <Number>2</Number>
+          <CrossingType>Simple</CrossingType>
           <Length>5f2d960c-4dbe-4795-bb1f-d168d0b51963</Length>
           <LengthB>5f2d960c-4dbe-4795-bb1f-d168d0b51963</LengthB>
           <CrossingAngle>d90d09cb-41e8-4dfd-abfa-d71537c8c8ab</CrossingAngle>
         </Crossing>
         <Crossing Id="b4afbadd-c1c2-4be4-8054-de118cc1daa7">
           <Article>5215</Article>
-          <Number>2</Number>
+          <CrossingType>Simple</CrossingType>
           <Length>2dbc2dca-c3cf-4041-8ac1-762c6f672df5</Length>
           <LengthB>2dbc2dca-c3cf-4041-8ac1-762c6f672df5</LengthB>
           <CrossingAngle>9fc08cba-755e-4e8b-af73-875dfcfdf23e</CrossingAngle>

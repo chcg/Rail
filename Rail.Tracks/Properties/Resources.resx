@@ -123,6 +123,9 @@
   <data name="EnumAdjustment" xml:space="preserve">
     <value>Adjustment</value>
   </data>
+  <data name="EnumAsymmetrical" xml:space="preserve">
+    <value>Asymmetrical</value>
+  </data>
   <data name="EnumBlack" xml:space="preserve">
     <value>Black</value>
   </data>
@@ -168,6 +171,9 @@
   <data name="EnumNo" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="EnumQuatro" xml:space="preserve">
+    <value>Quatro</value>
+  </data>
   <data name="EnumRight" xml:space="preserve">
     <value>Right</value>
   </data>
@@ -177,6 +183,9 @@
   <data name="EnumSilver" xml:space="preserve">
     <value>Silver</value>
   </data>
+  <data name="EnumSimple" xml:space="preserve">
+    <value>Simple</value>
+  </data>
   <data name="EnumThree" xml:space="preserve">
     <value>Three</value>
   </data>
@@ -185,6 +194,9 @@
   </data>
   <data name="EnumTransfer57" xml:space="preserve">
     <value>Transfer Table 5 of 7</value>
+  </data>
+  <data name="EnumTrible" xml:space="preserve">
+    <value>Trible</value>
   </data>
   <data name="EnumTurntable24" xml:space="preserve">
     <value>Turntable 24 / 15°</value>

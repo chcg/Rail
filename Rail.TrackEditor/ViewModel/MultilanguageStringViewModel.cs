@@ -67,15 +67,20 @@ namespace Rail.TrackEditor.ViewModel
 
         private void SetValue()
         {
-            this.multilanguageString.LanguageDictionary = this.Items.Where(i => i.Language != null && i.Name != null).ToDictionary(i => i.Language.Name, i=> i.Name);
+            var list = this.Items.Where(i => i.Language != null && !string.IsNullOrEmpty(i.Name)).ToList();
+            this.multilanguageString.LanguageDictionary = list.ToDictionary(i => i.Language.Name, i=> i.Name);
 
-            string lang = CultureInfo.CurrentUICulture?.Name ?? defaultKey;
+            CultureInfo currentCultureInfo = CultureInfo.CurrentUICulture;
+            CultureInfo parentCultureInfo = currentCultureInfo.Parent;
+            CultureInfo defaultCultureInfo = new CultureInfo("en");
+
             MultilanguageItemViewModel item =
-                this.Items.FirstOrDefault(i => i.Language == CultureInfo.CurrentUICulture && !string.IsNullOrEmpty(i.Name)) ??
-                //this.Items.FirstOrDefault(i => i.Language == defaultKey && !string.IsNullOrEmpty(i.Name)) ??
-                this.Items.FirstOrDefault(i => i.Language == defaultLanguage && !string.IsNullOrEmpty(i.Name));
-            this.Value = item?.Name ?? String.Empty;
+                list.FirstOrDefault(i => i.Language.Equals(currentCultureInfo)) ??      // search for "xx-XX"
+                list.FirstOrDefault(i => i.Language.Equals(parentCultureInfo)) ??       // search for "xx"
+                list.FirstOrDefault(i => i.Language.Equals(defaultCultureInfo)) ??      // search for "en"
+                list.FirstOrDefault();                                                  // take first
 
+            this.Value = item?.Name;
             NotifyPropertyChanged(nameof(Value));
         }
 

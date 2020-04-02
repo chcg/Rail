@@ -58,6 +58,7 @@ namespace Rail.TrackEditor.ViewModel
         public TrackEndType[] EndTypes { get { return (TrackEndType[])Enum.GetValues(typeof(TrackEndType)); } }
         public TrackFlexType[] FlexTypes { get { return (TrackFlexType[])Enum.GetValues(typeof(TrackFlexType)); } }
         public TrackTableType[] TableTypes { get { return (TrackTableType[])Enum.GetValues(typeof(TrackTableType)); } }
+        public TrackCrossingType[] CrossingTypes { get { return (TrackCrossingType[])Enum.GetValues(typeof(TrackCrossingType)); } }
         public int[] StarNumbers { get { return new int[] { 2, 3, 4 }; } }
 
         public abstract TrackViewModel Clone();

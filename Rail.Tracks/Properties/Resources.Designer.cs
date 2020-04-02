@@ -79,6 +79,15 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asymmetrical.
+        /// </summary>
+        public static string EnumAsymmetrical {
+            get {
+                return ResourceManager.GetString("EnumAsymmetrical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Black.
         /// </summary>
         public static string EnumBlack {
@@ -214,6 +223,15 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quatro.
+        /// </summary>
+        public static string EnumQuatro {
+            get {
+                return ResourceManager.GetString("EnumQuatro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Right.
         /// </summary>
         public static string EnumRight {
@@ -241,6 +259,15 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Simple.
+        /// </summary>
+        public static string EnumSimple {
+            get {
+                return ResourceManager.GetString("EnumSimple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Three.
         /// </summary>
         public static string EnumThree {
@@ -264,6 +291,15 @@ namespace Rail.Tracks.Properties {
         public static string EnumTransfer57 {
             get {
                 return ResourceManager.GetString("EnumTransfer57", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trible.
+        /// </summary>
+        public static string EnumTrible {
+            get {
+                return ResourceManager.GetString("EnumTrible", resourceCulture);
             }
         }
         

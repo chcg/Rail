@@ -144,6 +144,9 @@
   <data name="MainCrossingAngle" xml:space="preserve">
     <value>Crossing Angle</value>
   </data>
+  <data name="MainCrossingType" xml:space="preserve">
+    <value>Crossing Type</value>
+  </data>
   <data name="MainDeckLength" xml:space="preserve">
     <value>Deck Length</value>
   </data>
