@@ -181,10 +181,6 @@
                     <Label Grid.Column="0" Grid.Row="2" Content="{x:Static lang:Resources.MainBallastType}"/>
                     <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding BallastTypes}" SelectedValue="{Binding BallastType}" Margin="3"/>
 
-
-                    <Label Grid.Column="2" Grid.Row="0" Content="{x:Static lang:Resources.MainRailWidth}"/>
-                    <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding RailWidth}" Margin="3" />
-
                     <Label Grid.Column="2" Grid.Row="1" Content="{x:Static lang:Resources.MainSleeperWidth}"/>
                     <TextBox Grid.Column="3" Grid.Row="1" Text="{Binding SleeperWidth}" Margin="3" />
 

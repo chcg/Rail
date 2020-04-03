@@ -27,7 +27,6 @@ namespace Rail.Tracks
             trackType.Parameter.RailType = TrackRailType.Silver;
             trackType.Parameter.SleeperType = TrackSleeperType.Wooden;
             trackType.Parameter.BallastType = TrackBallastType.No;
-            trackType.Parameter.RailWidth = 16;
             trackType.Parameter.SleeperWidth = 24;
             trackType.Parameter.BallastWidth = 28;
             trackType.Radii.Add(new TrackNamedValue { Id = Guid.NewGuid(), Name = "R1", Value = 360 });

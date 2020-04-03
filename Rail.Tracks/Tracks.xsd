@@ -43,7 +43,6 @@
                           <xs:element name="Gauge" type="Gauge" />
                           <xs:element name="DockType" type="Guid" />
                           <xs:element name="RailType" type="RailType" />
-                          <xs:element name="RailWidth" type="xs:decimal" />
                           <xs:element name="SleeperType" type="SleeperType" />
                           <xs:element name="SleeperWidth" type="xs:decimal" />
                           <xs:element name="BallastType" type="BallastType" />

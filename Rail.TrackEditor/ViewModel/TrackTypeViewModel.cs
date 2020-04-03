@@ -3,11 +3,8 @@ using Rail.Tracks;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows;
-using System.Windows.Data;
-using System.Windows.Media;
 
 namespace Rail.TrackEditor.ViewModel
 {
@@ -119,12 +116,6 @@ namespace Rail.TrackEditor.ViewModel
         {
             get { return this.trackType.Parameter.RailType; }
             set { this.trackType.Parameter.RailType = value; NotifyPropertyChanged(nameof(RailType)); UpdateAllTracks(); }
-        }
-
-        public double RailWidth
-        {
-            get { return this.trackType.Parameter.RailWidth; }
-            set { this.trackType.Parameter.RailWidth = value; NotifyPropertyChanged(nameof(RailWidth)); UpdateAllTracks(); }
         }
 
         public TrackSleeperType[] SleeperTypes { get { return Enum.GetValues(typeof(TrackSleeperType)).Cast<TrackSleeperType>().ToArray(); } }

@@ -32,7 +32,6 @@
         <Gauge>H0</Gauge>
         <DockType>6f75e646-b7e1-45cf-a0e4-8d338d43df66</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>18</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>27</SleeperWidth>
         <BallastType>Dark</BallastType>
@@ -340,7 +339,6 @@
         <Gauge>H0</Gauge>
         <DockType>6f75e646-b7e1-45cf-a0e4-8d338d43df66</DockType>
         <RailType>Black</RailType>
-        <RailWidth>18</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>27</SleeperWidth>
         <BallastType>Dark</BallastType>
@@ -415,7 +413,6 @@
         <Gauge>H0</Gauge>
         <DockType>09e27f04-3771-4406-90f6-ddbc2fdf9d73</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>18</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>29.5</SleeperWidth>
         <BallastType>No</BallastType>
@@ -641,7 +638,6 @@
         <Gauge>H0</Gauge>
         <DockType>f62de104-7c5e-4b3c-af1c-250244a24578</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>16.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>Light</BallastType>
@@ -914,7 +910,6 @@
         <Gauge>1</Gauge>
         <DockType>eefd776d-c20a-4b13-bee0-9fb245e9a686</DockType>
         <RailType>Brass</RailType>
-        <RailWidth>45</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>55</SleeperWidth>
         <BallastType>No</BallastType>
@@ -995,7 +990,6 @@
         <Gauge>Z</Gauge>
         <DockType>accd5684-d49b-44fb-bfc9-00d3f7a8dd82</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>6.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>8</SleeperWidth>
         <BallastType>No</BallastType>
@@ -1063,7 +1057,6 @@
         <Gauge>H0</Gauge>
         <DockType>5dc5d1dc-6370-4fed-98f2-816f1bc572d0</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>16.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>Dark</BallastType>
@@ -1094,7 +1087,6 @@
         <Gauge>G</Gauge>
         <DockType>e2f7c8ad-3206-4ff9-874f-923b04dfc7b8</DockType>
         <RailType>Brass</RailType>
-        <RailWidth>45.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>52</SleeperWidth>
         <BallastType>No</BallastType>
@@ -1206,7 +1198,6 @@
         <Gauge>G</Gauge>
         <DockType>e2f7c8ad-3206-4ff9-874f-923b04dfc7b8</DockType>
         <RailType>Brass</RailType>
-        <RailWidth>45.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>52</SleeperWidth>
         <BallastType>No</BallastType>
@@ -1243,7 +1234,6 @@
         <Gauge>G</Gauge>
         <DockType>e2f7c8ad-3206-4ff9-874f-923b04dfc7b8</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>45.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>52</SleeperWidth>
         <BallastType>No</BallastType>
@@ -1280,7 +1270,6 @@
         <Gauge>H0</Gauge>
         <DockType>d20f30e9-0189-4589-be60-42b04247f9af</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>16.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>Medium</BallastType>
@@ -1316,7 +1305,6 @@
         <Gauge>N</Gauge>
         <DockType>6b388a53-ee08-4ff8-9519-42a6e0863ba3</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>45</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>52</SleeperWidth>
         <BallastType>No</BallastType>
@@ -1350,7 +1338,6 @@
         <Gauge>N</Gauge>
         <DockType>6b388a53-ee08-4ff8-9519-42a6e0863ba3</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>45</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>52</SleeperWidth>
         <BallastType>No</BallastType>
@@ -1388,7 +1375,6 @@
         <Gauge>H0</Gauge>
         <DockType>91ae49e7-5ae8-437f-9f79-f33bb405be37</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>16.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>Medium</BallastType>
@@ -1472,7 +1458,6 @@
         <Gauge>H0</Gauge>
         <DockType>a7453a47-39f4-4fe6-8175-858539f0e118</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>16.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>Medium</BallastType>
@@ -1504,7 +1489,6 @@
         <Gauge>H0</Gauge>
         <DockType>a7453a47-39f4-4fe6-8175-858539f0e118</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>16.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>Medium</BallastType>
@@ -1540,7 +1524,6 @@
         <Gauge>H0e</Gauge>
         <DockType>c4e3d9fd-41c3-49c8-8974-1a79ccfd626b</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>16.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>Dark</BallastType>
@@ -1576,7 +1559,6 @@
         <Gauge>H0e</Gauge>
         <DockType>c4e3d9fd-41c3-49c8-8974-1a79ccfd626b</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>16.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>Dark</BallastType>
@@ -1615,7 +1597,6 @@
         <Gauge>G</Gauge>
         <DockType>e2f7c8ad-3206-4ff9-874f-923b04dfc7b8</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>45</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>Dark</BallastType>
@@ -1721,7 +1702,6 @@
         <Gauge>H0</Gauge>
         <DockType>245fabb7-a2ea-4535-87e6-403df4f6ad1f</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>16.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>Dark</BallastType>
@@ -1834,7 +1814,6 @@
         <Gauge>H0</Gauge>
         <DockType>245fabb7-a2ea-4535-87e6-403df4f6ad1f</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>16.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>Dark</BallastType>
@@ -1937,7 +1916,6 @@
         <Gauge>H0</Gauge>
         <DockType>245fabb7-a2ea-4535-87e6-403df4f6ad1f</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>16.5</RailWidth>
         <SleeperType>ConcreteSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>No</BallastType>
@@ -1978,7 +1956,6 @@
         <Gauge>Z</Gauge>
         <DockType>2c28e2be-b0d4-4f65-b11e-03ae14de5cd7</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>16.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>Dark</BallastType>
@@ -2009,7 +1986,6 @@
         <Gauge>Z</Gauge>
         <DockType>50dbc816-31c9-4647-9ccb-d21a9d7566dd</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>16.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>Dark</BallastType>
@@ -2045,7 +2021,6 @@
         <Gauge>L</Gauge>
         <DockType>4c720be3-76c0-4ac4-8b62-c81f311a308f</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>16.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>No</BallastType>
@@ -2087,7 +2062,6 @@
         <Gauge>L</Gauge>
         <DockType>4c720be3-76c0-4ac4-8b62-c81f311a308f</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>16.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>No</BallastType>
@@ -2129,7 +2103,6 @@
         <Gauge>L</Gauge>
         <DockType>4c720be3-76c0-4ac4-8b62-c81f311a308f</DockType>
         <RailType>Silver</RailType>
-        <RailWidth>16.5</RailWidth>
         <SleeperType>WoodenSleepers</SleeperType>
         <SleeperWidth>20</SleeperWidth>
         <BallastType>No</BallastType>

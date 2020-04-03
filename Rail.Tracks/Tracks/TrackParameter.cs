@@ -26,9 +26,6 @@ namespace Rail.Tracks
         [XmlElement("RailType"), JsonPropertyName("RailType")]
         public TrackRailType RailType { get; set; }
 
-        [XmlElement("RailWidth"), JsonPropertyName("RailWidth")]
-        public double RailWidth { get; set; }
-
         [XmlElement("SleeperType"), JsonPropertyName("SleeperType")]
         public TrackSleeperType SleeperType { get; set; }
         
@@ -51,7 +48,7 @@ namespace Rail.Tracks
         public double WagonMaxBogieFrontDistance { get; set; }
 
         /// <summary>
-        /// Gauge Width
+        /// Rail Width
         /// </summary>
         /// <remarks>
         /// This is not the distance yout find in descriptions, this is the
@@ -59,7 +56,7 @@ namespace Rail.Tracks
         /// width = inner + (outer - inner) / 2
         /// </remarks>
         [XmlIgnore, JsonIgnore]
-        public double GaugeWidth 
+        public double RailWidth
         {
             get
             {
