@@ -27,13 +27,13 @@ namespace Rail.Tracks
         Gauge_S,
         [XmlEnum("0"), Description("0")]
         Gauge_0,
+        [XmlEnum("L"), Description("L")]
+        Gauge_L,
         [XmlEnum("1"), Description("1")]
         Gauge_1,
         [XmlEnum("2"), Description("2")]
         Gauge_2,
         [XmlEnum("G"), Description("G / IIm")]
         Gauge_G,
-        [XmlEnum("Lego"), Description("Lego")]
-        Gauge_Lego,
     }
 }

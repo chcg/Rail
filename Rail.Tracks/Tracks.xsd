@@ -320,10 +320,10 @@
       <xs:enumeration value="00" />
       <xs:enumeration value="S" />
       <xs:enumeration value="0" />
+      <xs:enumeration value="L" />
       <xs:enumeration value="1" />
       <xs:enumeration value="2" />
       <xs:enumeration value="G" />
-      <xs:enumeration value="Lego" />
     </xs:restriction>
   </xs:simpleType>
   
