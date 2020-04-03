@@ -2042,7 +2042,7 @@
       </Name>
       <Parameter>
         <Manufacturer>Lego</Manufacturer>
-        <Gauge>Lego</Gauge>
+        <Gauge>L</Gauge>
         <DockType>4c720be3-76c0-4ac4-8b62-c81f311a308f</DockType>
         <RailType>Silver</RailType>
         <RailWidth>16.5</RailWidth>
@@ -2084,7 +2084,7 @@
       </Name>
       <Parameter>
         <Manufacturer>Trixbrix</Manufacturer>
-        <Gauge>Lego</Gauge>
+        <Gauge>L</Gauge>
         <DockType>4c720be3-76c0-4ac4-8b62-c81f311a308f</DockType>
         <RailType>Silver</RailType>
         <RailWidth>16.5</RailWidth>
@@ -2126,7 +2126,7 @@
       </Name>
       <Parameter>
         <Manufacturer>Caterpillar Red</Manufacturer>
-        <Gauge>Lego</Gauge>
+        <Gauge>L</Gauge>
         <DockType>4c720be3-76c0-4ac4-8b62-c81f311a308f</DockType>
         <RailType>Silver</RailType>
         <RailWidth>16.5</RailWidth>
