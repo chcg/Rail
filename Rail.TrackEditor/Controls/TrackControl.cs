@@ -149,5 +149,25 @@ namespace Rail.TrackEditor.Controls
                 drawingContext.Pop();
             }
         }
+
+        private void DrawDockPoint(DrawingContext drawingContext, TrackDockPoint dockPoint)
+        {
+            //drawingContext.DrawDrawing(new GeometryDrawing())
+            //new GeometryDrawing(this.ballastBrush, null,
+            var geometry = new PathGeometry(new PathFigureCollection
+            {
+                new PathFigure(new Point(-this.Track.TrackWidth / 2, 0), new PathSegmentCollection
+                {
+                    new LineSegment(new Point(this.Track.TrackWidth / 2, 0), true),
+
+                    //new LineSegment(new Point(-this.DeckLength / 2,  this.RailWidth).Rotate(angle * i), true),
+                    //new LineSegment(new Point(-diameter / 2,  this.RailWidth).Rotate(angle * i), true),
+                    //new LineSegment(new Point(-diameter / 2, -this.RailWidth).Rotate(angle * i), true)
+                }, true)
+            });
+
+            drawingContext.DrawGeometry(Brushes.Yellow, blackPen, geometry);
+            drawingContext.DrawLine(blackPen, dockPoint.Position, dockPoint.Position.Circle(dockPoint.Angle, this.Track.TrackWidth / 2));
+        }
     }
 }
