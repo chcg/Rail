@@ -255,144 +255,66 @@
                 <ctrl:DoubleSlider FormatString="P0" Minimum="0.1" Maximum="2" Increment="0.05" Value="{Binding ZoomFactor}" SliderWidth="100" />
             </StatusBarItem>
         </StatusBar>
-        <Grid DockPanel.Dock="Left" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <TabControl Grid.Row="0" SelectedIndex="{Binding SelectedSelectionIndex}" Margin="8,8,8,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
-                <TabItem Header="{x:Static lang:Resources.MainAll}"/>
-                <TabItem Header="{x:Static lang:Resources.MainGauge}"/>
-                <TabItem Header="{x:Static lang:Resources.MainManufacturer}"/>
-            </TabControl>
-            <ComboBox Grid.Row="1" ItemsSource="{Binding TrackSelects}" SelectedItem="{Binding SelectedTrackSelect}" SelectedIndex="0" MinWidth="200" Margin="8,0,8,8">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding .}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <ComboBox Grid.Row="2" ItemsSource="{Binding TrackTypes}" SelectedItem="{Binding SelectedTrackType}" SelectedIndex="0" MinWidth="200" Margin="8,0,8,8">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}" ToolTip="{Binding Description}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <TabControl Grid.Row="3" SelectedIndex="{Binding SelectedGroupIndex}" Margin="8,0,8,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
-                <TabItem Header="{x:Static lang:Resources.MainSingle}"/>
-                <TabItem Header="{x:Static lang:Resources.MainGroup}"/>
-                <TabItem Header="{x:Static lang:Resources.MainCustomer}"/>
-            </TabControl>
-            <ListView Grid.Row="4" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" SelectedIndex="0" Margin="8,0,8,8">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="LightGray" BorderThickness="1,1,1,1">
-                            <Grid ToolTip="{Binding Description}" >
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <ctrl:TrackControl Grid.Row="0" Track="{Binding .}" ToolTip="{Binding Description}"/>
-                                <TextBlock Grid.Row="1" Text="{Binding Name}" HorizontalAlignment="Center" />
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
-        <Grid DockPanel.Dock="Right" Visibility="{Binding ShowMaterialList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-            <TabControl>
-                <TabItem Header="{x:Static lang:Resources.MainLayers}">
-                    <DataGrid 
-                        ItemsSource="{Binding Layers}" 
-                        SelectedItem="{Binding SelectedInsertLayer}"
-                        SelectedIndex="0"
-                        AutoGenerateColumns="False" 
-                        Margin="8" 
-                        HeadersVisibility="Column"
-                        CanUserAddRows="False" 
-                        CanUserDeleteRows="False" 
-                        GridLinesVisibility="None"
-                        CanUserReorderColumns="False" 
-                        CanUserResizeColumns="False" 
-                        CanUserSortColumns="False" 
-                        CanUserResizeRows="False"
-                        SelectionMode="Single">
-                        <DataGrid.Resources>
-                            <Style TargetType="DataGridRow">
-                                <Style.Resources>
-                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Blue"/>
-                                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Blue"/>
-                                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey }" Color="White"/>
-                                </Style.Resources>
-                            </Style>
-                        </DataGrid.Resources>
-                        <DataGrid.Columns>
-                            <DataGridTemplateColumn Header="{x:Static lang:Resources.MainShow}" Width="40">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <CheckBox 
-                                            HorizontalAlignment="Center" 
-                                            VerticalAlignment="Center" 
-                                            IsChecked="{Binding Path=Show, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                            Checked="OnRefreshRailPlanControl"
-                                            Unchecked="OnRefreshRailPlanControl"/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="{x:Static lang:Resources.MainLayerName}" Width="200" IsReadOnly="True" CanUserReorder="False">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Rectangle Fill="{Binding Path=TrackBrush}" Width="12" Height="12" Margin="2" />
-                                            <TextBlock Text="{Binding Path=Name}" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>                        
-                </TabItem>
-                <TabItem Header="{x:Static lang:Resources.MainMaterialList}">
-                    <DataGrid 
-                        ItemsSource="{Binding Materials, ElementName=railPlanControl}" 
-                        AutoGenerateColumns="False" 
-                        Margin="8" 
-                        HeadersVisibility="Column"
-                        CanUserAddRows="False" 
-                        CanUserDeleteRows="False" 
-                        GridLinesVisibility="None" 
-                        CanUserReorderColumns="False" 
-                        CanUserResizeColumns="False" 
-                        CanUserSortColumns="False" 
-                        CanUserResizeRows="False"
-                        SelectionMode="Single">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="#" Binding="{Binding Number}" Width="30" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="{x:Static lang:Resources.MainManufacturer}" Binding="{Binding Manufacturer}" Width="60" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="{x:Static lang:Resources.MainArticle}" Binding="{Binding Article}" Width="60" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="{x:Static lang:Resources.MainName}" Binding="{Binding Name}" Width="200" IsReadOnly="True"/>
-                        </DataGrid.Columns>
-                        <DataGrid.RowStyle>
-                            <Style TargetType="DataGridRow">
-                                <Setter Property="IsHitTestVisible" Value="False"/>
-                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                            </Style> 
-                        </DataGrid.RowStyle>
-                    </DataGrid>
-                </TabItem>
-            </TabControl>
-        </Grid>
-        <!--<Grid DockPanel.Dock="Bottom" Height="400" Visibility="{Binding SelectedRamp, ElementName=railPlanControl, Converter={StaticResource ReferensNullToVisibilityCollapsedConverter}}" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-            <ctrl:RampControl Ramp="{Binding SelectedRamp, ElementName=railPlanControl}"  BorderBrush="Gray" BorderThickness="1" Margin="8"/>
-        </Grid>--> 
         <Grid>
-            <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TrackRailViewModeToVisibilityConverter}}" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
-                <ctrl:RailPlanControl 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" MinWidth="200" MaxWidth="400"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300" MinWidth="200" MaxWidth="400"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TabControl Grid.Row="0" SelectedIndex="{Binding SelectedSelectionIndex}" Margin="8,8,8,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+                    <TabItem Header="{x:Static lang:Resources.MainAll}"/>
+                    <TabItem Header="{x:Static lang:Resources.MainGauge}"/>
+                    <TabItem Header="{x:Static lang:Resources.MainManufacturer}"/>
+                </TabControl>
+                <ComboBox Grid.Row="1" ItemsSource="{Binding TrackSelects}" SelectedItem="{Binding SelectedTrackSelect}" SelectedIndex="0" MinWidth="200" Margin="8,0,8,8">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding .}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ComboBox Grid.Row="2" ItemsSource="{Binding TrackTypes}" SelectedItem="{Binding SelectedTrackType}" SelectedIndex="0" MinWidth="200" Margin="8,0,8,8">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" ToolTip="{Binding Description}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TabControl Grid.Row="3" SelectedIndex="{Binding SelectedGroupIndex}" Margin="8,0,8,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+                    <TabItem Header="{x:Static lang:Resources.MainSingle}"/>
+                    <TabItem Header="{x:Static lang:Resources.MainGroup}"/>
+                    <TabItem Header="{x:Static lang:Resources.MainCustomer}"/>
+                </TabControl>
+                <ListView Grid.Row="4" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" SelectedIndex="0" Margin="8,0,8,8">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="LightGray" BorderThickness="1,1,1,1">
+                                <Grid ToolTip="{Binding Description}" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <ctrl:TrackControl Grid.Row="0" Track="{Binding .}" ToolTip="{Binding Description}"/>
+                                    <TextBlock Grid.Row="1" Text="{Binding Name}" HorizontalAlignment="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            <GridSplitter Grid.Column="0" Background="Blue" Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch"/>
+
+            <Grid Grid.Column="1" Margin="0,0,5,0">
+                <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TrackRailViewModeToVisibilityConverter}}" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
+                    <ctrl:RailPlanControl 
                     x:Name="railPlanControl"
                     Background="DarkGray"
                     ZoomFactor="{Binding ZoomFactor}"
@@ -405,22 +327,22 @@
                     InsertLayer="{Binding SelectedInsertLayer}"
                     GridLinesDistance="{Binding GridLinesDistance}"
                     RailMargin="40"/>
-            </ScrollViewer>
-            <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TerrainViewModeToVisibilityConverter}}">
-                <Viewport3D ClipToBounds="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
-                    <Viewport3D.Camera>
-                        <PerspectiveCamera Position="0,0,3000" LookDirection="0,0,-1" FieldOfView="60" />
-                    </Viewport3D.Camera>
-                    <Viewport3D.Children>
-                        <ModelVisual3D>
-                            <ModelVisual3D.Content>
-                                <DirectionalLight Color="#FFFFFF" Direction="-0.612372,-0.5,-0.612372" />
-                            </ModelVisual3D.Content>
-                        </ModelVisual3D>
-                        <ModelVisual3D>
-                            <ModelVisual3D.Content>
-                                <Model3DGroup Children="{Binding Layers3D}">
-                                    <!--<GeometryModel3D>
+                </ScrollViewer>
+                <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TerrainViewModeToVisibilityConverter}}">
+                    <Viewport3D ClipToBounds="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
+                        <Viewport3D.Camera>
+                            <PerspectiveCamera Position="0,0,3000" LookDirection="0,0,-1" FieldOfView="60" />
+                        </Viewport3D.Camera>
+                        <Viewport3D.Children>
+                            <ModelVisual3D>
+                                <ModelVisual3D.Content>
+                                    <DirectionalLight Color="#FFFFFF" Direction="-0.612372,-0.5,-0.612372" />
+                                </ModelVisual3D.Content>
+                            </ModelVisual3D>
+                            <ModelVisual3D>
+                                <ModelVisual3D.Content>
+                                    <Model3DGroup Children="{Binding Layers3D}">
+                                        <!--<GeometryModel3D>
                                         <GeometryModel3D.Geometry>
                                             <MeshGeometry3D 
                                               Positions="{Binding PlatePoint3DCollection}"
@@ -457,13 +379,97 @@
                                     <GeometryModel3D>
                                         
                                     </GeometryModel3D>-->
-                                </Model3DGroup>
-                               
-                            </ModelVisual3D.Content>
-                        </ModelVisual3D>
-                    </Viewport3D.Children>
-                </Viewport3D>
-            </ScrollViewer>
+                                    </Model3DGroup>
+
+                                </ModelVisual3D.Content>
+                            </ModelVisual3D>
+                        </Viewport3D.Children>
+                    </Viewport3D>
+                </ScrollViewer>
+            </Grid>
+
+            <GridSplitter Grid.Column="1" Background="Blue" Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch"/>
+            
+            <Grid Grid.Column="2" Visibility="{Binding ShowMaterialList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                <TabControl>
+                    <TabItem Header="{x:Static lang:Resources.MainLayers}">
+                        <DataGrid 
+                            ItemsSource="{Binding Layers}" 
+                            SelectedItem="{Binding SelectedInsertLayer}"
+                            AutoGenerateColumns="False" 
+                            SelectionMode="Single"
+                            GridLinesVisibility="None"
+                            HeadersVisibility="Column"
+                            CanUserResizeColumns="False"
+                            CanUserAddRows="False" 
+                            CanUserDeleteRows="False"         
+                            HorizontalScrollBarVisibility="Disabled"
+                            Margin="3">
+                            <DataGrid.Resources>
+                                <Style TargetType="DataGridRow">
+                                    <Style.Resources>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Blue"/>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Blue"/>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey }" Color="White"/>
+                                    </Style.Resources>
+                                </Style>
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="{x:Static lang:Resources.MainShow}" Width="Auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox 
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" 
+                                            IsChecked="{Binding Path=Show, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                            Checked="OnRefreshRailPlanControl"
+                                            Unchecked="OnRefreshRailPlanControl"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="{x:Static lang:Resources.MainLayerName}" Width="*" IsReadOnly="True" CanUserReorder="False">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                                <Rectangle Fill="{Binding Path=TrackBrush}" Width="12" Height="12" Margin="2"/>
+                                                <TextBlock Text="{Binding Path=Name}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                    <TabItem Header="{x:Static lang:Resources.MainMaterialList}">
+                        <DataGrid 
+                            ItemsSource="{Binding Materials, ElementName=railPlanControl}" 
+                            AutoGenerateColumns="False" 
+                            SelectionMode="Single"
+                            GridLinesVisibility="None" 
+                            HeadersVisibility="Column"
+                            CanUserResizeColumns="True" 
+                            CanUserReorderColumns="False" 
+                            CanUserSortColumns="True" 
+                            CanUserAddRows="False" 
+                            CanUserDeleteRows="False" 
+                            HorizontalScrollBarVisibility="Disabled"
+                            Margin="3" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="#" Binding="{Binding Number}" Width="30" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="{x:Static lang:Resources.MainManufacturer}" Binding="{Binding Manufacturer}" Width="60" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="{x:Static lang:Resources.MainArticle}" Binding="{Binding Article}" Width="60" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="{x:Static lang:Resources.MainName}" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
+                            </DataGrid.Columns>
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Setter Property="IsHitTestVisible" Value="False"/>
+                                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                </Style>
+                            </DataGrid.RowStyle>
+                        </DataGrid>
+                    </TabItem>
+                </TabControl>
+            </Grid>
         </Grid>
     </DockPanel>
 </mvvm:FileRibbonView>
