@@ -129,8 +129,12 @@ namespace Rail.TrackEditor.Controls
 
                 this.Track.DockPoints.ForEach(d =>
                 {
-                    drawingContext.DrawEllipse(Brushes.Yellow, blackPen, d.Position, this.Track.TrackWidth / 2, this.Track.TrackWidth / 2);
+                    DrawDockPoint(drawingContext, d);
+
+                    //drawingContext.DrawEllipse(Brushes.Yellow, blackPen, d.Position, this.Track.TrackWidth / 2, this.Track.TrackWidth / 2);
                     drawingContext.DrawLine(blackPen, d.Position, d.Position.Circle(d.Angle, this.Track.TrackWidth / 2));
+
+
                 });
 
                 this.Track.RenderRail(drawingContext);
@@ -159,12 +163,12 @@ namespace Rail.TrackEditor.Controls
                 new PathFigure(new Point(-this.Track.TrackWidth / 2, 0), new PathSegmentCollection
                 {
                     new LineSegment(new Point(this.Track.TrackWidth / 2, 0), true),
-
+                    new ArcSegment(new Point(-this.Track.TrackWidth / 2, 0), new Size(this.Track.TrackWidth / 2, this.Track.TrackWidth / 2), 180, false, SweepDirection.Counterclockwise, false)
                     //new LineSegment(new Point(-this.DeckLength / 2,  this.RailWidth).Rotate(angle * i), true),
                     //new LineSegment(new Point(-diameter / 2,  this.RailWidth).Rotate(angle * i), true),
                     //new LineSegment(new Point(-diameter / 2, -this.RailWidth).Rotate(angle * i), true)
                 }, true)
-            });
+            }); 
 
             drawingContext.DrawGeometry(Brushes.Yellow, blackPen, geometry);
             drawingContext.DrawLine(blackPen, dockPoint.Position, dockPoint.Position.Circle(dockPoint.Angle, this.Track.TrackWidth / 2));

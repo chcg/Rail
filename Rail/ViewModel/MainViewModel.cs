@@ -59,14 +59,25 @@ namespace Rail.ViewModel
                 }
                 catch (Exception ex)
                 {
-                    if (ex.InnerException is XmlSchemaValidationException valEx)
+                    //if (ex.InnerException is XmlSchemaValidationException valEx)
+                    //{
+                    //    MessageBox.Show($"Error in File Tracks.xml\r\n{ex.Message}\r\n{valEx.Message}");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Error in File Tracks.xml\r\n{ex.Message}");
+                    //}
+
+                    Exception e = ex;
+                    string message = $"Error in File Tracks.xml\r\n{ex.Message}";
+                    while (e.InnerException != null)
                     {
-                        MessageBox.Show($"Error in File Tracks.xml\r\n{ex.Message}\r\n{valEx.Message}");
+                        e = e.InnerException;
+                        message += $"\r\n{e.Message}";
                     }
-                    else
-                    {
-                        MessageBox.Show("Error in File Tracks.xml\r\n{ex.Message}");
-                    }
+                    MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Debugger.Break();
+
                     throw ex;
                 }
             }
