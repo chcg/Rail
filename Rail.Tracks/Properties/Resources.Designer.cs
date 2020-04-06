@@ -385,6 +385,15 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adjustment.
+        /// </summary>
+        public static string TrackAdjustment {
+            get {
+                return ResourceManager.GetString("TrackAdjustment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Track End with a Bumper.
         /// </summary>
         public static string TrackBumper {

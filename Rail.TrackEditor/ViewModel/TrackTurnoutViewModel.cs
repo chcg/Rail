@@ -63,10 +63,10 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.StraightLengthId = value.Id; NotifyPropertyChanged(nameof(StraightLength)); }
         }
 
-        public TrackNamedValueViewModel LeftTurnoutLength
+        public TrackNamedValueViewModel LeftTurnoutInnerLength
         {
-            get { return GetLength(this.track.LeftTurnoutLengthId); }
-            set { this.track.LeftTurnoutLengthId = value.Id; NotifyPropertyChanged(nameof(LeftTurnoutLength)); }
+            get { return GetLength(this.track.LeftTurnoutInnerLengthId); }
+            set { this.track.LeftTurnoutInnerLengthId = value.Id; NotifyPropertyChanged(nameof(LeftTurnoutInnerLength)); }
         }
 
         public TrackNamedValueViewModel LeftTurnoutRadius
@@ -81,6 +81,12 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.LeftTurnoutAngleId = value.Id; NotifyPropertyChanged(nameof(LeftTurnoutAngle)); }
         }
 
+        public TrackNamedValueViewModel LeftTurnoutOuterLength
+        {
+            get { return GetLength(this.track.LeftTurnoutOuterLengthId); }
+            set { this.track.LeftTurnoutOuterLengthId = value.Id; NotifyPropertyChanged(nameof(LeftTurnoutOuterLength)); }
+        }
+
         public TrackNamedValueViewModel LeftCounterCurveRadius
         {
             get { return GetRadius(this.track.LeftCounterCurveRadiusId); }
@@ -93,10 +99,10 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.LeftCounterCurveAngleId = value.Id; NotifyPropertyChanged(nameof(LeftCounterCurveAngle)); }
         }
 
-        public TrackNamedValueViewModel RightTurnoutLength
+        public TrackNamedValueViewModel RightTurnoutInnerLength
         {
-            get { return GetLength(this.track.RightTurnoutLengthId); }
-            set { this.track.RightTurnoutLengthId = value.Id; NotifyPropertyChanged(nameof(RightTurnoutLength)); }
+            get { return GetLength(this.track.RightTurnoutInnerLengthId); }
+            set { this.track.RightTurnoutInnerLengthId = value.Id; NotifyPropertyChanged(nameof(RightTurnoutInnerLength)); }
         }
 
         public TrackNamedValueViewModel RightTurnoutRadius
@@ -109,6 +115,12 @@ namespace Rail.TrackEditor.ViewModel
         {
             get { return GetAngle(this.track.RightTurnoutAngleId); }
             set { this.track.RightTurnoutAngleId = value.Id; NotifyPropertyChanged(nameof(RightTurnoutAngle)); }
+        }
+
+        public TrackNamedValueViewModel RightTurnoutOuterLength
+        {
+            get { return GetLength(this.track.RightTurnoutOuterLengthId); }
+            set { this.track.RightTurnoutOuterLengthId = value.Id; NotifyPropertyChanged(nameof(RightTurnoutOuterLength)); }
         }
 
         public TrackNamedValueViewModel RightCounterCurveRadius

@@ -909,9 +909,9 @@
         <Manufacturer>Märklin</Manufacturer>
         <Gauge>1</Gauge>
         <DockType>eefd776d-c20a-4b13-bee0-9fb245e9a686</DockType>
-        <RailType>Brass</RailType>
+        <RailType>Silver</RailType>
         <SleeperType>WoodenSleepers</SleeperType>
-        <SleeperWidth>55</SleeperWidth>
+        <SleeperWidth>80</SleeperWidth>
         <BallastType>No</BallastType>
         <BallastWidth>0</BallastWidth>
         <WagonMaxWidth>0</WagonMaxWidth>
@@ -919,7 +919,15 @@
         <WagonMaxBogieFrontDistance>0</WagonMaxBogieFrontDistance>
       </Parameter>
       <Radii>
-        <Radius Id="ebcf2b91-3ecc-43dc-bec8-19a5452587dd" Name="R1" Value="1020" />
+        <Radius Id="52989266-f67c-47e3-aa3a-cc8ab88ff0a7" Name="R1" Value="600" />
+        <Radius Id="97cdc8e9-0a1e-4774-96ff-3f9e8ca99791" Name="R2" Value="760.8" />
+        <Radius Id="ebcf2b91-3ecc-43dc-bec8-19a5452587dd" Name="R3" Value="1020" />
+        <Radius Id="8d4e08ce-987c-4df4-a54e-266e71787160" Name="R4" Value="1176" />
+        <Radius Id="65358ba4-bcdc-4d52-ba74-4cb68ce0cd8e" Name="R5" Value="1394" />
+        <Radius Id="dad0c7d8-bea8-4dc7-879d-e9685789e453" Name="R6" Value="1550" />
+        <Radius Id="7aae3d78-d06d-493e-bfd2-8611e4b586f3" Name="R7" Value="1715" />
+        <Radius Id="a52f085b-60da-4ed5-a4d8-7d6224e4ea1b" Name="R8" Value="2321" />
+        <Radius Id="2f312712-940d-43b9-b4b1-4458cfb9f044" Name="R9" Value="2461" />
       </Radii>
       <Lengths>
         <Length Id="2527575d-5bde-45c8-9848-decb4dfb8ee6" Name="G60" Value="59.5" />
@@ -934,7 +942,10 @@
         <Length Id="38e97694-a774-488e-8028-59e6875f7322" Name="G900" Value="900" />
       </Lengths>
       <Angles>
+        <Angle Id="ab074eb9-78d2-4804-8f65-da1a13acc897" Name="A10" Value="10" />
+        <Angle Id="adc07cfa-2a26-4f1a-86ea-0f52a42d487d" Name="A15" Value="15" />
         <Angle Id="c4edd54d-19ec-4b72-bd6c-2a42121fddbb" Name="A23" Value="22.5" />
+        <Angle Id="a4306f3f-3a89-4137-80bc-1f8cb0acef5f" Name="A30" Value="30" />
       </Angles>
       <Tracks>
         <Straight Id="32033646-4dd9-4420-b9ec-f19ed9e1b3d1">
@@ -942,7 +953,7 @@
           <Length>2527575d-5bde-45c8-9848-decb4dfb8ee6</Length>
         </Straight>
         <Straight Id="57f85f00-e6b8-4cf9-9979-10ada6a352ac">
-          <Article />
+          <Article>59052</Article>
           <Length>740fabcf-a211-4c79-bca0-6a4df13b8eb0</Length>
         </Straight>
         <Straight Id="5a7f9046-3382-4d5c-b2d6-26ed67590026">
@@ -950,7 +961,7 @@
           <Length>c0dc5b60-929b-46ae-8e2b-3cfed31cac59</Length>
         </Straight>
         <Straight Id="8f598470-3442-4fcf-b5a1-b52a89304d6b">
-          <Article>59053</Article>
+          <Article>59054</Article>
           <Length>1f6f4bff-1d0b-457f-9e61-3be1c6d3e47c</Length>
         </Straight>
         <Straight Id="efaeb86d-67d2-46d6-b57f-efa0537c1453">
@@ -977,6 +988,136 @@
           <Article>59061</Article>
           <Length>38e97694-a774-488e-8028-59e6875f7322</Length>
         </Straight>
+        <Straight Id="f7a686af-93b8-466f-837f-a925f64da852">
+          <Article>5994</Article>
+          <Length>62b21e21-fa33-4aa3-bcf2-02c901dfa8c8</Length>
+          <Extra>Uncoupler</Extra>
+        </Straight>
+        <Curved Id="1970c93b-cc8d-409e-9a7a-f80dd1ff7ea5">
+          <Article>59035</Article>
+          <Radius>ebcf2b91-3ecc-43dc-bec8-19a5452587dd</Radius>
+          <Angle>c4edd54d-19ec-4b72-bd6c-2a42121fddbb</Angle>
+        </Curved>
+        <Curved Id="d2c155bc-f01e-4e5b-81b7-e853741dd70c">
+          <Article>59071</Article>
+          <Radius>2f312712-940d-43b9-b4b1-4458cfb9f044</Radius>
+          <Angle>ab074eb9-78d2-4804-8f65-da1a13acc897</Angle>
+        </Curved>
+        <Curved Id="4491d3d9-3eea-4636-8c95-526eb67146e4">
+          <Article>59072</Article>
+          <Radius>8d4e08ce-987c-4df4-a54e-266e71787160</Radius>
+          <Angle>c4edd54d-19ec-4b72-bd6c-2a42121fddbb</Angle>
+        </Curved>
+        <Curved Id="abefbe6c-cddc-42c9-930a-6989e71e7b66">
+          <Article>59073</Article>
+          <Radius>65358ba4-bcdc-4d52-ba74-4cb68ce0cd8e</Radius>
+          <Angle>c4edd54d-19ec-4b72-bd6c-2a42121fddbb</Angle>
+        </Curved>
+        <Curved Id="0c49bdd2-11bb-483b-905a-35b86878180a">
+          <Article>59074</Article>
+          <Radius>dad0c7d8-bea8-4dc7-879d-e9685789e453</Radius>
+          <Angle>adc07cfa-2a26-4f1a-86ea-0f52a42d487d</Angle>
+        </Curved>
+        <Curved Id="40344ca7-8efc-4b24-b9e9-370ea5800adf">
+          <Article>59075</Article>
+          <Radius>65358ba4-bcdc-4d52-ba74-4cb68ce0cd8e</Radius>
+          <Angle>adc07cfa-2a26-4f1a-86ea-0f52a42d487d</Angle>
+        </Curved>
+        <Curved Id="0437ebde-6ce6-4297-b991-32ba55ecbb3d">
+          <Article>59076</Article>
+          <Radius>dad0c7d8-bea8-4dc7-879d-e9685789e453</Radius>
+          <Angle>c4edd54d-19ec-4b72-bd6c-2a42121fddbb</Angle>
+        </Curved>
+        <Curved Id="89811467-c91a-4f52-b5ac-ee3fbe48f3bd">
+          <Article>59077</Article>
+          <Radius>7aae3d78-d06d-493e-bfd2-8611e4b586f3</Radius>
+          <Angle>c4edd54d-19ec-4b72-bd6c-2a42121fddbb</Angle>
+        </Curved>
+        <Curved Id="dcbe6b42-b4d8-44da-88e2-34d0b8f3c9ea">
+          <Article>59078</Article>
+          <Radius>a52f085b-60da-4ed5-a4d8-7d6224e4ea1b</Radius>
+          <Angle>ab074eb9-78d2-4804-8f65-da1a13acc897</Angle>
+        </Curved>
+        <Curved Id="32ad6640-59ba-4af0-8271-7c2edb7fcdc2">
+          <Article>5922</Article>
+          <Radius>52989266-f67c-47e3-aa3a-cc8ab88ff0a7</Radius>
+          <Angle>a4306f3f-3a89-4137-80bc-1f8cb0acef5f</Angle>
+        </Curved>
+        <Curved Id="5ccc8fd1-68e3-4a67-8788-f55436bb8333">
+          <Article>59230</Article>
+          <Radius>97cdc8e9-0a1e-4774-96ff-3f9e8ca99791</Radius>
+          <Angle>a4306f3f-3a89-4137-80bc-1f8cb0acef5f</Angle>
+        </Curved>
+        <Curved Id="f3ae9e53-223b-4787-9157-a95a0f04b4bc">
+          <Article>5935</Article>
+          <Radius>ebcf2b91-3ecc-43dc-bec8-19a5452587dd</Radius>
+          <Angle>c4edd54d-19ec-4b72-bd6c-2a42121fddbb</Angle>
+        </Curved>
+        <Curved Id="31a0924c-9e27-4f93-ae54-c5b2ec309383">
+          <Article>5936</Article>
+          <Radius>8d4e08ce-987c-4df4-a54e-266e71787160</Radius>
+          <Angle>c4edd54d-19ec-4b72-bd6c-2a42121fddbb</Angle>
+        </Curved>
+        <EndPiece Id="fe795a4b-f70d-4dfe-a013-410237e2592d">
+          <Article>59099</Article>
+          <Length>7ac61dd8-6f17-4b43-af1a-397d0c097c8a</Length>
+          <Extra>Bumper</Extra>
+        </EndPiece>
+        <Turnout Id="0a2137dc-2847-41ef-8a2d-45f712a7b9b1">
+          <Article>59083</Article>
+          <TurnoutType>Right</TurnoutType>
+          <StraightLength>30441969-0afa-4423-a0f4-572c50748761</StraightLength>
+          <RightTurnoutRadius>a52f085b-60da-4ed5-a4d8-7d6224e4ea1b</RightTurnoutRadius>
+          <RightTurnoutAngle>ab074eb9-78d2-4804-8f65-da1a13acc897</RightTurnoutAngle>
+        </Turnout>
+        <Turnout Id="6706e138-c595-4458-b1e6-a92270509d6f">
+          <Article>59084</Article>
+          <TurnoutType>Left</TurnoutType>
+          <StraightLength>30441969-0afa-4423-a0f4-572c50748761</StraightLength>
+          <LeftTurnoutRadius>a52f085b-60da-4ed5-a4d8-7d6224e4ea1b</LeftTurnoutRadius>
+          <LeftTurnoutAngle>ab074eb9-78d2-4804-8f65-da1a13acc897</LeftTurnoutAngle>
+        </Turnout>
+        <Turnout Id="65155214-6ea4-4bbb-9252-34da29df35fc">
+          <Article>59087</Article>
+          <TurnoutType>Right</TurnoutType>
+          <StraightLength>62b21e21-fa33-4aa3-bcf2-02c901dfa8c8</StraightLength>
+          <RightTurnoutRadius>65358ba4-bcdc-4d52-ba74-4cb68ce0cd8e</RightTurnoutRadius>
+          <RightTurnoutAngle>adc07cfa-2a26-4f1a-86ea-0f52a42d487d</RightTurnoutAngle>
+        </Turnout>
+        <Turnout Id="a9e98ba2-bfb2-47df-b04b-f9ccc3a4c741">
+          <Article>59088</Article>
+          <TurnoutType>Left</TurnoutType>
+          <StraightLength>62b21e21-fa33-4aa3-bcf2-02c901dfa8c8</StraightLength>
+          <LeftTurnoutRadius>65358ba4-bcdc-4d52-ba74-4cb68ce0cd8e</LeftTurnoutRadius>
+          <LeftTurnoutAngle>adc07cfa-2a26-4f1a-86ea-0f52a42d487d</LeftTurnoutAngle>
+        </Turnout>
+        <Turnout Id="a76ca562-c22e-4a3f-880f-1002df2c2c22">
+          <Article>59091</Article>
+          <TurnoutType>Three</TurnoutType>
+          <StraightLength>62b21e21-fa33-4aa3-bcf2-02c901dfa8c8</StraightLength>
+          <LeftTurnoutRadius>65358ba4-bcdc-4d52-ba74-4cb68ce0cd8e</LeftTurnoutRadius>
+          <LeftTurnoutAngle>ab074eb9-78d2-4804-8f65-da1a13acc897</LeftTurnoutAngle>
+          <RightTurnoutRadius>65358ba4-bcdc-4d52-ba74-4cb68ce0cd8e</RightTurnoutRadius>
+          <RightTurnoutAngle>ab074eb9-78d2-4804-8f65-da1a13acc897</RightTurnoutAngle>
+        </Turnout>
+        <CurvedTurnout Id="e366ca8d-6e04-49d1-b300-2c424db2abcc">
+          <Article>59085</Article>
+          <TurnoutDirection>Left</TurnoutDirection>
+          <InnerRadius>65358ba4-bcdc-4d52-ba74-4cb68ce0cd8e</InnerRadius>
+          <InnerAngle>c4edd54d-19ec-4b72-bd6c-2a42121fddbb</InnerAngle>
+          <OuterLength>e7067bbe-85d5-48a3-8661-2ce289758373</OuterLength>
+          <OuterRadius>dad0c7d8-bea8-4dc7-879d-e9685789e453</OuterRadius>
+          <OuterAngle>c4edd54d-19ec-4b72-bd6c-2a42121fddbb</OuterAngle>
+        </CurvedTurnout>
+        <CurvedTurnout Id="e83f6ae4-788e-4db4-9294-83a5e834d065">
+          <Article>59086</Article>
+          <TurnoutDirection>Right</TurnoutDirection>
+          <InnerRadius>65358ba4-bcdc-4d52-ba74-4cb68ce0cd8e</InnerRadius>
+          <InnerAngle>c4edd54d-19ec-4b72-bd6c-2a42121fddbb</InnerAngle>
+          <OuterLength>e7067bbe-85d5-48a3-8661-2ce289758373</OuterLength>
+          <OuterRadius>dad0c7d8-bea8-4dc7-879d-e9685789e453</OuterRadius>
+          <OuterAngle>c4edd54d-19ec-4b72-bd6c-2a42121fddbb</OuterAngle>
+        </CurvedTurnout>
       </Tracks>
       <Groups />
     </TrackType>
@@ -991,7 +1132,7 @@
         <DockType>accd5684-d49b-44fb-bfc9-00d3f7a8dd82</DockType>
         <RailType>Silver</RailType>
         <SleeperType>WoodenSleepers</SleeperType>
-        <SleeperWidth>8</SleeperWidth>
+        <SleeperWidth>11.7</SleeperWidth>
         <BallastType>No</BallastType>
         <BallastWidth>0</BallastWidth>
         <WagonMaxWidth>0</WagonMaxWidth>
@@ -1002,27 +1143,33 @@
         <Radius Id="023d5c13-9e94-4e3b-ae4d-5c2191710a4c" Name="R1" Value="145" />
         <Radius Id="b66ae1e5-4352-4bb8-bb12-95cecb414c68" Name="R2" Value="195" />
         <Radius Id="508e69e2-7cdd-4fec-8969-36a5b32685b0" Name="R3" Value="220" />
+        <Radius Id="4fc920f8-7856-498d-9e65-971269d0a863" Name="R4" Value="323" />
+        <Radius Id="336cb310-a1d6-4061-822b-2d77080f6daa" Name="R5" Value="490" />
       </Radii>
       <Lengths>
         <Length Id="e8df2e87-93b8-4eef-b358-a221b31a24a0" Name="G25" Value="25" />
         <Length Id="a5088603-b9ce-42ed-9aba-4702f27cb875" Name="G55" Value="55" />
+        <Length Id="efff51c4-1712-42df-b265-312688b7f3a2" Name="G100" Value="100" />
         <Length Id="3022bbbc-4a53-450c-b644-13f3d11aaed1" Name="G109" Value="108.6" />
         <Length Id="60652bca-49fb-4cfb-bf75-61001cb139fa" Name="G110" Value="110" />
         <Length Id="7bc2153a-bd20-492a-8917-19eaf02ef526" Name="G113" Value="112.8" />
+        <Length Id="19f977ce-8ef6-4795-93b2-5657ba41d7ad" Name="G120" Value="120" />
         <Length Id="c6111bdd-dee9-4f25-83c8-43d6c89ea5df" Name="G220" Value="220" />
+        <Length Id="63a11e40-47fb-4ad0-ba15-dca7b7085e51" Name="G660" Value="660" />
       </Lengths>
       <Angles>
+        <Angle Id="9903050f-cebb-4dcc-be61-3e85d3183885" Name="A13" Value="13" />
         <Angle Id="0d743443-de35-42d2-b9f3-cddcb9a12902" Name="A30" Value="30" />
         <Angle Id="131e404d-afd3-4761-a8de-2268b3b43eaf" Name="A45" Value="45" />
       </Angles>
       <Tracks>
         <Straight Id="c7584107-9ed8-4266-8b38-e23e01341755">
-          <Article>850</Article>
+          <Article>8500</Article>
           <Length>60652bca-49fb-4cfb-bf75-61001cb139fa</Length>
         </Straight>
         <Straight Id="d8a095e0-2517-45cd-94a1-f9e1ca890752">
           <Article>8503</Article>
-          <Length>e8df2e87-93b8-4eef-b358-a221b31a24a0</Length>
+          <Length>a5088603-b9ce-42ed-9aba-4702f27cb875</Length>
         </Straight>
         <Straight Id="55e309d6-0a3e-4f52-8c4c-89775a221af2">
           <Article>8504</Article>
@@ -1044,6 +1191,131 @@
           <Article>8507</Article>
           <Length>7bc2153a-bd20-492a-8917-19eaf02ef526</Length>
         </Straight>
+        <Straight Id="73145942-fd5a-43a0-ba5e-936d3682c876">
+          <Article>8587</Article>
+          <Length>a5088603-b9ce-42ed-9aba-4702f27cb875</Length>
+          <Extra>Uncoupler</Extra>
+        </Straight>
+        <Straight Id="e851da3b-ffa4-4096-8582-5236874afcd0">
+          <Article>8588</Article>
+          <Length>a5088603-b9ce-42ed-9aba-4702f27cb875</Length>
+          <Extra>Isolating</Extra>
+        </Straight>
+        <Straight Id="fe08f296-9949-4702-a240-3501c66a7609">
+          <Article>8589</Article>
+          <Length>a5088603-b9ce-42ed-9aba-4702f27cb875</Length>
+          <Extra>Circuit</Extra>
+        </Straight>
+        <Straight Id="da2c081e-8f9b-4a7f-a138-f42de953398e">
+          <Article>8590</Article>
+          <Length>60652bca-49fb-4cfb-bf75-61001cb139fa</Length>
+          <Extra>Feeder</Extra>
+        </Straight>
+        <Flex Id="f3045780-1889-463f-bbb3-60121aab9d0f">
+          <Article>8592</Article>
+          <FlexType>Flex</FlexType>
+        </Flex>
+        <Flex Id="a529f01f-9f30-4e59-bad4-13a3df894dd9">
+          <Article>8594</Article>
+          <FlexType>Flex</FlexType>
+        </Flex>
+        <Curved Id="a57ef9c6-8a05-4a11-b5f9-ad0fa5486ccd">
+          <Article>8510</Article>
+          <Radius>023d5c13-9e94-4e3b-ae4d-5c2191710a4c</Radius>
+          <Angle>131e404d-afd3-4761-a8de-2268b3b43eaf</Angle>
+        </Curved>
+        <Curved Id="23c7e818-05c6-4549-a281-776411f7c560">
+          <Article>8520</Article>
+          <Radius>b66ae1e5-4352-4bb8-bb12-95cecb414c68</Radius>
+          <Angle>131e404d-afd3-4761-a8de-2268b3b43eaf</Angle>
+        </Curved>
+        <Curved Id="6368cde4-68d5-4bb0-a531-fcea90edca43">
+          <Article>8521</Article>
+          <Radius>b66ae1e5-4352-4bb8-bb12-95cecb414c68</Radius>
+          <Angle>0d743443-de35-42d2-b9f3-cddcb9a12902</Angle>
+        </Curved>
+        <Curved Id="fe62fa51-16d1-497e-8b06-c5fb037e2690">
+          <Article>8529</Article>
+          <Radius>b66ae1e5-4352-4bb8-bb12-95cecb414c68</Radius>
+          <Angle>0d743443-de35-42d2-b9f3-cddcb9a12902</Angle>
+          <Extra>Circuit</Extra>
+        </Curved>
+        <Curved Id="3428ca99-28be-4cd9-a9d3-db20893687ea">
+          <Article>8530</Article>
+          <Radius>508e69e2-7cdd-4fec-8969-36a5b32685b0</Radius>
+          <Angle>131e404d-afd3-4761-a8de-2268b3b43eaf</Angle>
+        </Curved>
+        <Curved Id="120805ee-c33b-4d10-91d6-f79da2ebab5a">
+          <Article>8531</Article>
+          <Radius>508e69e2-7cdd-4fec-8969-36a5b32685b0</Radius>
+          <Angle>0d743443-de35-42d2-b9f3-cddcb9a12902</Angle>
+        </Curved>
+        <Curved Id="016b6197-6777-453c-aa2c-aa7d404698f0">
+          <Article>8539</Article>
+          <Radius>508e69e2-7cdd-4fec-8969-36a5b32685b0</Radius>
+          <Angle>0d743443-de35-42d2-b9f3-cddcb9a12902</Angle>
+          <Extra>Circuit</Extra>
+        </Curved>
+        <Curved Id="6ddb9bde-82da-4d4f-9686-c6b0c2e38e5c">
+          <Article>8591</Article>
+          <Radius>336cb310-a1d6-4061-822b-2d77080f6daa</Radius>
+          <Angle>9903050f-cebb-4dcc-be61-3e85d3183885</Angle>
+        </Curved>
+        <Crossing Id="217c5606-1546-471e-87b7-4dbd9eeb1f28">
+          <Article>8559</Article>
+          <CrossingType>Simple</CrossingType>
+          <Length>7bc2153a-bd20-492a-8917-19eaf02ef526</Length>
+          <LengthB>e8df2e87-93b8-4eef-b358-a221b31a24a0</LengthB>
+          <CrossingAngle>9903050f-cebb-4dcc-be61-3e85d3183885</CrossingAngle>
+        </Crossing>
+        <Turnout Id="233155ff-06d8-40b4-84c1-a81a87fee328">
+          <Article>8562</Article>
+          <TurnoutType>Left</TurnoutType>
+          <TurnoutDrive>Electrical</TurnoutDrive>
+          <StraightLength>60652bca-49fb-4cfb-bf75-61001cb139fa</StraightLength>
+          <LeftTurnoutRadius>336cb310-a1d6-4061-822b-2d77080f6daa</LeftTurnoutRadius>
+          <LeftTurnoutAngle>9903050f-cebb-4dcc-be61-3e85d3183885</LeftTurnoutAngle>
+        </Turnout>
+        <Turnout Id="2975e09b-8258-408e-8036-335afa18b7ad">
+          <Article>8563</Article>
+          <TurnoutType>Right</TurnoutType>
+          <TurnoutDrive>Electrical</TurnoutDrive>
+          <StraightLength>60652bca-49fb-4cfb-bf75-61001cb139fa</StraightLength>
+          <RightTurnoutRadius>336cb310-a1d6-4061-822b-2d77080f6daa</RightTurnoutRadius>
+          <RightTurnoutAngle>9903050f-cebb-4dcc-be61-3e85d3183885</RightTurnoutAngle>
+        </Turnout>
+        <Turnout Id="70f73853-f999-4d2a-8105-ab14639ac029">
+          <Article>8565</Article>
+          <TurnoutType>Left</TurnoutType>
+          <TurnoutDrive>Mechanical</TurnoutDrive>
+          <StraightLength>60652bca-49fb-4cfb-bf75-61001cb139fa</StraightLength>
+          <LeftTurnoutRadius>336cb310-a1d6-4061-822b-2d77080f6daa</LeftTurnoutRadius>
+          <LeftTurnoutAngle>9903050f-cebb-4dcc-be61-3e85d3183885</LeftTurnoutAngle>
+        </Turnout>
+        <Turnout Id="86877d27-8590-4c47-b25f-4cf6ab06c08b">
+          <Article>8566</Article>
+          <TurnoutType>Right</TurnoutType>
+          <TurnoutDrive>Mechanical</TurnoutDrive>
+          <StraightLength>60652bca-49fb-4cfb-bf75-61001cb139fa</StraightLength>
+          <RightTurnoutRadius>336cb310-a1d6-4061-822b-2d77080f6daa</RightTurnoutRadius>
+          <RightTurnoutAngle>9903050f-cebb-4dcc-be61-3e85d3183885</RightTurnoutAngle>
+        </Turnout>
+        <CurvedTurnout Id="2b147b8d-4c30-456d-853f-ac5ddb5a3ef9">
+          <Article>8568</Article>
+          <TurnoutDirection>Left</TurnoutDirection>
+          <TurnoutDrive>Electrical</TurnoutDrive>
+          <InnerRadius>b66ae1e5-4352-4bb8-bb12-95cecb414c68</InnerRadius>
+          <InnerAngle>0d743443-de35-42d2-b9f3-cddcb9a12902</InnerAngle>
+          <OuterLength>e8df2e87-93b8-4eef-b358-a221b31a24a0</OuterLength>
+          <OuterRadius>b66ae1e5-4352-4bb8-bb12-95cecb414c68</OuterRadius>
+          <OuterAngle>0d743443-de35-42d2-b9f3-cddcb9a12902</OuterAngle>
+        </CurvedTurnout>
+        <DoubleSlipSwitch Id="9a84201c-3676-4711-87c4-f344a1445106">
+          <Article>8560</Article>
+          <Length>7bc2153a-bd20-492a-8917-19eaf02ef526</Length>
+          <CrossingAngle>9903050f-cebb-4dcc-be61-3e85d3183885</CrossingAngle>
+          <SlipRadius>4fc920f8-7856-498d-9e65-971269d0a863</SlipRadius>
+        </DoubleSlipSwitch>
       </Tracks>
       <Groups />
     </TrackType>

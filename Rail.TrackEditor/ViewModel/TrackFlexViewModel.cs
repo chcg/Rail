@@ -23,7 +23,8 @@ namespace Rail.TrackEditor.ViewModel
             TrackFlex trackFlex = new TrackFlex
             {
                 Article = string.Empty,
-                LengthId = trackTypeViewModel.Lengths.First().Id
+                MinLengthId = trackTypeViewModel.Lengths.First().Id,
+                MaxLengthId = trackTypeViewModel.Lengths.First().Id
             };
             return new TrackFlexViewModel(trackTypeViewModel, trackFlex);
         }
@@ -38,6 +39,23 @@ namespace Rail.TrackEditor.ViewModel
             get { return this.track.Article; }
             set { this.track.Article = value.Trim(); NotifyPropertyChanged(nameof(Article)); }
         }
-    
+
+        public TrackFlexType FlexType
+        {
+            get { return this.track.FlexType; }
+            set { this.track.FlexType = value; NotifyPropertyChanged(nameof(FlexType)); }
+        }
+
+        public TrackNamedValueViewModel MinLength
+        {
+            get { return GetLength(this.track.MinLengthId); }
+            set { this.track.MinLengthId = value.Id; NotifyPropertyChanged(nameof(MinLength)); }
+        }
+
+        public TrackNamedValueViewModel MaxLength
+        {
+            get { return GetLength(this.track.MaxLengthId); }
+            set { this.track.MaxLengthId = value.Id; NotifyPropertyChanged(nameof(MaxLength)); }
+        }
     }
 }

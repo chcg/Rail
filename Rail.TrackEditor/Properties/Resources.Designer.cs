@@ -232,6 +232,15 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Flex Type.
+        /// </summary>
+        public static string MainFlexType {
+            get {
+                return ResourceManager.GetString("MainFlexType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gauge.
         /// </summary>
         public static string MainGauge {
@@ -322,11 +331,29 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Left Turnout Inner Length.
+        /// </summary>
+        public static string MainLeftTurnoutInnerLength {
+            get {
+                return ResourceManager.GetString("MainLeftTurnoutInnerLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Left Turnout Length.
         /// </summary>
         public static string MainLeftTurnoutLength {
             get {
                 return ResourceManager.GetString("MainLeftTurnoutLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left Turnout Outer Length.
+        /// </summary>
+        public static string MainLeftTurnoutOuterLength {
+            get {
+                return ResourceManager.GetString("MainLeftTurnoutOuterLength", resourceCulture);
             }
         }
         
@@ -637,11 +664,29 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Right Turnout Inner Length.
+        /// </summary>
+        public static string MainRightTurnoutInnerLength {
+            get {
+                return ResourceManager.GetString("MainRightTurnoutInnerLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Right Turnout Length.
         /// </summary>
         public static string MainRightTurnoutLength {
             get {
                 return ResourceManager.GetString("MainRightTurnoutLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right Turnout Outer Length.
+        /// </summary>
+        public static string MainRightTurnoutOuterLength {
+            get {
+                return ResourceManager.GetString("MainRightTurnoutOuterLength", resourceCulture);
             }
         }
         

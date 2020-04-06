@@ -130,7 +130,8 @@
                                 <xs:sequence>
                                   <xs:element name="Article" type="xs:string" />
                                   <xs:element name="FlexType" type="FlexType" />
-                                  <xs:element name="Length" type="Guid" />
+                                  <xs:element name="MinLength" type="Guid" minOccurs="0"/>
+                                  <xs:element name="MaxLength" type="Guid" minOccurs="0"/>
                                 </xs:sequence>
                                 <xs:attribute name="Id" type="Guid" use="required" />
                               </xs:complexType>
@@ -145,14 +146,16 @@
                                   <xs:element name="TurnoutType" type="TurnoutType" />
                                   <xs:element name="TurnoutDrive" type="Drive" minOccurs="0" />
                                   <xs:element name="StraightLength" type="Guid" minOccurs="0" />
-                                  <xs:element name="LeftTurnoutLength" type="Guid" minOccurs="0" />
+                                  <xs:element name="LeftTurnoutInnerLength" type="Guid" minOccurs="0" />
                                   <xs:element name="LeftTurnoutRadius" type="Guid" minOccurs="0" />
                                   <xs:element name="LeftTurnoutAngle" type="Guid" minOccurs="0" />
+                                  <xs:element name="LeftTurnoutOuterLength" type="Guid" minOccurs="0" />
                                   <xs:element name="LeftCounterCurveRadius" type="Guid" minOccurs="0" />
                                   <xs:element name="LeftCounterCurveAngle" type="Guid" minOccurs="0" />
-                                  <xs:element name="RightTurnoutLength" type="Guid" minOccurs="0" />
+                                  <xs:element name="RightTurnoutInnerLength" type="Guid" minOccurs="0" />
                                   <xs:element name="RightTurnoutRadius" type="Guid" minOccurs="0" />
                                   <xs:element name="RightTurnoutAngle" type="Guid" minOccurs="0" />
+                                  <xs:element name="RightTurnoutOuterLength" type="Guid" minOccurs="0" />
                                   <xs:element name="RightCounterCurveRadius" type="Guid" minOccurs="0" />
                                   <xs:element name="RightCounterCurveAngle" type="Guid" minOccurs="0" />
                                   <xs:element name="AddArticles" type="xs:string" minOccurs="0" />
