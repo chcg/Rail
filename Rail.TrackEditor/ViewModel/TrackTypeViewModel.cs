@@ -218,12 +218,15 @@ namespace Rail.TrackEditor.ViewModel
 
         private void OnCloneTrack(TrackViewModel track)
         {
-            this.Tracks.Add(track.Clone());
+            var clone = track.Clone();
+            this.Tracks.Add(clone);
+            this.SelectedTrack = clone;
         }
 
         private void OnDeleteTrack(TrackViewModel track)
         {
             this.Tracks.Remove(track);
+            this.SelectedTrack = this.Tracks.LastOrDefault();
         }
     }
 }

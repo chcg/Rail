@@ -151,6 +151,15 @@ namespace Rail.TrackEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curved Type.
+        /// </summary>
+        public static string MainCurvedType {
+            get {
+                return ResourceManager.GetString("MainCurvedType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deck Length.
         /// </summary>
         public static string MainDeckLength {
@@ -732,6 +741,15 @@ namespace Rail.TrackEditor.Properties {
         public static string MainStraightLength {
             get {
                 return ResourceManager.GetString("MainStraightLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Straight Type.
+        /// </summary>
+        public static string MainStraightType {
+            get {
+                return ResourceManager.GetString("MainStraightType", resourceCulture);
             }
         }
         

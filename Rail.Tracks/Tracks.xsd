@@ -86,7 +86,7 @@
                                 <xs:sequence>
                                   <xs:element name="Article" type="xs:string" />
                                   <xs:element name="Length" type="Guid" />
-                                  <xs:element name="Extra" type="Extras" minOccurs="0" />
+                                  <xs:element name="Extra" type="StraightType" minOccurs="0" />
                                   <xs:element name="DockType" type="xs:string" minOccurs="0"/>
                                 </xs:sequence>
                                 <xs:attribute name="Id" type="Guid" use="required" />
@@ -98,7 +98,8 @@
                                   <xs:element name="Article" type="xs:string" />
                                   <xs:element name="Radius" type="Guid" />
                                   <xs:element name="Angle" type="Guid" />
-                                  <xs:element name="Extra" type="Extras" minOccurs="0" />
+                                  <xs:element name="Extra" type="CurvedType" minOccurs="0" />
+                                  <xs:element name="DockType" type="xs:string" minOccurs="0"/>
                                 </xs:sequence>
                                 <xs:attribute name="Id" type="Guid" use="required" />
                               </xs:complexType>
@@ -353,18 +354,39 @@
     </xs:restriction>
   </xs:simpleType>
 
-  <xs:simpleType name="Extras" >
+  <xs:simpleType name="CurvedType" >
     <xs:restriction base="xs:string">
       <xs:enumeration value="No" />
       <xs:enumeration value="Circuit" />
       <xs:enumeration value="Contact" />
       <xs:enumeration value="Uncoupler" />
       <xs:enumeration value="Isolating" />
+      <xs:enumeration value="Separation" />
       <xs:enumeration value="Feeder" />
+      <xs:enumeration value="Rerailer"/>
+      <xs:enumeration value="InterferenceSuppressor"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="StraightType" >
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No" />
+      <xs:enumeration value="Circuit" />
+      <xs:enumeration value="Contact" />
+      <xs:enumeration value="Uncoupler" />
+      <xs:enumeration value="Isolating" />
+      <xs:enumeration value="Separation" />
+      <xs:enumeration value="Feeder" />
+      <xs:enumeration value="Rerailer"/>
+      <xs:enumeration value="InterferenceSuppressor"/>
+      <!-- straight additional-->
+      <xs:enumeration value="Crossing"/>
       <xs:enumeration value="Adapter" />
     </xs:restriction>
   </xs:simpleType>
 
+  
+  
   <xs:simpleType name="EndType" >
     <xs:restriction base="xs:string">
       <xs:enumeration value="End" />

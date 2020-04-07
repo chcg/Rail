@@ -58,8 +58,8 @@ namespace Rail.Tracks
                 Article = this.Article,
                 TurnoutDrive = this.TurnoutDrive,
                 LengthId = this.LengthId,
-                CrossingAngle = this.CrossingAngle,
-                SlipRadius = this.SlipRadius
+                CrossingAngleId = this.CrossingAngleId,
+                SlipRadiusId = this.SlipRadiusId
             };
             track.Update(this.trackType);
             return track;

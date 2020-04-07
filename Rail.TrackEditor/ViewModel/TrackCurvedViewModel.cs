@@ -53,10 +53,10 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.AngleId = value.Id; NotifyPropertyChanged(nameof(Angle)); }
         }
 
-        public TrackExtras Extra
+        public TrackCurvedType CurvedType
         {
-            get { return this.track.Extra; }
-            set { this.track.Extra = value; NotifyPropertyChanged(nameof(Extra)); }
+            get { return this.track.CurvedType; }
+            set { this.track.CurvedType = value; NotifyPropertyChanged(nameof(CurvedType)); }
         }
     }
 }

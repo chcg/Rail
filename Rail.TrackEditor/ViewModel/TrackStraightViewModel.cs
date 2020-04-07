@@ -53,7 +53,7 @@ namespace Rail.TrackEditor.ViewModel
                 }
                 else
                 {
-                    //Debugger.Break();
+                    Debugger.Break();
                 }
             }
         }
@@ -68,10 +68,10 @@ namespace Rail.TrackEditor.ViewModel
             set { this.track.DockType = value.Id; NotifyPropertyChanged(nameof(DockType)); }
         }
 
-        public TrackExtras Extra
+        public TrackStraightType StraightType
         {
-            get { return this.track.Extra; }
-            set { this.track.Extra = value; NotifyPropertyChanged(nameof(Extra));  }
+            get { return this.track.StraightType; }
+            set { this.track.StraightType = value; NotifyPropertyChanged(nameof(StraightType));  }
         }
     }
 }

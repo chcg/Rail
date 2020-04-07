@@ -32,7 +32,7 @@ namespace Rail.Tracks
             trackType.Radii.Add(new TrackNamedValue { Id = Guid.NewGuid(), Name = "R1", Value = 360 });
             trackType.Lengths.Add(new TrackNamedValue { Id = Guid.NewGuid(), Name = "L180", Value = 180 });
             trackType.Angles.Add(new TrackNamedValue { Id = Guid.NewGuid(), Name = "A30", Value = 30 });
-            trackType.Tracks.Add(new TrackStraight { Id = Guid.NewGuid(), Article = "111111", Extra = TrackExtras.No, LengthId = trackType.Lengths[0].Id });
+            trackType.Tracks.Add(new TrackStraight { Id = Guid.NewGuid(), Article = "111111", StraightType = TrackStraightType.No, LengthId = trackType.Lengths[0].Id });
             trackType.Update();
             return trackType;
         }

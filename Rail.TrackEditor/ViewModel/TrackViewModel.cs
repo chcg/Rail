@@ -51,7 +51,8 @@ namespace Rail.TrackEditor.ViewModel
             };
         }
 
-        public TrackExtras[] Extras { get { return (TrackExtras[])Enum.GetValues(typeof(TrackExtras)); } }
+        public TrackStraightType[] StraightTypes { get { return (TrackStraightType[])Enum.GetValues(typeof(TrackStraightType)); } }
+        public TrackCurvedType[] CurvedTypes { get { return (TrackCurvedType[])Enum.GetValues(typeof(TrackCurvedType)); } }
         public TrackTurnoutDirection[] TurnoutDirections { get { return (TrackTurnoutDirection[])Enum.GetValues(typeof(TrackTurnoutDirection)); } }
         public TrackTurnoutType[] TurnoutTypes { get { return (TrackTurnoutType[])Enum.GetValues(typeof(TrackTurnoutType)); } }
         public TrackDrive[] TurnoutDrives { get { return (TrackDrive[])Enum.GetValues(typeof(TrackDrive)); } }

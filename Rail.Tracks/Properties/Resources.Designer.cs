@@ -151,6 +151,15 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Crossing.
+        /// </summary>
+        public static string EnumCrossing {
+            get {
+                return ResourceManager.GetString("EnumCrossing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Electrical.
         /// </summary>
         public static string EnumElectrical {
@@ -183,6 +192,15 @@ namespace Rail.Tracks.Properties {
         public static string EnumFlex {
             get {
                 return ResourceManager.GetString("EnumFlex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interference Suppressor.
+        /// </summary>
+        public static string EnumInterferenceSuppressor {
+            get {
+                return ResourceManager.GetString("EnumInterferenceSuppressor", resourceCulture);
             }
         }
         
@@ -232,6 +250,15 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rerailer.
+        /// </summary>
+        public static string EnumRerailer {
+            get {
+                return ResourceManager.GetString("EnumRerailer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Right.
         /// </summary>
         public static string EnumRight {
@@ -246,6 +273,15 @@ namespace Rail.Tracks.Properties {
         public static string EnumSegment320 {
             get {
                 return ResourceManager.GetString("EnumSegment320", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Separation.
+        /// </summary>
+        public static string EnumSeparation {
+            get {
+                return ResourceManager.GetString("EnumSeparation", resourceCulture);
             }
         }
         
@@ -376,15 +412,6 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adapter Track.
-        /// </summary>
-        public static string TrackAdapter {
-            get {
-                return ResourceManager.GetString("TrackAdapter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Adjustment.
         /// </summary>
         public static string TrackAdjustment {
@@ -448,6 +475,15 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curved Crossing.
+        /// </summary>
+        public static string TrackCurvedCrossing {
+            get {
+                return ResourceManager.GetString("TrackCurvedCrossing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Curved Feeder.
         /// </summary>
         public static string TrackCurvedFeeder {
@@ -457,11 +493,38 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curved Interference Suppressor.
+        /// </summary>
+        public static string TrackCurvedInterferenceSuppressor {
+            get {
+                return ResourceManager.GetString("TrackCurvedInterferenceSuppressor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Curved Isolating.
         /// </summary>
         public static string TrackCurvedIsolating {
             get {
                 return ResourceManager.GetString("TrackCurvedIsolating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curved Retailer.
+        /// </summary>
+        public static string TrackCurvedRetailer {
+            get {
+                return ResourceManager.GetString("TrackCurvedRetailer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curved Separation Track.
+        /// </summary>
+        public static string TrackCurvedSeparation {
+            get {
+                return ResourceManager.GetString("TrackCurvedSeparation", resourceCulture);
             }
         }
         
@@ -574,6 +637,15 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Straight Adapter Track.
+        /// </summary>
+        public static string TrackStraightAdapter {
+            get {
+                return ResourceManager.GetString("TrackStraightAdapter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Straight Circuit Track.
         /// </summary>
         public static string TrackStraightCircuit {
@@ -592,6 +664,15 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Straigth Crossing.
+        /// </summary>
+        public static string TrackStraightCrossing {
+            get {
+                return ResourceManager.GetString("TrackStraightCrossing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Straight Feeder.
         /// </summary>
         public static string TrackStraightFeeder {
@@ -601,11 +682,38 @@ namespace Rail.Tracks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Interference Suppressor.
+        /// </summary>
+        public static string TrackStraightInterferenceSuppressor {
+            get {
+                return ResourceManager.GetString("TrackStraightInterferenceSuppressor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Straight Isolating.
         /// </summary>
         public static string TrackStraightIsolating {
             get {
                 return ResourceManager.GetString("TrackStraightIsolating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Retailer.
+        /// </summary>
+        public static string TrackStraightRetailer {
+            get {
+                return ResourceManager.GetString("TrackStraightRetailer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Straight Separation Track.
+        /// </summary>
+        public static string TrackStraightSeparation {
+            get {
+                return ResourceManager.GetString("TrackStraightSeparation", resourceCulture);
             }
         }
         

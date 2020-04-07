@@ -16,14 +16,14 @@ namespace Rail.Tracks
         public Guid LengthId { get; set; }
 
         [XmlElement("Extra")]
-        public TrackExtras Extra { get; set; }
+        public TrackStraightType StraightType { get; set; }
 
         [XmlElement("DockType")]
         public Guid DockType { get; set; }
 
-        public bool ShouldSerializeExtra() { return this.Extra != TrackExtras.No; }
+        public bool ShouldSerializeStraightType() { return this.StraightType != TrackStraightType.No; }
 
-        public bool ShouldSerializeDockType() { return this.DockType != Guid.Empty; }
+        public bool ShouldSerializeDockType() { return this.StraightType == TrackStraightType.Adapter; }
 
         #endregion
 
@@ -48,7 +48,7 @@ namespace Rail.Tracks
             {
                 Article = this.Article,
                 LengthId = this.LengthId,
-                Extra = this.Extra,
+                StraightType = this.StraightType,
                 DockType = this.DockType
             };
             track.Update(this.trackType);
@@ -60,15 +60,19 @@ namespace Rail.Tracks
             this.Length = GetValue(trackType.Lengths, this.LengthId);
 
             string lengthName = GetName(trackType.Lengths, this.LengthId);
-            this.Name = this.Extra switch
+            this.Name = this.StraightType switch
             {
-                TrackExtras.No => $"{Resources.TrackStraight} {lengthName} {Length} mm",
-                TrackExtras.Circuit => $"{Resources.TrackStraightCircuit}",
-                TrackExtras.Contact => $"{Resources.TrackStraightContact}",
-                TrackExtras.Uncoupler => $"{Resources.TrackStraightUncoupler} {Length} mm",
-                TrackExtras.Isolating => $"{Resources.TrackStraightIsolating} {Length} mm",
-                TrackExtras.Feeder => $"{Resources.TrackStraightFeeder} {Length} mm",
-                TrackExtras.Adapter => $"{Resources.TrackAdapter} {this.DockType}",
+                TrackStraightType.No => $"{Resources.TrackStraight} {lengthName} {Length} mm",
+                TrackStraightType.Circuit => $"{Resources.TrackStraightCircuit} {lengthName} {Length} mm",
+                TrackStraightType.Contact => $"{Resources.TrackStraightContact} {lengthName} {Length} mm",
+                TrackStraightType.Uncoupler => $"{Resources.TrackStraightUncoupler} {lengthName} {Length} mm",
+                TrackStraightType.Isolating => $"{Resources.TrackStraightIsolating} {lengthName} {Length} mm",
+                TrackStraightType.Separation => $"{Resources.TrackStraightSeparation}  {lengthName} {Length} mm",
+                TrackStraightType.Feeder => $"{Resources.TrackStraightFeeder} {lengthName} {Length} mm",
+                TrackStraightType.Adapter => $"{Resources.TrackStraightAdapter} {lengthName} {Length} mm {this.DockType}",
+                TrackStraightType.Rerailer => $"{Resources.TrackStraightRetailer} {lengthName} {Length} mm",
+                TrackStraightType.InterferenceSuppressor => $"{Resources.TrackStraightInterferenceSuppressor} {lengthName} {Length} mm",
+                TrackStraightType.Crossing => $"{Resources.TrackStraightCrossing} {lengthName} {Length} mm",
                 _ => null
             };
 
@@ -100,7 +104,7 @@ namespace Rail.Tracks
             {
                 new TrackDockPoint(0, new Point(-this.Length / 2.0, 0.0), 135, this.dockType),
                 new TrackDockPoint(1, new Point(+this.Length / 2.0, 0.0), 315,
-                this.Extra == TrackExtras.Adapter ? this.DockType : this.dockType)
+                this.StraightType == TrackStraightType.Adapter ? this.DockType : this.dockType)
             };
         }
 

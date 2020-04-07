@@ -147,6 +147,9 @@
   <data name="EnumContact" xml:space="preserve">
     <value>Contact</value>
   </data>
+  <data name="EnumCrossing" xml:space="preserve">
+    <value>Crossing</value>
+  </data>
   <data name="EnumElectrical" xml:space="preserve">
     <value>Electrical</value>
   </data>
@@ -158,6 +161,9 @@
   </data>
   <data name="EnumFlex" xml:space="preserve">
     <value>Flex</value>
+  </data>
+  <data name="EnumInterferenceSuppressor" xml:space="preserve">
+    <value>Interference Suppressor</value>
   </data>
   <data name="EnumIsolating" xml:space="preserve">
     <value>Isolating</value>
@@ -174,11 +180,17 @@
   <data name="EnumQuatro" xml:space="preserve">
     <value>Quatro</value>
   </data>
+  <data name="EnumRerailer" xml:space="preserve">
+    <value>Rerailer</value>
+  </data>
   <data name="EnumRight" xml:space="preserve">
     <value>Right</value>
   </data>
   <data name="EnumSegment320" xml:space="preserve">
     <value>Segment Turntable 3 of 20</value>
+  </data>
+  <data name="EnumSeparation" xml:space="preserve">
+    <value>Separation</value>
   </data>
   <data name="EnumSilver" xml:space="preserve">
     <value>Silver</value>
@@ -222,9 +234,6 @@
   <data name="EnumY" xml:space="preserve">
     <value>Y</value>
   </data>
-  <data name="TrackAdapter" xml:space="preserve">
-    <value>Adapter Track</value>
-  </data>
   <data name="TrackAdjustment" xml:space="preserve">
     <value>Adjustment</value>
   </data>
@@ -246,11 +255,23 @@
   <data name="TrackCurvedContact" xml:space="preserve">
     <value>Curved Contact Track</value>
   </data>
+  <data name="TrackCurvedCrossing" xml:space="preserve">
+    <value>Curved Crossing</value>
+  </data>
   <data name="TrackCurvedFeeder" xml:space="preserve">
     <value>Curved Feeder</value>
   </data>
+  <data name="TrackCurvedInterferenceSuppressor" xml:space="preserve">
+    <value>Curved Interference Suppressor</value>
+  </data>
   <data name="TrackCurvedIsolating" xml:space="preserve">
     <value>Curved Isolating</value>
+  </data>
+  <data name="TrackCurvedRetailer" xml:space="preserve">
+    <value>Curved Retailer</value>
+  </data>
+  <data name="TrackCurvedSeparation" xml:space="preserve">
+    <value>Curved Separation Track</value>
   </data>
   <data name="TrackCurvedTurnoutLeft" xml:space="preserve">
     <value>Left Curved Turnout</value>
@@ -288,17 +309,32 @@
   <data name="TrackStraight" xml:space="preserve">
     <value>Straight Track</value>
   </data>
+  <data name="TrackStraightAdapter" xml:space="preserve">
+    <value>Straight Adapter Track</value>
+  </data>
   <data name="TrackStraightCircuit" xml:space="preserve">
     <value>Straight Circuit Track</value>
   </data>
   <data name="TrackStraightContact" xml:space="preserve">
     <value>Straight Contact Track</value>
   </data>
+  <data name="TrackStraightCrossing" xml:space="preserve">
+    <value>Straigth Crossing</value>
+  </data>
   <data name="TrackStraightFeeder" xml:space="preserve">
     <value>Straight Feeder</value>
   </data>
+  <data name="TrackStraightInterferenceSuppressor" xml:space="preserve">
+    <value>Interference Suppressor</value>
+  </data>
   <data name="TrackStraightIsolating" xml:space="preserve">
     <value>Straight Isolating</value>
+  </data>
+  <data name="TrackStraightRetailer" xml:space="preserve">
+    <value>Retailer</value>
+  </data>
+  <data name="TrackStraightSeparation" xml:space="preserve">
+    <value>Straight Separation Track</value>
   </data>
   <data name="TrackStraightUncoupler" xml:space="preserve">
     <value>Straight Uncoupler</value>

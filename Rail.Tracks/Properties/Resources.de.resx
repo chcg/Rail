@@ -156,6 +156,9 @@
   <data name="EnumFlex" xml:space="preserve">
     <value>Flexibles Gleis</value>
   </data>
+  <data name="EnumInterferenceSuppressor" xml:space="preserve">
+    <value>Funkentstörung</value>
+  </data>
   <data name="EnumIsolating" xml:space="preserve">
     <value>Isolationsgleis</value>
   </data>
@@ -167,6 +170,9 @@
   </data>
   <data name="EnumNo" xml:space="preserve">
     <value>Keins</value>
+  </data>
+  <data name="EnumRerailer" xml:space="preserve">
+    <value>Eingleisvorrichtung</value>
   </data>
   <data name="EnumRight" xml:space="preserve">
     <value>Rights</value>
@@ -243,8 +249,14 @@
   <data name="TrackFlex" xml:space="preserve">
     <value>Flexibles Gleis</value>
   </data>
+  <data name="TrackInterferenceSuppressor" xml:space="preserve">
+    <value>Funkentstörung</value>
+  </data>
   <data name="TrackNewGroup" xml:space="preserve">
     <value>Neue Gruppe</value>
+  </data>
+  <data name="TrackRetailer" xml:space="preserve">
+    <value>Eingleisvorrichtung</value>
   </data>
   <data name="TrackSegmentTurntable" xml:space="preserve">
     <value>Segment Drehscheibe</value>

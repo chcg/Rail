@@ -147,6 +147,9 @@
   <data name="MainCrossingType" xml:space="preserve">
     <value>Crossing Type</value>
   </data>
+  <data name="MainCurvedType" xml:space="preserve">
+    <value>Curved Type</value>
+  </data>
   <data name="MainDeckLength" xml:space="preserve">
     <value>Deck Length</value>
   </data>
@@ -341,6 +344,9 @@
   </data>
   <data name="MainStraightLength" xml:space="preserve">
     <value>Straight Length</value>
+  </data>
+  <data name="MainStraightType" xml:space="preserve">
+    <value>Straight Type</value>
   </data>
   <data name="MainTableType" xml:space="preserve">
     <value>Table Type</value>
