@@ -13,7 +13,7 @@ using System.Windows.Media.Media3D;
 
 namespace Rail.ViewModel
 {
-    public partial class RailViewModel
+    public partial class MainViewModel
     {
         private readonly Pen blackPen = new Pen(Brushes.Black, 1);
         private readonly Brush plateBrush = new SolidColorBrush(Colors.Green);

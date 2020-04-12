@@ -1,7 +1,6 @@
 ﻿using Rail.Controls;
 using Rail.Misc;
 using Rail.Model;
-using Rail.Mvvm;
 using Rail.Tracks;
 using Rail.Tracks.Trigonometry;
 using Rail.View;
@@ -15,76 +14,8 @@ using System.Windows.Media;
 
 namespace Rail.ViewModel
 {
-    public partial class RailViewModel : BaseViewModel, IRail
+    public sealed partial class MainViewModel
     {
-        private readonly double copyPositionDrift = 50;
-
-        private RailPlan railPlan;
-        public event EventHandler RailChanged;
-
-        private readonly Pen plateFramePen = new Pen(TrackBrushes.PlateFrame, 1);
-
-        public DelegateCommand CreateGroupCommand { get; }
-        public DelegateCommand ResolveGroupCommand { get; }
-        public DelegateCommand SaveAsGroupCommand { get; }
-
-        public DelegateCommand CreateRampCommand { get; }
-        public DelegateCommand DeleteRampCommand { get; }
-        public DelegateCommand EditRampCommand { get; }
-
-        public DelegateCommand CreateHelixCommand { get; }
-        public DelegateCommand DeleteHelixCommand { get; }
-        public DelegateCommand EditHelixCommand { get; }
-
-        public DelegateCommand UndoCommand { get; }
-        public DelegateCommand RedoCommand { get; }
-        public DelegateCommand CopyCommand { get; }
-        public DelegateCommand CutCommand { get; }
-        public DelegateCommand PasteCommand { get; }
-        public DelegateCommand DeleteCommand { get; }
-        public DelegateCommand DuplicateCommand { get; }
-        public DelegateCommand SelectAllCommand { get; }
-
-        public DelegateCommand AnchorCommand { get; }
-        public DelegateCommand UnanchorCommand { get; }
-
-
-        //public static readonly RoutedCommand RefreshCommand = new RoutedCommand("Refresh", typeof(RailPlanControl));
-
-        public RailViewModel() : this(RailPlan.Create())
-        { }
-
-        public RailViewModel(RailPlan railPlan)
-        {
-            this.railPlan = railPlan;
-
-            this.CreateGroupCommand = new DelegateCommand(OnCreateGroup, OnCanCreateGroup);
-            this.ResolveGroupCommand = new DelegateCommand(OnResolveGroup, OnCanResolveGroup);
-            this.SaveAsGroupCommand = new DelegateCommand(OnSaveAsGroup, OnCanSaveAsGroup);
-
-            this.CreateRampCommand = new DelegateCommand(OnCreateRamp, OnCanCreateRamp);
-            this.DeleteRampCommand = new DelegateCommand(OnDeleteRamp, OnCanDeleteRamp);
-            this.EditRampCommand = new DelegateCommand(OnEditRamp, OnCanEditRamp);
-
-            this.CreateHelixCommand = new DelegateCommand(OnCreateHelix, OnCanCreateHelix);
-            this.DeleteHelixCommand = new DelegateCommand(OnDeleteHelix, OnCanDeleteHelix);
-            this.EditHelixCommand = new DelegateCommand(OnEditHelix, OnCanEditHelix);
-
-            this.UndoCommand = new DelegateCommand(OnUndo, OnCanUndo);
-            this.RedoCommand = new DelegateCommand(OnRedo, OnCanRedo);
-            this.CopyCommand = new DelegateCommand(OnCopy, OnCanCopy);
-            this.CutCommand = new DelegateCommand(OnCut, OnCanCut);
-            this.PasteCommand = new DelegateCommand(OnPaste, OnCanPaste);
-            this.DeleteCommand = new DelegateCommand(OnDelete, OnCanDelete);
-            this.DuplicateCommand = new DelegateCommand(OnDuplicate, OnCanDuplicate);
-            this.SelectAllCommand = new DelegateCommand(OnSelectAll, OnCanSelectAll);
-
-            this.AnchorCommand = new DelegateCommand(OnAnchor, OnCanAnchor);
-            this.UnanchorCommand = new DelegateCommand(OnUnanchor, OnCanUnanchor);
-
-            //this.Loaded += OnLoaded;
-        }
-
         public int Width
         {
             get
@@ -101,34 +32,34 @@ namespace Rail.ViewModel
             }
         }
 
-        private double zoomFactor;
-        public double ZoomFactor
-        {
-            get
-            {
-                return this.zoomFactor;
-            }
-            set
-            {
-                this.zoomFactor = value;
-                NotifyPropertyChanged(nameof(ZoomFactor));
-            }
-        }
+        //private double zoomFactor;
+        //public double ZoomFactor
+        //{
+        //    get
+        //    {
+        //        return this.zoomFactor;
+        //    }
+        //    set
+        //    {
+        //        this.zoomFactor = value;
+        //        NotifyPropertyChanged(nameof(ZoomFactor));
+        //    }
+        //}
 
         //public double Width { get { return this.railPlan.Width; } }
         //public double Height { get { return this.railPlan.Height; } }
 
         #region properties
 
-        public IEnumerable<RailBase> Rails 
-        { 
+        public IEnumerable<RailBase> Rails
+        {
             get
             {
                 return this.railPlan.Rails;
             }
         }
 
-        public IEnumerable<RailLayer> Layers 
+        public IEnumerable<RailLayer> Layers
         {
             get
             {
@@ -175,9 +106,9 @@ namespace Rail.ViewModel
             }
             set
             {
-                this.selectedTrack = value; 
-                NotifyPropertyChanged(nameof(SelectedTrack)); 
-                Invalidate(); 
+                this.selectedTrack = value;
+                NotifyPropertyChanged(nameof(SelectedTrack));
+                Invalidate();
             }
         }
 
@@ -228,11 +159,11 @@ namespace Rail.ViewModel
         #endregion
 
         public List<RailBase> SelectedRails
-        { 
-            get 
-            { 
+        {
+            get
+            {
                 return this.railPlan.Rails.Where(r => r.IsSelected).ToList();
-            } 
+            }
         }
 
         public IEnumerable<RailBase> SelectedRampRails
@@ -453,7 +384,7 @@ namespace Rail.ViewModel
         private int historyIndex = -1;
         private readonly List<RailPlan> history = new List<RailPlan>();
 
-        private void OnUndo()
+        protected override void OnUndo()
         {
             if (OnCanUndo())
             {
@@ -461,12 +392,12 @@ namespace Rail.ViewModel
             }
         }
 
-        private bool OnCanUndo()
+        protected override bool OnCanUndo()
         {
             return historyIndex > 0;
         }
 
-        private void OnRedo()
+        protected override void OnRedo()
         {
             if (OnCanRedo())
             {
@@ -474,7 +405,7 @@ namespace Rail.ViewModel
             }
         }
 
-        private bool OnCanRedo()
+        protected override bool OnCanRedo()
         {
             return historyIndex >= 0 && historyIndex < history.Count - 1;
         }

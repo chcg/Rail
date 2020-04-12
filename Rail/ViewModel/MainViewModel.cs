@@ -1,5 +1,4 @@
 ﻿using Rail.Controls;
-using Rail.Misc;
 using Rail.Model;
 using Rail.Mvvm;
 using Rail.Properties;
@@ -7,35 +6,87 @@ using Rail.Tracks;
 using Rail.View;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Printing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Xml.Schema;
 
 namespace Rail.ViewModel
 {
-    public partial class MainViewModel : FileViewModel
+    public partial class MainViewModel : FileViewModel, IRail
     {
         private TrackList trackList;
         private Dictionary<Guid, TrackBase> trackDict;
-        private RailPlan railPlan;
+        //private RailPlan railPlan;
 
         public DelegateCommand RailPlanCommand { get; private set; }
         public DelegateCommand PrintCommand { get; private set; }
         public DelegateCommand PrintPreviewCommand { get; private set; }
 
         private double zoomFactor = 1.0;
-       
+
+        private readonly double copyPositionDrift = 50;
+
+        private RailPlan railPlan;
+        public event EventHandler RailChanged;
+
+        private readonly Pen plateFramePen = new Pen(TrackBrushes.PlateFrame, 1);
+
+        public DelegateCommand CreateGroupCommand { get; }
+        public DelegateCommand ResolveGroupCommand { get; }
+        public DelegateCommand SaveAsGroupCommand { get; }
+
+        public DelegateCommand CreateRampCommand { get; }
+        public DelegateCommand DeleteRampCommand { get; }
+        public DelegateCommand EditRampCommand { get; }
+
+        public DelegateCommand CreateHelixCommand { get; }
+        public DelegateCommand DeleteHelixCommand { get; }
+        public DelegateCommand EditHelixCommand { get; }
+
+        //public DelegateCommand UndoCommand { get; }
+        //public DelegateCommand RedoCommand { get; }
+        public DelegateCommand CopyCommand { get; }
+        public DelegateCommand CutCommand { get; }
+        public DelegateCommand PasteCommand { get; }
+        public DelegateCommand DeleteCommand { get; }
+        public DelegateCommand DuplicateCommand { get; }
+        public DelegateCommand SelectAllCommand { get; }
+
+        public DelegateCommand AnchorCommand { get; }
+        public DelegateCommand UnanchorCommand { get; }
+
         public MainViewModel()
         {
+            this.CreateGroupCommand = new DelegateCommand(OnCreateGroup, OnCanCreateGroup);
+            this.ResolveGroupCommand = new DelegateCommand(OnResolveGroup, OnCanResolveGroup);
+            this.SaveAsGroupCommand = new DelegateCommand(OnSaveAsGroup, OnCanSaveAsGroup);
+
+            this.CreateRampCommand = new DelegateCommand(OnCreateRamp, OnCanCreateRamp);
+            this.DeleteRampCommand = new DelegateCommand(OnDeleteRamp, OnCanDeleteRamp);
+            this.EditRampCommand = new DelegateCommand(OnEditRamp, OnCanEditRamp);
+
+            this.CreateHelixCommand = new DelegateCommand(OnCreateHelix, OnCanCreateHelix);
+            this.DeleteHelixCommand = new DelegateCommand(OnDeleteHelix, OnCanDeleteHelix);
+            this.EditHelixCommand = new DelegateCommand(OnEditHelix, OnCanEditHelix);
+
+            //this.UndoCommand = new DelegateCommand(OnUndo, OnCanUndo);
+            //this.RedoCommand = new DelegateCommand(OnRedo, OnCanRedo);
+            this.CopyCommand = new DelegateCommand(OnCopy, OnCanCopy);
+            this.CutCommand = new DelegateCommand(OnCut, OnCanCut);
+            this.PasteCommand = new DelegateCommand(OnPaste, OnCanPaste);
+            this.DeleteCommand = new DelegateCommand(OnDelete, OnCanDelete);
+            this.DuplicateCommand = new DelegateCommand(OnDuplicate, OnCanDuplicate);
+            this.SelectAllCommand = new DelegateCommand(OnSelectAll, OnCanSelectAll);
+
+            this.AnchorCommand = new DelegateCommand(OnAnchor, OnCanAnchor);
+            this.UnanchorCommand = new DelegateCommand(OnUnanchor, OnCanUnanchor);
+
             this.DefaultFileExt = "*.rail";
             this.FileFilter = "Rail Project|*.rail|All Files|*.*";
 
@@ -177,20 +228,20 @@ namespace Rail.ViewModel
 
         public List<TrackType> TrackTypes { get; private set; } // { return this.trackList.TrackTypes; } }
 
-        private TrackType selectedTrackType;
-        public TrackType SelectedTrackType
-        {
-            get
-            {
-                return this.selectedTrackType;
-            }
-            set
-            {
-                this.selectedTrackType = value;
-                NotifyPropertyChanged(nameof(SelectedTrackType));
-                FillTracks();
-            }
-        }
+        //private TrackType selectedTrackType;
+        //public TrackType SelectedTrackType
+        //{
+        //    get
+        //    {
+        //        return this.selectedTrackType;
+        //    }
+        //    set
+        //    {
+        //        this.selectedTrackType = value;
+        //        NotifyPropertyChanged(nameof(SelectedTrackType));
+        //        FillTracks();
+        //    }
+        //}
 
         private int selectedGroupIndex = 0;
         public int SelectedGroupIndex
@@ -241,20 +292,22 @@ namespace Rail.ViewModel
             }
         }
 
-        private TrackBase selectedTracke;
-        public TrackBase SelectedTrack
-        {
-            get
-            {
-                return this.selectedTracke;
-            }
-            set
-            {
-                this.selectedTracke = value;
-                NotifyPropertyChanged(nameof(SelectedTrack));
-            }
-        }
+        //private TrackBase selectedTracke;
+        //public TrackBase SelectedTrack
+        //{
+        //    get
+        //    {
+        //        return this.selectedTracke;
+        //    }
+        //    set
+        //    {
+        //        this.selectedTracke = value;
+        //        NotifyPropertyChanged(nameof(SelectedTrack));
+        //    }
+        //}
 
+
+            // TODO delete
         public RailPlan RailPlan
         {
             get
@@ -419,10 +472,10 @@ namespace Rail.ViewModel
             }
         }
 
-        public IEnumerable<RailLayer> Layers
-        {
-            get { return this.RailPlan?.Layers.Reverse<RailLayer>(); }
-        }
+        //public IEnumerable<RailLayer> Layers
+        //{
+        //    get { return this.RailPlan?.Layers.Reverse<RailLayer>(); }
+        //}
 
        
 
