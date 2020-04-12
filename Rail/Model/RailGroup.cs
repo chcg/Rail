@@ -1,7 +1,7 @@
 ﻿using Rail.Controls;
 using Rail.Misc;
 using Rail.Tracks;
-using Rail.Trigonometry;
+using Rail.Tracks.Trigonometry;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -86,13 +86,13 @@ namespace Rail.Model
 
             if (this.IsSelected && viewMode < RailViewMode.Terrain)
             {
-                var geometrie = GetGeometry(viewMode/*, null*/);
+                var geometrie = GetGeometry();
                 drawingContext.DrawDrawing(new GeometryDrawing(null, this.linePen, geometrie));
                 drawingContext.DrawDrawing(new GeometryDrawing(null, this.dotPen, geometrie));
             }
         }
 
-        protected override Geometry GetGeometry(RailViewMode viewMode/*, Transform transform*/)
+        protected override Geometry GetGeometry()
         {
             return this.Rails.Select(r =>
             {
@@ -103,15 +103,15 @@ namespace Rail.Model
 
         }
 
-        public override bool IsInside(Point point, RailViewMode viewMode)
+        public override bool IsInside(Point point)
         {
-            bool f = this.Rails.Any(r => r.IsInside(point, viewMode));
+            bool f = this.Rails.Any(r => r.IsInside(point));
             return f;
         }
 
-        public override bool IsInside(Rect rec, RailViewMode viewMode)
+        public override bool IsInside(Rect rec)
         {
-            bool f = this.Rails.Any(r => r.IsInside(rec, viewMode));
+            bool f = this.Rails.Any(r => r.IsInside(rec));
             return f;
         }
 

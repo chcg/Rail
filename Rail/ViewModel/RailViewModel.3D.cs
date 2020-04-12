@@ -13,7 +13,7 @@ using System.Windows.Media.Media3D;
 
 namespace Rail.ViewModel
 {
-    public partial class MainViewModel
+    public partial class RailViewModel
     {
         private readonly Pen blackPen = new Pen(Brushes.Black, 1);
         private readonly Brush plateBrush = new SolidColorBrush(Colors.Green);
@@ -27,26 +27,26 @@ namespace Rail.ViewModel
             {
                 drawingContext.DrawGeometry(plateBrush, blackPen, new PathGeometry(new PathFigureCollection
                 {
-                    new PathFigure(this.RailPlan.PlatePoints.FirstOrDefault(), new PathSegmentCollection
+                    new PathFigure(this.railPlan.PlatePoints.FirstOrDefault(), new PathSegmentCollection
                     (
-                        this.RailPlan.PlatePoints.Skip(1).Select(p => new LineSegment(p, true))
+                        this.railPlan.PlatePoints.Skip(1).Select(p => new LineSegment(p, true))
                     ), true)
                 }));
 
-                this.RailPlan.Rails.ForEach(r => r.DrawRailItem(drawingContext, RailViewMode.Terrain, this.RailPlan.Layers.FirstOrDefault(l => l.Id == r.Layer)));
+                this.railPlan.Rails.ForEach(r => r.DrawRailItem(drawingContext, RailViewMode.Terrain, this.railPlan.Layers.FirstOrDefault(l => l.Id == r.Layer)));
 
             }
-            RenderTargetBitmap bitmap = new RenderTargetBitmap(this.railPlan.Width, this.railPlan.Height, 96, 96, PixelFormats.Default);
+            RenderTargetBitmap bitmap = new RenderTargetBitmap(this.Width, this.Height, 96, 96, PixelFormats.Default);
             bitmap.Render(drawingVisual);
             this.PlateImage = bitmap;
 
             // create 3D plate
             Point3DCollection point3DCollection = new Point3DCollection()
             {
-                new Point3D(-this.railPlan.Width / 2, -this.railPlan.Height / 2, 0),
-                new Point3D(+this.railPlan.Width / 2, -this.railPlan.Height / 2, 0),
-                new Point3D(-this.railPlan.Width / 2, +this.railPlan.Height / 2, 0),
-                new Point3D(+this.railPlan.Width / 2, +this.railPlan.Height / 2, 0)
+                new Point3D(-this.Width / 2, -this.Height / 2, 0),
+                new Point3D(+this.Width / 2, -this.Height / 2, 0),
+                new Point3D(-this.Width / 2, +this.Height / 2, 0),
+                new Point3D(+this.Width / 2, +this.Height / 2, 0)
             };
             this.PlatePoint3DCollection = point3DCollection;
         }
@@ -56,7 +56,7 @@ namespace Rail.ViewModel
             this.Layers3D.Clear();
 
             double height = 0;
-            this.RailPlan.Layers.ForEach(l => { CreateLayer(l, height); height += l.Height; });
+            this.railPlan.Layers.ForEach(l => { CreateLayer(l, height); height += l.Height; });
         }
 
         public Brush RenderLayer(RailLayer layer)
@@ -70,17 +70,17 @@ namespace Rail.ViewModel
                     ground.A = 150;
                     drawingContext.DrawGeometry(new SolidColorBrush(ground), blackPen, new PathGeometry(new PathFigureCollection
                     {
-                        new PathFigure(this.RailPlan.PlatePoints.FirstOrDefault(), new PathSegmentCollection
+                        new PathFigure(this.railPlan.PlatePoints.FirstOrDefault(), new PathSegmentCollection
                         (
-                            this.RailPlan.PlatePoints.Skip(1).Select(p => new LineSegment(p, true))
+                            this.railPlan.PlatePoints.Skip(1).Select(p => new LineSegment(p, true))
                         ), true)
                     }));
                 }
 
-                this.RailPlan.Rails.Where(r => r.Layer == layer.Id).ForEach(r => r.DrawRailItem(drawingContext, RailViewMode.Terrain, layer));
+                this.railPlan.Rails.Where(r => r.Layer == layer.Id).ForEach(r => r.DrawRailItem(drawingContext, RailViewMode.Terrain, layer));
 
             }
-            RenderTargetBitmap bitmap = new RenderTargetBitmap(this.railPlan.Width, this.railPlan.Height, 96, 96, PixelFormats.Default);
+            RenderTargetBitmap bitmap = new RenderTargetBitmap(this.Width, this.Height, 96, 96, PixelFormats.Default);
             bitmap.Render(drawingVisual);
             return new ImageBrush(bitmap);
         }
@@ -97,10 +97,10 @@ namespace Rail.ViewModel
             MeshGeometry3D geometrie= new MeshGeometry3D();
             geometrie.Positions = new Point3DCollection()
             {
-                new Point3D(-this.railPlan.Width / 2, -this.railPlan.Height / 2, heigth),
-                new Point3D(+this.railPlan.Width / 2, -this.railPlan.Height / 2, heigth),
-                new Point3D(-this.railPlan.Width / 2, +this.railPlan.Height / 2, heigth),
-                new Point3D(+this.railPlan.Width / 2, +this.railPlan.Height / 2, heigth)
+                new Point3D(-this.Width / 2, -this.Height / 2, heigth),
+                new Point3D(+this.Width / 2, -this.Height / 2, heigth),
+                new Point3D(-this.Width / 2, +this.Height / 2, heigth),
+                new Point3D(+this.Width / 2, +this.Height / 2, heigth)
             }; 
             geometrie.Normals = new Vector3DCollection(new Vector3D[] { new Vector3D(0, 0, 1), new Vector3D(0, 0, 1), new Vector3D(0, 0, 1), new Vector3D(0, 0, 1) });
             geometrie.TextureCoordinates = new PointCollection( new Point[] { new Point(0, 1), new Point(1, 1), new Point(0, 0), new Point(1, 0) });

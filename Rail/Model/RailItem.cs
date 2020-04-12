@@ -117,7 +117,7 @@ namespace Rail.Model
         }
 
 
-        protected override Geometry GetGeometry(RailViewMode viewMode)
+        protected override Geometry GetGeometry()
         {
             Geometry geometry = this.Track.TrackGeometry.Clone();
             geometry.Transform = this.RailTransform;

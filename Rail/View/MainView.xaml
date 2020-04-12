@@ -15,9 +15,9 @@
         Height="1000" 
         Width="1600" 
         Icon="/Rail;component/Images/Rail.png">
-    <RibbonWindow.DataContext>
+    <!--<RibbonWindow.DataContext>
         <vm:MainViewModel/>
-    </RibbonWindow.DataContext>
+    </RibbonWindow.DataContext>-->
     <RibbonWindow.Resources>
         <conv:TaskbarItemProgressStateToVisibilityConverter x:Key="TaskbarItemProgressStateToVisibilityConverter"/>
         <conv:DoubleToPercentageConverter x:Key="DoubleToPercentageConverter"/>
@@ -315,18 +315,21 @@
             <Grid Grid.Column="1" Margin="0,0,5,0">
                 <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TrackRailViewModeToVisibilityConverter}}" Background="DarkGray" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
                     <ctrl:RailPlanControl 
-                    x:Name="railPlanControl"
-                    Background="DarkGray"
-                    ZoomFactor="{Binding ZoomFactor}"
+                        x:Name="railPlanControl"
+                        Background="DarkGray"
+                        ZoomFactor="{Binding ZoomFactor}"
+                        Rail="{Binding Rail}"                    
+                        MousePosition="{Binding MousePosition, Mode=OneWayToSource}"
+                        ViewMode="{Binding ViewMode}" 
+                        ShowDockingPoints="{Binding ShowDockingPoints}"
+                        GridLinesDistance="{Binding GridLinesDistance}"
+                        RailMargin="40"/>
+                    <!--
                     RailPlan="{Binding RailPlan}"
                     SelectedTrack="{Binding SelectedTrack}"
                     SelectedTrackType="{Binding SelectedTrackType}"
-                    MousePosition="{Binding MousePosition, Mode=OneWayToSource}"
-                    ViewMode="{Binding ViewMode}" 
-                    ShowDockingPoints="{Binding ShowDockingPoints}"
                     InsertLayer="{Binding SelectedInsertLayer}"
-                    GridLinesDistance="{Binding GridLinesDistance}"
-                    RailMargin="40"/>
+                    -->
                 </ScrollViewer>
                 <ScrollViewer Visibility="{Binding ViewMode, Converter={StaticResource TerrainViewModeToVisibilityConverter}}">
                     <Viewport3D ClipToBounds="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">

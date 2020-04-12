@@ -1,14 +1,12 @@
 ﻿using Rail.Misc;
 using Rail.Model;
-using Rail.Mvvm;
 using Rail.Tracks;
-using Rail.Trigonometry;
+using Rail.Tracks.Trigonometry;
 using Rail.View;
 using Rail.ViewModel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
@@ -21,9 +19,8 @@ namespace Rail.Controls
 {
     public class RailPlanControl : Control
     {
-        private readonly double copyPositionDrift = 50;
         private double margin = 0;
-        private readonly Pen plateFramePen = new Pen(TrackBrushes.PlateFrame, 1);
+        //private readonly Pen plateFramePen = new Pen(TrackBrushes.PlateFrame, 1);
         private readonly Pen selectFramePen1 = new Pen(Brushes.Black, 2);
         private readonly Pen selectFramePen2 = new Pen(Brushes.White, 2) { DashStyle = DashStyles.Dot };
         private readonly Pen selectFramePen3 = new Pen(Brushes.White, 2) { DashStyle = DashStyles.Dash };
@@ -35,43 +32,16 @@ namespace Rail.Controls
         private RailDockPoint actionDockPoint;
         private bool hasMoved;
         private List<RailBase> actionSubgraph;
-        //private Angle debugRotationAngle;
+        ////private Angle debugRotationAngle;
         private Point selectRecStart;
 
-        private bool selectedChangeIntern = false;
-        private RailBase selectedRail;
-        private List<RailBase> selectedRails;
+        //private bool selectedChangeIntern = false;
+        //private RailBase selectedRail;
+        //private List<RailBase> selectedRails;
 
-        //public DelegateCommand<RailBase> DeleteRailItemCommand { get; private set; }
-        //public DelegateCommand<RailBase> RotateRailItemCommand { get; private set; }
-        //public DelegateCommand<RailBase> PropertiesRailItemCommand { get; private set; }
+        
 
-        public DelegateCommand CreateGroupCommand { get; private set; }
-        public DelegateCommand ResolveGroupCommand { get; private set; }
-        public DelegateCommand SaveAsGroupCommand { get; private set; }
-
-        public DelegateCommand CreateRampCommand { get; private set; }
-        public DelegateCommand DeleteRampCommand { get; private set; }
-        public DelegateCommand EditRampCommand { get; private set; }
-
-        public DelegateCommand CreateHelixCommand { get; private set; }
-        public DelegateCommand DeleteHelixCommand { get; private set; }
-        public DelegateCommand EditHelixCommand { get; private set; }
-
-        public DelegateCommand UndoCommand { get; private set; }
-        public DelegateCommand RedoCommand { get; private set; }
-        public DelegateCommand CopyCommand { get; private set; }
-        public DelegateCommand CutCommand { get; private set; }
-        public DelegateCommand PasteCommand { get; private set; }
-        public DelegateCommand DeleteCommand { get; private set; }
-        public DelegateCommand DuplicateCommand { get; private set; }
-        public DelegateCommand SelectAllCommand { get; private set; }
-
-        public DelegateCommand AnchorCommand { get; private set; }
-        public DelegateCommand UnanchorCommand { get; private set; }
-
-
-        //public static readonly RoutedCommand RefreshCommand = new RoutedCommand("Refresh", typeof(RailPlanControl));
+       
 
         protected enum RailAction
         {
@@ -112,53 +82,62 @@ namespace Rail.Controls
         }
 
         public RailPlanControl()
-        {
-            //this.DeleteRailItemCommand = new DelegateCommand<RailBase>(OnDeleteRailItem);
-            //this.RotateRailItemCommand = new DelegateCommand<RailBase>(OnRotateRailItem);
-            //this.PropertiesRailItemCommand = new DelegateCommand<RailBase>(OnPropertiesRailItem);
-
-            this.CreateGroupCommand = new DelegateCommand(OnCreateGroup, OnCanCreateGroup);
-            this.ResolveGroupCommand = new DelegateCommand(OnResolveGroup, OnCanResolveGroup);
-            this.SaveAsGroupCommand = new DelegateCommand(OnSaveAsGroup, OnCanSaveAsGroup);
-
-            this.CreateRampCommand = new DelegateCommand(OnCreateRamp, OnCanCreateRamp);
-            this.DeleteRampCommand = new DelegateCommand(OnDeleteRamp, OnCanDeleteRamp);
-            this.EditRampCommand = new DelegateCommand(OnEditRamp, OnCanEditRamp);
-
-            this.CreateHelixCommand = new DelegateCommand(OnCreateHelix, OnCanCreateHelix);
-            this.DeleteHelixCommand = new DelegateCommand(OnDeleteHelix, OnCanDeleteHelix);
-            this.EditHelixCommand = new DelegateCommand(OnEditHelix, OnCanEditHelix);
-
-            this.UndoCommand = new DelegateCommand(OnUndo, OnCanUndo);
-            this.RedoCommand = new DelegateCommand(OnRedo, OnCanRedo);
-            this.CopyCommand = new DelegateCommand(OnCopy, OnCanCopy);
-            this.CutCommand = new DelegateCommand(OnCut, OnCanCut);
-            this.PasteCommand = new DelegateCommand(OnPaste, OnCanPaste);
-            this.DeleteCommand = new DelegateCommand(OnDelete, OnCanDelete);
-            this.DuplicateCommand = new DelegateCommand(OnDuplicate, OnCanDuplicate);
-            this.SelectAllCommand =  new DelegateCommand(OnSelectAll, OnCanSelectAll);
-
-            this.AnchorCommand = new DelegateCommand(OnAnchor, OnCanAnchor);
-            this.UnanchorCommand = new DelegateCommand(OnUnanchor, OnCanUnanchor);
-
-            //CommandBinding commandBinding = new CommandBinding(RefreshCommand);
-            //commandBinding.Executed += OnRefresh;
-            //commandBinding.CanExecute += OnCanRefresh;
-            //CommandManager.RegisterClassCommandBinding(typeof(RailPlanControl), commandBinding);
-
-            this.Loaded += OnLoaded;
-        }
+        { }
        
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        //private void OnLoaded(object sender, RoutedEventArgs e)
+        //{
+        //    DependencyObject dep = new DependencyObject();
+        //    if (!DesignerProperties.GetIsInDesignMode(dep))
+        //    {
+        //        var window = Window.GetWindow(this);
+        //        window.KeyDown += OnKeyPress;
+        //    }
+        //}
+        
+        #region Rail
+
+        public static readonly DependencyProperty RailProperty =
+            DependencyProperty.Register("Rail", typeof(IRail), typeof(RailPlanControl),
+                new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnRailPropertyChanged)));
+
+        public IRail Rail
         {
-            DependencyObject dep = new DependencyObject();
-            if (!DesignerProperties.GetIsInDesignMode(dep))
+            get
             {
-                var window = Window.GetWindow(this);
-                window.KeyDown += OnKeyPress;
+                return (IRail)GetValue(RailProperty);
+            }
+            set
+            {
+                SetValue(RailProperty, value);
             }
         }
-        
+
+        private static void OnRailPropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RailPlanControl railPlan = (RailPlanControl)o;
+            railPlan.OnRailPropertyChanged(e);
+        }
+
+        private void OnRailPropertyChanged(DependencyPropertyChangedEventArgs e)
+        {
+            if (e.OldValue is IRail oldRail)
+            {
+                oldRail.RailChanged -= OnRailChanged;
+            }
+            if (e.NewValue is IRail newRail)
+            {
+                newRail.RailChanged += OnRailChanged;
+            }
+            CalcGroundSize();
+        }
+
+        private void OnRailChanged(object sender, EventArgs e)
+        {
+            Invalidate();
+        }
+
+        #endregion
+
         #region ZoomFactor
 
         public static readonly DependencyProperty ZoomFactorProperty =
@@ -200,71 +179,7 @@ namespace Rail.Controls
         }
 
         #endregion
-
-        #region SelectedTrack
-
-        public static readonly DependencyProperty SelectedTrackProperty =
-            DependencyProperty.Register("SelectedTrack", typeof(TrackBase), typeof(RailPlanControl));
-
-        public TrackBase SelectedTrack
-        {
-            get
-            {
-                return (TrackBase)GetValue(SelectedTrackProperty);
-            }
-            set
-            {
-                SetValue(SelectedTrackProperty, value);
-            }
-        }
-
-        #endregion
-
-        #region SelectedTrackType
-
-        public static readonly DependencyProperty SelectedTrackTypeProperty =
-            DependencyProperty.Register("SelectedTrackType", typeof(TrackType), typeof(RailPlanControl));
-
-        public TrackType SelectedTrackType
-        {
-            get
-            {
-                return (TrackType)GetValue(SelectedTrackTypeProperty);
-            }
-            set
-            {
-                SetValue(SelectedTrackTypeProperty, value);
-            }
-        }
-
-        #endregion
-
-        #region RailPlan
-
-        public static readonly DependencyProperty RailPlanProperty =
-            DependencyProperty.Register("RailPlan", typeof(RailPlan), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnRailPlanPropertyChanged)));
-
-        public RailPlan RailPlan
-        {
-            get
-            {
-                return (RailPlan)GetValue(RailPlanProperty);
-            }
-            set
-            {
-                SetValue(RailPlanProperty, value);
-            }
-        }
-
-        private static void OnRailPlanPropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            RailPlanControl railPlan = (RailPlanControl)o;
-            railPlan.CalcGroundSize();
-        }
-
-        #endregion
-
+        
         #region MousePosition
 
         public static readonly DependencyProperty MousePositionProperty =
@@ -337,26 +252,9 @@ namespace Rail.Controls
 
         #endregion
 
-        #region InsertLayer
+        
 
-        public static readonly DependencyProperty InsertLayerProperty =
-            DependencyProperty.Register("InsertLayer", typeof(RailLayer), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata((RailLayer)null));
-
-        public RailLayer InsertLayer
-        {
-            get
-            {
-                return (RailLayer)GetValue(InsertLayerProperty);
-            }
-            set
-            {
-                SetValue(InsertLayerProperty, value);
-            }
-        }
-
-        #endregion
-
+        /*
         #region SelectedRails
 
         public static readonly DependencyProperty SelectedRailsProperty =
@@ -379,10 +277,10 @@ namespace Rail.Controls
             if (this.SelectedRails != null)
             {
                 this.SelectedRails.Clear();
-                this.RailPlan.SelectedRails.ForEach(r => this.SelectedRails.Add(r));
+                this.Rail.SelectedRails.ForEach(r => this.SelectedRails.Add(r));
             }
             
-            var selectedRails = this.RailPlan.SelectedRails.ToList();
+            var selectedRails = this.Rail.SelectedRails.ToList();
             switch (selectedRails.Count())
             {
             case 0:
@@ -425,24 +323,7 @@ namespace Rail.Controls
 
         #endregion
 
-        #region SelectedMode
-
-        public static readonly DependencyProperty SelectedModeProperty =
-            DependencyProperty.Register("SelectedMode", typeof(RailSelectedMode), typeof(RailPlanControl), new FrameworkPropertyMetadata(RailSelectedMode.None, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-
-        public RailSelectedMode SelectedMode
-        {
-            get
-            {
-                return (RailSelectedMode)GetValue(SelectedModeProperty);
-            }
-            set
-            {
-                SetValue(SelectedModeProperty, value);
-            }
-        }
-
-        #endregion
+        
 
         #region SelectedRailsX
 
@@ -478,7 +359,7 @@ namespace Rail.Controls
                 {
                 case RailSelectedMode.Single:
                     var subgraph = this.selectedRail.FindSubgraph();
-                    this.MoveRailItem(subgraph, new Vector(newValue.Value - oldValue.Value, 0));
+                    this.Rail.MoveRailItem(subgraph, new Vector(newValue.Value - oldValue.Value, 0));
                     this.InvalidateVisual();
                     break;
                 case RailSelectedMode.Multi:
@@ -522,7 +403,7 @@ namespace Rail.Controls
                 {
                 case RailSelectedMode.Single:
                     var subgraph = this.selectedRail.FindSubgraph();
-                    this.MoveRailItem(subgraph, new Vector(0, newValue.Value - SelectedRailsY.Value));
+                    this.Rail.MoveRailItem(subgraph, new Vector(0, newValue.Value - SelectedRailsY.Value));
                     this.InvalidateVisual();
                     break;
                 case RailSelectedMode.Multi:
@@ -566,7 +447,7 @@ namespace Rail.Controls
                 {
                 case RailSelectedMode.Single:
                     var subgraph = this.selectedRail.FindSubgraph();
-                    this.RotateRailItem(subgraph, this.selectedRail.Position, new Rotation(newValue.Value) - new Rotation(oldValue.Value));
+                    this.Rail.RotateRailItem(subgraph, this.selectedRail.Position, new Rotation(newValue.Value) - new Rotation(oldValue.Value));
                     this.InvalidateVisual();
                     break;
                 case RailSelectedMode.Multi:
@@ -642,24 +523,8 @@ namespace Rail.Controls
 
         #endregion
 
-        #region Materials
-
-        public static readonly DependencyProperty MaterialsProperty =
-            DependencyProperty.Register("Materials", typeof(IList), typeof(RailPlanControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-
-        public IList Materials
-        {
-            get 
-            {
-                return (IList)GetValue(MaterialsProperty);
-            }
-            set
-            {
-                SetValue(MaterialsProperty, value);
-            }
-        }
-
-        #endregion
+        
+        */
 
         #region GridLinesDistance
 
@@ -689,60 +554,45 @@ namespace Rail.Controls
 
         private void CalcGroundSize()
         {
-            this.Width =  margin * 2 + this.RailPlan.Width  * this.ZoomFactor;
-            this.Height = margin * 2 + this.RailPlan.Height * this.ZoomFactor;
+            this.Width =  margin * 2 + this.Rail.Width  * this.ZoomFactor;
+            this.Height = margin * 2 + this.Rail.Height * this.ZoomFactor;
             this.InvalidateMeasure();
             this.InvalidateVisual();
         }
 
         private void Invalidate()
         {
-            this.UpdateSelectedRails();
-            this.UpdateMaterials();
-            
             this.InvalidateVisual();
         }
-
-        private void UpdateMaterials()
-        {
-            this.Materials = this.RailPlan.Rails.SelectMany(r => r.Materials).GroupBy(m => m.Id).Select(g => new TrackMaterial
-            {
-                Id = g.First().Id,
-                Number = g.Select(i => i.Number).Sum(),
-                Manufacturer = g.First().Manufacturer,
-                Article = g.First().Article,
-                Name = g.First().Name
-            }).OrderBy(g => g.Article).ToList();
-        }
-
+        
         #region render
 
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
 
-            if (this.RailPlan == null)
+            // drawn background is needed for detecting mouse moves
+            drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.Width, this.Height));
+
+            if (this.Rail == null)
             {
                 return;
             }
-
-            // drawn background is needed for detecting mouse moves
-            drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.Width, this.Height));
 
             TransformGroup transformGroup = new TransformGroup();
             transformGroup.Children.Add(new ScaleTransform(this.ZoomFactor, this.ZoomFactor));
             transformGroup.Children.Add(new TranslateTransform(margin, margin));
             drawingContext.PushTransform(transformGroup);
 
-            // dray plate
-            RenderPlate(drawingContext);
-
+            // draw plate
+            drawingContext.DrawDrawing(this.Rail.PlateDrawing);
+            
             // loop over all visible layers
-            foreach (RailLayer railLayer in this.RailPlan.Layers.Where(l => l.Show))
+            foreach (RailLayer railLayer in this.Rail.Layers.Where(l => l.Show))
             {
                 // draw tracks
-                var rails = this.RailPlan.Rails.Where(r => r.Layer == railLayer.Id).ToArray();
-                rails.ForEach(r => r.DrawRailItem(drawingContext, this.ViewMode, this.RailPlan.Layers.FirstOrDefault(l => l.Id == r.Layer)));
+                var rails = this.Rail.Rails.Where(r => r.Layer == railLayer.Id).ToArray();
+                rails.ForEach(r => r.DrawRailItem(drawingContext, this.ViewMode, this.Rail.Layers.FirstOrDefault(l => l.Id == r.Layer)));
                 if (this.ShowDockingPoints)
                 {
                     rails.ForEach(r => r.DrawDockPoints(drawingContext));
@@ -776,20 +626,7 @@ namespace Rail.Controls
         }
         
               
-        /// <summary>
-        /// Render ground plate
-        /// </summary>
-        /// <param name="drawingContext">Drawing context</param>
-        protected void RenderPlate(DrawingContext drawingContext)
-        {
-            drawingContext.DrawGeometry(TrackBrushes.Plate, plateFramePen, new PathGeometry(new PathFigureCollection
-            {
-                new PathFigure(this.RailPlan.PlatePoints.FirstOrDefault(), new PathSegmentCollection
-                (
-                    this.RailPlan.PlatePoints.Skip(1).Select(p => new LineSegment(p, true))
-                ), true)
-            }));
-        }
+        
         
         private readonly Pen gridLinePen = new Pen(Brushes.Black, 0.2);
 
@@ -797,8 +634,8 @@ namespace Rail.Controls
         {
             if (this.GridLinesDistance > 0)
             {
-                double w = this.RailPlan.Width;
-                double h = this.RailPlan.Height;
+                double w = this.Rail.Width;
+                double h = this.Rail.Height;
                 for (double x = 0; x < w; x += this.GridLinesDistance)
                 {
                     drawingContext.DrawLine(gridLinePen, new Point(x, 0), new Point(x, h));
@@ -812,224 +649,46 @@ namespace Rail.Controls
 
         #endregion
 
-        #region actions
-
-        private RailBase FindRailItem(Point point)
-        {
-            RailBase track = this.RailPlan.Rails.Where(t => t.IsInside(point, this.ViewMode)).FirstOrDefault();
-            return track;
-        }
-
-        private RailDockPoint FindFreeDockPoint(Point point)
-        {
-            RailDockPoint dockPoint = this.RailPlan.Rails.SelectMany(r => r.DockPoints).Where(d => !d.IsDocked).Where(d => d.IsInside(point)).FirstOrDefault();
-            return dockPoint;
-        }
-
-        public void InsertRailItem(Point pos)
-        {
-            InsertRailItem(pos, this.SelectedTrack);
-        }
-
-        public void InsertRailItem(Point pos, TrackBase trackBase)
-        {
-            Debug.WriteLine($"InsertRailItem at ({pos.X},{pos.Y})");
-
-            // insert selected track at mouse position
-            this.RailPlan.Rails.Add(new RailItem(trackBase, pos, this.InsertLayer.Id));
-        }
-
-        public void InsertRailItem(RailDockPoint railDockPoint)
-        {
-            Debug.WriteLine($"InsertRailItem at DockPoint ({railDockPoint.DebugDockPointIndex},{railDockPoint.DebugDockPointIndex})");
-
-            RailBase railItem = new RailItem(this.SelectedTrack, new Point(0, 0), this.InsertLayer.Id);
-            Point pos = ((RailItem)railItem).Track.DockPoints.First().Position;
-            //RailDockPoint newRailDockPoint = railItem.DockPoints.First();
-
-            railItem.Move((Vector)railDockPoint.Position + (Vector)pos);
-
-            this.RailPlan.Rails.Add(railItem);
-            //FindDocking(this.actionTrack, this.dockedTracks);
-        }
-
-        public void DeleteRailItem(RailBase railItem)
-        {
-            // delete all docks of the item
-            railItem.DockPoints.Where(dp => dp.IsDocked).ForEach(dp => dp.Undock());
-            // remove the item
-            this.RailPlan.Rails.Remove(railItem);
-        }
-
-        public void DeleteSelectedRailItems()
-        {
-            // delete all docks of the item
-            var list = this.RailPlan.SelectedRails.ToList();
-            // remove the item
-            list.ForEach(r => DeleteRailItem(r));
-        }
-
-        public void SelectRailItem(RailBase railItem, bool addSelect)
-        {
-            if (addSelect)
-            {
-                railItem.IsSelected = !railItem.IsSelected;
-            }
-            else
-            {
-                this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
-                railItem.IsSelected = true;
-            }
-        }
-
-        private void SelectRectange(Rect rec, bool addSelect)
-        {
-            if (!addSelect)
-            {
-                this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
-            }
-            this.RailPlan.Rails.Where(r => r.IsInside(rec, this.ViewMode)).ForEach(r => r.IsSelected = true);
-        }
-
-        public void UnselectAllRailItems()
-        {
-            this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
-        }
-
-        private void MoveRailItem(IEnumerable<RailBase> subgraph, Vector move)
-        {
-            //Debug.WriteLine($"MoveRailItem {railItem.DebugIndex} ({move.X:F2},{move.Y:F2}) with subgraph");
-
-            subgraph.ForEach(t => t.Move(move));
-        }
-
-        private void RotateRailItem(IEnumerable<RailBase> subgraph, Point center, Rotation rotation)
-        {
-            subgraph.ForEach(t => t.Rotate(rotation, center));
-        }
-
-        private void BindDockingPoints(RailDockPoint from, RailDockPoint to)
-        {
-            if (from == null || to == null)
-            {
-                return;
-            }
-
-            RailBinder.Bind(this.RailPlan, this.SelectedTrackType, from, to);
-            Invalidate();
-        }
-
-        private void SwitchRailItemDocking(RailItem railItem)
-        {
-
-            // TODO
-        }
-
-        //private RailItem FindDocking(RailItem railItem)
-        //{
-        //    if (this.RailPlan != null)
-        //    {
-        //        var dockPoints = railItem.DockPoints;
-        //        var otherTracks = this.RailPlan.Rails.Where(t => t != railItem).ToList();
-
-        //        foreach (var dockPoint in dockPoints)
-        //        {
-        //            foreach (var t in otherTracks)
-        //            {
-        //                foreach (var dp in t.DockPoints)
-        //                {
-        //                    //if (Math.Abs(dp.X - dockPoint.X) < dockDistance && Math.Abs(dp.Y - dockPoint.Y) < dockDistance)
-        //                    if (dp.Distance(dockPoint) < dockDistance)
-        //                    {
-        //                        //railItem.Position += new Vector(dp.X - dockPoint.X, dp.Y - dockPoint.Y);
-        //                        railItem.Position += dp.Position - dockPoint.Position;
-        //                        return t;
-        //                    }
-        //                }
-        //            }
-
-        //        }
-        //    }
-        //    return null;
-        //}
-
-
-        private void FindDocking(RailBase railItem)
-        {
-            if (this.RailPlan.Rails != null)
-            {
-                var dockPoints = railItem.DockPoints.Where(dp => !dp.IsDocked).ToList();
-                var otherTracks =
-                    //docked != null ?
-                    //this.RailPlan.Rails.Where(t => t != railItem).Where(t => !docked.Contains(t)).ToList() :
-                    this.RailPlan.Rails.Where(t => t != railItem).ToList();
-
-                DebugDockPoints(dockPoints);
-                DebugRailItems(otherTracks);
-                foreach (var dockPoint in dockPoints)
-                {
-                    foreach (RailBase t in otherTracks)
-                    {
-                        foreach (var dp in t.DockPoints.Where(dp => !dp.IsDocked))
-                        {
-                            //if (Math.Abs(dp.X - dockPoint.X) < dockDistance && Math.Abs(dp.Y - dockPoint.Y) < dockDistance)
-                            if (dp.IsInside(dockPoint))
-                            {
-                                dockPoint.AdjustDock(dp);
-
-                                this.actionType = RailAction.None;
-                                //return t;
-                            }
-                        }
-                    }
-
-                }
-            }
-            //return null;
-        }
-
-        #endregion
-
         #region key handling
 
-        private void OnKeyPress(object sender, KeyEventArgs e)
-        {
-            this.selectedChangeIntern = true;
+        //private void OnKeyPress(object sender, KeyEventArgs e)
+        //{
+        //    this.selectedChangeIntern = true;
 
-            bool IsControlPressed = e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Control);
-            bool IsShiftPressed = e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Shift);
-            switch (e.Key)
-            {
-            // delete all selected
-            case Key.Delete when !IsShiftPressed:
-                this.OnDelete();
-                break;
-            // select all
-            case Key.A when IsControlPressed:
-                this.OnSelectAll();
-                break;
-            // copy all selected
-            case Key.C when IsControlPressed:
-            case Key.Insert when IsControlPressed:
-                this.OnCopy();
-                break;
-            // cut all selected
-            case Key.X when IsControlPressed:
-            case Key.Delete when IsShiftPressed:
-                this.OnCut();
-                break;
-            // paste all copied
-            case Key.C when IsControlPressed:
-            case Key.Insert when IsShiftPressed:
-                this.OnPaste();
-                break;
-            // duplicate all selected
-            case Key.D when IsControlPressed:
-                this.OnDuplicate();
-                break;
-            }
-            this.selectedChangeIntern = false;
-        }
+        //    bool IsControlPressed = e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Control);
+        //    bool IsShiftPressed = e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Shift);
+        //    switch (e.Key)
+        //    {
+        //    // delete all selected
+        //    case Key.Delete when !IsShiftPressed:
+        //        this.Rail.OnDelete();
+        //        break;
+        //    // select all
+        //    case Key.A when IsControlPressed:
+        //        this.OnSelectAll();
+        //        break;
+        //    // copy all selected
+        //    case Key.C when IsControlPressed:
+        //    case Key.Insert when IsControlPressed:
+        //        this.OnCopy();
+        //        break;
+        //    // cut all selected
+        //    case Key.X when IsControlPressed:
+        //    case Key.Delete when IsShiftPressed:
+        //        this.OnCut();
+        //        break;
+        //    // paste all copied
+        //    case Key.C when IsControlPressed:
+        //    case Key.Insert when IsShiftPressed:
+        //        this.OnPaste();
+        //        break;
+        //    // duplicate all selected
+        //    case Key.D when IsControlPressed:
+        //        this.OnDuplicate();
+        //        break;
+        //    }
+        //    this.selectedChangeIntern = false;
+        //}
 
         //protected override void OnKeyDown(KeyEventArgs e)
         //{
@@ -1053,23 +712,23 @@ namespace Rail.Controls
         protected override void OnMouseDoubleClick(MouseButtonEventArgs e)
         {
             Point pos = GetMousePosition(e);
-            this.selectedChangeIntern = true;
+            //this.selectedChangeIntern = true;
 
             RailDockPoint dockPoint;
             RailBase railItem;
             // double click on free dock point
-            if ((dockPoint = FindFreeDockPoint(pos)) != null)
+            if ((dockPoint = this.Rail.FindFreeDockPoint(pos)) != null)
             {
-                InsertRailItem(dockPoint);
+                this.Rail.InsertRailItem(dockPoint);
                 Invalidate();
-                StoreToHistory();
+                //StoreToHistory();
             }
             // double click onrail item
-            else if ((railItem = FindRailItem(pos)) != null)
+            else if ((railItem = this.Rail.FindRailItem(pos)) != null)
             {
                 if (railItem is RailRamp)
                 {
-                    OnEditRamp();
+                    this.Rail.OnEditRamp();
                 }
                 else if (railItem is RailItem item)
                 {
@@ -1083,18 +742,17 @@ namespace Rail.Controls
                     }
                     else
                     {
-                        SwitchRailItemDocking(item);
+                        this.Rail.SwitchRailItemDocking(item);
                     }
                 }
             }
             // double click on plate
             else
             {
-                InsertRailItem(pos);
+                this.Rail.InsertRailItem(pos);
                 Invalidate();
-                StoreToHistory();
             }
-            this.selectedChangeIntern = false;
+            //this.selectedChangeIntern = false;
             base.OnMouseDoubleClick(e);
             DebugCheckDockings();
         }
@@ -1104,7 +762,7 @@ namespace Rail.Controls
         {
             Point pos = this.lastMousePosition = GetMousePosition(e);
             this.hasMoved = false;
-            this.selectedChangeIntern = true;
+            //this.selectedChangeIntern = true;
 
             // Alt pressed
             if (Keyboard.Modifiers.HasFlag(ModifierKeys.Alt))
@@ -1115,9 +773,9 @@ namespace Rail.Controls
             else
             {
                 // click inside track
-                this.actionRailItem = FindRailItem(pos);
+                this.actionRailItem = this.Rail.FindRailItem(pos);
                 this.actionSubgraph = this.actionRailItem?.FindSubgraph();
-                if (this.actionRailItem != null && !IsAnchored(this.actionSubgraph))
+                if (this.actionRailItem != null && !this.Rail.IsAnchored(this.actionSubgraph))
                 {
                     // click inside docking point
                     RailDockPoint dp = this.actionRailItem.DockPoints?.FirstOrDefault(d => d.IsInside(pos));
@@ -1146,7 +804,7 @@ namespace Rail.Controls
                         }
                     }
                 }
-                else if ((this.actionDockPoint = FindFreeDockPoint(pos)) != null)
+                else if ((this.actionDockPoint = this.Rail.FindFreeDockPoint(pos)) != null)
                 {
                     this.actionType = RailAction.BindingLine;
                     this.selectRecStart = pos;
@@ -1180,19 +838,19 @@ namespace Rail.Controls
                 Invalidate();
                 break;
             case RailAction.MoveSimple:
-                MoveRailItem(this.actionSubgraph, pos - this.lastMousePosition);
+                this.Rail.MoveRailItem(this.actionSubgraph, pos - this.lastMousePosition);
                 // don't find docks
                 Invalidate();
                 break;
             case RailAction.MoveGraph:
-                MoveRailItem(this.actionSubgraph, pos - this.lastMousePosition);
-                FindDocking(this.actionRailItem);
+                this.Rail.MoveRailItem(this.actionSubgraph, pos - this.lastMousePosition);
+                this.Rail.FindDocking(this.actionRailItem);
                 Invalidate();
                 break;
             case RailAction.Rotate:
                 Rotation rotation = Rotation.Calculate(this.actionRailItem.Position, this.lastMousePosition, pos);
-                RotateRailItem(this.actionSubgraph, this.actionRailItem.Position, rotation);
-                FindDocking(this.actionRailItem);
+                this.Rail.RotateRailItem(this.actionSubgraph, this.actionRailItem.Position, rotation);
+                this.Rail.FindDocking(this.actionRailItem);
                 Invalidate();
                 break;
             case RailAction.SelectRect:
@@ -1225,16 +883,16 @@ namespace Rail.Controls
             case RailAction.MoveSimple:
             case RailAction.MoveGraph:
             case RailAction.Rotate:
-                StoreToHistory();
+                //StoreToHistory();
                 break;
             case RailAction.SelectRect:
-                SelectRectange(new Rect(this.selectRecStart, pos), addSelect);
+                this.Rail.SelectRectange(new Rect(this.selectRecStart, pos), addSelect);
                 break;
             case RailAction.BindingLine:
-                BindDockingPoints(this.actionDockPoint, FindFreeDockPoint(pos));
+                this.Rail.BindDockingPoints(this.actionDockPoint, this.Rail.FindFreeDockPoint(pos));
                 break;
             case RailAction.Measure:
-                ShowMeasure(this.selectRecStart, pos);
+                this.Rail.ShowMeasure(this.selectRecStart, pos);
                 break;
             }
            
@@ -1243,11 +901,11 @@ namespace Rail.Controls
             {
                 if (this.actionRailItem != null)
                 {
-                    SelectRailItem(this.actionRailItem, addSelect);
+                    this.Rail.SelectRailItem(this.actionRailItem, addSelect);
                 }
                 else
                 {
-                    UnselectAllRailItems();
+                    this.Rail.UnselectAllRailItems();
                 }
             }
 
@@ -1256,7 +914,7 @@ namespace Rail.Controls
             this.actionRailItem = null;
             Invalidate();
             this.ReleaseMouseCapture();
-            this.selectedChangeIntern = false;
+            //this.selectedChangeIntern = false;
 
             base.OnMouseLeftButtonUp(e);
             DebugCheckDockings();
@@ -1265,23 +923,8 @@ namespace Rail.Controls
         // no right mouse button because Apple has no one
 
         //protected override void OnMouseRightButtonUp(MouseButtonEventArgs e)
-        //{
-        //    //Point pos = GetMousePosition(e);
-
-        //    //var railItem = FindRailItem(pos);
-        //    //if (railItem != null)
-        //    //{
-        //    //    ContextMenu contextMenu = new ContextMenu();
-        //    //    //contextMenu.DataContext = railItem;
-        //    //    contextMenu.Items.Add(new MenuItem() { Header = Rail.Properties.Resources.MenuDelete, Command = DeleteRailItemCommand, CommandParameter = railItem });
-        //    //    contextMenu.Items.Add(new MenuItem() { Header = Rail.Properties.Resources.MenuRotate, Command = RotateRailItemCommand, CommandParameter = railItem, IsEnabled = railItem.HasOnlyOneDock });
-        //    //    contextMenu.Items.Add(new Separator());
-        //    //    contextMenu.Items.Add(new MenuItem() { Header = Rail.Properties.Resources.MenuProperties, Command = PropertiesRailItemCommand, CommandParameter = railItem });
-        //    //    contextMenu.IsOpen = true;
-        //    //}
-        //    //base.OnMouseRightButtonUp(e);
-        //}
-
+        //{ }
+        
         #endregion
 
         #region drag & drop
@@ -1303,372 +946,11 @@ namespace Rail.Controls
             if (dataFormats.Length > 0 && e.Data.GetData(dataFormats[0]) is TrackBase trackBase)
             {
                 var pos = e.GetPosition(this).Move(-this.margin, -this.margin).Scale(1.0 / this.ZoomFactor); 
-                InsertRailItem(pos, trackBase);
+                this.Rail.InsertRailItem(pos, trackBase);
                 Invalidate();
                 e.Handled = true;
             }
             base.OnDrop(e);
-        }
-
-        #endregion
-
-        #region history
-
-        private int historyIndex = -1;
-        private readonly List<RailPlan> history = new List<RailPlan>();
-
-        private void OnUndo()
-        { 
-            if (OnCanUndo())
-            {
-                this.RailPlan = history[--historyIndex];
-            }
-        }
-
-        private bool OnCanUndo()
-        {
-            return historyIndex > 0;
-        }
-        
-        private void OnRedo()
-        {
-            if (OnCanRedo())
-            {
-                this.RailPlan = history[++historyIndex];
-            }
-        }
-        
-        private bool OnCanRedo()
-        {
-            return historyIndex >= 0 && historyIndex < history.Count - 1; 
-        }
-
-        /// <summary>
-        /// call always befor manipulating the RailPlan
-        /// </summary>
-        [Conditional("USERHISTORY")]
-        private void StoreToHistory()
-        {
-            if (historyIndex >= 0 && historyIndex < history.Count - 1)
-            {
-                this.history.RemoveRange(historyIndex + 1, history.Count - 1 - historyIndex);
-            }
-            this.history.Add(this.RailPlan.Clone());
-            historyIndex = this.history.Count - 1;
-        }
-
-        #endregion
-
-        #region copy & past
-
-        private List<RailBase> copy = null;
-        private int copyFactor;
-        
-        public void Clone()
-        {
-            // clone tree
-            this.RailPlan = this.RailPlan.Clone();
-            // clone dock point links
-            RailDockPoint.CloneDockPointLinks();
-        }
-
-        private void OnCopy()
-        {
-            if (OnCanCopy())
-            {
-                this.copy = this.RailPlan.SelectedRails.ToList();
-                this.copyFactor = 1;
-            }
-        }
-
-        private bool OnCanCopy()
-        {
-            return this.RailPlan.Rails.Any(r => r.IsSelected);
-        }
-
-        private void OnCut()
-        {
-            if (OnCanCut())
-            {
-                this.copy = this.RailPlan.SelectedRails.ToList();
-                this.copy.ForEach(r => DeleteRailItem(r));
-                this.copyFactor = 1;
-                StoreToHistory();
-                this.Invalidate();
-            }
-        }
-        private bool OnCanCut()
-        { 
-            return this.RailPlan.Rails.Any(r => r.IsSelected); 
-        }
-
-        private void OnPaste()
-        {
-            if (OnCanPaste())
-            {
-                this.RailPlan.Rails.AddRange(copy.Select(r => r.Clone().Move(new Vector(copyPositionDrift * this.copyFactor, copyPositionDrift * this.copyFactor))));
-                this.copyFactor++;
-                // clone dock point links
-                RailDockPoint.CloneDockPointLinks();
-
-                StoreToHistory();
-                this.Invalidate();
-            }
-        }
-
-        private bool OnCanPaste()
-        {
-            return copy != null; 
-        }
-
-        private void OnDelete()
-        {
-            if (OnCanDelete())
-            {
-                var list = this.RailPlan.SelectedRails.ToList();
-                list.ForEach(r => DeleteRailItem(r));
-                StoreToHistory();
-                this.Invalidate();
-            }
-        }
-        
-        private bool OnCanDelete()
-        { 
-            return this.RailPlan.Rails.Any(r => r.IsSelected); 
-        }
-
-        private void OnDuplicate()
-        {
-            if (OnCanDuplicate())
-            {
-                var selectedRails = this.RailPlan.SelectedRails.ToList();
-                this.RailPlan.Rails.AddRange(selectedRails.Select(r => r.Clone().Move(new Vector(copyPositionDrift * this.copyFactor, copyPositionDrift * this.copyFactor))));
-                this.copyFactor = 1;
-                // clone dock point links
-                RailDockPoint.CloneDockPointLinks();
-
-                StoreToHistory();
-                this.Invalidate();
-            }
-        }
-
-        private bool OnCanDuplicate()
-        { 
-            return this.RailPlan.Rails.Any(r => r.IsSelected); 
-        }
-        
-        private void OnSelectAll()
-        {
-            this.RailPlan.Rails.ForEach(r => r.IsSelected = true);
-            this.Invalidate();
-        }
-
-        private bool OnCanSelectAll()
-        {
-            return this.RailPlan.Rails.Count() > 0; 
-        }
-
-        //private void OnUnselectAll()
-        //{
-        //    this.RailPlan.Rails.ForEach(r => r.IsSelected = false);
-        //    this.Invalidate();
-        //}
-
-        #endregion
-
-        #region anchor
-        
-        
-        private bool OnCanAnchor()
-        {
-            return this.SelectedMode == RailSelectedMode.Single && !this.selectedRail.IsAnchored;
-        }
-
-        private void OnAnchor()
-        { 
-            if (OnCanAnchor())
-            {
-                this.selectedRail.IsAnchored = true;
-                this.InvalidateVisual();
-            }
-        }
-
-        private bool OnCanUnanchor()
-        {
-            return this.SelectedMode == RailSelectedMode.Single && this.selectedRail.IsAnchored;
-        }
-
-        private void OnUnanchor()
-        {
-            if (OnCanUnanchor())
-            {
-                this.selectedRail.IsAnchored = false;
-                this.InvalidateVisual();
-            }
-        }
-
-        private bool IsAnchored(List<RailBase> rails)
-        {
-            return rails.Any(r => r.IsAnchored);
-        }
-
-        #endregion
-
-        #region group
-
-        private bool OnCanCreateGroup()
-        {
-            return
-                this.SelectedMode == RailSelectedMode.Multi &&
-                // cannot group other group
-                this.RailPlan.SelectedRails.All(r => r is RailItem) &&
-                // all must have the same layer
-                this.RailPlan.SelectedRails.Select(r => r.Layer).Distinct().Count() == 1;
-        }
-
-        private void OnCreateGroup()
-        {
-            if (OnCanCreateGroup())
-            {
-                // take all selected rails
-                var selectedRails = this.RailPlan.SelectedRails.ToArray();
-
-                // create rail group
-                this.RailPlan.Rails.Add(new RailGroup(selectedRails));
-
-                // remove from Rails
-                selectedRails.ForEach(r => this.RailPlan.Rails.Remove(r));
-
-                Invalidate();
-            }
-        }
-
-        private void OnResolveGroup()
-        { 
-            if (OnCanResolveGroup() && this.selectedRail is RailGroup railGroup)
-            {
-                this.RailPlan.Rails.AddRange(railGroup.Resolve());
-                this.RailPlan.Rails.Remove(railGroup);
-                Invalidate();
-            }
-        }
-
-        private bool OnCanResolveGroup()
-        {
-            return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailGroup;
-        }
-
-        private void OnSaveAsGroup()
-        {
-        }
-
-        private bool OnCanSaveAsGroup()
-        {
-            return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailGroup; 
-        }
-
-        #endregion
-
-        #region ramp
-
-        private bool OnCanCreateRamp()
-        {
-            return 
-                this.SelectedMode == RailSelectedMode.Multi && 
-                this.RailPlan.SelectedRails.All(r => r is RailItem) &&
-                this.RailPlan.SelectedRails.Count() >= 8;
-        }
-
-        private void OnCreateRamp()
-        {
-            // take all selected rails
-            var selectedRails = this.RailPlan.SelectedRails.ToArray();
-
-            RailRamp railRamp = new RailRamp(selectedRails);
-
-            RampView rampView = new RampView { DataContext = new RampViewModel { RailRamp = railRamp, LayerHight = railRamp.LayerHeigh } };
-            if (rampView.ShowDialog().Value)
-            {
-                // remove from Rails
-                selectedRails.ForEach(r => this.RailPlan.Rails.Remove(r));
-                // add rail group
-                this.RailPlan.Rails.Add(railRamp);
-                Invalidate();
-            }
-        }
-
-        private void OnDeleteRamp()
-        {
-            if (OnCanDeleteRamp() && this.selectedRail is RailRamp railRamp)
-            {
-                this.RailPlan.Rails.AddRange(railRamp.Resolve());
-                this.RailPlan.Rails.Remove(railRamp);
-                Invalidate();
-            }
-        }
-
-        private bool OnCanDeleteRamp()
-        {
-            return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailRamp;
-        }
-
-        private void OnEditRamp()
-        {
-            if (OnCanEditRamp())
-            {
-                RampView rampView = new RampView { DataContext = new RampViewModel { RailRamp = (RailRamp)this.selectedRail } };
-                if (rampView.ShowDialog().Value)
-                {
-                }
-            }
-        }
-
-        private bool OnCanEditRamp()
-        {
-            return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailRamp;
-        }
-        #endregion
-
-        #region helix
-
-        private void OnCreateHelix()
-        { }
-        private bool OnCanCreateHelix()
-        {
-            return  this.SelectedMode == RailSelectedMode.Multi &&
-                    this.RailPlan.SelectedRails.All(r => r is RailItem ri && ri.Track is TrackCurved) &&
-                    this.RailPlan.SelectedRails.Count() >= 16;
-        }
-
-        private void OnDeleteHelix()
-        { }
-
-        private bool OnCanDeleteHelix()
-        {
-            return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailHelix;
-        }
-
-        private void OnEditHelix() 
-        { }
-
-        private bool OnCanEditHelix()
-        {
-            return this.SelectedMode == RailSelectedMode.Single && this.selectedRail is RailHelix;
-        }
-
-        #endregion
-
-        #region Measure
-
-        private void ShowMeasure(Point from, Point to)
-        {
-            MeasureViewModel viewModel = new MeasureViewModel
-            {
-                Distance = from.Distance(to),
-                DistanceX = Math.Abs(from.X - to.X),
-                DistanceY = Math.Abs(from.Y - to.Y)
-            };
-            new MeasureView { DataContext = viewModel }.ShowDialog();
         }
 
         #endregion

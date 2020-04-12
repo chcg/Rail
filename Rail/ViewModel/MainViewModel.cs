@@ -84,7 +84,7 @@ namespace Rail.ViewModel
 
             this.RailPlan = RailPlan.Create();
 
-            Update3D();
+            //Update3D();
             this.SelectedSelectionIndex = 0;
         }
 
@@ -322,7 +322,7 @@ namespace Rail.ViewModel
                 this.viewMode = value;
                 if (this.viewMode == RailViewMode.Terrain)
                 {
-                    Update3D();
+                    //Update3D();
                 }
                 NotifyPropertyChanged(nameof(ViewMode));
             }
@@ -492,7 +492,7 @@ namespace Rail.ViewModel
                 RailPlanControl ctrl = new RailPlanControl
                 {
                     Background = new SolidColorBrush(Colors.White),
-                    RailPlan = this.RailPlan
+                    //Rail = this.RailPlan
                 };
                 ctrl.ZoomFactor = Math.Min(capabilities.PageImageableArea.ExtentWidth / (ctrl.Width + pageMargin * 2), capabilities.PageImageableArea.ExtentHeight / (ctrl.Height + pageMargin * 2));
                 
@@ -508,7 +508,7 @@ namespace Rail.ViewModel
 
         protected override void OnRefresh()
         {
-            Update3D();
+            //Update3D();
             base.OnRefresh();
         }
 
