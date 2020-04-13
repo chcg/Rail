@@ -97,35 +97,35 @@ namespace Rail.ViewModel
         }
 
 
-        private TrackBase selectedTrack;
-        public TrackBase SelectedTrack
-        {
-            get
-            {
-                return this.selectedTrack;
-            }
-            set
-            {
-                this.selectedTrack = value;
-                NotifyPropertyChanged(nameof(SelectedTrack));
-                Invalidate();
-            }
-        }
+        //private TrackBase selectedTrack;
+        //public TrackBase SelectedTrack
+        //{
+        //    get
+        //    {
+        //        return this.selectedTrack;
+        //    }
+        //    set
+        //    {
+        //        this.selectedTrack = value;
+        //        NotifyPropertyChanged(nameof(SelectedTrack));
+        //        Invalidate();
+        //    }
+        //}
 
-        private TrackType selectedTrackType;
-        public TrackType SelectedTrackType
-        {
-            get
-            {
-                return this.selectedTrackType;
-            }
-            set
-            {
-                this.selectedTrackType = value;
-                NotifyPropertyChanged(nameof(SelectedTrackType));
-                Invalidate();
-            }
-        }
+        //private TrackType selectedTrackType;
+        //public TrackType SelectedTrackType
+        //{
+        //    get
+        //    {
+        //        return this.selectedTrackType;
+        //    }
+        //    set
+        //    {
+        //        this.selectedTrackType = value;
+        //        NotifyPropertyChanged(nameof(SelectedTrackType));
+        //        Invalidate();
+        //    }
+        //}
 
         private RailLayer insertLayer;
         public RailLayer InsertLayer
