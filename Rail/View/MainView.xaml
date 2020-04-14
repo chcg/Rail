@@ -9,6 +9,7 @@
     xmlns:mvvm="clr-namespace:Rail.Mvvm;assembly=Rail.Mvvm"
     xmlns:conv="clr-namespace:Rail.Converter"
     xmlns:lang="clr-namespace:Rail.Properties;assembly=Rail"
+    xmlns:en="clr-namespace:Rail.Enums"
     xmlns:mvvmconv="clr-namespace:Rail.Mvvm.Converter;assembly=Rail.Mvvm"
     xmlns:local="clr-namespace:Rail.View" 
     mc:Ignorable="d"
@@ -22,12 +23,12 @@
         <conv:AngelToTextConverter x:Key="AngelToTextConverter"/>
         <conv:PointToTextConverter x:Key="PointToTextConverter"/>
         <conv:BooleanToVisibilityCollapsedConverter x:Key="BooleanToVisibilityCollapsedConverter"/>
-        <conv:RadioButtonConverter x:Key="RadioButtonConverter"/>
         <conv:LayerToTextConverter x:Key="LayerToTextConverter"/>
         <conv:TrackRailViewModeToVisibilityConverter x:Key="TrackRailViewModeToVisibilityConverter"/>
         <conv:TerrainViewModeToVisibilityConverter x:Key="TerrainViewModeToVisibilityConverter"/>
         <conv:GuidToLayerConverter x:Key="GuidToLayerConverter"/>
         <conv:ReferensNullToVisibilityCollapsedConverter x:Key="ReferensNullToVisibilityCollapsedConverter"/>
+        <mvvmconv:RadioButtonConverter x:Key="RadioButtonConverter"/>
         <mvvmconv:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter"/>
     </RibbonWindow.Resources>
     <DockPanel>
@@ -261,9 +262,9 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                 <Grid.Resources>
-                    <x:Array Type="vm:TrackTypeFilterType" x:Key="ShowFilter">
-                        <vm:TrackTypeFilterType>Gauge</vm:TrackTypeFilterType>
-                        <vm:TrackTypeFilterType>Manufacturer</vm:TrackTypeFilterType>
+                    <x:Array Type="en:TrackTypeFilterType" x:Key="ShowFilter">
+                        <en:TrackTypeFilterType>Gauge</en:TrackTypeFilterType>
+                        <en:TrackTypeFilterType>Manufacturer</en:TrackTypeFilterType>
                     </x:Array>
                 </Grid.Resources>
                 <Grid.RowDefinitions>
@@ -274,30 +275,38 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <RadioButton Content="{x:Static lang:Resources.MainAll}" IsChecked="{Binding TrackTypeFilterType, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static vm:TrackTypeFilterType.All}}" Margin="8"/>
-                    <RadioButton Content="{x:Static lang:Resources.MainGauge}" IsChecked="{Binding TrackTypeFilterType, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static vm:TrackTypeFilterType.Gauge}}" Margin="8"/>
-                    <RadioButton Content="{x:Static lang:Resources.MainManufacturer}" IsChecked="{Binding TrackTypeFilterType, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static vm:TrackTypeFilterType.Manufacturer}}" Margin="8"/>
+                    <RadioButton Content="{x:Static lang:Resources.MainAll}" IsChecked="{Binding TrackTypeFilterType, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static en:TrackTypeFilterType.All}}" Margin="8"/>
+                    <RadioButton Content="{x:Static lang:Resources.MainGauge}" IsChecked="{Binding TrackTypeFilterType, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static en:TrackTypeFilterType.Gauge}}" Margin="8"/>
+                    <RadioButton Content="{x:Static lang:Resources.MainManufacturer}" IsChecked="{Binding TrackTypeFilterType, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static en:TrackTypeFilterType.Manufacturer}}" Margin="8"/>
                 </StackPanel>
-                <ComboBox Grid.Row="1" ItemsSource="{Binding TrackTypeFilters}" SelectedItem="{Binding SelectedTrackTypeFilter}" SelectedIndex="0" MinWidth="200" Margin="8,0,8,8"
-                    Visibility="{Binding TrackTypeFilterType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={StaticResource ShowFilter}}">
+                <ComboBox Grid.Row="1" ItemsSource="{Binding TrackTypeGauges}" SelectedItem="{Binding SelectedTrackTypeGauge}" SelectedIndex="0" MinWidth="200" Margin="8"
+                    Visibility="{Binding TrackTypeFilterType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static en:TrackTypeFilterType.Gauge}}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding .}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <ComboBox Grid.Row="2" ItemsSource="{Binding TrackTypes}" SelectedItem="{Binding SelectedTrackType}" SelectedIndex="0" MinWidth="200" Margin="8,0,8,8">
+                <ComboBox Grid.Row="1" ItemsSource="{Binding TrackTypeManufacturers}" SelectedItem="{Binding SelectedTrackTypeManufacturer}" SelectedIndex="0" MinWidth="200" Margin="8"
+                    Visibility="{Binding TrackTypeFilterType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static en:TrackTypeFilterType.Manufacturer}}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding .}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ComboBox Grid.Row="2" ItemsSource="{Binding TrackTypes}" SelectedItem="{Binding SelectedTrackType}" SelectedIndex="0" MinWidth="200" Margin="8">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}" ToolTip="{Binding Description}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <TabControl Grid.Row="3" SelectedIndex="{Binding SelectedGroupIndex}" Margin="8,0,8,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
-                    <TabItem Header="{x:Static lang:Resources.MainSingle}"/>
-                    <TabItem Header="{x:Static lang:Resources.MainGroup}"/>
-                    <TabItem Header="{x:Static lang:Resources.MainCustomer}"/>
-                </TabControl>
+                <StackPanel Grid.Row="3" Orientation="Horizontal">
+                    <RadioButton Content="{x:Static lang:Resources.MainSingle}" IsChecked="{Binding TrackFilterType, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static en:TrackFilterType.Single}}" Margin="8"/>
+                    <RadioButton Content="{x:Static lang:Resources.MainGroup}" IsChecked="{Binding TrackFilterType, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static en:TrackFilterType.Group}}" Margin="8"/>
+                    <RadioButton Content="{x:Static lang:Resources.MainCustomer}" IsChecked="{Binding TrackFilterType, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static en:TrackFilterType.Customer}}" Margin="8"/>
+                </StackPanel>
                 <ListView Grid.Row="4" ItemsSource="{Binding Tracks}" SelectedItem="{Binding SelectedTrack}" SelectedIndex="0" Margin="8,0,8,8">
                     <ListView.ItemTemplate>
                         <DataTemplate>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Rail.ViewModel
+namespace Rail.Enums
 {
     public enum TrackTypeFilterType
     {

@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Windows.Threading;
 using System.Xml.Serialization;
 using System.Text.Json.Serialization;
+using System.Runtime.CompilerServices;
 
 namespace Rail.Mvvm
 {
@@ -63,7 +64,7 @@ namespace Rail.Mvvm
 
         private delegate void NotifyPropertyChangedDeleagte(string propertyName);     
 
-        protected virtual void NotifyPropertyChanged(string propertyName)
+        protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
         {
             if (string.IsNullOrEmpty(propertyName))
             {

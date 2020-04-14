@@ -1,4 +1,5 @@
-﻿using Rail.Tracks;
+﻿using Rail.Enums;
+using Rail.Tracks;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,9 @@ namespace Rail.ViewModel
                 {
                     this.trackList = TrackList.Load();
                     this.trackDict = trackList.TrackTypes.SelectMany(t => t.Tracks).ToDictionary(t => t.Id, t => t);
+                    this.TrackTypeManufacturers = this.trackList.TrackTypes.Select(t => t.Parameter.Manufacturer).Distinct().OrderBy(t => t).ToList();
+                    this.SelectedTrackTypeManufacturer = this.TrackTypeManufacturers.FirstOrDefault();
+                    FillTrackTypes();
                 }
                 catch (Exception ex)
                 {
@@ -42,6 +46,7 @@ namespace Rail.ViewModel
             }
         }
 
+        
         private TrackTypeFilterType trackTypeFilterType = TrackTypeFilterType.All;
         public TrackTypeFilterType TrackTypeFilterType
         {
@@ -53,46 +58,72 @@ namespace Rail.ViewModel
             {
                 this.trackTypeFilterType = value;
                 NotifyPropertyChanged(nameof(TrackTypeFilterType));
-
-                this.TrackTypeFilters = this.trackTypeFilterType switch
-                {
-                    TrackTypeFilterType.All => null,
-                    TrackTypeFilterType.Gauge => this.trackList.TrackTypes.Select(t => t.Parameter.Gauge.ToString()).Distinct().OrderBy(t => t).ToList(),
-                    TrackTypeFilterType.Manufacturer => this.trackList.TrackTypes.Select(t => t.Parameter.Manufacturer).Distinct().OrderBy(t => t).ToList(),
-                    _ => null
-                };
-                NotifyPropertyChanged(nameof(TrackTypeFilters));
-                this.SelectedTrackTypeFilter = this.TrackTypeFilters?.FirstOrDefault();
+                FillTrackTypes();
             }
         }
-
-        public List<string> TrackTypeFilters { get; private set; }
-
-        public string selectedTrackTypeFilter;
-        public string SelectedTrackTypeFilter
+        
+        public List<TrackGauge> TrackTypeGauges { get { return Enum.GetValues(typeof(TrackGauge)).Cast<TrackGauge>().ToList(); } }
+        
+        public TrackGauge selectedTrackTypeGauge = TrackGauge.Gauge_H0;
+        public TrackGauge SelectedTrackTypeGauge
         {
             get
             {
-                return this.selectedTrackTypeFilter;
+                return this.selectedTrackTypeGauge;
             }
             set
             {
-                this.selectedTrackTypeFilter = value;
-                NotifyPropertyChanged(nameof(SelectedTrackTypeFilter));
-
-                this.TrackTypes = this.trackTypeFilterType switch
-                {
-                    TrackTypeFilterType.All => this.trackList.TrackTypes,
-                    TrackTypeFilterType.Gauge => this.trackList.TrackTypes.Where(t => t.Parameter.Gauge.ToString() == selectedTrackTypeFilter).ToList(),
-                    TrackTypeFilterType.Manufacturer => this.trackList.TrackTypes.Where(t => t.Parameter.Manufacturer == selectedTrackTypeFilter).ToList(),
-                    _ => null
-                };
-                NotifyPropertyChanged(nameof(TrackTypes));
-                this.SelectedTrackType = this.TrackTypes.FirstOrDefault();
+                this.selectedTrackTypeGauge = value;
+                NotifyPropertyChanged(nameof(SelectedTrackTypeGauge));
+                FillTrackTypes();
             }
         }
 
-        public List<TrackType> TrackTypes { get; private set; }
+        public List<string> TrackTypeManufacturers { get; private set; }
+
+        public string selectedTrackTypeManufacturer;
+        public string SelectedTrackTypeManufacturer
+        {
+            get
+            {
+                return this.selectedTrackTypeManufacturer;
+            }
+            set
+            {
+                this.selectedTrackTypeManufacturer = value;
+                NotifyPropertyChanged(nameof(SelectedTrackTypeManufacturer));
+                FillTrackTypes();
+            }
+        }
+
+        
+
+        private void FillTrackTypes()
+        {
+            this.TrackTypes = this.TrackTypeFilterType switch
+            {
+                TrackTypeFilterType.All => this.trackList.TrackTypes,
+                TrackTypeFilterType.Gauge => this.trackList.TrackTypes.Where(t => t.Parameter.Gauge == SelectedTrackTypeGauge).ToList(),
+                TrackTypeFilterType.Manufacturer => this.trackList.TrackTypes.Where(t => t.Parameter.Manufacturer == SelectedTrackTypeManufacturer).ToList(),
+                _ => null
+            };
+            NotifyPropertyChanged(nameof(TrackTypes));
+            this.SelectedTrackType = this.TrackTypes?.FirstOrDefault();
+        }
+
+        public List<TrackType> trackTypes;
+        public List<TrackType> TrackTypes
+        {
+            get
+            {
+                return this.trackTypes;
+            }
+            set
+            {
+                this.trackTypes = value;
+                NotifyPropertyChanged(nameof(TrackTypes));
+            }
+        }
 
         private TrackType selectedTrackType;
         public TrackType SelectedTrackType
@@ -109,29 +140,32 @@ namespace Rail.ViewModel
             }
         }
 
-        private void FillTracks()
+        private TrackFilterType trackFilterType = TrackFilterType.Single;
+        public TrackFilterType TrackFilterType
         {
-            switch (this.SelectedGroupIndex)
+            get
             {
-            case 0:
-                this.Tracks = this.selectedTrackType?.Tracks;
-                break;
-            case 1:
-                this.Tracks = this.selectedTrackType?.Groups.Cast<TrackBase>().ToList();
-                break;
-            case 2:
-                this.Tracks = new List<TrackBase>();
-                break;
+                return this.trackFilterType;
             }
-
-            this.SelectedTrack = this.Tracks?.FirstOrDefault();
+            set
+            {
+                this.trackFilterType = value;
+                NotifyPropertyChanged(nameof(TrackFilterType));
+                FillTrackTypes();
+            }
         }
 
-
-        
-
-        
-
+        private void FillTracks()
+        {
+            this.Tracks = this.TrackFilterType switch
+            {
+                TrackFilterType.Single => this.selectedTrackType?.Tracks,
+                TrackFilterType.Group => this.selectedTrackType?.Groups.Cast<TrackBase>().ToList(),
+                TrackFilterType.Customer => new List<TrackBase>(),
+                _ => null
+            };
+            this.SelectedTrack = this.Tracks?.FirstOrDefault();
+        }
 
         public List<TrackBase> tracks;
         public List<TrackBase> Tracks

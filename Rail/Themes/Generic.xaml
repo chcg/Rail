@@ -10,7 +10,6 @@
     <conv:AngelToTextConverter x:Key="AngelToTextConverter"/>
     <conv:PointToTextConverter x:Key="PointToTextConverter"/>
     <conv:BooleanToVisibilityCollapsedConverter x:Key="BooleanToVisibilityCollapsedConverter"/>
-    <conv:RadioButtonConverter x:Key="RadioButtonConverter"/>
     <conv:LayerToTextConverter x:Key="LayerToTextConverter"/>
     <conv:TrackRailViewModeToVisibilityConverter x:Key="TrackRailViewModeToVisibilityConverter"/>
     <conv:TerrainViewModeToVisibilityConverter x:Key="TerrainViewModeToVisibilityConverter"/>

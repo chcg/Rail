@@ -322,7 +322,64 @@ namespace Rail.ViewModel
             }
         }
 
-        public List<string> Gradients { get; private set; }  
+        public List<string> Gradients { get; private set; }
+
+
+        public double? selectedRailsX;
+        public double? SelectedRailsX
+        {
+            get
+            {
+                return selectedRailsX;
+            }
+            set
+            {
+                selectedRailsX = value;
+                NotifyPropertyChanged(nameof(SelectedRailsX));
+            }
+        }
+
+        private double? selectedRailsY;
+        public double? SelectedRailsY
+        {
+            get
+            {
+                return selectedRailsY;
+            }
+            set
+            {
+                selectedRailsY = value;
+                NotifyPropertyChanged(nameof(SelectedRailsY));
+            }
+        }
+
+        private double? selectedRailsAngle;
+        public double? SelectedRailsAngle
+        {
+            get
+            {
+                return selectedRailsAngle;
+            }
+            set
+            {
+                selectedRailsAngle = value;
+                NotifyPropertyChanged(nameof(SelectedRailsAngle));
+            }
+        }
+
+        private Guid selectedRailsLayer;
+        public Guid SelectedRailsLayer
+        {
+            get
+            {
+                return selectedRailsLayer;
+            }
+            set
+            {
+                selectedRailsLayer = value;
+                NotifyPropertyChanged(nameof(SelectedRailsLayer));
+            }
+        }
 
         #endregion
 
