@@ -412,7 +412,7 @@
                     <TabItem Header="{x:Static lang:Resources.MainLayers}">
                         <DataGrid 
                             ItemsSource="{Binding Layers}" 
-                            SelectedItem="{Binding SelectedInsertLayer}"
+                            SelectedItem="{Binding InsertLayer}"
                             AutoGenerateColumns="False" 
                             SelectionMode="Single"
                             GridLinesVisibility="None"

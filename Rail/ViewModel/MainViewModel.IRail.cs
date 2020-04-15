@@ -126,21 +126,7 @@ namespace Rail.ViewModel
         //        Invalidate();
         //    }
         //}
-
-        private RailLayer insertLayer;
-        public RailLayer InsertLayer
-        {
-            get
-            {
-                return this.insertLayer;
-            }
-            set
-            {
-                this.insertLayer = value;
-                NotifyPropertyChanged(nameof(InsertLayer));
-                Invalidate();
-            }
-        }
+               
 
         private List<TrackMaterial> materials;
         public List<TrackMaterial> Materials
@@ -319,7 +305,7 @@ namespace Rail.ViewModel
         }
 
 
-        public void FindDocking(RailBase railItem)
+        public bool FindDocking(RailBase railItem)
         {
             if (this.railPlan.Rails != null)
             {
@@ -344,13 +330,14 @@ namespace Rail.ViewModel
 
                                 //this.actionType = RailAction.None;
                                 //return t;
+                                return true;
                             }
                         }
                     }
 
                 }
             }
-            //return null;
+            return false;
         }
 
         public void UpdateMaterials()

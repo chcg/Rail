@@ -44,7 +44,7 @@ namespace Rail.Controls
         void BindDockingPoints(RailDockPoint from, RailDockPoint to);
         void SwitchRailItemDocking(RailItem railItem);
 
-        void FindDocking(RailBase railItem);
+        bool FindDocking(RailBase railItem);
 
         void ShowMeasure(Point from, Point to);
 

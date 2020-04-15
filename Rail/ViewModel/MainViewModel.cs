@@ -98,7 +98,7 @@ namespace Rail.ViewModel
             // load track list
             LoadTrackList();
 
-            this.RailPlan = RailPlan.Create();
+            OnCreate();
 
             //Update3D();
             //this.SelectedSelectionIndex = 0;
@@ -301,28 +301,7 @@ namespace Rail.ViewModel
                 NotifyPropertyChanged(nameof(MousePosition));
             }
         }
-
-        //public IEnumerable<RailLayer> Layers
-        //{
-        //    get { return this.RailPlan?.Layers.Reverse<RailLayer>(); }
-        //}
-
-       
-
-        private RailLayer selectedInsertLayer = null;
-        public RailLayer SelectedInsertLayer
-        {
-            get
-            {
-                return this.selectedInsertLayer;
-            }
-            set
-            {
-                this.selectedInsertLayer = value;
-                NotifyPropertyChanged(nameof(SelectedInsertLayer));
-            }
-        }
-
+        
         public List<string> Gradients { get; private set; }
 
 
@@ -391,14 +370,16 @@ namespace Rail.ViewModel
             this.RailPlan = RailPlan.Create();
             this.FileChanged = true;
             this.FilePath = null;
+
+            this.InsertLayer = this.RailPlan.Layers.FirstOrDefault();
         }
 
         public override void OnLoad(string path)
         {
             this.RailPlan = RailPlan.Load(path, this.trackDict);
-
-            this.SelectedInsertLayer = this.RailPlan.Layers.FirstOrDefault();
             this.FileChanged = true;
+
+            this.InsertLayer = this.RailPlan.Layers.FirstOrDefault();
         }
 
         public override void OnStore(string path)

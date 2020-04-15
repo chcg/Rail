@@ -844,13 +844,21 @@ namespace Rail.Controls
                 break;
             case RailAction.MoveGraph:
                 this.Rail.MoveRailItem(this.actionSubgraph, pos - this.lastMousePosition);
-                this.Rail.FindDocking(this.actionRailItem);
+                if (this.Rail.FindDocking(this.actionRailItem))
+                {
+                    // stop move if docking found
+                    this.actionType = RailAction.None;
+                }
                 Invalidate();
                 break;
             case RailAction.Rotate:
                 Rotation rotation = Rotation.Calculate(this.actionRailItem.Position, this.lastMousePosition, pos);
                 this.Rail.RotateRailItem(this.actionSubgraph, this.actionRailItem.Position, rotation);
-                this.Rail.FindDocking(this.actionRailItem);
+                if (this.Rail.FindDocking(this.actionRailItem))
+                {
+                    // stop move if docking found
+                    this.actionType = RailAction.None;
+                }
                 Invalidate();
                 break;
             case RailAction.SelectRect:
