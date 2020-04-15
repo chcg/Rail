@@ -17,17 +17,17 @@ namespace Rail.Mvvm
         private double progressValue = 0.0;
         private string statusText = "Ready";
 
-        public DelegateCommand StartupCommand { get; private set; }
-        public DelegateCommand RefreshCommand { get; private set; }
-        public DelegateCommand ImportCommand { get; private set; }
-        public DelegateCommand ExportCommand { get; private set; }
-        public DelegateCommand UndoCommand { get; private set; }
-        public DelegateCommand RedoCommand { get; private set; }
-        public DelegateCommand OptionsCommand { get; private set; }
-        public DelegateCommand AboutCommand { get; private set; }
-        public DelegateCommand HelpCommand { get; private set; }
-        public DelegateCommand ExitCommand { get; private set; }
-        public DelegateCommand<CancelEventArgs> ClosingCommand { get; set; }
+        public DelegateCommand StartupCommand { get; }
+        public DelegateCommand RefreshCommand { get; }
+        public DelegateCommand ImportCommand { get; }
+        public DelegateCommand ExportCommand { get; }
+        public DelegateCommand UndoCommand { get; }
+        public DelegateCommand RedoCommand { get; }
+        public DelegateCommand OptionsCommand { get; }
+        public DelegateCommand AboutCommand { get; }
+        public DelegateCommand HelpCommand { get; }
+        public DelegateCommand ExitCommand { get; }
+        public DelegateCommand<CancelEventArgs> ClosingCommand { get; }
 
         public AppViewModel()
         {

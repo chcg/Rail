@@ -24,8 +24,8 @@ namespace Rail.ViewModel
         //private RailPlan railPlan;
 
         public DelegateCommand RailPlanCommand { get; private set; }
-        public DelegateCommand PrintCommand { get; private set; }
-        public DelegateCommand PrintPreviewCommand { get; private set; }
+        public DelegateCommand PrintCommand { get; }
+        public DelegateCommand PrintPreviewCommand { get; }
 
         private double zoomFactor = 1.0;
 
@@ -102,6 +102,7 @@ namespace Rail.ViewModel
 
             //Update3D();
             //this.SelectedSelectionIndex = 0;
+
         }
 
         public override void OnStartup()

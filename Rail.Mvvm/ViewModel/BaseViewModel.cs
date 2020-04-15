@@ -40,7 +40,7 @@ namespace Rail.Mvvm
         /// &lt;Button Grid.Column="2" Grid.Row="0" Content="..." Command="{Binding SelectFolderCommand}" CommandParameter="PathProperty" Margin="3"/&gt;
         /// </example>
         [XmlIgnore, JsonIgnore]
-        public DelegateCommand<string> SelectFolderCommand { get; private set; }
+        public DelegateCommand<string> SelectFolderCommand { get; }
         
         /// <summary>
         /// Handler for folder select command
