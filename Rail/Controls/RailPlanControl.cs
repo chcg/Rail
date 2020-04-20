@@ -97,14 +97,14 @@ namespace Rail.Controls
         #region Rail
 
         public static readonly DependencyProperty RailProperty =
-            DependencyProperty.Register("Rail", typeof(IRail), typeof(RailPlanControl),
+            DependencyProperty.Register("Rail", typeof(IRailControl), typeof(RailPlanControl),
                 new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnRailPropertyChanged)));
 
-        public IRail Rail
+        public IRailControl Rail
         {
             get
             {
-                return (IRail)GetValue(RailProperty);
+                return (IRailControl)GetValue(RailProperty);
             }
             set
             {
@@ -120,11 +120,11 @@ namespace Rail.Controls
 
         private void OnRailPropertyChanged(DependencyPropertyChangedEventArgs e)
         {
-            if (e.OldValue is IRail oldRail)
+            if (e.OldValue is IRailControl oldRail)
             {
                 oldRail.RailChanged -= OnRailChanged;
             }
-            if (e.NewValue is IRail newRail)
+            if (e.NewValue is IRailControl newRail)
             {
                 newRail.RailChanged += OnRailChanged;
             }
@@ -251,281 +251,7 @@ namespace Rail.Controls
         }
 
         #endregion
-
         
-
-        /*
-        #region SelectedRails
-
-        public static readonly DependencyProperty SelectedRailsProperty =
-            DependencyProperty.Register("SelectedRails", typeof(IList), typeof(RailPlanControl), new FrameworkPropertyMetadata(null));
-
-        public IList SelectedRails
-        {
-            get
-            {
-                return (IList)GetValue(SelectedRailsProperty);
-            }
-            set
-            {
-                SetValue(SelectedRailsProperty, value);
-            }
-        }
-
-        private void UpdateSelectedRails()
-        {
-            if (this.SelectedRails != null)
-            {
-                this.SelectedRails.Clear();
-                this.Rail.SelectedRails.ForEach(r => this.SelectedRails.Add(r));
-            }
-            
-            var selectedRails = this.Rail.SelectedRails.ToList();
-            switch (selectedRails.Count())
-            {
-            case 0:
-                this.SelectedMode = RailSelectedMode.None;
-                this.SelectedRailsX = null;
-                this.SelectedRailsY = null;
-                this.SelectedRailsAngle = null;
-                this.SelectedRailsLayer = Guid.Empty;
-                //this.SelectedRailsGradient = null;
-                //this.SelectedRailsHeight = null;
-                this.SelectedRamp = null;
-                break;
-            case 1:
-                this.SelectedMode = RailSelectedMode.Single;
-                this.selectedRail = selectedRails.Single();
-
-                this.SelectedRailsX = this.selectedRail.Position.X;
-                this.SelectedRailsY = this.selectedRail.Position.Y;
-                this.SelectedRailsAngle = this.selectedRail.Angle;
-                this.SelectedRailsLayer = this.selectedRail.Layer;
-                //this.SelectedRailsGradient = this.selectedRail.Gradient;
-                //this.SelectedRailsHeight = this.selectedRail.Height;
-                this.SelectedRamp = this.selectedRail as RailRamp;
-                break;
-            default:
-                this.SelectedMode = RailSelectedMode.Multi;
-                this.selectedRails = selectedRails;
-
-                this.SelectedRailsX = null;
-                this.SelectedRailsY = null;
-                this.SelectedRailsAngle = null;
-                this.SelectedRailsLayer = selectedRails.Select(r => r.Layer).IdenticalOrDefault();
-                //this.SelectedRailsGradient = selectedRails.Select(r => r.Gradient).IdenticalOrDefault();
-                //this.SelectedRailsHeight = selectedRails.Select(r => r.Height).IdenticalOrDefault();
-                this.SelectedRamp = null;
-                break;
-            }
-           
-        }
-
-        #endregion
-
-        
-
-        #region SelectedRailsX
-
-        public static readonly DependencyProperty SelectedRailsXProperty =
-            DependencyProperty.Register("SelectedRailsX", typeof(double?), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsXChanged)));
-
-        public double? SelectedRailsX
-        {
-            get
-            {
-                return (double?)GetValue(SelectedRailsXProperty);
-            }
-            set
-            {
-                Debug.WriteLine($"RailPlanControl.SelectedRailsX new = {value}, old = {this.SelectedRailsX}");
-                SetValue(SelectedRailsXProperty, value);
-            }
-        }
-
-        private static void OnSelectedRailsXChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            RailPlanControl railPlanControl = (RailPlanControl)o;
-            railPlanControl.OnSelectedRailsXChanged((double?)e.NewValue, (double?)e.OldValue);
-        }
-
-        private void OnSelectedRailsXChanged(double? newValue, double? oldValue)
-        {
-            Debug.WriteLine($"RailPlanControl.OnSelectedRailsXChanged new = {newValue}, old = {oldValue}, var = {this.SelectedRailsX}");
-            if (newValue.HasValue && oldValue.HasValue && newValue != oldValue && !this.selectedChangeIntern)
-            {
-                switch (this.SelectedMode)
-                {
-                case RailSelectedMode.Single:
-                    var subgraph = this.selectedRail.FindSubgraph();
-                    this.Rail.MoveRailItem(subgraph, new Vector(newValue.Value - oldValue.Value, 0));
-                    this.InvalidateVisual();
-                    break;
-                case RailSelectedMode.Multi:
-                    // only one can move
-                    break;
-                }
-            }
-        }
-
-        #endregion
-
-        #region SelectedRailsY
-
-        public static readonly DependencyProperty SelectedRailsYProperty =
-            DependencyProperty.Register("SelectedRailsY", typeof(double?), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsYChanged)));
-
-        public double? SelectedRailsY
-        {
-            get
-            {
-                return (double?)GetValue(SelectedRailsYProperty);
-            }
-            set
-            {
-                SetValue(SelectedRailsYProperty, value);
-            }
-        }
-
-        private static void OnSelectedRailsYChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            RailPlanControl railPlanControl = (RailPlanControl)o;
-            railPlanControl.OnSelectedRailsYChanged((double?)e.NewValue);
-        }
-
-        private void OnSelectedRailsYChanged(double? newValue)
-        {
-            if (newValue.HasValue && SelectedRailsY.HasValue && newValue != SelectedRailsY && !this.selectedChangeIntern)
-            {
-                switch (this.SelectedMode)
-                {
-                case RailSelectedMode.Single:
-                    var subgraph = this.selectedRail.FindSubgraph();
-                    this.Rail.MoveRailItem(subgraph, new Vector(0, newValue.Value - SelectedRailsY.Value));
-                    this.InvalidateVisual();
-                    break;
-                case RailSelectedMode.Multi:
-                    // only one can move
-                    break;
-                }
-            }
-        }
-
-        #endregion
-
-        #region SelectedRailsAngle
-
-        public static readonly DependencyProperty SelectedRailsAngleProperty =
-            DependencyProperty.Register("SelectedRailsAngle", typeof(double?), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsAngleChanged)));
-
-        public double? SelectedRailsAngle
-        {
-            get
-            {
-                return (double?)GetValue(SelectedRailsAngleProperty);
-            }
-            set
-            {
-                SetValue(SelectedRailsAngleProperty, value);
-            }
-        }
-
-        private static void OnSelectedRailsAngleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            RailPlanControl railPlanControl = (RailPlanControl)o;
-            railPlanControl.OnSelectedRailsAngleChanged((double?)e.NewValue, (double?)e.OldValue);
-        }
-
-        private void OnSelectedRailsAngleChanged(double? newValue, double? oldValue)
-        {
-            if (newValue.HasValue && oldValue.HasValue && newValue != oldValue && !this.selectedChangeIntern)
-            {
-                switch (this.SelectedMode)
-                {
-                case RailSelectedMode.Single:
-                    var subgraph = this.selectedRail.FindSubgraph();
-                    this.Rail.RotateRailItem(subgraph, this.selectedRail.Position, new Rotation(newValue.Value) - new Rotation(oldValue.Value));
-                    this.InvalidateVisual();
-                    break;
-                case RailSelectedMode.Multi:
-                    // only one can rotated
-                    break;
-                }
-            }
-        }
-
-        #endregion
-
-        #region SelectedRailsLayer
-
-        public static readonly DependencyProperty SelectedRailsLayerProperty =
-            DependencyProperty.Register("SelectedRailsLayer", typeof(Guid), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(Guid.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnSelectedRailsLayerChanged)));
-
-        public Guid SelectedRailsLayer
-        {
-            get
-            {
-                return (Guid)GetValue(SelectedRailsLayerProperty);
-            }
-            set
-            {
-                SetValue(SelectedRailsLayerProperty, value);
-            }
-        }
-
-        private static void OnSelectedRailsLayerChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            RailPlanControl railPlanControl = (RailPlanControl)o;
-            railPlanControl.OnSelectedRailsLayerChanged((Guid)e.NewValue, (Guid)e.OldValue);
-        }
-
-        private void OnSelectedRailsLayerChanged(Guid newValue, Guid oldValue)
-        {
-            if (newValue != Guid.Empty && newValue != oldValue)
-            {
-                switch (this.SelectedMode)
-                {
-                case RailSelectedMode.Single:
-                    this.selectedRail.Layer = newValue;
-                    this.InvalidateVisual();
-                    break;
-                case RailSelectedMode.Multi:
-                    this.selectedRails.ForEach(r => r.Layer = newValue);
-                    this.InvalidateVisual();
-                    break;
-                }
-            }
-        }
-
-        #endregion
-
-        #region SelectedRamp
-
-        public static readonly DependencyProperty SelectedRampProperty =
-            DependencyProperty.Register("SelectedRamp", typeof(RailRamp), typeof(RailPlanControl),
-                new FrameworkPropertyMetadata(null));
-
-        public RailRamp SelectedRamp
-        {
-            get
-            {
-                return (RailRamp)GetValue(SelectedRampProperty);
-            }
-            set
-            {
-                SetValue(SelectedRampProperty, value);
-            }
-        }
-
-        #endregion
-
-        
-        */
-
         #region GridLinesDistance
 
         public static readonly DependencyProperty GridLinesDistanceProperty =
@@ -894,7 +620,7 @@ namespace Rail.Controls
                 //StoreToHistory();
                 break;
             case RailAction.SelectRect:
-                this.Rail.SelectRectange(new Rect(this.selectRecStart, pos), addSelect);
+                this.Rail.SelectRailItem(new Rect(this.selectRecStart, pos), addSelect);
                 break;
             case RailAction.BindingLine:
                 this.Rail.BindDockingPoints(this.actionDockPoint, this.Rail.FindFreeDockPoint(pos));

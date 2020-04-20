@@ -11,7 +11,7 @@ using System.Windows.Media;
 
 namespace Rail.Controls
 {
-    public interface IRail
+    public interface IRailControl
     {
         event EventHandler RailChanged;
 
@@ -36,7 +36,7 @@ namespace Rail.Controls
         void DeleteSelectedRailItems();
 
         void SelectRailItem(RailBase railItem, bool addSelect);
-        void SelectRectange(Rect rec, bool addSelect);
+        void SelectRailItem(Rect rec, bool addSelect);
         void UnselectAllRailItems();
 
         void MoveRailItem(IEnumerable<RailBase> subgraph, Vector move);

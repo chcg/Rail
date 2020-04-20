@@ -7,7 +7,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Rail.Mvvm\Rail.Mvvm.csproj" />
-    <ProjectReference Include="..\Rail.Plugin\Rail.Plugin.csproj" />
+    <ProjectReference Include="..\Rail.Tracks\Rail.Tracks.csproj" />
+    <ProjectReference Include="..\Rail\Rail.csproj" />
   </ItemGroup>
 
 </Project>

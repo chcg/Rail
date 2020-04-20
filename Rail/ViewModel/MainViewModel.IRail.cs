@@ -68,33 +68,9 @@ namespace Rail.ViewModel
         }
 
 
-        private RailSelectedMode selectedMode;
-        public RailSelectedMode SelectedMode
-        {
-            get
-            {
-                return this.selectedMode;
-            }
-            set
-            {
-                this.selectedMode = value;
-                NotifyPropertyChanged(nameof(SelectedMode));
-            }
-        }
+        
 
-        private RailBase selectedRail;
-        public RailBase SelectedRail
-        {
-            get
-            {
-                return this.selectedRail;
-            }
-            set
-            {
-                this.selectedRail = value;
-                NotifyPropertyChanged(nameof(SelectedRail));
-            }
-        }
+        
 
 
         //private TrackBase selectedTrack;
@@ -144,13 +120,7 @@ namespace Rail.ViewModel
 
         #endregion
 
-        public List<RailBase> SelectedRails
-        {
-            get
-            {
-                return this.railPlan.Rails.Where(r => r.IsSelected).ToList();
-            }
-        }
+        
 
         public IEnumerable<RailBase> SelectedRampRails
         {
@@ -247,34 +217,7 @@ namespace Rail.ViewModel
             // remove the item
             list.ForEach(r => DeleteRailItem(r));
         }
-
-        public void SelectRailItem(RailBase railItem, bool addSelect)
-        {
-            if (addSelect)
-            {
-                railItem.IsSelected = !railItem.IsSelected;
-            }
-            else
-            {
-                this.railPlan.Rails.ForEach(r => r.IsSelected = false);
-                railItem.IsSelected = true;
-            }
-        }
-
-        public void SelectRectange(Rect rec, bool addSelect)
-        {
-            if (!addSelect)
-            {
-                this.railPlan.Rails.ForEach(r => r.IsSelected = false);
-            }
-            this.railPlan.Rails.Where(r => r.IsInside(rec)).ForEach(r => r.IsSelected = true);
-        }
-
-        public void UnselectAllRailItems()
-        {
-            this.railPlan.Rails.ForEach(r => r.IsSelected = false);
-        }
-
+        
         public void MoveRailItem(IEnumerable<RailBase> subgraph, Vector move)
         {
             //Debug.WriteLine($"MoveRailItem {railItem.DebugIndex} ({move.X:F2},{move.Y:F2}) with subgraph");

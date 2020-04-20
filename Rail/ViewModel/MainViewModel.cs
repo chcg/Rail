@@ -1,6 +1,7 @@
 ﻿using Rail.Controls;
 using Rail.Model;
 using Rail.Mvvm;
+using Rail.Plugin;
 using Rail.Properties;
 using Rail.Tracks;
 using Rail.View;
@@ -18,7 +19,7 @@ using System.Windows.Media;
 
 namespace Rail.ViewModel
 {
-    public partial class MainViewModel : FileViewModel, IRail
+    public partial class MainViewModel : FileViewModel, IRailControl, IRailPlan
     {
         
         //private RailPlan railPlan;
