@@ -141,7 +141,7 @@ namespace Rail.Tracks
                     { "Group", typeof(TrackGroup) }
                 };
 
-                JsonSerializerOptions options = new JsonSerializerOptions { IgnoreNullValues = true, IgnoreReadOnlyProperties = true, WriteIndented = true, Encoder = JavaScriptEncoder.Create(UnicodeRanges.All) };
+                JsonSerializerOptions options = new JsonSerializerOptions { IgnoreReadOnlyProperties = true, WriteIndented = true, Encoder = JavaScriptEncoder.Create(UnicodeRanges.All) };
                 options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
                 options.Converters.Add(new JsonTrackConverter(dict));
 
