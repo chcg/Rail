@@ -13,7 +13,7 @@
     <RootNamespace>Rail.Documentation</RootNamespace>
     <Name>Rail.Documentation</Name>
     <!-- SHFB properties -->
-    <FrameworkVersion>.NET Framework 4.5</FrameworkVersion>
+    <FrameworkVersion>.NET Core/.NET Standard/.NET 5.0+</FrameworkVersion>
     <OutputPath>.\Help\</OutputPath>
     <HtmlHelpName>Rail</HtmlHelpName>
     <Language>en-US</Language>
