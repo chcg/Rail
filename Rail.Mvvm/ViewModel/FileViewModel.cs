@@ -32,13 +32,13 @@ namespace Rail.Mvvm
         private FileSystemWatcher watcher;
 
 
-        public DelegateCommand NewCommand { get; private set; }
-        public DelegateCommand OpenCommand { get; private set; }
-        public DelegateCommand SaveCommand { get; private set; }
-        public DelegateCommand SaveAsCommand { get; private set; }
-        public DelegateCommand<string> RecentFileCommand { get; private set; }
-        public DelegateCommand<DragEventArgs> DragCommand { get; private set; }
-        public DelegateCommand<DragEventArgs> DropCommand { get; private set; }
+        public DelegateCommand NewCommand { get; }
+        public DelegateCommand OpenCommand { get; }
+        public DelegateCommand SaveCommand { get; }
+        public DelegateCommand SaveAsCommand { get; }
+        public DelegateCommand<string> RecentFileCommand { get; }
+        public DelegateCommand<DragEventArgs> DragCommand { get; }
+        public DelegateCommand<DragEventArgs> DropCommand { get; }
 
         public FileViewModel()
         {

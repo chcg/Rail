@@ -80,6 +80,10 @@ namespace Rail.Controls
 
             drawingContext.DrawRectangle(this.Background, null, new Rect(0, 0, this.ActualWidth, this.ActualHeight)); // need for tooltip
             
+            if (this.Track.TrackGeometry == null)
+            {
+                return;
+            }
 
             Geometry geometry = this.Track.TrackGeometry.Clone();
             Size size = geometry.Bounds.Size;

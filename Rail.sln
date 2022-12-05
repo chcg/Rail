@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rail", "Rail\Rail.csproj", "{347945C0-F7F8-49F9-AA2F-7436AA5B9F0A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RailTest", "RailTest\RailTest.csproj", "{7930A029-7F35-4EDA-A67C-49A6DAA7954B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{347945C0-F7F8-49F9-AA2F-7436AA5B9F0A} = {347945C0-F7F8-49F9-AA2F-7436AA5B9F0A}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rail.TrackEditor", "Rail.TrackEditor\Rail.TrackEditor.csproj", "{1B5C2797-29E9-465E-9597-9F0EC2FD82FD}"
 EndProject
@@ -16,6 +19,10 @@ EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Rail.Documentation", "Rail.Documentation\Rail.Documentation.shfbproj", "{3C98CBEF-3EFA-480F-A631-3256AE3F3D77}"
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Rail.Installer", "Rail.Installer\Rail.Installer.wixproj", "{7001A624-65AB-49C2-829B-9CD39FD49AE3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{5B9DD0E2-D1A8-42F6-BD7A-77445FAB164A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rangefinder", "Rangefinder\Rangefinder.csproj", "{A70A651E-DBA9-42E0-AB85-A6CE68357B18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -154,9 +161,30 @@ Global
 		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Release|x64.Build.0 = Release|x64
 		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Release|x86.ActiveCfg = Release|x86
 		{7001A624-65AB-49C2-829B-9CD39FD49AE3}.Release|x86.Build.0 = Release|x86
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.Debug|x64.Build.0 = Debug|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.Debug|x86.Build.0 = Debug|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.DebugInfo|Any CPU.ActiveCfg = Debug|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.DebugInfo|Any CPU.Build.0 = Debug|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.DebugInfo|x64.ActiveCfg = Debug|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.DebugInfo|x64.Build.0 = Debug|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.DebugInfo|x86.ActiveCfg = Debug|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.DebugInfo|x86.Build.0 = Debug|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.Release|x64.ActiveCfg = Release|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.Release|x64.Build.0 = Release|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.Release|x86.ActiveCfg = Release|Any CPU
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A70A651E-DBA9-42E0-AB85-A6CE68357B18} = {5B9DD0E2-D1A8-42F6-BD7A-77445FAB164A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {77649D10-FE54-4AE5-AA5A-6B907D2E26BD}

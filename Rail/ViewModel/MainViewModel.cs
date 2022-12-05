@@ -1,41 +1,92 @@
 ﻿using Rail.Controls;
-using Rail.Misc;
 using Rail.Model;
 using Rail.Mvvm;
+using Rail.Plugin;
 using Rail.Properties;
 using Rail.Tracks;
 using Rail.View;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Printing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Xml.Schema;
 
 namespace Rail.ViewModel
 {
-    public partial class MainViewModel : FileViewModel
+    public partial class MainViewModel : FileViewModel, IRailControl, IRailPlan
     {
-        private TrackList trackList;
-        private Dictionary<Guid, TrackBase> trackDict;
-        private RailPlan railPlan;
+        
+        //private RailPlan railPlan;
 
         public DelegateCommand RailPlanCommand { get; private set; }
-        public DelegateCommand PrintCommand { get; private set; }
-        public DelegateCommand PrintPreviewCommand { get; private set; }
+        public DelegateCommand PrintCommand { get; }
+        public DelegateCommand PrintPreviewCommand { get; }
 
         private double zoomFactor = 1.0;
-       
+
+        private readonly double copyPositionDrift = 50;
+
+        private RailPlan railPlan;
+        public event EventHandler RailChanged;
+
+        private readonly Pen plateFramePen = new Pen(TrackBrushes.PlateFrame, 1);
+
+        public DelegateCommand CreateGroupCommand { get; }
+        public DelegateCommand ResolveGroupCommand { get; }
+        public DelegateCommand SaveAsGroupCommand { get; }
+
+        public DelegateCommand CreateRampCommand { get; }
+        public DelegateCommand DeleteRampCommand { get; }
+        public DelegateCommand EditRampCommand { get; }
+
+        public DelegateCommand CreateHelixCommand { get; }
+        public DelegateCommand DeleteHelixCommand { get; }
+        public DelegateCommand EditHelixCommand { get; }
+
+        //public DelegateCommand UndoCommand { get; }
+        //public DelegateCommand RedoCommand { get; }
+        public DelegateCommand CopyCommand { get; }
+        public DelegateCommand CutCommand { get; }
+        public DelegateCommand PasteCommand { get; }
+        public DelegateCommand DeleteCommand { get; }
+        public DelegateCommand DuplicateCommand { get; }
+        public DelegateCommand SelectAllCommand { get; }
+
+        public DelegateCommand AnchorCommand { get; }
+        public DelegateCommand UnanchorCommand { get; }
+
         public MainViewModel()
         {
+            this.CreateGroupCommand = new DelegateCommand(OnCreateGroup, OnCanCreateGroup);
+            this.ResolveGroupCommand = new DelegateCommand(OnResolveGroup, OnCanResolveGroup);
+            this.SaveAsGroupCommand = new DelegateCommand(OnSaveAsGroup, OnCanSaveAsGroup);
+
+            this.CreateRampCommand = new DelegateCommand(OnCreateRamp, OnCanCreateRamp);
+            this.DeleteRampCommand = new DelegateCommand(OnDeleteRamp, OnCanDeleteRamp);
+            this.EditRampCommand = new DelegateCommand(OnEditRamp, OnCanEditRamp);
+
+            this.CreateHelixCommand = new DelegateCommand(OnCreateHelix, OnCanCreateHelix);
+            this.DeleteHelixCommand = new DelegateCommand(OnDeleteHelix, OnCanDeleteHelix);
+            this.EditHelixCommand = new DelegateCommand(OnEditHelix, OnCanEditHelix);
+
+            //this.UndoCommand = new DelegateCommand(OnUndo, OnCanUndo);
+            //this.RedoCommand = new DelegateCommand(OnRedo, OnCanRedo);
+            this.CopyCommand = new DelegateCommand(OnCopy, OnCanCopy);
+            this.CutCommand = new DelegateCommand(OnCut, OnCanCut);
+            this.PasteCommand = new DelegateCommand(OnPaste, OnCanPaste);
+            this.DeleteCommand = new DelegateCommand(OnDelete, OnCanDelete);
+            this.DuplicateCommand = new DelegateCommand(OnDuplicate, OnCanDuplicate);
+            this.SelectAllCommand = new DelegateCommand(OnSelectAll, OnCanSelectAll);
+
+            this.AnchorCommand = new DelegateCommand(OnAnchor, OnCanAnchor);
+            this.UnanchorCommand = new DelegateCommand(OnUnanchor, OnCanUnanchor);
+
             this.DefaultFileExt = "*.rail";
             this.FileFilter = "Rail Project|*.rail|All Files|*.*";
 
@@ -46,76 +97,18 @@ namespace Rail.ViewModel
             //this.Gradients = (new double[] { 0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0 }).Select(d => d.ToString("F2")).ToList(); 
 
             // load track list
-            DependencyObject dep = new DependencyObject();
-            if (!DesignerProperties.GetIsInDesignMode(dep))
-            {
+            LoadTrackList();
 
-                try
-                {
-                    string path = System.AppDomain.CurrentDomain.BaseDirectory;
-                    //this.trackList = TrackList.Load(Path.Combine(path, "Tracks.xml"));
-                    this.trackList = TrackList.Load();
-                    this.trackDict = trackList.TrackTypes.SelectMany(t => t.Tracks).ToDictionary(t => t.Id, t => t);
-                }
-                catch (Exception ex)
-                {
-                    //if (ex.InnerException is XmlSchemaValidationException valEx)
-                    //{
-                    //    MessageBox.Show($"Error in File Tracks.xml\r\n{ex.Message}\r\n{valEx.Message}");
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("Error in File Tracks.xml\r\n{ex.Message}");
-                    //}
+            OnCreate();
 
-                    Exception e = ex;
-                    string message = $"Error in File Tracks.xml\r\n{ex.Message}";
-                    while (e.InnerException != null)
-                    {
-                        e = e.InnerException;
-                        message += $"\r\n{e.Message}";
-                    }
-                    MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    Debugger.Break();
+            //Update3D();
+            //this.SelectedSelectionIndex = 0;
 
-                    throw ex;
-                }
-            }
-
-            this.RailPlan = RailPlan.Create();
-
-            Update3D();
-            this.SelectedSelectionIndex = 0;
         }
 
         public override void OnStartup()
         {
            base.OnStartup();
-
-           // load track list
-           //DependencyObject dep = new DependencyObject();
-           // if (!DesignerProperties.GetIsInDesignMode(dep))
-           // {
-
-           //     try
-           //     {
-           //         string path = System.AppDomain.CurrentDomain.BaseDirectory;
-           //         this.trackList = TrackList.Load(Path.Combine(path, "Tracks.xml"));
-           //         this.trackDict = trackList.TrackTypes.SelectMany(t => t.Tracks).ToDictionary(t => t.Id, t => t);
-           //     }
-           //     catch (Exception ex)
-           //     {
-           //         if (ex.InnerException is XmlSchemaValidationException valEx)
-           //         {
-           //             MessageBox.Show($"Error in File Tracks.xml\r\n{ex.Message}\r\n{valEx.Message}");
-           //         }
-           //         else
-           //         {
-           //             MessageBox.Show("Error in File Tracks.xml\r\n{ex.Message}");
-           //         }
-           //         throw ex;
-           //     }
-           // }
 
            // this.RailPlan = RailPlan.Create();
 
@@ -124,73 +117,10 @@ namespace Rail.ViewModel
 
         #region properties
 
-        private int selectedSelectionIndex = 0;
 
-        public int SelectedSelectionIndex
-        {
-            get
-            {
-                return this.selectedSelectionIndex;
-            }
-            set
-            {
-                this.selectedSelectionIndex = value;
-                NotifyPropertyChanged(nameof(SelectedSelectionIndex));
-                
-                this.TrackSelects = this.selectedSelectionIndex switch
-                {
-                    0 => null,
-                    1 => this.trackList.TrackTypes.Select(t => t.Parameter.Gauge.ToString()).Distinct().OrderBy(t => t).ToList(),
-                    2 => this.trackList.TrackTypes.Select(t => t.Parameter.Manufacturer).Distinct().OrderBy(t => t).ToList(),
-                    _ => null
-                };
-                NotifyPropertyChanged(nameof(TrackSelects));
-                this.SelectedTrackSelect = this.TrackSelects?.FirstOrDefault();
-            }
-        }
 
-        public List<string> TrackSelects { get; private set; }
 
-        public string selectedTrackSelect;
-        public string SelectedTrackSelect
-        {
-            get
-            {
-                return this.selectedTrackSelect;
-            }
-            set
-            {
-                this.selectedTrackSelect = value;
-                NotifyPropertyChanged(nameof(SelectedTrackSelect));
 
-                this.TrackTypes = this.selectedSelectionIndex switch
-                {
-                    0 => this.trackList.TrackTypes,
-                    1 => this.trackList.TrackTypes.Where(t => t.Parameter.Gauge.ToString() == SelectedTrackSelect).ToList(),
-                    2 => this.trackList.TrackTypes.Where(t => t.Parameter.Manufacturer == SelectedTrackSelect).ToList(),
-                    _ => null
-                };
-                NotifyPropertyChanged(nameof(TrackTypes));
-                this.SelectedTrackType = this.TrackTypes.FirstOrDefault();
-            }
-        }
-
-        public List<TrackType> TrackTypes { get; private set; } // { return this.trackList.TrackTypes; } }
-
-        private TrackType selectedTrackType;
-        public TrackType SelectedTrackType
-        {
-            get
-            {
-                return this.selectedTrackType;
-            }
-            set
-            {
-                this.selectedTrackType = value;
-                NotifyPropertyChanged(nameof(SelectedTrackType));
-                FillTracks();
-            }
-        }
 
         private int selectedGroupIndex = 0;
         public int SelectedGroupIndex
@@ -207,54 +137,8 @@ namespace Rail.ViewModel
             }
         }
 
-        private void FillTracks()
-        {
-            switch (this.SelectedGroupIndex)
-            {
-            case 0:
-                this.Tracks = this.selectedTrackType?.Tracks;
-                break;
-            case 1:
-                this.Tracks = this.selectedTrackType?.Groups.Cast<TrackBase>().ToList();
-                break;
-            case 2:
-                this.Tracks = new List<TrackBase>();
-                break;
-            }
-            
-            this.SelectedTrack = this.Tracks?.FirstOrDefault();
-        }
-        
 
-        public List<TrackBase> tracks;
-
-        public List<TrackBase> Tracks 
-        { 
-            get 
-            { 
-                return this.tracks; 
-            }
-            set
-            {
-                this.tracks = value;
-                NotifyPropertyChanged(nameof(Tracks));
-            }
-        }
-
-        private TrackBase selectedTracke;
-        public TrackBase SelectedTrack
-        {
-            get
-            {
-                return this.selectedTracke;
-            }
-            set
-            {
-                this.selectedTracke = value;
-                NotifyPropertyChanged(nameof(SelectedTrack));
-            }
-        }
-
+        // TODO delete
         public RailPlan RailPlan
         {
             get
@@ -322,7 +206,7 @@ namespace Rail.ViewModel
                 this.viewMode = value;
                 if (this.viewMode == RailViewMode.Terrain)
                 {
-                    Update3D();
+                    //Update3D();
                 }
                 NotifyPropertyChanged(nameof(ViewMode));
             }
@@ -418,29 +302,65 @@ namespace Rail.ViewModel
                 NotifyPropertyChanged(nameof(MousePosition));
             }
         }
+        
+        public List<string> Gradients { get; private set; }
 
-        public IEnumerable<RailLayer> Layers
-        {
-            get { return this.RailPlan?.Layers.Reverse<RailLayer>(); }
-        }
 
-       
-
-        private RailLayer selectedInsertLayer = null;
-        public RailLayer SelectedInsertLayer
+        public double? selectedRailsX;
+        public double? SelectedRailsX
         {
             get
             {
-                return this.selectedInsertLayer;
+                return selectedRailsX;
             }
             set
             {
-                this.selectedInsertLayer = value;
-                NotifyPropertyChanged(nameof(SelectedInsertLayer));
+                selectedRailsX = value;
+                NotifyPropertyChanged(nameof(SelectedRailsX));
             }
         }
 
-        public List<string> Gradients { get; private set; }  
+        private double? selectedRailsY;
+        public double? SelectedRailsY
+        {
+            get
+            {
+                return selectedRailsY;
+            }
+            set
+            {
+                selectedRailsY = value;
+                NotifyPropertyChanged(nameof(SelectedRailsY));
+            }
+        }
+
+        private double? selectedRailsAngle;
+        public double? SelectedRailsAngle
+        {
+            get
+            {
+                return selectedRailsAngle;
+            }
+            set
+            {
+                selectedRailsAngle = value;
+                NotifyPropertyChanged(nameof(SelectedRailsAngle));
+            }
+        }
+
+        private Guid selectedRailsLayer;
+        public Guid SelectedRailsLayer
+        {
+            get
+            {
+                return selectedRailsLayer;
+            }
+            set
+            {
+                selectedRailsLayer = value;
+                NotifyPropertyChanged(nameof(SelectedRailsLayer));
+            }
+        }
 
         #endregion
 
@@ -451,14 +371,16 @@ namespace Rail.ViewModel
             this.RailPlan = RailPlan.Create();
             this.FileChanged = true;
             this.FilePath = null;
+
+            this.InsertLayer = this.RailPlan.Layers.FirstOrDefault();
         }
 
         public override void OnLoad(string path)
         {
             this.RailPlan = RailPlan.Load(path, this.trackDict);
-
-            this.SelectedInsertLayer = this.RailPlan.Layers.FirstOrDefault();
             this.FileChanged = true;
+
+            this.InsertLayer = this.RailPlan.Layers.FirstOrDefault();
         }
 
         public override void OnStore(string path)
@@ -492,7 +414,7 @@ namespace Rail.ViewModel
                 RailPlanControl ctrl = new RailPlanControl
                 {
                     Background = new SolidColorBrush(Colors.White),
-                    RailPlan = this.RailPlan
+                    //Rail = this.RailPlan
                 };
                 ctrl.ZoomFactor = Math.Min(capabilities.PageImageableArea.ExtentWidth / (ctrl.Width + pageMargin * 2), capabilities.PageImageableArea.ExtentHeight / (ctrl.Height + pageMargin * 2));
                 
@@ -508,7 +430,7 @@ namespace Rail.ViewModel
 
         protected override void OnRefresh()
         {
-            Update3D();
+            //Update3D();
             base.OnRefresh();
         }
 

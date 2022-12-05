@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Windows.Threading;
 using System.Xml.Serialization;
 using System.Text.Json.Serialization;
+using System.Runtime.CompilerServices;
 
 namespace Rail.Mvvm
 {
@@ -39,7 +40,7 @@ namespace Rail.Mvvm
         /// &lt;Button Grid.Column="2" Grid.Row="0" Content="..." Command="{Binding SelectFolderCommand}" CommandParameter="PathProperty" Margin="3"/&gt;
         /// </example>
         [XmlIgnore, JsonIgnore]
-        public DelegateCommand<string> SelectFolderCommand { get; private set; }
+        public DelegateCommand<string> SelectFolderCommand { get; }
         
         /// <summary>
         /// Handler for folder select command
@@ -63,7 +64,7 @@ namespace Rail.Mvvm
 
         private delegate void NotifyPropertyChangedDeleagte(string propertyName);     
 
-        protected virtual void NotifyPropertyChanged(string propertyName)
+        protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
         {
             if (string.IsNullOrEmpty(propertyName))
             {

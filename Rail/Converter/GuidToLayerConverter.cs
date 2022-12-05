@@ -11,10 +11,13 @@ namespace Rail.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Guid guid = (Guid)value;
-            RailPlan railPlan = (RailPlan)parameter;
-            RailLayer railLayer = railPlan.Layers.FirstOrDefault(l => l.Id == guid);
-            return railLayer;
+            if (value is Guid guid)
+            {
+                RailPlan railPlan = (RailPlan)parameter;
+                RailLayer railLayer = railPlan.Layers.FirstOrDefault(l => l.Id == guid);
+                return railLayer;
+            }
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

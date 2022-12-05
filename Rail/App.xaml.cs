@@ -30,7 +30,7 @@ namespace Rail
             try
             {
                 AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(OnUnhandledException);
-                new MainView() /*{ DataContext = new MainViewModel() }*/.Show();
+                new MainView() { DataContext = new MainViewModel() }.Show();
             }
             catch (Exception ex)
             {

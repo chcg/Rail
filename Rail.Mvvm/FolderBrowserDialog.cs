@@ -184,10 +184,10 @@ namespace Microsoft.Win32
         {
             get
             {
-                if (((this.selectedPath != null) && (this.selectedPath.Length != 0)) && this.selectedPathNeedsCheck)
-                {
-                    new FileIOPermission(FileIOPermissionAccess.PathDiscovery, this.selectedPath).Demand();
-                }
+                //if (((this.selectedPath != null) && (this.selectedPath.Length != 0)) && this.selectedPathNeedsCheck)
+                //{
+                //    new FileIOPermission(FileIOPermissionAccess.PathDiscovery, this.selectedPath).Demand();
+                //}
                 return this.selectedPath;
             }
             set

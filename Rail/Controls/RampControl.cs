@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Linq;
 using Rail.Model;
-using Rail.Trigonometry;
+using Rail.Tracks.Trigonometry;
 using System.Globalization;
 using System.Diagnostics;
 

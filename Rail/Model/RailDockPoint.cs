@@ -1,6 +1,6 @@
 ﻿using Rail.Misc;
 using Rail.Tracks;
-using Rail.Trigonometry;
+using Rail.Tracks.Trigonometry;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

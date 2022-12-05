@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Rail.Mvvm\Rail.Mvvm.csproj" />
+    <ProjectReference Include="..\Rail.Tracks\Rail.Tracks.csproj" />
+    <ProjectReference Include="..\Rail\Rail.csproj" />
+  </ItemGroup>
+
+</Project>

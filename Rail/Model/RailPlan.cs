@@ -73,11 +73,11 @@ namespace Rail.Model
             return railPlan;
         }
 
-        [XmlIgnore, JsonIgnore]
-        public int Width { get { return (int)Math.Round(this.PlatePoints.Select(p => p.X).Max()); } }
+        //[XmlIgnore, JsonIgnore]
+        //public int Width { get { return (int)Math.Round(this.PlatePoints.Select(p => p.X).Max()); } }
 
-        [XmlIgnore, JsonIgnore]
-        public int Height { get { return (int)Math.Round(this.PlatePoints.Select(p => p.Y).Max()); } }
+        //[XmlIgnore, JsonIgnore]
+        //public int Height { get { return (int)Math.Round(this.PlatePoints.Select(p => p.Y).Max()); } }
 
         /// <summary>
         /// 
@@ -100,46 +100,6 @@ namespace Rail.Model
         [XmlArrayItem("Rail", typeof(RailItem)),
          XmlArrayItem("Group", typeof(RailGroup))]
         public List<RailBase> Rails { get; set; }
-
-
-        [XmlIgnore, JsonIgnore]
-        public IEnumerable<RailBase> SelectedRails { get { return this.Rails.Where(r => r.IsSelected); } }
-
-        [XmlIgnore, JsonIgnore]
-        public IEnumerable<RailBase> SelectedRampRails 
-        { 
-            get 
-            {
-                // check if all items are RailItems
-                var selectedRailBase = SelectedRails.ToList();
-                if (!selectedRailBase.All(r => r is RailItem))
-                {
-                    // not all items are RailItems
-                    return null;
-                }
-                var selected = selectedRailBase.Cast<RailItem>().ToList();
-
-                // find singe extern docked RailItem
-                var externDocked = selected.SelectMany(r => r.DockPoints).Where(d => d.DockedWith != null && !selected.Contains(d.DockedWith.RailItem)).ToList();
-                if (!externDocked.One())
-                {
-                    // more or less than one external dock
-                    return null;
-                }
-                RailItem item = (RailItem)externDocked.Single().RailItem;
-
-                // sort ramp items
-
-
-                List<RailItem> rampList = new List<RailItem>();
-                while (item != null)
-                {
-                    rampList.Add(item);
-                    item = (RailItem)item.DockPoints.Where(d => d.IsDocked && selected.Contains(d.DockedWith.RailItem) && !rampList.Contains(d.DockedWith.RailItem)).SingleOrDefault()?.DockedWith.RailItem;
-                }
-                return rampList;
-            } 
-        }
 
         public RailPlan Clone()
         {

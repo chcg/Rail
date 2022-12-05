@@ -1,7 +1,7 @@
 ﻿using Rail.Controls;
 using Rail.Misc;
 using Rail.Tracks;
-using Rail.Trigonometry;
+using Rail.Tracks.Trigonometry;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -111,18 +111,18 @@ namespace Rail.Model
             this.DockPoints.ForEach(d => d.Draw(drawingContext));
         }
 
-        protected abstract Geometry GetGeometry(RailViewMode viewMode);
+        protected abstract Geometry GetGeometry();
 
-        public virtual bool IsInside(Point point, RailViewMode viewMode)
+        public virtual bool IsInside(Point point)
         {
-            Geometry geometry = GetGeometry(viewMode);
+            Geometry geometry = GetGeometry();
             bool f = geometry.FillContains(point);
             return f;
         }
 
-        public virtual bool IsInside(Rect rec, RailViewMode viewMode)
+        public virtual bool IsInside(Rect rec)
         {
-            Geometry geometry = GetGeometry(viewMode);
+            Geometry geometry = GetGeometry();
             bool f = rec.Contains(geometry.Bounds);
             return f;
         }

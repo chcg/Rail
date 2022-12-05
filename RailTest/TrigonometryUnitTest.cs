@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Rail.Trigonometry;
+using Rail.Tracks.Trigonometry;
 using System.Windows;
 
 namespace RailTest
